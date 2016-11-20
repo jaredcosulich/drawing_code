@@ -1,3 +1,9 @@
-.header.row
-  .col-xl-6
-    %h1 Drawing Code
+%nav.navbar.navbar-dark.navbar-fixed-top.bg-inverse
+  %button.navbar-toggler.hidden-sm-up{"aria-controls" => "navbar", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+  %a.navbar-brand{:href => "#"} Project name
+  #navbar
+    %nav.nav.navbar-nav.float-xs-left
+      %a.nav-item.nav-link{:href => "#"} Dashboard
+      %a.nav-item.nav-link{:href => "#"} Settings
+      %a.nav-item.nav-link{:href => "#"} Profile
+      %a.nav-item.nav-link{:href => "#"} Help

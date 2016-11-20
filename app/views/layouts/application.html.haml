@@ -7,15 +7,13 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
-  %body.container
-    .row
+  %body
+    = render partial: 'layouts/header'
 
-      .col-xl-12
-        = render partial: 'layouts/header'
+    .container-fluid
+      .row
+        .col-sm-3.col-md-2
+          = render partial: 'layouts/navigation'
 
-    .row
-      .col-xl-3
-        = render partial: 'layouts/navigation'
-
-      .col-xl-9
-        = yield
+        .col-sm-9.col-md-10.main
+          = yield
