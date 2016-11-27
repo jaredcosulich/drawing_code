@@ -16,4 +16,3 @@
 //= require turbolinks
 //= require ace
 //= require_tree .
-//= require lib/test/point

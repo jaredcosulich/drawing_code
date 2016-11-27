@@ -32,7 +32,9 @@
 # context.stroke();
 
 initLineToChallenges = ->
-  canvas = $('#line_to #challenge1 canvas')
+  editor = new App.Editor($('#line_to #challenge1 .editor'))
+  canvas = new App.Canvas($('#line_to #challenge1 canvas'))
+
   points = [
     new Test.Point(x: 55, y: 226, canvas: canvas),
     new Test.Point(x: 105, y: 153, canvas: canvas),
@@ -42,6 +44,8 @@ initLineToChallenges = ->
   $('#line_to #challenge1 .run').click ->
     setTimeout(( ->
       point.display(point.test()) for point in points
+
+
     ), 100)
 
 $(document).on('turbolinks:load', initLineToChallenges)

@@ -1,18 +1,18 @@
 class Test.Point
   constructor: (options) ->
     {@x, @y, @canvas} = options
-    if @canvas.length > 0
-      @context = @canvas[0].getContext('2d')
-    else
-      @context = @canvas.getContext('2d')
+    @context = @canvas.context
+    @status = 0
 
   test: ->
     pointData = @context.getImageData(@x, @y, 1, 1)
-    parseInt(pointData.data[3]) > 0
+    @status = if parseInt(pointData.data[3]) > 0 then 1 else -1
+    return @status
 
   display: (success)->
     strokeStyle = @context.strokeStyle;
     console.log(success)
+
     @context.strokeStyle = if success then '#00FF00' else '#FF0000'
 
     @context.beginPath()
