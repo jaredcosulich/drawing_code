@@ -18,9 +18,18 @@
               var canvas = document.getElementById('line_to_challenge');
               var context = canvas.getContext("2d");
               context.clearRect(0, 0, 300, 300);
+              \
+              context.beginPath();
+              \
+              \// YOUR CODE HERE
+              \
+              context.stroke();
+
             .buttons.py-1
-              .run.btn.btn-primary
+              .run.btn.btn-success
                 Run
+              .reset.btn.btn-danger.float-xs-right
+                Reset
 
         .visual.col-xs-6
           %h5

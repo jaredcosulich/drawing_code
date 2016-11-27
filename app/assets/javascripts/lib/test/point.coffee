@@ -10,18 +10,13 @@ class Test.Point
     return @status
 
   display: (success)->
+    return unless success > 0
     strokeStyle = @context.strokeStyle;
-    console.log(success)
-
-    @context.strokeStyle = if success then '#00FF00' else '#FF0000'
-
+    @context.strokeStyle = '#00FF00'
     @context.beginPath()
-
     @context.moveTo(@x-3, @y)
     @context.lineTo(@x+3, @y)
-
     @context.moveTo(@x, @y-3)
     @context.lineTo(@x, @y+3)
-
     @context.stroke()
     @context.strokeStyle = strokeStyle

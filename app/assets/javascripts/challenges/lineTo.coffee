@@ -44,8 +44,6 @@ initLineToChallenges = ->
   $('#line_to #challenge1 .run').click ->
     setTimeout(( ->
       point.display(point.test()) for point in points
-
-
     ), 100)
 
 $(document).on('turbolinks:load', initLineToChallenges)
