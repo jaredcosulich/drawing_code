@@ -32,18 +32,16 @@
 # context.stroke();
 
 initLineToChallenges = ->
+  canvas = $('#line_to #challenge1 canvas')
   points = [
-    new Test.Point(x: 55, y: 226),
-    new Test.Point(x: 105, y: 153),
-    new Test.Point(x: 155, y: 80)
+    new Test.Point(x: 55, y: 226, canvas: canvas),
+    new Test.Point(x: 105, y: 153, canvas: canvas),
+    new Test.Point(x: 155, y: 80, canvas: canvas)
   ]
 
   $('#line_to #challenge1 .run').click ->
-    canvas = $(this).closest('.challenge').find('canvas')
     setTimeout(( ->
-      for point in points
-        console.log(point)
-        console.log(point.test(canvas))
+      point.display(point.test()) for point in points
     ), 100)
 
 $(document).on('turbolinks:load', initLineToChallenges)
