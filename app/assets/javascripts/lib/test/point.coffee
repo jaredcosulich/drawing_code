@@ -9,7 +9,7 @@ class Test.Point
     @status = if parseInt(pointData.data[3]) > 0 then 1 else -1
     return @status
 
-  display: (success)->
+  display: (success=@status) ->
     return unless success > 0
     strokeStyle = @context.strokeStyle;
     @context.strokeStyle = '#00FF00'

@@ -43,7 +43,30 @@ initLineToChallenges = ->
 
   $('#line_to #challenge1 .run').click ->
     setTimeout(( ->
-      point.display(point.test()) for point in points
+      successfulPoints = []
+      failedPoints = []
+      for point in points
+        if point.test() > 0
+          point.display()
+          successfulPoints.push(point)
+        else
+          failedPoints.push(point)
+
+      if failedPoints.length > 0
+        message = 'Nice try! '
+        if successfulPoints.length > 0
+          message += "You got the x#{if successfulPoints.length > 1 then '\'s' else ''} at "
+          message += ("(#{point.x}, #{point.y})" for point in successfulPoints).join(', ')
+          message += ', but you '
+        else
+          message += 'You '
+        message += "missed the x#{if failedPoints.length > 1 then '\'s' else ''} at "
+        message += ("(#{point.x}, #{point.y})" for point in failedPoints).join(', ')
+
+      else
+        message = 'Success! Your line is going through all of the X\'s!'
+
+      console.log(message)
     ), 100)
 
 $(document).on('turbolinks:load', initLineToChallenges)
