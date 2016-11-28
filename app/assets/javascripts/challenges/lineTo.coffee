@@ -1,5 +1,26 @@
 initLineToChallenges = ->
   initLineToChallenge1()
+  initLineToChallenge2()
+
+pointsMessage = (canvas, points) ->
+  successfulPoints = []
+  failedPoints = []
+  for point in points
+    if point.test() > 0
+      point.display()
+      successfulPoints.push(point)
+    else
+      failedPoints.push(point)
+
+  if failedPoints.length > 0
+    message = 'Nice try, but you missed the '
+    message += "x#{if failedPoints.length > 1 then '\'s' else ''} at "
+    message += ("(#{point.x}, #{point.y})" for point in failedPoints).join(', ')
+  else
+    message = '<strong>Success!</strong> Your line is going through all of the X\'s!'
+
+  canvas.alert(message, (failedPoints.length == 0))
+
 
 initLineToChallenge1 = ->
   canvas = new App.Canvas($('#line_to #challenge1 canvas'))
@@ -13,23 +34,23 @@ initLineToChallenge1 = ->
 
   $('#line_to #challenge1 .run').click ->
     setTimeout(( ->
-      successfulPoints = []
-      failedPoints = []
-      for point in points
-        if point.test() > 0
-          point.display()
-          successfulPoints.push(point)
-        else
-          failedPoints.push(point)
 
-      if failedPoints.length > 0
-        message = 'Nice try, but you missed the '
-        message += "x#{if failedPoints.length > 1 then '\'s' else ''} at "
-        message += ("(#{point.x}, #{point.y})" for point in failedPoints).join(', ')
-      else
-        message = '<strong>Success!</strong> Your line is going through all of the X\'s!'
+    ), 200)
 
-      canvas.alert(message, (failedPoints.length == 0))
+
+initLineToChallenge2 = ->
+  canvas = new App.Canvas($('#line_to #challenge2 canvas'))
+  editor = new App.Editor($('#line_to #challenge2 .editor'), canvas)
+
+  points = [
+    new Test.Point(x: 100, y: 50, canvas: canvas),
+    new Test.Point(x: 100, y: 250, canvas: canvas),
+    new Test.Point(x: 200, y: 250, canvas: canvas)
+  ]
+
+  $('#line_to #challenge2 .run').click ->
+    setTimeout(( ->
+      pointsMessage(canvas, points)
     ), 200)
 
 $(document).on('turbolinks:load', initLineToChallenges)

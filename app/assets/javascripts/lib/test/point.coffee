@@ -5,8 +5,10 @@ class Test.Point
     @status = 0
 
   test: ->
-    pointData = @context.getImageData(@x, @y, 1, 1)
-    @status = if parseInt(pointData.data[3]) > 0 then 1 else -1
+    pointData = @context.getImageData(@x-1, @y-1, 3, 3)
+    totalAlpha = 0
+    totalAlpha += alpha for alpha, i in pointData.data when i % 3 == 0
+    @status = if totalAlpha > 0 then 1 else -1
     return @status
 
   display: (success=@status) ->
