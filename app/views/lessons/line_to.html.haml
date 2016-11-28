@@ -151,7 +151,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#line_to_challenge1{style: "background-image: url('/assets/lessons/line_to/challenge1.png')"}
+            .background.hidden-xl-down= image_tag('lessons/line_to/challenge1.png')
+            %canvas#line_to_challenge1
           .alert
 
   #challenge2.challenge.row.py-3
@@ -189,7 +190,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#line_to_challenge2{style: "background-image: url('/assets/lessons/line_to/challenge2.png')"}
+            .background.hidden-xl-down= image_tag('lessons/line_to/challenge2.png')
+            %canvas#line_to_challenge2
           .alert
 
 
@@ -231,5 +233,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#line_to_challenge3{style: "background-image: url('/assets/lessons/line_to/challenge3.png')"}
+            .background.hidden-xl-down= image_tag('lessons/line_to/challenge3.png')
+            %canvas#line_to_challenge3
           .alert

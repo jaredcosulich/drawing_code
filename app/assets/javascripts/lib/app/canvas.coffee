@@ -2,6 +2,9 @@ class App.Canvas
   constructor: (canvas) ->
     @canvasElement = $(canvas)[0]
     @canvas = $(@canvasElement)
+    if (backgroundImage = @canvas.closest('.canvas').find('.background img')).length > 0
+      @canvas.css('background-image', 'url(' + backgroundImage.attr('src') + ')')
+
     @context = @canvasElement.getContext('2d')
     @canvas.attr(width: @canvas.width(), height: @canvas.height())
     @alertElement = @canvas.closest('.visual').find('.alert')

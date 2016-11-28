@@ -44,7 +44,7 @@ initLineToChallenge1 = ->
 
   $('#line_to #challenge1 .run').click ->
     setTimeout(( ->
-
+      pointsMessage(canvas, points)
     ), 200)
 
 
