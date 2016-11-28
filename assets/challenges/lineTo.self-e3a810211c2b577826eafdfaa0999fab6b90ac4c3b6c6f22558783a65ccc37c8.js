@@ -80,7 +80,9 @@
       })
     ];
     return $('#line_to #challenge1 .run').click(function() {
-      return setTimeout((function() {}), 200);
+      return setTimeout((function() {
+        return pointsMessage(canvas, points);
+      }), 200);
     });
   };
 
