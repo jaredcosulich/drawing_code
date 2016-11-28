@@ -1,6 +1,6 @@
 class Test.Point
   constructor: (options) ->
-    {@x, @y, @canvas} = options
+    {@x, @y, @canvas, @badPoint=false} = options
     @context = @canvas.context
     @status = 0
 
@@ -9,10 +9,11 @@ class Test.Point
     totalAlpha = 0
     totalAlpha += alpha for alpha, i in pointData.data when i % 3 == 0
     @status = if totalAlpha > 0 then 1 else -1
+    @status = @status * -1 if @badPoint
     return @status
 
   display: (success=@status) ->
-    return unless success > 0
+    return if success <= 0 || @badPoint
     strokeStyle = @context.strokeStyle;
     @context.strokeStyle = '#00FF00'
     @context.beginPath()
