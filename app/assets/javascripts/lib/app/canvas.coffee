@@ -4,5 +4,17 @@ class App.Canvas
     @canvas = $(@canvasElement)
     @context = @canvasElement.getContext('2d')
     @canvas.attr(width: @canvas.width(), height: @canvas.height())
+    @alertElement = @canvas.closest('.visual').find('.alert')
 
-  message: (message) ->
+  alert: (message, success) ->
+    @alertElement.html(message)
+    if success
+      @alertElement.removeClass('alert-danger')
+      @alertElement.addClass('alert-success')
+    else
+      @alertElement.removeClass('alert-success')
+      @alertElement.addClass('alert-danger')
+    @alertElement.slideDown()
+
+  hideAlert: ->
+    @alertElement.slideUp(100)

@@ -14,15 +14,22 @@
 
 }
 
-.canvas {
-  width: 100%;
-  border: 1px solid #333;
-  background-color: #eee;
-  background-repeat: no-repeat;
-  background-position: left top;
-  overflow: hidden;
-  canvas {
-    width: 450px;
-    height: 300px;
+.visual {
+  .canvas {
+    width: 100%;
+    border: 1px solid #333;
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: left top;
+    overflow: hidden;
+    canvas {
+      width: 450px;
+      height: 300px;
+    }
+
+  }
+
+  .alert {
+    display: none;
   }
 }

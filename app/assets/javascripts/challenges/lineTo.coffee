@@ -32,8 +32,8 @@
 # context.stroke();
 
 initLineToChallenges = ->
-  editor = new App.Editor($('#line_to #challenge1 .editor'))
   canvas = new App.Canvas($('#line_to #challenge1 canvas'))
+  editor = new App.Editor($('#line_to #challenge1 .editor'), canvas)
 
   points = [
     new Test.Point(x: 55, y: 226, canvas: canvas),
@@ -53,20 +53,13 @@ initLineToChallenges = ->
           failedPoints.push(point)
 
       if failedPoints.length > 0
-        message = 'Nice try! '
-        if successfulPoints.length > 0
-          message += "You got the x#{if successfulPoints.length > 1 then '\'s' else ''} at "
-          message += ("(#{point.x}, #{point.y})" for point in successfulPoints).join(', ')
-          message += ', but you '
-        else
-          message += 'You '
-        message += "missed the x#{if failedPoints.length > 1 then '\'s' else ''} at "
+        message = 'Nice try, but you missed the '
+        message += "x#{if failedPoints.length > 1 then '\'s' else ''} at "
         message += ("(#{point.x}, #{point.y})" for point in failedPoints).join(', ')
-
       else
-        message = 'Success! Your line is going through all of the X\'s!'
+        message = '<strong>Success!</strong> Your line is going through all of the X\'s!'
 
-      console.log(message)
-    ), 100)
+      canvas.alert(message, (failedPoints.length == 0))
+    ), 200)
 
 $(document).on('turbolinks:load', initLineToChallenges)
