@@ -1,0 +1,234 @@
+#line_to
+  %h1 fillRect
+
+  .official.row.py-3
+    .col-xs-6
+      %h2 The Official Description
+      %p.py-2
+        The CanvasRenderingContext2D.fillRect() method of the Canvas 2D API draws a
+        filled rectangle at (x, y) position whose size is determined by width and
+        height and whose style is determined by the fillStyle attribute.
+      .source.text-xs-right
+        = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect', target: '_blank')
+
+    .col-xs-6
+      = image_tag('lessons/fill_rect/visual1.png', class: '')
+
+
+  .simple.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Draw A Rectangle and Fill It In
+          %p.pt-2
+            context.fillRect() draws a rectangle and fills it in with the color
+            defined by context.fillStyle.
+
+        .col-xs-12
+          .interactive.row.py-1
+            .code-editor.col-xs-6
+              %h5
+                Editor
+                %small (write code below)
+              .editor<
+                var canvas = document.getElementById('line_to_interactive1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, 450, 300);
+                \
+                context.fillStyle = 'red';
+                context.fillRect(100,100,100,50);
+
+              .buttons.py-1
+                .run.btn.btn-success
+                  Run
+                .reset.btn.btn-danger.float-xs-right
+                  Reset
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#line_to_interactive1
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Example
+          %p.pt-2
+            Using lineTo to draw a basic house.
+
+        .col-xs-12
+          .interactive.row.py-1
+            .code-editor.col-xs-6
+              %h5
+                Editor
+                %small (write code below)
+              .editor<
+                var canvas = document.getElementById('line_to_example1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, 450, 300);
+                /
+                context.beginPath();
+                context.moveTo(50, 125);
+                context.lineTo(200, 125);
+                context.lineTo(200, 275);
+                context.lineTo(50, 275);
+                context.lineTo(50, 125);
+                context.lineTo(125, 50);
+                context.lineTo(200, 125);
+                /
+                context.moveTo(75, 150);
+                context.lineTo(100, 150);
+                context.lineTo(100, 175);
+                context.lineTo(75, 175);
+                context.lineTo(75, 150);
+                /
+                context.moveTo(110, 275);
+                context.lineTo(110, 215);
+                context.lineTo(140, 215);
+                context.lineTo(140, 275);
+                /
+                context.closePath();
+                context.stroke();
+
+              .buttons.py-1
+                .run.btn.btn-success
+                  Run
+                .reset.btn.btn-danger.float-xs-right
+                  Reset
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#line_to_example1
+
+
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2 Challenge 1
+          %p.py-2 Draw a line from the point (55, 226) to the point (155, 80), passing through the X's shown.
+
+      .row
+        .code-editor.col-xs-6
+          %h5
+            Editor
+            %small (write code below)
+          .editor<
+            var canvas = document.getElementById('line_to_challenge1');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 450, 300);
+            \
+            context.beginPath();
+            \
+            \// YOUR CODE HERE
+            \
+            context.closePath();
+            context.stroke();
+
+          .buttons.py-1
+            .run.btn.btn-success
+              Run
+            .reset.btn.btn-danger.float-xs-right
+              Reset
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/line_to/challenge1.png')
+            %canvas#line_to_challenge1
+          .alert
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2 Challenge 2
+          %p.py-2 Draw an L shape passing through the X's at (100, 50), (100, 250), and (200, 250).
+
+      .row
+        .code-editor.col-xs-6
+          %h5
+            Editor
+            %small (write code below)
+          .editor<
+            var canvas = document.getElementById('line_to_challenge3');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 450, 300);
+            \
+            context.beginPath();
+            \
+            \// YOUR CODE HERE
+            \
+            context.closePath();
+            context.stroke();
+
+          .buttons.py-1
+            .run.btn.btn-success
+              Run
+            .reset.btn.btn-danger.float-xs-right
+              Reset
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/line_to/challenge2.png')
+            %canvas#line_to_challenge2
+          .alert
+
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2 Challenge 3
+          %p.py-2
+            Draw two lines moving throught the x's at (100, 100), (100,200) and (200,100), (200,200),
+            but not through any of the red x's
+
+      .row
+        .code-editor.col-xs-6
+          %h5
+            Editor
+            %small (write code below)
+          .editor<
+            var canvas = document.getElementById('line_to_challenge3');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 450, 300);
+            \
+            context.beginPath();
+            \
+            \// YOUR CODE HERE
+            \
+            context.closePath();
+            context.stroke();
+
+          .buttons.py-1
+            .run.btn.btn-success
+              Run
+            .reset.btn.btn-danger.float-xs-right
+              Reset
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/line_to/challenge3.png')
+            %canvas#line_to_challenge3
+          .alert

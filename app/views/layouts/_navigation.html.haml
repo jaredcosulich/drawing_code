@@ -6,16 +6,20 @@
         %span.sr-only (current)
 
       %ul.nav.nav-sidebar
-        %li.active
+        %li{class: ('active' if params[:id] == 'line_to')}
           %a{:href => '/lessons/line_to'} lineTo
+        %li{class: ('active' if params[:id] == 'fill_rect')}
+          %a{:href => '/lessons/fill_rect'} fillRect
 
   %ul.nav.nav-sidebar
     %li
       %a{:href => ''} CityScape Challenge
 
       %ul.nav.nav-sidebar
-        %li.active
+        %li{class: ('active' if params[:id] == 'line_to')}
           %a{:href => '/lessons/line_to'} lineTo
+        %li{class: ('active' if params[:id] == 'fill_rect')}
+          %a{:href => '/lessons/fill_rect'} fillRect
 
 -#
     %li
