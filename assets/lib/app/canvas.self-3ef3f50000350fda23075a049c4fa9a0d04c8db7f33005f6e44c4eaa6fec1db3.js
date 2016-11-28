@@ -1,8 +1,12 @@
 (function() {
   App.Canvas = (function() {
     function Canvas(canvas) {
+      var backgroundImage;
       this.canvasElement = $(canvas)[0];
       this.canvas = $(this.canvasElement);
+      if ((backgroundImage = this.canvas.closest('.canvas').find('.background img')).length > 0) {
+        this.canvas.css('background-image', 'url(' + backgroundImage.attr('src') + ')');
+      }
       this.context = this.canvasElement.getContext('2d');
       this.canvas.attr({
         width: this.canvas.width(),
