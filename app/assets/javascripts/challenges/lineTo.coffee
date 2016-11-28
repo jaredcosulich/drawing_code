@@ -1,3 +1,41 @@
+initLineToChallenges = ->
+  initLineToChallenge1()
+
+initLineToChallenge1 = ->
+  canvas = new App.Canvas($('#line_to #challenge1 canvas'))
+  editor = new App.Editor($('#line_to #challenge1 .editor'), canvas)
+
+  points = [
+    new Test.Point(x: 55, y: 226, canvas: canvas),
+    new Test.Point(x: 105, y: 153, canvas: canvas),
+    new Test.Point(x: 155, y: 80, canvas: canvas)
+  ]
+
+  $('#line_to #challenge1 .run').click ->
+    setTimeout(( ->
+      successfulPoints = []
+      failedPoints = []
+      for point in points
+        if point.test() > 0
+          point.display()
+          successfulPoints.push(point)
+        else
+          failedPoints.push(point)
+
+      if failedPoints.length > 0
+        message = 'Nice try, but you missed the '
+        message += "x#{if failedPoints.length > 1 then '\'s' else ''} at "
+        message += ("(#{point.x}, #{point.y})" for point in failedPoints).join(', ')
+      else
+        message = '<strong>Success!</strong> Your line is going through all of the X\'s!'
+
+      canvas.alert(message, (failedPoints.length == 0))
+    ), 200)
+
+$(document).on('turbolinks:load', initLineToChallenges)
+
+
+
 # var canvas = document.getElementById('line_to_challenge');
 # var context = canvas.getContext("2d");
 # context.clearRect(0, 0, 300, 300);
@@ -30,36 +68,3 @@
 # context.moveTo(55,226);
 # context.lineTo(155,80);
 # context.stroke();
-
-initLineToChallenges = ->
-  canvas = new App.Canvas($('#line_to #challenge1 canvas'))
-  editor = new App.Editor($('#line_to #challenge1 .editor'), canvas)
-
-  points = [
-    new Test.Point(x: 55, y: 226, canvas: canvas),
-    new Test.Point(x: 105, y: 153, canvas: canvas),
-    new Test.Point(x: 155, y: 80, canvas: canvas)
-  ]
-
-  $('#line_to #challenge1 .run').click ->
-    setTimeout(( ->
-      successfulPoints = []
-      failedPoints = []
-      for point in points
-        if point.test() > 0
-          point.display()
-          successfulPoints.push(point)
-        else
-          failedPoints.push(point)
-
-      if failedPoints.length > 0
-        message = 'Nice try, but you missed the '
-        message += "x#{if failedPoints.length > 1 then '\'s' else ''} at "
-        message += ("(#{point.x}, #{point.y})" for point in failedPoints).join(', ')
-      else
-        message = '<strong>Success!</strong> Your line is going through all of the X\'s!'
-
-      canvas.alert(message, (failedPoints.length == 0))
-    ), 200)
-
-$(document).on('turbolinks:load', initLineToChallenges)
