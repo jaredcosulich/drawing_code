@@ -7,7 +7,10 @@
 
       %ul.nav.nav-sidebar
         %li{class: ('active' if params[:id] == 'line_to')}
-          %a{:href => '/lessons/line_to'} lineTo
+          %a{:href => '/lessons/line_to'}
+            lineTo
+            %span.tag.tag-default
+              %small 0 / 3
         %li{class: ('active' if params[:id] == 'fill_rect')}
           %a{:href => '/lessons/fill_rect'} fillRect
 

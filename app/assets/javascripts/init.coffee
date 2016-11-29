@@ -14,4 +14,8 @@ initInteractives = ->
     editor = new App.Editor(interactive.find('.editor'), canvas)
     editor.run()
 
+initProgress = ->
+  App.currentProgress = new App.Progress()
+  App.currentProgress.updateNavigation()
+
 $(document).on('turbolinks:load', initInteractives)
