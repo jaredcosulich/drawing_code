@@ -11,12 +11,17 @@ initFillRectChallenge1 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 100, y: 100, red: 255, canvas: canvas)
+    new Test.Point(x: 100, y: 100, colors: [255,0,0], canvas: canvas)
   ]
 
   challenge.find('.run').click ->
     setTimeout(( ->
-      points[0].test()
+      if (success = (points[0].test() == 1))
+        message = '<strong>Success!</strong> Your red rectangle is covering the x!'
+      else
+        message = 'Nice try, but you need to draw a red rectangle that covers the x.'
+
+      canvas.alert(message, success)
     ), 200)
 
 $(document).on('turbolinks:load', initFillRectChallenges)
