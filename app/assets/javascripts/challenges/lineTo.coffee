@@ -1,7 +1,8 @@
 initLineToChallenges = ->
-  initLineToChallenge1()
-  initLineToChallenge2()
-  initLineToChallenge3()
+  if (page = $('#line_to')).length > 0
+    initLineToChallenge1(page)
+    initLineToChallenge2(page)
+    initLineToChallenge3(page)
 
 pointsMessage = (canvas, points) ->
   successfulPoints = []
@@ -32,9 +33,10 @@ pointsMessage = (canvas, points) ->
   canvas.alert(message, (failedPoints.length == 0 && badPoints.length == 0))
 
 
-initLineToChallenge1 = ->
-  canvas = new App.Canvas($('#line_to #challenge1 canvas'))
-  editor = new App.Editor($('#line_to #challenge1 .editor'), canvas)
+initLineToChallenge1 = (page)->
+  challenge = page.find('#challenge1')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
     new Test.Point(x: 55, y: 226, canvas: canvas),
@@ -42,15 +44,16 @@ initLineToChallenge1 = ->
     new Test.Point(x: 155, y: 80, canvas: canvas)
   ]
 
-  $('#line_to #challenge1 .run').click ->
+  challenge.find('.run').click ->
     setTimeout(( ->
       pointsMessage(canvas, points)
     ), 200)
 
 
-initLineToChallenge2 = ->
-  canvas = new App.Canvas($('#line_to #challenge2 canvas'))
-  editor = new App.Editor($('#line_to #challenge2 .editor'), canvas)
+initLineToChallenge2 = (page) ->
+  challenge = page.find('#challenge2')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
     new Test.Point(x: 100, y: 50, canvas: canvas),
@@ -58,15 +61,16 @@ initLineToChallenge2 = ->
     new Test.Point(x: 200, y: 250, canvas: canvas)
   ]
 
-  $('#line_to #challenge2 .run').click ->
+  challenge.find('.run').click ->
     setTimeout(( ->
       pointsMessage(canvas, points)
     ), 200)
 
 
 initLineToChallenge3 = ->
-  canvas = new App.Canvas($('#line_to #challenge3 canvas'))
-  editor = new App.Editor($('#line_to #challenge3 .editor'), canvas)
+  challenge = page.find('#challenge3')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
     new Test.Point(x: 100, y: 100, canvas: canvas),
@@ -78,7 +82,7 @@ initLineToChallenge3 = ->
     new Test.Point(x: 150, y: 200, canvas: canvas, badPoint: true)
   ]
 
-  $('#line_to #challenge3 .run').click ->
+  challenge.find('.run').click ->
     setTimeout(( ->
       pointsMessage(canvas, points)
     ), 200)

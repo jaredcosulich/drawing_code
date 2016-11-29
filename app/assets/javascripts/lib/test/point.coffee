@@ -6,6 +6,7 @@ class Test.Point
 
   test: ->
     pointData = @context.getImageData(@x-1, @y-1, 3, 3)
+    console.log(pointData)
     totalAlpha = 0
     totalAlpha += alpha for alpha, i in pointData.data when i % 3 == 0
     @status = if totalAlpha > 0 then 1 else -1

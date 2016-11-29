@@ -1,4 +1,4 @@
-#line_to
+#fill_rect
   %h1 fillRect
 
   .official.row.py-3
@@ -32,7 +32,7 @@
                 Editor
                 %small (write code below)
               .editor<
-                var canvas = document.getElementById('line_to_interactive1');
+                var canvas = document.getElementById('fill_rect_interactive1');
                 var context = canvas.getContext("2d");
                 context.clearRect(0, 0, 450, 300);
                 \
@@ -50,7 +50,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#line_to_interactive1
+                %canvas#fill_rect_interactive1
 
 
   .example.row.py-3
@@ -60,7 +60,7 @@
           %h2
             Example
           %p.pt-2
-            Using lineTo to draw a basic house.
+            Using fillRect() to draw the flag of France.
 
         .col-xs-12
           .interactive.row.py-1
@@ -72,29 +72,15 @@
                 var canvas = document.getElementById('line_to_example1');
                 var context = canvas.getContext("2d");
                 context.clearRect(0, 0, 450, 300);
-                /
-                context.beginPath();
-                context.moveTo(50, 125);
-                context.lineTo(200, 125);
-                context.lineTo(200, 275);
-                context.lineTo(50, 275);
-                context.lineTo(50, 125);
-                context.lineTo(125, 50);
-                context.lineTo(200, 125);
-                /
-                context.moveTo(75, 150);
-                context.lineTo(100, 150);
-                context.lineTo(100, 175);
-                context.lineTo(75, 175);
-                context.lineTo(75, 150);
-                /
-                context.moveTo(110, 275);
-                context.lineTo(110, 215);
-                context.lineTo(140, 215);
-                context.lineTo(140, 275);
-                /
-                context.closePath();
-                context.stroke();
+                \
+                context.fillStyle = '#0F278F';
+                context.fillRect(50, 50, 100, 200);
+                \
+                context.fillStyle = 'white';
+                context.fillRect(150, 50, 100, 200);
+                \
+                context.fillStyle = '#DB5443';
+                context.fillRect(250, 50, 100, 200);
 
               .buttons.py-1
                 .run.btn.btn-success
@@ -117,7 +103,7 @@
       .row
         .col-xs-12
           %h2 Challenge 1
-          %p.py-2 Draw a line from the point (55, 226) to the point (155, 80), passing through the X's shown.
+          %p.py-2 Draw a red rectangle covering the x at (100,100).
 
       .row
         .code-editor.col-xs-6
@@ -125,7 +111,7 @@
             Editor
             %small (write code below)
           .editor<
-            var canvas = document.getElementById('line_to_challenge1');
+            var canvas = document.getElementById('fill_rect_challenge1');
             var context = canvas.getContext("2d");
             context.clearRect(0, 0, 450, 300);
             \
@@ -147,8 +133,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/line_to/challenge1.png')
-            %canvas#line_to_challenge1
+            -# .background.hidden-xl-down= image_tag('lessons/line_to/challenge1.png')
+            %canvas#fill_rect_challenge1
           .alert
 
   #challenge2.challenge.row.py-3
