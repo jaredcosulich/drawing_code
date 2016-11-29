@@ -1,7 +1,7 @@
 initFillRectChallenges = ->
   if (page = $('#fill_rect')).length > 0
     initFillRectChallenge1(page)
-    # initFillRectChallenge2(page)
+    initFillRectChallenge2(page)
     # initFillRectChallenge3(page)
 
 
@@ -23,6 +23,28 @@ initFillRectChallenge1 = (page) ->
 
       canvas.alert(message, success)
     ), 200)
+
+
+initFillRectChallenge2 = (page) ->
+  challenge = page.find('#challenge2')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  points = [
+    new Test.Point(x: 100, y: 100, canvas: canvas)
+    new Test.Point(x: 100, y: 200, canvas: canvas)
+  ]
+
+  challenge.find('.run').click ->
+    setTimeout(( ->
+      if (success = (points[0].test() == 1))
+        message = '<strong>Success!</strong> Your rectangle is covering the x\'s!'
+      else
+        message = 'Nice try, but you need to draw a rectangle that covers both x\'s.'
+
+      canvas.alert(message, success)
+    ), 200)
+
 
 $(document).on('turbolinks:load', initFillRectChallenges)
 

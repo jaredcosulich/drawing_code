@@ -4,7 +4,7 @@ initLineToChallenges = ->
     initLineToChallenge2(page)
     initLineToChallenge3(page)
 
-pointsMessage = (canvas, points) ->
+pointsMessage = (canvas, points, bad=false) ->
   successfulPoints = []
   failedPoints = []
   badPoints = []
@@ -28,7 +28,9 @@ pointsMessage = (canvas, points) ->
       message += "your line is going through the x#{if failedPoints.length > 1 then '\'s' else ''} at "
       message += ("(#{point.x}, #{point.y})" for point in badPoints).join(', ')
   else
-    message = '<strong>Success!</strong> Your line is going through all of the good X\'s!'
+    message = '<strong>Success!</strong> Your line is going through all of the '
+    message += 'good ' if bad
+    message += 'X\'s!'
 
   canvas.alert(message, (failedPoints.length == 0 && badPoints.length == 0))
 
@@ -39,9 +41,9 @@ initLineToChallenge1 = (page)->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 55, y: 226, canvas: canvas, buffer: 1),
-    new Test.Point(x: 105, y: 153, canvas: canvas, buffer: 1),
-    new Test.Point(x: 155, y: 80, canvas: canvas, buffer: 1)
+    new Test.Point(x: 55, y: 226, canvas: canvas),
+    new Test.Point(x: 105, y: 153, canvas: canvas),
+    new Test.Point(x: 155, y: 80, canvas: canvas)
   ]
 
   challenge.find('.run').click ->
@@ -56,9 +58,9 @@ initLineToChallenge2 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 100, y: 50, canvas: canvas, buffer: 1),
-    new Test.Point(x: 100, y: 250, canvas: canvas, buffer: 1),
-    new Test.Point(x: 200, y: 250, canvas: canvas, buffer: 1)
+    new Test.Point(x: 100, y: 50, canvas: canvas),
+    new Test.Point(x: 100, y: 250, canvas: canvas),
+    new Test.Point(x: 200, y: 250, canvas: canvas)
   ]
 
   challenge.find('.run').click ->
@@ -73,10 +75,10 @@ initLineToChallenge3 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 100, y: 100, canvas: canvas, buffer: 1),
-    new Test.Point(x: 100, y: 200, canvas: canvas, buffer: 1),
-    new Test.Point(x: 200, y: 100, canvas: canvas, buffer: 1),
-    new Test.Point(x: 200, y: 200, canvas: canvas, buffer: 1),
+    new Test.Point(x: 100, y: 100, canvas: canvas),
+    new Test.Point(x: 100, y: 200, canvas: canvas),
+    new Test.Point(x: 200, y: 100, canvas: canvas),
+    new Test.Point(x: 200, y: 200, canvas: canvas),
     new Test.Point(x: 150, y: 100, canvas: canvas, badPoint: true),
     new Test.Point(x: 150, y: 150, canvas: canvas, badPoint: true),
     new Test.Point(x: 150, y: 200, canvas: canvas, badPoint: true)
@@ -84,7 +86,7 @@ initLineToChallenge3 = (page) ->
 
   challenge.find('.run').click ->
     setTimeout(( ->
-      pointsMessage(canvas, points)
+      pointsMessage(canvas, points, true)
     ), 200)
 
 $(document).on('turbolinks:load', initLineToChallenges)

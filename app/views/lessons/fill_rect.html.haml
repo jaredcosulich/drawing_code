@@ -141,7 +141,7 @@
       .row
         .col-xs-12
           %h2 Challenge 2
-          %p.py-2 Draw an L shape passing through the X's at (100, 50), (100, 250), and (200, 250).
+          %p.py-2 Draw a rectangle that covers the two x's at (100,100), and (100,200).
 
       .row
         .code-editor.col-xs-6
@@ -149,7 +149,7 @@
             Editor
             %small (write code below)
           .editor<
-            var canvas = document.getElementById('line_to_challenge3');
+            var canvas = document.getElementById('line_to_challenge2');
             var context = canvas.getContext("2d");
             context.clearRect(0, 0, 450, 300);
             \
@@ -170,7 +170,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/line_to/challenge2.png')
+            //.background.hidden-xl-down= image_tag('lessons/line_to/challenge2.png')
             %canvas#line_to_challenge2
           .alert
 

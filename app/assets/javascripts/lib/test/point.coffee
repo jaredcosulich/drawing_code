@@ -1,6 +1,6 @@
 class Test.Point
   constructor: (options) ->
-    {@x, @y, @canvas, @colors=[], @buffer=0, @badPoint=false} = options
+    {@x, @y, @canvas, @colors=[], @buffer=1, @badPoint=false} = options
     @context = @canvas.context
     @status = 0
 
