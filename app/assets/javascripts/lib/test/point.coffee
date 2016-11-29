@@ -6,7 +6,6 @@ class Test.Point
 
   test: (buffer=@buffer)->
     pointData = @context.getImageData(@x-buffer, @y-buffer, ((buffer*2) + 1), ((buffer*2) + 1))
-
     totalAlpha = 0
     totalAlpha += alpha for alpha, i in pointData.data when i % 3 == 0
     @status = if totalAlpha > 0 then 1 else -1

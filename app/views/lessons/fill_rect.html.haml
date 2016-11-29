@@ -60,7 +60,7 @@
           %h2
             Example
           %p.pt-2
-            Using fillRect() to draw the flag of France.
+            Using fillRect() to draw the flag of Madagascar.
 
         .col-xs-12
           .interactive.row.py-1
@@ -73,14 +73,14 @@
                 var context = canvas.getContext("2d");
                 context.clearRect(0, 0, 450, 300);
                 \
-                context.fillStyle = '#0F278F';
+                context.fillStyle = 'white';
                 context.fillRect(50, 50, 100, 200);
                 \
-                context.fillStyle = 'white';
-                context.fillRect(150, 50, 100, 200);
+                context.fillStyle = '#EB4D37';
+                context.fillRect(150, 50, 200, 100);
                 \
-                context.fillStyle = '#DB5443';
-                context.fillRect(250, 50, 100, 200);
+                context.fillStyle = '#337D3F';
+                context.fillRect(150, 150, 200, 100);
 
               .buttons.py-1
                 .run.btn.btn-success
@@ -175,15 +175,15 @@
           .alert
 
 
--#
+
   #challenge3.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
           %h2 Challenge 3
           %p.py-2
-            Draw two lines moving throught the x's at (100, 100), (100,200) and (200,100), (200,200),
-            but not through any of the red x's
+            Draw the flag of France by drawing rectangles covering the x's at
+            (100,150) with #0F278F, (200,150) with white, and (300,150) with #DB5443.
 
       .row
         .code-editor.col-xs-6
