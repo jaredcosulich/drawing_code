@@ -5,7 +5,6 @@ initLineToChallenges = ->
     initLineToChallenge3(page)
 
 pointsMessage = (canvas, points) ->
-  return
   successfulPoints = []
   failedPoints = []
   badPoints = []
