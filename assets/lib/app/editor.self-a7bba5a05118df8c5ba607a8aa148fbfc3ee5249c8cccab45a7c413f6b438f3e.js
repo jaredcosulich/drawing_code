@@ -5,6 +5,9 @@
       this.editorElement = $(editor)[0];
       this.editor = $(this.editorElement);
       this.aceEditor = ace.edit(this.editorElement);
+      this.editor.on('input', function() {
+        return window.onbeforeunload = App.confirmOnPageExit;
+      });
       this.startCode = this.aceEditor.getValue().replace(/\n +/ig, '\n');
       this.initRun();
       this.reset();

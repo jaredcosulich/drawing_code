@@ -2,13 +2,19 @@
   var initLineToChallenge1, initLineToChallenge2, initLineToChallenge3, initLineToChallenges, pointsMessage;
 
   initLineToChallenges = function() {
-    initLineToChallenge1();
-    initLineToChallenge2();
-    return initLineToChallenge3();
+    var page;
+    if ((page = $('#line_to')).length > 0) {
+      initLineToChallenge1(page);
+      initLineToChallenge2(page);
+      return initLineToChallenge3(page);
+    }
   };
 
-  pointsMessage = function(canvas, points) {
+  pointsMessage = function(canvas, points, bad) {
     var badPoints, failedPoints, i, len, message, point, successfulPoints;
+    if (bad == null) {
+      bad = false;
+    }
     successfulPoints = [];
     failedPoints = [];
     badPoints = [];
@@ -55,15 +61,20 @@
         })()).join(', ');
       }
     } else {
-      message = '<strong>Success!</strong> Your line is going through all of the good X\'s!';
+      message = '<strong>Success!</strong> Your line is going through all of the ';
+      if (bad) {
+        message += 'good ';
+      }
+      message += 'X\'s!';
     }
     return canvas.alert(message, failedPoints.length === 0 && badPoints.length === 0);
   };
 
-  initLineToChallenge1 = function() {
-    var canvas, editor, points;
-    canvas = new App.Canvas($('#line_to #challenge1 canvas'));
-    editor = new App.Editor($('#line_to #challenge1 .editor'), canvas);
+  initLineToChallenge1 = function(page) {
+    var canvas, challenge, editor, points;
+    challenge = page.find('#challenge1');
+    canvas = new App.Canvas(challenge.find('canvas'));
+    editor = new App.Editor(challenge.find('.editor'), canvas);
     points = [
       new Test.Point({
         x: 55,
@@ -79,17 +90,18 @@
         canvas: canvas
       })
     ];
-    return $('#line_to #challenge1 .run').click(function() {
+    return challenge.find('.run').click(function() {
       return setTimeout((function() {
         return pointsMessage(canvas, points);
       }), 200);
     });
   };
 
-  initLineToChallenge2 = function() {
-    var canvas, editor, points;
-    canvas = new App.Canvas($('#line_to #challenge2 canvas'));
-    editor = new App.Editor($('#line_to #challenge2 .editor'), canvas);
+  initLineToChallenge2 = function(page) {
+    var canvas, challenge, editor, points;
+    challenge = page.find('#challenge2');
+    canvas = new App.Canvas(challenge.find('canvas'));
+    editor = new App.Editor(challenge.find('.editor'), canvas);
     points = [
       new Test.Point({
         x: 100,
@@ -105,17 +117,18 @@
         canvas: canvas
       })
     ];
-    return $('#line_to #challenge2 .run').click(function() {
+    return challenge.find('.run').click(function() {
       return setTimeout((function() {
         return pointsMessage(canvas, points);
       }), 200);
     });
   };
 
-  initLineToChallenge3 = function() {
-    var canvas, editor, points;
-    canvas = new App.Canvas($('#line_to #challenge3 canvas'));
-    editor = new App.Editor($('#line_to #challenge3 .editor'), canvas);
+  initLineToChallenge3 = function(page) {
+    var canvas, challenge, editor, points;
+    challenge = page.find('#challenge3');
+    canvas = new App.Canvas(challenge.find('canvas'));
+    editor = new App.Editor(challenge.find('.editor'), canvas);
     points = [
       new Test.Point({
         x: 100,
@@ -150,9 +163,9 @@
         badPoint: true
       })
     ];
-    return $('#line_to #challenge3 .run').click(function() {
+    return challenge.find('.run').click(function() {
       return setTimeout((function() {
-        return pointsMessage(canvas, points);
+        return pointsMessage(canvas, points, true);
       }), 200);
     });
   };
