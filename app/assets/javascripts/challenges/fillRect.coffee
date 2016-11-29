@@ -37,10 +37,16 @@ initFillRectChallenge2 = (page) ->
 
   challenge.find('.run').click ->
     setTimeout(( ->
-      if (success = (points[0].test() == 1))
-        message = '<strong>Success!</strong> Your rectangle is covering the x\'s!'
-      else
-        message = 'Nice try, but you need to draw a rectangle that covers both x\'s.'
+      success = true
+      for point in points
+        if point.test() < 1
+          success = false
+          break
+
+      message = if success
+          '<strong>Success!</strong> Your rectangle is covering the x\'s!'
+        else
+          'Nice try, but you need to draw a rectangle that covers both x\'s.'
 
       canvas.alert(message, success)
     ), 200)
@@ -50,7 +56,7 @@ $(document).on('turbolinks:load', initFillRectChallenges)
 
 
 
-
+#
 # context.moveTo(52, 223);
 # context.lineTo(58, 229);
 # context.moveTo(58, 223);

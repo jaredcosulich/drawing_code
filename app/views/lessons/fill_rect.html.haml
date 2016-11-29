@@ -69,7 +69,7 @@
                 Editor
                 %small (write code below)
               .editor<
-                var canvas = document.getElementById('line_to_example1');
+                var canvas = document.getElementById('fill_rect_example1');
                 var context = canvas.getContext("2d");
                 context.clearRect(0, 0, 450, 300);
                 \
@@ -93,7 +93,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#line_to_example1
+                %canvas#fill_rect_example1
 
 
 
@@ -149,7 +149,7 @@
             Editor
             %small (write code below)
           .editor<
-            var canvas = document.getElementById('line_to_challenge2');
+            var canvas = document.getElementById('fill_rect_challenge2');
             var context = canvas.getContext("2d");
             context.clearRect(0, 0, 450, 300);
             \
@@ -170,12 +170,12 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            //.background.hidden-xl-down= image_tag('lessons/line_to/challenge2.png')
-            %canvas#line_to_challenge2
+            .background.hidden-xl-down= image_tag('lessons/fill_rect/challenge2.png')
+            %canvas#fill_rect_challenge2
           .alert
 
 
-
+-#
   #challenge3.challenge.row.py-3
     .col-xs-12
       .row
@@ -191,7 +191,7 @@
             Editor
             %small (write code below)
           .editor<
-            var canvas = document.getElementById('line_to_challenge3');
+            var canvas = document.getElementById('fill_rect_challenge3');
             var context = canvas.getContext("2d");
             context.clearRect(0, 0, 450, 300);
             \
@@ -212,6 +212,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/line_to/challenge3.png')
-            %canvas#line_to_challenge3
+            .background.hidden-xl-down= image_tag('lessons/fill_rect/challenge3.png')
+            %canvas#fill_rect_challenge3
           .alert
