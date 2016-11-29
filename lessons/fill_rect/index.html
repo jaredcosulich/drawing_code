@@ -4,7 +4,7 @@
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <title>Drawing Code</title>
     <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="1mxLEYywgfHk3UkCyj9LouaqaSNSUKVtOtm/VHBKvQ996Bszc0dRt9xsufUyXMzidLjvnKVwgyhTHb7nNzjj+w==" />
+    <meta name="csrf-token" content="ziSSTypLrQK5JxmnR5KJ3nyso5Y5tmDVNOTXBZVMoX5loMJt1bx9RIGW6VC/8Q6e7r4lKc6WRpBdINa20j7/ig==" />
     <link rel="stylesheet" media="all" href="../../assets/application.self-f1527c9693a0784c79bad22533e43ed37f3c50994488d27b0db485b5b87e0a44-body=1.css" data-turbolinks-track="reload" />
     <script src="../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -13,7 +13,7 @@
     <script src="../../assets/ace.self-0acb0427eef086a17859bfe56ecfaf24bc47c928ad7db87d5ec5bf235e40cb40.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
-    <script src="../../assets/challenges/fillRect.self-ae1a82b09f1b3ad8b47ee858d177c709fc474f9c3cce8d10c8d94155579891ce.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/challenges/fillRect.self-7d8a0be9c83d81ba13b4ce852f20a5d8be6a5ec1baa079216b8addad661ea6cc.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../assets/challenges/lineTo.self-ce62485aa2c321c8cb345da0bdc9a7e29629a1dc36a67ca896e7df4c11c82415.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../assets/init.self-cb47c105af746732053c78e807508257c84ef7e59669dbf67eb025cb4d2662b6.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../assets/lib/app/canvas.self-3ef3f50000350fda23075a049c4fa9a0d04c8db7f33005f6e44c4eaa6fec1db3.js?body=1" data-turbolinks-track="reload"></script>
@@ -139,7 +139,7 @@
                       Example
                     </h2>
                     <p class='pt-2'>
-                      Using fillRect() to draw the flag of France.
+                      Using fillRect() to draw the flag of Madagascar.
                     </p>
                   </div>
                   <div class='col-xs-12'>
@@ -153,14 +153,14 @@
                         var context = canvas.getContext("2d");
                         context.clearRect(0, 0, 450, 300);
                         
-                        context.fillStyle = '#0F278F';
+                        context.fillStyle = 'white';
                         context.fillRect(50, 50, 100, 200);
                         
-                        context.fillStyle = 'white';
-                        context.fillRect(150, 50, 100, 200);
+                        context.fillStyle = '#EB4D37';
+                        context.fillRect(150, 50, 200, 100);
                         
-                        context.fillStyle = '#DB5443';
-                        context.fillRect(250, 50, 100, 200);</div>
+                        context.fillStyle = '#337D3F';
+                        context.fillRect(150, 150, 200, 100);</div>
                         <div class='buttons py-1'>
                           <div class='run btn btn-success'>
                             Run
@@ -270,6 +270,55 @@
                     <div class='canvas'>
                       <div class='background hidden-xl-down'><img src="../../assets/lessons/fill_rect/challenge2-8fba550b59fcf23b2855ce6e59e8830d38bd22ce5e874908bf016478b8d7e951.png" alt="Challenge2" /></div>
                       <canvas id='fill_rect_challenge2'></canvas>
+                    </div>
+                    <div class='alert'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='challenge row py-3' id='challenge3'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>Challenge 3</h2>
+                    <p class='py-2'>
+                      Draw the flag of France by drawing rectangles covering the x's at
+                      (100,150) with #0F278F, (200,150) with white, and (300,150) with #DB5443.
+                    </p>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='code-editor col-xs-6'>
+                    <h5>
+                      Editor
+                      <small>(write code below)</small>
+                    </h5>
+                    <div class='editor'>var canvas = document.getElementById('fill_rect_challenge3');
+                    var context = canvas.getContext("2d");
+                    context.clearRect(0, 0, 450, 300);
+                    
+                    context.beginPath();
+                    
+                    // YOUR CODE HERE
+                    
+                    context.stroke();</div>
+                    <div class='buttons py-1'>
+                      <div class='run btn btn-success'>
+                        Run
+                      </div>
+                      <div class='reset btn btn-danger float-xs-right'>
+                        Reset
+                      </div>
+                    </div>
+                  </div>
+                  <div class='visual col-xs-6'>
+                    <h5>
+                      Canvas
+                      <small>(your drawing will display here)</small>
+                    </h5>
+                    <div class='canvas'>
+                      <div class='background hidden-xl-down'><img src="../../assets/lessons/fill_rect/challenge3-6ac652f8e7ca74e61234fe7662f0ba8d273b5975a8226b97f6a674a0fda0705a.png" alt="Challenge3" /></div>
+                      <canvas id='fill_rect_challenge3'></canvas>
                     </div>
                     <div class='alert'></div>
                   </div>
