@@ -2,9 +2,11 @@ class App.Editor
   constructor: (editor, @canvas) ->
     @editorElement = $(editor)[0]
     @editor = $(@editorElement)
+
     @aceEditor = ace.edit(@editorElement)
+    @editor.on 'input', -> window.onbeforeunload = App.confirmOnPageExit
     @startCode = @aceEditor.getValue().replace(/\n +/ig, '\n')
-    # editor.getSession().setMode('ace/mode/javascript')
+
     @initRun()
     @reset()
 
