@@ -5,6 +5,7 @@ initLineToChallenges = ->
     initLineToChallenge3(page)
 
 pointsMessage = (canvas, points) ->
+  return
   successfulPoints = []
   failedPoints = []
   badPoints = []
@@ -39,9 +40,9 @@ initLineToChallenge1 = (page)->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 55, y: 226, canvas: canvas),
-    new Test.Point(x: 105, y: 153, canvas: canvas),
-    new Test.Point(x: 155, y: 80, canvas: canvas)
+    new Test.Point(x: 55, y: 226, canvas: canvas, buffer: 1),
+    new Test.Point(x: 105, y: 153, canvas: canvas, buffer: 1),
+    new Test.Point(x: 155, y: 80, canvas: canvas, buffer: 1)
   ]
 
   challenge.find('.run').click ->
@@ -56,9 +57,9 @@ initLineToChallenge2 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 100, y: 50, canvas: canvas),
-    new Test.Point(x: 100, y: 250, canvas: canvas),
-    new Test.Point(x: 200, y: 250, canvas: canvas)
+    new Test.Point(x: 100, y: 50, canvas: canvas, buffer: 1),
+    new Test.Point(x: 100, y: 250, canvas: canvas, buffer: 1),
+    new Test.Point(x: 200, y: 250, canvas: canvas, buffer: 1)
   ]
 
   challenge.find('.run').click ->
@@ -67,16 +68,16 @@ initLineToChallenge2 = (page) ->
     ), 200)
 
 
-initLineToChallenge3 = ->
+initLineToChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 100, y: 100, canvas: canvas),
-    new Test.Point(x: 100, y: 200, canvas: canvas),
-    new Test.Point(x: 200, y: 100, canvas: canvas),
-    new Test.Point(x: 200, y: 200, canvas: canvas),
+    new Test.Point(x: 100, y: 100, canvas: canvas, buffer: 1),
+    new Test.Point(x: 100, y: 200, canvas: canvas, buffer: 1),
+    new Test.Point(x: 200, y: 100, canvas: canvas, buffer: 1),
+    new Test.Point(x: 200, y: 200, canvas: canvas, buffer: 1),
     new Test.Point(x: 150, y: 100, canvas: canvas, badPoint: true),
     new Test.Point(x: 150, y: 150, canvas: canvas, badPoint: true),
     new Test.Point(x: 150, y: 200, canvas: canvas, badPoint: true)

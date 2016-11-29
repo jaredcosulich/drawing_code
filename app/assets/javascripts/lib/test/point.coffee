@@ -1,12 +1,11 @@
 class Test.Point
   constructor: (options) ->
-    {@x, @y, @canvas, @badPoint=false} = options
+    {@x, @y, @canvas, @buffer=0, @badPoint=false} = options
     @context = @canvas.context
     @status = 0
 
-  test: ->
-    pointData = @context.getImageData(@x-1, @y-1, 3, 3)
-    console.log(pointData)
+  test: (buffer=@buffer)->
+    pointData = @context.getImageData(@x-buffer, @y-buffer, ((buffer*2) + 1), ((buffer*2) + 1))
     totalAlpha = 0
     totalAlpha += alpha for alpha, i in pointData.data when i % 3 == 0
     @status = if totalAlpha > 0 then 1 else -1
