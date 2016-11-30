@@ -7,6 +7,10 @@ App.confirmOnPageExit = (e) ->
   e.returnValue = message if e
   return message
 
+init = ->
+  initInteractives()
+  initProgress()
+
 initInteractives = ->
   for interactiveElement in $('.interactive')
     interactive = $(interactiveElement)
@@ -18,4 +22,4 @@ initProgress = ->
   App.currentProgress = new App.Progress()
   App.currentProgress.updateNavigation()
 
-$(document).on('turbolinks:load', initInteractives)
+$(document).on('turbolinks:load', init)

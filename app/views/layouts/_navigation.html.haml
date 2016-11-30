@@ -6,13 +6,12 @@
         %span.sr-only (current)
 
       %ul.nav.nav-sidebar
-        %li{class: ('active' if params[:id] == 'line_to')}
-          %a{:href => '/lessons/line_to'}
-            lineTo
-            %span.tag.tag-default
-              %small 0 / 3
-        %li{class: ('active' if params[:id] == 'fill_rect')}
-          %a{:href => '/lessons/fill_rect'} fillRect
+        - @reference.each do |challenge|
+          %li{class: ('active' if params[:id] == challenge.to_s)}
+            %a{:href => "/lessons/#{challenge}"}
+              = @challenges[challenge][:method]
+              %span.tag.tag-default
+                %small{class: challenge}= "0 / #{ @challenges[challenge][:count]}"
 
   %ul.nav.nav-sidebar
     %li

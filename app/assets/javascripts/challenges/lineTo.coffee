@@ -4,7 +4,7 @@ initLineToChallenges = ->
     initLineToChallenge2(page)
     initLineToChallenge3(page)
 
-pointsMessage = (canvas, points, bad=false) ->
+evaluateAndDisplaySuccess = (canvas, points, bad=false) ->
   successfulPoints = []
   failedPoints = []
   badPoints = []
@@ -33,7 +33,7 @@ pointsMessage = (canvas, points, bad=false) ->
     message += 'X\'s!'
 
   canvas.alert(message, (failedPoints.length == 0 && badPoints.length == 0))
-
+  return (failedPoints.length == 0 && badPoints.length == 0)
 
 initLineToChallenge1 = (page)->
   challenge = page.find('#challenge1')
@@ -48,7 +48,8 @@ initLineToChallenge1 = (page)->
 
   challenge.find('.run').click ->
     setTimeout(( ->
-      pointsMessage(canvas, points)
+      if evaluateAndDisplaySuccess(canvas, points)
+        App.currentProgress.challengeComplete('line_to', 'challenge1')
     ), 200)
 
 
@@ -65,7 +66,8 @@ initLineToChallenge2 = (page) ->
 
   challenge.find('.run').click ->
     setTimeout(( ->
-      pointsMessage(canvas, points)
+      if evaluateAndDisplaySuccess(canvas, points)
+        App.currentProgress.challengeComplete('line_to', 'challenge2')
     ), 200)
 
 
@@ -86,7 +88,8 @@ initLineToChallenge3 = (page) ->
 
   challenge.find('.run').click ->
     setTimeout(( ->
-      pointsMessage(canvas, points, true)
+      if evaluateAndDisplaySuccess(canvas, points, true)
+        App.currentProgress.challengeComplete('line_to', 'challenge3')
     ), 200)
 
 $(document).on('turbolinks:load', initLineToChallenges)

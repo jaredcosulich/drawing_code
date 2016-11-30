@@ -4,6 +4,7 @@ class App.Editor
     @editor = $(@editorElement)
 
     @aceEditor = ace.edit(@editorElement)
+    @aceEditor.$blockScrolling = Infinity
     @editor.on 'input', -> window.onbeforeunload = App.confirmOnPageExit
     @startCode = @aceEditor.getValue().replace(/\n +/ig, '\n')
 

@@ -2,19 +2,26 @@ class App.Progress
   constructor: ->
     @storageAvailable = Storage?
 
-  challengeComplete: (page, challege) ->
-    pages = (localStorage.getItem('pages') || '').split(/,/)
-    pages.push(page)
-    localStorage.setItem('pages', pages.join(','))
+  challengeComplete: (page, challenge) ->
+    pages = {}
+    pages[p] = 1 for p in (localStorage.getItem('pages') || '').split(/,/) when p.length > 0
+    pages[page] = 1
+    localStorage.setItem('pages', (p for p of pages).join(','))
 
-    challenges = (localStorage.getItem(page) || '').split(/,/)
-    challenges.push(challenge)
-    localStorage.setItem(page, challenges.join(','))
+    challenges = {}
+    challenges[c] = 1 for c in (localStorage.getItem(page) || '').split(/,/) when c.length > 0
+    challenges[challenge] = 1
+    localStorage.setItem(page, (c for c of challenges).join(','))
 
     @updateNavigation()
 
   updateNavigation: ->
-    for page in (localStorage.getItem('pages') || '').split(/,/)
-      for challenge in (localStorage.getItem(page) || '').split(/,/)
-        challengeCounts = $(".nav-sidebar .#{page} .#{challenge}").split(' / ')
-        challengeCounts = "#{challengeCounts[0] + 1} / #{challengeCounts[1]}"
+    if localStorage.getItem('pages')?
+      for page in localStorage.getItem('pages').split(/,/)
+        if localStorage.getItem(page)?
+          completedChallengeCount = localStorage.getItem(page).split(/,/).length
+          challengeCount = $(".nav-sidebar .#{page}")
+          totalChallengeCount = parseInt(challengeCount.html().split(' / ')[1])
+          challengeCount.html("#{completedChallengeCount} / #{totalChallengeCount}")
+          if completedChallengeCount == totalChallengeCount
+            challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-success')
