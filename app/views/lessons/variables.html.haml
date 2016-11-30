@@ -28,6 +28,7 @@
                 :preserve
                   var canvas = document.getElementById('variables_example1');
                   var context = canvas.getContext("2d");
+                  context.save();
                   context.clearRect(0, 0, 450, 300);
 
                   var xPosition = 50;
@@ -45,6 +46,8 @@
                     width -= (change * 2);
                     red -= (change * 3)
                   }
+
+                  context.restore();
 
 
               .buttons.py-1
@@ -157,3 +160,55 @@
             .background.hidden-xl-down= image_tag('lessons/variables/challenge1.png')
             %canvas#variables_challenge1
           .alert
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2 Challenge 2
+          %p.pt-2
+            Create a grayscale pattern by drawing rectangles over the x's,
+            starting at (50,50) and moving 25 to the left while reducing the
+            red, green, and blue of each rectangle by 25 each time.
+          %p.pb-2
+            It should look like this:
+            = image_tag('lessons/variables/grayscale.png')
+    .row
+      .code-editor.col-xs-6
+        %h5
+          Editor
+          %small (write code below)
+        .editor<
+          :preserve
+            var canvas = document.getElementById('variables_challenge2');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 450, 300);
+            context.save();
+
+            var x = 50;
+            var c = 255;
+
+            for (var i=0; i<9; ++i) {
+              context.fillStyle = 'rgb(' + c + ',' + c + ',' + c + ')';
+              context.fillRect(x, 50, 25, 100);
+
+              // YOUR CODE HERE
+            }
+
+            context.restore();
+
+        .buttons.py-1
+          .run.btn.btn-success
+            Run
+          .reset.btn.btn-danger.float-xs-right
+            Reset
+
+      .visual.col-xs-6
+        %h5
+          Canvas
+          %small (your drawing will display here)
+        .canvas
+          .background.hidden-xl-down= image_tag('lessons/variables/challenge2.png')
+          %canvas#variables_challenge2
+        .alert

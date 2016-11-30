@@ -18,6 +18,7 @@ initFillRectChallenge1 = (page) ->
     setTimeout(( ->
       if (success = (points[0].test() == 1))
         message = '<strong>Success!</strong> Your red rectangle is covering the x!'
+        App.currentProgress.challengeComplete('fill_rect', 'challenge1')
       else
         message = 'Nice try, but you need to draw a red rectangle that covers the x.'
 
@@ -49,6 +50,7 @@ initFillRectChallenge2 = (page) ->
           'Nice try, but you need to draw a rectangle that covers both x\'s.'
 
       canvas.alert(message, success)
+      App.currentProgress.challengeComplete('fill_rect', 'challenge2') if success
     ), 200)
 
 
@@ -77,6 +79,7 @@ initFillRectChallenge3 = (page) ->
           'Nice try, but you need to draw rectangles that cover each x in the right color.'
 
       canvas.alert(message, success)
+      App.currentProgress.challengeComplete('fill_rect', 'challenge3') if success
     ), 200)
 
 

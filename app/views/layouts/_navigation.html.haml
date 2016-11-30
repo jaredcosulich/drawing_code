@@ -1,26 +1,26 @@
 .col-sm-3.col-md-2.sidebar
   %ul.nav.nav-sidebar
     %li.section
-      %a{:href => '#', data: {section: 'reference'}}
+      %a.section_link{:href => '#', data: {section: 'reference'}}
         Reference
 
       %ul.nav.nav-sidebar#reference{class: (params[:section] == 'reference' ? 'collapse in' : 'collapse')}
         - @reference.each do |challenge|
           %li{class: ('active' if params[:id] == challenge.to_s)}
-            %a{:href => "/lessons/#{challenge}?section=reference"}
+            %a{:href => "/lessons/reference/#{challenge}"}
               = @challenges[challenge][:method]
               %span.tag.tag-default
                 %small{class: challenge}= "0 / #{ @challenges[challenge][:count]}"
 
   %ul.nav.nav-sidebar
     %li.section
-      %a{:href => '#', data: {section: 'design'}}
+      %a.section_link{:href => '#', data: {section: 'design'}}
         Design Patterns
 
       %ul.nav.nav-sidebar#design{class: (params[:section] == 'design' ? 'collapse in' : 'collapse')}
         - @design.each do |challenge|
           %li{class: ('active' if params[:id] == challenge.to_s)}
-            %a{:href => "/lessons/#{challenge}?section=design"}
+            %a{:href => "/lessons/design/#{challenge}"}
               = @challenges[challenge][:method]
               %span.tag.tag-default
                 %small{class: challenge}= "0 / #{ @challenges[challenge][:count]}"
@@ -28,12 +28,12 @@
   %ul.nav.nav-sidebar
     - @challenge_paths.each do |challenge_path|
       %li.section
-        %a{:href => '#', data: {section: challenge_path[:slug]}}= challenge_path[:name]
+        %a.section_link{:href => '#', data: {section: challenge_path[:slug]}}= challenge_path[:name]
 
         %ul.nav.nav-sidebar{id: challenge_path[:slug], class: (params[:section] == challenge_path[:slug] ? 'collapse in' : 'collapse')}
           - challenge_path[:challenges].each do |challenge|
             %li{class: ('active' if params[:id] == challenge.to_s)}
-              %a{:href => "/lessons/#{challenge}?section=#{challenge_path[:slug]}"}
+              %a{:href => "/lessons/#{challenge_path[:slug]}/#{challenge}"}
                 = @challenges[challenge][:method]
                 %span.tag.tag-default
                   %small{class: challenge}= "0 / #{ @challenges[challenge][:count]}"

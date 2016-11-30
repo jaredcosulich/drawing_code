@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     @challenges = {
       line_to: {count: 3, method: 'lineTo'},
       fill_rect: {count: 3, method: 'fillRect'},
-      variables: {count: 3, method: 'Variables'}
+      variables: {count: 2, method: 'Variables'}
     }
 
     @reference = [
@@ -24,7 +24,8 @@ class ApplicationController < ActionController::Base
         slug: 'basic_cityscape',
         challenges: [
           :line_to,
-          :fill_rect
+          :fill_rect,
+          :variables
         ]
       }
     ]
