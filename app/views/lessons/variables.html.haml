@@ -35,13 +35,17 @@
                   var width = 200;
                   var height = 50;
                   var change = 25;
+                  var red = 255;
 
                   for (var i=0; i<4; ++i) {
+                    context.fillStyle = 'rgb(' + red + ',0,0)'
                     context.fillRect(xPosition, yPosition, width, height);
                     yPosition -= height;
                     xPosition += change;
                     width -= (change * 2);
+                    red -= (change * 3)
                   }
+
 
               .buttons.py-1
                 .run.btn.btn-success
@@ -56,41 +60,100 @@
               .canvas
                 %canvas#variables_example1
 
-#challenge1.challenge.row.py-3
-  .col-xs-12
-    .row
-      .col-xs-12
-        %h2 Challenge 1
-        %p.py-2 Use a variable
 
-    .row
-      .code-editor.col-xs-6
-        %h5
-          Editor
-          %small (write code below)
-        .editor<
-          :preserve
-            var canvas = document.getElementById('variables_challenge1');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, 450, 300);
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Draw stairs
+          %p.pt-2
+            Using variables makes it easier to draw stairs.
 
-            context.beginPath();
+        .col-xs-12
+          .interactive.row.py-1
+            .code-editor.col-xs-6
+              %h5
+                Editor
+                %small (write code below)
+              .editor<
+                :preserve
+                  var canvas = document.getElementById('variables_example2');
+                  var context = canvas.getContext("2d");
+                  context.clearRect(0, 0, 450, 300);
 
-            // YOUR CODE HERE
+                  context.beginPath();
 
-            context.stroke();
+                  var x = 50;
+                  var y = 50;
+                  context.moveTo(x, y);
 
-        .buttons.py-1
-          .run.btn.btn-success
-            Run
-          .reset.btn.btn-danger.float-xs-right
-            Reset
+                  for (var i=0; i<6; ++i) {
+                    if (i % 2 == 0) x += 50;
+                    if (i % 2 == 1) y += 50;
+                    context.lineTo(x, y);
+                  }
 
-      .visual.col-xs-6
-        %h5
-          Canvas
-          %small (your drawing will display here)
-        .canvas
-          .background.hidden-xl-down= image_tag('lessons/variables/challenge1.png')
-          %canvas#variables_challenge1
-        .alert
+                  context.stroke();
+
+
+              .buttons.py-1
+                .run.btn.btn-success
+                  Run
+                .reset.btn.btn-danger.float-xs-right
+                  Reset
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#variables_example2
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2 Challenge 1
+          %p.py-2
+            Use the variable provided to draw lines going through each of the
+            x's starting at (100,100), (100,200), increasing x by 50 each time.
+
+      .row
+        .code-editor.col-xs-6
+          %h5
+            Editor
+            %small (write code below)
+          .editor<
+            :preserve
+              var canvas = document.getElementById('variables_challenge1');
+              var context = canvas.getContext("2d");
+              context.clearRect(0, 0, 450, 300);
+
+              var x = 100;
+
+              context.beginPath();
+
+              for (var i=0; i<3; ++i) {
+                context.moveTo(x, 100);
+                context.lineTo(x, 200);
+
+                // YOUR CODE HERE
+              }
+
+              context.stroke();
+
+          .buttons.py-1
+            .run.btn.btn-success
+              Run
+            .reset.btn.btn-danger.float-xs-right
+              Reset
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/variables/challenge1.png')
+            %canvas#variables_challenge1
+          .alert

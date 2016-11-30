@@ -6,6 +6,12 @@ class App.Editor
     @aceEditor = ace.edit(@editorElement)
     @aceEditor.$blockScrolling = Infinity
     @editor.on 'input', -> window.onbeforeunload = App.confirmOnPageExit
+    @aceEditor.session.setOptions
+        mode: "ace/mode/javascript",
+        tabSize: 2,
+        useSoftTabs: true
+
+
     @startCode = @aceEditor.getValue()
 
     @initRun()

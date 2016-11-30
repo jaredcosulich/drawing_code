@@ -29,8 +29,6 @@ class Test.Point
 
     return @status
 
-
-
   display: (success=@status) ->
     return if success <= 0 || @badPoint
     strokeStyle = @context.strokeStyle;

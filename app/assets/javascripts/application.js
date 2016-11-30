@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require turbolinks
 //= require ace
+//= require mode-javascript
 //= require_tree .
