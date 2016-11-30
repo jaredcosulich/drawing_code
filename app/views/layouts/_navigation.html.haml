@@ -1,27 +1,30 @@
 .col-sm-3.col-md-2.sidebar
   %ul.nav.nav-sidebar
-    %li
-      %a{:href => '#'}
+    %li.section
+      %a{:href => '#', data: {section: 'reference'}}
         Reference
         %span.sr-only (current)
 
-      %ul.nav.nav-sidebar
+      %ul.nav.nav-sidebar#reference{class: (params[:section] == 'reference' ? 'collapse in' : 'collapse')}
         - @reference.each do |challenge|
           %li{class: ('active' if params[:id] == challenge.to_s)}
-            %a{:href => "/lessons/#{challenge}"}
+            %a{:href => "/lessons/#{challenge}?section=reference"}
               = @challenges[challenge][:method]
               %span.tag.tag-default
                 %small{class: challenge}= "0 / #{ @challenges[challenge][:count]}"
 
   %ul.nav.nav-sidebar
-    %li
-      %a{:href => ''} CityScape Challenge
+    - @challenge_paths.each do |challenge_path|
+      %li.section
+        %a{:href => '#', data: {section: challenge_path[:slug]}}= challenge_path[:name]
 
-      %ul.nav.nav-sidebar
-        %li{class: ('active' if params[:id] == 'line_to')}
-          %a{:href => '/lessons/line_to'} lineTo
-        %li{class: ('active' if params[:id] == 'fill_rect')}
-          %a{:href => '/lessons/fill_rect'} fillRect
+        %ul.nav.nav-sidebar{id: challenge_path[:slug], class: (params[:section] == challenge_path[:slug] ? 'collapse in' : 'collapse')}
+          - challenge_path[:challenges].each do |challenge|
+            %li{class: ('active' if params[:id] == challenge.to_s)}
+              %a{:href => "/lessons/#{challenge}?section=#{challenge_path[:slug]}"}
+                = @challenges[challenge][:method]
+                %span.tag.tag-default
+                  %small{class: challenge}= "0 / #{ @challenges[challenge][:count]}"
 
 -#
     %li

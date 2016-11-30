@@ -13,9 +13,15 @@ class ApplicationController < ActionController::Base
       :fill_rect
     ]
 
-    @cityscape = [
-      :line_to,
-      :fill_rect
+    @challenge_paths = [
+      {
+        name: 'Basic Cityscape',
+        slug: 'basic_cityscape',
+        challenges: [
+          :line_to,
+          :fill_rect
+        ]
+      }
     ]
 
   end
