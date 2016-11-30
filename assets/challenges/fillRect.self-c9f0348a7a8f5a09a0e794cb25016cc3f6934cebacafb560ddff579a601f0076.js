@@ -28,6 +28,7 @@
         var message, success;
         if ((success = points[0].test() === 1)) {
           message = '<strong>Success!</strong> Your red rectangle is covering the x!';
+          App.currentProgress.challengeComplete('fill_rect', 'challenge1');
         } else {
           message = 'Nice try, but you need to draw a red rectangle that covers the x.';
         }
@@ -64,7 +65,10 @@
           }
         }
         message = success ? '<strong>Success!</strong> Your rectangle is covering the x\'s!' : 'Nice try, but you need to draw a rectangle that covers both x\'s.';
-        return canvas.alert(message, success);
+        canvas.alert(message, success);
+        if (success) {
+          return App.currentProgress.challengeComplete('fill_rect', 'challenge2');
+        }
       }), 200);
     });
   };
@@ -104,7 +108,10 @@
           }
         }
         message = success ? '<strong>Success!</strong> Your rectangle is covering the x\'s with the right colors!' : 'Nice try, but you need to draw rectangles that cover each x in the right color.';
-        return canvas.alert(message, success);
+        canvas.alert(message, success);
+        if (success) {
+          return App.currentProgress.challengeComplete('fill_rect', 'challenge3');
+        }
       }), 200);
     });
   };

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <title>Drawing Code</title>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="j7YkIo3GPueHyUf4taV6anVfD5qU2t8OFV+vXJyURAQkMnQAcjHuob94tw9Nxv0q502JJWP6+Ut8m67v2+Ya8A==" />
+    <link rel="stylesheet" media="all" href="../../assets/application.self-812f5e73e80c54c66a15636789ef786037f882e3a3d162e1f12a4a9fcfde5a10-body=1.css" data-turbolinks-track="reload" />
+    <script src="../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/ace.self-0acb0427eef086a17859bfe56ecfaf24bc47c928ad7db87d5ec5bf235e40cb40.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/challenges/fillRect.self-c9f0348a7a8f5a09a0e794cb25016cc3f6934cebacafb560ddff579a601f0076.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/challenges/lineTo.self-c77c32681bf9303013fa6d842d0e14d4e1fea72747a8986e4ac1c5d23a6acb95.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/challenges/variables.self-20cf9de86d3c41f8e303217a748bbcdccb11a44ac7ed59a9115e19b447a42c0d.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/init.self-c15f7283d7782ccd972238f0d5cc8ea2198de4ccfedc581f4a5aa93f0385e7ea.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/lib/app/canvas.self-3ef3f50000350fda23075a049c4fa9a0d04c8db7f33005f6e44c4eaa6fec1db3.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/lib/app/editor.self-546c4c5cc980184324ffb8495c68acb613523ee210c716ce3b33bf2c7d3362dd.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/lib/app/progress.self-da8165cf4bbdf10f2567f101a2c7095955e756c8c700e54c6f135c19686a8e1b.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/lib/test/point.self-ae1945d12070d1645333c8ae56fe494d238315694019f8be4738a9d9025fd084.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/navigation.self-50055201d00db358f9abc4cb6f3ee3c78cc13ad64d6c5c9a8d241c9f76405edd.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
+  </head>
+  <body>
+    <nav class='navbar navbar-dark navbar-fixed-top bg-inverse'>
+      <button aria-controls='navbar' aria-expanded='false' aria-label='Toggle navigation' class='navbar-toggler hidden-sm-up' data-target='#navbar' data-toggle='collapse' type='button'></button>
+      <a class='navbar-brand' href='#'>
+        Drawing Code:
+        <small>An exploration of artistic observation and computational thinking</small>
+      </a>
+    </nav>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='col-sm-3 col-md-2'>
+          <div class='col-sm-3 col-md-2 sidebar'>
+            <ul class='nav nav-sidebar'>
+              <li class='section'>
+                <a data-section='reference' href='#'>
+                  Reference
+                </a>
+                <ul class='collapse nav nav-sidebar' id='reference'>
+                  <li>
+                    <a href='../line_to/index-section=reference.html'>
+                      lineTo
+                      <span class='tag tag-default'>
+                        <small class='line_to'>0 / 3</small>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href='../fill_rect/index-section=reference.html'>
+                      fillRect
+                      <span class='tag tag-default'>
+                        <small class='fill_rect'>0 / 3</small>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class='nav nav-sidebar'>
+              <li class='section'>
+                <a data-section='design' href='#'>
+                  Design Patterns
+                </a>
+                <ul class='collapse nav nav-sidebar' id='design'>
+                  <li class='active'>
+                    <a href='index-section=design.html'>
+                      Variables
+                      <span class='tag tag-default'>
+                        <small class='variables'>0 / 2</small>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class='nav nav-sidebar'>
+              <li class='section'>
+                <a data-section='basic_cityscape' href='#'>Basic Cityscape</a>
+                <ul class='collapse in nav nav-sidebar' id='basic_cityscape'>
+                  <li>
+                    <a href='../line_to/index-section=basic_cityscape.html'>
+                      lineTo
+                      <span class='tag tag-default'>
+                        <small class='line_to'>0 / 3</small>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href='../fill_rect/index-section=basic_cityscape.html'>
+                      fillRect
+                      <span class='tag tag-default'>
+                        <small class='fill_rect'>0 / 3</small>
+                      </span>
+                    </a>
+                  </li>
+                  <li class='active'>
+                    <a href='index-section=basic_cityscape.html'>
+                      Variables
+                      <span class='tag tag-default'>
+                        <small class='variables'>0 / 2</small>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class='col-sm-9 col-md-10 main'>
+          <div id='variables'>
+            <h1>Variables</h1>
+            <div class='description row py-3'>
+              <div class='col-xs-6'>
+                <h2>What is a variable?</h2>
+                <p class='pt-2'>
+                  A variable allows you to store information to use or change later.
+                </p>
+              </div>
+              <div class='col-xs-6'>
+                <img style="border: 1px solid #333;" src="../../assets/lessons/variables/visual1-b8e07ae4cdc5e13b2ee681381d7fa203f8442ff2e8abeb1cf4012cfb427439db.png" alt="Visual1" />
+              </div>
+            </div>
+            <div class='example row py-3'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>
+                      Draw a pyramid
+                    </h2>
+                    <p class='pt-2'>
+                      Using variables makes it easier to draw a pyramid.
+                    </p>
+                  </div>
+                  <div class='col-xs-12'>
+                    <div class='interactive row py-1'>
+                      <div class='code-editor col-xs-6'>
+                        <h5>
+                          Editor
+                          <small>(write code below)</small>
+                        </h5>
+                        <div class='editor'>var canvas = document.getElementById('variables_example1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.save();&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;var xPosition = 50;&#x000A;var yPosition = 200;&#x000A;var width = 200;&#x000A;var height = 50;&#x000A;var change = 25;&#x000A;var red = 255;&#x000A;&#x000A;for (var i=0; i<4; ++i) {&#x000A;  context.fillStyle = 'rgb(' + red + ',0,0)'&#x000A;  context.fillRect(xPosition, yPosition, width, height);&#x000A;  yPosition -= height;&#x000A;  xPosition += change;&#x000A;  width -= (change * 2);&#x000A;  red -= (change * 3)&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;&#x000A;</div>
+                        <div class='buttons py-1'>
+                          <div class='run btn btn-success'>
+                            Run
+                          </div>
+                          <div class='reset btn btn-danger float-xs-right'>
+                            Reset
+                          </div>
+                        </div>
+                      </div>
+                      <div class='visual col-xs-6'>
+                        <h5>
+                          Canvas
+                          <small>(your drawing will display here)</small>
+                        </h5>
+                        <div class='canvas'>
+                          <canvas id='variables_example1'></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='example row py-3'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>
+                      Draw stairs
+                    </h2>
+                    <p class='pt-2'>
+                      Using variables makes it easier to draw stairs.
+                    </p>
+                  </div>
+                  <div class='col-xs-12'>
+                    <div class='interactive row py-1'>
+                      <div class='code-editor col-xs-6'>
+                        <h5>
+                          Editor
+                          <small>(write code below)</small>
+                        </h5>
+                        <div class='editor'>var canvas = document.getElementById('variables_example2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;var x = 50;&#x000A;var y = 50;&#x000A;context.moveTo(x, y);&#x000A;&#x000A;for (var i=0; i<6; ++i) {&#x000A;  if (i % 2 == 0) x += 50;&#x000A;  if (i % 2 == 1) y += 50;&#x000A;  context.lineTo(x, y);&#x000A;}&#x000A;&#x000A;context.stroke();&#x000A;&#x000A;</div>
+                        <div class='buttons py-1'>
+                          <div class='run btn btn-success'>
+                            Run
+                          </div>
+                          <div class='reset btn btn-danger float-xs-right'>
+                            Reset
+                          </div>
+                        </div>
+                      </div>
+                      <div class='visual col-xs-6'>
+                        <h5>
+                          Canvas
+                          <small>(your drawing will display here)</small>
+                        </h5>
+                        <div class='canvas'>
+                          <canvas id='variables_example2'></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='challenge row py-3' id='challenge1'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>Challenge 1</h2>
+                    <p class='py-2'>
+                      Use the variable provided to draw lines going through each of the
+                      x's starting at (100,100), (100,200), increasing x by 50 each time.
+                    </p>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='code-editor col-xs-6'>
+                    <h5>
+                      Editor
+                      <small>(write code below)</small>
+                    </h5>
+                    <div class='editor'>var canvas = document.getElementById('variables_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;var x = 100;&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;for (var i=0; i<3; ++i) {&#x000A;  context.moveTo(x, 100);&#x000A;  context.lineTo(x, 200);&#x000A;&#x000A;  // YOUR CODE HERE&#x000A;}&#x000A;&#x000A;context.stroke();&#x000A;</div>
+                    <div class='buttons py-1'>
+                      <div class='run btn btn-success'>
+                        Run
+                      </div>
+                      <div class='reset btn btn-danger float-xs-right'>
+                        Reset
+                      </div>
+                    </div>
+                  </div>
+                  <div class='visual col-xs-6'>
+                    <h5>
+                      Canvas
+                      <small>(your drawing will display here)</small>
+                    </h5>
+                    <div class='canvas'>
+                      <div class='background hidden-xl-down'><img src="../../assets/lessons/variables/challenge1-563918c3376670d5e1c059a992fd76c9b7908448e17e3934eeb522b267e814db.png" alt="Challenge1" /></div>
+                      <canvas id='variables_challenge1'></canvas>
+                    </div>
+                    <div class='alert'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='challenge row py-3' id='challenge2'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>Challenge 2</h2>
+                    <p class='pt-2'>
+                      Create a grayscale pattern by drawing rectangles over the x's,
+                      starting at (50,50) and moving 25 to the left while reducing the
+                      red, green, and blue of each rectangle by 25 each time.
+                    </p>
+                    <p class='pb-2'>
+                      It should look like this:
+                      <img src="../../assets/lessons/variables/grayscale-439a612713fa95ba388864250b5ba7fc23f7c30d02902e872bcc7a0b5addb3ca.png" alt="Grayscale" />
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='code-editor col-xs-6'>
+                  <h5>
+                    Editor
+                    <small>(write code below)</small>
+                  </h5>
+                  <div class='editor'>var canvas = document.getElementById('variables_challenge2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;context.save();&#x000A;&#x000A;var x = 50;&#x000A;var c = 255;&#x000A;&#x000A;for (var i=0; i<9; ++i) {&#x000A;  context.fillStyle = 'rgb(' + c + ',' + c + ',' + c + ')';&#x000A;  context.fillRect(x, 50, 25, 100);&#x000A;&#x000A;  // YOUR CODE HERE&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
+                  <div class='buttons py-1'>
+                    <div class='run btn btn-success'>
+                      Run
+                    </div>
+                    <div class='reset btn btn-danger float-xs-right'>
+                      Reset
+                    </div>
+                  </div>
+                </div>
+                <div class='visual col-xs-6'>
+                  <h5>
+                    Canvas
+                    <small>(your drawing will display here)</small>
+                  </h5>
+                  <div class='canvas'>
+                    <div class='background hidden-xl-down'><img src="../../assets/lessons/variables/challenge2-a818f3ae3ae4df2e19dc3d13282f9cb6012d0e6e2fcddbe8ba7686b18aa464ee.png" alt="Challenge2" /></div>
+                    <canvas id='variables_challenge2'></canvas>
+                  </div>
+                  <div class='alert'></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- Localized -->

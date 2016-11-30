@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <title>Drawing Code</title>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="3taJZt5qmEOvzvFuhuVpr0RawwUPxrzOm47S8RbwBPp1UtlEIZ1IBZd/AZl+hu7v1khFuvjmmovyStNCUYJaDg==" />
+    <link rel="stylesheet" media="all" href="../../assets/application.self-812f5e73e80c54c66a15636789ef786037f882e3a3d162e1f12a4a9fcfde5a10-body=1.css" data-turbolinks-track="reload" />
+    <script src="../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/ace.self-0acb0427eef086a17859bfe56ecfaf24bc47c928ad7db87d5ec5bf235e40cb40.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/challenges/fillRect.self-c9f0348a7a8f5a09a0e794cb25016cc3f6934cebacafb560ddff579a601f0076.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/challenges/lineTo.self-c77c32681bf9303013fa6d842d0e14d4e1fea72747a8986e4ac1c5d23a6acb95.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/challenges/variables.self-20cf9de86d3c41f8e303217a748bbcdccb11a44ac7ed59a9115e19b447a42c0d.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/init.self-c15f7283d7782ccd972238f0d5cc8ea2198de4ccfedc581f4a5aa93f0385e7ea.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/lib/app/canvas.self-3ef3f50000350fda23075a049c4fa9a0d04c8db7f33005f6e44c4eaa6fec1db3.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/lib/app/editor.self-546c4c5cc980184324ffb8495c68acb613523ee210c716ce3b33bf2c7d3362dd.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/lib/app/progress.self-da8165cf4bbdf10f2567f101a2c7095955e756c8c700e54c6f135c19686a8e1b.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/lib/test/point.self-ae1945d12070d1645333c8ae56fe494d238315694019f8be4738a9d9025fd084.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/navigation.self-50055201d00db358f9abc4cb6f3ee3c78cc13ad64d6c5c9a8d241c9f76405edd.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
+  </head>
+  <body>
+    <nav class='navbar navbar-dark navbar-fixed-top bg-inverse'>
+      <button aria-controls='navbar' aria-expanded='false' aria-label='Toggle navigation' class='navbar-toggler hidden-sm-up' data-target='#navbar' data-toggle='collapse' type='button'></button>
+      <a class='navbar-brand' href='#'>
+        Drawing Code:
+        <small>An exploration of artistic observation and computational thinking</small>
+      </a>
+    </nav>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='col-sm-3 col-md-2'>
+          <div class='col-sm-3 col-md-2 sidebar'>
+            <ul class='nav nav-sidebar'>
+              <li class='section'>
+                <a data-section='reference' href='#'>
+                  Reference
+                </a>
+                <ul class='collapse nav nav-sidebar' id='reference'>
+                  <li class='active'>
+                    <a href='index-section=reference.html'>
+                      lineTo
+                      <span class='tag tag-default'>
+                        <small class='line_to'>0 / 3</small>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href='../fill_rect/index-section=reference.html'>
+                      fillRect
+                      <span class='tag tag-default'>
+                        <small class='fill_rect'>0 / 3</small>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class='nav nav-sidebar'>
+              <li class='section'>
+                <a data-section='design' href='#'>
+                  Design Patterns
+                </a>
+                <ul class='collapse nav nav-sidebar' id='design'>
+                  <li>
+                    <a href='../variables/index-section=design.html'>
+                      Variables
+                      <span class='tag tag-default'>
+                        <small class='variables'>0 / 2</small>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class='nav nav-sidebar'>
+              <li class='section'>
+                <a data-section='basic_cityscape' href='#'>Basic Cityscape</a>
+                <ul class='collapse in nav nav-sidebar' id='basic_cityscape'>
+                  <li class='active'>
+                    <a href='index-section=basic_cityscape.html'>
+                      lineTo
+                      <span class='tag tag-default'>
+                        <small class='line_to'>0 / 3</small>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href='../fill_rect/index-section=basic_cityscape.html'>
+                      fillRect
+                      <span class='tag tag-default'>
+                        <small class='fill_rect'>0 / 3</small>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href='../variables/index-section=basic_cityscape.html'>
+                      Variables
+                      <span class='tag tag-default'>
+                        <small class='variables'>0 / 2</small>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class='col-sm-9 col-md-10 main'>
+          <div id='line_to'>
+            <h1>lineTo</h1>
+            <div class='official row py-3'>
+              <div class='col-xs-6'>
+                <h2>The Official Description</h2>
+                <p class='py-2'>
+                  The CanvasRenderingContext2D.lineTo() method of the Canvas 2D API connects the last point in the sub-path
+                  to the x, y coordinates with a straight line (but does not actually draw it).
+                </p>
+                <div class='source text-xs-right'>
+                  <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineTo">Mozilla Developer&#39;s Network</a>
+                </div>
+              </div>
+              <div class='col-xs-6'>
+                <img class="" src="../../assets/lessons/line_to/visual1-5156d8c4634b15c08c7550cfc03b506ea7f61f742b5f80cb064a2be52d89e514.png" alt="Visual1" />
+              </div>
+            </div>
+            <div class='simple row py-3'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>
+                      Draw A Line
+                      <small>(but not actually draw it?)</small>
+                    </h2>
+                    <p class='pt-2'>
+                      context.lineTo() creates the path for a line, but won't draw anything.
+                    </p>
+                    <p>
+                      You'll need to call context.stroke() to actually draw the line.
+                    </p>
+                  </div>
+                  <div class='col-xs-12'>
+                    <div class='interactive row py-1'>
+                      <div class='code-editor col-xs-6'>
+                        <h5>
+                          Editor
+                          <small>(write code below)</small>
+                        </h5>
+                        <div class='editor'>var canvas = document.getElementById('line_to_interactive1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(100, 250);&#x000A;context.lineTo(400, 50);&#x000A;context.stroke();&#x000A;</div>
+                        <div class='buttons py-1'>
+                          <div class='run btn btn-success'>
+                            Run
+                          </div>
+                          <div class='reset btn btn-danger float-xs-right'>
+                            Reset
+                          </div>
+                        </div>
+                      </div>
+                      <div class='visual col-xs-6'>
+                        <h5>
+                          Canvas
+                          <small>(your drawing will display here)</small>
+                        </h5>
+                        <div class='canvas'>
+                          <canvas id='line_to_interactive1'></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='example row py-3'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>
+                      Example
+                    </h2>
+                    <p class='pt-2'>
+                      Using lineTo to draw a basic house.
+                    </p>
+                  </div>
+                  <div class='col-xs-12'>
+                    <div class='interactive row py-1'>
+                      <div class='code-editor col-xs-6'>
+                        <h5>
+                          Editor
+                          <small>(write code below)</small>
+                        </h5>
+                        <div class='editor'>var canvas = document.getElementById('line_to_example1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(50, 125);&#x000A;context.lineTo(200, 125);&#x000A;context.lineTo(200, 275);&#x000A;context.lineTo(50, 275);&#x000A;context.lineTo(50, 125);&#x000A;context.lineTo(125, 50);&#x000A;context.lineTo(200, 125);&#x000A;&#x000A;context.moveTo(75, 150);&#x000A;context.lineTo(100, 150);&#x000A;context.lineTo(100, 175);&#x000A;context.lineTo(75, 175);&#x000A;context.lineTo(75, 150);&#x000A;&#x000A;context.moveTo(110, 275);&#x000A;context.lineTo(110, 215);&#x000A;context.lineTo(140, 215);&#x000A;context.lineTo(140, 275);&#x000A;&#x000A;context.stroke();&#x000A;</div>
+                        <div class='buttons py-1'>
+                          <div class='run btn btn-success'>
+                            Run
+                          </div>
+                          <div class='reset btn btn-danger float-xs-right'>
+                            Reset
+                          </div>
+                        </div>
+                      </div>
+                      <div class='visual col-xs-6'>
+                        <h5>
+                          Canvas
+                          <small>(your drawing will display here)</small>
+                        </h5>
+                        <div class='canvas'>
+                          <canvas id='line_to_example1'></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='challenge row py-3' id='challenge1'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>Challenge 1</h2>
+                    <p class='py-2'>Draw a line from the point (55, 226) to the point (155, 80), passing through the X's shown.</p>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='code-editor col-xs-6'>
+                    <h5>
+                      Editor
+                      <small>(write code below)</small>
+                    </h5>
+                    <div class='editor'>var canvas = document.getElementById('line_to_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;// YOUR CODE HERE&#x000A;&#x000A;context.stroke();&#x000A;</div>
+                    <div class='buttons py-1'>
+                      <div class='run btn btn-success'>
+                        Run
+                      </div>
+                      <div class='reset btn btn-danger float-xs-right'>
+                        Reset
+                      </div>
+                    </div>
+                  </div>
+                  <div class='visual col-xs-6'>
+                    <h5>
+                      Canvas
+                      <small>(your drawing will display here)</small>
+                    </h5>
+                    <div class='canvas'>
+                      <div class='background hidden-xl-down'><img src="../../assets/lessons/line_to/challenge1-1e571552ff962886cfb22560b8aba01f8cee65c81c612b9132ccf31694610cdd.png" alt="Challenge1" /></div>
+                      <canvas id='line_to_challenge1'></canvas>
+                    </div>
+                    <div class='alert'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='challenge row py-3' id='challenge2'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>Challenge 2</h2>
+                    <p class='py-2'>Draw an L shape passing through the X's at (100, 50), (100, 250), and (200, 250).</p>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='code-editor col-xs-6'>
+                    <h5>
+                      Editor
+                      <small>(write code below)</small>
+                    </h5>
+                    <div class='editor'>var canvas = document.getElementById('line_to_challenge2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;// YOUR CODE HERE&#x000A;&#x000A;context.stroke();&#x000A;</div>
+                    <div class='buttons py-1'>
+                      <div class='run btn btn-success'>
+                        Run
+                      </div>
+                      <div class='reset btn btn-danger float-xs-right'>
+                        Reset
+                      </div>
+                    </div>
+                  </div>
+                  <div class='visual col-xs-6'>
+                    <h5>
+                      Canvas
+                      <small>(your drawing will display here)</small>
+                    </h5>
+                    <div class='canvas'>
+                      <div class='background hidden-xl-down'><img src="../../assets/lessons/line_to/challenge2-6a37142c5b306b49c357da337030f35fba292e413c43287abb95eebecde23da3.png" alt="Challenge2" /></div>
+                      <canvas id='line_to_challenge2'></canvas>
+                    </div>
+                    <div class='alert'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='challenge row py-3' id='challenge3'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>Challenge 3</h2>
+                    <p class='py-2'>
+                      Draw two lines moving throught the x's at (100, 100), (100,200) and (200,100), (200,200),
+                      but not through any of the red x's
+                    </p>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='code-editor col-xs-6'>
+                    <h5>
+                      Editor
+                      <small>(write code below)</small>
+                    </h5>
+                    <div class='editor'>var canvas = document.getElementById('line_to_challenge3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;// YOUR CODE HERE&#x000A;&#x000A;context.stroke();&#x000A;</div>
+                    <div class='buttons py-1'>
+                      <div class='run btn btn-success'>
+                        Run
+                      </div>
+                      <div class='reset btn btn-danger float-xs-right'>
+                        Reset
+                      </div>
+                    </div>
+                  </div>
+                  <div class='visual col-xs-6'>
+                    <h5>
+                      Canvas
+                      <small>(your drawing will display here)</small>
+                    </h5>
+                    <div class='canvas'>
+                      <div class='background hidden-xl-down'><img src="../../assets/lessons/line_to/challenge3-477aad07c579abcff065f2dd0276c74e92b842da2526af9e6231e2d961dec076.png" alt="Challenge3" /></div>
+                      <canvas id='line_to_challenge3'></canvas>
+                    </div>
+                    <div class='alert'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- Localized -->

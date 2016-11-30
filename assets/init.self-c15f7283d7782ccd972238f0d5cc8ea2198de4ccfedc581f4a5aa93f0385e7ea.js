@@ -1,5 +1,5 @@
 (function() {
-  var initInteractives;
+  var init, initInteractives, initProgress;
 
   window.App || (window.App = {});
 
@@ -13,6 +13,11 @@
       e.returnValue = message;
     }
     return message;
+  };
+
+  init = function() {
+    initInteractives();
+    return initProgress();
   };
 
   initInteractives = function() {
@@ -29,6 +34,11 @@
     return results;
   };
 
-  $(document).on('turbolinks:load', initInteractives);
+  initProgress = function() {
+    App.currentProgress = new App.Progress();
+    return App.currentProgress.updateNavigation();
+  };
+
+  $(document).on('turbolinks:load', init);
 
 }).call(this);

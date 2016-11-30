@@ -5,10 +5,16 @@
       this.editorElement = $(editor)[0];
       this.editor = $(this.editorElement);
       this.aceEditor = ace.edit(this.editorElement);
+      this.aceEditor.$blockScrolling = Infinity;
       this.editor.on('input', function() {
         return window.onbeforeunload = App.confirmOnPageExit;
       });
-      this.startCode = this.aceEditor.getValue().replace(/\n +/ig, '\n');
+      this.aceEditor.session.setOptions({
+        mode: "ace/mode/javascript",
+        tabSize: 2,
+        useSoftTabs: true
+      });
+      this.startCode = this.aceEditor.getValue();
       this.initRun();
       this.reset();
     }

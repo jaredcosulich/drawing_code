@@ -1,5 +1,5 @@
 (function() {
-  var initLineToChallenge1, initLineToChallenge2, initLineToChallenge3, initLineToChallenges, pointsMessage;
+  var evaluateAndDisplaySuccess, initLineToChallenge1, initLineToChallenge2, initLineToChallenge3, initLineToChallenges;
 
   initLineToChallenges = function() {
     var page;
@@ -10,7 +10,7 @@
     }
   };
 
-  pointsMessage = function(canvas, points, bad) {
+  evaluateAndDisplaySuccess = function(canvas, points, bad) {
     var badPoints, failedPoints, i, len, message, point, successfulPoints;
     if (bad == null) {
       bad = false;
@@ -67,7 +67,8 @@
       }
       message += 'X\'s!';
     }
-    return canvas.alert(message, failedPoints.length === 0 && badPoints.length === 0);
+    canvas.alert(message, failedPoints.length === 0 && badPoints.length === 0);
+    return failedPoints.length === 0 && badPoints.length === 0;
   };
 
   initLineToChallenge1 = function(page) {
@@ -92,7 +93,9 @@
     ];
     return challenge.find('.run').click(function() {
       return setTimeout((function() {
-        return pointsMessage(canvas, points);
+        if (evaluateAndDisplaySuccess(canvas, points)) {
+          return App.currentProgress.challengeComplete('line_to', 'challenge1');
+        }
       }), 200);
     });
   };
@@ -119,7 +122,9 @@
     ];
     return challenge.find('.run').click(function() {
       return setTimeout((function() {
-        return pointsMessage(canvas, points);
+        if (evaluateAndDisplaySuccess(canvas, points)) {
+          return App.currentProgress.challengeComplete('line_to', 'challenge2');
+        }
       }), 200);
     });
   };
@@ -165,7 +170,9 @@
     ];
     return challenge.find('.run').click(function() {
       return setTimeout((function() {
-        return pointsMessage(canvas, points, true);
+        if (evaluateAndDisplaySuccess(canvas, points, true)) {
+          return App.currentProgress.challengeComplete('line_to', 'challenge3');
+        }
       }), 200);
     });
   };

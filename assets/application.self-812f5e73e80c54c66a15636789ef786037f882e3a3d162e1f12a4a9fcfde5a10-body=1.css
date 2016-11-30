@@ -7806,5 +7806,9 @@ body {
 
 /* line 38, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .nav {
-  margin-left: 36px;
+  margin-left: 24px;
+}
+/* line 41, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.nav-sidebar .nav .tag {
+  vertical-align: text-bottom;
 }
