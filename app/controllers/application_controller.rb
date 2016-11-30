@@ -5,12 +5,17 @@ class ApplicationController < ActionController::Base
   def challenge_map
     @challenges = {
       line_to: {count: 3, method: 'lineTo'},
-      fill_rect: {count: 3, method: 'fillRect'}
+      fill_rect: {count: 3, method: 'fillRect'},
+      variables: {count: 3, method: 'Variables'}
     }
 
     @reference = [
       :line_to,
       :fill_rect
+    ]
+
+    @design = [
+      :variables
     ]
 
     @challenge_paths = [

@@ -3,12 +3,24 @@
     %li.section
       %a{:href => '#', data: {section: 'reference'}}
         Reference
-        %span.sr-only (current)
 
       %ul.nav.nav-sidebar#reference{class: (params[:section] == 'reference' ? 'collapse in' : 'collapse')}
         - @reference.each do |challenge|
           %li{class: ('active' if params[:id] == challenge.to_s)}
             %a{:href => "/lessons/#{challenge}?section=reference"}
+              = @challenges[challenge][:method]
+              %span.tag.tag-default
+                %small{class: challenge}= "0 / #{ @challenges[challenge][:count]}"
+
+  %ul.nav.nav-sidebar
+    %li.section
+      %a{:href => '#', data: {section: 'design'}}
+        Design Patterns
+
+      %ul.nav.nav-sidebar#design{class: (params[:section] == 'design' ? 'collapse in' : 'collapse')}
+        - @design.each do |challenge|
+          %li{class: ('active' if params[:id] == challenge.to_s)}
+            %a{:href => "/lessons/#{challenge}?section=design"}
               = @challenges[challenge][:method]
               %span.tag.tag-default
                 %small{class: challenge}= "0 / #{ @challenges[challenge][:count]}"

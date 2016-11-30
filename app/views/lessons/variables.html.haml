@@ -1,0 +1,96 @@
+#variables
+  %h1 Variables
+
+  .description.row.py-3
+    .col-xs-6
+      %h2 What is a variable?
+      %p.pt-2
+        A variable allows you to store information to use or change later.
+    .col-xs-6
+      = image_tag('lessons/variables/visual1.png', style: 'border: 1px solid #333;')
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Draw a pyramid
+          %p.pt-2
+            Using variables makes it easier to draw a pyramid.
+
+        .col-xs-12
+          .interactive.row.py-1
+            .code-editor.col-xs-6
+              %h5
+                Editor
+                %small (write code below)
+              .editor<
+                :preserve
+                  var canvas = document.getElementById('variables_example1');
+                  var context = canvas.getContext("2d");
+                  context.clearRect(0, 0, 450, 300);
+
+                  var xPosition = 50;
+                  var yPosition = 200;
+                  var width = 200;
+                  var height = 50;
+                  var change = 25;
+
+                  for (var i=0; i<4; ++i) {
+                    context.fillRect(xPosition, yPosition, width, height);
+                    yPosition -= height;
+                    xPosition += change;
+                    width -= (change * 2);
+                  }
+
+              .buttons.py-1
+                .run.btn.btn-success
+                  Run
+                .reset.btn.btn-danger.float-xs-right
+                  Reset
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#variables_example1
+
+#challenge1.challenge.row.py-3
+  .col-xs-12
+    .row
+      .col-xs-12
+        %h2 Challenge 1
+        %p.py-2 Use a variable
+
+    .row
+      .code-editor.col-xs-6
+        %h5
+          Editor
+          %small (write code below)
+        .editor<
+          :preserve
+            var canvas = document.getElementById('variables_challenge1');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 450, 300);
+
+            context.beginPath();
+
+            // YOUR CODE HERE
+
+            context.stroke();
+
+        .buttons.py-1
+          .run.btn.btn-success
+            Run
+          .reset.btn.btn-danger.float-xs-right
+            Reset
+
+      .visual.col-xs-6
+        %h5
+          Canvas
+          %small (your drawing will display here)
+        .canvas
+          .background.hidden-xl-down= image_tag('lessons/variables/challenge1.png')
+          %canvas#variables_challenge1
+        .alert

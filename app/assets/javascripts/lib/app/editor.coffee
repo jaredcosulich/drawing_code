@@ -6,7 +6,7 @@ class App.Editor
     @aceEditor = ace.edit(@editorElement)
     @aceEditor.$blockScrolling = Infinity
     @editor.on 'input', -> window.onbeforeunload = App.confirmOnPageExit
-    @startCode = @aceEditor.getValue().replace(/\n +/ig, '\n')
+    @startCode = @aceEditor.getValue()
 
     @initRun()
     @reset()

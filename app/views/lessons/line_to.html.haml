@@ -33,14 +33,15 @@
                 Editor
                 %small (write code below)
               .editor<
-                var canvas = document.getElementById('line_to_interactive1');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, 450, 300);
-                \
-                context.beginPath();
-                context.moveTo(100, 250);
-                context.lineTo(400, 50);
-                context.stroke();
+                :preserve
+                  var canvas = document.getElementById('line_to_interactive1');
+                  var context = canvas.getContext("2d");
+                  context.clearRect(0, 0, 450, 300);
+
+                  context.beginPath();
+                  context.moveTo(100, 250);
+                  context.lineTo(400, 50);
+                  context.stroke();
 
               .buttons.py-1
                 .run.btn.btn-success
@@ -72,31 +73,32 @@
                 Editor
                 %small (write code below)
               .editor<
-                var canvas = document.getElementById('line_to_example1');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, 450, 300);
-                /
-                context.beginPath();
-                context.moveTo(50, 125);
-                context.lineTo(200, 125);
-                context.lineTo(200, 275);
-                context.lineTo(50, 275);
-                context.lineTo(50, 125);
-                context.lineTo(125, 50);
-                context.lineTo(200, 125);
-                /
-                context.moveTo(75, 150);
-                context.lineTo(100, 150);
-                context.lineTo(100, 175);
-                context.lineTo(75, 175);
-                context.lineTo(75, 150);
-                /
-                context.moveTo(110, 275);
-                context.lineTo(110, 215);
-                context.lineTo(140, 215);
-                context.lineTo(140, 275);
-                /
-                context.stroke();
+                :preserve
+                  var canvas = document.getElementById('line_to_example1');
+                  var context = canvas.getContext("2d");
+                  context.clearRect(0, 0, 450, 300);
+
+                  context.beginPath();
+                  context.moveTo(50, 125);
+                  context.lineTo(200, 125);
+                  context.lineTo(200, 275);
+                  context.lineTo(50, 275);
+                  context.lineTo(50, 125);
+                  context.lineTo(125, 50);
+                  context.lineTo(200, 125);
+
+                  context.moveTo(75, 150);
+                  context.lineTo(100, 150);
+                  context.lineTo(100, 175);
+                  context.lineTo(75, 175);
+                  context.lineTo(75, 150);
+
+                  context.moveTo(110, 275);
+                  context.lineTo(110, 215);
+                  context.lineTo(140, 215);
+                  context.lineTo(140, 275);
+
+                  context.stroke();
 
               .buttons.py-1
                 .run.btn.btn-success
@@ -127,15 +129,16 @@
             Editor
             %small (write code below)
           .editor<
-            var canvas = document.getElementById('line_to_challenge1');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, 450, 300);
-            \
-            context.beginPath();
-            \
-            \// YOUR CODE HERE
-            \
-            context.stroke();
+            :preserve
+              var canvas = document.getElementById('line_to_challenge1');
+              var context = canvas.getContext("2d");
+              context.clearRect(0, 0, 450, 300);
+
+              context.beginPath();
+
+              // YOUR CODE HERE
+
+              context.stroke();
 
           .buttons.py-1
             .run.btn.btn-success
@@ -165,15 +168,16 @@
             Editor
             %small (write code below)
           .editor<
-            var canvas = document.getElementById('line_to_challenge2');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, 450, 300);
-            \
-            context.beginPath();
-            \
-            \// YOUR CODE HERE
-            \
-            context.stroke();
+            :preserve
+              var canvas = document.getElementById('line_to_challenge2');
+              var context = canvas.getContext("2d");
+              context.clearRect(0, 0, 450, 300);
+
+              context.beginPath();
+
+              // YOUR CODE HERE
+
+              context.stroke();
 
           .buttons.py-1
             .run.btn.btn-success
@@ -207,15 +211,16 @@
             Editor
             %small (write code below)
           .editor<
-            var canvas = document.getElementById('line_to_challenge3');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, 450, 300);
-            \
-            context.beginPath();
-            \
-            \// YOUR CODE HERE
-            \
-            context.stroke();
+            :preserve
+              var canvas = document.getElementById('line_to_challenge3');
+              var context = canvas.getContext("2d");
+              context.clearRect(0, 0, 450, 300);
+
+              context.beginPath();
+
+              // YOUR CODE HERE
+              
+              context.stroke();
 
           .buttons.py-1
             .run.btn.btn-success
