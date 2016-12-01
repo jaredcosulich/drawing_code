@@ -73,7 +73,7 @@ initVariablesChallenge2 = (page) ->
 
 
 
-$(document).on('turbolinks:load', initVariablesChallenges)
+$(document).on('initialization:complete', initVariablesChallenges)
 
 
 

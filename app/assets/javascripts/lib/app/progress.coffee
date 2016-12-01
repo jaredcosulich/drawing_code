@@ -3,6 +3,7 @@ class App.Progress
     @storageAvailable = Storage?
 
   challengeComplete: (page, challenge) ->
+    return unless @storageAvailable
     pages = {}
     pages[p] = 1 for p in (localStorage.getItem('pages') || '').split(/,/) when p.length > 0
     pages[page] = 1
@@ -16,6 +17,7 @@ class App.Progress
     @updateNavigation()
 
   updateNavigation: ->
+    return unless @storageAvailable
     if localStorage.getItem('pages')?
       for page in localStorage.getItem('pages').split(/,/)
         if localStorage.getItem(page)?
@@ -25,3 +27,11 @@ class App.Progress
           challengeCount.html("#{completedChallengeCount} / #{totalChallengeCount}")
           if completedChallengeCount == totalChallengeCount
             challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-success')
+
+  storeEditorValue: (editorName, code) ->
+    return unless @storageAvailable
+    localStorage.setItem(editorName, code)
+
+  getEditorValue: (editorName) ->
+    return unless @storageAvailable
+    localStorage.getItem(editorName)

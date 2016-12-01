@@ -92,7 +92,7 @@ initLineToChallenge3 = (page) ->
         App.currentProgress.challengeComplete('line_to', 'challenge3')
     ), 200)
 
-$(document).on('turbolinks:load', initLineToChallenges)
+$(document).on('initialization:complete', initLineToChallenges)
 
 
 

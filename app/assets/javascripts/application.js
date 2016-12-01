@@ -14,6 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
-//= require ace
-//= require mode-javascript
+//= require ace/ace
+//= require ace/mode-javascript
 //= require_tree .

@@ -84,7 +84,7 @@ initFillRectChallenge3 = (page) ->
 
 
 
-$(document).on('turbolinks:load', initFillRectChallenges)
+$(document).on('initialization:complete', initFillRectChallenges)
 
 
 

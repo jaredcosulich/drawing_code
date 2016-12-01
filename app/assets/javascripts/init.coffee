@@ -8,8 +8,9 @@ App.confirmOnPageExit = (e) ->
   return message
 
 init = ->
-  initInteractives()
   initProgress()
+  initInteractives()
+  $(document).trigger('initialization:complete')
 
 initInteractives = ->
   for interactiveElement in $('.interactive')
