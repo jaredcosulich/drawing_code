@@ -114,6 +114,6 @@
     });
   };
 
-  $(document).on('turbolinks:load', initVariablesChallenges);
+  $(document).on('initialization:complete', initVariablesChallenges);
 
 }).call(this);

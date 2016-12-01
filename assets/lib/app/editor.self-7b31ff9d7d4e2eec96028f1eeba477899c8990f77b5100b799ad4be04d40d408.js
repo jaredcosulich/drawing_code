@@ -1,22 +1,30 @@
 (function() {
   App.Editor = (function() {
     function Editor(editor, canvas) {
+      var previousCode;
       this.canvas = canvas;
       this.editorElement = $(editor)[0];
       this.editor = $(this.editorElement);
+      ace.config.set('workerPath', '/ace/');
       this.aceEditor = ace.edit(this.editorElement);
       this.aceEditor.$blockScrolling = Infinity;
-      this.editor.on('input', function() {
-        return window.onbeforeunload = App.confirmOnPageExit;
-      });
       this.aceEditor.session.setOptions({
         mode: "ace/mode/javascript",
         tabSize: 2,
-        useSoftTabs: true
+        useSoftTabs: true,
+        wrap: 'on'
       });
+      this.editor.on('input', (function(_this) {
+        return function() {
+          return App.currentProgress.storeEditorValue(_this.editorElement.id, _this.aceEditor.getValue());
+        };
+      })(this));
       this.startCode = this.aceEditor.getValue();
       this.initRun();
       this.reset();
+      if ((previousCode = App.currentProgress.getEditorValue(this.editorElement.id)) != null) {
+        this.aceEditor.setValue(previousCode, -1);
+      }
     }
 
     Editor.prototype.initRun = function() {

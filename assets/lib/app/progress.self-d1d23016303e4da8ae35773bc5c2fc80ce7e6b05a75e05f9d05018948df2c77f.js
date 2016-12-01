@@ -6,6 +6,9 @@
 
     Progress.prototype.challengeComplete = function(page, challenge) {
       var c, challenges, i, j, len, len1, p, pages, ref, ref1;
+      if (!this.storageAvailable) {
+        return;
+      }
       pages = {};
       ref = (localStorage.getItem('pages') || '').split(/,/);
       for (i = 0, len = ref.length; i < len; i++) {
@@ -45,6 +48,9 @@
 
     Progress.prototype.updateNavigation = function() {
       var challengeCount, completedChallengeCount, i, len, page, ref, results, totalChallengeCount;
+      if (!this.storageAvailable) {
+        return;
+      }
       if (localStorage.getItem('pages') != null) {
         ref = localStorage.getItem('pages').split(/,/);
         results = [];
@@ -66,6 +72,20 @@
         }
         return results;
       }
+    };
+
+    Progress.prototype.storeEditorValue = function(editorName, code) {
+      if (!this.storageAvailable) {
+        return;
+      }
+      return localStorage.setItem(editorName, code);
+    };
+
+    Progress.prototype.getEditorValue = function(editorName) {
+      if (!this.storageAvailable) {
+        return;
+      }
+      return localStorage.getItem(editorName);
     };
 
     return Progress;

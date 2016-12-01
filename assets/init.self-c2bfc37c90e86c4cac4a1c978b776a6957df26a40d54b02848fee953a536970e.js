@@ -16,8 +16,9 @@
   };
 
   init = function() {
+    initProgress();
     initInteractives();
-    return initProgress();
+    return $(document).trigger('initialization:complete');
   };
 
   initInteractives = function() {

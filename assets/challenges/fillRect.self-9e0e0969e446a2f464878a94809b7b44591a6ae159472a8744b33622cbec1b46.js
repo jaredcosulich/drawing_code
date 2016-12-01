@@ -116,6 +116,6 @@
     });
   };
 
-  $(document).on('turbolinks:load', initFillRectChallenges);
+  $(document).on('initialization:complete', initFillRectChallenges);
 
 }).call(this);
