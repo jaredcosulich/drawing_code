@@ -4,7 +4,7 @@
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <title>Drawing Code</title>
     <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="Y26BxuYEi/oS/wvuDx8U+4L0QgLNDMrlprWXIuzjt2DI6tHkGfNbvCpO+xn3fJO7EObEvTos7KDPcZaRq5HplA==" />
+    <meta name="csrf-token" content="LsNFFqcZmXj1O4DlrT57rVvqv+SxiUjb7Iq3x6wxU8CFRxU0WO5JPs2KcBJVXfztyfg5W0apbp6FTrZ060MNNA==" />
     <link rel="stylesheet" media="all" href="../../../assets/application.self-812f5e73e80c54c66a15636789ef786037f882e3a3d162e1f12a4a9fcfde5a10-body=1.css" data-turbolinks-track="reload" />
     <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -43,25 +43,25 @@
                 <a class='section_link' data-section='reference' href='#'>
                   Reference
                 </a>
-                <ul class='collapse in nav nav-sidebar' id='reference'>
+                <ul class='collapse nav nav-sidebar' id='reference'>
                   <li>
-                    <a href='../line_to/index.html'>
+                    <a href='../../reference/line_to/index.html'>
                       lineTo
                       <span class='tag tag-default'>
                         <small class='line_to'>0 / 3</small>
                       </span>
                     </a>
                   </li>
-                  <li class='active'>
-                    <a href='index.html'>
+                  <li>
+                    <a href='../../reference/fill_rect/index.html'>
                       fillRect
                       <span class='tag tag-default'>
                         <small class='fill_rect'>0 / 3</small>
                       </span>
                     </a>
                   </li>
-                  <li>
-                    <a href='../fill_style/index.html'>
+                  <li class='active'>
+                    <a href='../../reference/fill_style/index.html'>
                       fillStyle
                       <span class='tag tag-default'>
                         <small class='fill_style'>0 / 2</small>
@@ -91,17 +91,17 @@
             <ul class='nav nav-sidebar'>
               <li class='section'>
                 <a class='section_link' data-section='basic_cityscape' href='#'>Basic Cityscape</a>
-                <ul class='collapse nav nav-sidebar' id='basic_cityscape'>
-                  <li class='active'>
-                    <a href='../../basic_cityscape/fill_rect/index.html'>
+                <ul class='collapse in nav nav-sidebar' id='basic_cityscape'>
+                  <li>
+                    <a href='../fill_rect/index.html'>
                       fillRect
                       <span class='tag tag-default'>
                         <small class='fill_rect'>0 / 3</small>
                       </span>
                     </a>
                   </li>
-                  <li>
-                    <a href='../../basic_cityscape/fill_style/index.html'>
+                  <li class='active'>
+                    <a href='index.html'>
                       fillStyle
                       <span class='tag tag-default'>
                         <small class='fill_style'>0 / 2</small>
@@ -109,7 +109,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href='../../basic_cityscape/variables/index.html'>
+                    <a href='../variables/index.html'>
                       Variables
                       <span class='tag tag-default'>
                         <small class='variables'>0 / 2</small>
@@ -122,22 +122,21 @@
           </div>
         </div>
         <div class='col-sm-9 col-md-10 main'>
-          <div id='fill_rect'>
-            <h1>fillRect</h1>
+          <div id='fill_style'>
+            <h1>fillStyle</h1>
             <div class='official row py-3'>
               <div class='col-xs-6'>
                 <h2>The Official Description</h2>
                 <p class='py-2'>
-                  The CanvasRenderingContext2D.fillRect() method of the Canvas 2D API draws a
-                  filled rectangle at (x, y) position whose size is determined by width and
-                  height and whose style is determined by the fillStyle attribute.
+                  The CanvasRenderingContext2D.fillStyle property of the Canvas 2D API specifies
+                  the color or style to use inside shapes. The default is #000 (black).
                 </p>
                 <div class='source text-xs-right'>
-                  <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect">Mozilla Developer&#39;s Network</a>
+                  <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle">Mozilla Developer&#39;s Network</a>
                 </div>
               </div>
               <div class='col-xs-6'>
-                <img class="" src="../../../assets/lessons/fill_rect/visual1-40a8b45ecb7769a2a96969a914a8faa7dffed5f2198f524aeed46f09e11f0eb7.png" alt="Visual1" />
+                <img class="" src="../../../assets/lessons/fill_style/visual1-ad383d43a64289d0cb143fceeb0e5fda21ec08c6d66b0ee76b129608c8c94174.png" alt="Visual1" />
               </div>
             </div>
             <div class='simple row py-3'>
@@ -145,12 +144,36 @@
                 <div class='row'>
                   <div class='col-xs-12'>
                     <h2>
-                      Draw A Rectangle and Fill It In
+                      Different ways to describe colors.
                     </h2>
                     <p class='pt-2'>
-                      context.fillRect() draws a rectangle and fills it in with the color
-                      defined by context.fillStyle.
+                      context.fillStyle allows you to set the color or gradient for a rectangle
+                      drawn with context.fillRect(). You can set the color in different ways:
                     </p>
+                    <ul class='pb-2'>
+                      <li class='py-1'>
+                        <strong>Named Colors</strong>
+                        <br>
+                        fillStyle will accept named colors (e.g. 'red'). Here is a full
+                        <a target="_blank" href="https://www.tutorialspoint.com/html5/html5_color_names.htm">list of HTML5 color names</a>
+                      </li>
+                      <li class='py-1'>
+                        <strong>Hex Values</strong>
+                        <br>
+                        Colors can also be described with a hex value (e.g. #00FF00 is red).
+                        You can find hex values for different colors at
+                        <a target="_blank" href="http://www.color-hex.com/">color-hex.com</a>
+                      </li>
+                      <li class='py-1'>
+                        <strong>RGB Values</strong>
+                        <br>
+                        Colors can also be described by an rgb value (e.g. rgb(255,0,0) is red).
+                        The three numbers in the "rgb()" method describe how much red, green, and blue are present
+                        in the color with 0 = none and 255 = 100%. You can find RGB values for different colors
+                        using this tool:
+                        <a target="_blank" href="http://www.rapidtables.com/web/color/RGB_Color.htm">RGB Colors</a>
+                      </li>
+                    </ul>
                   </div>
                   <div class='col-xs-12'>
                     <div class='interactive row py-1'>
@@ -159,7 +182,7 @@
                           Editor
                           <small>(write code below)</small>
                         </h5>
-                        <div class='editor' id='fill_rect_interactive1_editor'>var canvas = document.getElementById('fill_rect_interactive1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(100,100,100,50);&#x000A;</div>
+                        <div class='editor' id='fill_style_interactive1_editor'>var canvas = document.getElementById('fill_style_interactive1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.fillStyle = 'lime';&#x000A;context.fillRect(50,50,100,150);&#x000A;&#x000A;context.fillStyle = '#9417D2';&#x000A;context.fillRect(200,50,100,150);&#x000A;&#x000A;context.fillStyle = 'rgb(251,255,111)';&#x000A;context.fillRect(350,50,100,150);&#x000A;&#x000A;</div>
                         <div class='buttons py-1'>
                           <div class='run btn btn-success'>
                             Run
@@ -175,7 +198,7 @@
                           <small>(your drawing will display here)</small>
                         </h5>
                         <div class='canvas'>
-                          <canvas id='fill_rect_interactive1'></canvas>
+                          <canvas id='fill_style_interactive1'></canvas>
                         </div>
                       </div>
                     </div>
@@ -191,7 +214,7 @@
                       Example
                     </h2>
                     <p class='pt-2'>
-                      Using fillRect() to draw the flag of Madagascar.
+                      You can also create gradients using fillStyle.
                     </p>
                   </div>
                   <div class='col-xs-12'>
@@ -201,7 +224,7 @@
                           Editor
                           <small>(write code below)</small>
                         </h5>
-                        <div class='editor' id='fill_rect_example1_editor'>var canvas = document.getElementById('fill_rect_example1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.fillStyle = 'white';&#x000A;context.fillRect(50, 50, 100, 200);&#x000A;&#x000A;context.fillStyle = '#EB4D37';&#x000A;context.fillRect(150, 50, 200, 100);&#x000A;&#x000A;context.fillStyle = '#337D3F';&#x000A;context.fillRect(150, 150, 200, 100);&#x000A;</div>
+                        <div class='editor' id='fill_style_example1_editor'>var canvas = document.getElementById('fill_style_example1');&#x000A;var context = canvas.getContext("2d");&#x000A;&#x000A;var gradient = context.createLinearGradient(0,0,200,0);&#x000A;gradient.addColorStop(0,"green");&#x000A;gradient.addColorStop(0.5,"white");&#x000A;gradient.addColorStop(1,"blue");&#x000A;context.fillStyle = gradient;&#x000A;context.fillRect(10,10,200,100);&#x000A;</div>
                         <div class='buttons py-1'>
                           <div class='run btn btn-success'>
                             Run
@@ -217,7 +240,7 @@
                           <small>(your drawing will display here)</small>
                         </h5>
                         <div class='canvas'>
-                          <canvas id='fill_rect_example1'></canvas>
+                          <canvas id='fill_style_example1'></canvas>
                         </div>
                       </div>
                     </div>
@@ -230,7 +253,7 @@
                 <div class='row'>
                   <div class='col-xs-12'>
                     <h2>Challenge 1</h2>
-                    <p class='py-2'>Draw a red rectangle covering the x at (100,100).</p>
+                    <p class='py-2'>Draw a rectangle over the x at (100,100) using a color other than black.</p>
                   </div>
                 </div>
                 <div class='row'>
@@ -239,7 +262,7 @@
                       Editor
                       <small>(write code below)</small>
                     </h5>
-                    <div class='editor' id='fill_rect_challenge1_editor'>var canvas = document.getElementById('fill_rect_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;// YOUR CODE HERE&#x000A;&#x000A;context.stroke();&#x000A;</div>
+                    <div class='editor' id='fill_style_challenge1_editor'>var canvas = document.getElementById('fill_style_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;// YOUR CODE HERE&#x000A;&#x000A;</div>
                     <div class='buttons py-1'>
                       <div class='run btn btn-success'>
                         Run
@@ -255,8 +278,8 @@
                       <small>(your drawing will display here)</small>
                     </h5>
                     <div class='canvas'>
-                      <div class='background hidden-xl-down'><img src="../../../assets/lessons/fill_rect/challenge1-d7e1f2c82094a4b9f582ed311eff3811fc43d8c1f891693f7df22d7e53266756.png" alt="Challenge1" /></div>
-                      <canvas id='fill_rect_challenge1'></canvas>
+                      <div class='background hidden-xl-down'><img src="../../../assets/lessons/fill_style/challenge1-49979c0e0b6362143490b3b15aeb3dc6ee058c1419d3d75146fd2b266a0221f6.png" alt="Challenge1" /></div>
+                      <canvas id='fill_style_challenge1'></canvas>
                     </div>
                     <div class='alert'></div>
                   </div>
@@ -268,47 +291,9 @@
                 <div class='row'>
                   <div class='col-xs-12'>
                     <h2>Challenge 2</h2>
-                    <p class='py-2'>Draw a rectangle that covers the two x's at (100,100), and (100,200).</p>
-                  </div>
-                </div>
-                <div class='row'>
-                  <div class='code-editor col-xs-6'>
-                    <h5>
-                      Editor
-                      <small>(write code below)</small>
-                    </h5>
-                    <div class='editor' id='fill_rect_challenge2_editor'>var canvas = document.getElementById('fill_rect_challenge2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;// YOUR CODE HERE&#x000A;&#x000A;context.stroke();&#x000A;</div>
-                    <div class='buttons py-1'>
-                      <div class='run btn btn-success'>
-                        Run
-                      </div>
-                      <div class='reset btn btn-danger float-xs-right'>
-                        Reset
-                      </div>
-                    </div>
-                  </div>
-                  <div class='visual col-xs-6'>
-                    <h5>
-                      Canvas
-                      <small>(your drawing will display here)</small>
-                    </h5>
-                    <div class='canvas'>
-                      <div class='background hidden-xl-down'><img src="../../../assets/lessons/fill_rect/challenge2-8fba550b59fcf23b2855ce6e59e8830d38bd22ce5e874908bf016478b8d7e951.png" alt="Challenge2" /></div>
-                      <canvas id='fill_rect_challenge2'></canvas>
-                    </div>
-                    <div class='alert'></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class='challenge row py-3' id='challenge3'>
-              <div class='col-xs-12'>
-                <div class='row'>
-                  <div class='col-xs-12'>
-                    <h2>Challenge 3</h2>
                     <p class='py-2'>
-                      Draw the flag of France by drawing rectangles covering the x's at
-                      (100,150) with #0F278F, (200,150) with white, and (300,150) with #DB5443.
+                      Draw three rectangles using the colors rgb(128,0,128), #800080, and 'purple' over the x's
+                      at (50,100), (100,100), and (150,100).
                     </p>
                   </div>
                 </div>
@@ -318,7 +303,7 @@
                       Editor
                       <small>(write code below)</small>
                     </h5>
-                    <div class='editor' id='fill_rect_challenge3_editor'>var canvas = document.getElementById('fill_rect_challenge3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;// YOUR CODE HERE&#x000A;&#x000A;context.stroke();&#x000A;</div>
+                    <div class='editor' id='fill_style_challenge2_editor'>var canvas = document.getElementById('fill_style_challenge2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 450, 300);&#x000A;&#x000A;// YOUR CODE HERE&#x000A;</div>
                     <div class='buttons py-1'>
                       <div class='run btn btn-success'>
                         Run
@@ -334,8 +319,8 @@
                       <small>(your drawing will display here)</small>
                     </h5>
                     <div class='canvas'>
-                      <div class='background hidden-xl-down'><img src="../../../assets/lessons/fill_rect/challenge3-6ac652f8e7ca74e61234fe7662f0ba8d273b5975a8226b97f6a674a0fda0705a.png" alt="Challenge3" /></div>
-                      <canvas id='fill_rect_challenge3'></canvas>
+                      <div class='background hidden-xl-down'><img src="../../../assets/lessons/fill_style/challenge2-701288678c6b4deae6f6d5080f631f3f0311f07a9314ece8a6d6dd1191194f1e.png" alt="Challenge2" /></div>
+                      <canvas id='fill_style_challenge2'></canvas>
                     </div>
                     <div class='alert'></div>
                   </div>

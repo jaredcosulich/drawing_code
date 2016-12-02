@@ -21,7 +21,6 @@
       })(this));
       this.startCode = this.aceEditor.getValue();
       this.initRun();
-      this.reset();
       if ((previousCode = App.currentProgress.getEditorValue(this.editorElement.id)) != null) {
         this.aceEditor.setValue(previousCode, -1);
       }
@@ -43,13 +42,21 @@
     };
 
     Editor.prototype.reset = function() {
+      var ref;
       this.canvas.hideAlert();
-      return this.aceEditor.setValue(this.startCode, -1);
+      this.aceEditor.setValue(this.startCode, -1);
+      return (ref = App.currentProgress) != null ? ref.storeEditorValue(this.editorElement.id, this.startCode) : void 0;
     };
 
     Editor.prototype.run = function() {
+      var e, error;
       this.canvas.hideAlert();
-      return eval(this.aceEditor.getValue());
+      try {
+        return eval(this.aceEditor.getValue());
+      } catch (error) {
+        e = error;
+        return console.log(e);
+      }
     };
 
     return Editor;

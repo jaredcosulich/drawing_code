@@ -1,8 +1,8 @@
 (function() {
   Test.Point = (function() {
     function Point(options) {
-      var ref, ref1, ref2;
-      this.x = options.x, this.y = options.y, this.canvas = options.canvas, this.colors = (ref = options.colors) != null ? ref : [], this.buffer = (ref1 = options.buffer) != null ? ref1 : 1, this.badPoint = (ref2 = options.badPoint) != null ? ref2 : false;
+      var ref, ref1, ref2, ref3;
+      this.x = options.x, this.y = options.y, this.canvas = options.canvas, this.colors = (ref = options.colors) != null ? ref : [], this.buffer = (ref1 = options.buffer) != null ? ref1 : 1, this.badPoint = (ref2 = options.badPoint) != null ? ref2 : false, this.badColor = (ref3 = options.badColor) != null ? ref3 : false;
       this.context = this.canvas.context;
       this.status = 0;
     }
@@ -46,6 +46,9 @@
             colorFound = true;
             break;
           }
+        }
+        if (this.badColor) {
+          colorFound = !colorFound;
         }
         this.status = colorFound ? 1 : -1;
         if (this.badPoint) {
