@@ -155,7 +155,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            -# .background.hidden-xl-down= image_tag('lessons/fill_style/challenge1.png')
+            .background.hidden-xl-down= image_tag('lessons/fill_style/challenge1.png')
             %canvas#fill_style_challenge1
           .alert
 
@@ -165,7 +165,7 @@
         .col-xs-12
           %h2 Challenge 2
           %p.py-2
-            Draw three rectangles using the colors rgb(), #, and 'purple' over the x's
+            Draw three rectangles using the colors rgb(128,0,128), #800080, and 'purple' over the x's
             at (50,100), (100,100), and (150,100).
 
       .row
@@ -179,11 +179,6 @@
               var context = canvas.getContext("2d");
               context.clearRect(0, 0, 450, 300);
 
-              context.beginPath();
-
-              // YOUR CODE HERE
-
-              context.stroke();
 
           .buttons.py-1
             .run.btn.btn-success
@@ -196,6 +191,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            -# .background.hidden-xl-down= image_tag('lessons/fill_style/challenge2.png')
+            .background.hidden-xl-down= image_tag('lessons/fill_style/challenge2.png')
             %canvas#fill_style_challenge2
           .alert

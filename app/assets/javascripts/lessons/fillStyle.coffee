@@ -30,27 +30,28 @@ initFillStyleChallenge2 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  # points = [
-  #   new Test.Point(x: 100, y: 100, canvas: canvas),
-  #   new Test.Point(x: 100, y: 200, canvas: canvas)
-  # ]
-  #
-  # challenge.find('.run').click ->
-  #   setTimeout(( ->
-  #     success = true
-  #     for point in points
-  #       if point.test() < 1
-  #         success = false
-  #         break
-  #
-  #     message = if success
-  #         '<strong>Success!</strong> Your rectangle is covering the x\'s!'
-  #       else
-  #         'Nice try, but you need to draw a rectangle that covers both x\'s.'
-  #
-  #     canvas.alert(message, success)
-  #     App.currentProgress.challengeComplete('fill_style', 'challenge2') if success
-  #   ), 200)
+  points = [
+    new Test.Point(x: 50, y: 100, colors: [128,0,128], canvas: canvas),
+    new Test.Point(x: 100, y: 100, colors: [128,0,128], canvas: canvas),
+    new Test.Point(x: 150, y: 100, colors: [128,0,128], canvas: canvas)
+  ]
+
+  challenge.find('.run').click ->
+    setTimeout(( ->
+      success = true
+      for point in points
+        if point.test() < 1
+          success = false
+          break
+
+      message = if success
+          '<strong>Success!</strong> Your rectangle are covering the x\'s and they\'re all purple!'
+        else
+          'Nice try, but you need to draw rectangles covering all x\'s with the colors provided.'
+
+      canvas.alert(message, success)
+      App.currentProgress.challengeComplete('fill_style', 'challenge2') if success
+    ), 200)
 
 
 
@@ -58,8 +59,9 @@ $(document).on('initialization:complete', initFillStyleChallenges)
 
 
 
-
-# context.moveTo(52, 223);
-# context.lineTo(58, 229);
-# context.moveTo(58, 223);
-# context.lineTo(52, 229);
+# x = 100
+# y = 100
+# context.moveTo(x-3, y-3);
+# context.lineTo(x+3, y+3);
+# context.moveTo(x-3, y+3);
+# context.lineTo(x+3, y-3);
