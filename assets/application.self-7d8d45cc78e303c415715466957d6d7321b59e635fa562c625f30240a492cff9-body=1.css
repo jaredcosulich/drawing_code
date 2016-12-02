@@ -7781,34 +7781,35 @@ body {
 /* line 9, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .code-editor .editor {
   width: 100%;
-  height: 309px;
+  height: 330px;
   border: 1px solid #ccc;
 }
 
 /* line 18, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .visual .canvas {
   width: 100%;
+  height: 330px;
   border: 1px solid #333;
   background-color: #eee;
   background-repeat: no-repeat;
   background-position: left top;
   overflow: hidden;
 }
-/* line 25, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 26, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .visual .canvas canvas {
-  width: 450px;
-  height: 300px;
+  width: 600px;
+  height: 360px;
 }
-/* line 32, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 33, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .visual .alert {
   display: none;
 }
 
-/* line 38, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 39, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .nav {
   margin-left: 24px;
 }
-/* line 41, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 42, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .nav .tag {
   vertical-align: text-bottom;
 }

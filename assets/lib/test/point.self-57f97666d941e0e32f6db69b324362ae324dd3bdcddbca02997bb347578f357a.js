@@ -17,7 +17,7 @@
       ref = pointData.data;
       for (i = j = 0, len = ref.length; j < len; i = ++j) {
         alpha = ref[i];
-        if (i % 3 === 0) {
+        if ((i + 1) % 4 === 0) {
           totalAlpha += alpha;
         }
       }
@@ -30,7 +30,7 @@
         ref1 = pointData.data;
         for (i = k = 0, len1 = ref1.length; k < len1; i = ++k) {
           pointColor = ref1[i];
-          if (!(i % 4 === 0)) {
+          if (!((i + 1) % 4 === 1)) {
             continue;
           }
           ref2 = this.colors;
