@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
       line_to: {count: 3, method: 'lineTo'},
       fill_rect: {count: 3, method: 'fillRect'},
       fill_style: {count: 2, method: 'fillStyle'},
-      variables: {count: 2, method: 'Variables'}
+      variables: {count: 2, method: 'Variables'},
+      coordinates: {count: 2, method: 'Coordinates'}
     }
 
     @reference = [
@@ -17,7 +18,8 @@ class ApplicationController < ActionController::Base
     ]
 
     @design = [
-      :variables
+      :variables,
+      :coordinates
     ]
 
     @challenge_paths = [
@@ -27,7 +29,8 @@ class ApplicationController < ActionController::Base
         lessons: [
           :fill_rect,
           :fill_style,
-          :variables
+          :variables,
+          :coordinates
         ]
       }
     ]
