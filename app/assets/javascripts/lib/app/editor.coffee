@@ -38,4 +38,7 @@ class App.Editor
 
   run: ->
     @canvas.hideAlert()
-    eval(@aceEditor.getValue())
+    try
+      eval(@aceEditor.getValue())
+    catch e
+      console.log(e)
