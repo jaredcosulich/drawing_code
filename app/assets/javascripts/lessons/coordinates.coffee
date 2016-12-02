@@ -38,9 +38,10 @@ initCoordinatesChallenge2 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 50, y: 100, colors: [128,0,128], canvas: canvas),
-    new Test.Point(x: 100, y: 100, colors: [128,0,128], canvas: canvas),
-    new Test.Point(x: 150, y: 100, colors: [128,0,128], canvas: canvas)
+    new Test.Point(x: 0, y: 0, canvas: canvas),
+    new Test.Point(x: 0, y: 360, canvas: canvas),
+    new Test.Point(x: 600, y: 0, canvas: canvas),
+    new Test.Point(x: 600, y: 360, canvas: canvas)
   ]
 
   challenge.find('.run').click ->
@@ -52,9 +53,9 @@ initCoordinatesChallenge2 = (page) ->
           break
 
       message = if success
-          '<strong>Success!</strong> Your rectangle are covering the x\'s and they\'re all purple!'
+          '<strong>Success!</strong> You\'ve convered the whole canvas, from (0,0) to (600,360)!'
         else
-          'Nice try, but you need to draw rectangles covering all x\'s with the colors provided.'
+          'Nice try, but the whole canvas is not yet convered.'
 
       canvas.alert(message, success)
       App.currentProgress.challengeComplete('coordinates', 'challenge2') if success
