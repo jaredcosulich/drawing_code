@@ -69,7 +69,7 @@
       .row
         .col-xs-12
           %h2 Challenge 1
-          %p.py-2 Draw a rectangle over the x at (100,100) using a color other than black.
+          %p.py-2 Draw a square that starts in the top left corner of the canvas and is 100px tall and 100px wide.
 
       .row
         .code-editor.col-xs-6
@@ -96,7 +96,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/coordinates/challenge1.png')
             %canvas#coordinates_challenge1
           .alert
 
@@ -106,8 +105,7 @@
         .col-xs-12
           %h2 Challenge 2
           %p.py-2
-            Draw three rectangles using the colors rgb(128,0,128), #800080, and 'purple' over the x's
-            at (50,100), (100,100), and (150,100).
+            The canvas is 360px tall and 600px wide. Draw a rectangle that covers the whole canvas.
 
       .row
         .code-editor.col-xs-6
@@ -133,6 +131,5 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/coordinates/challenge2.png')
             %canvas#coordinates_challenge2
           .alert
