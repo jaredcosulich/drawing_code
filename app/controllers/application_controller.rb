@@ -6,12 +6,14 @@ class ApplicationController < ActionController::Base
     @lessons = {
       line_to: {count: 3, method: 'lineTo'},
       fill_rect: {count: 3, method: 'fillRect'},
+      fill_style: {count: 2, method: 'fillStyle'},
       variables: {count: 2, method: 'Variables'}
     }
 
     @reference = [
       :line_to,
-      :fill_rect
+      :fill_rect,
+      :fill_style
     ]
 
     @design = [
@@ -23,8 +25,8 @@ class ApplicationController < ActionController::Base
         name: 'Basic Cityscape',
         slug: 'basic_cityscape',
         lessons: [
-          :line_to,
           :fill_rect,
+          :fill_style,
           :variables
         ]
       }

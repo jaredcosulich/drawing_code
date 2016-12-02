@@ -1,6 +1,6 @@
 class Test.Point
   constructor: (options) ->
-    {@x, @y, @canvas, @colors=[], @buffer=1, @badPoint=false} = options
+    {@x, @y, @canvas, @colors=[], @buffer=1, @badPoint=false, @badColor=false} = options
     @context = @canvas.context
     @status = 0
 
@@ -23,7 +23,8 @@ class Test.Point
         if colorMatch
           colorFound = true
           break
-
+          
+      colorFound = !colorFound if @badColor
       @status = if colorFound then 1 else -1
       @status = @status * -1 if @badPoint
 
