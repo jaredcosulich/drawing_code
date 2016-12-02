@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :challenge_map
+  before_action :lesson_map
 
-  def challenge_map
-    @challenges = {
+  def lesson_map
+    @lessons = {
       line_to: {count: 3, method: 'lineTo'},
       fill_rect: {count: 3, method: 'fillRect'},
       variables: {count: 2, method: 'Variables'}
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
       {
         name: 'Basic Cityscape',
         slug: 'basic_cityscape',
-        challenges: [
+        lessons: [
           :line_to,
           :fill_rect,
           :variables
