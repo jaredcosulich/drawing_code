@@ -63,48 +63,6 @@
                 %canvas#coordinates_interactive1
 
 
-  .example.row.py-3
-    .col-xs-12
-      .row
-        .col-xs-12
-          %h2
-            Example
-          %p.pt-2
-            You can also create gradients using fillStyle.
-
-        .col-xs-12
-          .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #coordinates_example1_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('coordinates_example1');
-                  var context = canvas.getContext("2d");
-
-                  var gradient = context.createLinearGradient(0,0,200,0);
-                  gradient.addColorStop(0,"green");
-                  gradient.addColorStop(0.5,"white");
-                  gradient.addColorStop(1,"blue");
-                  context.fillStyle = gradient;
-                  context.fillRect(10,10,200,100);
-
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#coordinates_example1
-
-
-
 
   #challenge1.challenge.row.py-3
     .col-xs-12
