@@ -8,13 +8,15 @@ class ApplicationController < ActionController::Base
       fill_rect: {count: 3, method: 'fillRect'},
       fill_style: {count: 2, method: 'fillStyle'},
       variables: {count: 2, method: 'Variables'},
-      coordinates: {count: 2, method: 'Coordinates'}
+      coordinates: {count: 2, method: 'Coordinates'},
+      translate: {count: 2, method: 'translate'}
     }
 
     @reference = [
       :line_to,
       :fill_rect,
-      :fill_style
+      :fill_style,
+      :translate
     ]
 
     @design = [
@@ -30,7 +32,8 @@ class ApplicationController < ActionController::Base
           :fill_rect,
           :fill_style,
           :variables,
-          :coordinates
+          :coordinates,
+          :translate
         ]
       }
     ]
