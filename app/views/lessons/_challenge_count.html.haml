@@ -1,0 +1,15 @@
+%p.challenges
+  - count = @lessons[params[:id].to_sym][:count]
+  %strong Challenges:
+  %span.no_challenges_completed
+    There
+    = count > 1 ? 'are' : 'is'
+    = pluralize(count, 'challenge')
+    for you to do.
+    = link_to('Jump to challenges >', '#challenge1')
+  %span.challenges_completed
+    You've completed
+    %span.completed_challenges_count
+    out of
+    = "#{pluralize(count, 'challenge')}."
+    = link_to('Jump to challenges >', '#challenge1')
