@@ -1,0 +1,275 @@
+#basic_cityscape_stage1
+  %h1 Stage1
+
+  .description.row.py-3
+    .col-xs-6
+      %h2.py-2
+        Overview
+      %p
+        In the first stage of the Cityscape Challenge, we will draw the shapes of
+        buildings with different sizes. Because we will be drawing lots of buildings,
+        we will automate the process using functions and variables.
+
+    .col-xs-6
+      = image_tag('lessons/fill_rect/visual1.png', class: '')
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw a Building
+          %p
+            A building is a filled in rectangle. We use context.fillStyle to set
+            the color of the rectangle, and context.fillRect() to draw the rectangle.
+          %p
+            In this example, we draw a building that is blue (the color #1E90FF),
+            160 pixels wide, 240 pixels tall, and positioned so its top left corner
+            is at (100, 50).
+
+        .col-xs-12
+          .interactive.row.py-1
+            .code-editor.col-xs-6
+              %h5
+                Editor
+                %small (write code below)
+              #basic_cityscape_stage1_example1_editor.editor<
+                :preserve
+                  var canvas = document.getElementById('basic_cityscape_stage1_example1');
+                  var context = canvas.getContext('2d');
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+
+                  context.fillStyle = '#1E90FF';
+                  context.fillRect(100, 50, 160, 240);
+
+              .buttons.py-1
+                .run.btn.btn-success
+                  Run
+                .reset.btn.btn-danger.float-xs-right
+                  Reset
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#basic_cityscape_stage1_example1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Challenge 1
+          %p
+            Draw a black building (color #000000) that is 320 pixels wide and 160
+            pixels tall so the bottom left corner of the building is covering the
+            x at (40, 240).
+          %p
+            We are positioning the building's bottom left corner so the building
+            is sitting on the ground. We will have to do some math to find the coordinates
+            of the building's top left corner.
+
+      .row
+        .code-editor.col-xs-6
+          %h5
+            Editor
+            %small (write code below)
+          #basic_cityscape_stage1_challenge1_editor.editor<
+            :preserve
+              var canvas = document.getElementById('basic_cityscape_stage1_challenge1');
+              var context = canvas.getContext('2d');
+              context.clearRect(0, 0, canvas.width, canvas.height);
+
+              // YOUR CODE HERE
+
+          .buttons.py-1
+            .run.btn.btn-success
+              Run
+            .reset.btn.btn-danger.float-xs-right
+              Reset
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/basic_cityscape_stage1/challenge1.png')
+            %canvas#basic_cityscape_stage1_challenge1
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use Variables to Size and Position a Building
+          %p
+            We can use variables to automatically size and position a building.
+          %p
+            In this example, we draw a green building (color #228B22) that is twice
+            as tall as it is wide, and sitting on the ground at (60, 280).
+          %p
+            To change the size of the building, all we do is store a different value
+            in the variable <i>w</i>. The program automatically calculates the height
+            of the building (assigning it to the variable <i>h</i>) and the y-coordinate
+            of the top of the building (assigning it to the variable <i>y</i>). These
+            variables are then used to draw the building.
+
+        .col-xs-12
+          .interactive.row.py-1
+            .code-editor.col-xs-6
+              %h5
+                Editor
+                %small (write code below)
+              #basic_cityscape_stage1_example2_editor.editor<
+                :preserve
+                  var canvas = document.getElementById('basic_cityscape_stage1_example2');
+                  var context = canvas.getContext('2d');
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  
+                  var w = 80;
+                  var h = 2 * w;
+                  var y = 280 - h;
+                  
+                  context.fillStyle = '#228B22';
+                  context.fillRect(60, y, w, h);
+
+              .buttons.py-1
+                .run.btn.btn-success
+                  Run
+                .reset.btn.btn-danger.float-xs-right
+                  Reset
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#basic_cityscape_stage1_example2
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-6
+          %h2.py-2
+            Challenge 2
+          %p
+            For our cityscape, we don't want think about buildings in terms of pixels.
+            We want to size buildings based on the number of floors they have and the
+            number of office units on each floor, and then write the program so it
+            calculates the number of pixels for us.
+          %p
+            Each office unit is 16 pixels wide and 16 pixels tall. The outer walls,
+            roof, and floor of the building are each 4 pixels thick.
+        .col-xs-6
+          = image_tag('lessons/basic_cityscape_stage1/challenge2visual1.png')
+      .row
+        .col-xs-12
+          %p
+            Draw a gray building (color #999999) with 10 floors and 8 office units
+            on each floor sitting on the ground at (120, 280).
+          %p
+            Write a program to calculate the size and position of the building for you.
+            The variable <i>units</i> stores the number of office units on each floor.
+            The variable <i>floors</i> stores the number of floors in the building.
+          %p
+            To see the office units in your building, add the line "drawOffices(x, y, w, h);"
+            to the end of your program, where (x, y) are the coordinates of the top left 
+            corner of your building, and w and h are the width and height of your building.
+
+      .row
+        .code-editor.col-xs-6
+          %h5
+            Editor
+            %small (write code below)
+          #basic_cityscape_stage1_challenge2_editor.editor<
+            :preserve
+              function drawOffices(x, y, w, h) {
+                var u = Math.floor((w - 4) / 16);
+                var f = Math.floor((h - 4) / 16);
+                
+                context.save();
+                context.translate(x + 4, y + 4);
+                context.strokeWidth = 1;
+                context.strokeStyle = '#000000';
+                
+                for (var i = 0; i < f; i++) {
+                  for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);
+                }
+                
+                context.restore();
+              }
+              
+              var canvas = document.getElementById('basic_cityscape_stage1_challenge2');
+              var context = canvas.getContext('2d');
+              var units = 8;
+              var floors = 10;
+              
+              context.clearRect(0, 0, canvas.width, canvas.height);
+
+              // YOUR CODE HERE
+
+              // drawOffices(x, y, w, h);
+
+          .buttons.py-1
+            .run.btn.btn-success
+              Run
+            .reset.btn.btn-danger.float-xs-right
+              Reset
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/fill_rect/challenge2.png')
+            %canvas#basic_cityscape_stage1_challenge2
+          .alert
+
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2 Challenge 3
+          %p.py-2
+            Draw the flag of France by drawing rectangles covering the x's at
+            (100,150) with #0F278F, (200,150) with white, and (300,150) with #DB5443.
+
+      .row
+        .code-editor.col-xs-6
+          %h5
+            Editor
+            %small (write code below)
+          #basic_cityscape_stage1_challenge3_editor.editor<
+            :preserve
+              var canvas = document.getElementById('basic_cityscape_stage1_challenge3');
+              var context = canvas.getContext("2d");
+              context.clearRect(0, 0, 450, 300);
+
+              context.beginPath();
+
+              // YOUR CODE HERE
+
+              context.stroke();
+
+          .buttons.py-1
+            .run.btn.btn-success
+              Run
+            .reset.btn.btn-danger.float-xs-right
+              Reset
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/fill_rect/challenge3.png')
+            %canvas#basic_cityscape_stage1_challenge3
+          .alert
