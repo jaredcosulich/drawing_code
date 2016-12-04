@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
       fill_style: {count: 2, method: 'fillStyle'},
       variables: {count: 2, method: 'Variables'},
       coordinates: {count: 2, method: 'Coordinates'},
-      translate: {count: 2, method: 'translate'}
+      translate: {count: 1, method: 'translate'}
     }
 
     @reference = [
