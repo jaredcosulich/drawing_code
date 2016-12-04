@@ -4,7 +4,7 @@
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <title>Drawing Code</title>
     <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="znioruz5OuUwN9mrcRyDq8wxTqanwFx2GZHG8enV1IVl/PiMEw7qowiGKVyJfwTrXiPIGVDgejNwVcdCrqeKcQ==" />
+    <meta name="csrf-token" content="cbrQKgjZWowVT0fXR2PgT9F9ErSqbDxuRhnOvFPBXvbaPoAI9y6Kyi3+tyC/AGcPQ2+UC11MGisv3c8PFLMAAg==" />
     <link rel="stylesheet" media="all" href="../../../assets/application.self-7d8d45cc78e303c415715466957d6d7321b59e635fa562c625f30240a492cff9-body=1.css" data-turbolinks-track="reload" />
     <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -70,7 +70,7 @@
                       </span>
                     </a>
                   </li>
-                  <li>
+                  <li class='active'>
                     <a href='../../reference/translate/index.html'>
                       translate
                       <span class='tag tag-default'>
@@ -95,7 +95,7 @@
                       </span>
                     </a>
                   </li>
-                  <li class='active'>
+                  <li>
                     <a href='../../design/coordinates/index.html'>
                       Coordinates
                       <span class='tag tag-default'>
@@ -134,16 +134,16 @@
                       </span>
                     </a>
                   </li>
-                  <li class='active'>
-                    <a href='index.html'>
+                  <li>
+                    <a href='../coordinates/index.html'>
                       Coordinates
                       <span class='tag tag-default'>
                         <small class='coordinates'>0 / 2</small>
                       </span>
                     </a>
                   </li>
-                  <li>
-                    <a href='../translate/index.html'>
+                  <li class='active'>
+                    <a href='index.html'>
                       translate
                       <span class='tag tag-default'>
                         <small class='translate'>0 / 1</small>
@@ -156,29 +156,18 @@
           </div>
         </div>
         <div class='col-sm-9 col-md-10 main'>
-          <div id='coordinates'>
-            <h1>Coordinates within 2D Context</h1>
+          <div id='translate'>
+            <h1>translate</h1>
             <div class='official row py-3'>
               <div class='col-xs-6'>
-                <h2>The Coordinate System</h2>
-                <p class='pt-2'>
-                  The 2D context provided by the canvas has a coordinate system consisting of X and Y values.
-                </p>
-                <p>
-                  Starting at the top, left of the canvas is the point (0, 0).
-                </p>
-                <p>
-                  As you move down the canvas Y gets larger.
-                </p>
-                <p>
-                  As you move right on the canvas X gets larger.
-                </p>
-                <p>
-                  So the point (100, 50) means you move right 100 and down 50.
+                <h2>Unofficial Description</h2>
+                <p class='py-2'>
+                  The CanvasRenderingContext2D.translate() method of the Canvas 2D API shifts
+                  the coordinate axis of the canvas by the X and Y values provided.
                 </p>
               </div>
               <div class='col-xs-6'>
-                <img class="" src="../../../assets/lessons/coordinates/visual1-9de91fb2064dacecd3e79a9b5cf6a4729cc80cf6687d1f161ac7310eec49aa78.png" alt="Visual1" />
+                <img class="" src="../../../assets/lessons/translate/visual1-d4b3920183c48fa94b97760297830dfdf9124bbe3c546ea995a13e18b4161cd6.png" alt="Visual1" />
               </div>
             </div>
             <div class='simple row py-3'>
@@ -186,11 +175,15 @@
                 <div class='row'>
                   <div class='col-xs-12'>
                     <h2>
-                      Explore The Coordinate System.
+                      Why Would I Use This?
                     </h2>
                     <p class='pt-2'>
-                      Mouse over the grey area to the right to see where your mouse is in
-                      the coordinate system.
+                      translate() allows you to shift the entire coordinate grid of the canvas context.
+                    </p>
+                    <p>
+                      So, instead of changing the x and y coordinates of many commands you can just
+                      shift the coordinate grid and the drawing will appear in a different location.
+                      Here's an example of copying a drawing of a house:
                     </p>
                   </div>
                   <div class='col-xs-12'>
@@ -200,7 +193,7 @@
                           Editor
                           <small>(write code below)</small>
                         </h5>
-                        <div class='editor' id='coordinates_interactive1_editor'>var canvas = document.getElementById('coordinates_interactive1');&#x000A;var context = canvas.getContext("2d");&#x000A;&#x000A;context.font= '30px Arial';&#x000A;canvas.addEventListener('mousemove', function(e) {&#x000A;  context.clearRect(0, 0, 600, 360);&#x000A;  text = 'Your mouse is at (' + e.layerX + ', ' + e.layerY + ')'&#x000A;  context.fillText(text, 50, 100);&#x000A;});&#x000A;&#x000A;</div>
+                        <div class='editor' id='translate_interactive1_editor'>var canvas = document.getElementById('translate_interactive1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 600, 360);&#x000A;&#x000A;for (var i=0; i<3; ++i) {&#x000A;  context.save();&#x000A;  context.translate(160*i, 25*i);&#x000A;&#x000A;  context.beginPath();&#x000A;  context.moveTo(25, 100);&#x000A;  context.lineTo(175, 100);&#x000A;  context.lineTo(175, 250);&#x000A;  context.lineTo(25, 250);&#x000A;  context.lineTo(25, 100);&#x000A;  context.lineTo(100, 25);&#x000A;  context.lineTo(175, 100);&#x000A;&#x000A;  context.moveTo(50, 125);&#x000A;  context.lineTo(75, 125);&#x000A;  context.lineTo(75, 150);&#x000A;  context.lineTo(50, 150);&#x000A;  context.lineTo(50, 125);&#x000A;&#x000A;  context.moveTo(85, 250);&#x000A;  context.lineTo(85, 190);&#x000A;  context.lineTo(115, 190);&#x000A;  context.lineTo(115, 250);&#x000A;&#x000A;  context.stroke();&#x000A;  context.restore();&#x000A;}&#x000A;</div>
                         <div class='buttons py-1'>
                           <div class='run btn btn-success'>
                             Run
@@ -216,7 +209,50 @@
                           <small>(your drawing will display here)</small>
                         </h5>
                         <div class='canvas'>
-                          <canvas id='coordinates_interactive1'></canvas>
+                          <canvas id='translate_interactive1'></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='example row py-3'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>
+                      Example
+                    </h2>
+                    <p class='pt-2'>
+                      Here's a basic example where the same fillRect() command draws in different
+                      areas due to translate()
+                    </p>
+                  </div>
+                  <div class='col-xs-12'>
+                    <div class='interactive row py-1'>
+                      <div class='code-editor col-xs-6'>
+                        <h5>
+                          Editor
+                          <small>(write code below)</small>
+                        </h5>
+                        <div class='editor' id='translate_example1_editor'>var canvas = document.getElementById('translate_example1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.save();&#x000A;context.clearRect(0, 0, 600, 360);&#x000A;&#x000A;context.fillRect(50,175,100,100);&#x000A;&#x000A;context.translate(125,-125);&#x000A;&#x000A;context.fillRect(50,175,100,100);&#x000A;&#x000A;context.restore();&#x000A;</div>
+                        <div class='buttons py-1'>
+                          <div class='run btn btn-success'>
+                            Run
+                          </div>
+                          <div class='reset btn btn-danger float-xs-right'>
+                            Reset
+                          </div>
+                        </div>
+                      </div>
+                      <div class='visual col-xs-6'>
+                        <h5>
+                          Canvas
+                          <small>(your drawing will display here)</small>
+                        </h5>
+                        <div class='canvas'>
+                          <canvas id='translate_example1'></canvas>
                         </div>
                       </div>
                     </div>
@@ -229,45 +265,9 @@
                 <div class='row'>
                   <div class='col-xs-12'>
                     <h2>Challenge 1</h2>
-                    <p class='py-2'>Draw a square that starts in the top left corner of the canvas and is 100px tall and 100px wide.</p>
-                  </div>
-                </div>
-                <div class='row'>
-                  <div class='code-editor col-xs-6'>
-                    <h5>
-                      Editor
-                      <small>(write code below)</small>
-                    </h5>
-                    <div class='editor' id='coordinates_challenge1_editor'>var canvas = document.getElementById('coordinates_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 600, 360);&#x000A;&#x000A;// YOUR CODE HERE&#x000A;&#x000A;</div>
-                    <div class='buttons py-1'>
-                      <div class='run btn btn-success'>
-                        Run
-                      </div>
-                      <div class='reset btn btn-danger float-xs-right'>
-                        Reset
-                      </div>
-                    </div>
-                  </div>
-                  <div class='visual col-xs-6'>
-                    <h5>
-                      Canvas
-                      <small>(your drawing will display here)</small>
-                    </h5>
-                    <div class='canvas'>
-                      <canvas id='coordinates_challenge1'></canvas>
-                    </div>
-                    <div class='alert'></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class='challenge row py-3' id='challenge2'>
-              <div class='col-xs-12'>
-                <div class='row'>
-                  <div class='col-xs-12'>
-                    <h2>Challenge 2</h2>
                     <p class='py-2'>
-                      The canvas is 360px tall and 600px wide. Draw a rectangle that covers the whole canvas.
+                      Use translate() to draw the blue rectangle centered at (50,50)
+                      over the x's at (125,125) and (200,200)
                     </p>
                   </div>
                 </div>
@@ -277,7 +277,7 @@
                       Editor
                       <small>(write code below)</small>
                     </h5>
-                    <div class='editor' id='coordinates_challenge2_editor'>var canvas = document.getElementById('coordinates_challenge2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 600, 360);&#x000A;&#x000A;// YOUR CODE HERE&#x000A;</div>
+                    <div class='editor' id='translate_challenge1_editor'>var canvas = document.getElementById('translate_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 600, 360);&#x000A;context.save();&#x000A;&#x000A;context.fillStyle = '#2A32A3';&#x000A;context.fillRect(25, 25, 50, 50);&#x000A;&#x000A;context.restore();&#x000A;&#x000A;&#x000A;</div>
                     <div class='buttons py-1'>
                       <div class='run btn btn-success'>
                         Run
@@ -293,7 +293,8 @@
                       <small>(your drawing will display here)</small>
                     </h5>
                     <div class='canvas'>
-                      <canvas id='coordinates_challenge2'></canvas>
+                      <div class='background hidden-xl-down'><img src="../../../assets/lessons/translate/challenge1-86cf13249707acaff0285a9b8946453bce4f8118348c2dbd79b23faff6e95985.png" alt="Challenge1" /></div>
+                      <canvas id='translate_challenge1'></canvas>
                     </div>
                     <div class='alert'></div>
                   </div>
