@@ -13,6 +13,7 @@
   }
 
   .log {
+    display: none;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
@@ -20,7 +21,7 @@
     .close {
       margin-right: 6px;
     }
-    
+
     .title {
       padding: 3px 12px;
       border-bottom: 1px solid #ccc;

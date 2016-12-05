@@ -35,17 +35,22 @@ class App.Editor
         @reset()
 
   reset: ->
+    @hideLog()
+    @clearLog()
     @canvas.hideAlert()
     @aceEditor.setValue(@startCode, -1)
     App.currentProgress?.storeEditorValue(@editorElement.id, @startCode)
 
   run: ->
+    @hideLog()
+    @clearLog()
     @canvas.hideAlert()
     try
       eval(@aceEditor.getValue())
     catch e
-      @log("<strong class='text-danger'>Error:</strong> #{e.message}")
-      console.log(e)
+      errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]
+      @log("<strong class='text-danger'>Error:</strong> #{e.message} (Line #{errorLineNumber})")
+      # console.log(e.stack)
 
   initLog: ->
     @logElement = @codeEditor.find('.log')
@@ -57,6 +62,9 @@ class App.Editor
     message.html(messageText)
     @logElement.find('.messages').append(message)
     @logElement.slideDown()
+
+  clearLog: ->
+    @logElement.find('.messages').html('')
 
   hideLog: ->
     @logElement.slideUp();
