@@ -3,6 +3,7 @@ initBasicCityscapeStage1Challenges = ->
     initBasicCityscapeStage1Challenge1(page)
     initBasicCityscapeStage1Challenge2(page)
     initBasicCityscapeStage1Challenge3(page)
+    initBasicCityscapeStage1Challenge4(page)
 
 
 initBasicCityscapeStage1Challenge1 = (page) ->
@@ -40,7 +41,7 @@ initBasicCityscapeStage1Challenge2 = (page) ->
 
   points = [
     new Test.Point(x: 120, y: 280, colors: [153,153,153], canvas: canvas),
-    new Test.Point(x: 288, y: 128, colors: [153,153,153], canvas: canvas)
+    new Test.Point(x: 256, y: 112, colors: [153,153,153], canvas: canvas)
   ]
 
   challenge.find('.run').click ->
@@ -90,6 +91,34 @@ initBasicCityscapeStage1Challenge3 = (page) ->
       App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge3') if success
     ), 200)
 
+
+initBasicCityscapeStage1Challenge4 = (page) ->
+  challenge = page.find('#challenge4')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  points = [
+    new Test.Point(x: 100, y: 150, colors: [15, 39, 143], canvas: canvas),
+    new Test.Point(x: 200, y: 150, colors: [255,255,255], canvas: canvas),
+    new Test.Point(x: 300, y: 150, colors: [219, 84, 67], canvas: canvas)
+  ]
+
+  challenge.find('.run').click ->
+    setTimeout(( ->
+      success = true
+      for point in points
+        if point.test() < 1
+          success = false
+          break
+
+      message = if success
+          '<strong>Success!</strong> Your rectangle is covering the x\'s with the right colors!'
+        else
+          'Nice try, but you need to draw rectangles that cover each x in the right color.'
+
+      canvas.alert(message, success)
+      App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge4') if success
+    ), 200)
 
 
 $(document).on('initialization:complete', initBasicCityscapeStage1Challenges)
