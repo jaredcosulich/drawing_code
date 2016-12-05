@@ -1,6 +1,8 @@
 #fill_rect
   %h1 fillRect
 
+  = render 'lessons/challenge_count'
+
   .official.row.py-3
     .col-xs-6
       %h2 The Official Description
@@ -35,7 +37,7 @@
                 :preserve
                   var canvas = document.getElementById('fill_rect_interactive1');
                   var context = canvas.getContext("2d");
-                  context.clearRect(0, 0, 450, 300);
+                  context.clearRect(0, 0, 600, 360);
 
                   context.fillStyle = 'red';
                   context.fillRect(100,100,100,50);
@@ -73,7 +75,7 @@
                 :preserve
                   var canvas = document.getElementById('fill_rect_example1');
                   var context = canvas.getContext("2d");
-                  context.clearRect(0, 0, 450, 300);
+                  context.clearRect(0, 0, 600, 360);
 
                   context.fillStyle = 'white';
                   context.fillRect(50, 50, 100, 200);
@@ -116,7 +118,7 @@
             :preserve
               var canvas = document.getElementById('fill_rect_challenge1');
               var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 450, 300);
+              context.clearRect(0, 0, 600, 360);
 
               context.beginPath();
 
@@ -155,7 +157,7 @@
             :preserve
               var canvas = document.getElementById('fill_rect_challenge2');
               var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 450, 300);
+              context.clearRect(0, 0, 600, 360);
 
               context.beginPath();
 
@@ -198,7 +200,7 @@
             :preserve
               var canvas = document.getElementById('fill_rect_challenge3');
               var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 450, 300);
+              context.clearRect(0, 0, 600, 360);
 
               context.beginPath();
 

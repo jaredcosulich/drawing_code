@@ -19,7 +19,6 @@ class App.Editor
     @startCode = @aceEditor.getValue()
 
     @initRun()
-    @reset()
 
     if (previousCode = App.currentProgress.getEditorValue(@editorElement.id))?
       @aceEditor.setValue(previousCode, -1)
@@ -35,6 +34,7 @@ class App.Editor
   reset: ->
     @canvas.hideAlert()
     @aceEditor.setValue(@startCode, -1)
+    App.currentProgress?.storeEditorValue(@editorElement.id, @startCode)
 
   run: ->
     @canvas.hideAlert()

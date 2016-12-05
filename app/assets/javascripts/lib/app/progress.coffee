@@ -16,12 +16,15 @@ class App.Progress
 
     @updateNavigation()
 
+  challengesCompleted: (page) ->
+    (localStorage.getItem(page) || '').split(/,/)
+
   updateNavigation: ->
     return unless @storageAvailable
     if localStorage.getItem('pages')?
       for page in localStorage.getItem('pages').split(/,/)
         if localStorage.getItem(page)?
-          completedChallengeCount = localStorage.getItem(page).split(/,/).length
+          completedChallengeCount = @challengesCompleted(page).length
           challengeCount = $(".nav-sidebar .#{page}")
           totalChallengeCount = parseInt(challengeCount.html().split(' / ')[1])
           challengeCount.html("#{completedChallengeCount} / #{totalChallengeCount}")

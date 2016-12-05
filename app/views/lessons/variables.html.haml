@@ -1,6 +1,8 @@
 #variables
   %h1 Variables
 
+  = render 'lessons/challenge_count'
+
   .description.row.py-3
     .col-xs-6
       %h2 What is a variable?
@@ -29,7 +31,7 @@
                   var canvas = document.getElementById('variables_example1');
                   var context = canvas.getContext("2d");
                   context.save();
-                  context.clearRect(0, 0, 450, 300);
+                  context.clearRect(0, 0, 600, 360);
 
                   var xPosition = 50;
                   var yPosition = 200;
@@ -83,7 +85,7 @@
                 :preserve
                   var canvas = document.getElementById('variables_example2');
                   var context = canvas.getContext("2d");
-                  context.clearRect(0, 0, 450, 300);
+                  context.clearRect(0, 0, 600, 360);
 
                   context.beginPath();
 
@@ -131,7 +133,7 @@
             :preserve
               var canvas = document.getElementById('variables_challenge1');
               var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 450, 300);
+              context.clearRect(0, 0, 600, 360);
 
               var x = 100;
 
@@ -183,7 +185,7 @@
           :preserve
             var canvas = document.getElementById('variables_challenge2');
             var context = canvas.getContext("2d");
-            context.clearRect(0, 0, 450, 300);
+            context.clearRect(0, 0, 600, 360);
             context.save();
 
             var x = 50;

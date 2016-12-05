@@ -1,0 +1,137 @@
+#coordinates
+  %h1 Coordinates within 2D Context
+
+  = render 'lessons/challenge_count'
+
+  .official.row.py-3
+    .col-xs-6
+      %h2 The Coordinate System
+      %p.pt-2
+        The 2D context provided by the canvas has a coordinate system consisting of X and Y values.
+      %p
+        Starting at the top, left of the canvas is the point (0, 0).
+      %p
+        As you move down the canvas Y gets larger.
+      %p
+        As you move right on the canvas X gets larger.
+      %p
+        So the point (100, 50) means you move right 100 and down 50.
+
+
+    .col-xs-6
+      = image_tag('lessons/coordinates/visual1.png', class: '')
+
+
+  .simple.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Explore The Coordinate System.
+          %p.pt-2
+            Mouse over the grey area to the right to see where your mouse is in
+            the coordinate system.
+
+        .col-xs-12
+          .interactive.row.py-1
+            .code-editor.col-xs-6
+              %h5
+                Editor
+                %small (write code below)
+              #coordinates_interactive1_editor.editor<
+                :preserve
+                  var canvas = document.getElementById('coordinates_interactive1');
+                  var context = canvas.getContext("2d");
+
+                  context.font= '30px Arial';
+                  canvas.addEventListener('mousemove', function(e) {
+                    context.clearRect(0, 0, 600, 360);
+                    text = 'Your mouse is at (' + e.layerX + ', ' + e.layerY + ')'
+                    context.fillText(text, 50, 100);
+                  });
+
+
+              .buttons.py-1
+                .run.btn.btn-success
+                  Run
+                .reset.btn.btn-danger.float-xs-right
+                  Reset
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#coordinates_interactive1
+
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2 Challenge 1
+          %p.py-2 Draw a square that starts in the top left corner of the canvas and is 100px tall and 100px wide.
+
+      .row
+        .code-editor.col-xs-6
+          %h5
+            Editor
+            %small (write code below)
+          #coordinates_challenge1_editor.editor<
+            :preserve
+              var canvas = document.getElementById('coordinates_challenge1');
+              var context = canvas.getContext("2d");
+              context.clearRect(0, 0, 600, 360);
+
+              // YOUR CODE HERE
+
+
+          .buttons.py-1
+            .run.btn.btn-success
+              Run
+            .reset.btn.btn-danger.float-xs-right
+              Reset
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#coordinates_challenge1
+          .alert
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2 Challenge 2
+          %p.py-2
+            The canvas is 360px tall and 600px wide. Draw a rectangle that covers the whole canvas.
+
+      .row
+        .code-editor.col-xs-6
+          %h5
+            Editor
+            %small (write code below)
+          #coordinates_challenge2_editor.editor<
+            :preserve
+              var canvas = document.getElementById('coordinates_challenge2');
+              var context = canvas.getContext("2d");
+              context.clearRect(0, 0, 600, 360);
+
+              // YOUR CODE HERE
+
+          .buttons.py-1
+            .run.btn.btn-success
+              Run
+            .reset.btn.btn-danger.float-xs-right
+              Reset
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#coordinates_challenge2
+          .alert

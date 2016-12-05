@@ -1,0 +1,173 @@
+#translate
+  %h1 translate
+
+  = render 'lessons/challenge_count'
+
+  .official.row.py-3
+    .col-xs-6
+      %h2 Unofficial Description
+      %p.py-2
+        The CanvasRenderingContext2D.translate() method of the Canvas 2D API shifts
+        the coordinate axis of the canvas by the X and Y values provided.
+
+    .col-xs-6
+      = image_tag('lessons/translate/visual1.png', class: '')
+
+
+  .simple.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Why Would I Use This?
+          %p.pt-2
+            translate() allows you to shift the entire coordinate grid of the canvas context.
+          %p
+            So, instead of changing the x and y coordinates of many commands you can just
+            shift the coordinate grid and the drawing will appear in a different location.
+            Here's an example of copying a drawing of a house:
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            .code-editor.col-xs-6
+              %h5
+                Editor
+                %small (write code below)
+              #translate_interactive1_editor.editor<
+                :preserve
+                  var canvas = document.getElementById('translate_interactive1');
+                  var context = canvas.getContext("2d");
+                  context.clearRect(0, 0, 600, 360);
+
+                  for (var i=0; i<3; ++i) {
+                    context.save();
+                    context.translate(160*i, 25*i);
+
+                    context.beginPath();
+                    context.moveTo(25, 100);
+                    context.lineTo(175, 100);
+                    context.lineTo(175, 250);
+                    context.lineTo(25, 250);
+                    context.lineTo(25, 100);
+                    context.lineTo(100, 25);
+                    context.lineTo(175, 100);
+
+                    context.moveTo(50, 125);
+                    context.lineTo(75, 125);
+                    context.lineTo(75, 150);
+                    context.lineTo(50, 150);
+                    context.lineTo(50, 125);
+
+                    context.moveTo(85, 250);
+                    context.lineTo(85, 190);
+                    context.lineTo(115, 190);
+                    context.lineTo(115, 250);
+
+                    context.stroke();
+                    context.restore();
+                  }
+
+              .buttons.py-1
+                .run.btn.btn-success
+                  Run
+                .reset.btn.btn-danger.float-xs-right
+                  Reset
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#translate_interactive1
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Example
+          %p.pt-2
+            Here's a basic example where the same fillRect() command draws in different
+            areas due to translate()
+
+        .col-xs-12
+          .interactive.row.py-1
+            .code-editor.col-xs-6
+              %h5
+                Editor
+                %small (write code below)
+              #translate_example1_editor.editor<
+                :preserve
+                  var canvas = document.getElementById('translate_example1');
+                  var context = canvas.getContext("2d");
+                  context.save();
+                  context.clearRect(0, 0, 600, 360);
+
+                  context.fillRect(50,175,100,100);
+
+                  context.translate(125,-125);
+
+                  context.fillRect(50,175,100,100);
+
+                  context.restore();
+
+              .buttons.py-1
+                .run.btn.btn-success
+                  Run
+                .reset.btn.btn-danger.float-xs-right
+                  Reset
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#translate_example1
+
+
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2 Challenge 1
+          %p.py-2
+            Use translate() to draw the blue rectangle centered at (50,50)
+            over the x's at (125,125) and (200,200)
+
+      .row
+        .code-editor.col-xs-6
+          %h5
+            Editor
+            %small (write code below)
+          #translate_challenge1_editor.editor<
+            :preserve
+              var canvas = document.getElementById('translate_challenge1');
+              var context = canvas.getContext("2d");
+              context.clearRect(0, 0, 600, 360);
+              context.save();
+
+              context.fillStyle = '#2A32A3';
+              context.fillRect(25, 25, 50, 50);
+
+              context.restore();
+
+
+
+          .buttons.py-1
+            .run.btn.btn-success
+              Run
+            .reset.btn.btn-danger.float-xs-right
+              Reset
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/translate/challenge1.png')
+            %canvas#translate_challenge1
+          .alert
