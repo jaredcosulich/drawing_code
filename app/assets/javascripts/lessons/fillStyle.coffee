@@ -56,12 +56,3 @@ initFillStyleChallenge2 = (page) ->
 
 
 $(document).on('initialization:complete', initFillStyleChallenges)
-
-
-
-# x = 100
-# y = 100
-# context.moveTo(x-3, y-3);
-# context.lineTo(x+3, y+3);
-# context.moveTo(x-3, y+3);
-# context.lineTo(x+3, y-3);

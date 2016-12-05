@@ -15,7 +15,7 @@ class App.Editor
         useSoftTabs: true
         wrap: 'on'
 
-    @editor.on 'input', =>
+    @editor.on 'keyup', =>
       App.currentProgress.storeEditorValue(@editorElement.id, @aceEditor.getValue())
 
     @startCode = @aceEditor.getValue()

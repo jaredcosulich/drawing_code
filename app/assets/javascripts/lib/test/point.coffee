@@ -41,3 +41,12 @@ class Test.Point
     @context.lineTo(@x, @y+3)
     @context.stroke()
     @context.strokeStyle = strokeStyle
+
+
+
+# x = 100
+# y = 100
+# context.moveTo(x-3, y-3);
+# context.lineTo(x+3, y+3);
+# context.moveTo(x-3, y+3);
+# context.lineTo(x+3, y-3);

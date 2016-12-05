@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
 
   def lesson_map
     @lessons = {
-      line_to: {count: 3, method: 'lineTo'},
-      fill_rect: {count: 3, method: 'fillRect'},
-      fill_style: {count: 2, method: 'fillStyle'},
+      line_to: {count: 3, method: 'lineTo()'},
+      fill_rect: {count: 3, method: 'fillRect()'},
+      fill_style: {count: 2, method: 'fillStyle()'},
       variables: {count: 2, method: 'Variables'},
       coordinates: {count: 2, method: 'Coordinates'},
-      translate: {count: 1, method: 'translate'},
+      translate: {count: 1, method: 'translate()'},
       basic_cityscape_stage1: {count: 4, method: 'Stage 1'}
     }
 

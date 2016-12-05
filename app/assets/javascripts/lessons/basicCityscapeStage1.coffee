@@ -12,8 +12,8 @@ initBasicCityscapeStage1Challenge1 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 40, y: 240, colors: [0,0,0], canvas: canvas),
-    new Test.Point(x: 360, y: 80, colors: [0,0,0], canvas: canvas)
+    new Test.Point(x: 40, y: 240, canvas: canvas),
+    new Test.Point(x: 360, y: 80, canvas: canvas)
   ]
 
   challenge.find('.run').click ->
@@ -23,12 +23,12 @@ initBasicCityscapeStage1Challenge1 = (page) ->
         if point.test() < 1
           success = false
           break
-      
+
       if success
-        message = '<strong>Success!</strong> Your black building is sitting on the x!'
+        message = '<strong>Success!</strong> Your building is sitting on the x!'
         App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge1')
       else
-        message = 'Nice try, but you need to draw a black building sitting on the x.'
+        message = 'Nice try, but you need to draw a building sitting on the lower left x and covering the top right x.'
 
       canvas.alert(message, success)
     ), 200)
@@ -51,7 +51,7 @@ initBasicCityscapeStage1Challenge2 = (page) ->
         if point.test() < 1
           success = false
           break
-      
+
       if success
         message = '<strong>Success!</strong> Your gray building is sitting on the x!'
         App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge1')
