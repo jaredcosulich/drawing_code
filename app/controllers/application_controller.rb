@@ -10,11 +10,7 @@ class ApplicationController < ActionController::Base
       variables: {count: 2, method: 'Variables'},
       coordinates: {count: 2, method: 'Coordinates'},
       translate: {count: 1, method: 'translate'},
-<<<<<<< HEAD
-      basic_cityscape_stage1: {count: 3, method: 'Stage 1'}
-=======
-      basic_cityscape_stage1: {count: 4, method: 'basicCityscapeStage1'}
->>>>>>> c47f850de72c37dff607bd208fcce0a82184519d
+      basic_cityscape_stage1: {count: 4, method: 'Stage 1'}
     }
 
     @reference = [
