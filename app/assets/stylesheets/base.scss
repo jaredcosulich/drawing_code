@@ -39,8 +39,12 @@
   .nav {
     margin-left: 24px;
 
-    .tag {
-      vertical-align: text-bottom;
+    a {
+      padding: 0 12px;
+      .tag {
+        vertical-align: text-bottom;
+      }
     }
+
   }
 }
