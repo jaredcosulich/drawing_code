@@ -48,7 +48,11 @@ class App.Editor
     try
       eval(@aceEditor.getValue())
     catch e
-      errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]
+      try
+        errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]
+      catch error
+        errorLineNumber = 'N/A'
+        console.log('Could not split stack.', e.stack)
       @log("<strong class='text-danger'>Error:</strong> #{e.message} (Line #{errorLineNumber})")
       # console.log(e.stack)
 
