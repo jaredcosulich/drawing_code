@@ -66,6 +66,10 @@
 }
 
 .nav-sidebar {
+  .section_link {
+    font-weight: bold;
+  }
+
   .nav {
     margin-left: 24px;
 
@@ -82,7 +86,7 @@
 .challenge {
   .challenge-title {
     .tag {
-      margin-left: 12px;      
+      margin-left: 12px;
     }
   }
 }

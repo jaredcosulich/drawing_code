@@ -15,6 +15,7 @@ class App.Progress
     localStorage.setItem(page, (c for c of challenges).join(','))
 
     @updateNavigation()
+    @markChallengeComplete(challenge)
 
   challengesCompleted: (page) ->
     (localStorage.getItem(page) || '').split(/,/)
@@ -30,6 +31,11 @@ class App.Progress
           challengeCount.html("#{completedChallengeCount} / #{totalChallengeCount}")
           if completedChallengeCount == totalChallengeCount
             challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-success')
+
+  markChallengeComplete: (challengeId) ->
+    tag = $(document.createElement('SPAN'))
+    tag.addClass('tag').addClass('tag-success').html('Completed!')
+    $("##{challengeId}").find('.challenge-title').append(tag)
 
   storeEditorValue: (editorName, code) ->
     return unless @storageAvailable

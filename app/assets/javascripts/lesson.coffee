@@ -2,7 +2,7 @@ initChallenges = ->
   lessonId = $('.lesson').attr('id')
   challengesCompleted = App.currentProgress.challengesCompleted(lessonId)
   initChallengeCounts(challengesCompleted)
-  markChallengesComplete(challengesCompleted)
+  App.currentProgress.markChallengeComplete(challengeId) for challengeId in challengesCompleted
 
 initChallengeCounts = (challengesCompleted) ->
   for challenges in $('.challenges')
@@ -13,10 +13,5 @@ initChallengeCounts = (challengesCompleted) ->
       challenges.find('.challenges_completed').hide()
     challenges.find('.completed_challenges_count').html(challengesCompleted.length)
 
-markChallengesComplete = (challengesCompleted) ->
-  tag = $(document.createElement('SPAN'))
-  tag.addClass('tag').addClass('tag-success').html('Completed!')
-  for challengeId in challengesCompleted
-    $("##{challengeId}").find('.challenge-title').append(tag.clone())
 
 $(document).on('initialization:complete', initChallenges)
