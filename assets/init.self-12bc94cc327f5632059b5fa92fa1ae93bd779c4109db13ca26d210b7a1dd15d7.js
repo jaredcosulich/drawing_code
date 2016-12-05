@@ -5,16 +5,6 @@
 
   window.Test || (window.Test = {});
 
-  App.confirmOnPageExit = function(e) {
-    var message;
-    e = e || window.event;
-    message = 'Are you sure you want to leave this page? Your code changes will be lost.';
-    if (e) {
-      e.returnValue = message;
-    }
-    return message;
-  };
-
   init = function() {
     initProgress();
     initInteractives();

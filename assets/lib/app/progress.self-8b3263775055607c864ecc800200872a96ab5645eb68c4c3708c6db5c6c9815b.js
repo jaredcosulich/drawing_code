@@ -46,6 +46,10 @@
       return this.updateNavigation();
     };
 
+    Progress.prototype.challengesCompleted = function(page) {
+      return (localStorage.getItem(page) || '').split(/,/);
+    };
+
     Progress.prototype.updateNavigation = function() {
       var challengeCount, completedChallengeCount, i, len, page, ref, results, totalChallengeCount;
       if (!this.storageAvailable) {
@@ -57,7 +61,7 @@
         for (i = 0, len = ref.length; i < len; i++) {
           page = ref[i];
           if (localStorage.getItem(page) != null) {
-            completedChallengeCount = localStorage.getItem(page).split(/,/).length;
+            completedChallengeCount = this.challengesCompleted(page).length;
             challengeCount = $(".nav-sidebar ." + page);
             totalChallengeCount = parseInt(challengeCount.html().split(' / ')[1]);
             challengeCount.html(completedChallengeCount + " / " + totalChallengeCount);

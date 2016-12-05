@@ -5,6 +5,7 @@
       this.canvas = canvas;
       this.editorElement = $(editor)[0];
       this.editor = $(this.editorElement);
+      this.codeEditor = this.editor.closest('.code-editor');
       ace.config.set('workerPath', '/ace/');
       this.aceEditor = ace.edit(this.editorElement);
       this.aceEditor.$blockScrolling = Infinity;
@@ -20,6 +21,7 @@
         };
       })(this));
       this.startCode = this.aceEditor.getValue();
+      this.initLog();
       this.initRun();
       if ((previousCode = App.currentProgress.getEditorValue(this.editorElement.id)) != null) {
         this.aceEditor.setValue(previousCode, -1);
@@ -27,12 +29,12 @@
     }
 
     Editor.prototype.initRun = function() {
-      this.editor.closest('.code-editor').find('.buttons .run').click((function(_this) {
+      this.codeEditor.find('.buttons .run').click((function(_this) {
         return function(e) {
           return _this.run();
         };
       })(this));
-      return this.editor.closest('.code-editor').find('.buttons .reset').click((function(_this) {
+      return this.codeEditor.find('.buttons .reset').click((function(_this) {
         return function(e) {
           if (confirm('Are you sure you want to reset your code?')) {
             return _this.reset();
@@ -43,20 +45,51 @@
 
     Editor.prototype.reset = function() {
       var ref;
+      this.hideLog();
+      this.clearLog();
       this.canvas.hideAlert();
       this.aceEditor.setValue(this.startCode, -1);
       return (ref = App.currentProgress) != null ? ref.storeEditorValue(this.editorElement.id, this.startCode) : void 0;
     };
 
     Editor.prototype.run = function() {
-      var e, error;
+      var e, error, errorLineNumber;
+      this.hideLog();
+      this.clearLog();
       this.canvas.hideAlert();
       try {
         return eval(this.aceEditor.getValue());
       } catch (error) {
         e = error;
-        return console.log(e);
+        errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0];
+        return this.log("<strong class='text-danger'>Error:</strong> " + e.message + " (Line " + errorLineNumber + ")");
       }
+    };
+
+    Editor.prototype.initLog = function() {
+      this.logElement = this.codeEditor.find('.log');
+      return this.logElement.find('.close').click((function(_this) {
+        return function() {
+          return _this.hideLog();
+        };
+      })(this));
+    };
+
+    Editor.prototype.log = function(messageText) {
+      var message;
+      message = $(document.createElement('DIV'));
+      message.addClass('message');
+      message.html(messageText);
+      this.logElement.find('.messages').append(message);
+      return this.logElement.slideDown();
+    };
+
+    Editor.prototype.clearLog = function() {
+      return this.logElement.find('.messages').html('');
+    };
+
+    Editor.prototype.hideLog = function() {
+      return this.logElement.slideUp();
     };
 
     return Editor;
