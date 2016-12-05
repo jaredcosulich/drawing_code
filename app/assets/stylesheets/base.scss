@@ -12,6 +12,36 @@
     border: 1px solid #ccc;
   }
 
+  .log {
+    display: none;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+    .close {
+      margin-right: 6px;
+    }
+
+    .title {
+      padding: 3px 12px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .messages {
+      max-height: 6em;
+      overflow: hidden;
+
+      .message {
+        margin: 0 6px;
+        padding: 0.25em 6px;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid #ccc;
+        }
+      }
+    }
+  }
+
 }
 
 .visual {

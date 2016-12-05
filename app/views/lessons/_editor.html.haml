@@ -1,0 +1,19 @@
+.code-editor.col-xs-6
+  %h5
+    Editor
+    %small (write code below)
+  .editor{id: editor_id}<
+    = yield
+
+  .log.bg-faded.text-muted.small
+    %button.close{"aria-label" => "Close", :type => "button"}
+      %span{"aria-hidden" => "true"} ×
+    .title
+      %strong Message Log
+    .messages
+
+  .buttons.py-1
+    .run.btn.btn-success
+      Run
+    .reset.btn.btn-danger.float-xs-right
+      Reset

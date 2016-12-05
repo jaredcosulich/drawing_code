@@ -30,26 +30,17 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #line_to_interactive1_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('line_to_interactive1');
-                  var context = canvas.getContext("2d");
-                  context.clearRect(0, 0, 600, 360);
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_interactive1_editor'} do
+              :preserve
+                var canvas = document.getElementById('line_to_interactive1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, 600, 360);
 
-                  context.beginPath();
-                  context.moveTo(100, 250);
-                  context.lineTo(400, 50);
-                  context.stroke();
+                context.beginPath();
+                context.moveTo(100, 250);
+                context.lineTo(400, 50);
+                context.stroke();
 
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
 
             .visual.col-xs-6
               %h5
@@ -70,43 +61,33 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #line_to_example1_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('line_to_example1');
-                  var context = canvas.getContext("2d");
-                  context.clearRect(0, 0, 600, 360);
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('line_to_example1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, 600, 360);
 
-                  context.beginPath();
-                  context.moveTo(50, 125);
-                  context.lineTo(200, 125);
-                  context.lineTo(200, 275);
-                  context.lineTo(50, 275);
-                  context.lineTo(50, 125);
-                  context.lineTo(125, 50);
-                  context.lineTo(200, 125);
+                context.beginPath();
+                context.moveTo(50, 125);
+                context.lineTo(200, 125);
+                context.lineTo(200, 275);
+                context.lineTo(50, 275);
+                context.lineTo(50, 125);
+                context.lineTo(125, 50);
+                context.lineTo(200, 125);
 
-                  context.moveTo(75, 150);
-                  context.lineTo(100, 150);
-                  context.lineTo(100, 175);
-                  context.lineTo(75, 175);
-                  context.lineTo(75, 150);
+                context.moveTo(75, 150);
+                context.lineTo(100, 150);
+                context.lineTo(100, 175);
+                context.lineTo(75, 175);
+                context.lineTo(75, 150);
 
-                  context.moveTo(110, 275);
-                  context.lineTo(110, 215);
-                  context.lineTo(140, 215);
-                  context.lineTo(140, 275);
+                context.moveTo(110, 275);
+                context.lineTo(110, 215);
+                context.lineTo(140, 215);
+                context.lineTo(140, 275);
 
-                  context.stroke();
-
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
+                context.stroke();
 
             .visual.col-xs-6
               %h5
@@ -126,27 +107,17 @@
           %p.py-2 Draw a line from the point (55, 226) to the point (155, 80), passing through the X's shown.
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #line_to_challenge1_editor.editor<
-            :preserve
-              var canvas = document.getElementById('line_to_challenge1');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 600, 360);
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('line_to_challenge1');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 600, 360);
 
-              context.beginPath();
+            context.beginPath();
 
-              // YOUR CODE HERE
+            // YOUR CODE HERE
 
-              context.stroke();
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            context.stroke();
 
         .visual.col-xs-6
           %h5
@@ -165,27 +136,17 @@
           %p.py-2 Draw an L shape passing through the X's at (100, 50), (100, 250), and (200, 250).
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #line_to_challenge2_editor.editor<
-            :preserve
-              var canvas = document.getElementById('line_to_challenge2');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 600, 360);
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('line_to_challenge2');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 600, 360);
 
-              context.beginPath();
+            context.beginPath();
 
-              // YOUR CODE HERE
+            // YOUR CODE HERE
 
-              context.stroke();
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            context.stroke();
 
         .visual.col-xs-6
           %h5
@@ -208,27 +169,17 @@
             but not through any of the red x's
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #line_to_challenge3_editor.editor<
-            :preserve
-              var canvas = document.getElementById('line_to_challenge3');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 600, 360);
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('line_to_challenge3');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 600, 360);
 
-              context.beginPath();
+            context.beginPath();
 
-              // YOUR CODE HERE
+            // YOUR CODE HERE
 
-              context.stroke();
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            context.stroke();
 
         .visual.col-xs-6
           %h5
