@@ -30,49 +30,39 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #translate_interactive1_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('translate_interactive1');
-                  var context = canvas.getContext("2d");
-                  context.clearRect(0, 0, 600, 360);
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_interactive1_editor'} do
+              :preserve
+                var canvas = document.getElementById('translate_interactive1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, 600, 360);
 
-                  for (var i=0; i<3; ++i) {
-                    context.save();
-                    context.translate(160*i, 25*i);
+                for (var i=0; i<3; ++i) {
+                  context.save();
+                  context.translate(160*i, 25*i);
 
-                    context.beginPath();
-                    context.moveTo(25, 100);
-                    context.lineTo(175, 100);
-                    context.lineTo(175, 250);
-                    context.lineTo(25, 250);
-                    context.lineTo(25, 100);
-                    context.lineTo(100, 25);
-                    context.lineTo(175, 100);
+                  context.beginPath();
+                  context.moveTo(25, 100);
+                  context.lineTo(175, 100);
+                  context.lineTo(175, 250);
+                  context.lineTo(25, 250);
+                  context.lineTo(25, 100);
+                  context.lineTo(100, 25);
+                  context.lineTo(175, 100);
 
-                    context.moveTo(50, 125);
-                    context.lineTo(75, 125);
-                    context.lineTo(75, 150);
-                    context.lineTo(50, 150);
-                    context.lineTo(50, 125);
+                  context.moveTo(50, 125);
+                  context.lineTo(75, 125);
+                  context.lineTo(75, 150);
+                  context.lineTo(50, 150);
+                  context.lineTo(50, 125);
 
-                    context.moveTo(85, 250);
-                    context.lineTo(85, 190);
-                    context.lineTo(115, 190);
-                    context.lineTo(115, 250);
+                  context.moveTo(85, 250);
+                  context.lineTo(85, 190);
+                  context.lineTo(115, 190);
+                  context.lineTo(115, 250);
 
-                    context.stroke();
-                    context.restore();
-                  }
-
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
+                  context.stroke();
+                  context.restore();
+                }
 
             .visual.col-xs-6
               %h5
@@ -94,30 +84,20 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #translate_example1_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('translate_example1');
-                  var context = canvas.getContext("2d");
-                  context.save();
-                  context.clearRect(0, 0, 600, 360);
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('translate_example1');
+                var context = canvas.getContext("2d");
+                context.save();
+                context.clearRect(0, 0, 600, 360);
 
-                  context.fillRect(50,175,100,100);
+                context.fillRect(50,175,100,100);
 
-                  context.translate(125,-125);
+                context.translate(125,-125);
 
-                  context.fillRect(50,175,100,100);
+                context.fillRect(50,175,100,100);
 
-                  context.restore();
-
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
+                context.restore();
 
             .visual.col-xs-6
               %h5
@@ -139,29 +119,18 @@
             over the x's at (125,125) and (200,200)
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #translate_challenge1_editor.editor<
-            :preserve
-              var canvas = document.getElementById('translate_challenge1');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 600, 360);
-              context.save();
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('translate_challenge1');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 600, 360);
+            context.save();
 
-              context.fillStyle = '#2A32A3';
-              context.fillRect(25, 25, 50, 50);
+            context.fillStyle = '#2A32A3';
+            context.fillRect(25, 25, 50, 50);
 
-              context.restore();
+            context.restore();
 
-
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
 
         .visual.col-xs-6
           %h5

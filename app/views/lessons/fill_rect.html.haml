@@ -29,24 +29,14 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #fill_rect_interactive1_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('fill_rect_interactive1');
-                  var context = canvas.getContext("2d");
-                  context.clearRect(0, 0, 600, 360);
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_interactive1_editor'} do
+              :preserve
+                var canvas = document.getElementById('fill_rect_interactive1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, 600, 360);
 
-                  context.fillStyle = 'red';
-                  context.fillRect(100,100,100,50);
-
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
+                context.fillStyle = 'red';
+                context.fillRect(100,100,100,50);
 
             .visual.col-xs-6
               %h5
@@ -67,30 +57,20 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #fill_rect_example1_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('fill_rect_example1');
-                  var context = canvas.getContext("2d");
-                  context.clearRect(0, 0, 600, 360);
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('fill_rect_example1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, 600, 360);
 
-                  context.fillStyle = 'white';
-                  context.fillRect(50, 50, 100, 200);
+                context.fillStyle = 'white';
+                context.fillRect(50, 50, 100, 200);
 
-                  context.fillStyle = '#EB4D37';
-                  context.fillRect(150, 50, 200, 100);
+                context.fillStyle = '#EB4D37';
+                context.fillRect(150, 50, 200, 100);
 
-                  context.fillStyle = '#337D3F';
-                  context.fillRect(150, 150, 200, 100);
-
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
+                context.fillStyle = '#337D3F';
+                context.fillRect(150, 150, 200, 100);
 
             .visual.col-xs-6
               %h5
@@ -110,27 +90,17 @@
           %p.py-2 Draw a red rectangle covering the x at (100,100).
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #fill_rect_challenge1_editor.editor<
-            :preserve
-              var canvas = document.getElementById('fill_rect_challenge1');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 600, 360);
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('fill_rect_challenge1');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 600, 360);
 
-              context.beginPath();
+            context.beginPath();
 
-              // YOUR CODE HERE
+            // YOUR CODE HERE
 
-              context.stroke();
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            context.stroke();
 
         .visual.col-xs-6
           %h5
@@ -149,27 +119,17 @@
           %p.py-2 Draw a rectangle that covers the two x's at (100,100), and (100,200).
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #fill_rect_challenge2_editor.editor<
-            :preserve
-              var canvas = document.getElementById('fill_rect_challenge2');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 600, 360);
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('fill_rect_challenge2');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 600, 360);
 
-              context.beginPath();
+            context.beginPath();
 
-              // YOUR CODE HERE
+            // YOUR CODE HERE
 
-              context.stroke();
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            context.stroke();
 
         .visual.col-xs-6
           %h5
@@ -192,27 +152,17 @@
             (100,150) with #0F278F, (200,150) with white, and (300,150) with #DB5443.
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #fill_rect_challenge3_editor.editor<
-            :preserve
-              var canvas = document.getElementById('fill_rect_challenge3');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 600, 360);
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('fill_rect_challenge3');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 600, 360);
 
-              context.beginPath();
+            context.beginPath();
 
-              // YOUR CODE HERE
+            // YOUR CODE HERE
 
-              context.stroke();
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            context.stroke();
 
         .visual.col-xs-6
           %h5

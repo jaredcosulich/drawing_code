@@ -48,31 +48,20 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #fill_style_interactive1_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('fill_style_interactive1');
-                  var context = canvas.getContext("2d");
-                  context.clearRect(0, 0, 600, 360);
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_interactive1_editor'} do
+              :preserve
+                var canvas = document.getElementById('fill_style_interactive1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, 600, 360);
 
-                  context.fillStyle = 'lime';
-                  context.fillRect(50,50,100,150);
+                context.fillStyle = 'lime';
+                context.fillRect(50,50,100,150);
 
-                  context.fillStyle = '#9417D2';
-                  context.fillRect(200,50,100,150);
+                context.fillStyle = '#9417D2';
+                context.fillRect(200,50,100,150);
 
-                  context.fillStyle = 'rgb(251,255,111)';
-                  context.fillRect(350,50,100,150);
-
-
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
+                context.fillStyle = 'rgb(251,255,111)';
+                context.fillRect(350,50,100,150);
 
             .visual.col-xs-6
               %h5
@@ -93,27 +82,17 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #fill_style_example1_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('fill_style_example1');
-                  var context = canvas.getContext("2d");
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('fill_style_example1');
+                var context = canvas.getContext("2d");
 
-                  var gradient = context.createLinearGradient(0,0,200,0);
-                  gradient.addColorStop(0,"green");
-                  gradient.addColorStop(0.5,"white");
-                  gradient.addColorStop(1,"blue");
-                  context.fillStyle = gradient;
-                  context.fillRect(10,10,200,100);
-
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
+                var gradient = context.createLinearGradient(0,0,200,0);
+                gradient.addColorStop(0,"green");
+                gradient.addColorStop(0.5,"white");
+                gradient.addColorStop(1,"blue");
+                context.fillStyle = gradient;
+                context.fillRect(10,10,200,100);
 
             .visual.col-xs-6
               %h5
@@ -133,24 +112,13 @@
           %p.py-2 Draw a rectangle over the x at (100,100) using a color other than black.
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #fill_style_challenge1_editor.editor<
-            :preserve
-              var canvas = document.getElementById('fill_style_challenge1');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 600, 360);
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('fill_style_challenge1');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 600, 360);
 
-              // YOUR CODE HERE
-
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            // YOUR CODE HERE
 
         .visual.col-xs-6
           %h5
@@ -171,23 +139,13 @@
             at (50,100), (100,100), and (150,100).
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #fill_style_challenge2_editor.editor<
-            :preserve
-              var canvas = document.getElementById('fill_style_challenge2');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 600, 360);
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('fill_style_challenge2');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 600, 360);
 
-              // YOUR CODE HERE
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            // YOUR CODE HERE
 
         .visual.col-xs-6
           %h5

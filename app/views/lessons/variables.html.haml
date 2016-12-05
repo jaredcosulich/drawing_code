@@ -2,7 +2,7 @@
   %h1 Variables
 
   = render 'lessons/challenge_count'
-  
+
   .description.row.py-3
     .col-xs-6
       %h2 What is a variable?
@@ -22,41 +22,30 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #variables_example1_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('variables_example1');
-                  var context = canvas.getContext("2d");
-                  context.save();
-                  context.clearRect(0, 0, 600, 360);
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'variables_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('variables_example1');
+                var context = canvas.getContext("2d");
+                context.save();
+                context.clearRect(0, 0, 600, 360);
 
-                  var xPosition = 50;
-                  var yPosition = 200;
-                  var width = 200;
-                  var height = 50;
-                  var change = 25;
-                  var red = 255;
+                var xPosition = 50;
+                var yPosition = 200;
+                var width = 200;
+                var height = 50;
+                var change = 25;
+                var red = 255;
 
-                  for (var i=0; i<4; ++i) {
-                    context.fillStyle = 'rgb(' + red + ',0,0)'
-                    context.fillRect(xPosition, yPosition, width, height);
-                    yPosition -= height;
-                    xPosition += change;
-                    width -= (change * 2);
-                    red -= (change * 3)
-                  }
+                for (var i=0; i<4; ++i) {
+                  context.fillStyle = 'rgb(' + red + ',0,0)';
+                  context.fillRect(xPosition, yPosition, width, height);
+                  yPosition -= height;
+                  xPosition += change;
+                  width -= (change * 2);
+                  red -= (change * 3);
+                }
 
-                  context.restore();
-
-
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
+                context.restore();
 
             .visual.col-xs-6
               %h5
@@ -77,36 +66,26 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #variables_example2_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('variables_example2');
-                  var context = canvas.getContext("2d");
-                  context.clearRect(0, 0, 600, 360);
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'variables_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('variables_example2');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, 600, 360);
 
-                  context.beginPath();
+                context.beginPath();
 
-                  var x = 50;
-                  var y = 50;
-                  context.moveTo(x, y);
+                var x = 50;
+                var y = 50;
+                context.moveTo(x, y);
 
-                  for (var i=0; i<6; ++i) {
-                    if (i % 2 == 0) x += 50;
-                    if (i % 2 == 1) y += 50;
-                    context.lineTo(x, y);
-                  }
+                for (var i=0; i<6; ++i) {
+                  if (i % 2 == 0) x += 50;
+                  if (i % 2 == 1) y += 50;
+                  context.lineTo(x, y);
+                }
 
-                  context.stroke();
+                context.stroke();
 
-
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
 
             .visual.col-xs-6
               %h5
@@ -125,34 +104,24 @@
             x's starting at (100,100), (100,200), increasing x by 50 each time.
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #variables_challenge1_editor.editor<
-            :preserve
-              var canvas = document.getElementById('variables_challenge1');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 600, 360);
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'variables_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('variables_challenge1');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 600, 360);
 
-              var x = 100;
+            var x = 100;
 
-              context.beginPath();
+            context.beginPath();
 
-              for (var i=0; i<3; ++i) {
-                context.moveTo(x, 100);
-                context.lineTo(x, 200);
+            for (var i=0; i<3; ++i) {
+              context.moveTo(x, 100);
+              context.lineTo(x, 200);
 
-                // YOUR CODE HERE
-              }
+              // YOUR CODE HERE
+            }
 
-              context.stroke();
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            context.stroke();
 
         .visual.col-xs-6
           %h5
@@ -177,34 +146,24 @@
             It should look like this:
             = image_tag('lessons/variables/grayscale.png')
     .row
-      .code-editor.col-xs-6
-        %h5
-          Editor
-          %small (write code below)
-        #variables_challenge2_editor.editor<
-          :preserve
-            var canvas = document.getElementById('variables_challenge2');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, 600, 360);
-            context.save();
+      = render :layout => '/lessons/editor', :locals => {:editor_id => 'variables_challenge2_editor'} do
+        :preserve
+          var canvas = document.getElementById('variables_challenge2');
+          var context = canvas.getContext("2d");
+          context.clearRect(0, 0, 600, 360);
+          context.save();
 
-            var x = 50;
-            var c = 255;
+          var x = 50;
+          var c = 255;
 
-            for (var i=0; i<9; ++i) {
-              context.fillStyle = 'rgb(' + c + ',' + c + ',' + c + ')';
-              context.fillRect(x, 50, 25, 100);
+          for (var i=0; i<9; ++i) {
+            context.fillStyle = 'rgb(' + c + ',' + c + ',' + c + ')';
+            context.fillRect(x, 50, 25, 100);
 
-              // YOUR CODE HERE
-            }
+            // YOUR CODE HERE
+          }
 
-            context.restore();
-
-        .buttons.py-1
-          .run.btn.btn-success
-            Run
-          .reset.btn.btn-danger.float-xs-right
-            Reset
+          context.restore();
 
       .visual.col-xs-6
         %h5

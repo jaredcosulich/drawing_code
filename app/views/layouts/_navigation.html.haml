@@ -13,13 +13,13 @@
 
   %ul.nav.nav-sidebar
     %li.section
-      %a.section_link{:href => '#', data: {section: 'design'}}
-        Design Patterns
+      %a.section_link{:href => '#', data: {section: 'concepts'}}
+        Concepts
 
-      %ul.nav.nav-sidebar#design{class: (params[:section] == 'design' ? 'collapse in' : 'collapse')}
-        - @design.each do |lesson|
+      %ul.nav.nav-sidebar#design{class: (params[:section] == 'concepts' ? 'collapse in' : 'collapse')}
+        - @concepts.each do |lesson|
           %li{class: ('active' if params[:id] == lesson.to_s)}
-            = link_to_lesson(@lessons[lesson][:method], lesson, 'design')
+            = link_to_lesson(@lessons[lesson][:method], lesson, 'concepts')
             %span.tag.tag-default
               %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 

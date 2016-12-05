@@ -1,5 +1,5 @@
 #basic_cityscape_stage1
-  %h1 Stage1
+  %h1 Stage 1
 
   .description.row.py-3
     .col-xs-6
@@ -30,24 +30,14 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #basic_cityscape_stage1_example1_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('basic_cityscape_stage1_example1');
-                  var context = canvas.getContext('2d');
-                  context.clearRect(0, 0, canvas.width, canvas.height);
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('basic_cityscape_stage1_example1');
+                var context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
 
-                  context.fillStyle = '#1E90FF';
-                  context.fillRect(100, 50, 160, 240);
-
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
+                context.fillStyle = '#1E90FF';
+                context.fillRect(100, 50, 160, 240);
 
             .visual.col-xs-6
               %h5
@@ -73,23 +63,13 @@
             of the building's top left corner.
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #basic_cityscape_stage1_challenge1_editor.editor<
-            :preserve
-              var canvas = document.getElementById('basic_cityscape_stage1_challenge1');
-              var context = canvas.getContext('2d');
-              context.clearRect(0, 0, canvas.width, canvas.height);
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('basic_cityscape_stage1_challenge1');
+            var context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
 
-              // YOUR CODE HERE
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            // YOUR CODE HERE
 
         .visual.col-xs-6
           %h5
@@ -121,28 +101,18 @@
 
         .col-xs-12
           .interactive.row.py-1
-            .code-editor.col-xs-6
-              %h5
-                Editor
-                %small (write code below)
-              #basic_cityscape_stage1_example2_editor.editor<
-                :preserve
-                  var canvas = document.getElementById('basic_cityscape_stage1_example2');
-                  var context = canvas.getContext('2d');
-                  context.clearRect(0, 0, canvas.width, canvas.height);
-                  
-                  var w = 80;
-                  var h = 2 * w;
-                  var y = 280 - h;
-                  
-                  context.fillStyle = '#228B22';
-                  context.fillRect(60, y, w, h);
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('basic_cityscape_stage1_example2');
+                var context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
 
-              .buttons.py-1
-                .run.btn.btn-success
-                  Run
-                .reset.btn.btn-danger.float-xs-right
-                  Reset
+                var w = 80;
+                var h = 2 * w;
+                var y = 280 - h;
+
+                context.fillStyle = '#228B22';
+                context.fillRect(60, y, w, h);
 
             .visual.col-xs-6
               %h5
@@ -179,48 +149,38 @@
             The variable <i>floors</i> stores the number of floors in the building.
           %p
             To see the office units in your building, add the line "drawOffices(x, y, w, h);"
-            to the end of your program, where (x, y) are the coordinates of the top left 
+            to the end of your program, where (x, y) are the coordinates of the top left
             corner of your building, and w and h are the width and height of your building.
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #basic_cityscape_stage1_challenge2_editor.editor<
-            :preserve
-              function drawOffices(x, y, w, h) {
-                var u = Math.floor((w - 4) / 16);
-                var f = Math.floor((h - 4) / 16);
-                
-                context.save();
-                context.translate(x + 4, y + 4);
-                context.strokeWidth = 1;
-                context.strokeStyle = '#000000';
-                
-                for (var i = 0; i < f; i++) {
-                  for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);
-                }
-                
-                context.restore();
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge2_editor'} do
+          :preserve
+            function drawOffices(x, y, w, h) {
+              var u = Math.floor((w - 4) / 16);
+              var f = Math.floor((h - 4) / 16);
+
+              context.save();
+              context.translate(x + 4, y + 4);
+              context.strokeWidth = 1;
+              context.strokeStyle = '#000000';
+
+              for (var i = 0; i < f; i++) {
+                for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);
               }
-              
-              var canvas = document.getElementById('basic_cityscape_stage1_challenge2');
-              var context = canvas.getContext('2d');
-              var units = 8;
-              var floors = 10;
-              
-              context.clearRect(0, 0, canvas.width, canvas.height);
 
-              // YOUR CODE HERE
+              context.restore();
+            }
 
-              // drawOffices(x, y, w, h);
+            var canvas = document.getElementById('basic_cityscape_stage1_challenge2');
+            var context = canvas.getContext('2d');
+            var units = 8;
+            var floors = 10;
 
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // YOUR CODE HERE
+
+            // drawOffices(x, y, w, h);
 
         .visual.col-xs-6
           %h5
@@ -243,27 +203,17 @@
             (100,150) with #0F278F, (200,150) with white, and (300,150) with #DB5443.
 
       .row
-        .code-editor.col-xs-6
-          %h5
-            Editor
-            %small (write code below)
-          #basic_cityscape_stage1_challenge3_editor.editor<
-            :preserve
-              var canvas = document.getElementById('basic_cityscape_stage1_challenge3');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, 450, 300);
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('basic_cityscape_stage1_challenge3');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 450, 300);
 
-              context.beginPath();
+            context.beginPath();
 
-              // YOUR CODE HERE
+            // YOUR CODE HERE
 
-              context.stroke();
-
-          .buttons.py-1
-            .run.btn.btn-success
-              Run
-            .reset.btn.btn-danger.float-xs-right
-              Reset
+            context.stroke();
 
         .visual.col-xs-6
           %h5
