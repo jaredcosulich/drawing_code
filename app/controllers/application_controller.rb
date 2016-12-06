@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
       save: {count: 1, method: 'save()'},
       variables: {count: 2, method: 'Variables'},
       coordinates: {count: 2, method: 'Coordinates'},
+      functions: {count: 1, method: 'Functions'},
       basic_cityscape_stage1: {count: 4, method: 'Stage 1', stage: true}
     }
 
@@ -24,7 +25,8 @@ class ApplicationController < ActionController::Base
 
     @concepts = [
       :variables,
-      :coordinates
+      :coordinates,
+      :functions
     ]
 
     @challenge_paths = [
@@ -38,6 +40,7 @@ class ApplicationController < ActionController::Base
           :coordinates,
           :translate,
           :save,
+          :functions,
           :basic_cityscape_stage1
         ]
       }

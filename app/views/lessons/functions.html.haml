@@ -1,0 +1,102 @@
+#functions.lesson
+  %h1 Functions
+
+  = render 'lessons/challenge_count'
+
+  .official.row.py-3
+    .col-xs-6
+      %h2 Overview
+      %p.py-2
+        Functions allow you to reuse code. You can call a function with
+        different parameters to produce different results.
+
+    .col-xs-6
+      = image_tag('lessons/functions/visual1.png', class: '')
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Example
+          %p.pt-2
+            Below we use a function to draw the flag of Madagascar at what ever x and y anchor point we want.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'functions_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('functions_example1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                context.fillRect(25,25,25,25);
+
+                context.functions();
+
+                context.translate(50,0);
+                context.fillStyle = 'red';
+                context.fillRect(25,25,25,25);
+
+                context.functions();
+
+                context.translate(50, 0);
+                context.fillStyle = 'blue';
+                context.fillRect(25,25,25,25);
+                context.fillRect(25,150,25,25);
+
+                context.restore();
+
+                context.fillRect(25,150,25,25);
+
+                context.restore();
+
+                context.fillRect(25,150,25,25);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#functions_example1
+
+
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title Challenge 1
+          %p.py-2
+            Add another context.functions() and another context.restore() command to the code below to prevent the third
+            rectangle from being red (it should be black).
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'functions_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('functions_challenge1');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.functions();
+
+            context.fillRect(30, 80, 40, 40);
+
+            context.fillStyle = 'red';
+
+            context.fillRect(130, 80, 40, 40);
+
+            context.fillRect(230, 80, 40, 40);
+
+            context.restore();
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/functions/challenge1.png')
+            %canvas#functions_challenge1
+          .alert

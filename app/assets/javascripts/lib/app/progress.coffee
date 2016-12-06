@@ -30,7 +30,9 @@ class App.Progress
           totalChallengeCount = parseInt(challengeCount.html().split(' / ')[1])
           challengeCount.html("#{completedChallengeCount} / #{totalChallengeCount}")
           if completedChallengeCount == totalChallengeCount
-            challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-success')
+            challengeCount.closest('.tag').removeClass('tag-default').removeClass('tag-warning').addClass('tag-success')
+          else if completedChallengeCount > 0
+            challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-warning')
 
   markChallengeComplete: (challengeId) ->
     challengeTitle = $("##{challengeId}").find('.challenge-title')
