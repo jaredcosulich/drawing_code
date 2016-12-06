@@ -21,7 +21,7 @@
           - if @next_lesson.present?
             .py-3
               %h2
-                Ready for the next challenge?
+                Ready for the next lesson?
               %p.py-1
                 Next up, the
                 = link_to("\"#{@lessons[@next_lesson][:method]}\" lesson >", "/lessons/#{params[:section]}/#{@next_lesson}")

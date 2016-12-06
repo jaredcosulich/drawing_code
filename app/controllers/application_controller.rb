@@ -6,10 +6,11 @@ class ApplicationController < ActionController::Base
     @lessons = {
       line_to: {count: 3, method: 'lineTo()'},
       fill_rect: {count: 3, method: 'fillRect()'},
-      fill_style: {count: 2, method: 'fillStyle()'},
+      fill_style: {count: 2, method: 'fillStyle'},
+      translate: {count: 1, method: 'translate()'},
+      save: {count: 1, method: 'save()'},
       variables: {count: 2, method: 'Variables'},
       coordinates: {count: 2, method: 'Coordinates'},
-      translate: {count: 1, method: 'translate()'},
       basic_cityscape_stage1: {count: 4, method: 'Stage 1', stage: true}
     }
 
@@ -17,7 +18,8 @@ class ApplicationController < ActionController::Base
       :line_to,
       :fill_rect,
       :fill_style,
-      :translate
+      :translate,
+      :save
     ]
 
     @concepts = [
@@ -35,6 +37,7 @@ class ApplicationController < ActionController::Base
           :variables,
           :coordinates,
           :translate,
+          :save,
           :basic_cityscape_stage1
         ]
       }

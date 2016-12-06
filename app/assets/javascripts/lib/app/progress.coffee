@@ -33,9 +33,11 @@ class App.Progress
             challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-success')
 
   markChallengeComplete: (challengeId) ->
+    challengeTitle = $("##{challengeId}").find('.challenge-title')
+    return if challengeTitle.find('.tag-success').length > 0
     tag = $(document.createElement('SPAN'))
     tag.addClass('tag').addClass('tag-success').html('Completed!')
-    $("##{challengeId}").find('.challenge-title').append(tag)
+    challengeTitle.append(tag)
 
   storeEditorValue: (editorName, code) ->
     return unless @storageAvailable

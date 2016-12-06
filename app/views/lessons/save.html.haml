@@ -1,0 +1,143 @@
+#save.lesson
+  %h1 save()
+
+  = render 'lessons/challenge_count'
+
+  .official.row.py-3
+    .col-xs-9
+      %h2 Unofficial Description
+      %p.py-2
+        The CanvasRenderingContext2D.save() method of the Canvas 2D API saves
+        the entire state of the canvas by pushing the current state onto a stack.
+      .source.text-xs-right
+        = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save', target: '_blank')
+
+  .simple.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2 save() and restore()
+          %p.pt-2
+            The save() method is often used with the restore() method. The restore() method
+            will return the state of the canvas to the last saved state.
+          %p
+            In this example save() is used to store the default state of the canvas. Then we
+            change the color to red and translate the canvas. The resulting rectangle is drawn in red and to
+            the right. context.restore() then restores the default state so the next rectangle is
+            black and in the untranslated position.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'save_interactive1_editor'} do
+              :preserve
+                var canvas = document.getElementById('save_interactive1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                context.save();
+
+                context.fillStyle = 'red';
+                context.translate(150, 0);
+                context.fillRect(50,50,100,100);
+
+                context.restore();
+
+                context.fillRect(50,50,100,100);
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#save_interactive1
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Example
+          %p.pt-2
+            save() allows you to store multiple states and then restore() them in reverse order. Here the square color
+            changes to red and then blue as the canvas is translated right. Then, as the state is restored we see the
+            color move back from blue to red to black as the canvas is translated back left.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'save_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('save_example1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                context.fillRect(25,25,25,25);
+
+                context.save();
+
+                context.translate(50,0);
+                context.fillStyle = 'red';
+                context.fillRect(25,25,25,25);
+
+                context.save();
+
+                context.translate(50, 0);
+                context.fillStyle = 'blue';
+                context.fillRect(25,25,25,25);
+                context.fillRect(25,150,25,25);
+
+                context.restore();
+
+                context.fillRect(25,150,25,25);
+
+                context.restore();
+
+                context.fillRect(25,150,25,25);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#save_example1
+
+
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title Challenge 1
+          %p.py-2
+            Add another context.save() and another context.restore() command to the code below to prevent the third
+            rectangle from being red (it should be black).
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'save_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('save_challenge1');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.save();
+
+            context.fillRect(30, 80, 40, 40);
+
+            context.fillStyle = 'red';
+
+            context.fillRect(130, 80, 40, 40);
+
+            context.fillRect(230, 80, 40, 40);
+
+            context.restore();
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/save/challenge1.png')
+            %canvas#save_challenge1
+          .alert
