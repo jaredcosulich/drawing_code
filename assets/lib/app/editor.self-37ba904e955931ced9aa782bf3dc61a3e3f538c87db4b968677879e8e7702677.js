@@ -82,7 +82,9 @@
         };
       })(this));
       return window.log = (function(_this) {
-        return function(messageText) {
+        return function() {
+          var messageText;
+          messageText = 1 <= arguments.length ? slice.call(arguments, 0) : [];
           return _this.log(messageText);
         };
       })(this);
