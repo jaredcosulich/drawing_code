@@ -4,8 +4,8 @@
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <title>Drawing Code</title>
     <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="YV3f9anFYsN89QVAw/0jdnizq8RZ55d8hA/BDhtmLDHK2Y/XVjKyhURE9bc7nqQ26qEte67HsTnty8C9XBRyxQ==" />
-    <link rel="stylesheet" media="all" href="../../../assets/application.self-ca44583ca58c8c64db4e59ec2f8852f10f11947249cbcfcf57c12fe0beaf436b-body=1.css" data-turbolinks-track="reload" />
+    <meta name="csrf-token" content="Rb0MhmZtfYD/j43d7GbeMsOAynr3RVzz+rlUnmNWvOzuOVykmZqtxsc+fSoUBVlyUZJMxQBleraTfVUtJCTiGA==" />
+    <link rel="stylesheet" media="all" href="../../../assets/application.self-2c9ebf19406ae8ca984688cd14434ef014f72aa9f2d7d629904bf6f6e9d93d1e-body=1.css" data-turbolinks-track="reload" />
     <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -20,7 +20,7 @@
     <script src="../../../assets/lessons/coordinates.self-e8ed0e1bacf18d0af11e6602fdfbc3026535cadd0a5464c80884b3e7b545cc69.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lessons/fillRect.self-9e0e0969e446a2f464878a94809b7b44591a6ae159472a8744b33622cbec1b46.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lessons/fillStyle.self-ee4e83b95686dac1cd630c036eb0353cfaeaa2b9701b0c7a6565ba0dc6091ec7.js?body=1" data-turbolinks-track="reload"></script>
-    <script src="../../../assets/lessons/functions.self-9be1a159879fdcc9eb4b0080d50a0a6810056acc65e05baee3fd1d7b2398b7fa.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../../assets/lessons/functions.self-492d38bff26f435c0469d8a38da45ce7857e334d3bc3a41d8d4b97d5571abd02.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lessons/lineTo.self-4487acd17954cf1c89680bde8f16459c34279c0e0b10276e2dc4e1b1ae185d1c.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lessons/save.self-40009da7858c56166ef5dbae9087a3b9cdc7b0c7bbf2c49751dc35678f068df5.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lessons/translate.self-12f5a51ccf4b3f0f72e2079f0069bab57fd3af696731c66057284b4338745fba.js?body=1" data-turbolinks-track="reload"></script>
@@ -120,8 +120,8 @@
                       <small class='basic_cityscape_stage1'>0 / 4</small>
                     </span>
                   </li>
-                  <li class='section small applicable-lessons'>
-                    <strong>Applicable Reference</strong>
+                  <li class='section small relevant-lessons'>
+                    <strong>Relevant Reference</strong>
                   </li>
                   <li class='small '>
                     <a href="../../basic_cityscape/fill_rect/index.html">fillRect()</a>
@@ -147,8 +147,8 @@
                       <small class='save'>0 / 1</small>
                     </span>
                   </li>
-                  <li class='section small applicable-lessons'>
-                    <strong>Applicable Concepts</strong>
+                  <li class='section small relevant-lessons'>
+                    <strong>Relevant Concepts</strong>
                   </li>
                   <li class='small '>
                     <a href="../../basic_cityscape/variables/index.html">Variables</a>
@@ -196,13 +196,17 @@
             <div class='official row py-3'>
               <div class='col-xs-6'>
                 <h2>Overview</h2>
-                <p class='py-2'>
+                <p class='pt-2'>
                   Functions allow you to reuse code. You can call a function with
                   different parameters to produce different results.
                 </p>
+                <p>
+                  Here we use a function to draw building shapes of specific sizes in
+                  specific places.
+                </p>
               </div>
               <div class='col-xs-6'>
-                <img class="" src="../../../images/lessons/functions/visual1.png" alt="Visual1" />
+                <img class="" src="../../../assets/lessons/functions/visual1-c6013759268ac56bdb4029bf5eb3d2bee7ff1fe82392ee5741b486343346193b.png" alt="Visual1" />
               </div>
             </div>
             <div class='example row py-3'>
@@ -223,7 +227,7 @@
                           Editor
                           <small>(write code below)</small>
                         </h5>
-                        <div class='editor' id='functions_example1_editor'>var canvas = document.getElementById('functions_example1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.fillRect(25,25,25,25);&#x000A;&#x000A;context.functions();&#x000A;&#x000A;context.translate(50,0);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(25,25,25,25);&#x000A;&#x000A;context.functions();&#x000A;&#x000A;context.translate(50, 0);&#x000A;context.fillStyle = 'blue';&#x000A;context.fillRect(25,25,25,25);&#x000A;context.fillRect(25,150,25,25);&#x000A;&#x000A;context.restore();&#x000A;&#x000A;context.fillRect(25,150,25,25);&#x000A;&#x000A;context.restore();&#x000A;&#x000A;context.fillRect(25,150,25,25);&#x000A;</div>
+                        <div class='editor' id='functions_example1_editor'>var canvas = document.getElementById('functions_example1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function flag(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(x, y, 25, 50);&#x000A;&#x000A;  context.fillStyle = '#EB4D37';&#x000A;  context.fillRect(x + 25, y, 50, 25);&#x000A;&#x000A;  context.fillStyle = '#337D3F';&#x000A;  context.fillRect(x + 25, y + 25, 50, 25);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;flag(60,30);&#x000A;flag(360,70);&#x000A;flag(210,130);&#x000A;flag(40,200);&#x000A;flag(300,210);&#x000A;</div>
                         <div class='log bg-faded text-muted small'>
                           <button aria-label='Close' class='close' type='button'>
                             <span aria-hidden='true'>×</span>
@@ -262,8 +266,8 @@
                   <div class='col-xs-12'>
                     <h2 class='challenge-title'>Challenge 1</h2>
                     <p class='py-2'>
-                      Add another context.functions() and another context.restore() command to the code below to prevent the third
-                      rectangle from being red (it should be black).
+                      Write a function. drawColoredRect(), that will draw a rectangle of the specified color
+                      that is 50px tall and 100px wide at the specified x and y.
                     </p>
                   </div>
                 </div>
@@ -273,7 +277,7 @@
                       Editor
                       <small>(write code below)</small>
                     </h5>
-                    <div class='editor' id='functions_challenge1_editor'>var canvas = document.getElementById('functions_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;context.functions();&#x000A;&#x000A;context.fillRect(30, 80, 40, 40);&#x000A;&#x000A;context.fillStyle = 'red';&#x000A;&#x000A;context.fillRect(130, 80, 40, 40);&#x000A;&#x000A;context.fillRect(230, 80, 40, 40);&#x000A;&#x000A;context.restore();&#x000A;&#x000A;</div>
+                    <div class='editor' id='functions_challenge1_editor'>var canvas = document.getElementById('functions_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.save();&#x000A;&#x000A;// WRITE YOUR FUNCTION HERE&#x000A;&#x000A;drawColoredRect(50,50,'red');&#x000A;drawColoredRect(50,150,'green');&#x000A;drawColoredRect(50,250,'blue');&#x000A;&#x000A;context.restore();&#x000A;&#x000A;</div>
                     <div class='log bg-faded text-muted small'>
                       <button aria-label='Close' class='close' type='button'>
                         <span aria-hidden='true'>×</span>
@@ -298,7 +302,7 @@
                       <small>(your drawing will display here)</small>
                     </h5>
                     <div class='canvas'>
-                      <div class='background hidden-xl-down'><img src="../../../images/lessons/functions/challenge1.png" alt="Challenge1" /></div>
+                      <div class='background hidden-xl-down'><img src="../../../assets/lessons/functions/challenge1-c462b509d865b48174ba691ecb251ba5004ec879332b87f1db6d6884d820079d.png" alt="Challenge1" /></div>
                       <canvas id='functions_challenge1'></canvas>
                     </div>
                     <div class='alert'></div>
