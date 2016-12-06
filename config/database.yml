@@ -3,8 +3,8 @@ default: &default
   encoding: unicode
   host: localhost
   pool: 5
-  # username: drawing_code
-  # password: password
+  username: drawing_code
+  password: password
 
 development:
   <<: *default
