@@ -5,20 +5,20 @@ class App.Progress
   challengeComplete: (page, challenge) ->
     return unless @storageAvailable
     pages = {}
-    pages[p] = 1 for p in (localStorage.getItem('pages') || '').split(/,/) when p.length > 0
-    pages[page] = 1
+    pages[p] = true for p in (localStorage.getItem('pages') || '').split(/,/) when p.length > 0
+    pages[page] = true
     localStorage.setItem('pages', (p for p of pages).join(','))
 
     challenges = {}
-    challenges[c] = 1 for c in (localStorage.getItem(page) || '').split(/,/) when c.length > 0
-    challenges[challenge] = 1
+    challenges[c] = true for c in (localStorage.getItem(page) || '').split(/,/) when c.length > 0
+    challenges[challenge] = true
     localStorage.setItem(page, (c for c of challenges).join(','))
 
     @updateNavigation()
     @markChallengeComplete(challenge)
 
   challengesCompleted: (page) ->
-    (localStorage.getItem(page) || '').split(/,/)
+    (localStorage.getItem(page) || '').split(/,/).filter((challengeId) => challengeId.length > 0)
 
   updateNavigation: ->
     return unless @storageAvailable
