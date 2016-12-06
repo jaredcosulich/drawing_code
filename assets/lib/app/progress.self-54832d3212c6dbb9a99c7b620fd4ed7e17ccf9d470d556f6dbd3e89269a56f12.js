@@ -43,7 +43,8 @@
         }
         return results;
       })()).join(','));
-      return this.updateNavigation();
+      this.updateNavigation();
+      return this.markChallengeComplete(challenge);
     };
 
     Progress.prototype.challengesCompleted = function(page) {
@@ -76,6 +77,13 @@
         }
         return results;
       }
+    };
+
+    Progress.prototype.markChallengeComplete = function(challengeId) {
+      var tag;
+      tag = $(document.createElement('SPAN'));
+      tag.addClass('tag').addClass('tag-success').html('Completed!');
+      return $("#" + challengeId).find('.challenge-title').append(tag);
     };
 
     Progress.prototype.storeEditorValue = function(editorName, code) {

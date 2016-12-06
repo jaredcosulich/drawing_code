@@ -20,12 +20,10 @@
       new Test.Point({
         x: 40,
         y: 240,
-        colors: [0, 0, 0],
         canvas: canvas
       }), new Test.Point({
         x: 360,
         y: 80,
-        colors: [0, 0, 0],
         canvas: canvas
       })
     ];
@@ -41,10 +39,10 @@
           }
         }
         if (success) {
-          message = '<strong>Success!</strong> Your black building is sitting on the x!';
+          message = '<strong>Success!</strong> Your building is sitting on the x!';
           App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge1');
         } else {
-          message = 'Nice try, but you need to draw a black building sitting on the x.';
+          message = 'Nice try, but you need to draw a building sitting on the lower left x and covering the top right x.';
         }
         return canvas.alert(message, success);
       }), 200);
@@ -82,14 +80,11 @@
         }
         if (success) {
           message = '<strong>Success!</strong> Your gray building is sitting on the x!';
-          App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge1');
+          App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge2');
         } else {
           message = 'Nice try, but you need to draw a gray building sitting on the x.';
         }
-        canvas.alert(message, success);
-        if (success) {
-          return App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge2');
-        }
+        return canvas.alert(message, success);
       }), 200);
     });
   };
@@ -101,19 +96,24 @@
     editor = new App.Editor(challenge.find('.editor'), canvas);
     points = [
       new Test.Point({
-        x: 100,
-        y: 150,
-        colors: [15, 39, 143],
+        x: 50,
+        y: 300,
+        colors: [153, 153, 153],
+        canvas: canvas
+      }), new Test.Point({
+        x: 186,
+        y: 100,
+        colors: [153, 153, 153],
         canvas: canvas
       }), new Test.Point({
         x: 200,
-        y: 150,
-        colors: [255, 255, 255],
+        y: 300,
+        colors: [153, 153, 153],
         canvas: canvas
       }), new Test.Point({
-        x: 300,
-        y: 150,
-        colors: [219, 84, 67],
+        x: 304,
+        y: 4,
+        colors: [153, 153, 153],
         canvas: canvas
       })
     ];
@@ -128,11 +128,13 @@
             break;
           }
         }
-        message = success ? '<strong>Success!</strong> Your rectangle is covering the x\'s with the right colors!' : 'Nice try, but you need to draw rectangles that cover each x in the right color.';
-        canvas.alert(message, success);
         if (success) {
-          return App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge3');
+          message = '<strong>Success!</strong> Your gray building is covering on the x\'s!';
+          App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge3');
+        } else {
+          message = 'Nice try, but you need to draw a gray building covering the x\'s.';
         }
+        return canvas.alert(message, success);
       }), 200);
     });
   };
@@ -144,19 +146,24 @@
     editor = new App.Editor(challenge.find('.editor'), canvas);
     points = [
       new Test.Point({
-        x: 100,
-        y: 150,
-        colors: [15, 39, 143],
+        x: 40,
+        y: 300,
+        colors: [153, 153, 153],
         canvas: canvas
       }), new Test.Point({
-        x: 200,
-        y: 150,
-        colors: [255, 255, 255],
+        x: 240,
+        y: 196,
+        colors: [153, 153, 153],
         canvas: canvas
       }), new Test.Point({
-        x: 300,
-        y: 150,
-        colors: [219, 84, 67],
+        x: 280,
+        y: 300,
+        colors: [153, 153, 153],
+        canvas: canvas
+      }), new Test.Point({
+        x: 448,
+        y: 52,
+        colors: [153, 153, 153],
         canvas: canvas
       })
     ];
@@ -171,11 +178,13 @@
             break;
           }
         }
-        message = success ? '<strong>Success!</strong> Your rectangle is covering the x\'s with the right colors!' : 'Nice try, but you need to draw rectangles that cover each x in the right color.';
-        canvas.alert(message, success);
         if (success) {
-          return App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge4');
+          message = '<strong>Success!</strong> Your gray building is covering on the x\'s!';
+          App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge4');
+        } else {
+          message = 'Nice try, but you need to draw a gray building covering the x\'s.';
         }
+        return canvas.alert(message, success);
       }), 200);
     });
   };

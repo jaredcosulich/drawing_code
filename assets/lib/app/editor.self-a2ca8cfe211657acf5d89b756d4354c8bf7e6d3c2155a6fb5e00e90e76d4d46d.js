@@ -1,4 +1,6 @@
 (function() {
+  var slice = [].slice;
+
   App.Editor = (function() {
     function Editor(editor, canvas) {
       var previousCode;
@@ -15,7 +17,7 @@
         useSoftTabs: true,
         wrap: 'on'
       });
-      this.editor.on('input', (function(_this) {
+      this.editor.on('keyup', (function(_this) {
         return function() {
           return App.currentProgress.storeEditorValue(_this.editorElement.id, _this.aceEditor.getValue());
         };
@@ -53,33 +55,45 @@
     };
 
     Editor.prototype.run = function() {
-      var e, error, errorLineNumber;
+      var e, error, error1, error2, errorLineNumber;
       this.hideLog();
       this.clearLog();
       this.canvas.hideAlert();
       try {
         return eval(this.aceEditor.getValue());
-      } catch (error) {
-        e = error;
-        errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0];
+      } catch (error1) {
+        e = error1;
+        try {
+          errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0];
+        } catch (error2) {
+          error = error2;
+          errorLineNumber = 'N/A';
+          console.log('Could not split stack.', e.stack);
+        }
         return this.log("<strong class='text-danger'>Error:</strong> " + e.message + " (Line " + errorLineNumber + ")");
       }
     };
 
     Editor.prototype.initLog = function() {
       this.logElement = this.codeEditor.find('.log');
-      return this.logElement.find('.close').click((function(_this) {
+      this.logElement.find('.close').click((function(_this) {
         return function() {
           return _this.hideLog();
         };
       })(this));
+      return window.log = (function(_this) {
+        return function(messageText) {
+          return _this.log(messageText);
+        };
+      })(this);
     };
 
-    Editor.prototype.log = function(messageText) {
-      var message;
+    Editor.prototype.log = function() {
+      var message, messageText;
+      messageText = 1 <= arguments.length ? slice.call(arguments, 0) : [];
       message = $(document.createElement('DIV'));
       message.addClass('message');
-      message.html(messageText);
+      message.html(messageText.join(', '));
       this.logElement.find('.messages').append(message);
       return this.logElement.slideDown();
     };

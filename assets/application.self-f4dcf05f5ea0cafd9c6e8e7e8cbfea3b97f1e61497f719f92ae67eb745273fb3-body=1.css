@@ -7836,14 +7836,23 @@ body {
 }
 
 /* line 69, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.nav-sidebar .section_link {
+  font-weight: bold;
+}
+/* line 73, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .nav {
   margin-left: 24px;
 }
-/* line 72, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 76, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .nav a {
   padding: 0 12px;
 }
-/* line 76, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 80, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .nav .tag {
   vertical-align: text-bottom;
+}
+
+/* line 88, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.challenge .challenge-title .tag {
+  margin-left: 12px;
 }
