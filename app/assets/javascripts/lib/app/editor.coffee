@@ -58,7 +58,7 @@ class App.Editor
   initLog: ->
     @logElement = @codeEditor.find('.log')
     @logElement.find('.close').click => @hideLog()
-    window.log = (messageText) => @log(messageText)
+    window.log = (messageText...) => @log(messageText)
 
   log: (messageText...) ->
     message = $(document.createElement('DIV'))
