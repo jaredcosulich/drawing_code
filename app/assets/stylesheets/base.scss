@@ -73,13 +73,17 @@
   .nav {
     margin-left: 24px;
 
-    a {
+    a, strong {
       padding: 0 12px;
+    }
+
+    .applicable-lessons {
+      margin-top: 18px;
     }
 
     .tag {
       vertical-align: text-bottom;
-      margin-left: -4px;
+      margin-left: -0.25em;
     }
   }
 }

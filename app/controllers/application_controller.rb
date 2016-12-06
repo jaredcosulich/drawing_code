@@ -33,15 +33,19 @@ class ApplicationController < ActionController::Base
       {
         name: 'Basic Cityscape',
         slug: 'basic_cityscape',
-        lessons: [
+        stages: [
+          :basic_cityscape_stage1
+        ],
+        reference: [
           :fill_rect,
           :fill_style,
+          :translate,
+          :save
+        ],
+        concepts: [
           :variables,
           :coordinates,
-          :translate,
-          :save,
-          :functions,
-          :basic_cityscape_stage1
+          :functions
         ]
       }
     ]

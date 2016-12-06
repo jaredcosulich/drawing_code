@@ -5,11 +5,13 @@ class LessonsController < ApplicationController
     if ['reference', 'design'].include?(params[:section])
       lessons = instance_variable_get("@#{params[:section]}")
     else
-      lessons = @challenge_paths.first { |cp| cp[:slug] == params[:section] }[:lessons]
+      lessons = @challenge_paths.first { |cp| cp[:slug] == params[:section] }[:stages]
     end
 
-    @next_lesson = lessons[lessons.index(params[:id].to_sym) + 1]
-
+    if lesson_index = lessons.index(params[:id].to_sym)
+      @next_lesson = lessons[lesson_index + 1]
+    end
+    
     render params[:id]
   end
 
