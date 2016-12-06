@@ -54,12 +54,11 @@ initBasicCityscapeStage1Challenge2 = (page) ->
 
       if success
         message = '<strong>Success!</strong> Your gray building is sitting on the x!'
-        App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge1')
+        App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge2')
       else
         message = 'Nice try, but you need to draw a gray building sitting on the x.'
 
       canvas.alert(message, success)
-      App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge2') if success
     ), 200)
 
 
@@ -83,13 +82,13 @@ initBasicCityscapeStage1Challenge3 = (page) ->
           success = false
           break
 
-      message = if success
-          '<strong>Success!</strong> Your rectangle is covering the x\'s with the right colors!'
-        else
-          'Nice try, but you need to draw rectangles that cover each x in the right color.'
+      if success
+        message = '<strong>Success!</strong> Your gray building is covering on the x\'s!'
+        App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge3')
+      else
+        message = 'Nice try, but you need to draw a gray building covering the x\'s.'
 
       canvas.alert(message, success)
-      App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge3') if success
     ), 200)
 
 
@@ -99,9 +98,10 @@ initBasicCityscapeStage1Challenge4 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 100, y: 150, colors: [15, 39, 143], canvas: canvas),
-    new Test.Point(x: 200, y: 150, colors: [255,255,255], canvas: canvas),
-    new Test.Point(x: 300, y: 150, colors: [219, 84, 67], canvas: canvas)
+    new Test.Point(x: 40, y: 300, colors: [153, 153, 153], canvas: canvas),
+    new Test.Point(x: 240, y: 196, colors: [153, 153, 153], canvas: canvas),
+    new Test.Point(x: 280, y: 300, colors: [153, 153, 153], canvas: canvas),
+    new Test.Point(x: 448, y: 52, colors: [153, 153, 153], canvas: canvas)
   ]
 
   challenge.find('.run').click ->
@@ -112,13 +112,13 @@ initBasicCityscapeStage1Challenge4 = (page) ->
           success = false
           break
 
-      message = if success
-          '<strong>Success!</strong> Your rectangle is covering the x\'s with the right colors!'
-        else
-          'Nice try, but you need to draw rectangles that cover each x in the right color.'
+      if success
+        message = '<strong>Success!</strong> Your gray building is covering on the x\'s!'
+        App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge4')
+      else
+        message = 'Nice try, but you need to draw a gray building covering the x\'s.'
 
       canvas.alert(message, success)
-      App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge4') if success
     ), 200)
 
 
