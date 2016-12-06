@@ -67,7 +67,9 @@
             totalChallengeCount = parseInt(challengeCount.html().split(' / ')[1]);
             challengeCount.html(completedChallengeCount + " / " + totalChallengeCount);
             if (completedChallengeCount === totalChallengeCount) {
-              results.push(challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-success'));
+              results.push(challengeCount.closest('.tag').removeClass('tag-default').removeClass('tag-warning').addClass('tag-success'));
+            } else if (completedChallengeCount > 0) {
+              results.push(challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-warning'));
             } else {
               results.push(void 0);
             }
@@ -80,10 +82,14 @@
     };
 
     Progress.prototype.markChallengeComplete = function(challengeId) {
-      var tag;
+      var challengeTitle, tag;
+      challengeTitle = $("#" + challengeId).find('.challenge-title');
+      if (challengeTitle.find('.tag-success').length > 0) {
+        return;
+      }
       tag = $(document.createElement('SPAN'));
       tag.addClass('tag').addClass('tag-success').html('Completed!');
-      return $("#" + challengeId).find('.challenge-title').append(tag);
+      return challengeTitle.append(tag);
     };
 
     Progress.prototype.storeEditorValue = function(editorName, code) {

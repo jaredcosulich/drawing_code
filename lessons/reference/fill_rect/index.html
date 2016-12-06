@@ -4,8 +4,8 @@
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <title>Drawing Code</title>
     <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="Y5QNP8hfJiFfZlD5QjNK1h3wEiEeacDF/xYj1Txps7XIEF0dN6j2Z2fXoA66UM2Wj+KUnulJ5oCW0iJmexvtQQ==" />
-    <link rel="stylesheet" media="all" href="../../../assets/application.self-f4dcf05f5ea0cafd9c6e8e7e8cbfea3b97f1e61497f719f92ae67eb745273fb3-body=1.css" data-turbolinks-track="reload" />
+    <meta name="csrf-token" content="H6xIFYsZwhBSw3cEhMmUlYAHfBSxoYvrASpOIHY56na0KBg3dO4SVmpyh/N8qhPVEhX6q0aBra5o7k+TMUu0gg==" />
+    <link rel="stylesheet" media="all" href="../../../assets/application.self-ab2656eea77a2ed3c33300e88866b82607dde275d65c6635685bce2f35126c21-body=1.css" data-turbolinks-track="reload" />
     <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -20,12 +20,14 @@
     <script src="../../../assets/lessons/coordinates.self-e8ed0e1bacf18d0af11e6602fdfbc3026535cadd0a5464c80884b3e7b545cc69.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lessons/fillRect.self-9e0e0969e446a2f464878a94809b7b44591a6ae159472a8744b33622cbec1b46.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lessons/fillStyle.self-ee4e83b95686dac1cd630c036eb0353cfaeaa2b9701b0c7a6565ba0dc6091ec7.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../../assets/lessons/functions.self-9be1a159879fdcc9eb4b0080d50a0a6810056acc65e05baee3fd1d7b2398b7fa.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lessons/lineTo.self-4487acd17954cf1c89680bde8f16459c34279c0e0b10276e2dc4e1b1ae185d1c.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../../assets/lessons/save.self-40009da7858c56166ef5dbae9087a3b9cdc7b0c7bbf2c49751dc35678f068df5.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lessons/translate.self-12f5a51ccf4b3f0f72e2079f0069bab57fd3af696731c66057284b4338745fba.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lessons/variables.self-c87145ec3cf2327e7b3eb2ef815bed8ee4b3a42f7408ff8faa7e3353fb824132.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lib/app/canvas.self-c6a9275dea4bdc8ab41abb11f39c502279be821cf03d92dc56888dccc0ba9d27.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lib/app/editor.self-37ba904e955931ced9aa782bf3dc61a3e3f538c87db4b968677879e8e7702677.js?body=1" data-turbolinks-track="reload"></script>
-    <script src="../../../assets/lib/app/progress.self-54832d3212c6dbb9a99c7b620fd4ed7e17ccf9d470d556f6dbd3e89269a56f12.js?body=1" data-turbolinks-track="reload"></script>
+    <script src="../../../assets/lib/app/progress.self-08cef779d0ba0a37106c08462359abfacfd30319579527b4479653b843ad0204.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/lib/test/point.self-57f97666d941e0e32f6db69b324362ae324dd3bdcddbca02997bb347578f357a.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/navigation.self-86efb23cbd540a25cfd5aa4f6397355fe9ea8601cab3fd824ba10027ed53a1fc.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
@@ -61,7 +63,7 @@
                     </span>
                   </li>
                   <li>
-                    <a href="../fill_style/index.html">fillStyle()</a>
+                    <a href="../fill_style/index.html">fillStyle</a>
                     <span class='tag tag-default'>
                       <small class='fill_style'>0 / 2</small>
                     </span>
@@ -70,6 +72,12 @@
                     <a href="../translate/index.html">translate()</a>
                     <span class='tag tag-default'>
                       <small class='translate'>0 / 1</small>
+                    </span>
+                  </li>
+                  <li>
+                    <a href="../save/index.html">save()</a>
+                    <span class='tag tag-default'>
+                      <small class='save'>0 / 1</small>
                     </span>
                   </li>
                 </ul>
@@ -93,6 +101,12 @@
                       <small class='coordinates'>0 / 2</small>
                     </span>
                   </li>
+                  <li>
+                    <a href="../../concepts/functions/index.html">Functions</a>
+                    <span class='tag tag-default'>
+                      <small class='functions'>0 / 1</small>
+                    </span>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -100,38 +114,50 @@
               <li class='section'>
                 <a class='section_link' data-section='basic_cityscape' href='#'>Basic Cityscape</a>
                 <ul class='collapse nav nav-sidebar' id='basic_cityscape'>
-                  <li class='active'>
+                  <li class='small active'>
                     <a href="../../basic_cityscape/fill_rect/index.html">fillRect()</a>
                     <span class='tag tag-default'>
                       <small class='fill_rect'>0 / 3</small>
                     </span>
                   </li>
-                  <li>
-                    <a href="../../basic_cityscape/fill_style/index.html">fillStyle()</a>
+                  <li class='small '>
+                    <a href="../../basic_cityscape/fill_style/index.html">fillStyle</a>
                     <span class='tag tag-default'>
                       <small class='fill_style'>0 / 2</small>
                     </span>
                   </li>
-                  <li>
+                  <li class='small '>
                     <a href="../../basic_cityscape/variables/index.html">Variables</a>
                     <span class='tag tag-default'>
                       <small class='variables'>0 / 2</small>
                     </span>
                   </li>
-                  <li>
+                  <li class='small '>
                     <a href="../../basic_cityscape/coordinates/index.html">Coordinates</a>
                     <span class='tag tag-default'>
                       <small class='coordinates'>0 / 2</small>
                     </span>
                   </li>
-                  <li>
+                  <li class='small '>
                     <a href="../../basic_cityscape/translate/index.html">translate()</a>
                     <span class='tag tag-default'>
                       <small class='translate'>0 / 1</small>
                     </span>
                   </li>
-                  <li>
-                    <a class="text-warning" href="../../basic_cityscape/basic_cityscape_stage1/index.html">Stage 1</a>
+                  <li class='small '>
+                    <a href="../../basic_cityscape/save/index.html">save()</a>
+                    <span class='tag tag-default'>
+                      <small class='save'>0 / 1</small>
+                    </span>
+                  </li>
+                  <li class='small '>
+                    <a href="../../basic_cityscape/functions/index.html">Functions</a>
+                    <span class='tag tag-default'>
+                      <small class='functions'>0 / 1</small>
+                    </span>
+                  </li>
+                  <li class=' '>
+                    <a href="../../basic_cityscape/basic_cityscape_stage1/index.html">Stage 1</a>
                     <span class='tag tag-default'>
                       <small class='basic_cityscape_stage1'>0 / 4</small>
                     </span>
@@ -143,7 +169,7 @@
         </div>
         <div class='col-sm-9 col-md-10 main'>
           <div class='lesson' id='fill_rect'>
-            <h1>fillRect</h1>
+            <h1>fillRect()</h1>
             <p class='challenges'>
               <strong>Challenges:</strong>
               <span class='no_challenges_completed'>
@@ -427,11 +453,11 @@
           </div>
           <div class='py-3'>
             <h2>
-              Ready for the next challenge?
+              Ready for the next lesson?
             </h2>
             <p class='py-1'>
               Next up, the
-              <a href="../fill_style/index.html">&quot;fillStyle()&quot; lesson &gt;</a>
+              <a href="../fill_style/index.html">&quot;fillStyle&quot; lesson &gt;</a>
             </p>
           </div>
         </div>
