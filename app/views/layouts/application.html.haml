@@ -12,10 +12,10 @@
 
     .container-fluid
       .row
-        .col-sm-3.col-md-2
+        .col-md-3.col-lg-2.sidebar
           = render partial: 'layouts/navigation'
 
-        .col-sm-9.col-md-10.main
+        .col-xs-12.offset-md-3.col-md-9.offset-lg-2.col-lg-10.main
           = yield
 
           - if @next_lesson.present?

@@ -1,62 +1,53 @@
-.col-xs-4.col-md-3.col-lg-2.sidebar
-  %ul.nav.nav-sidebar
-    %li.section
-      %a.section_link{:href => '#', data: {section: 'reference'}}
-        Reference
+%ul.nav.nav-sidebar
+  %li.section
+    %a.section_link{:href => '#', data: {section: 'reference'}}
+      Reference
 
-      %ul.nav.nav-sidebar#reference{class: (params[:section] == 'reference' ? 'collapse in' : 'collapse')}
-        - @reference.each do |lesson|
+    %ul.nav.nav-sidebar#reference{class: (params[:section] == 'reference' ? 'collapse in' : 'collapse')}
+      - @reference.each do |lesson|
+        %li{class: ('active' if params[:id] == lesson.to_s)}
+          = link_to_lesson(@lessons[lesson][:method], lesson, 'reference')
+          %span.tag.tag-default
+            %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+
+%ul.nav.nav-sidebar
+  %li.section
+    %a.section_link{:href => '#', data: {section: 'concepts'}}
+      Concepts
+
+    %ul.nav.nav-sidebar#design{class: (params[:section] == 'concepts' ? 'collapse in' : 'collapse')}
+      - @concepts.each do |lesson|
+        %li{class: ('active' if params[:id] == lesson.to_s)}
+          = link_to_lesson(@lessons[lesson][:method], lesson, 'concepts')
+          %span.tag.tag-default
+            %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+
+%ul.nav.nav-sidebar
+  - @challenge_paths.each do |challenge_path|
+    %li.section
+      %a.section_link{:href => '#', data: {section: challenge_path[:slug]}}= challenge_path[:name]
+
+      %ul.nav.nav-sidebar{id: challenge_path[:slug], class: (params[:section] == challenge_path[:slug] ? 'collapse in' : 'collapse')}
+        - challenge_path[:stages].each do |lesson|
           %li{class: ('active' if params[:id] == lesson.to_s)}
-            = link_to_lesson(@lessons[lesson][:method], lesson, 'reference')
+            = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug])
             %span.tag.tag-default
               %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 
-  %ul.nav.nav-sidebar
-    %li.section
-      %a.section_link{:href => '#', data: {section: 'concepts'}}
-        Concepts
+        %li.section.small.relevant-lessons
+          %strong Relevant Reference
 
-      %ul.nav.nav-sidebar#design{class: (params[:section] == 'concepts' ? 'collapse in' : 'collapse')}
-        - @concepts.each do |lesson|
-          %li{class: ('active' if params[:id] == lesson.to_s)}
-            = link_to_lesson(@lessons[lesson][:method], lesson, 'concepts')
+        - challenge_path[:reference].each do |lesson|
+          %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
+            = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug])
             %span.tag.tag-default
               %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 
-  %ul.nav.nav-sidebar
-    - @challenge_paths.each do |challenge_path|
-      %li.section
-        %a.section_link{:href => '#', data: {section: challenge_path[:slug]}}= challenge_path[:name]
+        %li.section.small.relevant-lessons
+          %strong Relevant Concepts
 
-        %ul.nav.nav-sidebar{id: challenge_path[:slug], class: (params[:section] == challenge_path[:slug] ? 'collapse in' : 'collapse')}
-          - challenge_path[:stages].each do |lesson|
-            %li{class: ('active' if params[:id] == lesson.to_s)}
-              = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug])
-              %span.tag.tag-default
-                %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
-
-          %li.section.small.relevant-lessons
-            %strong Relevant Reference
-
-          - challenge_path[:reference].each do |lesson|
-            %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
-              = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug])
-              %span.tag.tag-default
-                %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
-
-          %li.section.small.relevant-lessons
-            %strong Relevant Concepts
-
-          - challenge_path[:concepts].each do |lesson|
-            %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
-              = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug])
-              %span.tag.tag-default
-                %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
-
--#
-    %li
-      %a{:href => ""} One more nav
-    %li
-      %a{:href => ""} Another nav item
-    %li
-      %a{:href => ""} More navigation
+        - challenge_path[:concepts].each do |lesson|
+          %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
+            = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug])
+            %span.tag.tag-default
+              %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
