@@ -14,10 +14,10 @@
       for (i = 0, len = ref.length; i < len; i++) {
         p = ref[i];
         if (p.length > 0) {
-          pages[p] = 1;
+          pages[p] = true;
         }
       }
-      pages[page] = 1;
+      pages[page] = true;
       localStorage.setItem('pages', ((function() {
         var results;
         results = [];
@@ -31,10 +31,10 @@
       for (j = 0, len1 = ref1.length; j < len1; j++) {
         c = ref1[j];
         if (c.length > 0) {
-          challenges[c] = 1;
+          challenges[c] = true;
         }
       }
-      challenges[challenge] = 1;
+      challenges[challenge] = true;
       localStorage.setItem(page, ((function() {
         var results;
         results = [];
@@ -48,7 +48,11 @@
     };
 
     Progress.prototype.challengesCompleted = function(page) {
-      return (localStorage.getItem(page) || '').split(/,/);
+      return (localStorage.getItem(page) || '').split(/,/).filter((function(_this) {
+        return function(challengeId) {
+          return challengeId.length > 0;
+        };
+      })(this));
     };
 
     Progress.prototype.updateNavigation = function() {
