@@ -1,0 +1,94 @@
+#for_loops.lesson
+  %h1 For Loops
+
+  = render 'lessons/challenge_count'
+
+  .official.row.py-3
+    .col-xs-6
+      %h2 Overview
+      %p.pt-2
+        For-loops allow you to repeat code over and over again, potentially
+        adjusting the code a little bit each time.
+
+      %p They are one of the most commonly used ideas in computer programming.
+
+      %p For example, two for-loops make it easy to draw an X using squares.
+
+    .col-xs-6
+      = image_tag('lessons/for_loops/visual1.png', class: 'img-fluid', style: 'border: 1px solid #333;')
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Example
+          %p.pt-2
+            This for-loop allows us to draw a number of rectangles with an increasingly dark red color.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'for_loops_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('for_loops_example1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                function flag(x, y) {
+                  context.save();
+                  context.fillStyle = '#FFFFFF';
+                  context.fillRect(x, y, 25, 50);
+
+                  context.fillStyle = '#EB4D37';
+                  context.fillRect(x + 25, y, 50, 25);
+
+                  context.fillStyle = '#337D3F';
+                  context.fillRect(x + 25, y + 25, 50, 25);
+                  context.restore();
+                }
+
+                flag(60,30);
+                flag(360,70);
+                flag(210,130);
+                flag(40,200);
+                flag(300,210);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#for_loops_example1
+
+
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title Challenge 1
+          %p.py-2
+            Use a for-loop to draw a staircase with 8 steps and the bottom of each step at y = 250. The staircase
+            should start at x = 50 with the first step 200 tall and 50 wide and each step 25 shorter than the
+            previous one.
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'for_loops_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('for_loops_challenge1');
+            var context = canvas.getContext("2d");
+            context.save();
+
+            // WRITE YOUR LOOP HERE
+
+            context.restore();
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/for_loops/challenge1.png')
+            %canvas#for_loops_challenge1
+          .alert

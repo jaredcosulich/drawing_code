@@ -9,9 +9,12 @@ class ApplicationController < ActionController::Base
       fill_style: {count: 2, method: 'fillStyle'},
       translate: {count: 1, method: 'translate()'},
       save: {count: 1, method: 'save()'},
+
       variables: {count: 2, method: 'Variables'},
+      for_loops: {count: 1, method: 'For Loops'},
       coordinates: {count: 2, method: 'Coordinates'},
       functions: {count: 1, method: 'Functions'},
+
       basic_cityscape_stage1: {count: 4, method: 'Stage 1', stage: true}
     }
 
@@ -25,6 +28,7 @@ class ApplicationController < ActionController::Base
 
     @concepts = [
       :variables,
+      :for_loops,
       :coordinates,
       :functions
     ]
@@ -44,6 +48,7 @@ class ApplicationController < ActionController::Base
         ],
         concepts: [
           :variables,
+          :for_loops,
           :coordinates,
           :functions
         ]
