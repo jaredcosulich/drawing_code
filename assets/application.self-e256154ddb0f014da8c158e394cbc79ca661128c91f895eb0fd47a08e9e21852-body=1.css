@@ -7835,29 +7835,33 @@ body {
   display: none;
 }
 
-/* line 69, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 68, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.nav-sidebar {
+  margin-left: -30px;
+}
+/* line 71, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .section_link {
   font-weight: bold;
 }
-/* line 73, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 75, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .nav {
-  margin-left: 24px;
+  margin-left: 18px;
 }
-/* line 76, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 78, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .nav a, .nav-sidebar .nav strong {
   padding: 0 12px;
 }
-/* line 80, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 82, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .nav .relevant-lessons {
   margin-top: 18px;
 }
-/* line 84, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 86, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .nav .tag {
   vertical-align: text-bottom;
   margin-left: -0.25em;
 }
 
-/* line 93, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 95, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .challenge .challenge-title .tag {
   margin-left: 12px;
 }
