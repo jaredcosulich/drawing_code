@@ -54,16 +54,16 @@ class App.Editor
         errorLineNumber = 'N/A'
         console.log('Could not split stack.', e.stack)
       @log("<strong class='text-danger'>Error:</strong> #{e.message} (Line #{errorLineNumber})")
-      # console.log(e.stack)
 
   initLog: ->
     @logElement = @codeEditor.find('.log')
     @logElement.find('.close').click => @hideLog()
+    window.log = (messageText) => @log(messageText)
 
-  log: (messageText) ->
+  log: (messageText...) ->
     message = $(document.createElement('DIV'))
     message.addClass('message')
-    message.html(messageText)
+    message.html(messageText.join(', '))
     @logElement.find('.messages').append(message)
     @logElement.slideDown()
 

@@ -69,9 +69,10 @@ initBasicCityscapeStage1Challenge3 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 100, y: 150, colors: [15, 39, 143], canvas: canvas),
-    new Test.Point(x: 200, y: 150, colors: [255,255,255], canvas: canvas),
-    new Test.Point(x: 300, y: 150, colors: [219, 84, 67], canvas: canvas)
+    new Test.Point(x: 50, y: 300, colors: [153, 153, 153], canvas: canvas),
+    new Test.Point(x: 186, y: 100, colors: [153, 153, 153], canvas: canvas),
+    new Test.Point(x: 200, y: 300, colors: [153, 153, 153], canvas: canvas),
+    new Test.Point(x: 304, y: 4, colors: [153, 153, 153], canvas: canvas)
   ]
 
   challenge.find('.run').click ->
