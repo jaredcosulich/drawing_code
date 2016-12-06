@@ -6,9 +6,12 @@
   .official.row.py-3
     .col-xs-6
       %h2 Overview
-      %p.py-2
+      %p.pt-2
         Functions allow you to reuse code. You can call a function with
         different parameters to produce different results.
+      %p
+        Here we use a function to draw building shapes of specific sizes in
+        specific places.
 
     .col-xs-6
       = image_tag('lessons/functions/visual1.png', class: '')
@@ -31,28 +34,24 @@
                 var context = canvas.getContext("2d");
                 context.clearRect(0, 0, canvas.width, canvas.height);
 
-                context.fillRect(25,25,25,25);
+                function flag(x, y) {
+                  context.save();
+                  context.fillStyle = '#FFFFFF';
+                  context.fillRect(x, y, 25, 50);
 
-                context.functions();
+                  context.fillStyle = '#EB4D37';
+                  context.fillRect(x + 25, y, 50, 25);
 
-                context.translate(50,0);
-                context.fillStyle = 'red';
-                context.fillRect(25,25,25,25);
+                  context.fillStyle = '#337D3F';
+                  context.fillRect(x + 25, y + 25, 50, 25);
+                  context.restore();
+                }
 
-                context.functions();
-
-                context.translate(50, 0);
-                context.fillStyle = 'blue';
-                context.fillRect(25,25,25,25);
-                context.fillRect(25,150,25,25);
-
-                context.restore();
-
-                context.fillRect(25,150,25,25);
-
-                context.restore();
-
-                context.fillRect(25,150,25,25);
+                flag(60,30);
+                flag(360,70);
+                flag(210,130);
+                flag(40,200);
+                flag(300,210);
 
             .visual.col-xs-6
               %h5
@@ -70,24 +69,20 @@
         .col-xs-12
           %h2.challenge-title Challenge 1
           %p.py-2
-            Add another context.functions() and another context.restore() command to the code below to prevent the third
-            rectangle from being red (it should be black).
-
+            Write a function. drawColoredRect(), that will draw a rectangle of the specified color
+            that is 50px tall and 100px wide at the specified x and y.
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'functions_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('functions_challenge1');
             var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.functions();
+            context.save();
 
-            context.fillRect(30, 80, 40, 40);
+            // WRITE YOUR FUNCTION HERE
 
-            context.fillStyle = 'red';
-
-            context.fillRect(130, 80, 40, 40);
-
-            context.fillRect(230, 80, 40, 40);
+            drawColoredRect(50,50,'red');
+            drawColoredRect(50,150,'green');
+            drawColoredRect(50,250,'blue');
 
             context.restore();
 

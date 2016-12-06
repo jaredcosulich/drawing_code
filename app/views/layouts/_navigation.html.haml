@@ -35,8 +35,8 @@
               %span.tag.tag-default
                 %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 
-          %li.section.small.applicable-lessons
-            %strong Applicable Reference
+          %li.section.small.relevant-lessons
+            %strong Relevant Reference
 
           - challenge_path[:reference].each do |lesson|
             %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
@@ -44,8 +44,8 @@
               %span.tag.tag-default
                 %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 
-          %li.section.small.applicable-lessons
-            %strong Applicable Concepts
+          %li.section.small.relevant-lessons
+            %strong Relevant Concepts
 
           - challenge_path[:concepts].each do |lesson|
             %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
