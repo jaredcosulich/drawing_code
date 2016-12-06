@@ -66,12 +66,14 @@
 }
 
 .nav-sidebar {
+  margin-left: -30px;
+
   .section_link {
     font-weight: bold;
   }
 
   .nav {
-    margin-left: 24px;
+    margin-left: 18px;
 
     a, strong {
       padding: 0 12px;

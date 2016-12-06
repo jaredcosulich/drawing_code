@@ -1,1 +1,68 @@
-Index
+.row
+  .col-xs-12
+    %h2 Drawing Code
+    %p.pt-2
+      An exploration of computational thinking and artistic observation.
+    %p.pt-1
+      Can you teach a computer how to draw, create animations, and design games?
+
+
+    %hr.my-3
+
+    .row
+      .col-xs-6
+        %h3 The Basic Cityscape
+        %p.my-1
+          Learn to draw a basic cityscape programatically. Design functions
+          that allow you to design different buildings for your city.
+        %p
+          = link_to_lesson('Get Started', :basic_cityscape_stage1, :basic_cityscape, class: 'btn btn-primary')
+
+      .col-xs-6.text-xs-center
+        = image_tag('basic_cityscape.png', class: 'img-fluid')
+
+
+    %hr.my-3
+
+    .row
+      .col-xs-6
+        %h3 The Animated Skyline
+        %p.my-1
+          Learn create an animated skyline with a gradient sunset and lights
+          within offices flashing on and off.
+        %p
+          %h6 In Development
+
+      .col-xs-6.text-xs-center
+        = image_tag('animated_skyline.gif', class: 'img-fluid')
+
+
+    %hr.my-3
+
+    .row
+      .col-xs-6
+        %h3 Parallax Cityscape
+        %p.my-1
+          Parallax allows you to create a sense of depth in a 2d surface.
+          Learn how to create layers of an image that move independently,
+          providing this 3D illusion.
+
+        %p
+          %h6 In Development
+
+      .col-xs-6.text-xs-center
+        = image_tag('parallax_cityscape.gif', class: 'img-fluid')
+
+    %hr.my-3
+
+    .row
+      .col-xs-6
+        %h3 A Brick Building
+        %p.my-1
+          Create a much more visually rich and detailed building, complete
+          with detailed bricks, windows, door, and railing.
+        %p
+          %h6 In Development
+
+      .col-xs-6.text-xs-center
+        = image_tag('brick_building.png', class: 'img-fluid')
