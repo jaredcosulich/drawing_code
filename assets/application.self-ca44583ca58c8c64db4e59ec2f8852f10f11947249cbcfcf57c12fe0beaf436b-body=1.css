@@ -7844,16 +7844,20 @@ body {
   margin-left: 24px;
 }
 /* line 76, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
-.nav-sidebar .nav a {
+.nav-sidebar .nav a, .nav-sidebar .nav strong {
   padding: 0 12px;
 }
 /* line 80, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.nav-sidebar .nav .applicable-lessons {
+  margin-top: 18px;
+}
+/* line 84, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar .nav .tag {
   vertical-align: text-bottom;
-  margin-left: -4px;
+  margin-left: -0.25em;
 }
 
-/* line 89, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 93, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .challenge .challenge-title .tag {
   margin-left: 12px;
 }
