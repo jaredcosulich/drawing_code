@@ -5,7 +5,7 @@
 
     %ul.nav.nav-sidebar#reference{class: (params[:section] == 'reference' ? 'collapse in' : 'collapse')}
       - @reference.each do |key, lessons|
-        %li.section.small.mt-1
+        %li.section.mt-1
           %strong= key
         - lessons.each do |lesson|
           %li{class: ('active' if params[:id] == lesson.to_s)}

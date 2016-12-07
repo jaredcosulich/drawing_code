@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     }
 
     @reference = {
-      CanvasRenderingContext2D: [
+      Context2D: [
         :line_to,
         :fill_rect,
         :fill_style,
