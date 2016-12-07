@@ -26,13 +26,14 @@ class App.Progress
       for page in localStorage.getItem('pages').split(/,/)
         if localStorage.getItem(page)?
           completedChallengeCount = @challengesCompleted(page).length
-          challengeCount = $(".nav-sidebar .#{page}")
-          totalChallengeCount = parseInt(challengeCount.html().split(' / ')[1])
-          challengeCount.html("#{completedChallengeCount} / #{totalChallengeCount}")
-          if completedChallengeCount == totalChallengeCount
-            challengeCount.closest('.tag').removeClass('tag-default').removeClass('tag-warning').addClass('tag-success')
-          else if completedChallengeCount > 0
-            challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-warning')
+
+          if (challengeCount = $(".nav-sidebar .#{page}")).length > 0
+            totalChallengeCount = parseInt(challengeCount.html().split(' / ')[1])
+            challengeCount.html("#{completedChallengeCount} / #{totalChallengeCount}")
+            if completedChallengeCount == totalChallengeCount
+              challengeCount.closest('.tag').removeClass('tag-default tag-warning').addClass('tag-success')
+            else if completedChallengeCount > 0
+              challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-warning')
 
   markChallengeComplete: (challengeId) ->
     challengeTitle = $("##{challengeId}").find('.challenge-title')

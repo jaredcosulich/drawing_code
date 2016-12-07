@@ -12,16 +12,13 @@ class App.Canvas
   alert: (message, success) ->
     @alertElement.html(message)
     if success == undefined
-      @alertElement.removeClass('alert-danger')
-      @alertElement.removeClass('alert-success')
+      @alertElement.removeClass('alert-danger alert-success')
       @alertElement.addClass('alert-warning')
     else if success
-      @alertElement.removeClass('alert-danger')
-      @alertElement.removeClass('alert-warning')
+      @alertElement.removeClass('alert-danger alert-warning')
       @alertElement.addClass('alert-success')
     else
-      @alertElement.removeClass('alert-success')
-      @alertElement.removeClass('alert-warning')
+      @alertElement.removeClass('alert-success alert-warning')
       @alertElement.addClass('alert-danger')
     @alertElement.slideDown()
 

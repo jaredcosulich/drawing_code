@@ -7,21 +7,34 @@ function createPage(pageId, challengeCount) {
     var challenge = $(document.createElement('DIV'));
     challenge.attr('id', challengeId);
 
+    var codeEditor = $(document.createElement('DIV'));
+    codeEditor.addClass('code-editor');
+
     var editor = $(document.createElement('DIV'));
     editor.addClass('editor')
-    challenge.append(editor);
+    codeEditor.append(editor);
 
+    var buttons = $(document.createElement('DIV'));
+    buttons.addClass('buttons');
     var run = $(document.createElement('DIV'));
-    run.addClass('run')
-    challenge.append(run);
+    run.addClass('run');
+    buttons.append(run);
+    codeEditor.append(buttons);
+    challenge.append(codeEditor);
+
+    var visual = $(document.createElement('DIV'));
+    visual.addClass('visual');
 
     var canvas = $(document.createElement('CANVAS'));
     canvas.attr('id', pageId + '_' + challengeId);
-    challenge.append(canvas);
+    visual.append(canvas);
 
     var alert = $(document.createElement('DIV'));
     alert.addClass('alert');
-    challenge.append(alert);
+    visual.append(alert);
+    challenge.append(visual);
+
+    challenge.css({position: 'absolute', top: '-1000px', left: '-1000px'})
 
     page.append(challenge);
   }
