@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="wj9QW3hcn8lWpXmq12en606ArrXR6G22f4sghaN/usVpuwB5h6tPj24UiV0vBCCr3JIoCibIS/MWTyE25A3kMQ==" />
+<meta name="csrf-token" content="o8r3QicPkPHwTWFT/gxqIWZDXP0GxqclJPOq9SxsaegITqdg2PhAt8j8kaQGb+1h9FHaQvHmgWBNN6tGax43HA==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-b72db721266dc92c4a7d22f2d48a8b387de4264d5007e35b45934eedd25c1b9c-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -18,6 +18,7 @@
 <script src="../../../assets/lesson.self-9ae12ddb887cfd3654ed80dbce5b80b03d03656193fb663542161e096d1c6260.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basicCityscapeStage1.self-de55ec1f12b1b1d12ad7333cd7de687c080d915a0fbc75f82d5b48e5d355d372.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basicCityscapeStage2.self-b50cee2b359d5568d7fc22e019db36716b105ff51004818b3112ffb9f9fc3f64.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/clearRect.self-9e82ca8aa93793f04e73caa7f25eaf5e8c815cbe718ac5f4747de25ef19efce9.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/coordinates.self-e8ed0e1bacf18d0af11e6602fdfbc3026535cadd0a5464c80884b3e7b545cc69.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/fillRect.self-9e0e0969e446a2f464878a94809b7b44591a6ae159472a8744b33622cbec1b46.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/fillStyle.self-ee4e83b95686dac1cd630c036eb0353cfaeaa2b9701b0c7a6565ba0dc6091ec7.js?body=1" data-turbolinks-track="reload"></script>
@@ -57,6 +58,9 @@ Reference
 </li>
 <li class='active'>
 <a href="../../reference/clear_rect/index.html">clearRect()</a>
+<span class='tag tag-default'>
+<small class='clear_rect'>0 / 2</small>
+</span>
 </li>
 <li>
 <a href="../../reference/line_to/index.html">lineTo()</a>
@@ -154,6 +158,9 @@ Concepts
 </li>
 <li class='small active'>
 <a href="index.html">clearRect()</a>
+<span class='tag tag-default'>
+<small class='clear_rect'>0 / 2</small>
+</span>
 </li>
 <li class='small '>
 <a href="../fill_rect/index.html">fillRect()</a>
@@ -218,6 +225,200 @@ Concepts
 
 </div>
 <div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
+<div class='lesson' id='clear_rect'>
+<h1>CanvasRenderingContext2D.clearRect()</h1>
+<p class='challenges'>
+<strong>Challenges:</strong>
+<span class='no_challenges_completed'>
+There
+are
+2 challenges
+for you to do.
+<a href="#challenge1">Jump to challenges &gt;</a>
+</span>
+<span class='challenges_completed'>
+You've completed
+<span class='completed_challenges_count'></span>
+out of
+2 challenges.
+<a href="#challenge1">Jump to challenges &gt;</a>
+</span>
+</p>
+
+<div class='official row py-3'>
+<div class='col-xs-6'>
+<h2>The Official Description</h2>
+<p class='py-2'>
+The CanvasRenderingContext2D.clearRect() method of the Canvas 2D API sets all
+pixels in the rectangle defined by starting point (x, y) and size (width, height)
+to transparent black, erasing any previously drawn content
+</p>
+<div class='source text-xs-right'>
+<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect">Mozilla Developer&#39;s Network</a>
+</div>
+</div>
+<div class='col-xs-6'>
+<img class="img-fluid" src="../../../assets/lessons/clear_rect/visual1-42d69aa660638eef4fbe08b7b64a1de65982e4a0f76e14502dc53f5d2e313230.png" alt="Visual1" />
+</div>
+</div>
+<div class='simple row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2>
+Why Would I Use This?
+</h2>
+<p class='pt-2'>
+clearRect() allows you to clear areas of the canvas.
+</p>
+<p>
+We use clearRect() in these lessons and challenges to reset the canvas
+each time you run your code.
+</p>
+<p>
+clearRect() is also used when running animations to clear the canvas
+between frames of animation. This example demonstrates how clearRect()
+is used in a simple animation.
+</p>
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6'>
+<h5>
+Editor
+<small>(write code below)</small>
+</h5>
+<div class='editor' id='clear_rect_interactive1_editor'>var canvas = document.getElementById('clear_rect_interactive1');&#x000A;var context = canvas.getContext("2d");&#x000A;if (window.animation) clearTimeout(window.animation);&#x000A;context.save();&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;var boxX = 0;&#x000A;var boxY = 0;&#x000A;var boxCommandQueue = [];&#x000A;&#x000A;function setLoopInstructions() {&#x000A;  boxX = 50;&#x000A;  boxY = 50;&#x000A;  moveBox(1, 0, 100);&#x000A;  moveBox(1, 1, 200);&#x000A;  moveBox(-1, 0, 100);&#x000A;  moveBox(-1, -1, 100);&#x000A;  moveBox(0, 1, 100);&#x000A;  moveBox(1, -1, 200);&#x000A;  moveBox(-1, 0, 300);&#x000A;}&#x000A;&#x000A;function runAnimation() {&#x000A;  if (boxCommandQueue.length > 0) {&#x000A;    context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;    var command = boxCommandQueue.shift();&#x000A;    drawBox(command[0], command[1]);&#x000A;  } else {&#x000A;    setLoopInstructions();&#x000A;  }&#x000A;  window.animation = setTimeout(runAnimation, 10);&#x000A;}&#x000A;&#x000A;function moveBox(xShift, yShift, steps) {&#x000A;  for (var i=0; i < steps; ++i) {&#x000A;    boxCommandQueue.push([xShift, yShift]);&#x000A;  }&#x000A;}&#x000A;&#x000A;function drawBox(xShift, yShift) {&#x000A;  boxX += xShift;&#x000A;  boxY += yShift;&#x000A;  context.fillRect(boxX, boxY, 25, 25);&#x000A;}&#x000A;&#x000A;drawBox(0, 0);&#x000A;runAnimation();&#x000A;&#x000A;context.restore();&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='clear_rect_interactive1'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge1'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title'>Challenge 1</h2>
+<p class='py-2'>
+Use clear_rect() to clear a space that is 25 wide and 100 tall starting at x = 100, y=100;
+</p>
+</div>
+</div>
+<div class='row'>
+<div class='code-editor col-xs-6'>
+<h5>
+Editor
+<small>(write code below)</small>
+</h5>
+<div class='editor' id='clear_rect_challenge1_editor'>var canvas = document.getElementById('clear_rect_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;context.save();&#x000A;&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;// YOUR CODE TO CLEAR A RECTANGLE HERE.&#x000A;&#x000A;context.restore();&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='clear_rect_challenge1'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge2'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title'>Challenge 2</h2>
+<p class='py-2'>
+Use clear_rect() to clear the whole canvas. The canvas width can be determined by
+calling "canvas.width" and the height by calling "canvas.height".
+</p>
+</div>
+</div>
+<div class='row'>
+<div class='code-editor col-xs-6'>
+<h5>
+Editor
+<small>(write code below)</small>
+</h5>
+<div class='editor' id='clear_rect_challenge2_editor'>var canvas = document.getElementById('clear_rect_challenge2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;context.save();&#x000A;&#x000A;context.fillStyle = 'green';&#x000A;context.fillRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;// YOUR CODE TO CLEAR THE CANVAS HERE.&#x000A;&#x000A;context.restore();&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='clear_rect_challenge2'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 </div>
 </div>
