@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
       coordinates: {count: 2, method: 'Coordinates'},
       functions: {count: 1, method: 'Functions'},
 
-      basic_cityscape_stage1: {count: 4, method: 'Stage 1'}
+      basic_cityscape_stage1: {count: 4, method: 'Stage 1'},
+      basic_cityscape_stage2: {count: 4, method: 'Stage 2'}
     }
 
     @reference = {
@@ -48,7 +49,8 @@ class ApplicationController < ActionController::Base
         name: 'Basic Cityscape',
         slug: 'basic_cityscape',
         stages: [
-          :basic_cityscape_stage1
+          :basic_cityscape_stage1,
+          :basic_cityscape_stage2
         ],
         reference: [
           :fill_rect,
