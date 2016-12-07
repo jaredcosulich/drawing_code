@@ -4,7 +4,7 @@
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <title>Drawing Code</title>
     <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="ZX3TVeAgW33aatluzp6qNAJppOXuviQA/Xs9fi+7GB/O+YN3H9eLO+LbKZk2/S10kHsiWhmeAkWUvzzNaMlG6w==" />
+    <meta name="csrf-token" content="JAwROgdz9iQOQx4LNdPm4Lr5/8MuvG409AjaZZmBGf6PiEEY+IQmYjby7vzNsGGgKOt5fNmcSHGdzNvW3vNHCg==" />
     <link rel="stylesheet" media="all" href="../../../assets/application.self-b31140683e9424d39e078d8a09bc53cb3bf500eccb20baba0d04f76d9cba9b14-body=1.css" data-turbolinks-track="reload" />
     <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
     <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -86,10 +86,10 @@
                 <li class='section small mt-1'>
                   <strong>Math</strong>
                 </li>
-                <li class='active'>
+                <li>
                   <a href="../../reference/floor/index.html">floor() / ceil()</a>
                 </li>
-                <li>
+                <li class='active'>
                   <a href="../../reference/random/index.html">random()</a>
                 </li>
               </ul>
@@ -165,11 +165,11 @@
                     <small class='save'>0 / 1</small>
                   </span>
                 </li>
-                <li class='small active'>
-                  <a href="index.html">floor() / ceil()</a>
-                </li>
                 <li class='small '>
-                  <a href="../random/index.html">random()</a>
+                  <a href="../floor/index.html">floor() / ceil()</a>
+                </li>
+                <li class='small active'>
+                  <a href="index.html">random()</a>
                 </li>
                 <li class='section small mt-1'>
                   <strong>Relevant Concepts</strong>
@@ -203,8 +203,8 @@
           </ul>
         </div>
         <div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
-          <div class='lesson' id='floor'>
-            <h1>Math.floor() & Math.ceil()</h1>
+          <div class='lesson' id='random'>
+            <h1>Math.random()</h1>
             <p class='challenges'>
               <strong>Challenges:</strong>
               <span class='no_challenges_completed'>
@@ -223,25 +223,77 @@
               </span>
             </p>
             <div class='official row py-3'>
-              <div class='col-xs-12'>
+              <div class='col-xs-6'>
                 <h2>The Official Description</h2>
-              </div>
-              <div class='col-xs-5'>
                 <p class='pt-2'>
-                  The Math.floor() function returns the largest integer less than or equal to a given number.
+                  The Math.random() function returns a floating-point, pseudo-random number
+                  in the range [0, 1) that is, from 0 (inclusive) up to but not including 1
+                  (exclusive), which you can then scale to your desired range. The implementation
+                  selects the initial seed to the random number generation algorithm; it cannot
+                  be chosen or reset by the user.
                 </p>
                 <div class='source text-xs-right'>
-                  <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor">Math.floor() - Mozilla Developer&#39;s Network</a>
-                </div>
-                <p class='pt-2'>
-                  The Math.ceil() function returns the smallest integer greater than or equal to a given number.
-                </p>
-                <div class='source text-xs-right'>
-                  <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil">Math.ceil() - Mozilla Developer&#39;s Network</a>
+                  <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random">Mozilla Developer&#39;s Network</a>
                 </div>
               </div>
-              <div class='offset-xs-1 col-xs-6'>
-                <img class="img-fluid bordered" src="../../../assets/lessons/floor/visual1-9edc722b188f28c702178c13d60cbec037d2e4159d2b7b5f7782a0be2dd5f653.png" alt="Visual1" />
+              <div class='col-xs-6'>
+                <img class="img-fluid bordered" src="../../../assets/lessons/random/visual1-9533b16078f1225ca326a27007b1e6308d10efd94d67e48488eb63c37c4048b6.png" alt="Visual1" />
+              </div>
+            </div>
+            <div class='simple row py-3'>
+              <div class='col-xs-12'>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <h2>
+                      Using Math.random()
+                    </h2>
+                    <p class='pt-2'>
+                      You will often use Math.random() along with a scalar and then round the number to
+                      get a random integer.
+                    </p>
+                    <p>
+                      The following example creates between 1 and 10 black squares randomly distributed
+                      around the canvas. Pressing "Run" multiple times will demonstrate the randomness.
+                    </p>
+                  </div>
+                  <div class='col-xs-12'>
+                    <div class='interactive row py-1'>
+                      <div class='code-editor col-xs-6'>
+                        <h5>
+                          Editor
+                          <small>(write code below)</small>
+                        </h5>
+                        <div class='editor' id='random_interactive1_editor'>var canvas = document.getElementById('random_interactive1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 600, 360);&#x000A;&#x000A;var squareCount = Math.ceil(Math.random() * 10)&#x000A;for (var i = 0; i < squareCount; ++i) {&#x000A;  var x = Math.floor(Math.random() * 350);&#x000A;  var y = Math.floor(Math.random() * 250);&#x000A;  context.fillRect(x,y,50,50);&#x000A;}&#x000A;</div>
+                        <div class='log bg-faded text-muted small'>
+                          <button aria-label='Close' class='close' type='button'>
+                            <span aria-hidden='true'>×</span>
+                          </button>
+                          <div class='title'>
+                            <strong>Message Log</strong>
+                          </div>
+                          <div class='messages'></div>
+                        </div>
+                        <div class='buttons py-1'>
+                          <div class='run btn btn-success'>
+                            Run
+                          </div>
+                          <div class='reset btn btn-danger float-xs-right'>
+                            Reset
+                          </div>
+                        </div>
+                      </div>
+                      <div class='visual col-xs-6'>
+                        <h5>
+                          Canvas
+                          <small>(your drawing will display here)</small>
+                        </h5>
+                        <div class='canvas'>
+                          <canvas id='random_interactive1'></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
