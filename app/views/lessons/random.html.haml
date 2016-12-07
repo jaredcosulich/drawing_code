@@ -38,7 +38,7 @@
               :preserve
                 var canvas = document.getElementById('random_interactive1');
                 var context = canvas.getContext("2d");
-                context.clearRect(0, 0, 600, 360);
+                context.clearRect(0, 0, canvas.width, canvas.height);
 
                 var squareCount = Math.ceil(Math.random() * 10)
                 for (var i = 0; i < squareCount; ++i) {
