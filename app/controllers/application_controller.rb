@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
       save: {count: 1, method: 'save()'},
 
       floor: {count: 0, method: 'floor() / ceil()'},
+      random: {count: 0, method: 'random()'},
 
       variables: {count: 2, method: 'Variables'},
       for_loops: {count: 1, method: 'For Loops'},
@@ -29,7 +30,8 @@ class ApplicationController < ActionController::Base
         :save
       ],
       Math: [
-        :floor
+        :floor,
+        :random
       ]
     }
 
@@ -53,7 +55,8 @@ class ApplicationController < ActionController::Base
           :fill_style,
           :translate,
           :save,
-          :floor
+          :floor,
+          :random
         ],
         concepts: [
           :variables,

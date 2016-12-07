@@ -1,0 +1,55 @@
+#random.lesson
+  %h1 Math.random()
+
+  = render 'lessons/challenge_count'
+
+  .official.row.py-3
+    .col-xs-6
+      %h2 The Official Description
+      %p.pt-2
+        The Math.random() function returns a floating-point, pseudo-random number
+        in the range [0, 1) that is, from 0 (inclusive) up to but not including 1
+        (exclusive), which you can then scale to your desired range. The implementation
+        selects the initial seed to the random number generation algorithm; it cannot
+        be chosen or reset by the user.
+      .source.text-xs-right
+        = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random', target: '_blank')
+
+    .col-xs-6
+      = image_tag('lessons/random/visual1.png', class: 'img-fluid bordered')
+
+
+  .simple.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Using Math.random()
+          %p.pt-2
+            You will often use Math.random() along with a scalar and then round the number to
+            get a random integer.
+          %p
+            The following example creates between 1 and 10 black squares randomly distributed
+            around the canvas. Pressing "Run" multiple times will demonstrate the randomness.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'random_interactive1_editor'} do
+              :preserve
+                var canvas = document.getElementById('random_interactive1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, 600, 360);
+
+                var squareCount = Math.ceil(Math.random() * 10)
+                for (var i = 0; i < squareCount; ++i) {
+                  var x = Math.floor(Math.random() * 350);
+                  var y = Math.floor(Math.random() * 250);
+                  context.fillRect(x,y,50,50);
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#random_interactive1
