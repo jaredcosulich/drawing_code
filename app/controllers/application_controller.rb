@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def lesson_map
     @lessons = {
-      clear_rect: {count: 0, method: 'clearRect()'},
+      clear_rect: {count: 2, method: 'clearRect()'},
       line_to: {count: 3, method: 'lineTo()'},
       fill_rect: {count: 3, method: 'fillRect()'},
       fill_style: {count: 2, method: 'fillStyle'},

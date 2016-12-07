@@ -1,0 +1,166 @@
+#clear_rect.lesson
+  %h1 CanvasRenderingContext2D.clearRect()
+
+  = render 'lessons/challenge_count'
+
+  .official.row.py-3
+    .col-xs-6
+      %h2 The Official Description
+      %p.py-2
+        The CanvasRenderingContext2D.clearRect() method of the Canvas 2D API sets all
+        pixels in the rectangle defined by starting point (x, y) and size (width, height)
+        to transparent black, erasing any previously drawn content
+      .source.text-xs-right
+        = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect', target: '_blank')
+
+    .col-xs-6
+      = image_tag('lessons/clear_rect/visual1.png', class: 'img-fluid')
+
+
+  .simple.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Why Would I Use This?
+          %p.pt-2
+            clearRect() allows you to clear areas of the canvas.
+          %p
+            We use clearRect() in these lessons and challenges to reset the canvas
+            each time you run your code.
+          %p
+            clearRect() is also used when running animations to clear the canvas
+            between frames of animation. This example demonstrates how clearRect()
+            is used in a simple animation.
+
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'clear_rect_interactive1_editor'} do
+              :preserve
+                var canvas = document.getElementById('clear_rect_interactive1');
+                var context = canvas.getContext("2d");
+                if (window.animation) clearTimeout(window.animation);
+                context.save();
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                var boxX = 0;
+                var boxY = 0;
+                var boxCommandQueue = [];
+
+                function setLoopInstructions() {
+                  boxX = 50;
+                  boxY = 50;
+                  moveBox(1, 0, 100);
+                  moveBox(1, 1, 200);
+                  moveBox(-1, 0, 100);
+                  moveBox(-1, -1, 100);
+                  moveBox(0, 1, 100);
+                  moveBox(1, -1, 200);
+                  moveBox(-1, 0, 300);
+                }
+
+                function runAnimation() {
+                  if (boxCommandQueue.length > 0) {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    var command = boxCommandQueue.shift();
+                    drawBox(command[0], command[1]);
+                  } else {
+                    setLoopInstructions();
+                  }
+                  window.animation = setTimeout(runAnimation, 10);
+                }
+
+                function moveBox(xShift, yShift, steps) {
+                  for (var i=0; i < steps; ++i) {
+                    boxCommandQueue.push([xShift, yShift]);
+                  }
+                }
+
+                function drawBox(xShift, yShift) {
+                  boxX += xShift;
+                  boxY += yShift;
+                  context.fillRect(boxX, boxY, 25, 25);
+                }
+
+                drawBox(0, 0);
+                runAnimation();
+
+                context.restore();
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#clear_rect_interactive1
+
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title Challenge 1
+          %p.py-2
+            Use clear_rect() to clear a space that is 25 wide and 100 tall starting at x = 100, y=100;
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'clear_rect_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('clear_rect_challenge1');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.save();
+
+            context.fillStyle = 'red';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            // YOUR CODE TO CLEAR A RECTANGLE HERE.
+
+            context.restore();
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#clear_rect_challenge1
+          .alert
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title Challenge 2
+          %p.py-2
+            Use clear_rect() to clear the whole canvas. The canvas width can be determined by
+            calling "canvas.width" and the height by calling "canvas.height".
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'clear_rect_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('clear_rect_challenge2');
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.save();
+
+            context.fillStyle = 'green';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            // YOUR CODE TO CLEAR THE CANVAS HERE.
+
+            context.restore();
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#clear_rect_challenge2
+          .alert
