@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   def lesson_map
     @lessons = {
+      clear_rect: {count: 0, method: 'clearRect()'},
       line_to: {count: 3, method: 'lineTo()'},
       fill_rect: {count: 3, method: 'fillRect()'},
       fill_style: {count: 2, method: 'fillStyle'},
@@ -24,6 +25,7 @@ class ApplicationController < ActionController::Base
 
     @reference = {
       Context2D: [
+        :clear_rect,
         :line_to,
         :fill_rect,
         :fill_style,
@@ -53,6 +55,7 @@ class ApplicationController < ActionController::Base
           :basic_cityscape_stage2
         ],
         reference: [
+          :clear_rect,
           :fill_rect,
           :fill_style,
           :translate,

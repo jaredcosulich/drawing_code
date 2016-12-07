@@ -1,0 +1,2 @@
+%strong Relevant Lessons:
+= relevant.map { |lesson_id| link_to_lesson(@lessons[lesson_id][:method], lesson_id) }.join(', ').html_safe

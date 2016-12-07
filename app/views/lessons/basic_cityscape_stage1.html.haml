@@ -29,6 +29,8 @@
             In this example, we draw a building that is blue (the color #1E90FF),
             160 pixels wide, 240 pixels tall, and positioned so its top left corner
             is at (100, 50).
+          %p= render 'lessons/relevant', relevant: [:clear_rect, :fill_style, :fill_rect]
+
 
         .col-xs-12
           .interactive.row.py-1
@@ -63,6 +65,7 @@
             We are positioning the building's bottom left corner so the building
             is sitting on the ground. You will have to do some math to find the coordinates
             of the building's top left corner.
+          %p= render 'lessons/relevant', relevant: [:clear_rect, :fill_rect]
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge1_editor'} do
@@ -100,6 +103,7 @@
             of the building (assigning it to the variable <i>h</i>) and the y-coordinate
             of the top of the building (assigning it to the variable <i>y</i>). These
             variables are then used to draw the building.
+          %p= render 'lessons/relevant', relevant: [:clear_rect, :fill_style, :fill_rect, :variables]
 
         .col-xs-12
           .interactive.row.py-1
@@ -153,8 +157,9 @@
             To see the office units in your building, add the line "drawOffices(x, y, w, h);"
             to the end of your program, where (x, y) are the coordinates of the top left
             corner of your building, and w and h are the width and height of your building.
+          %p= render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :variables]
 
-      .row
+      .row.pt-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge2_editor'} do
           :preserve
             function drawOffices(x, y, w, h) {
@@ -219,6 +224,7 @@
             the 30 is assigned to the variable <i>x</i> and the 100 is assigned to the
             variable <i>y</i> inside of the function. Now we can easily draw as many French
             flags as we want!
+          %p= render 'lessons/relevant', relevant: [:fill_rect, :fill_style, :variables, :functions]
 
         .col-xs-12
           .interactive.row.py-1
@@ -273,8 +279,9 @@
           %p
             Just like with Challenge 2, both buildings should be gray (#999999) and each office
             should be 16 x 16 width 4 pixels of padding around the whole building.
+          %p= render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :variables, :functions]
 
-      .row
+      .row.pt-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge3_editor'} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage1_challenge3');
@@ -338,6 +345,7 @@
             (As an exercise, try to predict what would happen if you took out the context.save()
             and context.restore() from the function. You'll have to reset the example and then
             refresh the entire page to get everything back to normal.)
+          %p= render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :functions, :save, :translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -393,8 +401,9 @@
           %p
             Just like with Challenges 2 & 3, both buildings should be gray (#999999) and each office
             should be 16 x 16 width 4 pixels of padding around the whole building.
+          %p= render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :functions, :save, :translate]
 
-      .row.py-1
+      .row.py-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge4_editor'} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage1_challenge4');
