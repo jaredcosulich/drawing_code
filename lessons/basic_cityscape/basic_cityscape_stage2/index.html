@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="iy+wRfe2gvZqgIQZS78F7PoEkN1Db/YelEyrTpzeGh8gq+BnCEFSsFIxdO6z3IKsaBYWYrRP0Fv9iKr926xE6w==" />
+<meta name="csrf-token" content="KmIHBwrD0PEB3X9rVOoc3GEt1wz2tbk7gd6P8oYRrqWB5lcl9TQAtzlsj5ysiZuc8z9RswGVn37oGo5BwWPwUQ==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-b72db721266dc92c4a7d22f2d48a8b387de4264d5007e35b45934eedd25c1b9c-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -137,14 +137,14 @@ Concepts
 <li class='section'>
 <a class='section_link' data-section='basic_cityscape' href='#'>Basic Cityscape</a>
 <ul class='collapse in nav nav-sidebar' id='basic_cityscape'>
-<li class='active'>
-<a href="index.html">Stage 1</a>
+<li>
+<a href="../basic_cityscape_stage1/index.html">Stage 1</a>
 <span class='tag tag-default'>
 <small class='basic_cityscape_stage1'>0 / 4</small>
 </span>
 </li>
-<li>
-<a href="../basic_cityscape_stage2/index.html">Stage 2</a>
+<li class='active'>
+<a href="index.html">Stage 2</a>
 <span class='tag tag-default'>
 <small class='basic_cityscape_stage2'>0 / 4</small>
 </span>
@@ -269,9 +269,6 @@ In this example, we draw a building that is blue (the color #1E90FF),
 160 pixels wide, 240 pixels tall, and positioned so its top left corner
 is at (100, 50).
 </p>
-<p><strong>Relevant Lessons:</strong>
-<a href="../clear_rect/index.html">clearRect()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
-</p>
 </div>
 <div class='col-xs-12'>
 <div class='interactive row py-1'>
@@ -280,7 +277,7 @@ is at (100, 50).
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage1_example1_editor'>var canvas = document.getElementById('basic_cityscape_stage1_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.fillStyle = '#1E90FF';&#x000A;context.fillRect(100, 50, 160, 240);&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage2_example1_editor'>var canvas = document.getElementById('basic_cityscape_stage2_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.fillStyle = '#1E90FF';&#x000A;context.fillRect(100, 50, 160, 240);&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -305,7 +302,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='basic_cityscape_stage1_example1'></canvas>
+<canvas id='basic_cityscape_stage2_example1'></canvas>
 </div>
 </div>
 </div>
@@ -330,9 +327,6 @@ We are positioning the building's bottom left corner so the building
 is sitting on the ground. You will have to do some math to find the coordinates
 of the building's top left corner.
 </p>
-<p><strong>Relevant Lessons:</strong>
-<a href="../clear_rect/index.html">clearRect()</a>, <a href="../fill_rect/index.html">fillRect()</a>
-</p>
 </div>
 </div>
 <div class='row'>
@@ -341,7 +335,7 @@ of the building's top left corner.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage1_challenge1_editor'>var canvas = document.getElementById('basic_cityscape_stage1_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;// YOUR CODE HERE&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage2_challenge1_editor'>var canvas = document.getElementById('basic_cityscape_stage2_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;// YOUR CODE HERE&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -367,7 +361,7 @@ Canvas
 </h5>
 <div class='canvas'>
 <div class='background hidden-xl-down'><img src="../../../assets/lessons/basic_cityscape_stage1/challenge1-ef3539c5f801e3e2f979cc11a467ae00e596bf05698440e5b49bdcb0846dda90.png" alt="Challenge1" /></div>
-<canvas id='basic_cityscape_stage1_challenge1'></canvas>
+<canvas id='basic_cityscape_stage2_challenge1'></canvas>
 </div>
 <div class='alert'></div>
 </div>
@@ -395,9 +389,6 @@ of the building (assigning it to the variable <i>h</i>) and the y-coordinate
 of the top of the building (assigning it to the variable <i>y</i>). These
 variables are then used to draw the building.
 </p>
-<p><strong>Relevant Lessons:</strong>
-<a href="../clear_rect/index.html">clearRect()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../variables/index.html">Variables</a>
-</p>
 </div>
 <div class='col-xs-12'>
 <div class='interactive row py-1'>
@@ -406,7 +397,7 @@ variables are then used to draw the building.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage1_example2_editor'>var canvas = document.getElementById('basic_cityscape_stage1_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;var w = 80;&#x000A;var h = 2 * w;&#x000A;var y = 280 - h;&#x000A;&#x000A;context.fillStyle = '#228B22';&#x000A;context.fillRect(60, y, w, h);&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage2_example2_editor'>var canvas = document.getElementById('basic_cityscape_stage2_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;var w = 80;&#x000A;var h = 2 * w;&#x000A;var y = 280 - h;&#x000A;&#x000A;context.fillStyle = '#228B22';&#x000A;context.fillRect(60, y, w, h);&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -431,7 +422,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='basic_cityscape_stage1_example2'></canvas>
+<canvas id='basic_cityscape_stage2_example2'></canvas>
 </div>
 </div>
 </div>
@@ -477,18 +468,15 @@ To see the office units in your building, add the line "drawOffices(x, y, w, h);
 to the end of your program, where (x, y) are the coordinates of the top left
 corner of your building, and w and h are the width and height of your building.
 </p>
-<p><strong>Relevant Lessons:</strong>
-<a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../variables/index.html">Variables</a>
-</p>
 </div>
 </div>
-<div class='row pt-2'>
+<div class='row'>
 <div class='code-editor col-xs-6'>
 <h5>
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage1_challenge2_editor'>function drawOffices(x, y, w, h) {&#x000A;  var u = Math.floor((w - 4) / 16);&#x000A;  var f = Math.floor((h - 4) / 16);&#x000A;&#x000A;  context.save();&#x000A;  context.translate(x + 4, y + 4);&#x000A;  context.strokeWidth = 1;&#x000A;  context.strokeStyle = '#000000';&#x000A;&#x000A;  for (var i = 0; i < f; i++) {&#x000A;    for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);&#x000A;  }&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;var canvas = document.getElementById('basic_cityscape_stage1_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;var units = 8;&#x000A;var floors = 10;&#x000A;&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;// YOUR CODE TO DRAW GRAY (#999999) RECTANGLE HERE&#x000A;&#x000A;// drawOffices(x, y, w, h);&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage2_challenge2_editor'>function drawOffices(x, y, w, h) {&#x000A;  var u = Math.floor((w - 4) / 16);&#x000A;  var f = Math.floor((h - 4) / 16);&#x000A;&#x000A;  context.save();&#x000A;  context.translate(x + 4, y + 4);&#x000A;  context.strokeWidth = 1;&#x000A;  context.strokeStyle = '#000000';&#x000A;&#x000A;  for (var i = 0; i < f; i++) {&#x000A;    for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);&#x000A;  }&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;var canvas = document.getElementById('basic_cityscape_stage2_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;var units = 8;&#x000A;var floors = 10;&#x000A;&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;// YOUR CODE TO DRAW GRAY (#999999) RECTANGLE HERE&#x000A;&#x000A;// drawOffices(x, y, w, h);&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -514,7 +502,7 @@ Canvas
 </h5>
 <div class='canvas'>
 <div class='background hidden-xl-down'><img src="../../../assets/lessons/basic_cityscape_stage1/challenge2-f800bf4a3d43cdbd5f6ae014018eb10b45de17de0a1128283be85e4470a0af3e.png" alt="Challenge2" /></div>
-<canvas id='basic_cityscape_stage1_challenge2'></canvas>
+<canvas id='basic_cityscape_stage2_challenge2'></canvas>
 </div>
 <div class='alert'></div>
 </div>
@@ -551,9 +539,6 @@ the 30 is assigned to the variable <i>x</i> and the 100 is assigned to the
 variable <i>y</i> inside of the function. Now we can easily draw as many French
 flags as we want!
 </p>
-<p><strong>Relevant Lessons:</strong>
-<a href="../fill_rect/index.html">fillRect()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../variables/index.html">Variables</a>, <a href="../functions/index.html">Functions</a>
-</p>
 </div>
 <div class='col-xs-12'>
 <div class='interactive row py-1'>
@@ -562,7 +547,7 @@ flags as we want!
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage1_example3_editor'>var canvas = document.getElementById('basic_cityscape_stage1_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFrenchFlag(x, y) {&#x000A;  context.fillStyle = '#0055A4';&#x000A;  context.fillRect(x, y, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(x + 20, y, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#EF4135';&#x000A;  context.fillRect(x + 40, y, 20, 40);&#x000A;}&#x000A;&#x000A;drawFrenchFlag(30, 100);&#x000A;drawFrenchFlag(150, 50);&#x000A;drawFrenchFlag(300, 180);&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage2_example3_editor'>var canvas = document.getElementById('basic_cityscape_stage2_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFrenchFlag(x, y) {&#x000A;  context.fillStyle = '#0055A4';&#x000A;  context.fillRect(x, y, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(x + 20, y, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#EF4135';&#x000A;  context.fillRect(x + 40, y, 20, 40);&#x000A;}&#x000A;&#x000A;drawFrenchFlag(30, 100);&#x000A;drawFrenchFlag(150, 50);&#x000A;drawFrenchFlag(300, 180);&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -587,7 +572,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='basic_cityscape_stage1_example3'></canvas>
+<canvas id='basic_cityscape_stage2_example3'></canvas>
 </div>
 </div>
 </div>
@@ -621,18 +606,15 @@ floor, and it will be sitting on the ground at (200, 300).
 Just like with Challenge 2, both buildings should be gray (#999999) and each office
 should be 16 x 16 width 4 pixels of padding around the whole building.
 </p>
-<p><strong>Relevant Lessons:</strong>
-<a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../variables/index.html">Variables</a>, <a href="../functions/index.html">Functions</a>
-</p>
 </div>
 </div>
-<div class='row pt-2'>
+<div class='row'>
 <div class='code-editor col-xs-6'>
 <h5>
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage1_challenge3_editor'>var canvas = document.getElementById('basic_cityscape_stage1_challenge3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;// YOUR CODE FOR DRAWING THE TWO BUILDINGS HERE&#x000A;&#x000A;context.stroke();&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage2_challenge3_editor'>var canvas = document.getElementById('basic_cityscape_stage2_challenge3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;// YOUR CODE FOR DRAWING THE TWO BUILDINGS HERE&#x000A;&#x000A;context.stroke();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -658,7 +640,7 @@ Canvas
 </h5>
 <div class='canvas'>
 <div class='background hidden-xl-down'><img src="../../../assets/lessons/basic_cityscape_stage1/challenge3-7c6a88f4b6057bae6f6e7ad844bbceed6861731d972b5e75421462aada19cbbb.png" alt="Challenge3" /></div>
-<canvas id='basic_cityscape_stage1_challenge3'></canvas>
+<canvas id='basic_cityscape_stage2_challenge3'></canvas>
 </div>
 <div class='alert'></div>
 </div>
@@ -709,9 +691,6 @@ the origin of the context and not changing it back is much ruder!
 and context.restore() from the function. You'll have to reset the example and then
 refresh the entire page to get everything back to normal.)
 </p>
-<p><strong>Relevant Lessons:</strong>
-<a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>
-</p>
 </div>
 <div class='col-xs-12'>
 <div class='interactive row py-1'>
@@ -720,7 +699,7 @@ refresh the entire page to get everything back to normal.)
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage1_example4_editor'>var canvas = document.getElementById('basic_cityscape_stage1_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFrenchFlag(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;&#x000A;  context.fillStyle = '#0055A4';&#x000A;  context.fillRect(0, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(20, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#EF4135';&#x000A;  context.fillRect(40, 0, 20, 40);&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;drawFrenchFlag(30, 100);&#x000A;drawFrenchFlag(150, 50);&#x000A;drawFrenchFlag(300, 180);&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage2_example4_editor'>var canvas = document.getElementById('basic_cityscape_stage2_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFrenchFlag(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;&#x000A;  context.fillStyle = '#0055A4';&#x000A;  context.fillRect(0, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(20, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#EF4135';&#x000A;  context.fillRect(40, 0, 20, 40);&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;drawFrenchFlag(30, 100);&#x000A;drawFrenchFlag(150, 50);&#x000A;drawFrenchFlag(300, 180);&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -745,7 +724,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='basic_cityscape_stage1_example4'></canvas>
+<canvas id='basic_cityscape_stage2_example4'></canvas>
 </div>
 </div>
 </div>
@@ -775,18 +754,15 @@ another building with 10 office units per floor and 15 floors at (280, 300).
 Just like with Challenges 2 & 3, both buildings should be gray (#999999) and each office
 should be 16 x 16 width 4 pixels of padding around the whole building.
 </p>
-<p><strong>Relevant Lessons:</strong>
-<a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>
-</p>
 </div>
 </div>
-<div class='row py-2'>
+<div class='row py-1'>
 <div class='code-editor col-xs-6'>
 <h5>
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage1_challenge4_editor'>var canvas = document.getElementById('basic_cityscape_stage1_challenge4');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;// YOUR CODE FOR DRAWING THE TWO BUILDINGS HERE&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage2_challenge4_editor'>var canvas = document.getElementById('basic_cityscape_stage2_challenge4');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;// YOUR CODE FOR DRAWING THE TWO BUILDINGS HERE&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -811,7 +787,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<div class='background hidden-xl-down'><img src="../../../assets/lessons/basic_cityscape_stage1/challenge4-053f341539256555f831bedd4d767aaf6bf005defbe1a713fa74faddfebe3bfe.png" alt="Challenge4" /></div>
+<div class='background hidden-xl-down'><img src="../../../images/lessons/basic_cityscape_stage2/challenge4.png" alt="Challenge4" /></div>
 <canvas id='basic_cityscape_stage1_challenge4'></canvas>
 </div>
 <div class='alert'></div>
@@ -821,15 +797,6 @@ Canvas
 </div>
 </div>
 
-<div class='py-3'>
-<h2>
-Ready for the next lesson?
-</h2>
-<p class='py-1'>
-Next up, the
-<a href="../basic_cityscape_stage2/index.html">&quot;Stage 2&quot; lesson &gt;</a>
-</p>
-</div>
 </div>
 </div>
 </div>
