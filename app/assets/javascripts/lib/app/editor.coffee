@@ -7,6 +7,8 @@ class App.Editor
 
     ace.config.set('workerPath', '/ace/')
     @aceEditor = ace.edit(@editorElement)
+    @editor.data(ace: @aceEditor)
+
     @aceEditor.$blockScrolling = Infinity
     # @aceEditor.config.set("basePath", "/ace");
     @aceEditor.session.setOptions
