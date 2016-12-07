@@ -1,0 +1,21 @@
+#floor.lesson
+  %h1 Math.floor() & Math.ceil()
+
+  = render 'lessons/challenge_count'
+
+  .official.row.py-3
+    .col-xs-12
+      %h2 The Official Description
+    .col-xs-5
+      %p.pt-2
+        The Math.floor() function returns the largest integer less than or equal to a given number.
+      .source.text-xs-right
+        = link_to('Math.floor() - Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor', target: '_blank')
+
+      %p.pt-2
+        The Math.ceil() function returns the smallest integer greater than or equal to a given number.
+      .source.text-xs-right
+        = link_to('Math.ceil() - Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil', target: '_blank')
+
+    .offset-xs-1.col-xs-6
+      = image_tag('lessons/floor/visual1.png', class: 'img-fluid bordered')

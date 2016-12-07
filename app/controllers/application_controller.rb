@@ -10,21 +10,29 @@ class ApplicationController < ActionController::Base
       translate: {count: 1, method: 'translate()'},
       save: {count: 1, method: 'save()'},
 
+      floor: {count: 0, method: 'floor() / ceil()'},
+
       variables: {count: 2, method: 'Variables'},
       for_loops: {count: 1, method: 'For Loops'},
       coordinates: {count: 2, method: 'Coordinates'},
       functions: {count: 1, method: 'Functions'},
 
-      basic_cityscape_stage1: {count: 4, method: 'Stage 1', stage: true}
+      basic_cityscape_stage1: {count: 4, method: 'Stage 1'}
     }
 
-    @reference = [
-      :line_to,
-      :fill_rect,
-      :fill_style,
-      :translate,
-      :save
-    ]
+    @reference = {
+      CanvasRenderingContext2D: [
+        :line_to,
+        :fill_rect,
+        :fill_style,
+        :translate,
+        :save
+      ],
+      Math: [
+        :floor
+      ]
+    }
+
 
     @concepts = [
       :variables,
@@ -44,7 +52,8 @@ class ApplicationController < ActionController::Base
           :fill_rect,
           :fill_style,
           :translate,
-          :save
+          :save,
+          :floor
         ],
         concepts: [
           :variables,

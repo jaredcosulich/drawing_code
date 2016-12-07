@@ -4,23 +4,29 @@
       Reference
 
     %ul.nav.nav-sidebar#reference{class: (params[:section] == 'reference' ? 'collapse in' : 'collapse')}
-      - @reference.each do |lesson|
-        %li{class: ('active' if params[:id] == lesson.to_s)}
-          = link_to_lesson(@lessons[lesson][:method], lesson, 'reference')
-          %span.tag.tag-default
-            %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+      - @reference.each do |key, lessons|
+        %li.section.small.mt-1
+          %strong= key
+        - lessons.each do |lesson|
+          %li{class: ('active' if params[:id] == lesson.to_s)}
+            - id = @lessons[lesson][:id] || lesson
+            = link_to_lesson(@lessons[lesson][:method], id, 'reference')
+            - if @lessons[lesson][:count] > 0
+              %span.tag.tag-default
+                %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 
 %ul.nav.nav-sidebar
   %li.section
     %a.section_link{:href => '#', data: {section: 'concepts'}}
       Concepts
 
-    %ul.nav.nav-sidebar#design{class: (params[:section] == 'concepts' ? 'collapse in' : 'collapse')}
+    %ul.nav.nav-sidebar#concepts{class: (params[:section] == 'concepts' ? 'collapse in' : 'collapse')}
       - @concepts.each do |lesson|
         %li{class: ('active' if params[:id] == lesson.to_s)}
           = link_to_lesson(@lessons[lesson][:method], lesson, 'concepts')
-          %span.tag.tag-default
-            %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+          - if @lessons[lesson][:count] > 0
+            %span.tag.tag-default
+              %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 
 %ul.nav.nav-sidebar
   - @challenge_paths.each do |challenge_path|
@@ -31,23 +37,26 @@
         - challenge_path[:stages].each do |lesson|
           %li{class: ('active' if params[:id] == lesson.to_s)}
             = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug])
-            %span.tag.tag-default
-              %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+            - if @lessons[lesson][:count] > 0
+              %span.tag.tag-default
+                %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 
-        %li.section.small.relevant-lessons
+        %li.section.small.mt-2
           %strong Relevant Reference
 
         - challenge_path[:reference].each do |lesson|
           %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
             = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug])
-            %span.tag.tag-default
-              %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+            - if @lessons[lesson][:count] > 0
+              %span.tag.tag-default
+                %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 
-        %li.section.small.relevant-lessons
+        %li.section.small.mt-1
           %strong Relevant Concepts
 
         - challenge_path[:concepts].each do |lesson|
           %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
             = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug])
-            %span.tag.tag-default
-              %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+            - if @lessons[lesson][:count] > 0
+              %span.tag.tag-default
+                %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"

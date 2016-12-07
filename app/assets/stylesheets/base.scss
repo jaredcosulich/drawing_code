@@ -4,12 +4,18 @@
   }
 }
 
+img {
+  &.bordered {
+    border: 1px solid #ccc;
+  }
+}
+
 .code-editor {
 
   .editor {
     width: 100%;
     height: 330px;
-    border: 1px solid #ccc;
+    border: 1px solid #333;
   }
 
   .log {
@@ -77,10 +83,6 @@
 
     a, strong {
       padding: 0 12px;
-    }
-
-    .relevant-lessons {
-      margin-top: 18px;
     }
 
     .tag {
