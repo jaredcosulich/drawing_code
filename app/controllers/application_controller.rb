@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
       functions: {count: 1, method: 'Functions'},
 
       basic_cityscape_stage1: {count: 4, method: 'Stage 1'},
-      basic_cityscape_stage2: {count: 3, method: 'Stage 2'}
+      basic_cityscape_stage2: {count: 3, method: 'Stage 2'},
+      basic_cityscape_stage3: {count: 3, method: 'Stage 3'}
     }
 
     @reference = {
@@ -52,7 +53,8 @@ class ApplicationController < ActionController::Base
         slug: 'basic_cityscape',
         stages: [
           :basic_cityscape_stage1,
-          :basic_cityscape_stage2
+          :basic_cityscape_stage2,
+          :basic_cityscape_stage3
         ],
         reference: [
           :clear_rect,
