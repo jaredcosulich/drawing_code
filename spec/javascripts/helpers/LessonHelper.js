@@ -3,7 +3,8 @@ class TestPage {
     this.pageId = pageId;
     this.challengeCount = challengeCount;
     this.buildPage();
-    $(document).trigger('initialization:complete')
+    jasmine.clock().install();
+    $(document).trigger('initialization:complete');
   }
 
   buildPage() {
@@ -69,10 +70,14 @@ class TestPage {
   }
 
   challengeResult(challengeNumber) {
+    this.runChallengeCode(challengeNumber, code)
+    jasmine.clock().tick(200);
+
     return this.challengeAlerts[challengeNumber - 1].hasClass('alert-success')
   }
 
   destroy() {
+    jasmine.clock().uninstall();
     this.page.remove();
   }
 }

@@ -1,13 +1,12 @@
 describe("FillRect", function() {
   var page;
+
   beforeEach(function() {
     page = new TestPage('fill_rect', 3);
-    jasmine.clock().install();
   });
 
   afterEach(function() {
     page.destroy();
-    jasmine.clock().uninstall();
   });
 
   describe("Challenge 1", function() {
@@ -24,9 +23,7 @@ describe("FillRect", function() {
         context.stroke(); \
       "
 
-      page.runChallengeCode(challengeNumber, code)
-      jasmine.clock().tick(200);
-      expect(page.challengeResult(challengeNumber)).toBe(true);
+      expect(page.challengeResult(challengeNumber, code)).toBe(true);
     });
 
     it("fails with bad solution", function() {
@@ -40,9 +37,7 @@ describe("FillRect", function() {
         context.stroke(); \
       "
 
-      page.runChallengeCode(challengeNumber, code)
-      jasmine.clock().tick(200);
-      expect(page.challengeResult(challengeNumber)).toBe(false);
+      expect(page.challengeResult(challengeNumber, code)).toBe(false);
     });
   });
 
@@ -62,9 +57,7 @@ describe("FillRect", function() {
         context.stroke();\
       "
 
-      page.runChallengeCode(challengeNumber, code)
-      jasmine.clock().tick(200);
-      expect(page.challengeResult(challengeNumber)).toBe(true);
+      expect(page.challengeResult(challengeNumber, code)).toBe(true);
     });
 
     it("fails with bad solution", function() {
@@ -80,9 +73,7 @@ describe("FillRect", function() {
         context.stroke();\
       "
 
-      page.runChallengeCode(challengeNumber, code)
-      jasmine.clock().tick(200);
-      expect(page.challengeResult(challengeNumber)).toBe(false);
+      expect(page.challengeResult(challengeNumber, code)).toBe(false);
     });
   });
 
