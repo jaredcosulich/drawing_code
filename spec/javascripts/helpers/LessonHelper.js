@@ -43,6 +43,7 @@ class TestPage {
 
       var canvas = $(document.createElement('CANVAS'));
       canvas.attr('id', this.pageId + '_' + challengeId);
+      canvas.width(600).height(360);
       visual.append(canvas);
 
       this.challengeCanvases.push(canvas);
