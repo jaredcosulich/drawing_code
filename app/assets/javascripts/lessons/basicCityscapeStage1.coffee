@@ -56,7 +56,7 @@ initBasicCityscapeStage1Challenge2 = (page) ->
         message = '<strong>Success!</strong> Your gray building is sitting on the x!'
         App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge2')
       else
-        message = 'Nice try, but you need to draw a gray building sitting on the x.'
+        message = 'Nice try, but you need to draw a gray (#999999) building sitting on the x.'
 
       canvas.alert(message, success)
     ), 200)
