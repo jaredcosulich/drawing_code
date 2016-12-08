@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       functions: {count: 1, method: 'Functions'},
 
       basic_cityscape_stage1: {count: 4, method: 'Stage 1'},
-      basic_cityscape_stage2: {count: 4, method: 'Stage 2'}
+      basic_cityscape_stage2: {count: 3, method: 'Stage 2'}
     }
 
     @reference = {
