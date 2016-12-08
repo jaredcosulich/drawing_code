@@ -10,6 +10,9 @@
       this.codeEditor = this.editor.closest('.code-editor');
       ace.config.set('workerPath', '/ace/');
       this.aceEditor = ace.edit(this.editorElement);
+      this.editor.data({
+        ace: this.aceEditor
+      });
       this.aceEditor.$blockScrolling = Infinity;
       this.aceEditor.session.setOptions({
         mode: "ace/mode/javascript",

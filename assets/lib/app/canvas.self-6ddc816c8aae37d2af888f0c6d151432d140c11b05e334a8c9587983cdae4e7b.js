@@ -18,16 +18,13 @@
     Canvas.prototype.alert = function(message, success) {
       this.alertElement.html(message);
       if (success === void 0) {
-        this.alertElement.removeClass('alert-danger');
-        this.alertElement.removeClass('alert-success');
+        this.alertElement.removeClass('alert-danger alert-success');
         this.alertElement.addClass('alert-warning');
       } else if (success) {
-        this.alertElement.removeClass('alert-danger');
-        this.alertElement.removeClass('alert-warning');
+        this.alertElement.removeClass('alert-danger alert-warning');
         this.alertElement.addClass('alert-success');
       } else {
-        this.alertElement.removeClass('alert-success');
-        this.alertElement.removeClass('alert-warning');
+        this.alertElement.removeClass('alert-success alert-warning');
         this.alertElement.addClass('alert-danger');
       }
       return this.alertElement.slideDown();
