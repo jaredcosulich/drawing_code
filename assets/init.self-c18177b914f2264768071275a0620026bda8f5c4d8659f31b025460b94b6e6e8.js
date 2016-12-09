@@ -1,5 +1,5 @@
 (function() {
-  var init, initInteractives, initProgress;
+  var init, initFreeform, initInteractives, initProgress;
 
   window.App || (window.App = {});
 
@@ -8,6 +8,7 @@
   init = function() {
     initProgress();
     initInteractives();
+    initFreeform();
     return $(document).trigger('initialization:complete');
   };
 
@@ -21,6 +22,19 @@
       canvas = new App.Canvas(interactive.find('canvas'));
       editor = new App.Editor(interactive.find('.editor'), canvas);
       results.push(editor.run());
+    }
+    return results;
+  };
+
+  initFreeform = function() {
+    var canvas, editor, freeform, freeformElement, i, len, ref, results;
+    ref = $('.freeform');
+    results = [];
+    for (i = 0, len = ref.length; i < len; i++) {
+      freeformElement = ref[i];
+      freeform = $(freeformElement);
+      canvas = new App.Canvas(freeform.find('canvas'));
+      results.push(editor = new App.Editor(freeform.find('.editor'), canvas));
     }
     return results;
   };

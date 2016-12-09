@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="G2QWlGgasmyAYGvnneKuzGThn1Dp3MNcdumHK4KsfmCw4Ea2l+1iKrjRmxBlgSmM9vMZ7x785RkfLYaYxd4glA==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-b72db721266dc92c4a7d22f2d48a8b387de4264d5007e35b45934eedd25c1b9c-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="Uwgp6cQZd+++pjvoTl3hQ5gPGiznp1ui9Ss7zhbyywr4jHnLO+6nqYYXyx+2PmYDCh2ckxCHfeec7zp9UYCV/g==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-68173c83a12656616784229c6bd2e3792b35f14c33b3d699ad2499fb31b9bfa3-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -14,13 +14,15 @@
 <script src="../../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/init.self-12bc94cc327f5632059b5fa92fa1ae93bd779c4109db13ca26d210b7a1dd15d7.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/drawings.self-38f1307ac5108a326b9c286691b846622cbaebf7c0bbab1bb453643d1e339fe7.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/init.self-c18177b914f2264768071275a0620026bda8f5c4d8659f31b025460b94b6e6e8.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lesson.self-9ae12ddb887cfd3654ed80dbce5b80b03d03656193fb663542161e096d1c6260.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basicCityscapeStage1.self-769ec561ca38524e5af6766aada036dde32967580a07879462c1e169a48b86c0.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basicCityscapeStage2.self-bb5cfbde44b97f0b9658159d2058b56e0869a3d9f04a2ce4f7ae00204dabc8bf.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/basicCityscapeStage3.self-27ac1844f159065b6a0daf35293737bd504d2a6f5dd5b4e639e1c35b49c9aca1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basicCityscapeStage3.self-33b70a75ee9c8a75cd9271487468085a2fb35efc7e1eec982e429e86044fbe73.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basicCityscapeStage4.self-4957bde1f87185b2af8f89378f34a48bcf35b3f490b647b26fe8e9fc2c6c28bd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/clearRect.self-9e82ca8aa93793f04e73caa7f25eaf5e8c815cbe718ac5f4747de25ef19efce9.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/coordinates.self-e8ed0e1bacf18d0af11e6602fdfbc3026535cadd0a5464c80884b3e7b545cc69.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/fillRect.self-9e0e0969e446a2f464878a94809b7b44591a6ae159472a8744b33622cbec1b46.js?body=1" data-turbolinks-track="reload"></script>
@@ -33,7 +35,7 @@
 <script src="../../../assets/lessons/variables.self-c87145ec3cf2327e7b3eb2ef815bed8ee4b3a42f7408ff8faa7e3353fb824132.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/canvas.self-6ddc816c8aae37d2af888f0c6d151432d140c11b05e334a8c9587983cdae4e7b.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/editor.self-b7516c241237380ae2343f77501b62e1356e543379ad3384bed7ede5f49f1e36.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/progress.self-fe4741cffb84938f7da03eea4fe401df2ed75a0c23d39c91d138c79c7bd9c71f.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/progress.self-b17e5d310fb91f78d0f080f596a18e861ecb5323a6fb66b223b5354d1ae48d3c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/point.self-57f97666d941e0e32f6db69b324362ae324dd3bdcddbca02997bb347578f357a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/navigation.self-86efb23cbd540a25cfd5aa4f6397355fe9ea8601cab3fd824ba10027ed53a1fc.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
@@ -50,6 +52,21 @@ Drawing Code:
 <div class='container-fluid'>
 <div class='row'>
 <div class='col-md-3 col-lg-2 sidebar'>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='drawings' href='#'>
+Your Drawings
+</a>
+<ul class='collapse nav nav-sidebar' id='drawings'>
+<li>
+<a href="../../../drawings/index.html">Create A Drawing</a>
+</li>
+<li class='section drawings-list small mt-1 hidden-xs-up'>
+<strong>My Drawings</strong>
+</li>
+</ul>
+</li>
+</ul>
 <ul class='nav nav-sidebar'>
 <li class='section'>
 <a class='section_link' data-section='reference' href='#'>
@@ -159,7 +176,13 @@ Concepts
 <li>
 <a href="../basic_cityscape_stage3/index.html">Stage 3</a>
 <span class='tag tag-default'>
-<small class='basic_cityscape_stage3'>0 / 3</small>
+<small class='basic_cityscape_stage3'>0 / 4</small>
+</span>
+</li>
+<li>
+<a href="../basic_cityscape_stage4/index.html">Stage 4</a>
+<span class='tag tag-default'>
+<small class='basic_cityscape_stage4'>0 / 4</small>
 </span>
 </li>
 <li class='section small mt-2'>
@@ -193,6 +216,12 @@ Concepts
 <a href="../save/index.html">save()</a>
 <span class='tag tag-default'>
 <small class='save'>0 / 1</small>
+</span>
+</li>
+<li class='small '>
+<a href="../line_to/index.html">lineTo()</a>
+<span class='tag tag-default'>
+<small class='line_to'>0 / 3</small>
 </span>
 </li>
 <li class='small '>

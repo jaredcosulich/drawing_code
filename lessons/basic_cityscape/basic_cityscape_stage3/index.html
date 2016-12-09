@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="Jjhzogsj74jJQqrQ1GQpmFc0pm537YqULt8oyQVbkkeNvCOA9NQ/zvHzWicsB67YxSYg0YDNrNFHGyl6QinMsw==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-b72db721266dc92c4a7d22f2d48a8b387de4264d5007e35b45934eedd25c1b9c-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="ZqWI4bgSjdwk2xe7vg47ldOKdriwIe99yk56Dln0SqPNIdjDR+Vdmhxq50xGbbzVQZjwB0cByTijinu9HoYUVw==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-68173c83a12656616784229c6bd2e3792b35f14c33b3d699ad2499fb31b9bfa3-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -14,13 +14,15 @@
 <script src="../../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/init.self-12bc94cc327f5632059b5fa92fa1ae93bd779c4109db13ca26d210b7a1dd15d7.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/drawings.self-38f1307ac5108a326b9c286691b846622cbaebf7c0bbab1bb453643d1e339fe7.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/init.self-c18177b914f2264768071275a0620026bda8f5c4d8659f31b025460b94b6e6e8.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lesson.self-9ae12ddb887cfd3654ed80dbce5b80b03d03656193fb663542161e096d1c6260.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basicCityscapeStage1.self-769ec561ca38524e5af6766aada036dde32967580a07879462c1e169a48b86c0.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basicCityscapeStage2.self-bb5cfbde44b97f0b9658159d2058b56e0869a3d9f04a2ce4f7ae00204dabc8bf.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/basicCityscapeStage3.self-27ac1844f159065b6a0daf35293737bd504d2a6f5dd5b4e639e1c35b49c9aca1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basicCityscapeStage3.self-33b70a75ee9c8a75cd9271487468085a2fb35efc7e1eec982e429e86044fbe73.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basicCityscapeStage4.self-4957bde1f87185b2af8f89378f34a48bcf35b3f490b647b26fe8e9fc2c6c28bd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/clearRect.self-9e82ca8aa93793f04e73caa7f25eaf5e8c815cbe718ac5f4747de25ef19efce9.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/coordinates.self-e8ed0e1bacf18d0af11e6602fdfbc3026535cadd0a5464c80884b3e7b545cc69.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/fillRect.self-9e0e0969e446a2f464878a94809b7b44591a6ae159472a8744b33622cbec1b46.js?body=1" data-turbolinks-track="reload"></script>
@@ -33,7 +35,7 @@
 <script src="../../../assets/lessons/variables.self-c87145ec3cf2327e7b3eb2ef815bed8ee4b3a42f7408ff8faa7e3353fb824132.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/canvas.self-6ddc816c8aae37d2af888f0c6d151432d140c11b05e334a8c9587983cdae4e7b.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/editor.self-b7516c241237380ae2343f77501b62e1356e543379ad3384bed7ede5f49f1e36.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/progress.self-fe4741cffb84938f7da03eea4fe401df2ed75a0c23d39c91d138c79c7bd9c71f.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/progress.self-b17e5d310fb91f78d0f080f596a18e861ecb5323a6fb66b223b5354d1ae48d3c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/point.self-57f97666d941e0e32f6db69b324362ae324dd3bdcddbca02997bb347578f357a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/navigation.self-86efb23cbd540a25cfd5aa4f6397355fe9ea8601cab3fd824ba10027ed53a1fc.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
@@ -50,6 +52,21 @@ Drawing Code:
 <div class='container-fluid'>
 <div class='row'>
 <div class='col-md-3 col-lg-2 sidebar'>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='drawings' href='#'>
+Your Drawings
+</a>
+<ul class='collapse nav nav-sidebar' id='drawings'>
+<li>
+<a href="../../../drawings/index.html">Create A Drawing</a>
+</li>
+<li class='section drawings-list small mt-1 hidden-xs-up'>
+<strong>My Drawings</strong>
+</li>
+</ul>
+</li>
+</ul>
 <ul class='nav nav-sidebar'>
 <li class='section'>
 <a class='section_link' data-section='reference' href='#'>
@@ -159,7 +176,13 @@ Concepts
 <li class='active'>
 <a href="index.html">Stage 3</a>
 <span class='tag tag-default'>
-<small class='basic_cityscape_stage3'>0 / 3</small>
+<small class='basic_cityscape_stage3'>0 / 4</small>
+</span>
+</li>
+<li>
+<a href="../basic_cityscape_stage4/index.html">Stage 4</a>
+<span class='tag tag-default'>
+<small class='basic_cityscape_stage4'>0 / 4</small>
 </span>
 </li>
 <li class='section small mt-2'>
@@ -193,6 +216,12 @@ Concepts
 <a href="../save/index.html">save()</a>
 <span class='tag tag-default'>
 <small class='save'>0 / 1</small>
+</span>
+</li>
+<li class='small '>
+<a href="../line_to/index.html">lineTo()</a>
+<span class='tag tag-default'>
+<small class='line_to'>0 / 3</small>
 </span>
 </li>
 <li class='small '>
@@ -241,7 +270,7 @@ Concepts
 <span class='no_challenges_completed'>
 There
 are
-3 challenges
+4 challenges
 for you to do.
 <a href="#challenge1">Jump to challenges &gt;</a>
 </span>
@@ -249,7 +278,7 @@ for you to do.
 You've completed
 <span class='completed_challenges_count'></span>
 out of
-3 challenges.
+4 challenges.
 <a href="#challenge1">Jump to challenges &gt;</a>
 </span>
 </p>
@@ -260,13 +289,13 @@ out of
 Overview
 </h2>
 <p>
-In the second stage of the Cityscape Challenge, we will draw rows of windows
-in our buildings. Because we will be drawing lots of windows and rows, we will
-automate the process using for loops.
+In the third stage of the Cityscape Challenge, we will add some variety to the
+buildings by varying the types of windows in the offices and the types of roofs
+on the buildings. Then, we will create and draw a random building.
 </p>
 </div>
 <div class='col-xs-6'>
-<img class="img-fluid" src="../../../assets/lessons/basic_cityscape_stage2/overviewVisual1-60ead3ea7007b8fd6fbcbfdde5b361b3251ca3b7fdd684d9fce9e3e4f75e7908.png" alt="Overviewvisual1" />
+<img class="img-fluid" src="../../../assets/lessons/basic_cityscape_stage3/overviewVisual1-ab7ee15ee0b976554c949492efcf5b7c9154875cf9f3443ab366b28c1a37401e.png" alt="Overviewvisual1" />
 </div>
 </div>
 <div class='example row py-3'>
@@ -274,42 +303,25 @@ automate the process using for loops.
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='py-2'>
-Draw a Window in an Office in a Building
+Draw Buildings with Four Types of Windows
 </h2>
 <p>
-When drawing an object inside of another object, it makes sense to use
-context.translate() to make the drawing easier by moving the coordinate
-system of the context.
+<span style='background-color: #FFFF66;'>
+In this example, we modify the drawFrenchFlag() function to draw the flags
+of France, Colombia, and Thailand.
+</span>
 </p>
 <p>
-In this example, we draw a blue building with a yellow door with a red
-door knob.
+We tell the drawFlag() function which flag to draw by passing it a value that
+is stored in the country parameter. Then, in the switch statement, we
+draw a French flag if country = 'France', a Colombian flag if country = 'Colombia',
+and a Thai flag if country = 'Thailand'.
 </p>
 <p>
-We know that the top left corner of the building is positioned at (100, 50)
-on the <b>canvas</b>.
-</p>
-<p>
-We know that the top left corner of the door is positioned at (140, 160) in
-the <b>building</b>.
-</p>
-<p>
-We know that the top left corner of the door knob is positioned at (40, 80)
-in the <b>door</b>.
-</p>
-<p>
-Do we know or care what the coordinates of the door knob are on the canvas
-or in the building? No. By translating the coordinate system to the appropriate
-frame of reference, we can focus on drawing and not worry about the math. And
-if we move the door, the door knob moves along with it.
-</p>
-<p>
-Notice how we restore the context so the origin of the coordinate system is
-back at the top left corner of the canvas? Remember, it is important to tidy up
-after moving things around.
+Try drawing a Thai flag instead of a Colombian flag to see what it looks like.
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
+<a href="../functions/index.html">Functions</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
 </p>
 </div>
 <div class='col-xs-12'>
@@ -319,7 +331,7 @@ after moving things around.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage3_example1_editor'>var canvas = document.getElementById('basic_cityscape_stage3_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.save(); // The origin is at the top left corner of the canvas&#x000A;&#x000A;context.translate(100, 50); // The origin is now at the top left corner of the building&#x000A;context.fillStyle = '#4169E1';&#x000A;context.fillRect(0, 0, 200, 240);&#x000A;&#x000A;context.translate(140, 160); // The origin is now at the top left corner of the door&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.fillRect(0, 0, 40, 80);&#x000A;&#x000A;context.fillStyle = '#FF0000';&#x000A;context.fillRect(26, 40, 8, 8);&#x000A;&#x000A;context.restore(); // The origin is back at the top left corner of the canvas&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage3_example1_editor'>var canvas = document.getElementById('basic_cityscape_stage3_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFlag(country) {&#x000A;  context.save();&#x000A;  &#x000A;  switch(country) {&#x000A;    case 'France':&#x000A;      context.fillStyle = '#0055A4';&#x000A;      context.fillRect(0, 0, 60, 120);&#x000A;      &#x000A;      context.fillStyle = '#FFFFFF';&#x000A;      context.fillRect(60, 0, 60, 120);&#x000A;      &#x000A;      context.fillStyle = '#EF4135';&#x000A;      context.fillRect(120, 0, 60, 120);&#x000A;      break;&#x000A;    &#x000A;    case 'Colombia':&#x000A;      context.fillStyle = '#FCD116';&#x000A;      context.fillRect(0, 0, 180, 60);&#x000A;      &#x000A;      context.fillStyle = '#003893';&#x000A;      context.fillRect(0, 60, 180, 30);&#x000A;      &#x000A;      context.fillStyle = '#CE1126';&#x000A;      context.fillRect(0, 90, 180, 30);&#x000A;      break;&#x000A;    &#x000A;    case 'Thailand':&#x000A;      context.fillStyle = '#ED1C24';&#x000A;      context.fillRect(0, 0, 180, 120);&#x000A;      &#x000A;      context.fillStyle = '#FFFFFF';&#x000A;      context.fillRect(0, 20, 180, 80);&#x000A;      &#x000A;      context.fillStyle = '#241D4F';&#x000A;      context.fillRect(0, 40, 180, 40);&#x000A;      break;&#x000A;  }&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;context.save();&#x000A;context.translate(20, 40);&#x000A;drawFlag('Colombia');&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -355,42 +367,50 @@ Canvas
 <div class='challenge row py-3' id='challenge1'>
 <div class='col-xs-12'>
 <div class='row'>
-<div class='col-xs-6'>
+<div class='col-xs-12'>
 <h2 class='challenge-title py-2'>
 Challenge 1
 </h2>
 <p>
-Copy the drawBuilding() function that you wrote in Stage 1 Challenge 4.
+<span style='background-color: #FFFF66;'>
+Update the drawBuilding() function that you wrote in Stage 2 Challenge 3
+to draw four types of windows.
+</span>
 </p>
 <p>
-Inside the function, after moving the coordinate system to the top left
-corner of the building and drawing a gray rectangle for the building, move
-the coordinate system to (4, 4) in the building. This is the top left
-corner of the top left office. Remember, the building has 4 pixels of padding
-around it.
-</p>
-</div>
-<div class='col-xs-6'>
-<img src="../../../assets/lessons/basic_cityscape_stage1/challenge2Visual1-c320614d980b1379d35e0782cdedd867c11a1b5a4c85a80d4eedbb842b00c7aa.png" alt="Challenge2visual1" />
-</div>
-</div>
-<div class='row'>
-<div class='col-xs-12'>
-<p>
-Draw a window positioned in the office at (4, 2). The window is a dark
-gray rectangle (color #666666) that is 8 pixels wide and 10 pixels tall.
+Start by adding a windowType parameter to the drawBuilding() function:
+drawBuilding(x, y, units, floors, windowType).
 </p>
 <p>
-At this point, your function will draw a gray building with one window in
-the top left corner office.
+Inside the drawBuilding() function, remove the code you wrote to draw a rectangle
+for each window, and replace it with "drawWindow(windowType);".
 </p>
 <p>
-Go ahead and draw a building that is 6 office units across and 12 floors
-tall sitting on the ground at (100, 300). The corners of the building should
-cover the black x's and the window should cover the red x.
+Then find the code where we define the function drawWindow().
+<span style='background-color: #FFFF66;'>
+Inside the drawWindow() function, add a switch statement with four cases. We
+will draw four different types of windows depending if windowType = 0, 1, 2, or 3.
+</span>
+</p>
+<p>
+The dimensions of the four window types are given below:
+</p>
+<img src="../../../assets/lessons/basic_cityscape_stage3/challenge1Visual1-5bda2414ad855d76c175ca62bf169dc34580dce3de4ee1408583c805a550de79.png" alt="Challenge1visual1" />
+<p>
+Note: Since all four window types use the same dark gray color (<span style='background-color: #FFFF66;'>
+#666666
+</span>), set the context.fillStyle in the drawBuilding() function before calling drawWindow().
+</p>
+<p>
+When your drawBuilding() and drawWindow() functions are ready, try drawing buildings
+with different sizes and window types.
+<span style='background-color: #FFFF66;'>
+Once you feel satisfied with your drawings, mark the challenge as complete by
+selecting "Yes, it looks good".
+</span>
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
+<a href="../functions/index.html">Functions</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
 </p>
 </div>
 </div>
@@ -400,7 +420,7 @@ cover the black x's and the window should cover the red x.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage3_challenge1_editor'>var canvas = document.getElementById('basic_cityscape_stage3_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;// YOUR CODE FOR DRAWING THE BUILDING AT (100, 300) HERE&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage3_challenge1_editor'>var canvas = document.getElementById('basic_cityscape_stage3_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -425,7 +445,6 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<div class='background hidden-xl-down'><img src="../../../assets/lessons/basic_cityscape_stage2/challenge1-dfc6d0e8056d12328ad46702c6b8e4b36360c3508e111e5487342283a7f9c9f7.png" alt="Challenge1" /></div>
 <canvas id='basic_cityscape_stage3_challenge1'></canvas>
 </div>
 <div class='alert'></div>
@@ -438,38 +457,39 @@ Canvas
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='py-2'>
-Draw a Row of Windows on the Top Floor of a Building
+Draw Buildings with Four Types of Roofs
 </h2>
 <p>
-To draw a row of windows, we are going to use a for loop. A for loop allows
-us to perform a set of actions over and over again.
+<span style='background-color: #FFFF66;'>
+In this example, we add a triangle to the top of the building's roof.
+</span>
 </p>
 <p>
-In this example, we draw a row of French flags.
+To draw the roof, we create a function called drawRoof() and pass it the
+width of the building. We pass it the width of the building because we want
+to center the roof and scale the roof to fit the building.
 </p>
 <p>
-We start by saving the context and moving the coordinate system to (20, 120).
-This is where we will draw the first French flag.
+To make the roof a little easier to draw, we use context.translate() to
+move to the center of the roof and the top of the triangle.
 </p>
 <p>
-We then start our loop by assigning i = 0. Everytime the loop runs, we will
-add 1 to i. So, the first time through the loop, i = 0. The second time, i = 1.
-The third time, i = 2. The loop keeps running as long as i < 6. This means
-the loop will run six times and end once i = 5.
+To draw a filled triangle, we use context.lineTo() to draw a polygon and
+context.fill() to fill it. We don't have to set the context.fillStyle because
+the roof is the same color as the building.
 </p>
 <p>
-Inside of the loop, we draw a French flag at the origin of the current
-coordinate system, and then move the origin of the coordinate system 80 pixels
-to the right using context.translate(80, 0).
+<span style='background-color: #FFFF66;'>
+Change the number of office units on a floor of the building to a number between 4 and 8.
+</span>
+Note how the roof adjusts to fit the size of the building.
 </p>
 <p>
-Finally, we restore the context so the origin of the coordinate system is back at the top left corner of the canvas.
-</p>
-<p>
-What would happen if, instead of using context.translate(80, 0) inside of the for loop, we used context.translate(80, 30)?
+The roof doesn't work when the number of office units is smaller than 4 and
+it doesn't look good when it's greater than 8. We will fix those issues later.
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../for_loops/index.html">For Loops</a>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../line_to/index.html">lineTo()</a>
 </p>
 </div>
 <div class='col-xs-12'>
@@ -479,7 +499,7 @@ What would happen if, instead of using context.translate(80, 0) inside of the fo
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage3_example2_editor'>var canvas = document.getElementById('basic_cityscape_stage3_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFrenchFlag() {&#x000A;  context.save();&#x000A;&#x000A;  context.fillStyle = '#0055A4';&#x000A;  context.fillRect(0, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(20, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#EF4135';&#x000A;  context.fillRect(40, 0, 20, 40);&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;context.save();&#x000A;context.translate(20, 120);&#x000A;&#x000A;for (i = 0; i < 6; i = i + 1) {&#x000A;  drawFrenchFlag();&#x000A;  context.translate(80, 0);&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage3_example2_editor'>var canvas = document.getElementById('basic_cityscape_stage3_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;  var w = 16 * units + 8;&#x000A;  var h = 16 * floors + 8;&#x000A;  var x = leftX;&#x000A;  var y = groundY - h;&#x000A;  &#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = '#999999';&#x000A;  context.fillRect(0, 0, w, h);&#x000A;  &#x000A;  drawRoof(w);&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawRoof(w) {&#x000A;  context.save();&#x000A;  context.translate(w / 2, -96);&#x000A;  context.beginPath();&#x000A;  context.moveTo(0, 0);&#x000A;  context.lineTo(16, 64);&#x000A;  context.lineTo(-16, 64);&#x000A;  context.closePath();&#x000A;  context.fill();&#x000A;  context.fillRect(-24, 64, 48, 16);&#x000A;  context.fillRect(-(w - 16) / 2, 80, w - 16, 16);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;drawBuilding(100, 320, 6, 12);&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -515,43 +535,42 @@ Canvas
 <div class='challenge row py-3' id='challenge2'>
 <div class='col-xs-12'>
 <div class='row'>
-<div class='col-xs-6'>
+<div class='col-xs-12'>
 <h2 class='challenge-title py-2'>
 Challenge 2
 </h2>
 <p>
-Replace the code for drawing one window in your drawBuilding() function
-from Challenge 1 with a for loop that will draw windows in all of the offices on
-a building's top floor.
+Time to get creative!
+<span style='background-color: #FFFF66;'>
+Add a call to drawRoof() in your drawBuilding() function.
+</span>
 </p>
 <p>
-Remember, the building has 4 pixels of padding all around it, so the first
-top floor office is at (4, 4), and each office is 16 pixels wide.
+<span style='background-color: #FFFF66;'>
+Then use a switch statement in the drawRoof() function to draw four different
+types of roofs.
+</span>
 </p>
 <p>
-Draw the same dark gray window (color #666666) that is 8 pixels wide and 10
-pixels tall at (4, 2) in each office.
-</p>
-</div>
-<div class='col-xs-6'>
-<img src="../../../assets/lessons/basic_cityscape_stage1/challenge2Visual1-c320614d980b1379d35e0782cdedd867c11a1b5a4c85a80d4eedbb842b00c7aa.png" alt="Challenge2visual1" />
-</div>
-</div>
-<div class='row'>
-<div class='col-xs-12'>
-<p>
-Hint: The number of times you will run through the for loop will depend on
-the number of office units per floor in the building. Inside of the function,
-that number is stored in a variable (or parameter). We can use variables
-when setting up a for loop.
+One of the roof types can be no roof. To set up a case that does nothing, just
+skip that case in your switch statement or leave it empty (but include the break statement).
 </p>
 <p>
-Then use the drawBuilding() function to draw a building that is 12 office
-units across and 8 floors tall sitting on the ground at (50, 300). The corners
-of the building should cover the black x's and the windows should cover the red x's.
+<span style='background-color: #FFFF66;'>
+Each roof should scale with a range of building sizes.
+</span>
+They don't have to work or look good for all sizes, but they should work and look
+good for at least a few sizes.
+</p>
+<p>
+Make sure you draw a building with each type of roof a few times.
+<span style='background-color: #FFFF66;'>
+Then, once you feel satisfied with your drawings, mark the challenge as complete by
+selecting "Yes, it looks good".
+</span>
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../for_loops/index.html">For Loops</a>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../line_to/index.html">lineTo()</a>
 </p>
 </div>
 </div>
@@ -561,7 +580,7 @@ of the building should cover the black x's and the windows should cover the red 
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage3_challenge2_editor'>var canvas = document.getElementById('basic_cityscape_stage3_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING WITH TOP FLOOR WINDOWS HERE&#x000A;&#x000A;}&#x000A;&#x000A;// YOUR CODE FOR DRAWING THE BUILDING AT (50, 300) HERE&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage3_challenge2_editor'>var canvas = document.getElementById('basic_cityscape_stage3_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawRoof(roofType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE&#x000A;  &#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -586,7 +605,6 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<div class='background hidden-xl-down'><img src="../../../assets/lessons/basic_cityscape_stage2/challenge2-b45e24dd5d565b1342758ef805301e5d4106cb7648277102de2e54fbf04eacc1.png" alt="Challenge2" /></div>
 <canvas id='basic_cityscape_stage3_challenge2'></canvas>
 </div>
 <div class='alert'></div>
@@ -599,41 +617,51 @@ Canvas
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='py-2'>
-Draw Windows for Each Floor of a Building
+Draw Buildings with a Random Number of Floors
 </h2>
 <p>
-To draw a building with rows of windows on each floor, we are going to use
-two for loops: one inside the other. The inner for loop draws a window in
-each office of a single floor. The outer for loop draws one floor at a time.
+Right now, you have a drawBuilding() function that will draw a building for
+you if you tell it how many office units across it is, how many floors it has,
+the type of windows in its office units, and the type of roof it has.
 </p>
 <p>
-In this example, we draw a grid of French flags. Just like in the previous
-example, there are 6 French flags in a row. But this time, there are four rows.
+The next step is generating a building randomly, starting with the number of floors.
 </p>
 <p>
-The inner for loop is using the variable <i>i</i> as its counter: the loop
-starts at i = 0 and ends when i = 5. Each time through the loop, it draws a
-French flag at the origin of the coordinate system and then moves the origin
-over to the right by 80 pixels using context.translate(80, 0).
+<span style='background-color: #FFFF66;'>
+In this example, we draw a random number of flags and select the type of flag randomly.
+</span>
 </p>
 <p>
-The outer for loop is using the variable <i>j</i> as its counter. While the name
-of the variable isn't important, the two for loops can't use the same variable
-since one for loop is inside the other. The outer for loop starts at j = 0 and
-ends when j = 3. Each time through the loop, it saves the context, draws a row
-of flags using the inner loop, restores the context back to where it was before
-drawing the row of flags, and then moves the origin of the coordinate system
-down 90 pixels using context.translate(0, 90).
+To generate a random number, we use the function Math.random(). Math.random() returns
+a random number between 0 and 1, including 0 but not including 1.
 </p>
 <p>
-Saving and restoring the context in the outer for loop is important. Think about
-what would happen if we didn't do that. The next row of flags would start after
-the last flag in the previous row, not below the first flag. Each row would keep
-getting shifted over to the right. (Comment out the context.save() and context.restore()
-in the outer for loop if you want to see what would happen.)
+By multiplying Math.random() by 6, we get a random number between 0 and 6. However,
+the random number will be a decimal. To convert it to an integer, we use the function
+Math.floor(), which rounds a decimal down. This will give us a random integer between
+0 and 5, so either 0, 1, 2, 3, 4, or 5.
+</p>
+<p>
+To get an integer between 3 and 8, we use 3 + Math.floor(6 * Math.random()).
+</p>
+<p>
+<span style='background-color: #FFFF66;'>
+In the code for this example, we are drawing 2-5 flags. To randomize the type of flag,
+we changed country to a number.
+</span>
+If country = 0, we will draw a French flag; if country = 1, we will draw a Colombian
+flag; and if country = 2, we will draw a Thai flag.
+</p>
+<p>
+<span style='background-color: #FFFF66;'>
+Press "Run" to change the number and type of flag drawn.
+</span>
+Can you figure out how you would edit the code to randomize the type of each individual
+flag in the drawing?
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../for_loops/index.html">For Loops</a>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>, <a href="../floor/index.html">floor() / ceil()</a>, <a href="../for_loops/index.html">For Loops</a>
 </p>
 </div>
 <div class='col-xs-12'>
@@ -643,7 +671,7 @@ in the outer for loop if you want to see what would happen.)
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage3_example3_editor'>var canvas = document.getElementById('basic_cityscape_stage3_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFrenchFlag() {&#x000A;  context.save();&#x000A;&#x000A;  context.fillStyle = '#0055A4';&#x000A;  context.fillRect(0, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(20, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#EF4135';&#x000A;  context.fillRect(40, 0, 20, 40);&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;context.save(); // saves the context at the start of the drawing&#x000A;context.translate(30, 10);&#x000A;&#x000A;for (j = 0; j < 4; j = j + 1) {&#x000A;  context.save(); // saves the context at the start of the row&#x000A;  &#x000A;  for (i = 0; i < 6; i = i + 1) {&#x000A;    drawFrenchFlag();&#x000A;    context.translate(80, 0);&#x000A;  }&#x000A;  &#x000A;  context.restore(); // restores the context back to the start of the row&#x000A;  context.translate(0, 90);&#x000A;}&#x000A;&#x000A;context.restore(); // restores the context back to the start of the drawing&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage3_example3_editor'>var canvas = document.getElementById('basic_cityscape_stage3_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFlag(country) {&#x000A;  context.save();&#x000A;  &#x000A;  switch(country) {&#x000A;    case 0:&#x000A;      context.fillStyle = '#0055A4';&#x000A;      context.fillRect(0, 0, 30, 60);&#x000A;      &#x000A;      context.fillStyle = '#FFFFFF';&#x000A;      context.fillRect(30, 0, 30, 60);&#x000A;      &#x000A;      context.fillStyle = '#EF4135';&#x000A;      context.fillRect(60, 0, 30, 60);&#x000A;      break;&#x000A;    &#x000A;    case 1:&#x000A;      context.fillStyle = '#FCD116';&#x000A;      context.fillRect(0, 0, 90, 30);&#x000A;      &#x000A;      context.fillStyle = '#003893';&#x000A;      context.fillRect(0, 30, 90, 15);&#x000A;      &#x000A;      context.fillStyle = '#CE1126';&#x000A;      context.fillRect(0, 45, 90, 15);&#x000A;      break;&#x000A;    &#x000A;    case 2:&#x000A;      context.fillStyle = '#ED1C24';&#x000A;      context.fillRect(0, 0, 90, 60);&#x000A;      &#x000A;      context.fillStyle = '#FFFFFF';&#x000A;      context.fillRect(0, 10, 90, 40);&#x000A;      &#x000A;      context.fillStyle = '#241D4F';&#x000A;      context.fillRect(0, 20, 90, 20);&#x000A;      break;&#x000A;  }&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;var flagType = Math.floor(3 * Math.random());&#x000A;var flagCount = 2 + Math.floor(4 * Math.random());&#x000A;&#x000A;context.save();&#x000A;&#x000A;for (var i = 0; i < flagCount; i = i + 1) {&#x000A;  drawFlag(flagType);&#x000A;  context.translate(100, 60);&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -679,37 +707,27 @@ Canvas
 <div class='challenge row py-3' id='challenge3'>
 <div class='col-xs-12'>
 <div class='row'>
-<div class='col-xs-6'>
+<div class='col-xs-12'>
 <h2 class='challenge-title py-2'>
 Challenge 3
 </h2>
 <p>
-Replace the code for drawing a top row of windows in your drawBuilding()
-function from Challenge 2 with two for loops (one inside the other) that
-will draw windows in all of the offices on all of the floors of a building.
+<span style='background-color: #FFFF66;'>
+Instead of passing a number into your drawBuilding() function for the
+number of office units on a floor, pass a variable with a random integer
+between 6 and 20 (including 6 and 20).
+</span>
 </p>
 <p>
-Remember, the building has 4 pixels of padding all around it, so the first
-top floor office is at (4, 4), and each office is 16 pixels wide and 16 pixels tall.
-</p>
-<p>
-Draw the same dark gray window (color #666666) that is 8 pixels wide and 10
-pixels tall at (4, 2) in each office.
-</p>
-</div>
-<div class='col-xs-6'>
-<img src="../../../assets/lessons/basic_cityscape_stage1/challenge2Visual1-c320614d980b1379d35e0782cdedd867c11a1b5a4c85a80d4eedbb842b00c7aa.png" alt="Challenge2visual1" />
-</div>
-</div>
-<div class='row'>
-<div class='col-xs-12'>
-<p>
-Then use the drawBuilding() function to draw a building that is 7 office
-units across and 10 floors tall sitting on the ground at (80, 300). The corners
-of the building should cover the black x's and the windows should cover the red x's.
+Press "Run" multiple times to make sure the drawBuilding() function is drawing
+a building with a random number of floors.
+<span style='background-color: #FFFF66;'>
+Then, once you feel satisfied with your drawings, mark the challenge as complete by
+selecting "Yes, it looks good".
+</span>
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../for_loops/index.html">For Loops</a>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>, <a href="../floor/index.html">floor() / ceil()</a>
 </p>
 </div>
 </div>
@@ -719,7 +737,7 @@ of the building should cover the black x's and the windows should cover the red 
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage3_challenge3_editor'>var canvas = document.getElementById('basic_cityscape_stage3_challenge3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING WITH WINDOWS HERE&#x000A;&#x000A;}&#x000A;&#x000A;// YOUR CODE FOR DRAWING THE BUILDING AT (80, 300) HERE&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage3_challenge3_editor'>var canvas = document.getElementById('basic_cityscape_stage3_challenge3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawRoof(roofType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;// GENERATE A RANDOM NUMBER BETWEEN 6 AND 20 (INCLUDING 6 AND 20) AND STORE IT IN A VARIABLE&#x000A;&#x000A;// USE THE VARIABLE TO DRAW A BUILDING WITH A RANDOM NUMBER OF FLOORS&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -744,8 +762,164 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<div class='background hidden-xl-down'><img src="../../../assets/lessons/basic_cityscape_stage2/challenge3-539271da579986b3ad4ec381b53de4461565f96b31ae23a6a1062e883dd405fe.png" alt="Challenge3" /></div>
 <canvas id='basic_cityscape_stage3_challenge3'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Draw Completely Random Buildings
+</h2>
+<p>
+Now that you know how to randomize the number of floors in a building, you
+are going to randomize the number of office units, the type of windows, and
+the type of roof, too.
+</p>
+<p>
+<span style='background-color: #FFFF66;'>
+But before you do that, we are going to create a function for generating random integers.
+</span>
+</p>
+<p>
+Math.random() is great for generating random decimals, but generating random
+integers is more complicated. It takes more steps and it's easy to make a mistake.
+</p>
+<p>
+<span style='background-color: #FFFF66;'>
+In this example, the randomInteger() function takes a whole number, and returns a
+random integer between 0 and that whole number (including 0 and the whole number).
+</span>
+For example, randomInteger(10) returns integers between 0 and 10, including 0 and 10.
+</p>
+<p>
+We use the randomInteger() function to draw a rectangle with a random size and position.
+<span style='background-color: #FFFF66;'>
+Press "Run" to see the rectangle's size and position change.
+</span>
+</p>
+<p><strong>Relevant Lessons:</strong>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>, <a href="../floor/index.html">floor() / ceil()</a>, <a href="../fill_rect/index.html">fillRect()</a>
+</p>
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6'>
+<h5>
+Editor
+<small>(write code below)</small>
+</h5>
+<div class='editor' id='basic_cityscape_stage3_example4_editor'>var canvas = document.getElementById('basic_cityscape_stage3_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function randomInteger(max) {&#x000A;  var i = Math.floor((max + 1) * Math.random());&#x000A;  &#x000A;  return i;&#x000A;}&#x000A;&#x000A;var x = randomInteger(200);&#x000A;var y = randomInteger(100);&#x000A;var w = randomInteger(400);&#x000A;var h = randomInteger(200);&#x000A;&#x000A;context.save();&#x000A;context.fillStyle = '#8A2BE2';&#x000A;context.fillRect(x, y, w, h);&#x000A;context.restore();&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='basic_cityscape_stage3_example4'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge4'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 4
+</h2>
+<p>
+Before we can use the randomInteger() function to draw random buildings,
+we need to make a change to it.
+</p>
+<p>
+Right now, randomInteger() returns an integer between 0 and max. Since we
+don't want to draw buildings with 0 floors or 0 office units on a floor, we
+need it to return an integer between min and max, including min and max.
+</p>
+<p>
+<span style='background-color: #FFFF66;'>
+Change the randomInteger() function so it returns an integer between a
+min value and a max value, including those two values.
+</span>
+</p>
+<p>
+<span style='background-color: #FFFF66;'>
+Then use the randomInteger() function to draw a random building with 6-20
+floors, 4-10 office units on a floor, and random window and roof types.
+</span>
+</p>
+<p>
+Press "Run" multiple times to make sure the drawBuilding() function is really
+drawing a random building.
+<span style='background-color: #FFFF66;'>
+Then, once you feel satisfied with your drawings, mark the challenge as complete by
+selecting "Yes, it looks good".
+</span>
+</p>
+<p><strong>Relevant Lessons:</strong>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>, <a href="../floor/index.html">floor() / ceil()</a>
+</p>
+</div>
+</div>
+<div class='row'>
+<div class='code-editor col-xs-6'>
+<h5>
+Editor
+<small>(write code below)</small>
+</h5>
+<div class='editor' id='basic_cityscape_stage3_challenge4_editor'>var canvas = document.getElementById('basic_cityscape_stage3_challenge4');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawRoof(roofType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  &#x000A;  // YOUR CODE FOR GENERATING A RANDOM INTEGER BETWEEN MIN AND MAX, INCLUDING MIN AND MAX&#x000A;  &#x000A;}&#x000A;&#x000A;// GENERATE RANDOM NUMBERS FOR UNITS, FLOORS, WINDOWTYPE, AND ROOFTYPE&#x000A;&#x000A;// USE THOSE RANDOM NUMBERS TO DRAW A RANDOM BUILDING&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='basic_cityscape_stage3_challenge4'></canvas>
 </div>
 <div class='alert'></div>
 </div>
@@ -754,6 +928,15 @@ Canvas
 </div>
 </div>
 
+<div class='py-3'>
+<h2>
+Ready for the next lesson?
+</h2>
+<p class='py-1'>
+Next up, the
+<a href="../basic_cityscape_stage4/index.html">&quot;Stage 4&quot; lesson &gt;</a>
+</p>
+</div>
 </div>
 </div>
 </div>

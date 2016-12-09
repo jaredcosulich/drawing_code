@@ -56,13 +56,12 @@
     };
 
     Progress.prototype.updateNavigation = function() {
-      var challengeCount, completedChallengeCount, i, len, page, ref, results, totalChallengeCount;
+      var challengeCount, completedChallengeCount, drawings, drawingsElement, i, item, j, len, len1, link, page, ref, results, slug, totalChallengeCount;
       if (!this.storageAvailable) {
         return;
       }
       if (localStorage.getItem('pages') != null) {
         ref = localStorage.getItem('pages').split(/,/);
-        results = [];
         for (i = 0, len = ref.length; i < len; i++) {
           page = ref[i];
           if (localStorage.getItem(page) != null) {
@@ -71,18 +70,33 @@
               totalChallengeCount = parseInt(challengeCount.html().split(' / ')[1]);
               challengeCount.html(completedChallengeCount + " / " + totalChallengeCount);
               if (completedChallengeCount === totalChallengeCount) {
-                results.push(challengeCount.closest('.tag').removeClass('tag-default tag-warning').addClass('tag-success'));
+                challengeCount.closest('.tag').removeClass('tag-default tag-warning').addClass('tag-success');
               } else if (completedChallengeCount > 0) {
-                results.push(challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-warning'));
-              } else {
-                results.push(void 0);
+                challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-warning');
               }
-            } else {
-              results.push(void 0);
             }
-          } else {
-            results.push(void 0);
           }
+        }
+      }
+      drawingsElement = $('.nav-sidebar #drawings');
+      drawingsElement.find('.my_drawing').remove();
+      if ((drawings = this.getDrawings()).length > 0) {
+        drawingsElement.find('.drawings-list').removeClass('hidden-xs-up');
+        results = [];
+        for (j = 0, len1 = drawings.length; j < len1; j++) {
+          slug = drawings[j];
+          item = $(document.createElement('LI'));
+          item.addClass('small my_drawing');
+          item.attr({
+            id: "navigation-drawing-" + slug
+          });
+          link = $(document.createElement('A'));
+          link.attr({
+            href: "/drawings/" + slug
+          });
+          link.html(this.getDrawing(slug)['title']);
+          item.append(link);
+          results.push(drawingsElement.append(item));
         }
         return results;
       }
@@ -111,6 +125,73 @@
         return;
       }
       return localStorage.getItem(editorName);
+    };
+
+    Progress.prototype.saveDrawing = function(slug, title, description, code) {
+      var drawings, i, len, ref, t;
+      if (!this.storageAvailable) {
+        return;
+      }
+      drawings = {};
+      ref = (localStorage.getItem('drawings') || '').split('|||');
+      for (i = 0, len = ref.length; i < len; i++) {
+        t = ref[i];
+        if (t.length > 0) {
+          drawings[t] = true;
+        }
+      }
+      drawings[slug] = true;
+      localStorage.setItem('drawings', ((function() {
+        var results;
+        results = [];
+        for (t in drawings) {
+          results.push(t);
+        }
+        return results;
+      })()).join('|||'));
+      localStorage.setItem("drawing-title-" + slug, title);
+      localStorage.setItem("drawing-description-" + slug, description);
+      localStorage.setItem("drawing-code-" + slug, code);
+      return this.updateNavigation();
+    };
+
+    Progress.prototype.deleteDrawing = function(slug) {
+      var drawings, i, len, ref, t;
+      drawings = {};
+      ref = (localStorage.getItem('drawings') || '').split('|||');
+      for (i = 0, len = ref.length; i < len; i++) {
+        t = ref[i];
+        if (t.length === 0) {
+          continue;
+        }
+        if (t === slug) {
+          continue;
+        }
+        drawings[t] = true;
+      }
+      localStorage.setItem('drawings', ((function() {
+        var results;
+        results = [];
+        for (t in drawings) {
+          results.push(t);
+        }
+        return results;
+      })()).join('|||'));
+      return localStorage.removeItem(slug);
+    };
+
+    Progress.prototype.getDrawings = function() {
+      return (localStorage.getItem('drawings') || '').split('|||').filter(function(title) {
+        return title.length > 0;
+      });
+    };
+
+    Progress.prototype.getDrawing = function(slug) {
+      return {
+        title: localStorage.getItem("drawing-title-" + slug),
+        description: localStorage.getItem("drawing-description-" + slug),
+        code: localStorage.getItem("drawing-code-" + slug)
+      };
     };
 
     return Progress;

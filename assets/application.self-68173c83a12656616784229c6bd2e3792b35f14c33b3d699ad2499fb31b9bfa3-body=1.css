@@ -6460,23 +6460,27 @@ img.bordered {
 .visual .alert {
   display: none; }
 
-/* line 74, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 76, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.freeform .visual .canvas {
+  height: 600px; }
+
+/* line 82, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .nav-sidebar {
   margin-left: -30px; }
-  /* line 77, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+  /* line 85, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
   .nav-sidebar .section_link {
     font-weight: bold; }
-  /* line 81, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+  /* line 89, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
   .nav-sidebar .nav {
     margin-left: 18px; }
-    /* line 84, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+    /* line 92, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
     .nav-sidebar .nav a, .nav-sidebar .nav strong {
       padding: 0 12px; }
-    /* line 88, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+    /* line 96, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
     .nav-sidebar .nav .tag {
       vertical-align: text-bottom;
       margin-left: -0.25em; }
 
-/* line 97, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 105, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .challenge .challenge-title .tag {
   margin-left: 12px; }
