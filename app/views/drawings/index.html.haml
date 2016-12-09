@@ -1,0 +1,38 @@
+#my_drawings
+  %h1 Create Your Own Drawings
+
+  %p Create your own drawings using the expanded editor and canvas below.
+  %p If you like your drawing you can save it below as well.
+
+  .simple.row.py-3
+    .col-xs-12
+      .freeform
+        .row.py-1
+          = render :layout => '/lessons/editor', :locals => {:editor_id => 'my_drawings_editor', cols: 12} do
+            :preserve
+              var canvas = document.getElementById('my_drawings_canvas');
+              var context = canvas.getContext("2d");
+              context.clearRect(0, 0, canvas.width, canvas.height);
+
+        .row.py-1
+          .visual.col-xs-12
+            %h5
+              Canvas
+              %small (your drawing will display here)
+            .canvas
+              %canvas#my_drawings_canvas
+
+  .save.row.py-3
+    .col-xs-12
+      %h2 Save This Drawing
+
+      .row.py-2
+        .col-xs-12
+          .form-group
+            = label_tag :my_drawing_title, 'Provide a short identifying name for this drawing:'
+            = text_field_tag :my_drawing_title, '', class: 'form-control my_drawing_title', placeholder: 'Example: Red Flower', style: 'width: 30%;'
+          .form-group.my-2
+            = label_tag :my_drawing_description, 'Provide an optional description of this drawing:'
+            = text_area_tag :my_drawing_description, '', rows: 3, class: 'form-control my_drawing_description'
+
+          = submit_tag 'Save Drawing', class: 'btn btn-primary'

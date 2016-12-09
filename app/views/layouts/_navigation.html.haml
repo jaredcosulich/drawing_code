@@ -1,5 +1,18 @@
 %ul.nav.nav-sidebar
   %li.section
+    %a.section_link{:href => '#', data: {section: 'drawings'}}
+      Your Drawings
+
+    %ul.nav.nav-sidebar#drawings{class: (@drawing ? 'collapse in' : 'collapse')}
+      %li{class: ('active' if @my_drawing)}
+        = link_to('Create A Drawing', drawings_path)
+
+      %li.section.drawings-list.small.mt-1.hidden-xs-up
+        %strong My Drawings
+
+
+%ul.nav.nav-sidebar
+  %li.section
     %a.section_link{:href => '#', data: {section: 'reference'}}
       Reference
 

@@ -35,6 +35,21 @@ class App.Progress
             else if completedChallengeCount > 0
               challengeCount.closest('.tag').removeClass('tag-default').addClass('tag-warning')
 
+    drawingsElement = $('.nav-sidebar #drawings')
+    drawingsElement.find('.my_drawing').remove()
+    if (drawings = @getDrawings()).length > 0
+      drawingsElement.find('.drawings-list').removeClass('hidden-xs-up')
+      for slug in drawings
+        item = $(document.createElement('LI'))
+        item.addClass('small my_drawing')
+        item.attr(id: "navigation-drawing-#{slug}")
+        link =  $(document.createElement('A'))
+        link.attr(href: "/drawings/#{slug}")
+        link.html(@getDrawing(slug)['title'])
+        item.append(link)
+        drawingsElement.append(item)
+
+
   markChallengeComplete: (challengeId) ->
     challengeTitle = $("##{challengeId}").find('.challenge-title')
     return if challengeTitle.find('.tag-success').length > 0
@@ -49,3 +64,37 @@ class App.Progress
   getEditorValue: (editorName) ->
     return unless @storageAvailable
     localStorage.getItem(editorName)
+
+  saveDrawing: (slug, title, description, code) ->
+    return unless @storageAvailable
+
+    drawings = {}
+    drawings[t] = true for t in (localStorage.getItem('drawings') || '').split('|||') when t.length > 0
+    drawings[slug] = true
+    localStorage.setItem('drawings', (t for t of drawings).join('|||'))
+
+    localStorage.setItem("drawing-title-#{slug}", title)
+    localStorage.setItem("drawing-description-#{slug}", description)
+    localStorage.setItem("drawing-code-#{slug}", code)
+
+    @updateNavigation()
+
+  deleteDrawing: (slug) ->
+    drawings = {}
+    for t in (localStorage.getItem('drawings') || '').split('|||')
+      continue if t.length == 0
+      continue if t == slug
+      drawings[t] = true
+
+    localStorage.setItem('drawings', (t for t of drawings).join('|||'))
+    localStorage.removeItem(slug)
+
+  getDrawings: ->
+    (localStorage.getItem('drawings') || '').split('|||').filter (title) -> title.length > 0
+
+  getDrawing: (slug) ->
+    return {
+      title: localStorage.getItem("drawing-title-#{slug}"),
+      description: localStorage.getItem("drawing-description-#{slug}"),
+      code: localStorage.getItem("drawing-code-#{slug}")
+    }

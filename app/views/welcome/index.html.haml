@@ -11,6 +11,23 @@
 
     .row
       .col-xs-6
+        %h3 Your Drawings
+        %p.mt-1
+          The goal of this website is to help you develop the skills
+          necessary for you to create your own drawings and games.
+        %p.mb-1
+          Take the skills you learn in the lessons below and apply them in a novel way
+          to create something completely new!
+        %p
+          = link_to('Draw Something', drawings_path, class: 'btn btn-primary')
+
+      .col-xs-6.text-xs-center
+        = image_tag('questionmark.png', class: 'img-fluid')
+
+    %hr.my-3
+
+    .row
+      .col-xs-6
         %h3 The Basic Cityscape
         %p.my-1
           Learn to draw a basic cityscape programatically. Design functions

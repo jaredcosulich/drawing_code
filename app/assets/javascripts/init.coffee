@@ -10,6 +10,7 @@ window.Test ||= {}
 init = ->
   initProgress()
   initInteractives()
+  initFreeform()
   $(document).trigger('initialization:complete')
 
 initInteractives = ->
@@ -18,6 +19,12 @@ initInteractives = ->
     canvas = new App.Canvas(interactive.find('canvas'))
     editor = new App.Editor(interactive.find('.editor'), canvas)
     editor.run()
+
+initFreeform = ->
+  for freeformElement in $('.freeform')
+    freeform = $(freeformElement)
+    canvas = new App.Canvas(freeform.find('canvas'))
+    editor = new App.Editor(freeform.find('.editor'), canvas)
 
 initProgress = ->
   App.currentProgress = new App.Progress()
