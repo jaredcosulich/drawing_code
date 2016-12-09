@@ -1,12 +1,12 @@
-initBasicCityscapeStage3Challenges = ->
-  if (page = $('#basic_cityscape_stage3')).length > 0
-    initBasicCityscapeStage3Challenge1(page)
-    initBasicCityscapeStage3Challenge2(page)
-    initBasicCityscapeStage3Challenge3(page)
-    initBasicCityscapeStage3Challenge4(page)
+initBasicCityscapeStage4Challenges = ->
+  if (page = $('#basic_cityscape_stage4')).length > 0
+    initBasicCityscapeStage4Challenge1(page)
+    initBasicCityscapeStage4Challenge2(page)
+    initBasicCityscapeStage4Challenge3(page)
+    initBasicCityscapeStage4Challenge4(page)
 
 
-initBasicCityscapeStage3Challenge1 = (page) ->
+initBasicCityscapeStage4Challenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -15,10 +15,10 @@ initBasicCityscapeStage3Challenge1 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge1')
+      App.currentProgress.challengeComplete('basic_cityscape_stage4', 'challenge1')
 
 
-initBasicCityscapeStage3Challenge2 = (page) ->
+initBasicCityscapeStage4Challenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -27,10 +27,10 @@ initBasicCityscapeStage3Challenge2 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge2')
+      App.currentProgress.challengeComplete('basic_cityscape_stage4', 'challenge2')
 
 
-initBasicCityscapeStage3Challenge3 = (page) ->
+initBasicCityscapeStage4Challenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -39,10 +39,10 @@ initBasicCityscapeStage3Challenge3 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge3')
+      App.currentProgress.challengeComplete('basic_cityscape_stage4', 'challenge3')
 
 
-initBasicCityscapeStage3Challenge4 = (page) ->
+initBasicCityscapeStage4Challenge4 = (page) ->
   challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -51,10 +51,10 @@ initBasicCityscapeStage3Challenge4 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge4')
+      App.currentProgress.challengeComplete('basic_cityscape_stage4', 'challenge4')
 
 
-$(document).on('initialization:complete', initBasicCityscapeStage3Challenges)
+$(document).on('initialization:complete', initBasicCityscapeStage4Challenges)
 
 
 

@@ -21,7 +21,8 @@ class ApplicationController < ActionController::Base
 
       basic_cityscape_stage1: {count: 4, method: 'Stage 1'},
       basic_cityscape_stage2: {count: 3, method: 'Stage 2'},
-      basic_cityscape_stage3: {count: 3, method: 'Stage 3'}
+      basic_cityscape_stage3: {count: 4, method: 'Stage 3'},
+      basic_cityscape_stage4: {count: 4, method: 'Stage 4'}
     }
 
     @reference = {
@@ -54,7 +55,8 @@ class ApplicationController < ActionController::Base
         stages: [
           :basic_cityscape_stage1,
           :basic_cityscape_stage2,
-          :basic_cityscape_stage3
+          :basic_cityscape_stage3,
+          :basic_cityscape_stage4
         ],
         reference: [
           :clear_rect,
@@ -62,6 +64,7 @@ class ApplicationController < ActionController::Base
           :fill_style,
           :translate,
           :save,
+          :line_to,
           :floor,
           :random
         ],
