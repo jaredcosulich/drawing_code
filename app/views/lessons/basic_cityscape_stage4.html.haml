@@ -23,7 +23,7 @@
           %h2.py-2
             Draw Buildings with Four Types of Windows
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               In this example, we modify the drawFrenchFlag() function to draw the flags
               of France, Colombia, and Thailand.
           %p
@@ -104,7 +104,7 @@
           %h2.challenge-title.py-2
             Challenge 1
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Update the drawBuilding() function that you wrote in Stage 2 Challenge 3
               to draw four types of windows.
           %p
@@ -115,7 +115,7 @@
             for each window, and replace it with "drawWindow(windowType);".
           %p
             Then find the code where we define the function drawWindow().
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Inside the drawWindow() function, add a switch statement with four cases. We
               will draw four different types of windows depending if windowType = 0, 1, 2, or 3.
           %p
@@ -123,13 +123,13 @@
           = image_tag('lessons/basic_cityscape_stage3/challenge1Visual1.png')
           %p
             Note: Since all four window types use the same dark gray color (
-            %span{:style => "background-color: #FFFF66;"}>
+            %span.highlight>
               \#666666
             ), set the context.fillStyle in the drawBuilding() function before calling drawWindow().
           %p
             When your drawBuilding() and drawWindow() functions are ready, try drawing buildings
             with different sizes and window types.
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Once you feel satisfied with your drawings, mark the challenge as complete by
               selecting "Yes, it looks good".
           %p= render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect]
@@ -169,7 +169,7 @@
           %h2.py-2
             Draw Buildings with Four Types of Roofs
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               In this example, we add a triangle to the top of the building's roof.
           %p
             To draw the roof, we create a function called drawRoof() and pass it the
@@ -183,7 +183,7 @@
             context.fill() to fill it. We don't have to set the context.fillStyle because
             the roof is the same color as the building.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Change the number of office units on a floor of the building to a number between 4 and 8.
             Note how the roof adjusts to fit the size of the building.
           %p
@@ -247,23 +247,23 @@
             Challenge 2
           %p
             Time to get creative!
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Add a call to drawRoof() in your drawBuilding() function.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Then use a switch statement in the drawRoof() function to draw four different
               types of roofs.
           %p
             One of the roof types can be no roof. To set up a case that does nothing, just
             skip that case in your switch statement or leave it empty (but include the break statement).
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Each roof should scale with a range of building sizes.
             They don't have to work or look good for all sizes, but they should work and look
             good for at least a few sizes.
           %p
             Make sure you draw a building with each type of roof a few times.
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Then, once you feel satisfied with your drawings, mark the challenge as complete by
               selecting "Yes, it looks good".
           %p= render 'lessons/relevant', relevant: [:functions, :variables, :line_to]
@@ -315,7 +315,7 @@
           %p
             The next step is generating a building randomly, starting with the number of floors.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               In this example, we draw a random number of flags and select the type of flag randomly.
           %p
             To generate a random number, we use the function Math.random(). Math.random() returns
@@ -328,13 +328,13 @@
           %p
             To get an integer between 3 and 8, we use 3 + Math.floor(6 * Math.random()).
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               In the code for this example, we are drawing 2-5 flags. To randomize the type of flag,
               we changed country to a number.
             If country = 0, we will draw a French flag; if country = 1, we will draw a Colombian
             flag; and if country = 2, we will draw a Thai flag.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Press "Run" to change the number and type of flag drawn.
             Can you figure out how you would edit the code to randomize the type of each individual
             flag in the drawing?
@@ -416,14 +416,14 @@
           %h2.challenge-title.py-2
             Challenge 3
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Instead of passing a number into your drawBuilding() function for the
               number of office units on a floor, pass a variable with a random integer
               between 6 and 20 (including 6 and 20).
           %p
             Press "Run" multiple times to make sure the drawBuilding() function is drawing
             a building with a random number of floors.
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Then, once you feel satisfied with your drawings, mark the challenge as complete by
               selecting "Yes, it looks good".
           %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
@@ -477,19 +477,19 @@
             are going to randomize the number of office units, the type of windows, and
             the type of roof, too.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               But before you do that, we are going to create a function for generating random integers.
           %p
             Math.random() is great for generating random decimals, but generating random
             integers is more complicated. It takes more steps and it's easy to make a mistake.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               In this example, the randomInteger() function takes a whole number, and returns a
               random integer between 0 and that whole number (including 0 and the whole number).
             For example, randomInteger(10) returns integers between 0 and 10, including 0 and 10.
           %p
             We use the randomInteger() function to draw a rectangle with a random size and position.
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Press "Run" to see the rectangle's size and position change.
           %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor, :fill_rect]
 
@@ -539,17 +539,17 @@
             don't want to draw buildings with 0 floors or 0 office units on a floor, we
             need it to return an integer between min and max, including min and max.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Change the randomInteger() function so it returns an integer between a
               min value and a max value, including those two values.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Then use the randomInteger() function to draw a random building with 6-20
               floors, 4-10 office units on a floor, and random window and roof types.
           %p
             Press "Run" multiple times to make sure the drawBuilding() function is really
             drawing a random building.
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Then, once you feel satisfied with your drawings, mark the challenge as complete by
               selecting "Yes, it looks good".
           %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]

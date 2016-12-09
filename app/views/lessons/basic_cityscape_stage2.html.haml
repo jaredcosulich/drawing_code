@@ -27,7 +27,7 @@
             context.translate() to make the drawing easier by moving the coordinate
             system of the context.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               In this example, we draw a blue building with a yellow door with a red
               door knob.
           %p
@@ -57,20 +57,20 @@
                 var canvas = document.getElementById('basic_cityscape_stage2_example1');
                 var context = canvas.getContext('2d');
                 context.clearRect(0, 0, canvas.width, canvas.height);
-                
+
                 context.save(); // The origin is at the top left corner of the canvas
-                
+
                 context.translate(100, 50); // The origin is now at the top left corner of the building
                 context.fillStyle = '#4169E1';
                 context.fillRect(0, 0, 200, 240);
-                
+
                 context.translate(140, 160); // The origin is now at the top left corner of the door
                 context.fillStyle = '#FFFF00';
                 context.fillRect(0, 0, 40, 80);
-                
+
                 context.fillStyle = '#FF0000';
                 context.fillRect(26, 40, 8, 8);
-                
+
                 context.restore(); // The origin is back at the top left corner of the canvas
 
             .visual.col-xs-6
@@ -90,7 +90,7 @@
           %p
             Copy the drawBuilding() function that you wrote in Stage 1 Challenge 4.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Next, we will edit the drawBuilding() function to draw a window in the
               top left corner office.
           %p
@@ -104,14 +104,14 @@
       .row
         .col-xs-12
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Draw a window positioned in the office at (4, 2). The window is a dark
               gray rectangle (color #666666) that is 8 pixels wide and 10 pixels tall.
           %p
             At this point, your function will draw a gray building with one window in
             the top left corner office.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Go ahead and draw a building that is 6 office units across and 12 floors
               tall sitting on the ground at (100, 300).
             The corners of the building should cover the black x's and the window should
@@ -153,7 +153,7 @@
             To draw a row of windows, we are going to use a for loop. A for loop allows
             us to perform a set of actions over and over again.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               In this example, we draw a row of French flags.
           %p
             We start by saving the context and moving the coordinate system to (20, 120).
@@ -195,15 +195,15 @@
 
                   context.restore();
                 }
-                
+
                 context.save();
                 context.translate(20, 120);
-                
+
                 for (i = 0; i < 6; i = i + 1) {
                   drawFrenchFlag();
                   context.translate(80, 0);
                 }
-                
+
                 context.restore();
 
             .visual.col-xs-6
@@ -228,7 +228,7 @@
             Remember, the building has 4 pixels of padding all around it, so the first
             top floor office is at (4, 4), and each office is 16 pixels wide.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Draw the same dark gray window (color #666666) that is 8 pixels wide and 10 pixels
               tall at (4, 2) in each office on the top floor.
         .col-xs-6
@@ -241,7 +241,7 @@
             that number is stored in a variable (or parameter). We can use variables
             when setting up a for loop.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Then use the drawBuilding() function to draw a building that is 12 office
               units across and 8 floors tall sitting on the ground at (50, 300).
             The corners of the building should cover the black x's and the windows should cover the red x's.
@@ -253,7 +253,7 @@
             var canvas = document.getElementById('basic_cityscape_stage2_challenge2');
             var context = canvas.getContext('2d');
             context.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             function drawBuilding(leftX, groundY, units, floors) {
 
               // YOUR CODE FOR DRAWING A BUILDING WITH TOP FLOOR WINDOWS HERE
@@ -283,7 +283,7 @@
             two for loops: one inside the other. The inner for loop draws a window in
             each office of a single floor. The outer for loop draws one floor at a time.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               In this example, we draw a grid of French flags. Just like in the previous
               example, there are 6 French flags in a row. But this time, there are four rows.
           %p
@@ -329,22 +329,22 @@
 
                   context.restore();
                 }
-                
+
                 context.save(); // saves the context at the start of the drawing
                 context.translate(30, 10);
-                
+
                 for (j = 0; j < 4; j = j + 1) {
                   context.save(); // saves the context at the start of the row
-                  
+
                   for (i = 0; i < 6; i = i + 1) {
                     drawFrenchFlag();
                     context.translate(80, 0);
                   }
-                  
+
                   context.restore(); // restores the context back to the start of the row
                   context.translate(0, 90);
                 }
-                
+
                 context.restore(); // restores the context back to the start of the drawing
 
             .visual.col-xs-6
@@ -369,7 +369,7 @@
             Remember, the building has 4 pixels of padding all around it, so the first
             top floor office is at (4, 4), and each office is 16 pixels wide and 16 pixels tall.
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Draw the same dark gray window (color #666666) that is 8 pixels wide and 10
               pixels tall at (4, 2) in each office on every floor.
         .col-xs-6
@@ -377,7 +377,7 @@
       .row
         .col-xs-12
           %p
-            %span{:style => "background-color: #FFFF66;"}
+            %span.highlight
               Then use the drawBuilding() function to draw a building that is 7 office
               units across and 10 floors tall sitting on the ground at (80, 300).
             The corners of the building should cover the black x's and the windows should cover the red x's.
