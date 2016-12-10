@@ -39,13 +39,14 @@
               while loop to draw pink squares along the bottom of the white rectangle until the last
               square reaches the end of the rectangle.
           %p
-            Before the while loop, we assign the variable x = 0. We are going to use x as the
-            condition for our while loop, except insteading of going up by 1 each time through the
-            loop, x will go up by the width of the next square. So, if x = 0 at the start of the
-            first loop and we draw a 32x32 square, we add 32 to x and x = 32 at the start of the
-            next loop.
+            Before the while loop, we assign the variable x = 0. We are using x to calculate the
+            x-coordinate of the next building, and we will keep running through the while loop as
+            long as x < 400. Once the x-coordinate of the next building is greater than or equal
+            to 400, the while loop stops.
           %p
-            We keep going through the while loop as long as x < 400.
+            To calculate the x-coordinate of the next building, we use x = x + w. So, if x = 0 at
+            the start of the first loop and we draw a 32x32 square, we add 32 to x and at the start
+            of the next loop, x = 32.
           %p
             %span.highlight
               Press "Run" a few times and count the number of squares drawn. The number of squares
@@ -111,9 +112,9 @@
               Create a drawBuildingRow() function to draw a row of random buildings.
           %p
             %span.highlight
-              Draw the first building sitting on the ground at (0, 320), add a 12-pixel
-              space between buildings, and draw buildings as long as the x-coordinate of
-              the next building is less than 500.
+              Inside the drawBuildingRow() function, draw the first building at x = 0, add
+              a 12-pixel space between buildings, and keep drawing buildings while the x-coordinate
+              of the next building is less than 800.
           %p
             Note: In the example above with the random squares, we use x = x + s to update the
             value of x for the next loop. This works because both x and s are defined within the
@@ -121,16 +122,24 @@
             w inside the while loop because w is only defined inside of the drawBuilding() function.
             What we can do instead is use the variable units, which is the number of office units
             on a floor in the building, to calculate the value of x for the next loop.
+      .row.py-1
+        .col-xs-12
+          = image_tag('lessons/basic_cityscape_stage4/challenge1Visual1.png', style: 'background-color: #EEEEEE;')
+      .row
+        .col-xs-12
           %p
-            When your drawBuildingRow() function is ready, draw a row of buildings and press "Run"
-            multiple times to make sure it is working.
+            When your drawBuildingRow() function is ready, draw a row of buildings starting at
+            (0, 320). Press "Run" multiple times to make sure it is working.
+          %p
             %span.highlight
-              Once you feel satisfied with your drawings, mark the challenge as complete by
-              selecting "Yes, it looks good".
+              The row of buildings should cover the length of the red line on the canvas and look
+              similar to the image above.
+            Obviously, the buildings will be random. If your drawBuildingRow() function seems to be
+            working, mark the challenge as complete by selecting "Yes, it looks good".
           %p= render 'lessons/relevant', relevant: [:functions, :variables, :random]
 
-      .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge1_editor'} do
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge1_editor', cols: 12} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage4_challenge1');
             var context = canvas.getContext("2d");
@@ -168,11 +177,13 @@
             
             // DRAW A ROW OF RANDOM BUILDINGS SITTING ON THE GROUND STARTING AT (0, 320) HERE
 
-        .visual.col-xs-6
+      .row.py-1
+        .visual.col-xs-12
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/basic_cityscape_stage4/challenge1.png')
             %canvas#basic_cityscape_stage4_challenge1
           .alert
 
@@ -294,25 +305,32 @@
             time, change the scale of the context using context.scale(scale, scale).
           %p
             If you try to draw a row of buildings at 0.6 (or 60%) scale now, you will see something
-            interesting. The buildings are smaller, but the row of buildings is not at least 500 pixels
-            long on the canvas. In fact, the row of buildings is just over 300 pixels long on the canvas.
-            That's because 60% of 500 is 300.
+            interesting. The buildings are smaller, but the row of buildings is not at least 800 pixels
+            long on the canvas. In fact, the row of buildings is 800 pixels long in the context, but
+            only 480 pixels long on the canvas. That's because 60% of 800 is 480.
           %p
-            To draw a row of buildings at 0.6 scale that is at least 500 pixels long on the canvas,
-            we need to adjust the condition inside our while loop. Instead of x < 500, we should keep
-            drawing buildings as long as x < 500 / scale. For 0.6 scale, that works out to x < 833.
+            To draw a row of buildings at 0.6 scale that is at least 800 pixels long on the canvas,
+            we need to adjust the condition inside our while loop. Instead of x < 800, we should keep
+            drawing buildings as long as x < 800 / scale. For 0.6 scale, that works out to x < 1333.
+      .row.py-1
+        .col-xs-12
+          = image_tag('lessons/basic_cityscape_stage4/challenge2Visual1.png', style: 'background-color: #EEEEEE;')
+      .row
+        .col-xs-12
           %p
             %span.highlight
               Draw a row of buildings at 0.6 scale where the first building is sitting on the
-              ground at (0, 280) and the row of buildings is at least 500 pixels long on the canvas.
+              ground at (0, 280) and the row of buildings is at least 800 pixels long on the canvas.
           %p
             %span.highlight
-              Then, once you feel satisfied with your drawings, mark the challenge as complete by
-              selecting "Yes, it looks good".
+              The row of buildings should cover the length of the red line on the canvas and look
+              similar to the image above.
+            Obviously, the buildings will be random. If your drawBuildingRow() function seems to be
+            working, mark the challenge as complete by selecting "Yes, it looks good".
           %p= render 'lessons/relevant', relevant: [:functions, :variables, :random]
 
-      .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge2_editor'} do
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge2_editor', cols: 12} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage4_challenge2');
             var context = canvas.getContext('2d');
@@ -350,11 +368,13 @@
             
             // DRAW A ROW OF RANDOM BUILDINGS AT 0.6 SCALE SITTING ON THE GROUND STARTING AT (0, 280) HERE
 
-        .visual.col-xs-6
+      .row.py-1
+        .visual.col-xs-12
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/basic_cityscape_stage4/challenge2.png')
             %canvas#basic_cityscape_stage4_challenge2
           .alert
 
@@ -461,6 +481,11 @@
           %p
             Inside the drawBuilding() function, set the context.fillStyle to buildingColor
             when drawing the building and roof, and to windowColor when drawing the windows.
+      .row.py-1
+        .col-xs-12
+          = image_tag('lessons/basic_cityscape_stage4/challenge3Visual1.png', style: 'background-color: #EEEEEE;')
+      .row
+        .col-xs-12
           %p
             %span.highlight
               Then, draw a row of buildings at 0.6 scale where the first building is sitting on
@@ -468,12 +493,14 @@
               buildings in Challenge 1.
           %p
             %span.highlight
-              Once you feel satisfied with your drawings, mark the challenge as complete by
-              selecting "Yes, it looks good".
+              The row of buildings should cover the length of the red line on the canvas and look
+              similar to the image above, especially the building color.
+            Obviously, the buildings will be random. If your drawBuildingRow() function seems to be
+            working, mark the challenge as complete by selecting "Yes, it looks good".
           %p= render 'lessons/relevant', relevant: [:functions, :variables, :fill_style]
 
-      .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge3_editor'} do
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge3_editor', cols: 12} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage4_challenge3');
             var context = canvas.getContext("2d");
@@ -511,11 +538,13 @@
             
             // DRAW A ROW OF RANDOM BUILDINGS AT 0.6 SCALE SITTING ON THE GROUND STARTING AT (0, 280) HERE
 
-        .visual.col-xs-6
+      .row.py-1
+        .visual.col-xs-12
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/basic_cityscape_stage4/challenge3.png')
             %canvas#basic_cityscape_stage4_challenge3
           .alert
 
@@ -682,6 +711,11 @@
               In the drawBuildingRow() function, change the while loop to run as long as
               x < canvas.width.
             This will ensure each row of buildings will cover the entire width of the canvas.
+      .row.py-1
+        .col-xs-12
+          = image_tag('lessons/basic_cityscape_stage4/challenge4Visual1.png', style: 'background-color: #EEEEEE;')
+      .row
+        .col-xs-12
           %p
             %span.highlight
               Draw a gray rectangle (color #CCCCCC) at (0, 220) with a width equal to
@@ -708,8 +742,8 @@
               selecting "Yes, it looks good".
           %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
 
-      .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge4_editor'} do
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge4_editor', cols: 12} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage4_challenge4');
             var context = canvas.getContext("2d");
@@ -747,7 +781,8 @@
             
             // DRAW THE GROUND AND THREE ROWS OF BUILDINGS HERE
 
-        .visual.col-xs-6
+      .row.py-1
+        .visual.col-xs-12
           %h5
             Canvas
             %small (your drawing will display here)
