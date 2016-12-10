@@ -126,13 +126,28 @@
             %span.highlight>
               \#666666
             ), set the context.fillStyle in the drawBuilding() function before calling drawWindow().
+      .row
+        .col-xs-6
           %p
-            When your drawBuilding() and drawWindow() functions are ready, try drawing buildings
-            with different sizes and window types.
+            Draw three buildings with different sizes and window types.
+          %p
             %span.highlight
-              Once you feel satisfied with your drawings, mark the challenge as complete by
-              selecting "Yes, it looks good".
+              Draw one building sitting on the ground at (20, 320)
+              with 6 office units across, 10 floors, and type 1 windows.
+          %p
+            %span.highlight
+              Draw a second building at (136, 320) with 10 office units across,
+              6 floors, and type 2 windows.
+          %p
+            %span.highlight
+              Draw a third building at (316, 320) with 5 office units across,
+              14 floors, and type 3 windows.
+          %p
+            If your drawing looks like the image to the right, mark the challenge
+            as complete by selecting "Yes, it looks good".
           %p= render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect]
+        .col-xs-6
+          = image_tag('lessons/basic_cityscape_stage3/challenge1Visual2.png')
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage3_challenge1_editor'} do
