@@ -155,7 +155,135 @@ describe("Basic Cityscape Stage 1", function() {
 
       expect(page.challengeResult(challengeNumber, code)).toBe(false);
     });
+  });
 
 
+
+  describe("Challenge 3", function() {
+    var challengeNumber = 3;
+
+    it("succeeds with good solution", function() {
+      code = "\
+        var canvas = document.getElementById('basic_cityscape_stage1_challenge3');\
+        var context = canvas.getContext('2d');\
+        context.clearRect(0, 0, canvas.width, canvas.height);\
+\
+        function drawBuilding(leftX, groundY, units, floors) {\
+          var unitDimension = 16;\
+          var floorDimension = 16;\
+          var width = (units * unitDimension) + (4*2);\
+          var height = (floors * floorDimension) + (4*2);\
+          \
+          context.fillStyle = '#999999';\
+          context.fillRect(leftX, groundY - height, width, height);\
+        }\
+\
+        drawBuilding(50,300,8,12);\
+        drawBuilding(200,300,6,18);\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(true);
+    });
+
+    it("fails if you don't set the color properly", function() {
+      code = "\
+        var canvas = document.getElementById('basic_cityscape_stage1_challenge3');\
+        var context = canvas.getContext('2d');\
+        context.clearRect(0, 0, canvas.width, canvas.height);\
+\
+        function drawBuilding(leftX, groundY, units, floors) {\
+          var unitDimension = 16;\
+          var floorDimension = 16;\
+          var width = (units * unitDimension) + (4*2);\
+          var height = (floors * floorDimension) + (4*2);\
+          \
+          context.fillRect(leftX, groundY - height, width, height);\
+        }\
+\
+        drawBuilding(50,300,8,12);\
+        drawBuilding(200,300,6,18);\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(false);
+    });
+
+
+    it("fails if you don't add on the padding", function() {
+      code = "\
+        var canvas = document.getElementById('basic_cityscape_stage1_challenge3');\
+        var context = canvas.getContext('2d');\
+        context.clearRect(0, 0, canvas.width, canvas.height);\
+\
+        function drawBuilding(leftX, groundY, units, floors) {\
+          var unitDimension = 16;\
+          var floorDimension = 16;\
+          var width = (units * unitDimension);\
+          var height = (floors * floorDimension);\
+          \
+          context.fillStyle = '#999999';\
+          context.fillRect(leftX, groundY - height, width, height);\
+        }\
+\
+        drawBuilding(50,300,8,12);\
+        drawBuilding(200,300,6,18);\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(false);
+    });
+  });
+
+  describe("Challenge 4", function() {
+    var challengeNumber = 4;
+
+    it("succeeds with good solution", function() {
+      code = "\
+        var canvas = document.getElementById('basic_cityscape_stage1_challenge4');\
+        var context = canvas.getContext('2d');\
+        context.clearRect(0, 0, canvas.width, canvas.height);\
+\
+        function drawBuilding(leftX, groundY, units, floors) {\
+          context.save();\
+          var unitDimension = 16;\
+          var floorDimension = 16;\
+          var width = (units * unitDimension) + (4*2);\
+          var height = (floors * floorDimension) + (4*2);\
+\
+          context.translate(leftX, groundY - height);\
+          context.fillStyle = '#999999';\
+          context.fillRect(0, 0, width, height);\
+          context.restore();\
+        }\
+\
+        drawBuilding(40,300,12,6);\
+        drawBuilding(280,300,10,15);\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(true);
+    });
+
+    it("fails if you forget to restore", function() {
+      code = "\
+        var canvas = document.getElementById('basic_cityscape_stage1_challenge4');\
+        var context = canvas.getContext('2d');\
+        context.clearRect(0, 0, canvas.width, canvas.height);\
+  \
+        function drawBuilding(leftX, groundY, units, floors) {\
+          context.save();\
+          var unitDimension = 16;\
+          var floorDimension = 16;\
+          var width = (units * unitDimension) + (4*2);\
+          var height = (floors * floorDimension) + (4*2);\
+  \
+          context.translate(leftX, groundY - height);\
+          context.fillStyle = '#999999';\
+          context.fillRect(0, 0, width, height);\
+        }\
+  \
+        drawBuilding(40,300,12,6);\
+        drawBuilding(280,300,10,15);\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(false);
+    });
   });
 });
