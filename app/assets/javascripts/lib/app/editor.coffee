@@ -18,6 +18,7 @@ class App.Editor
         wrap: 'on'
 
     @editor.on 'keyup', =>
+      @ensureValidCanvasReference()
       App.currentProgress.storeEditorValue(@editorElement.id, @aceEditor.getValue())
 
     @startCode = @aceEditor.getValue()
@@ -27,6 +28,19 @@ class App.Editor
 
     if (previousCode = App.currentProgress.getEditorValue(@editorElement.id))?
       @aceEditor.setValue(previousCode, -1)
+
+    @ensureValidCanvasReference()
+
+  ensureValidCanvasReference: ->
+    code = @aceEditor.getValue()
+    canvasId = @canvas.canvasElement.id
+    return if code.match(canvasId)?
+    code = code.replace(/getElementById\('(.*)'\);/, "getElementById('#{canvasId}');")
+    @setCode(code)
+
+  setCode: (code) ->
+    @aceEditor.setValue(code, -1)
+    App.currentProgress?.storeEditorValue(@editorElement.id, code)
 
   initRun: ->
     @codeEditor.find('.buttons .run').click (e) =>
@@ -40,8 +54,7 @@ class App.Editor
     @hideLog()
     @clearLog()
     @canvas.hideAlert()
-    @aceEditor.setValue(@startCode, -1)
-    App.currentProgress?.storeEditorValue(@editorElement.id, @startCode)
+    @setCode(@startCode)
 
   run: ->
     @hideLog()
