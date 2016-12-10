@@ -199,40 +199,100 @@ describe("Basic Cityscape Stage 2", function() {
     });
   });
 
-  // describe("Challenge 3", function() {
-  //   var challengeNumber = 3;
-  //
-  //   it("succeeds with good solution", function() {
-  //     code = "\
-  //     "
-  //
-  //     expect(page.challengeResult(challengeNumber, code)).toBe(true);
-  //   });
-  //
-  //   it("fails", function() {
-  //     code = "\
-  //     "
-  //
-  //     expect(page.challengeResult(challengeNumber, code)).toBe(false);
-  //   });
-  // });
-  //
-  // describe("Challenge 4", function() {
-  //   var challengeNumber = 4;
-  //
-  //   it("succeeds with good solution", function() {
-  //     code = "\
-  //     "
-  //
-  //     expect(page.challengeResult(challengeNumber, code)).toBe(true);
-  //   });
-  //
-  //   it("fails", function() {
-  //     code = "\
-  //     "
-  //
-  //     expect(page.challengeResult(challengeNumber, code)).toBe(false);
-  //   });
-  // });
+  describe("Challenge 3", function() {
+    var challengeNumber = 3;
+
+    it("succeeds with good solution", function() {
+      code = "\
+        var canvas = document.getElementById('basic_cityscape_stage2_challenge3');\
+        var context = canvas.getContext('2d');\
+        context.clearRect(0, 0, canvas.width, canvas.height);\
+\
+        function drawBuilding(leftX, groundY, units, floors) {\
+          context.save();\
+          var unitDimension = 16;\
+          var floorDimension = 16;\
+          var width = (units * unitDimension) + (4*2);\
+          var height = (floors * floorDimension) + (4*2);\
+          \
+          context.translate(leftX, groundY - height);\
+          context.fillStyle = '#999999';\
+          context.fillRect(0, 0, width, height);\
+\
+          context.translate(4,4);\
+          context.fillStyle = '#666666';\
+\
+          for (var i=0; i<floors; ++i) {\
+            context.save();\
+            for (var j=0; j<units; ++j) {\
+              context.fillRect(0,0,8,10);\
+              context.translate(16,0);\
+            }\
+            context.restore();\
+            context.translate(0,16)\
+          }\
+          context.restore();\
+        }\
+\
+        drawBuilding(80,300,7,10);\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(true);
+    });
+
+    it("fails if you don't save() and restore() between floor translation", function() {
+      code = "\
+        var canvas = document.getElementById('basic_cityscape_stage2_challenge3');\
+        var context = canvas.getContext('2d');\
+        context.clearRect(0, 0, canvas.width, canvas.height);\
+\
+        function drawBuilding(leftX, groundY, units, floors) {\
+          context.save();\
+          var unitDimension = 16;\
+          var floorDimension = 16;\
+          var width = (units * unitDimension) + (4*2);\
+          var height = (floors * floorDimension) + (4*2);\
+          \
+          context.translate(leftX, groundY - height)\
+          context.fillStyle = '#999999';\
+          context.fillRect(0, 0, width, height);\
+          \
+          context.translate(4,4);\
+          context.fillStyle = '#666666';\
+          \
+          for (var i=0; i<floors; ++i) {\
+            for (var j=0; j<units; ++j) {\
+              context.fillRect(0,0,8,10);\
+              context.translate(16,0);\
+            }\
+            context.translate(0,16)\
+          }\
+          context.restore();\
+        }\
+\
+        drawBuilding(80,300,7,10);      \
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(false);
+    });
+  });
+
+  describe("Challenge 4", function() {
+    var challengeNumber = 4;
+
+    it("succeeds with good solution", function() {
+      code = "\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(true);
+    });
+
+    it("fails", function() {
+      code = "\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(false);
+    });
+  });
 
 });
