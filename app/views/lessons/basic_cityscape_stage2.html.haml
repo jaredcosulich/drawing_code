@@ -84,9 +84,13 @@
   #challenge1.challenge.row.py-3
     .col-xs-12
       .row
-        .col-xs-6
+        .col-xs-12
           %h2.challenge-title.py-2
             Challenge 1
+
+          .float-xs-right
+            = image_tag('lessons/basic_cityscape_stage1/challenge2Visual1.png')
+
           %p
             Copy the drawBuilding() function that you wrote in Stage 1 Challenge 4.
           %p
@@ -99,10 +103,6 @@
             the coordinate system to (4, 4) in the building. This is the top left
             corner of the top left office. Remember, the building has 4 pixels of padding
             around it.
-        .col-xs-6
-          = image_tag('lessons/basic_cityscape_stage1/challenge2Visual1.png')
-      .row
-        .col-xs-12
           %p
             %span.highlight
               Draw a window positioned in the office at (4, 2). The window is a dark
@@ -217,9 +217,13 @@
   #challenge2.challenge.row.py-3
     .col-xs-12
       .row
-        .col-xs-6
+        .col-xs-12
           %h2.challenge-title.py-2
             Challenge 2
+
+          .float-xs-right
+            = image_tag('lessons/basic_cityscape_stage1/challenge2Visual1.png')
+
           %p
             Replace the code for drawing one window in your drawBuilding() function
             from Challenge 1 with a for loop that will draw windows in all of the offices on
@@ -231,10 +235,6 @@
             %span.highlight
               Draw the same dark gray window (color #666666) that is 8 pixels wide and 10 pixels
               tall at (4, 2) in each office on the top floor.
-        .col-xs-6
-          = image_tag('lessons/basic_cityscape_stage1/challenge2Visual1.png')
-      .row
-        .col-xs-12
           %p
             Hint: The number of times you will run through the for loop will depend on
             the number of office units per floor in the building. Inside of the function,
