@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="14RzO4c9PIE+l4YRFCA9ep/6PX0ZcC86AtZ0ZeufIJh8ACMZeMrsxwYmdubsQ7o6Dei7wu5QCX9rEnXWrO1+bA==" />
+<meta name="csrf-token" content="hGm14OikjukVyhUCzBbWSxtZ+X4wNC7DswAKxBrPMrwv7eXCF1Nery175fU0dVELiUt/wccUCIbaxAt3Xb1sSA==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-26f58c2c42aba5143698dfa35404383b9d351cd97e59dc5be1699a8c508fad0c-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -264,7 +264,7 @@ Concepts
 </div>
 <div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
 <div class='lesson' id='basic_cityscape_stage4'>
-<h1>Stage 3</h1>
+<h1>Stage 4</h1>
 <p class='challenges'>
 <strong>Challenges:</strong>
 <span class='no_challenges_completed'>
@@ -289,13 +289,14 @@ out of
 Overview
 </h2>
 <p>
-In the third stage of the Cityscape Challenge, we will add some variety to the
-buildings by varying the types of windows in the offices and the types of roofs
-on the buildings. Then, we will create and draw a random building.
+In the fourth stage of the Cityscape Challenge, we will create three rows of
+buildings. The buildings in the foreground will be larger and lighter in color.
+The buildings in the background will be smaller and darker in color. This will
+create the illusion of 3D depth.
 </p>
 </div>
 <div class='col-xs-6'>
-<img class="img-fluid" src="../../../assets/lessons/basic_cityscape_stage3/overviewVisual1-ab7ee15ee0b976554c949492efcf5b7c9154875cf9f3443ab366b28c1a37401e.png" alt="Overviewvisual1" />
+<img class="img-fluid" src="../../../assets/lessons/basic_cityscape_stage4/overviewVisual1-070881e4253543c44cb8ec84fae81bf002f5fb824b662da736247c46750e03e0.png" alt="Overviewvisual1" />
 </div>
 </div>
 <div class='example row py-3'>
@@ -303,25 +304,46 @@ on the buildings. Then, we will create and draw a random building.
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='py-2'>
-Draw Buildings with Four Types of Windows
+Draw a Row of Buildings
 </h2>
 <p>
+When we wanted to draw a row of windows in Stage 2 Challenge 2, we used a for
+loop. A for loop is great when we want to draw something over and over again a
+specific number of times.
+</p>
+<p>
+The difference between drawing a row of windows and drawing a row of buildings
+is: we know exactly how many windows to draw, but we don't know how many buildings
+to draw because every building has a different width.
+</p>
+<p>
+So, to draw a row of buildings, we are going to use a while loop instead of a for loop.
+</p>
+<p>
 <span class='highlight'>
-In this example, we modify the drawFrenchFlag() function to draw the flags
-of France, Colombia, and Thailand.
+In this example, we draw a white rectangle that is 400 pixels wide, and then use a
+while loop to draw pink squares along the bottom of the white rectangle until the last
+square reaches the end of the rectangle.
 </span>
 </p>
 <p>
-We tell the drawFlag() function which flag to draw by passing it a value that
-is stored in the country parameter. Then, in the switch statement, we
-draw a French flag if country = 'France', a Colombian flag if country = 'Colombia',
-and a Thai flag if country = 'Thailand'.
+Before the while loop, we assign the variable x = 0. We are going to use x as the
+condition for our while loop, except insteading of going up by 1 each time through the
+loop, x will go up by the width of the next square. So, if x = 0 at the start of the
+first loop and we draw a 32x32 square, we add 32 to x and x = 32 at the start of the
+next loop.
 </p>
 <p>
-Try drawing a Thai flag instead of a Colombian flag to see what it looks like.
+We keep going through the while loop as long as x < 400.
+</p>
+<p>
+<span class='highlight'>
+Press "Run" a few times and count the number of squares drawn. The number of squares
+will change depending on the size of the squares.
+</span>
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>
 </p>
 </div>
 <div class='col-xs-12'>
@@ -331,7 +353,7 @@ Try drawing a Thai flag instead of a Colombian flag to see what it looks like.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage4_example1_editor'>var canvas = document.getElementById('basic_cityscape_stage4_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFlag(country) {&#x000A;  context.save();&#x000A;  &#x000A;  switch(country) {&#x000A;    case 'France':&#x000A;      context.fillStyle = '#0055A4';&#x000A;      context.fillRect(0, 0, 60, 120);&#x000A;      &#x000A;      context.fillStyle = '#FFFFFF';&#x000A;      context.fillRect(60, 0, 60, 120);&#x000A;      &#x000A;      context.fillStyle = '#EF4135';&#x000A;      context.fillRect(120, 0, 60, 120);&#x000A;      break;&#x000A;    &#x000A;    case 'Colombia':&#x000A;      context.fillStyle = '#FCD116';&#x000A;      context.fillRect(0, 0, 180, 60);&#x000A;      &#x000A;      context.fillStyle = '#003893';&#x000A;      context.fillRect(0, 60, 180, 30);&#x000A;      &#x000A;      context.fillStyle = '#CE1126';&#x000A;      context.fillRect(0, 90, 180, 30);&#x000A;      break;&#x000A;    &#x000A;    case 'Thailand':&#x000A;      context.fillStyle = '#ED1C24';&#x000A;      context.fillRect(0, 0, 180, 120);&#x000A;      &#x000A;      context.fillStyle = '#FFFFFF';&#x000A;      context.fillRect(0, 20, 180, 80);&#x000A;      &#x000A;      context.fillStyle = '#241D4F';&#x000A;      context.fillRect(0, 40, 180, 40);&#x000A;      break;&#x000A;  }&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;context.save();&#x000A;context.translate(20, 40);&#x000A;drawFlag('Colombia');&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage4_example1_editor'>var canvas = document.getElementById('basic_cityscape_stage4_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  var i = min + Math.floor((max - min + 1) * Math.random());&#x000A;  &#x000A;  return i;&#x000A;}&#x000A;&#x000A;function drawSquare(s) {&#x000A;  context.save();&#x000A;  context.translate(0, -s);&#x000A;  context.strokeRect(0, 0, s, s);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;var x = 0;&#x000A;context.save();&#x000A;context.fillStyle = '#FFFFFF';&#x000A;context.fillRect(0, 0, 400, 100);&#x000A;context.strokeStyle = '#FF1493';&#x000A;context.translate(0, 100);&#x000A;&#x000A;while (x < 400) {&#x000A;  var s = randomInteger(10, 50);&#x000A;  context.save();&#x000A;  context.translate(x, 0);&#x000A;  drawSquare(s);&#x000A;  context.restore();&#x000A;  &#x000A;  x = x + s;&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -373,44 +395,34 @@ Challenge 1
 </h2>
 <p>
 <span class='highlight'>
-Update the drawBuilding() function that you wrote in Stage 2 Challenge 3
-to draw four types of windows.
+Create a drawBuildingRow() function to draw a row of random buildings.
 </span>
 </p>
 <p>
-Start by adding a windowType parameter to the drawBuilding() function:
-drawBuilding(x, y, units, floors, windowType).
-</p>
-<p>
-Inside the drawBuilding() function, remove the code you wrote to draw a rectangle
-for each window, and replace it with "drawWindow(windowType);".
-</p>
-<p>
-Then find the code where we define the function drawWindow().
 <span class='highlight'>
-Inside the drawWindow() function, add a switch statement with four cases. We
-will draw four different types of windows depending if windowType = 0, 1, 2, or 3.
+Draw the first building sitting on the ground at (0, 320), add a 12-pixel
+space between buildings, and draw buildings as long as the x-coordinate of
+the next building is less than 500.
 </span>
 </p>
 <p>
-The dimensions of the four window types are given below:
+Note: In the example above with the random squares, we use x = x + s to update the
+value of x for the next loop. This works because both x and s are defined within the
+"scope" of the while loop. However, when drawing buildings, we can't use the variable
+w inside the while loop because w is only defined inside of the drawBuilding() function.
+What we can do instead is use the variable units, which is the number of office units
+on a floor in the building, to calculate the value of x for the next loop.
 </p>
-<img src="../../../assets/lessons/basic_cityscape_stage3/challenge1Visual1-5bda2414ad855d76c175ca62bf169dc34580dce3de4ee1408583c805a550de79.png" alt="Challenge1visual1" />
 <p>
-Note: Since all four window types use the same dark gray color (<span class='highlight'>
-#666666
-</span>), set the context.fillStyle in the drawBuilding() function before calling drawWindow().
-</p>
-<p>
-When your drawBuilding() and drawWindow() functions are ready, try drawing buildings
-with different sizes and window types.
+When your drawBuildingRow() function is ready, draw a row of buildings and press "Run"
+multiple times to make sure it is working.
 <span class='highlight'>
 Once you feel satisfied with your drawings, mark the challenge as complete by
 selecting "Yes, it looks good".
 </span>
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>
 </p>
 </div>
 </div>
@@ -420,7 +432,7 @@ selecting "Yes, it looks good".
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage4_challenge1_editor'>var canvas = document.getElementById('basic_cityscape_stage4_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage4_challenge1_editor'>var canvas = document.getElementById('basic_cityscape_stage4_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawRoof(roofType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  &#x000A;  // YOUR CODE FOR GENERATING A RANDOM INTEGER BETWEEN MIN AND MAX, INCLUDING MIN AND MAX, HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawBuildingRow() {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;// DRAW A ROW OF RANDOM BUILDINGS SITTING ON THE GROUND STARTING AT (0, 320) HERE&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -457,39 +469,33 @@ Canvas
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='py-2'>
-Draw Buildings with Four Types of Roofs
+Draw a Smaller Row of Random Buildings
 </h2>
 <p>
-<span class='highlight'>
-In this example, we add a triangle to the top of the building's roof.
-</span>
-</p>
-<p>
-To draw the roof, we create a function called drawRoof() and pass it the
-width of the building. We pass it the width of the building because we want
-to center the roof and scale the roof to fit the building.
-</p>
-<p>
-To make the roof a little easier to draw, we use context.translate() to
-move to the center of the roof and the top of the triangle.
-</p>
-<p>
-To draw a filled triangle, we use context.lineTo() to draw a polygon and
-context.fill() to fill it. We don't have to set the context.fillStyle because
-the roof is the same color as the building.
+To create a 3D effect, we are going to draw two more rows of buildings behind
+the first row. Because objects get smaller in the distance, we will draw the other
+rows of buildings slightly smaller using the context.scale() function.
 </p>
 <p>
 <span class='highlight'>
-Change the number of office units on a floor of the building to a number between 4 and 8.
+In this example, we use the context.scale() function to change the size of four
+random flags.
 </span>
-Note how the roof adjusts to fit the size of the building.
 </p>
 <p>
-The roof doesn't work when the number of office units is smaller than 4 and
-it doesn't look good when it's greater than 8. We will fix those issues later.
+By using context.scale(0.6, 0.6), we are drawing everything at 60% scale. If we use
+context.scale(1, 1), then we are drawing everything at normal size.
+</p>
+<p>
+Try context.scale(1.5, 1.5) and see what happens. The first value changes the scale
+in the x-direction. The second value changes it in the y-direction. The two values do
+not have to be the same.
+</p>
+<p>
+Note: The scale of the context gets saved and restored with context.save() and context.restore().
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../line_to/index.html">lineTo()</a>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>
 </p>
 </div>
 <div class='col-xs-12'>
@@ -499,7 +505,7 @@ it doesn't look good when it's greater than 8. We will fix those issues later.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage4_example2_editor'>var canvas = document.getElementById('basic_cityscape_stage4_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;  var w = 16 * units + 8;&#x000A;  var h = 16 * floors + 8;&#x000A;  var x = leftX;&#x000A;  var y = groundY - h;&#x000A;  &#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = '#999999';&#x000A;  context.fillRect(0, 0, w, h);&#x000A;  &#x000A;  drawRoof(w);&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawRoof(w) {&#x000A;  context.save();&#x000A;  context.translate(w / 2, -96);&#x000A;  context.beginPath();&#x000A;  context.moveTo(0, 0);&#x000A;  context.lineTo(16, 64);&#x000A;  context.lineTo(-16, 64);&#x000A;  context.closePath();&#x000A;  context.fill();&#x000A;  context.fillRect(-24, 64, 48, 16);&#x000A;  context.fillRect(-(w - 16) / 2, 80, w - 16, 16);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;drawBuilding(100, 320, 6, 12);&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage4_example2_editor'>var canvas = document.getElementById('basic_cityscape_stage4_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  var i = min + Math.floor((max - min + 1) * Math.random());&#x000A;  &#x000A;  return i;&#x000A;}&#x000A;&#x000A;function drawFlag(country) {&#x000A;  context.save();&#x000A;  &#x000A;  switch (country) {&#x000A;    case 0:&#x000A;      context.fillStyle = '#0055A4';&#x000A;      context.fillRect(0, 0, 30, 60);&#x000A;      &#x000A;      context.fillStyle = '#FFFFFF';&#x000A;      context.fillRect(30, 0, 30, 60);&#x000A;      &#x000A;      context.fillStyle = '#EF4135';&#x000A;      context.fillRect(60, 0, 30, 60);&#x000A;      break;&#x000A;    &#x000A;    case 1:&#x000A;      context.fillStyle = '#FCD116';&#x000A;      context.fillRect(0, 0, 90, 30);&#x000A;      &#x000A;      context.fillStyle = '#003893';&#x000A;      context.fillRect(0, 30, 90, 15);&#x000A;      &#x000A;      context.fillStyle = '#CE1126';&#x000A;      context.fillRect(0, 45, 90, 15);&#x000A;      break;&#x000A;    &#x000A;    case 2:&#x000A;      context.fillStyle = '#ED1C24';&#x000A;      context.fillRect(0, 0, 90, 60);&#x000A;      &#x000A;      context.fillStyle = '#FFFFFF';&#x000A;      context.fillRect(0, 10, 90, 40);&#x000A;      &#x000A;      context.fillStyle = '#241D4F';&#x000A;      context.fillRect(0, 20, 90, 20);&#x000A;      break;&#x000A;  }&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;context.save();&#x000A;context.scale(0.6, 0.6);&#x000A;context.translate(20, 20);&#x000A;&#x000A;for (var i = 0; i < 4; i = i + 1) {&#x000A;  var flagType = randomInteger(0, 2);&#x000A;  drawFlag(flagType);&#x000A;  context.translate(100, 30);&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -540,37 +546,43 @@ Canvas
 Challenge 2
 </h2>
 <p>
-Time to get creative!
 <span class='highlight'>
-Add a call to drawRoof() in your drawBuilding() function.
+Update the drawBuildingRow() function so we can draw rows with different scales.
 </span>
 </p>
 <p>
+In the definition of the drawBuildingRow() function, add a parameter called scale:
+drawBuildingRow(scale).
+</p>
+<p>
+Then, inside the drawBuildingRow() function, after saving the context for the first
+time, change the scale of the context using context.scale(scale, scale).
+</p>
+<p>
+If you try to draw a row of buildings at 0.6 (or 60%) scale now, you will see something
+interesting. The buildings are smaller, but the row of buildings is not at least 500 pixels
+long on the canvas. In fact, the row of buildings is just over 300 pixels long on the canvas.
+That's because 60% of 500 is 300.
+</p>
+<p>
+To draw a row of buildings at 0.6 scale that is at least 500 pixels long on the canvas,
+we need to adjust the condition inside our while loop. Instead of x < 500, we should keep
+drawing buildings as long as x < 500 / scale. For 0.6 scale, that works out to x < 833.
+</p>
+<p>
 <span class='highlight'>
-Then use a switch statement in the drawRoof() function to draw four different
-types of roofs.
+Draw a row of buildings at 0.6 scale where the first building is sitting on the
+ground at (0, 280) and the row of buildings is at least 500 pixels long on the canvas.
 </span>
 </p>
 <p>
-One of the roof types can be no roof. To set up a case that does nothing, just
-skip that case in your switch statement or leave it empty (but include the break statement).
-</p>
-<p>
-<span class='highlight'>
-Each roof should scale with a range of building sizes.
-</span>
-They don't have to work or look good for all sizes, but they should work and look
-good for at least a few sizes.
-</p>
-<p>
-Make sure you draw a building with each type of roof a few times.
 <span class='highlight'>
 Then, once you feel satisfied with your drawings, mark the challenge as complete by
 selecting "Yes, it looks good".
 </span>
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../line_to/index.html">lineTo()</a>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>
 </p>
 </div>
 </div>
@@ -580,7 +592,7 @@ selecting "Yes, it looks good".
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage4_challenge2_editor'>var canvas = document.getElementById('basic_cityscape_stage4_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawRoof(roofType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE&#x000A;  &#x000A;}&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage4_challenge2_editor'>var canvas = document.getElementById('basic_cityscape_stage4_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawRoof(roofType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  &#x000A;  // YOUR CODE FOR GENERATING A RANDOM INTEGER BETWEEN MIN AND MAX, INCLUDING MIN AND MAX, HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawBuildingRow() {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;// DRAW A ROW OF RANDOM BUILDINGS AT 0.6 SCALE SITTING ON THE GROUND STARTING AT (0, 280) HERE&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -617,51 +629,40 @@ Canvas
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='py-2'>
-Draw Buildings with a Random Number of Floors
+Draw a Smaller and Darker Row of Random Buildings
 </h2>
 <p>
-Right now, you have a drawBuilding() function that will draw a building for
-you if you tell it how many office units across it is, how many floors it has,
-the type of windows in its office units, and the type of roof it has.
+In addition to making the rows in the back smaller, we will also make them darker.
 </p>
 <p>
-The next step is generating a building randomly, starting with the number of floors.
+There are several ways to define colors when using context.fillStyle. So far, we
+have been using the color #999999 to draw our buildings. Another way to write #999999
+is rgb(153, 153, 153). The number 153 in base 10 is actually 99 in base 16.
 </p>
 <p>
-<span class='highlight'>
-In this example, we draw a random number of flags and select the type of flag randomly.
-</span>
-</p>
-<p>
-To generate a random number, we use the function Math.random(). Math.random() returns
-a random number between 0 and 1, including 0 but not including 1.
-</p>
-<p>
-By multiplying Math.random() by 6, we get a random number between 0 and 6. However,
-the random number will be a decimal. To convert it to an integer, we use the function
-Math.floor(), which rounds a decimal down. This will give us a random integer between
-0 and 5, so either 0, 1, 2, 3, 4, or 5.
-</p>
-<p>
-To get an integer between 3 and 8, we use 3 + Math.floor(6 * Math.random()).
+When using rgb() to define a color, we are describing the amount of red (r), green (g),
+and blue (b) in the color, where 0 is none and 255 is the maximum value. For example, black
+is rgb(0, 0, 0), which is no red, no green, and no blue. White is rgb(255, 255, 255), which
+is maximum red, maximum green, and maximum blue.
 </p>
 <p>
 <span class='highlight'>
-In the code for this example, we are drawing 2-5 flags. To randomize the type of flag,
-we changed country to a number.
+In this example, we draw a rectangle with a random color by selecting and combining
+random amounts of red, green, and blue.
 </span>
-If country = 0, we will draw a French flag; if country = 1, we will draw a Colombian
-flag; and if country = 2, we will draw a Thai flag.
+</p>
+<p>
+There are a few things to keep in mind when using rgb() to define a color. First, the red,
+green, and blue values have to be integers between 0 and 255. No decimals. Second, the
+rgb() definition is a string of text. So, we add pieces of text together to get what we need.
 </p>
 <p>
 <span class='highlight'>
-Press "Run" to change the number and type of flag drawn.
+Press "Run" to change the color of the rectangle.
 </span>
-Can you figure out how you would edit the code to randomize the type of each individual
-flag in the drawing?
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>, <a href="../floor/index.html">floor() / ceil()</a>, <a href="../for_loops/index.html">For Loops</a>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>, <a href="../fill_style/index.html">fillStyle</a>
 </p>
 </div>
 <div class='col-xs-12'>
@@ -671,7 +672,7 @@ flag in the drawing?
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage4_example3_editor'>var canvas = document.getElementById('basic_cityscape_stage4_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFlag(country) {&#x000A;  context.save();&#x000A;  &#x000A;  switch(country) {&#x000A;    case 0:&#x000A;      context.fillStyle = '#0055A4';&#x000A;      context.fillRect(0, 0, 30, 60);&#x000A;      &#x000A;      context.fillStyle = '#FFFFFF';&#x000A;      context.fillRect(30, 0, 30, 60);&#x000A;      &#x000A;      context.fillStyle = '#EF4135';&#x000A;      context.fillRect(60, 0, 30, 60);&#x000A;      break;&#x000A;    &#x000A;    case 1:&#x000A;      context.fillStyle = '#FCD116';&#x000A;      context.fillRect(0, 0, 90, 30);&#x000A;      &#x000A;      context.fillStyle = '#003893';&#x000A;      context.fillRect(0, 30, 90, 15);&#x000A;      &#x000A;      context.fillStyle = '#CE1126';&#x000A;      context.fillRect(0, 45, 90, 15);&#x000A;      break;&#x000A;    &#x000A;    case 2:&#x000A;      context.fillStyle = '#ED1C24';&#x000A;      context.fillRect(0, 0, 90, 60);&#x000A;      &#x000A;      context.fillStyle = '#FFFFFF';&#x000A;      context.fillRect(0, 10, 90, 40);&#x000A;      &#x000A;      context.fillStyle = '#241D4F';&#x000A;      context.fillRect(0, 20, 90, 20);&#x000A;      break;&#x000A;  }&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;var flagType = Math.floor(3 * Math.random());&#x000A;var flagCount = 2 + Math.floor(4 * Math.random());&#x000A;&#x000A;context.save();&#x000A;&#x000A;for (var i = 0; i < flagCount; i = i + 1) {&#x000A;  drawFlag(flagType);&#x000A;  context.translate(100, 60);&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage4_example3_editor'>var canvas = document.getElementById('basic_cityscape_stage4_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawText(text, x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'rgb(0, 0, 0)';&#x000A;  context.font = '16px sans-serif';&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText(text, x, y);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  var i = min + Math.floor((max - min + 1) * Math.random());&#x000A;  &#x000A;  return i;&#x000A;}&#x000A;&#x000A;var r = randomInteger(0, 255) // Choose a random amount of red&#x000A;var g = randomInteger(0, 255) // Choose a random amount of green&#x000A;var b = randomInteger(0, 255) // Choose a random amount of blue&#x000A;var color = 'rgb(' + r + ', ' + g + ', ' + b + ')'; // Combine the red, green, and blue in a text string&#x000A;&#x000A;context.save();&#x000A;context.fillStyle = color; // Use the color as the context's fillStyle&#x000A;context.fillRect(40, 40, 360, 240);&#x000A;&#x000A;drawText(color, 220, 300); // Print the text string stored in the variable color&#x000A;&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -713,21 +714,48 @@ Challenge 3
 </h2>
 <p>
 <span class='highlight'>
-Instead of passing a number into your drawBuilding() function for the
-number of office units on a floor, pass a variable with a random integer
-between 6 and 20 (including 6 and 20).
+Update the drawBuildingRow() and drawBuilding() functions to draw darker
+buildings as the scale gets smaller.
 </span>
 </p>
 <p>
-Press "Run" multiple times to make sure the drawBuilding() function is drawing
-a building with a random number of floors.
 <span class='highlight'>
-Then, once you feel satisfied with your drawings, mark the challenge as complete by
+Inside the drawBuildingRow() function, use Math.round(153 * scale) to calculate
+the amount of red, green, and blue in the building's color.
+</span>
+(For the building's color, the amount of red, green, and blue are all the same.)
+This will make the color darker as the scale gets smaller.
+</p>
+<p>
+Create a text string from the red, green, and blue values. Store the text string
+in a variable called buildingColor. Store the text string 'rgb(102, 102, 102)' and
+store it in a variable called windowColor. The window color for all three rows is
+the same.
+</p>
+<p>
+Pass the variables buildingColor and windowColor into the drawBuilding() function.
+Make sure you update the drawBuilding() function definition to include buildingColor
+and windowColor as parameters.
+</p>
+<p>
+Inside the drawBuilding() function, set the context.fillStyle to buildingColor
+when drawing the building and roof, and to windowColor when drawing the windows.
+</p>
+<p>
+<span class='highlight'>
+Then, draw a row of buildings at 0.6 scale where the first building is sitting on
+the ground at (0, 280). The buildings should be smaller and darker than the row of
+buildings in Challenge 1.
+</span>
+</p>
+<p>
+<span class='highlight'>
+Once you feel satisfied with your drawings, mark the challenge as complete by
 selecting "Yes, it looks good".
 </span>
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>, <a href="../floor/index.html">floor() / ceil()</a>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../fill_style/index.html">fillStyle</a>
 </p>
 </div>
 </div>
@@ -737,7 +765,7 @@ selecting "Yes, it looks good".
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage4_challenge3_editor'>var canvas = document.getElementById('basic_cityscape_stage4_challenge3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawRoof(roofType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;// GENERATE A RANDOM NUMBER BETWEEN 6 AND 20 (INCLUDING 6 AND 20) AND STORE IT IN A VARIABLE&#x000A;&#x000A;// USE THE VARIABLE TO DRAW A BUILDING WITH A RANDOM NUMBER OF FLOORS&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage4_challenge3_editor'>var canvas = document.getElementById('basic_cityscape_stage4_challenge3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawRoof(roofType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  &#x000A;  // YOUR CODE FOR GENERATING A RANDOM INTEGER BETWEEN MIN AND MAX, INCLUDING MIN AND MAX, HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawBuildingRow() {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;// DRAW A ROW OF RANDOM BUILDINGS AT 0.6 SCALE SITTING ON THE GROUND STARTING AT (0, 280) HERE&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -774,37 +802,18 @@ Canvas
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='py-2'>
-Draw Completely Random Buildings
+Draw Three Rows of Buildings and a Horizon
 </h2>
 <p>
-Now that you know how to randomize the number of floors in a building, you
-are going to randomize the number of office units, the type of windows, and
-the type of roof, too.
+We are almost done. The last step is to assemble your final drawing.
 </p>
 <p>
 <span class='highlight'>
-But before you do that, we are going to create a function for generating random integers.
-</span>
-</p>
-<p>
-Math.random() is great for generating random decimals, but generating random
-integers is more complicated. It takes more steps and it's easy to make a mistake.
-</p>
-<p>
-<span class='highlight'>
-In this example, the randomInteger() function takes a whole number, and returns a
-random integer between 0 and that whole number (including 0 and the whole number).
-</span>
-For example, randomInteger(10) returns integers between 0 and 10, including 0 and 10.
-</p>
-<p>
-We use the randomInteger() function to draw a rectangle with a random size and position.
-<span class='highlight'>
-Press "Run" to see the rectangle's size and position change.
+In this example, we draw a cake for celebrating! Press "Run" to find your favorite cake.
 </span>
 </p>
 <p><strong>Relevant Lessons:</strong>
-<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>, <a href="../floor/index.html">floor() / ceil()</a>, <a href="../fill_rect/index.html">fillRect()</a>
+<a href="../functions/index.html">Functions</a>, <a href="../variables/index.html">Variables</a>, <a href="../random/index.html">random()</a>, <a href="../fill_style/index.html">fillStyle</a>
 </p>
 </div>
 <div class='col-xs-12'>
@@ -814,7 +823,7 @@ Press "Run" to see the rectangle's size and position change.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage4_example4_editor'>var canvas = document.getElementById('basic_cityscape_stage4_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function randomInteger(max) {&#x000A;  var i = Math.floor((max + 1) * Math.random());&#x000A;  &#x000A;  return i;&#x000A;}&#x000A;&#x000A;var x = randomInteger(200);&#x000A;var y = randomInteger(100);&#x000A;var w = randomInteger(400);&#x000A;var h = randomInteger(200);&#x000A;&#x000A;context.save();&#x000A;context.fillStyle = '#8A2BE2';&#x000A;context.fillRect(x, y, w, h);&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage4_example4_editor'>var canvas = document.getElementById('basic_cityscape_stage4_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  var i = min + Math.floor((max - min + 1) * Math.random());&#x000A;  &#x000A;  return i;&#x000A;}&#x000A;&#x000A;function color(i) {&#x000A;  switch (i) {&#x000A;    case 0:&#x000A;      c = '#90EE90';&#x000A;      break;&#x000A;    &#x000A;    case 1:&#x000A;      c = '#E6E6FA';&#x000A;      break;&#x000A;    &#x000A;    case 2:&#x000A;      c = '#FFFACD';&#x000A;      break;&#x000A;    &#x000A;    case 3:&#x000A;      c = '#FFB6C1';&#x000A;      //c = '#FFE4E1';&#x000A;      break;&#x000A;    &#x000A;    case 4:&#x000A;      c = '#B0E0E6';&#x000A;      break;&#x000A;    &#x000A;    case 5:&#x000A;      c = '#1E90FF';&#x000A;      break;&#x000A;    &#x000A;    case 6:&#x000A;      c = '#9932CC';&#x000A;      break;&#x000A;    &#x000A;    case 7:&#x000A;      c = '#BA55D3';&#x000A;      break;&#x000A;    &#x000A;    case 8:&#x000A;      c = '#FF1493';&#x000A;      break;&#x000A;    &#x000A;    case 9:&#x000A;      c = '#3CB371';&#x000A;      break;&#x000A;  }&#x000A;  &#x000A;  return c;&#x000A;}&#x000A;&#x000A;function drawCandle() {&#x000A;  context.save();&#x000A;  context.translate(0, -80);&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(-5, 30, 10, 50);&#x000A;  context.fillStyle = '#FFFF00';&#x000A;  context.fillRect(-6, 0, 12, 30);&#x000A;  context.fillStyle = '#FF8C00';&#x000A;  context.fillRect(-5, 10, 10, 20);&#x000A;  context.fillStyle = '#FF0000';&#x000A;  context.fillRect(-4, 20, 8, 10);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawDecoration(icingColor, accentColor) {&#x000A;  context.save();&#x000A;  context.rotate(0.25 * Math.PI);&#x000A;  context.fillStyle = accentColor;&#x000A;  context.fillRect(-8, -8, 16, 16);&#x000A;  context.rotate(0.25 * Math.PI);&#x000A;  context.fillStyle = icingColor;&#x000A;  context.fillRect(-8, -8, 16, 16);&#x000A;  context.rotate(0.25 * Math.PI);&#x000A;  context.fillStyle = accentColor;&#x000A;  context.fillRect(-3, -3, 6, 6);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawTier(cakeColor, icingColor) {&#x000A;  context.save();&#x000A;  context.fillStyle = cakeColor;&#x000A;  context.translate(-100, 0);&#x000A;  context.fillRect(0, 0, 200, 50);&#x000A;  &#x000A;  context.translate(1, 45);&#x000A;  context.fillStyle = icingColor;&#x000A;  for (var i = 0; i < 19; i = i + 1) {&#x000A;    context.save();&#x000A;    context.rotate(0.25 * Math.PI);&#x000A;    context.fillRect(0, 0, 10, 10);&#x000A;    context.restore();&#x000A;    context.translate(11, 0);&#x000A;  }&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawCake() {&#x000A;  var cakeColor = color(randomInteger(0, 4));&#x000A;  var icingColor = color(randomInteger(5, 9));&#x000A;  &#x000A;  context.save();&#x000A;  context.fillStyle = '#000000';&#x000A;  context.fillRect(0, 0, canvas.width, canvas.height);&#x000A;  context.translate(200, 300);&#x000A;  for (var i = 0; i < 4; i = i + 1) {&#x000A;    context.translate(0, -50);&#x000A;    drawTier(cakeColor, icingColor);&#x000A;  }&#x000A;  &#x000A;  context.translate(-80, 0);&#x000A;  for (var j = 0; j < 5; j = j + 1) {&#x000A;    drawCandle();&#x000A;    context.translate(40, 0);&#x000A;  }&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;drawCake();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -855,31 +864,43 @@ Canvas
 Challenge 4
 </h2>
 <p>
-Before we can use the randomInteger() function to draw random buildings,
-we need to make a change to it.
-</p>
-<p>
-Right now, randomInteger() returns an integer between 0 and max. Since we
-don't want to draw buildings with 0 floors or 0 office units on a floor, we
-need it to return an integer between min and max, including min and max.
-</p>
-<p>
 <span class='highlight'>
-Change the randomInteger() function so it returns an integer between a
-min value and a max value, including those two values.
+In the drawBuildingRow() function, change the while loop to run as long as
+x < canvas.width.
 </span>
+This will ensure each row of buildings will cover the entire width of the canvas.
 </p>
 <p>
 <span class='highlight'>
-Then use the randomInteger() function to draw a random building with 6-20
-floors, 4-10 office units on a floor, and random window and roof types.
+Draw a gray rectangle (color #CCCCCC) at (0, 220) with a width equal to
+canvas.width and a height of 100.
 </span>
+This rectangle is the ground.
 </p>
 <p>
-Press "Run" multiple times to make sure the drawBuilding() function is really
-drawing a random building.
 <span class='highlight'>
-Then, once you feel satisfied with your drawings, mark the challenge as complete by
+Draw a row of buildings with a scale of 0.6 at (0, 280).
+</span>
+This is the back row of buildings.
+</p>
+<p>
+<span class='highlight'>
+Draw a row of buildings with a scale of 0.8 at (0, 300).
+</span>
+This is the middle row of buildings.
+</p>
+<p>
+<span class='highlight'>
+Draw a row of buildings with a scale of 1.0 at (0, 320).
+</span>
+This is the front row of buildings.
+</p>
+<p>
+Press "Run" multiple times to make sure you are drawing a random cityscape with
+three rows buildings. Each row should cover the width of the canvas, and as the
+rows get farther away, the buildings should get smaller and darker.
+<span class='highlight'>
+Once you feel satisfied with your drawings, mark the challenge as complete by
 selecting "Yes, it looks good".
 </span>
 </p>
@@ -894,7 +915,7 @@ selecting "Yes, it looks good".
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage4_challenge4_editor'>var canvas = document.getElementById('basic_cityscape_stage4_challenge4');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawRoof(roofType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  &#x000A;  // YOUR CODE FOR GENERATING A RANDOM INTEGER BETWEEN MIN AND MAX, INCLUDING MIN AND MAX&#x000A;  &#x000A;}&#x000A;&#x000A;// GENERATE RANDOM NUMBERS FOR UNITS, FLOORS, WINDOWTYPE, AND ROOFTYPE&#x000A;&#x000A;// USE THOSE RANDOM NUMBERS TO DRAW A RANDOM BUILDING&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage4_challenge4_editor'>var canvas = document.getElementById('basic_cityscape_stage4_challenge4');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawRoof(roofType) {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  &#x000A;  // YOUR CODE FOR GENERATING A RANDOM INTEGER BETWEEN MIN AND MAX, INCLUDING MIN AND MAX, HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawBuildingRow() {&#x000A;  &#x000A;  // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE&#x000A;  &#x000A;}&#x000A;&#x000A;// DRAW THE GROUND AND THREE ROWS OF BUILDINGS HERE&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
