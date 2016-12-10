@@ -48,7 +48,7 @@
             Notice how we restore the context so the origin of the coordinate system is
             back at the top left corner of the canvas? Remember, it is important to tidy up
             after moving things around.
-          %p= render 'lessons/relevant', relevant: [:save, :translate, :fill_style, :fill_rect]
+          = render 'lessons/relevant', relevant: [:save, :translate, :fill_style, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -116,7 +116,7 @@
               tall sitting on the ground at (100, 300).
             The corners of the building should cover the black x's and the window should
             cover the red x.
-          %p= render 'lessons/relevant', relevant: [:functions, :save, :translate, :fill_style, :fill_rect]
+          = render 'lessons/relevant', relevant: [:functions, :save, :translate, :fill_style, :fill_rect]
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage2_challenge1_editor'} do
@@ -171,7 +171,7 @@
             Finally, we restore the context so the origin of the coordinate system is back at the top left corner of the canvas.
           %p
             What would happen if, instead of using context.translate(80, 0) inside of the for loop, we used context.translate(80, 30)?
-          %p= render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
+          = render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
 
         .col-xs-12
           .interactive.row.py-1
@@ -245,7 +245,7 @@
               Then use the drawBuilding() function to draw a building that is 12 office
               units across and 8 floors tall sitting on the ground at (50, 300).
             The corners of the building should cover the black x's and the windows should cover the red x's.
-          %p= render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
+          = render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage2_challenge2_editor'} do
@@ -305,7 +305,7 @@
             the last flag in the previous row, not below the first flag. Each row would keep
             getting shifted over to the right. (Comment out the context.save() and context.restore()
             in the outer for loop if you want to see what would happen.)
-          %p= render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
+          = render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
 
         .col-xs-12
           .interactive.row.py-1
@@ -381,10 +381,10 @@
               Then use the drawBuilding() function to draw a building that is 7 office
               units across and 10 floors tall sitting on the ground at (80, 300).
             The corners of the building should cover the black x's and the windows should cover the red x's.
-          %p= render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
+          = render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage2_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {editor_id: 'basic_cityscape_stage2_challenge3_editor'} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage2_challenge3');
             var context = canvas.getContext("2d");

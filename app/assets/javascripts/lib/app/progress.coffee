@@ -57,13 +57,13 @@ class App.Progress
     tag.addClass('tag').addClass('tag-success').html('Completed!')
     challengeTitle.append(tag)
 
-  storeEditorValue: (editorName, code) ->
+  storeEditorValue: (editorId, code) ->
     return unless @storageAvailable
-    localStorage.setItem(editorName, code)
+    localStorage.setItem(editorId, code)
 
-  getEditorValue: (editorName) ->
+  getEditorValue: (editorId) ->
     return unless @storageAvailable
-    localStorage.getItem(editorName)
+    localStorage.getItem(editorId)
 
   saveDrawing: (slug, title, description, code) ->
     return unless @storageAvailable

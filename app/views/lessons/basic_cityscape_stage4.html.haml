@@ -51,7 +51,7 @@
             %span.highlight
               Press "Run" a few times and count the number of squares drawn. The number of squares
               will change depending on the size of the squares.
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random]
 
         .col-xs-12
           .interactive.row.py-1
@@ -60,37 +60,37 @@
                 var canvas = document.getElementById('basic_cityscape_stage4_example1');
                 var context = canvas.getContext('2d');
                 context.clearRect(0, 0, canvas.width, canvas.height);
-                
+
                 function randomInteger(min, max) {
                   var i = min + Math.floor((max - min + 1) * Math.random());
-                  
+
                   return i;
                 }
-                
+
                 function drawSquare(s) {
                   context.save();
                   context.translate(0, -s);
                   context.strokeRect(0, 0, s, s);
                   context.restore();
                 }
-                
+
                 var x = 0;
                 context.save();
                 context.fillStyle = '#FFFFFF';
                 context.fillRect(0, 0, 400, 100);
                 context.strokeStyle = '#FF1493';
                 context.translate(0, 100);
-                
+
                 while (x < 400) {
                   var s = randomInteger(10, 50);
                   context.save();
                   context.translate(x, 0);
                   drawSquare(s);
                   context.restore();
-                  
+
                   x = x + s;
                 }
-                
+
                 context.restore();
 
             .visual.col-xs-6
@@ -136,7 +136,7 @@
               similar to the image above.
             Obviously, the buildings will be random. If your drawBuildingRow() function seems to be
             working, mark the challenge as complete by selecting "Yes, it looks good".
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge1_editor', cols: 12} do
@@ -150,31 +150,31 @@
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
             }
-            
+
             function drawWindow(windowType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
-              
+
             }
-            
+
             function drawRoof(roofType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE
-              
+
             }
-            
+
             function randomInteger(min, max) {
-              
+
               // YOUR CODE FOR GENERATING A RANDOM INTEGER BETWEEN MIN AND MAX, INCLUDING MIN AND MAX, HERE
-              
+
             }
-            
+
             function drawBuildingRow() {
-              
+
               // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE
-              
+
             }
-            
+
             // DRAW A ROW OF RANDOM BUILDINGS SITTING ON THE GROUND STARTING AT (0, 320) HERE
 
       .row.py-1
@@ -211,7 +211,7 @@
             not have to be the same.
           %p
             Note: The scale of the context gets saved and restored with context.save() and context.restore().
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random]
 
         .col-xs-12
           .interactive.row.py-1
@@ -220,64 +220,64 @@
                 var canvas = document.getElementById('basic_cityscape_stage4_example2');
                 var context = canvas.getContext('2d');
                 context.clearRect(0, 0, canvas.width, canvas.height);
-                
+
                 function randomInteger(min, max) {
                   var i = min + Math.floor((max - min + 1) * Math.random());
-                  
+
                   return i;
                 }
 
                 function drawFlag(country) {
                   context.save();
-                  
+
                   switch (country) {
                     case 0:
                       context.fillStyle = '#0055A4';
                       context.fillRect(0, 0, 30, 60);
-                      
+
                       context.fillStyle = '#FFFFFF';
                       context.fillRect(30, 0, 30, 60);
-                      
+
                       context.fillStyle = '#EF4135';
                       context.fillRect(60, 0, 30, 60);
                       break;
-                    
+
                     case 1:
                       context.fillStyle = '#FCD116';
                       context.fillRect(0, 0, 90, 30);
-                      
+
                       context.fillStyle = '#003893';
                       context.fillRect(0, 30, 90, 15);
-                      
+
                       context.fillStyle = '#CE1126';
                       context.fillRect(0, 45, 90, 15);
                       break;
-                    
+
                     case 2:
                       context.fillStyle = '#ED1C24';
                       context.fillRect(0, 0, 90, 60);
-                      
+
                       context.fillStyle = '#FFFFFF';
                       context.fillRect(0, 10, 90, 40);
-                      
+
                       context.fillStyle = '#241D4F';
                       context.fillRect(0, 20, 90, 20);
                       break;
                   }
-                  
+
                   context.restore();
                 }
-                
+
                 context.save();
                 context.scale(0.6, 0.6);
                 context.translate(20, 20);
-                
+
                 for (var i = 0; i < 4; i = i + 1) {
                   var flagType = randomInteger(0, 2);
                   drawFlag(flagType);
                   context.translate(100, 30);
                 }
-                
+
                 context.restore();
 
             .visual.col-xs-6
@@ -327,7 +327,7 @@
               similar to the image above.
             Obviously, the buildings will be random. If your drawBuildingRow() function seems to be
             working, mark the challenge as complete by selecting "Yes, it looks good".
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge2_editor', cols: 12} do
@@ -335,37 +335,37 @@
             var canvas = document.getElementById('basic_cityscape_stage4_challenge2');
             var context = canvas.getContext('2d');
             context.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
 
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
             }
-            
+
             function drawWindow(windowType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
-              
+
             }
-            
+
             function drawRoof(roofType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE
-              
+
             }
-            
+
             function randomInteger(min, max) {
-              
+
               // YOUR CODE FOR GENERATING A RANDOM INTEGER BETWEEN MIN AND MAX, INCLUDING MIN AND MAX, HERE
-              
+
             }
-            
+
             function drawBuildingRow() {
-              
+
               // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE
-              
+
             }
-            
+
             // DRAW A ROW OF RANDOM BUILDINGS AT 0.6 SCALE SITTING ON THE GROUND STARTING AT (0, 280) HERE
 
       .row.py-1
@@ -407,7 +407,7 @@
           %p
             %span.highlight
               Press "Run" to change the color of the rectangle.
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :fill_style]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -416,7 +416,7 @@
                 var canvas = document.getElementById('basic_cityscape_stage4_example3');
                 var context = canvas.getContext('2d');
                 context.clearRect(0, 0, canvas.width, canvas.height);
-                
+
                 function drawText(text, x, y) {
                   context.save();
                   context.fillStyle = 'rgb(0, 0, 0)';
@@ -428,21 +428,21 @@
 
                 function randomInteger(min, max) {
                   var i = min + Math.floor((max - min + 1) * Math.random());
-                  
+
                   return i;
                 }
-                
+
                 var r = randomInteger(0, 255) // Choose a random amount of red
                 var g = randomInteger(0, 255) // Choose a random amount of green
                 var b = randomInteger(0, 255) // Choose a random amount of blue
                 var color = 'rgb(' + r + ', ' + g + ', ' + b + ')'; // Combine the red, green, and blue in a text string
-                
+
                 context.save();
                 context.fillStyle = color; // Use the color as the context's fillStyle
                 context.fillRect(40, 40, 360, 240);
-                
+
                 drawText(color, 220, 300); // Print the text string stored in the variable color
-                
+
                 context.restore();
 
             .visual.col-xs-6
@@ -497,7 +497,7 @@
               similar to the image above, especially the building color.
             Obviously, the buildings will be random. If your drawBuildingRow() function seems to be
             working, mark the challenge as complete by selecting "Yes, it looks good".
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :fill_style]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :fill_style]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge3_editor', cols: 12} do
@@ -511,31 +511,31 @@
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
             }
-            
+
             function drawWindow(windowType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
-              
+
             }
-            
+
             function drawRoof(roofType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE
-              
+
             }
-            
+
             function randomInteger(min, max) {
-              
+
               // YOUR CODE FOR GENERATING A RANDOM INTEGER BETWEEN MIN AND MAX, INCLUDING MIN AND MAX, HERE
-              
+
             }
-            
+
             function drawBuildingRow() {
-              
+
               // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE
-              
+
             }
-            
+
             // DRAW A ROW OF RANDOM BUILDINGS AT 0.6 SCALE SITTING ON THE GROUND STARTING AT (0, 280) HERE
 
       .row.py-1
@@ -560,7 +560,7 @@
           %p
             %span.highlight
               In this example, we draw a cake for celebrating! Press "Run" to find your favorite cake.
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :fill_style]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -572,57 +572,57 @@
 
                 function randomInteger(min, max) {
                   var i = min + Math.floor((max - min + 1) * Math.random());
-                  
+
                   return i;
                 }
-                
+
                 function color(i) {
                   switch (i) {
                     case 0:
                       c = '#90EE90';
                       break;
-                    
+
                     case 1:
                       c = '#E6E6FA';
                       break;
-                    
+
                     case 2:
                       c = '#FFFACD';
                       break;
-                    
+
                     case 3:
                       c = '#FFB6C1';
                       //c = '#FFE4E1';
                       break;
-                    
+
                     case 4:
                       c = '#B0E0E6';
                       break;
-                    
+
                     case 5:
                       c = '#1E90FF';
                       break;
-                    
+
                     case 6:
                       c = '#9932CC';
                       break;
-                    
+
                     case 7:
                       c = '#BA55D3';
                       break;
-                    
+
                     case 8:
                       c = '#FF1493';
                       break;
-                    
+
                     case 9:
                       c = '#3CB371';
                       break;
                   }
-                  
+
                   return c;
                 }
-                
+
                 function drawCandle() {
                   context.save();
                   context.translate(0, -80);
@@ -636,7 +636,7 @@
                   context.fillRect(-4, 20, 8, 10);
                   context.restore();
                 }
-                
+
                 function drawDecoration(icingColor, accentColor) {
                   context.save();
                   context.rotate(0.25 * Math.PI);
@@ -650,13 +650,13 @@
                   context.fillRect(-3, -3, 6, 6);
                   context.restore();
                 }
-                
+
                 function drawTier(cakeColor, icingColor) {
                   context.save();
                   context.fillStyle = cakeColor;
                   context.translate(-100, 0);
                   context.fillRect(0, 0, 200, 50);
-                  
+
                   context.translate(1, 45);
                   context.fillStyle = icingColor;
                   for (var i = 0; i < 19; i = i + 1) {
@@ -668,11 +668,11 @@
                   }
                   context.restore();
                 }
-                
+
                 function drawCake() {
                   var cakeColor = color(randomInteger(0, 4));
                   var icingColor = color(randomInteger(5, 9));
-                  
+
                   context.save();
                   context.fillStyle = '#000000';
                   context.fillRect(0, 0, canvas.width, canvas.height);
@@ -681,7 +681,7 @@
                     context.translate(0, -50);
                     drawTier(cakeColor, icingColor);
                   }
-                  
+
                   context.translate(-80, 0);
                   for (var j = 0; j < 5; j = j + 1) {
                     drawCandle();
@@ -689,7 +689,7 @@
                   }
                   context.restore();
                 }
-                
+
                 drawCake();
 
             .visual.col-xs-6
@@ -740,7 +740,7 @@
             %span.highlight
               Once you feel satisfied with your drawings, mark the challenge as complete by
               selecting "Yes, it looks good".
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge4_editor', cols: 12} do
@@ -754,31 +754,31 @@
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
             }
-            
+
             function drawWindow(windowType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
-              
+
             }
-            
+
             function drawRoof(roofType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE
-              
+
             }
-            
+
             function randomInteger(min, max) {
-              
+
               // YOUR CODE FOR GENERATING A RANDOM INTEGER BETWEEN MIN AND MAX, INCLUDING MIN AND MAX, HERE
-              
+
             }
-            
+
             function drawBuildingRow() {
-              
+
               // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE
-              
+
             }
-            
+
             // DRAW THE GROUND AND THREE ROWS OF BUILDINGS HERE
 
       .row.py-1

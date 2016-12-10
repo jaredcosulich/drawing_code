@@ -33,7 +33,7 @@
             and a Thai flag if country = 'Thailand'.
           %p
             Try drawing a Thai flag instead of a Colombian flag to see what it looks like.
-          %p= render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect]
+          = render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -42,48 +42,48 @@
                 var canvas = document.getElementById('basic_cityscape_stage3_example1');
                 var context = canvas.getContext('2d');
                 context.clearRect(0, 0, canvas.width, canvas.height);
-                
+
                 function drawFlag(country) {
                   context.save();
-                  
+
                   switch (country) {
                     case 'France':
                       context.fillStyle = '#0055A4';
                       context.fillRect(0, 0, 60, 120);
-                      
+
                       context.fillStyle = '#FFFFFF';
                       context.fillRect(60, 0, 60, 120);
-                      
+
                       context.fillStyle = '#EF4135';
                       context.fillRect(120, 0, 60, 120);
                       break;
-                    
+
                     case 'Colombia':
                       context.fillStyle = '#FCD116';
                       context.fillRect(0, 0, 180, 60);
-                      
+
                       context.fillStyle = '#003893';
                       context.fillRect(0, 60, 180, 30);
-                      
+
                       context.fillStyle = '#CE1126';
                       context.fillRect(0, 90, 180, 30);
                       break;
-                    
+
                     case 'Thailand':
                       context.fillStyle = '#ED1C24';
                       context.fillRect(0, 0, 180, 120);
-                      
+
                       context.fillStyle = '#FFFFFF';
                       context.fillRect(0, 20, 180, 80);
-                      
+
                       context.fillStyle = '#241D4F';
                       context.fillRect(0, 40, 180, 40);
                       break;
                   }
-                  
+
                   context.restore();
                 }
-                
+
                 context.save();
                 context.translate(20, 40);
                 drawFlag('Colombia');
@@ -126,8 +126,10 @@
             %span.highlight>
               \#666666
             ), set the context.fillStyle in the drawBuilding() function before calling drawWindow().
-      .row
-        .col-xs-6
+
+          .float-xs-right
+            = image_tag('lessons/basic_cityscape_stage3/challenge1Visual2.png', style: 'background-color: #EEEEEE;')
+
           %p
             Draw three buildings with different sizes and window types.
           %p
@@ -145,9 +147,9 @@
           %p
             If your drawing looks like the image to the right, mark the challenge
             as complete by selecting "Yes, it looks good".
-          %p= render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect]
-        .col-xs-6
-          = image_tag('lessons/basic_cityscape_stage3/challenge1Visual2.png', style: 'background-color: #EEEEEE;')
+
+          = render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect]
+          = render 'lessons/code_preview', challenge_name: 'Stage 2 Challenge 3', editor_id: 'basic_cityscape_stage2_challenge3_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage3_challenge1_editor'} do
@@ -161,11 +163,11 @@
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
             }
-            
+
             function drawWindow(windowType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
-              
+
             }
 
         .visual.col-xs-6
@@ -204,7 +206,7 @@
           %p
             The roof doesn't work when the number of office units is smaller than 4 and
             it doesn't look good when it's greater than 8. We will fix those issues later.
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :line_to]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :line_to]
 
         .col-xs-12
           .interactive.row.py-1
@@ -219,17 +221,17 @@
                   var h = 16 * floors + 8;
                   var x = leftX;
                   var y = groundY - h;
-                  
+
                   context.save();
                   context.translate(x, y);
                   context.fillStyle = '#999999';
                   context.fillRect(0, 0, w, h);
-                  
+
                   drawRoof(w);
-                  
+
                   context.restore();
                 }
-                
+
                 function drawRoof(w) {
                   context.save();
                   context.translate(w / 2, -96);
@@ -243,7 +245,7 @@
                   context.fillRect(-(w - 16) / 2, 80, w - 16, 16);
                   context.restore();
                 }
-                
+
                 drawBuilding(100, 320, 6, 12);
 
             .visual.col-xs-6
@@ -300,7 +302,7 @@
           %p
             If your drawing looks like the image to the right, mark the challenge
             as complete by selecting "Yes, it looks good".
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :line_to]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :line_to]
         .col-xs-6
           = image_tag('lessons/basic_cityscape_stage3/challenge2Visual2.png', style: 'background-color: #EEEEEE;')
 
@@ -310,23 +312,23 @@
             var canvas = document.getElementById('basic_cityscape_stage3_challenge2');
             var context = canvas.getContext('2d');
             context.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             function drawBuilding(leftX, groundY, units, floors, windowType) {
 
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
             }
-            
+
             function drawWindow(windowType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
-              
+
             }
-            
+
             function drawRoof(roofType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE
-              
+
             }
 
         .visual.col-xs-6
@@ -374,7 +376,7 @@
               Press "Run" to change the number and type of flag drawn.
             Can you figure out how you would edit the code to randomize the type of each individual
             flag in the drawing?
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor, :for_loops]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor, :for_loops]
 
         .col-xs-12
           .interactive.row.py-1
@@ -386,55 +388,55 @@
 
                 function drawFlag(country) {
                   context.save();
-                  
+
                   switch (country) {
                     case 0:
                       context.fillStyle = '#0055A4';
                       context.fillRect(0, 0, 30, 60);
-                      
+
                       context.fillStyle = '#FFFFFF';
                       context.fillRect(30, 0, 30, 60);
-                      
+
                       context.fillStyle = '#EF4135';
                       context.fillRect(60, 0, 30, 60);
                       break;
-                    
+
                     case 1:
                       context.fillStyle = '#FCD116';
                       context.fillRect(0, 0, 90, 30);
-                      
+
                       context.fillStyle = '#003893';
                       context.fillRect(0, 30, 90, 15);
-                      
+
                       context.fillStyle = '#CE1126';
                       context.fillRect(0, 45, 90, 15);
                       break;
-                    
+
                     case 2:
                       context.fillStyle = '#ED1C24';
                       context.fillRect(0, 0, 90, 60);
-                      
+
                       context.fillStyle = '#FFFFFF';
                       context.fillRect(0, 10, 90, 40);
-                      
+
                       context.fillStyle = '#241D4F';
                       context.fillRect(0, 20, 90, 20);
                       break;
                   }
-                  
+
                   context.restore();
                 }
-                
+
                 var flagType = Math.floor(3 * Math.random());
                 var flagCount = 2 + Math.floor(4 * Math.random());
-                
+
                 context.save();
-                
+
                 for (var i = 0; i < flagCount; i = i + 1) {
                   drawFlag(flagType);
                   context.translate(100, 60);
                 }
-                
+
                 context.restore();
 
             .visual.col-xs-6
@@ -462,7 +464,7 @@
             %span.highlight
               Then, once you feel satisfied with your drawings, mark the challenge as complete by
               selecting "Yes, it looks good".
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage3_challenge3_editor'} do
@@ -476,21 +478,21 @@
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
             }
-            
+
             function drawWindow(windowType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
-              
+
             }
-            
+
             function drawRoof(roofType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE
-              
+
             }
-            
+
             // GENERATE A RANDOM NUMBER BETWEEN 6 AND 20 (INCLUDING 6 AND 20) AND STORE IT IN A VARIABLE HERE
-            
+
             // USE THE VARIABLE TO DRAW A BUILDING WITH A RANDOM NUMBER OF FLOORS HERE
 
         .visual.col-xs-6
@@ -527,7 +529,7 @@
             We use the randomInteger() function to draw a rectangle with a random size and position.
             %span.highlight
               Press "Run" to see the rectangle's size and position change.
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor, :fill_rect]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -539,15 +541,15 @@
 
                 function randomInteger(max) {
                   var i = Math.floor((max + 1) * Math.random());
-                  
+
                   return i;
                 }
-                
+
                 var x = randomInteger(200);
                 var y = randomInteger(100);
                 var w = randomInteger(400);
                 var h = randomInteger(200);
-                
+
                 context.save();
                 context.fillStyle = '#8A2BE2';
                 context.fillRect(x, y, w, h);
@@ -593,7 +595,7 @@
             %span.highlight
               Then, once you feel satisfied with your drawings, mark the challenge as complete by
               selecting "Yes, it looks good".
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage3_challenge4_editor'} do
@@ -607,27 +609,27 @@
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
             }
-            
+
             function drawWindow(windowType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
-              
+
             }
-            
+
             function drawRoof(roofType) {
-              
+
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE
-              
+
             }
-            
+
             function randomInteger(min, max) {
-              
+
               // YOUR CODE FOR GENERATING A RANDOM INTEGER BETWEEN MIN AND MAX, INCLUDING MIN AND MAX, HERE
-              
+
             }
-            
+
             // GENERATE RANDOM NUMBERS FOR UNITS, FLOORS, WINDOWTYPE, AND ROOFTYPE HERE
-            
+
             // USE THOSE RANDOM NUMBERS TO DRAW A RANDOM BUILDING HERE
 
         .visual.col-xs-6

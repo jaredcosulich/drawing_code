@@ -111,3 +111,19 @@ img {
 .highlight {
   background-color: #FDF2B1;
 }
+
+.code-preview {
+  .code-preview-link {
+    color: #0275d8;
+    cursor: pointer;
+  }
+
+  .code-preview-view {
+    display: none;
+    margin-bottom: 12px;
+
+    .code-preview-code {
+      height: 300px;
+    }
+  }
+}
