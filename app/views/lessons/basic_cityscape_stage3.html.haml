@@ -583,6 +583,11 @@
               Then use the randomInteger() function to draw a random building with 6-20
               floors, 4-10 office units on a floor, and random window and roof types.
           %p
+            Note: If you want to restrict the type of roof depending on the width of the
+            building, you can do that with an if statement. For our cityscape, we randomly
+            choose a roofType between 0-1 if units > 8, a roofType between 0-2 else if
+            units > 6, and a roofType between 0-3 for any other number of office units.
+          %p
             Press "Run" multiple times to make sure the drawBuilding() function is really
             drawing a random building.
             %span.highlight
