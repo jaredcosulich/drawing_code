@@ -261,27 +261,48 @@
           %h2.challenge-title.py-2
             Challenge 2
           %p
-            Time to get creative!
             %span.highlight
-              Add a call to drawRoof() in your drawBuilding() function.
+              Update the drawBuilding() function to draw four types of roofs.
+          %p
+            Start by adding a roofType parameter to the drawBuilding() function. Then,
+            inside the drawBuilding() function, add a call to drawRoof(roofType) after
+            drawing the building's gray rectangle and before changing the context.fillStyle
+            to draw the windows.
           %p
             %span.highlight
-              Then use a switch statement in the drawRoof() function to draw four different
-              types of roofs.
+              Inside the drawRoof() function, add a switch statement with four cases.
           %p
-            One of the roof types can be no roof. To set up a case that does nothing, just
-            skip that case in your switch statement or leave it empty (but include the break statement).
+            The dimensions of the four window types are given below, where w is the width of the building:
+          = image_tag('lessons/basic_cityscape_stage3/challenge2Visual1.png')
+          %p
+            Note: Since all four roof types use the same gray color as the building (
+            %span.highlight>
+              \#666666
+            ), we don't have to change the context.fillStyle in the drawBuilding() function before calling
+            drawRoof(). Also, for a case that does nothing, either leave the case out or include the case with
+            a comment explaining what it is supposed to do (make sure to include the break statement).
+      .row
+        .col-xs-6
+          %p
+            Draw three buildings with different sizes, window, and roof types.
           %p
             %span.highlight
-              Each roof should scale with a range of building sizes.
-            They don't have to work or look good for all sizes, but they should work and look
-            good for at least a few sizes.
+              Draw one building sitting on the ground at (20, 320) with 6 office units
+              across, 10 floors, type 1 windows, and a type 2 roof.
           %p
-            Make sure you draw a building with each type of roof a few times.
             %span.highlight
-              Then, once you feel satisfied with your drawings, mark the challenge as complete by
-              selecting "Yes, it looks good".
+              Draw a second building at (136, 320) with 10 office units across, 6 floors,
+              type 2 windows, and a type 1 roof.
+          %p
+            %span.highlight
+              Draw a third building at (316, 320) with 5 office units across, 14 floors,
+              type 3 windows, and a type 3 roof.
+          %p
+            If your drawing looks like the image to the right, mark the challenge
+            as complete by selecting "Yes, it looks good".
           %p= render 'lessons/relevant', relevant: [:functions, :variables, :line_to]
+        .col-xs-6
+          = image_tag('lessons/basic_cityscape_stage3/challenge2Visual2.png', style: 'background-color: #EEEEEE;')
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage3_challenge2_editor'} do
@@ -290,7 +311,7 @@
             var context = canvas.getContext('2d');
             context.clearRect(0, 0, canvas.width, canvas.height);
             
-            function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
+            function drawBuilding(leftX, groundY, units, floors, windowType) {
 
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
