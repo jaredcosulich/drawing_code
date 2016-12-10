@@ -6484,3 +6484,7 @@ img.bordered {
 /* line 105, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .challenge .challenge-title .tag {
   margin-left: 12px; }
+
+/* line 111, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.highlight {
+  background-color: #FDF2B1; }

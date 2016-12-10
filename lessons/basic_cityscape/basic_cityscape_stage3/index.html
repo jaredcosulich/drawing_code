@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="ZqWI4bgSjdwk2xe7vg47ldOKdriwIe99yk56Dln0SqPNIdjDR+Vdmhxq50xGbbzVQZjwB0cByTijinu9HoYUVw==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-68173c83a12656616784229c6bd2e3792b35f14c33b3d699ad2499fb31b9bfa3-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="yA8uMeVOChjR+u595C5i1nvoToTkClk2JqCQ/14udx5ji34TGrnaXulLHoocTeWW6frIOxMqf3NPZJFMGVwp6g==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-26f58c2c42aba5143698dfa35404383b9d351cd97e59dc5be1699a8c508fad0c-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -306,7 +306,7 @@ on the buildings. Then, we will create and draw a random building.
 Draw Buildings with Four Types of Windows
 </h2>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 In this example, we modify the drawFrenchFlag() function to draw the flags
 of France, Colombia, and Thailand.
 </span>
@@ -372,7 +372,7 @@ Canvas
 Challenge 1
 </h2>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Update the drawBuilding() function that you wrote in Stage 2 Challenge 3
 to draw four types of windows.
 </span>
@@ -387,7 +387,7 @@ for each window, and replace it with "drawWindow(windowType);".
 </p>
 <p>
 Then find the code where we define the function drawWindow().
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Inside the drawWindow() function, add a switch statement with four cases. We
 will draw four different types of windows depending if windowType = 0, 1, 2, or 3.
 </span>
@@ -397,14 +397,14 @@ The dimensions of the four window types are given below:
 </p>
 <img src="../../../assets/lessons/basic_cityscape_stage3/challenge1Visual1-5bda2414ad855d76c175ca62bf169dc34580dce3de4ee1408583c805a550de79.png" alt="Challenge1visual1" />
 <p>
-Note: Since all four window types use the same dark gray color (<span style='background-color: #FFFF66;'>
+Note: Since all four window types use the same dark gray color (<span class='highlight'>
 #666666
 </span>), set the context.fillStyle in the drawBuilding() function before calling drawWindow().
 </p>
 <p>
 When your drawBuilding() and drawWindow() functions are ready, try drawing buildings
 with different sizes and window types.
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Once you feel satisfied with your drawings, mark the challenge as complete by
 selecting "Yes, it looks good".
 </span>
@@ -460,7 +460,7 @@ Canvas
 Draw Buildings with Four Types of Roofs
 </h2>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 In this example, we add a triangle to the top of the building's roof.
 </span>
 </p>
@@ -479,7 +479,7 @@ context.fill() to fill it. We don't have to set the context.fillStyle because
 the roof is the same color as the building.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Change the number of office units on a floor of the building to a number between 4 and 8.
 </span>
 Note how the roof adjusts to fit the size of the building.
@@ -541,12 +541,12 @@ Challenge 2
 </h2>
 <p>
 Time to get creative!
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Add a call to drawRoof() in your drawBuilding() function.
 </span>
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Then use a switch statement in the drawRoof() function to draw four different
 types of roofs.
 </span>
@@ -556,7 +556,7 @@ One of the roof types can be no roof. To set up a case that does nothing, just
 skip that case in your switch statement or leave it empty (but include the break statement).
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Each roof should scale with a range of building sizes.
 </span>
 They don't have to work or look good for all sizes, but they should work and look
@@ -564,7 +564,7 @@ good for at least a few sizes.
 </p>
 <p>
 Make sure you draw a building with each type of roof a few times.
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Then, once you feel satisfied with your drawings, mark the challenge as complete by
 selecting "Yes, it looks good".
 </span>
@@ -628,7 +628,7 @@ the type of windows in its office units, and the type of roof it has.
 The next step is generating a building randomly, starting with the number of floors.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 In this example, we draw a random number of flags and select the type of flag randomly.
 </span>
 </p>
@@ -646,7 +646,7 @@ Math.floor(), which rounds a decimal down. This will give us a random integer be
 To get an integer between 3 and 8, we use 3 + Math.floor(6 * Math.random()).
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 In the code for this example, we are drawing 2-5 flags. To randomize the type of flag,
 we changed country to a number.
 </span>
@@ -654,7 +654,7 @@ If country = 0, we will draw a French flag; if country = 1, we will draw a Colom
 flag; and if country = 2, we will draw a Thai flag.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Press "Run" to change the number and type of flag drawn.
 </span>
 Can you figure out how you would edit the code to randomize the type of each individual
@@ -712,7 +712,7 @@ Canvas
 Challenge 3
 </h2>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Instead of passing a number into your drawBuilding() function for the
 number of office units on a floor, pass a variable with a random integer
 between 6 and 20 (including 6 and 20).
@@ -721,7 +721,7 @@ between 6 and 20 (including 6 and 20).
 <p>
 Press "Run" multiple times to make sure the drawBuilding() function is drawing
 a building with a random number of floors.
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Then, once you feel satisfied with your drawings, mark the challenge as complete by
 selecting "Yes, it looks good".
 </span>
@@ -782,7 +782,7 @@ are going to randomize the number of office units, the type of windows, and
 the type of roof, too.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 But before you do that, we are going to create a function for generating random integers.
 </span>
 </p>
@@ -791,7 +791,7 @@ Math.random() is great for generating random decimals, but generating random
 integers is more complicated. It takes more steps and it's easy to make a mistake.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 In this example, the randomInteger() function takes a whole number, and returns a
 random integer between 0 and that whole number (including 0 and the whole number).
 </span>
@@ -799,7 +799,7 @@ For example, randomInteger(10) returns integers between 0 and 10, including 0 an
 </p>
 <p>
 We use the randomInteger() function to draw a rectangle with a random size and position.
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Press "Run" to see the rectangle's size and position change.
 </span>
 </p>
@@ -864,13 +864,13 @@ don't want to draw buildings with 0 floors or 0 office units on a floor, we
 need it to return an integer between min and max, including min and max.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Change the randomInteger() function so it returns an integer between a
 min value and a max value, including those two values.
 </span>
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Then use the randomInteger() function to draw a random building with 6-20
 floors, 4-10 office units on a floor, and random window and roof types.
 </span>
@@ -878,7 +878,7 @@ floors, 4-10 office units on a floor, and random window and roof types.
 <p>
 Press "Run" multiple times to make sure the drawBuilding() function is really
 drawing a random building.
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Then, once you feel satisfied with your drawings, mark the challenge as complete by
 selecting "Yes, it looks good".
 </span>

@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="D2MvzH07+TlqAPEHJ+WMJiJvnyitwBG+KoYRqQX/opek53/ugswpf1KxAfDfhgtmsH0Zl1rgN/tDQhAaQo38Yw==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-68173c83a12656616784229c6bd2e3792b35f14c33b3d699ad2499fb31b9bfa3-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="BxzbU/rDvK66/eYbSPLaM3cgd9HqkLxVyGJrASIkZv+smItxBTRs6IJMFuywkV1z5TLxbh2wmhChpmqyZVY4Cw==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-26f58c2c42aba5143698dfa35404383b9d351cd97e59dc5be1699a8c508fad0c-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -311,7 +311,7 @@ context.translate() to make the drawing easier by moving the coordinate
 system of the context.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 In this example, we draw a blue building with a yellow door with a red
 door knob.
 </span>
@@ -394,7 +394,7 @@ Challenge 1
 Copy the drawBuilding() function that you wrote in Stage 1 Challenge 4.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Next, we will edit the drawBuilding() function to draw a window in the
 top left corner office.
 </span>
@@ -414,7 +414,7 @@ around it.
 <div class='row'>
 <div class='col-xs-12'>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Draw a window positioned in the office at (4, 2). The window is a dark
 gray rectangle (color #666666) that is 8 pixels wide and 10 pixels tall.
 </span>
@@ -424,7 +424,7 @@ At this point, your function will draw a gray building with one window in
 the top left corner office.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Go ahead and draw a building that is 6 office units across and 12 floors
 tall sitting on the ground at (100, 300).
 </span>
@@ -487,7 +487,7 @@ To draw a row of windows, we are going to use a for loop. A for loop allows
 us to perform a set of actions over and over again.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 In this example, we draw a row of French flags.
 </span>
 </p>
@@ -573,7 +573,7 @@ Remember, the building has 4 pixels of padding all around it, so the first
 top floor office is at (4, 4), and each office is 16 pixels wide.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Draw the same dark gray window (color #666666) that is 8 pixels wide and 10 pixels
 tall at (4, 2) in each office on the top floor.
 </span>
@@ -592,7 +592,7 @@ that number is stored in a variable (or parameter). We can use variables
 when setting up a for loop.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Then use the drawBuilding() function to draw a building that is 12 office
 units across and 8 floors tall sitting on the ground at (50, 300).
 </span>
@@ -655,7 +655,7 @@ two for loops: one inside the other. The inner for loop draws a window in
 each office of a single floor. The outer for loop draws one floor at a time.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 In this example, we draw a grid of French flags. Just like in the previous
 example, there are 6 French flags in a row. But this time, there are four rows.
 </span>
@@ -693,7 +693,7 @@ in the outer for loop if you want to see what would happen.)
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage2_example3_editor'>var canvas = document.getElementById('basic_cityscape_stage2_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFrenchFlag() {&#x000A;  context.save();&#x000A;&#x000A;  context.fillStyle = '#0055A4';&#x000A;  context.fillRect(0, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(20, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#EF4135';&#x000A;  context.fillRect(40, 0, 20, 40);&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;context.save(); // saves the context at the start of the drawing&#x000A;context.translate(30, 10);&#x000A;&#x000A;for (j = 0; j < 4; j = j + 1) {&#x000A;  context.save(); // saves the context at the start of the row&#x000A;  &#x000A;  for (i = 0; i < 6; i = i + 1) {&#x000A;    drawFrenchFlag();&#x000A;    context.translate(80, 0);&#x000A;  }&#x000A;  &#x000A;  context.restore(); // restores the context back to the start of the row&#x000A;  context.translate(0, 90);&#x000A;}&#x000A;&#x000A;context.restore(); // restores the context back to the start of the drawing&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage2_example3_editor'>var canvas = document.getElementById('basic_cityscape_stage2_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawFrenchFlag() {&#x000A;  context.save();&#x000A;&#x000A;  context.fillStyle = '#0055A4';&#x000A;  context.fillRect(0, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(20, 0, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#EF4135';&#x000A;  context.fillRect(40, 0, 20, 40);&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;context.save(); // saves the context at the start of the drawing&#x000A;context.translate(30, 10);&#x000A;&#x000A;for (j = 0; j < 4; j = j + 1) {&#x000A;  context.save(); // saves the context at the start of the row&#x000A;&#x000A;  for (i = 0; i < 6; i = i + 1) {&#x000A;    drawFrenchFlag();&#x000A;    context.translate(80, 0);&#x000A;  }&#x000A;&#x000A;  context.restore(); // restores the context back to the start of the row&#x000A;  context.translate(0, 90);&#x000A;}&#x000A;&#x000A;context.restore(); // restores the context back to the start of the drawing&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -743,7 +743,7 @@ Remember, the building has 4 pixels of padding all around it, so the first
 top floor office is at (4, 4), and each office is 16 pixels wide and 16 pixels tall.
 </p>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Draw the same dark gray window (color #666666) that is 8 pixels wide and 10
 pixels tall at (4, 2) in each office on every floor.
 </span>
@@ -756,7 +756,7 @@ pixels tall at (4, 2) in each office on every floor.
 <div class='row'>
 <div class='col-xs-12'>
 <p>
-<span style='background-color: #FFFF66;'>
+<span class='highlight'>
 Then use the drawBuilding() function to draw a building that is 7 office
 units across and 10 floors tall sitting on the ground at (80, 300).
 </span>

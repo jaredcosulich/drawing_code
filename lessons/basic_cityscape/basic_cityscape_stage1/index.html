@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="95SEM2CwGtpuDmb5s4XcY6dh4lpSVVxrFGONU3C1UktcENQRn0fKnFa/lg5L5lsjNXNk5aV1ei59p4zgN8cMvw==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-68173c83a12656616784229c6bd2e3792b35f14c33b3d699ad2499fb31b9bfa3-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="k1wVKtAC2QgQKcjN6MJ/s3Hx6DR2+VAIC/p4ybbfCkk42EUIL/UJTiiYODoQofjz4+Nui4HZdk1iPnl68a1UvQ==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-26f58c2c42aba5143698dfa35404383b9d351cd97e59dc5be1699a8c508fad0c-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -533,7 +533,7 @@ corner of your building, and w and h are the width and height of your building.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage1_challenge2_editor'>function drawOffices(x, y, w, h) {&#x000A;  var u = Math.floor((w - 4) / 16);&#x000A;  var f = Math.floor((h - 4) / 16);&#x000A;&#x000A;  context.save();&#x000A;  context.translate(x + 4, y + 4);&#x000A;  context.strokeWidth = 1;&#x000A;  context.strokeStyle = '#000000';&#x000A;&#x000A;  for (var i = 0; i < f; i++) {&#x000A;    for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);&#x000A;  }&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;var canvas = document.getElementById('basic_cityscape_stage1_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;var units = 8;&#x000A;var floors = 10;&#x000A;&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;// YOUR CODE TO DRAW GRAY (#999999) RECTANGLE HERE&#x000A;&#x000A;// drawOffices(x, y, w, h);&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage1_challenge2_editor'>function drawOffices(x, y, w, h) {&#x000A;  var u = Math.floor((w - 4) / 16);&#x000A;  var f = Math.floor((h - 4) / 16);&#x000A;&#x000A;  context.save();&#x000A;  context.translate(x + 4, y + 4);&#x000A;  context.strokeWidth = 1;&#x000A;  context.strokeStyle = '#000000';&#x000A;&#x000A;  for (var i = 0; i < f; i++) {&#x000A;    for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);&#x000A;  }&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;var canvas = document.getElementById('basic_cityscape_stage1_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;var units = 8;&#x000A;var floors = 10;&#x000A;&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;// YOUR CODE FOR GRAY (#999999) BUILDING HERE&#x000A;&#x000A;// drawOffices(x, y, w, h);&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
