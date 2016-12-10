@@ -387,7 +387,7 @@
           %p
             %span.highlight
               Press "Run" to change the color of the rectangle.
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random]
+          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -470,7 +470,7 @@
             %span.highlight
               Once you feel satisfied with your drawings, mark the challenge as complete by
               selecting "Yes, it looks good".
-          %p= render 'lessons/relevant', relevant: [:functions, :variables]
+          %p= render 'lessons/relevant', relevant: [:functions, :variables, :fill_style]
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge3_editor'} do
@@ -531,7 +531,7 @@
           %p
             %span.highlight
               In this example, we draw a cake for celebrating! Press "Run" to find your favorite cake.
-          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random]
+          %p= render 'lessons/relevant', relevant: [:functions, :variables, :random, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -654,7 +654,7 @@
                   }
                   
                   context.translate(-80, 0);
-                  for (var i = 0; i < 5; i = i + 1) {
+                  for (var j = 0; j < 5; j = j + 1) {
                     drawCandle();
                     context.translate(40, 0);
                   }
