@@ -40,16 +40,8 @@
       message.html('Do you feel satisfied with your drawing?');
       confirm = $(document.createElement('DIV'));
       confirm.addClass('mt-1');
-      noButton = $(document.createElement('BUTTON'));
-      noButton.addClass('btn btn-secondary mr-1');
-      noButton.html('No, I\'d like to work on it more');
-      noButton.click((function(_this) {
-        return function() {
-          return _this.hideAlert();
-        };
-      })(this));
       yesButton = $(document.createElement('BUTTON'));
-      yesButton.addClass('btn btn-success');
+      yesButton.addClass('btn btn-success mr-1');
       yesButton.html('Yes, it looks good');
       yesButton.click((function(_this) {
         return function() {
@@ -57,7 +49,15 @@
           return successCallback();
         };
       })(this));
-      confirm.append(noButton).append(yesButton);
+      noButton = $(document.createElement('BUTTON'));
+      noButton.addClass('btn btn-danger');
+      noButton.html('No, I\'d like to work on it more');
+      noButton.click((function(_this) {
+        return function() {
+          return _this.hideAlert();
+        };
+      })(this));
+      confirm.append(yesButton).append(noButton);
       message.append(confirm);
       return this.alert(message);
     };

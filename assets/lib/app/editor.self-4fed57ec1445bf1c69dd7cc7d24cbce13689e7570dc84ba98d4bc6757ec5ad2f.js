@@ -22,6 +22,7 @@
       });
       this.editor.on('keyup', (function(_this) {
         return function() {
+          _this.ensureValidCanvasReference();
           return App.currentProgress.storeEditorValue(_this.editorElement.id, _this.aceEditor.getValue());
         };
       })(this));
@@ -31,7 +32,25 @@
       if ((previousCode = App.currentProgress.getEditorValue(this.editorElement.id)) != null) {
         this.aceEditor.setValue(previousCode, -1);
       }
+      this.ensureValidCanvasReference();
     }
+
+    Editor.prototype.ensureValidCanvasReference = function() {
+      var canvasId, code;
+      code = this.aceEditor.getValue();
+      canvasId = this.canvas.canvasElement.id;
+      if (code.match(canvasId) != null) {
+        return;
+      }
+      code = code.replace(/getElementById\('([^)]*)'\);/, "getElementById('" + canvasId + "');");
+      return this.setCode(code);
+    };
+
+    Editor.prototype.setCode = function(code) {
+      var ref;
+      this.aceEditor.setValue(code, -1);
+      return (ref = App.currentProgress) != null ? ref.storeEditorValue(this.editorElement.id, code) : void 0;
+    };
 
     Editor.prototype.initRun = function() {
       this.codeEditor.find('.buttons .run').click((function(_this) {
@@ -49,12 +68,10 @@
     };
 
     Editor.prototype.reset = function() {
-      var ref;
       this.hideLog();
       this.clearLog();
       this.canvas.hideAlert();
-      this.aceEditor.setValue(this.startCode, -1);
-      return (ref = App.currentProgress) != null ? ref.storeEditorValue(this.editorElement.id, this.startCode) : void 0;
+      return this.setCode(this.startCode);
     };
 
     Editor.prototype.run = function() {

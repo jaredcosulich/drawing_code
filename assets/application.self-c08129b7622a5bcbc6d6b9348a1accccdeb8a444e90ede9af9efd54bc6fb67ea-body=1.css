@@ -6488,3 +6488,15 @@ img.bordered {
 /* line 111, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .highlight {
   background-color: #FDF2B1; }
+
+/* line 116, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.code-preview .code-preview-link {
+  color: #0275d8;
+  cursor: pointer; }
+/* line 121, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.code-preview .code-preview-view {
+  display: none;
+  margin-bottom: 12px; }
+  /* line 125, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+  .code-preview .code-preview-view .code-preview-code {
+    height: 300px; }

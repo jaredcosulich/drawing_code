@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="0HEMkgMpZNTGQdCj+0fbhU4g/+zN7U6jFet7LeTukIN79Vyw/N60kv7wIFQDJFzF3DJ5UzrNaOZ8L3qeo5zOdw==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-26f58c2c42aba5143698dfa35404383b9d351cd97e59dc5be1699a8c508fad0c-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="Bruv68zD7arjcDEUt4GRT3usnQcjYJy0GRKj8rI/o0StP//JMzQ97NvBweNP4hYP6b4buNRAuvFw1qJB9U39sA==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-c08129b7622a5bcbc6d6b9348a1accccdeb8a444e90ede9af9efd54bc6fb67ea-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -14,6 +14,7 @@
 <script src="../../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/code_preview.self-167bac5d09ac856171e9d10ca3e2fcd6feb7ab4afb76cf0c4dec85f062976d60.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/drawings.self-38f1307ac5108a326b9c286691b846622cbaebf7c0bbab1bb453643d1e339fe7.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/init.self-c18177b914f2264768071275a0620026bda8f5c4d8659f31b025460b94b6e6e8.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
@@ -33,9 +34,10 @@
 <script src="../../../assets/lessons/save.self-40009da7858c56166ef5dbae9087a3b9cdc7b0c7bbf2c49751dc35678f068df5.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/translate.self-12f5a51ccf4b3f0f72e2079f0069bab57fd3af696731c66057284b4338745fba.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/variables.self-c87145ec3cf2327e7b3eb2ef815bed8ee4b3a42f7408ff8faa7e3353fb824132.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/canvas.self-6ddc816c8aae37d2af888f0c6d151432d140c11b05e334a8c9587983cdae4e7b.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/editor.self-b7516c241237380ae2343f77501b62e1356e543379ad3384bed7ede5f49f1e36.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/progress.self-b17e5d310fb91f78d0f080f596a18e861ecb5323a6fb66b223b5354d1ae48d3c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/canvas.self-7b607cac23a26f3ce093917627e9b6f8916f02bd10cea861d1570a8285a8d260.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/editor.self-4fed57ec1445bf1c69dd7cc7d24cbce13689e7570dc84ba98d4bc6757ec5ad2f.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/progress.self-df819cacc21fdae026057e6db599fcba5baf17b174f7fe4094037e1211928b6a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/image.self-f945f36d695e577e38c6d67b504191222e601b3e90b1e90a296f2f14764d3615.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/point.self-57f97666d941e0e32f6db69b324362ae324dd3bdcddbca02997bb347578f357a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/navigation.self-86efb23cbd540a25cfd5aa4f6397355fe9ea8601cab3fd824ba10027ed53a1fc.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
@@ -339,9 +341,11 @@ Notice how we restore the context so the origin of the coordinate system is
 back at the top left corner of the canvas? Remember, it is important to tidy up
 after moving things around.
 </p>
-<p><strong>Relevant Lessons:</strong>
+<p>
+<strong>Relevant Lessons:</strong>
 <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
 </p>
+
 </div>
 <div class='col-xs-12'>
 <div class='interactive row py-1'>
@@ -427,9 +431,11 @@ tall sitting on the ground at (100, 300).
 The corners of the building should cover the black x's and the window should
 cover the red x.
 </p>
-<p><strong>Relevant Lessons:</strong>
+<p>
+<strong>Relevant Lessons:</strong>
 <a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
 </p>
+
 </div>
 </div>
 <div class='row'>
@@ -508,9 +514,11 @@ Finally, we restore the context so the origin of the coordinate system is back a
 <p>
 What would happen if, instead of using context.translate(80, 0) inside of the for loop, we used context.translate(80, 30)?
 </p>
-<p><strong>Relevant Lessons:</strong>
+<p>
+<strong>Relevant Lessons:</strong>
 <a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../for_loops/index.html">For Loops</a>
 </p>
+
 </div>
 <div class='col-xs-12'>
 <div class='interactive row py-1'>
@@ -590,9 +598,11 @@ units across and 8 floors tall sitting on the ground at (50, 300).
 </span>
 The corners of the building should cover the black x's and the windows should cover the red x's.
 </p>
-<p><strong>Relevant Lessons:</strong>
+<p>
+<strong>Relevant Lessons:</strong>
 <a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../for_loops/index.html">For Loops</a>
 </p>
+
 </div>
 </div>
 <div class='row'>
@@ -674,9 +684,11 @@ the last flag in the previous row, not below the first flag. Each row would keep
 getting shifted over to the right. (Comment out the context.save() and context.restore()
 in the outer for loop if you want to see what would happen.)
 </p>
-<p><strong>Relevant Lessons:</strong>
+<p>
+<strong>Relevant Lessons:</strong>
 <a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../for_loops/index.html">For Loops</a>
 </p>
+
 </div>
 <div class='col-xs-12'>
 <div class='interactive row py-1'>
@@ -754,9 +766,11 @@ units across and 10 floors tall sitting on the ground at (80, 300).
 </span>
 The corners of the building should cover the black x's and the windows should cover the red x's.
 </p>
-<p><strong>Relevant Lessons:</strong>
+<p>
+<strong>Relevant Lessons:</strong>
 <a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>, <a href="../for_loops/index.html">For Loops</a>
 </p>
+
 </div>
 </div>
 <div class='row'>

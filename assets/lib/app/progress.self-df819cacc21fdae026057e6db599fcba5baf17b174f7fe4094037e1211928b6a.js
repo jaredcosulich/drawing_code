@@ -113,18 +113,18 @@
       return challengeTitle.append(tag);
     };
 
-    Progress.prototype.storeEditorValue = function(editorName, code) {
+    Progress.prototype.storeEditorValue = function(editorId, code) {
       if (!this.storageAvailable) {
         return;
       }
-      return localStorage.setItem(editorName, code);
+      return localStorage.setItem(editorId, code);
     };
 
-    Progress.prototype.getEditorValue = function(editorName) {
+    Progress.prototype.getEditorValue = function(editorId) {
       if (!this.storageAvailable) {
         return;
       }
-      return localStorage.getItem(editorName);
+      return localStorage.getItem(editorId);
     };
 
     Progress.prototype.saveDrawing = function(slug, title, description, code) {
