@@ -35,7 +35,7 @@ class App.Editor
     code = @aceEditor.getValue()
     canvasId = @canvas.canvasElement.id
     return if code.match(canvasId)?
-    code = code.replace(/getElementById\('(.*)'\);/, "getElementById('#{canvasId}');")
+    code = code.replace(/getElementById\('([^)]*)'\);/, "getElementById('#{canvasId}');")
     @setCode(code)
 
   setCode: (code) ->
