@@ -1,5 +1,7 @@
 window.App ||= {}
 window.Test ||= {}
+window.log = (messageText...) ->
+  App.currentEditor?.log(messageText...)
 
 # App.confirmOnPageExit = (e) ->
 #   e = e || window.event

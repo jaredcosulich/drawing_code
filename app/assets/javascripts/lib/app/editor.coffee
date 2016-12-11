@@ -61,6 +61,7 @@ class App.Editor
     @clearLog()
     @canvas.hideAlert()
     try
+      App.currentEditor = @
       eval(@aceEditor.getValue())
     catch e
       try
@@ -73,7 +74,6 @@ class App.Editor
   initLog: ->
     @logElement = @codeEditor.find('.log')
     @logElement.find('.close').click => @hideLog()
-    window.log = (messageText...) => @log(messageText)
 
   log: (messageText...) ->
     message = $(document.createElement('DIV'))
