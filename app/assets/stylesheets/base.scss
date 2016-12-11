@@ -106,6 +106,10 @@ img {
       margin-left: 12px;
     }
   }
+
+  .test-image {
+    display: none;
+  }
 }
 
 .highlight {
@@ -129,4 +133,8 @@ img {
   .code-preview-missing {
     display: none;
   }
+}
+
+.canvas-example {
+  background-color: #EEEEEE;
 }

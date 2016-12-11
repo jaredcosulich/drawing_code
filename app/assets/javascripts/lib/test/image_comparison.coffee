@@ -1,6 +1,7 @@
 class Test.ImageComparison
   constructor: (options) ->
-    {@src, @canvas} = options
+    {@src, @image, @canvas} = options
+    @image = @image[0] if @image?.length
     @context = @canvas.context
 
   initImage: ->

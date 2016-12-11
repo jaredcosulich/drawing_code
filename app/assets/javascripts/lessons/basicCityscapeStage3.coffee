@@ -11,11 +11,17 @@ initBasicCityscapeStage3Challenge1 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  points = []
+  testImage = new Test.ImageComparison(image: challenge.find('.test-image'), canvas: canvas, preview: true)
 
   challenge.find('.run').click ->
-    canvas.selfAssess ->
-      App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge1')
+    testImage.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You\'ve create threee buildings with three different window types!'
+        App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge1')
+      else
+        message = 'Nice try, but your drawing doesn\'t yet match the image of three buildings with three different window types shown in the challenge.'
+
+      canvas.alert(message, success)
 
 
 initBasicCityscapeStage3Challenge2 = (page) ->
