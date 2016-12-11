@@ -2,7 +2,7 @@ describe("Basic Cityscape Stage 2", function() {
   var page;
 
   beforeEach(function() {
-    page = new TestPage('basic_cityscape_stage2', 4);
+    page = new TestPage('basic_cityscape_stage2', 3);
   });
 
   afterEach(function() {
@@ -271,24 +271,6 @@ describe("Basic Cityscape Stage 2", function() {
         }\
 \
         drawBuilding(80,300,7,10);      \
-      "
-
-      expect(page.challengeResult(challengeNumber, code)).toBe(false);
-    });
-  });
-
-  describe("Challenge 4", function() {
-    var challengeNumber = 4;
-
-    it("succeeds with good solution", function() {
-      code = "\
-      "
-
-      expect(page.challengeResult(challengeNumber, code)).toBe(true);
-    });
-
-    it("fails", function() {
-      code = "\
       "
 
       expect(page.challengeResult(challengeNumber, code)).toBe(false);
