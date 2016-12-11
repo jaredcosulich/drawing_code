@@ -80,6 +80,7 @@
       this.clearLog();
       this.canvas.hideAlert();
       try {
+        App.currentEditor = this;
         return eval(this.aceEditor.getValue());
       } catch (error1) {
         e = error1;
@@ -96,18 +97,11 @@
 
     Editor.prototype.initLog = function() {
       this.logElement = this.codeEditor.find('.log');
-      this.logElement.find('.close').click((function(_this) {
+      return this.logElement.find('.close').click((function(_this) {
         return function() {
           return _this.hideLog();
         };
       })(this));
-      return window.log = (function(_this) {
-        return function() {
-          var messageText;
-          messageText = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-          return _this.log(messageText);
-        };
-      })(this);
     };
 
     Editor.prototype.log = function() {

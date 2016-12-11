@@ -1,9 +1,16 @@
 (function() {
-  var init, initFreeform, initInteractives, initProgress;
+  var init, initFreeform, initInteractives, initProgress,
+    slice = [].slice;
 
   window.App || (window.App = {});
 
   window.Test || (window.Test = {});
+
+  window.log = function() {
+    var messageText, ref;
+    messageText = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+    return (ref = App.currentEditor) != null ? ref.log.apply(ref, messageText) : void 0;
+  };
 
   init = function() {
     initProgress();
