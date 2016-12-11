@@ -176,6 +176,7 @@
             %small (your drawing will display here)
           .canvas
             = image_tag('lessons/basic_cityscape_stage3/challenge1Visual2.png', class: 'test-image')
+            .background.hidden-xl-down= image_tag('lessons/basic_cityscape_stage3/challenge1.png')
             %canvas#basic_cityscape_stage3_challenge1
           .alert
 
@@ -286,7 +287,7 @@
             a comment explaining what it is supposed to do (make sure to include the break statement).
 
           .float-xs-right
-            = image_tag('lessons/basic_cityscape_stage3/challenge2Visual2.png', style: 'background-color: #EEEEEE;')
+            = image_tag('lessons/basic_cityscape_stage3/challenge2Visual2.png', class: 'canvas-example mx-3')
 
           %p
             Draw three buildings with different sizes, window, and roof types.
@@ -338,6 +339,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/basic_cityscape_stage3/challenge2.png')
+            = image_tag('lessons/basic_cityscape_stage3/challenge2Visual2.png', class: 'test-image')
             %canvas#basic_cityscape_stage3_challenge2
           .alert
 
