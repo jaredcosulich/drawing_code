@@ -1,7 +1,11 @@
 (function() {
   Test.ImageComparison = (function() {
     function ImageComparison(options) {
-      this.src = options.src, this.canvas = options.canvas;
+      var ref;
+      this.src = options.src, this.image = options.image, this.canvas = options.canvas;
+      if ((ref = this.image) != null ? ref.length : void 0) {
+        this.image = this.image[0];
+      }
       this.context = this.canvas.context;
     }
 
