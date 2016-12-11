@@ -1,15 +1,18 @@
 #translate.lesson
-  %h1 CanvasRenderingContext2D.scale()
+  %h1 While Loops
 
   = render 'lessons/challenge_count'
 
   .official.row.py-3
     .col-xs-6
       %h2.py-2
-        Unofficial Description
+        Overview
       %p
-        The CanvasRenderingContext2D.scale() method of the Canvas 2D API scales
-        the coordinate system of the context, making future drawings larger or smaller.
+        A while loop runs a block of code over and over again as long as a certain
+        condition is true. Once the condition is false, the loop ends and the program
+        continues. When setting up a while loop, it is important to make sure the
+        loop's condition will eventually be false; otherwise, your program will get
+        stuck. Close the browser window if that happens.
 
     .col-xs-6
       = image_tag('lessons/scale/overviewVisual1.png', class: 'img-fluid')
@@ -22,59 +25,74 @@
           %h2.py-2
             Example
           %p
-            The scale() method allows us to scale the entire coordinate system of the
-            context. This means we can make a drawing smaller or larger without performing
-            complex calculations.
+            When we want to perform a series of actions over and over again, it's often
+            a good idea to put those actions in a loop. If we know the number of times we
+            want to run those actions, we can use a for loop. If we can't know the number
+            ahead of time, then a while loop may be useful.
           %p
-            In this example, we use the scale() method to draw the same tree over and
-            over again at different sizes. We can scale the context along the x-axis and
-            the y-axis. Because we want the aspect ratio of our trees to stay the same,
-            we scale the x-axis and the y-axis by the same amount.
+            In this example, we draw the stem of a flower and then place leaves along
+            the stem. Since the length of the stem is random and the space between leaves
+            is also random, there is no way to know how many leaves we will be drawing.
+            So, we use a while loop to draw the leaves.
           %p
-            Using context.scale(0.5, 0.5) means a drawing will be 50% its normal size
-            along the x-axis and y-axis. Using context.scale(2.0, 2.0) means a drawing will
-            be 200% its normal size along the x-axis and y-axis. However, changing the
-            scale of the context does not affect anything already drawn on the canvas.
-
+            The condition we will be testing is the y-coordinate of the next leaf. We
+            will draw leaves as long as the y-coordinate of the next leaf is at least 40
+            pixels from the bottom of the stem (y < h - 40). We initialize the loop by
+            setting y to a random number between 40-80. Then, inside of the loop, after
+            drawing a leaf, we calculate the y-coordinate of the next leaf by adding a
+            random number between 15-50 to y.
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_example1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'while_loops_example1_editor'} do
               :preserve
-                var canvas = document.getElementById('scale_example1');
+                var canvas = document.getElementById('while_loops_example1');
                 var context = canvas.getContext("2d");
                 context.clearRect(0, 0, canvas.width, canvas.height);
-                context.font = '16px sans-serif';
-                context.textAlign = 'center';
 
                 context.save();
-                context.scale(0.5, 0.5); // SET THE SCALE OF THE CONTEXT TO 50%
+                context.translate(260, 50);
+                
+                var h = 200 + 50 * Math.random(); // Set the height of the stem to a random number (200 - 250)
+                
                 context.fillStyle = '#228B22';
-                context.fillRect(180, 35, 60, 60);
-                context.fillStyle = '#8B4513';
-                context.fillRect(200, 75, 20, 60);
-                context.fillStyle = '#000000';
-                context.fillText('50% scale', 210, 155);
-                context.restore();
+                context.fillRect(-6, 0, 12, h); // Draw the stem
+                
+                var n = 0; // Set a counter for the number of leaves
+                var y = 40 + 40 * Math.random(); // Set the y-coordinate of the first leaf to a random number (40 - 80)
+                
+                while (y < h - 40) { // Keep drawing leaves while the y-coordinate of the next leaf is < the height of the stem - 40
+                  n = n + 1; // Update the counter
+                  context.save();
+                  if (n % 2 == 1) context.scale(-1, 1); // If the counter is odd, reflect the leaf onto the other side of the stem
+                  context.beginPath();
+                  context.arc(34.28, y + 28.28, 40, -3 * Math.PI / 4, -1 * Math.PI / 4, false);
+                  context.arc(34.28, y - 28.28, 40, 1 * Math.PI / 4, 3 * Math.PI / 4, false);
+                  context.closePath();
+                  context.fill(); // Draw the leaf
+                  context.restore();
+                  
+                  y = y + (15 + 35 * Math.random()); // Calculate the y-coordinate of the next leaf by adding a random number (15 - 50)
+                }
                 
                 context.save();
-                context.scale(1, 1);  // SET THE SCALE OF THE CONTEXT TO 100%
-                context.fillStyle = '#228B22';
-                context.fillRect(180, 35, 60, 60);
-                context.fillStyle = '#8B4513';
-                context.fillRect(200, 75, 20, 60);
-                context.fillStyle = '#000000';
-                context.fillText('100% scale', 210, 155);
+                context.fillStyle = '#FFA500';
+                for (var i = 0; i < 6; i = i + 1) {
+                  context.beginPath();
+                  context.arc(0, 40, 24, 0, 2 * Math.PI, false);
+                  context.closePath();
+                  context.fill(); // Draw a flower petal
+                  context.rotate(Math.PI / 3);
+                }
+                
                 context.restore();
                 
-                context.save();
-                context.scale(2.0, 2.0);  // SET THE SCALE OF THE CONTEXT TO 200%
-                context.fillStyle = '#228B22';
-                context.fillRect(180, 35, 60, 60);
-                context.fillStyle = '#8B4513';
-                context.fillRect(200, 75, 20, 60);
-                context.fillStyle = '#000000';
-                context.fillText('200% scale', 210, 155);
+                context.fillStyle = '#FFFF00';
+                context.beginPath();
+                context.arc(0, 0, 24, 0, 2 * Math.PI, false);
+                context.closePath();
+                context.fill(); // Draw the flower center
+                
                 context.restore();
 
             .visual.col-xs-6
@@ -82,7 +100,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#scale_example1
+                %canvas#while_loops_example1
 
 
   .example.row.py-3
@@ -113,25 +131,49 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_example2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'while_loops_example2_editor'} do
               :preserve
-                var canvas = document.getElementById('scale_example2');
+                var canvas = document.getElementById('while_loops_example2');
                 var context = canvas.getContext("2d");
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 
+                var angle = 45; // The angle of the cannon (10 - 80);
+                
+                angle = -Math.PI * Math.min(80, Math.max(10, angle)) / 180;
+                var g = 1;
+                var dX = 20 * Math.cos(angle);
+                var dY = 20 * Math.sin(angle);
+                
                 context.save();
-                context.translate(260, 160);
+                context.fillStyle = '#333333';
+                context.fillRect(0, 300, canvas.width, 2); // Draw the ground
+                context.translate(10, 285);
                 
-                context.scale(1, 1); // SET THE SCALE OF THE CONTEXT HERE
-                
-                context.fillStyle = '#663399';
-                context.fillRect(20, 40, 80, 60); // SET THE (X, Y) COORDINATES OF THE RECTANGLE HERE
-                
-                context.fillStyle = '#FF0000';
+                context.save();
+                context.rotate(angle);
+                context.fillStyle = '#999999';
+                context.fillRect(-10, -5, 30, 10); // Draw the cannon's barrel
+                context.restore();
+                context.translate(0, 15);
+                context.fillStyle = '#666666';
                 context.beginPath();
-                context.arc(0, 0, 5, 0, 2 * Math.PI, false);
+                context.arc(0, -10, 10, 0, 2 * Math.PI, false);
                 context.closePath();
-                context.fill();
+                context.fill(); // Draw the cannon's tire
+                
+                var x = 2 * dX;
+                var y = 2 * dY - 15; // Set the coordinates of the first cannonball
+                
+                while (y < -5) { // Keep drawing the cannonball while it is above the ground
+                  context.beginPath();
+                  context.arc(x, y, 5, 0, 2 * Math.PI, false);
+                  context.closePath();
+                  context.fill(); // Draw the cannonball
+                  
+                  x = x + dX;
+                  y = y + dY; // Calculate the coordinates of the next cannonball
+                  dY = dY + g; // Calculate the effect of gravity
+                }
 
                 context.restore();
 
@@ -140,7 +182,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#scale_example2
+                %canvas#while_loops_example2
 
 
   .example.row.py-3
@@ -162,9 +204,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_example3_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_example2_editor'} do
               :preserve
-                var canvas = document.getElementById('scale_example3');
+                var canvas = document.getElementById('scale_example2');
                 var context = canvas.getContext("2d");
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 
@@ -205,7 +247,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#scale_example3
+                %canvas#scale_example2
 
 
   .example.row.py-3
@@ -225,9 +267,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_example4_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_example3_editor'} do
               :preserve
-                var canvas = document.getElementById('scale_example4');
+                var canvas = document.getElementById('scale_example3');
                 var context = canvas.getContext("2d");
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 context.font = '48px sans-serif';
@@ -263,4 +305,4 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#scale_example4
+                %canvas#scale_example3
