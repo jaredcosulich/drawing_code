@@ -6495,8 +6495,10 @@ img.bordered {
   cursor: pointer; }
 /* line 121, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .code-preview .code-preview-view {
-  display: none;
-  margin-bottom: 12px; }
-  /* line 125, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+  display: none; }
+  /* line 124, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
   .code-preview .code-preview-view .code-preview-code {
     height: 300px; }
+/* line 129, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.code-preview .code-preview-missing {
+  display: none; }

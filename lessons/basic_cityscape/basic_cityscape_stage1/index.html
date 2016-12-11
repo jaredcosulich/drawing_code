@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="Qyqin2e+dXXPchWeWhD6T671Bby29Le02iN3bqpgIVborvK9mEmlM/fD5Wmic30PPOeDA0HUkfGz53bd7RJ/og==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-c08129b7622a5bcbc6d6b9348a1accccdeb8a444e90ede9af9efd54bc6fb67ea-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="oyDr6b0Faq77fmje73JzGHHx1pKJYVKcKcyUdvYHmxYIpLvLQvK66MPPmCkXEfRY4+NQLX5BdNlACJXFsXXF4g==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-59c1da0a109bd4b5889d3281878ae1f50219ee72eb6a1170c2b510869400629d-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -14,7 +14,7 @@
 <script src="../../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/code_preview.self-167bac5d09ac856171e9d10ca3e2fcd6feb7ab4afb76cf0c4dec85f062976d60.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/code_preview.self-b37269bda74e81e3e6e832ad40469072b79b5b1d3a48a2e91986fd44549f82c0.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/drawings.self-38f1307ac5108a326b9c286691b846622cbaebf7c0bbab1bb453643d1e339fe7.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/init.self-2d4d288c6c519fd20eedffcf198bb7ec393d05a8408d03d8fe963e0d739285e0.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
@@ -209,9 +209,9 @@ Concepts
 </span>
 </li>
 <li class='small '>
-<a href="../translate/index.html">translate()</a>
+<a href="../line_to/index.html">lineTo()</a>
 <span class='tag tag-default'>
-<small class='translate'>0 / 1</small>
+<small class='line_to'>0 / 3</small>
 </span>
 </li>
 <li class='small '>
@@ -221,10 +221,13 @@ Concepts
 </span>
 </li>
 <li class='small '>
-<a href="../line_to/index.html">lineTo()</a>
+<a href="../translate/index.html">translate()</a>
 <span class='tag tag-default'>
-<small class='line_to'>0 / 3</small>
+<small class='translate'>0 / 1</small>
 </span>
+</li>
+<li class='small '>
+<a href="../scale/index.html">scale()</a>
 </li>
 <li class='small '>
 <a href="../floor/index.html">floor() / ceil()</a>
@@ -312,13 +315,22 @@ A building is a filled in rectangle. We use context.fillStyle to set
 the color of the rectangle, and context.fillRect() to draw the rectangle.
 </p>
 <p>
+<span class='highlight'>
 In this example, we draw a building that is blue (the color #1E90FF),
 160 pixels wide, 240 pixels tall, and positioned so its top left corner
 is at (100, 50).
+</span>
+</p>
+<p>
+In the context's coordinate system, the origin (0, 0) is at the top left
+corner of the canvas, and the x-coordinates increase moving to the right
+and the y-coordinates increase moving down. So, the rectangle is positioned
+100 pixels to the right and 50 pixels down from the top left corner of the
+canvas.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
-<a href="../clear_rect/index.html">clearRect()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
+<a href="../coordinates/index.html">Coordinates</a>, <a href="../clear_rect/index.html">clearRect()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
 </p>
 
 </div>
@@ -370,9 +382,15 @@ Canvas
 Challenge 1
 </h2>
 <p>
+<span class='highlight'>
 Draw a building (a rectangle) that is 320 pixels wide and 160
 pixels tall so the bottom left corner of the building is covering the
 x at (40, 240) and the top right corner is covering the other x.
+</span>
+</p>
+<p>
+Remember, the point (40, 240) is 40 pixels to the right and 240 pixels
+down from the origin, which is the top left corner of the canvas.
 </p>
 <p>
 We are positioning the building's bottom left corner so the building
@@ -381,7 +399,7 @@ of the building's top left corner.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
-<a href="../clear_rect/index.html">clearRect()</a>, <a href="../fill_rect/index.html">fillRect()</a>
+<a href="../coordinates/index.html">Coordinates</a>, <a href="../clear_rect/index.html">clearRect()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
 </p>
 
 </div>
@@ -436,8 +454,10 @@ Use Variables to Size and Position a Building
 We can use variables to automatically size and position a building.
 </p>
 <p>
+<span class='highlight'>
 In this example, we draw a green building (color #228B22) that is twice
 as tall as it is wide, and sitting on the ground at (60, 280).
+</span>
 </p>
 <p>
 To change the size of the building, all we do is store a different value
@@ -448,7 +468,7 @@ variables are then used to draw the building.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
-<a href="../clear_rect/index.html">clearRect()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../variables/index.html">Variables</a>
+<a href="../variables/index.html">Variables</a>, <a href="../coordinates/index.html">Coordinates</a>, <a href="../clear_rect/index.html">clearRect()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
 </p>
 
 </div>
@@ -517,8 +537,10 @@ roof, and floor of the building are each 4 pixels thick.
 <div class='row'>
 <div class='col-xs-12'>
 <p>
+<span class='highlight'>
 Draw a gray building (color #999999) with 10 floors and 8 office units
 on each floor sitting on the ground at (120, 280).
+</span>
 </p>
 <p>
 Write a program to calculate the size and position of the building for you.
@@ -532,7 +554,7 @@ corner of your building, and w and h are the width and height of your building.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
-<a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../variables/index.html">Variables</a>
+<a href="../variables/index.html">Variables</a>, <a href="../coordinates/index.html">Coordinates</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>
 </p>
 
 </div>
@@ -543,7 +565,7 @@ corner of your building, and w and h are the width and height of your building.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage1_challenge2_editor'>function drawOffices(x, y, w, h) {&#x000A;  var u = Math.floor((w - 4) / 16);&#x000A;  var f = Math.floor((h - 4) / 16);&#x000A;&#x000A;  context.save();&#x000A;  context.translate(x + 4, y + 4);&#x000A;  context.strokeWidth = 1;&#x000A;  context.strokeStyle = '#000000';&#x000A;&#x000A;  for (var i = 0; i < f; i++) {&#x000A;    for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);&#x000A;  }&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;var canvas = document.getElementById('basic_cityscape_stage1_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;var units = 8;&#x000A;var floors = 10;&#x000A;&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;// YOUR CODE FOR GRAY (#999999) BUILDING HERE&#x000A;&#x000A;// drawOffices(x, y, w, h);&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage1_challenge2_editor'>function drawOffices(x, y, w, h) {&#x000A;  var u = Math.floor((w - 4) / 16);&#x000A;  var f = Math.floor((h - 4) / 16);&#x000A;&#x000A;  context.save();&#x000A;  context.translate(x + 4, y + 4);&#x000A;  context.strokeWidth = 1;&#x000A;  context.strokeStyle = '#000000';&#x000A;&#x000A;  for (var i = 0; i < f; i++) {&#x000A;    for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);&#x000A;  }&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;var canvas = document.getElementById('basic_cityscape_stage1_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;var units = 8;&#x000A;var floors = 10;&#x000A;&#x000A;// YOUR CODE TO CALCULATE THE WIDTH AND HEIGHT OF THE BUILDING HERE&#x000A;&#x000A;// YOUR CODE TO DRAW THE GRAY (#999999) BUILDING HERE&#x000A;&#x000A;// drawOffices(x, y, w, h);&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -599,16 +621,18 @@ putting that code into a function can make your life much easier. Then,
 to run the code, all you have to do is call the function by typing one line.
 </p>
 <p>
-In this example, we create a function that will draw a French flag. Because we
-might want to draw a French flag in lots of different places, we make the
-x- and y-coordinates of the flag variables. When we call drawFrenchFlag(30, 100),
-the 30 is assigned to the variable <i>x</i> and the 100 is assigned to the
-variable <i>y</i> inside of the function. Now we can easily draw as many French
-flags as we want!
+<span class='highlight'>
+In this example, we create a function that will draw a French flag. Because
+we might want to draw a French flag in lots of different places, we make the
+x- and y-coordinates of the flag variables.
+</span>
+When we call drawFrenchFlag(30, 100), the 30 is assigned to the variable <i>x</i>
+and the 100 is assigned to the variable <i>y</i> inside of the function. Now we can
+easily draw as many French flags as we want!
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
-<a href="../fill_rect/index.html">fillRect()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../variables/index.html">Variables</a>, <a href="../functions/index.html">Functions</a>
+<a href="../fill_rect/index.html">fillRect()</a>, <a href="../fill_style/index.html">fillStyle</a>, <a href="../coordinates/index.html">Coordinates</a>, <a href="../variables/index.html">Variables</a>, <a href="../functions/index.html">Functions</a>
 </p>
 
 </div>
@@ -660,27 +684,31 @@ Canvas
 Challenge 3
 </h2>
 <p>
-Write a function to draw the building from Challenge 2. The function will
-be passed four values that it will assign to the following four variables
-(called parameters). The first parameter, <i>leftX</i>, is the x-coordinate
-of the left side of the building. The second parameter, <i>groundY</i>, is
-the y-coordinate of the base of the building. The third parameter, <i>units</i>,
-is the number of office units on a floor. The fourth parameter, <i>floors</i>,
-is the number of floors in the building.
+<span class='highlight'>
+Write a function to draw the building from Challenge 2.
+</span>
+The function will be passed four values that it will assign to the following
+four variables (called parameters). The first parameter, <i>leftX</i>, is the
+x-coordinate of the left side of the building. The second parameter, <i>groundY</i>,
+is the y-coordinate of the base of the building. The third parameter, <i>units</i>,
+is the number of office units on a floor. The fourth parameter, <i>floors</i>, is
+the number of floors in the building.
 </p>
 <p>
+<span class='highlight'>
 Then use the function to draw two buildings. The first building will have
 12 floors and 8 office units per floor, and it will be sitting on the ground
 at (50, 300). The second building will have 18 floors and 6 office units per
 floor, and it will be sitting on the ground at (200, 300).
+</span>
 </p>
 <p>
-Just like with Challenge 2, both buildings should be gray (#999999) and each office
-should be 16 x 16 width 4 pixels of padding around the whole building.
+Just like with Challenge 2, both buildings should be gray (color #999999) and each
+office should be 16 x 16 width 4 pixels of padding around the whole building.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
-<a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../variables/index.html">Variables</a>, <a href="../functions/index.html">Functions</a>
+<a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../coordinates/index.html">Coordinates</a>, <a href="../variables/index.html">Variables</a>, <a href="../functions/index.html">Functions</a>
 </p>
 
 </div>
@@ -691,7 +719,7 @@ should be 16 x 16 width 4 pixels of padding around the whole building.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='basic_cityscape_stage1_challenge3_editor'>var canvas = document.getElementById('basic_cityscape_stage1_challenge3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;// YOUR CODE FOR DRAWING THE TWO BUILDINGS HERE&#x000A;</div>
+<div class='editor' id='basic_cityscape_stage1_challenge3_editor'>var canvas = document.getElementById('basic_cityscape_stage1_challenge3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A GENERAL BUILDING HERE&#x000A;&#x000A;}&#x000A;&#x000A;// YOUR CODE FOR DRAWING THE TWO SPECIFIC BUILDINGS HERE&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -742,14 +770,18 @@ wasn't so tidy. It changed the context.fillStyle to '#EF4135' and never
 changed it back.
 </p>
 <p>
+<span class='highlight'>
 To make our function more tidy, we are going to call context.save() at the
 start of the function and context.restore() at the end of the function.
+</span>
 Calling context.save() saves the state of the context (including the current
 context.fillStyle), and context.restore() restores the context to the last
 time you saved it.
 </p>
 <p>
+<span class='highlight'>
 The other change we are going to make to our function is to use context.translate().
+</span>
 Notice how we had to do some calculations with x and y to figure out the positions
 of the white and red rectangles in the French flag? Imagine you had to do the same
 calculations for a hundred windows in a building. By using context.translate(), we can
@@ -770,7 +802,7 @@ refresh the entire page to get everything back to normal.)
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
-<a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>
+<a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../coordinates/index.html">Coordinates</a>, <a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>
 </p>
 
 </div>
@@ -822,23 +854,27 @@ Canvas
 Challenge 4
 </h2>
 <p>
+<span class='highlight'>
 Tidy up the drawBuilding() function from Challenge 3 in the same way.
+</span>
 Call context.save() at the start of the function and context.restore() at
 the end of the function, and use context.translate() to move the origin
 to (x, y).
 </p>
 <p>
+<span class='highlight'>
 Once the drawBuilding() function is tidy, draw one building with 12 office
 units per floor and 6 floors sitting on the ground at (40, 300) and
 another building with 10 office units per floor and 15 floors at (280, 300).
+</span>
 </p>
 <p>
-Just like with Challenges 2 & 3, both buildings should be gray (#999999) and each office
+Just like with Challenges 2 & 3, both buildings should be gray (color #999999) and each office
 should be 16 x 16 width 4 pixels of padding around the whole building.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
-<a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>
+<a href="../fill_style/index.html">fillStyle</a>, <a href="../fill_rect/index.html">fillRect()</a>, <a href="../coordinates/index.html">Coordinates</a>, <a href="../functions/index.html">Functions</a>, <a href="../save/index.html">save()</a>, <a href="../translate/index.html">translate()</a>
 </p>
 
 </div>
