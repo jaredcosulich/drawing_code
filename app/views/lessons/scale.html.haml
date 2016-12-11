@@ -1,0 +1,266 @@
+#translate.lesson
+  %h1 CanvasRenderingContext2D.scale()
+
+  = render 'lessons/challenge_count'
+
+  .official.row.py-3
+    .col-xs-6
+      %h2.py-2
+        Unofficial Description
+      %p
+        The CanvasRenderingContext2D.scale() method of the Canvas 2D API scales
+        the coordinate system of the context, making future drawings larger or smaller.
+
+    .col-xs-6
+      = image_tag('lessons/scale/overviewVisual1.png', class: 'img-fluid')
+
+
+  .simple.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Why Would I Use This?
+          %p
+            The scale() method allows us to scale the entire coordinate system of the
+            context. This means we can make a drawing smaller or larger without performing
+            complex calculations.
+          %p
+            In this example, we use the scale() method to draw the same tree over and
+            over again at different sizes. We can scale the context along the x-axis and
+            the y-axis. Because we want the aspect ratio of our trees to stay the same,
+            we scale the x-axis and the y-axis by the same amount.
+          %p
+            Using context.scale(0.5, 0.5) means a drawing will be 50% its normal size
+            along the x-axis and y-axis. Using context.scale(2.0, 2.0) means a drawing will
+            be 200% its normal size along the x-axis and y-axis. However, changing the
+            scale of the context does not affect anything already drawn on the canvas.
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_interactive1_editor'} do
+              :preserve
+                var canvas = document.getElementById('scale_interactive1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.font = '16px sans-serif';
+                context.textAlign = 'center';
+
+                context.save();
+                context.scale(0.5, 0.5);
+                context.fillStyle = '#228B22';
+                context.fillRect(180, 35, 60, 60);
+                context.fillStyle = '#8B4513';
+                context.fillRect(200, 75, 20, 60);
+                context.fillStyle = '#000000';
+                context.fillText('50% scale', 210, 155);
+                context.restore();
+                
+                context.save();
+                context.scale(1, 1);
+                context.fillStyle = '#228B22';
+                context.fillRect(180, 35, 60, 60);
+                context.fillStyle = '#8B4513';
+                context.fillRect(200, 75, 20, 60);
+                context.fillStyle = '#000000';
+                context.fillText('100% scale', 210, 155);
+                context.restore();
+                
+                context.save();
+                context.scale(2.0, 2.0);
+                context.fillStyle = '#228B22';
+                context.fillRect(180, 35, 60, 60);
+                context.fillStyle = '#8B4513';
+                context.fillRect(200, 75, 20, 60);
+                context.fillStyle = '#000000';
+                context.fillText('200% scale', 210, 155);
+                context.restore();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#scale_interactive1
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Example
+          %p
+            The scale() method doesn't just shrink or enlarge a shape. It changes the
+            size of the coordinate system, which also moves a shape. The only point in
+            the context that does not move when the context is scaled is the origin (0, 0).
+          %p
+            In this example, the red circle is positioned at the origin of the context,
+            (0, 0). The purple rectangle is positioned at (20, 40), 20 pixels to the right
+            and 40 pixels down from the origin.
+          %p
+            Change the scale of the context by entering new values into context.scale().
+            What happens? The size of both the red circle and purple rectangle change, but
+            the red circle stays in the same place while the purple rectangle moves. This
+            is because the red circle is centered on the origin.
+          %p
+            Move the purple rectangle to a new position relative to the red circle by
+            changing its x- and y-coordinates (the first two values in context.fillRect()).
+            Then change the scale of the context again and watch what happens. If we increase
+            the scale, the rectangle moves farther from the origin. If we decrease the scale,
+            it moves closer.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('scale_example1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                
+                context.save();
+                context.translate(260, 160);
+                
+                context.scale(1, 1); // SET THE SCALE OF THE CONTEXT HERE
+                
+                context.fillStyle = '#663399';
+                context.fillRect(20, 40, 80, 60); // SET THE (X, Y) COORDINATES OF THE RECTANGLE HERE
+                
+                context.fillStyle = '#FF0000';
+                context.beginPath();
+                context.arc(0, 0, 5, 0, 2 * Math.PI, false);
+                context.closePath();
+                context.fill();
+
+                context.restore();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#scale_example1
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Example
+          %p
+            We don't have to scale the coordinate system of the context the same amount
+            along both the x-axis and the y-axis.
+          %p
+            In this example, we use context.scale() to stretch three circles along the
+            y-axis, turning them into ovals and creating a flame effect. The red, orange,
+            and yellow circles are all drawn with the same radius.
+          %p
+            The origin of the context is at the bottom of all three circles, which makes
+            it easy to line them up.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('scale_example2');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                
+                context.save();
+                context.translate(260, 280);
+                
+                context.save();
+                context.scale(1, 3); // SET THE SCALE FOR THE YELLOW CIRCLE
+                context.fillStyle = '#FFFF00';
+                context.beginPath();
+                context.arc(0, -40, 40, 0, 2 * Math.PI, false);
+                context.closePath();
+                context.fill();
+                context.restore();
+                
+                context.save();
+                context.scale(0.8, 2); // SET THE SCALE FOR THE ORANGE CIRCLE
+                context.fillStyle = '#FFA500';
+                context.beginPath();
+                context.arc(0, -40, 40, 0, 2 * Math.PI, false);
+                context.closePath();
+                context.fill();
+                context.restore();
+                
+                context.save();
+                context.scale(0.6, 1.2); // SET THE SCALE FOR THE RED CIRCLE
+                context.fillStyle = '#FF0000';
+                context.beginPath();
+                context.arc(0, -40, 40, 0, 2 * Math.PI, false);
+                context.closePath();
+                context.fill();
+                context.restore();
+
+                context.restore();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#scale_example2
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Example
+          %p
+            If we scale the coordinate system of the context by -1 along either the
+            x-axis or the y-axis, we can flip a drawing and create a mirror image.
+          %p
+            In this example, we draw the text 'Rightside Up' at (0, -80), 80 pixels above
+            the origin of the context at the red circle. Then we draw the text 'Upside Down',
+            also at (0, -80). But before drawing the text 'Upside Down', we scale the context
+            using context.scale(1, -1).
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('scale_example3');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.font = '48px sans-serif';
+                context.textAlign = 'center';
+                
+                context.save();
+                context.translate(260, 160);
+                
+                context.save();
+                context.scale(1, 1);
+                context.fillStyle = '#009900';
+                context.fillText('Rightside Up', 0, -80);
+                context.restore();
+                
+                context.save();
+                context.scale(1, -1);
+                context.fillStyle = '#009900';
+                context.fillText('Upside Down', 0, -80);
+                context.restore();
+                
+                context.save();
+                context.fillStyle = '#FF0000';
+                context.beginPath();
+                context.arc(0, 0, 5, 0, 2 * Math.PI, false);
+                context.closePath();
+                context.fill();
+                context.restore();
+
+                context.restore();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#scale_example3
