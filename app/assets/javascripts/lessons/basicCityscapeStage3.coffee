@@ -34,10 +34,10 @@ initBasicCityscapeStage3Challenge2 = (page) ->
   challenge.find('.run').click ->
     testImage.test (success) ->
       if success
-        message = '<strong>Success!</strong> You\'ve create three buildings with three different window types!'
+        message = '<strong>Success!</strong> You\'ve create three buildings with three different window types and roof types!'
         App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge2')
       else
-        message = 'Nice try, but your drawing doesn\'t yet match the image of three buildings with three different window types shown in the challenge.'
+        message = 'Nice try, but your drawing doesn\'t yet match the image of three buildings with different window and roof types shown in the challenge.'
 
       canvas.alert(message, success)
 
