@@ -25,7 +25,7 @@
       return testImage.test(function(success) {
         var message;
         if (success) {
-          message = '<strong>Success!</strong> You\'ve create threee buildings with three different window types!';
+          message = '<strong>Success!</strong> You\'ve create three buildings with three different window types!';
           App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge1');
         } else {
           message = 'Nice try, but your drawing doesn\'t yet match the image of three buildings with three different window types shown in the challenge.';
@@ -36,14 +36,25 @@
   };
 
   initBasicCityscapeStage3Challenge2 = function(page) {
-    var canvas, challenge, editor, points;
+    var canvas, challenge, editor, testImage;
     challenge = page.find('#challenge2');
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
-    points = [];
+    testImage = new Test.ImageComparison({
+      image: challenge.find('.test-image'),
+      canvas: canvas,
+      preview: true
+    });
     return challenge.find('.run').click(function() {
-      return canvas.selfAssess(function() {
-        return App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge2');
+      return testImage.test(function(success) {
+        var message;
+        if (success) {
+          message = '<strong>Success!</strong> You\'ve create three buildings with three different window types!';
+          App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge2');
+        } else {
+          message = 'Nice try, but your drawing doesn\'t yet match the image of three buildings with three different window types shown in the challenge.';
+        }
+        return canvas.alert(message, success);
       });
     });
   };

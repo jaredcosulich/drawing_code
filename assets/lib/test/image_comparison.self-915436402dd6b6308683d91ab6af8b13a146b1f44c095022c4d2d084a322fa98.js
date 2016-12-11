@@ -36,14 +36,15 @@
     };
 
     ImageComparison.prototype.compareImageData = function() {
-      var height, i, imageData, index, len, pixel, testImageData, width;
+      var diffCount, height, i, imageData, index, len, pixel, testImageData, width;
       width = this.canvas.canvasElement.width;
       height = this.canvas.canvasElement.height;
       imageData = this.context.getImageData(0, 0, width, height).data;
       testImageData = this.testCanvas.getContext('2d').getImageData(0, 0, width, height).data;
+      diffCount = 0;
       for (index = i = 0, len = imageData.length; i < len; index = ++i) {
         pixel = imageData[index];
-        if (testImageData[index] !== pixel) {
+        if ((Math.abs(testImageData[index] - pixel) > 50) || (testImageData[index] === 0 && pixel !== 0) || (pixel === 0 && testImageData[index] !== 0)) {
           return false;
         }
       }
