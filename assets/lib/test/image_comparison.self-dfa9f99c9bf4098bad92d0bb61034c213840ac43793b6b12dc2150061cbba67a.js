@@ -36,7 +36,7 @@
     };
 
     ImageComparison.prototype.compareImageData = function() {
-      var diffCount, height, i, imageData, index, len, pixel, testImageData, width;
+      var diffCount, h, height, i, imageData, index, len, pixel, testImageData, w, width;
       width = this.canvas.canvasElement.width;
       height = this.canvas.canvasElement.height;
       imageData = this.context.getImageData(0, 0, width, height).data;
@@ -45,8 +45,18 @@
       for (index = i = 0, len = imageData.length; i < len; index = ++i) {
         pixel = imageData[index];
         if ((Math.abs(testImageData[index] - pixel) > 50) || (testImageData[index] === 0 && pixel !== 0) || (pixel === 0 && testImageData[index] !== 0)) {
-          return false;
+          this.context.save();
+          w = Math.ceil(index / 4) % width;
+          h = Math.floor(Math.ceil(index / 4) / width);
+          this.context.translate(w, h);
+          this.context.fillStyle = '#ff0000';
+          this.context.fillRect(-2, -2, 5, 5);
+          this.context.restore();
+          diffCount += 1;
         }
+      }
+      if (diffCount > 0) {
+        return false;
       }
       return true;
     };
