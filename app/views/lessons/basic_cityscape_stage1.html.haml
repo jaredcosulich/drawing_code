@@ -26,10 +26,17 @@
             A building is a filled in rectangle. We use context.fillStyle to set
             the color of the rectangle, and context.fillRect() to draw the rectangle.
           %p
-            In this example, we draw a building that is blue (the color #1E90FF),
-            160 pixels wide, 240 pixels tall, and positioned so its top left corner
-            is at (100, 50).
-          = render 'lessons/relevant', relevant: [:clear_rect, :fill_style, :fill_rect]
+            %span.highlight
+              In this example, we draw a building that is blue (the color #1E90FF),
+              160 pixels wide, 240 pixels tall, and positioned so its top left corner
+              is at (100, 50).
+          %p
+            In the context's coordinate system, the origin (0, 0) is at the top left
+            corner of the canvas, and the x-coordinates increase moving to the right
+            and the y-coordinates increase moving down. So, the rectangle is positioned
+            100 pixels to the right and 50 pixels down from the top left corner of the
+            canvas.
+          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect, :fill_style, :fill_rect]
 
 
         .col-xs-12
@@ -58,14 +65,18 @@
           %h2.challenge-title.py-2
             Challenge 1
           %p
-            Draw a building (a rectangle) that is 320 pixels wide and 160
-            pixels tall so the bottom left corner of the building is covering the
-            x at (40, 240) and the top right corner is covering the other x.
+            %span.highlight
+              Draw a building (a rectangle) that is 320 pixels wide and 160
+              pixels tall so the bottom left corner of the building is covering the
+              x at (40, 240) and the top right corner is covering the other x.
+          %p
+            Remember, the point (40, 240) is 40 pixels to the right and 240 pixels
+            down from the origin, which is the top left corner of the canvas.
           %p
             We are positioning the building's bottom left corner so the building
             is sitting on the ground. You will have to do some math to find the coordinates
             of the building's top left corner.
-          = render 'lessons/relevant', relevant: [:clear_rect, :fill_rect]
+          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect, :fill_style, :fill_rect]
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge1_editor'} do
@@ -95,15 +106,16 @@
           %p
             We can use variables to automatically size and position a building.
           %p
-            In this example, we draw a green building (color #228B22) that is twice
-            as tall as it is wide, and sitting on the ground at (60, 280).
+            %span.highlight
+              In this example, we draw a green building (color #228B22) that is twice
+              as tall as it is wide, and sitting on the ground at (60, 280).
           %p
             To change the size of the building, all we do is store a different value
             in the variable <i>w</i>. The program automatically calculates the height
             of the building (assigning it to the variable <i>h</i>) and the y-coordinate
             of the top of the building (assigning it to the variable <i>y</i>). These
             variables are then used to draw the building.
-          = render 'lessons/relevant', relevant: [:clear_rect, :fill_style, :fill_rect, :variables]
+          = render 'lessons/relevant', relevant: [:variables, :coordinates, :clear_rect, :fill_style, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -147,8 +159,9 @@
       .row
         .col-xs-12
           %p
-            Draw a gray building (color #999999) with 10 floors and 8 office units
-            on each floor sitting on the ground at (120, 280).
+            %span.highlight
+              Draw a gray building (color #999999) with 10 floors and 8 office units
+              on each floor sitting on the ground at (120, 280).
           %p
             Write a program to calculate the size and position of the building for you.
             The variable <i>units</i> stores the number of office units on each floor.
@@ -157,7 +170,7 @@
             To see the office units in your building, add the line "drawOffices(x, y, w, h);"
             to the end of your program, where (x, y) are the coordinates of the top left
             corner of your building, and w and h are the width and height of your building.
-          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :variables]
+          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_style, :fill_rect]
 
       .row.pt-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge2_editor'} do
@@ -180,12 +193,14 @@
 
             var canvas = document.getElementById('basic_cityscape_stage1_challenge2');
             var context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            
             var units = 8;
             var floors = 10;
+            
+            // YOUR CODE TO CALCULATE THE WIDTH AND HEIGHT OF THE BUILDING HERE
 
-            context.clearRect(0, 0, canvas.width, canvas.height);
-
-            // YOUR CODE FOR GRAY (#999999) BUILDING HERE
+            // YOUR CODE TO DRAW THE GRAY (#999999) BUILDING HERE
 
             // drawOffices(x, y, w, h);
 
@@ -218,13 +233,14 @@
             putting that code into a function can make your life much easier. Then,
             to run the code, all you have to do is call the function by typing one line.
           %p
-            In this example, we create a function that will draw a French flag. Because we
-            might want to draw a French flag in lots of different places, we make the
-            x- and y-coordinates of the flag variables. When we call drawFrenchFlag(30, 100),
-            the 30 is assigned to the variable <i>x</i> and the 100 is assigned to the
-            variable <i>y</i> inside of the function. Now we can easily draw as many French
-            flags as we want!
-          = render 'lessons/relevant', relevant: [:fill_rect, :fill_style, :variables, :functions]
+            %span.highlight
+              In this example, we create a function that will draw a French flag. Because
+              we might want to draw a French flag in lots of different places, we make the
+              x- and y-coordinates of the flag variables.
+            When we call drawFrenchFlag(30, 100), the 30 is assigned to the variable <i>x</i>
+            and the 100 is assigned to the variable <i>y</i> inside of the function. Now we can
+            easily draw as many French flags as we want!
+          = render 'lessons/relevant', relevant: [:fill_rect, :fill_style, :coordinates, :variables, :functions]
 
         .col-xs-12
           .interactive.row.py-1
@@ -264,22 +280,24 @@
           %h2.challenge-title.py-2
             Challenge 3
           %p
-            Write a function to draw the building from Challenge 2. The function will
-            be passed four values that it will assign to the following four variables
-            (called parameters). The first parameter, <i>leftX</i>, is the x-coordinate
-            of the left side of the building. The second parameter, <i>groundY</i>, is
-            the y-coordinate of the base of the building. The third parameter, <i>units</i>,
-            is the number of office units on a floor. The fourth parameter, <i>floors</i>,
-            is the number of floors in the building.
+            %span.highlight
+              Write a function to draw the building from Challenge 2.
+            The function will be passed four values that it will assign to the following
+            four variables (called parameters). The first parameter, <i>leftX</i>, is the
+            x-coordinate of the left side of the building. The second parameter, <i>groundY</i>,
+            is the y-coordinate of the base of the building. The third parameter, <i>units</i>,
+            is the number of office units on a floor. The fourth parameter, <i>floors</i>, is
+            the number of floors in the building.
           %p
-            Then use the function to draw two buildings. The first building will have
-            12 floors and 8 office units per floor, and it will be sitting on the ground
-            at (50, 300). The second building will have 18 floors and 6 office units per
-            floor, and it will be sitting on the ground at (200, 300).
+            %span.highlight
+              Then use the function to draw two buildings. The first building will have
+              12 floors and 8 office units per floor, and it will be sitting on the ground
+              at (50, 300). The second building will have 18 floors and 6 office units per
+              floor, and it will be sitting on the ground at (200, 300).
           %p
-            Just like with Challenge 2, both buildings should be gray (#999999) and each office
-            should be 16 x 16 width 4 pixels of padding around the whole building.
-          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :variables, :functions]
+            Just like with Challenge 2, both buildings should be gray (color #999999) and each
+            office should be 16 x 16 width 4 pixels of padding around the whole building.
+          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :variables, :functions]
 
       .row.pt-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge3_editor'} do
@@ -290,11 +308,11 @@
 
             function drawBuilding(leftX, groundY, units, floors) {
 
-              // YOUR CODE FOR DRAWING A BUILDING HERE
+              // YOUR CODE FOR DRAWING A GENERAL BUILDING HERE
 
             }
 
-            // YOUR CODE FOR DRAWING THE TWO BUILDINGS HERE
+            // YOUR CODE FOR DRAWING THE TWO SPECIFIC BUILDINGS HERE
 
         .visual.col-xs-6
           %h5
@@ -321,13 +339,15 @@
             wasn't so tidy. It changed the context.fillStyle to '#EF4135' and never
             changed it back.
           %p
-            To make our function more tidy, we are going to call context.save() at the
-            start of the function and context.restore() at the end of the function.
+            %span.highlight
+              To make our function more tidy, we are going to call context.save() at the
+              start of the function and context.restore() at the end of the function.
             Calling context.save() saves the state of the context (including the current
             context.fillStyle), and context.restore() restores the context to the last
             time you saved it.
           %p
-            The other change we are going to make to our function is to use context.translate().
+            %span.highlight
+              The other change we are going to make to our function is to use context.translate().
             Notice how we had to do some calculations with x and y to figure out the positions
             of the white and red rectangles in the French flag? Imagine you had to do the same
             calculations for a hundred windows in a building. By using context.translate(), we can
@@ -343,7 +363,7 @@
             (As an exercise, try to predict what would happen if you took out the context.save()
             and context.restore() from the function. You'll have to reset the example and then
             refresh the entire page to get everything back to normal.)
-          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :functions, :save, :translate]
+          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :functions, :save, :translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -388,18 +408,20 @@
           %h2.challenge-title.py-2
             Challenge 4
           %p
-            Tidy up the drawBuilding() function from Challenge 3 in the same way.
+            %span.highlight
+              Tidy up the drawBuilding() function from Challenge 3 in the same way.
             Call context.save() at the start of the function and context.restore() at
             the end of the function, and use context.translate() to move the origin
             to (x, y).
           %p
-            Once the drawBuilding() function is tidy, draw one building with 12 office
-            units per floor and 6 floors sitting on the ground at (40, 300) and
-            another building with 10 office units per floor and 15 floors at (280, 300).
+            %span.highlight
+              Once the drawBuilding() function is tidy, draw one building with 12 office
+              units per floor and 6 floors sitting on the ground at (40, 300) and
+              another building with 10 office units per floor and 15 floors at (280, 300).
           %p
-            Just like with Challenges 2 & 3, both buildings should be gray (#999999) and each office
+            Just like with Challenges 2 & 3, both buildings should be gray (color #999999) and each office
             should be 16 x 16 width 4 pixels of padding around the whole building.
-          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :functions, :save, :translate]
+          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :functions, :save, :translate]
 
       .row.py-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge4_editor'} do

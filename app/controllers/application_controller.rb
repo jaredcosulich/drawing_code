@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
       fill_style: {count: 2, method: 'fillStyle'},
       translate: {count: 1, method: 'translate()'},
       save: {count: 1, method: 'save()'},
+      scale: {count: 0, method: 'scale()'},
 
       floor: {count: 0, method: 'floor() / ceil()'},
       random: {count: 0, method: 'random()'},
@@ -62,9 +63,10 @@ class ApplicationController < ActionController::Base
           :clear_rect,
           :fill_rect,
           :fill_style,
-          :translate,
-          :save,
           :line_to,
+          :save,
+          :translate,
+          :scale,
           :floor,
           :random
         ],
