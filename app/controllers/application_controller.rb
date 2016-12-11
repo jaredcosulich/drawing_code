@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
 
       variables: {count: 2, method: 'Variables'},
       for_loops: {count: 1, method: 'For Loops'},
+      while_loops: {count: 0, method: 'While Loops'},
       coordinates: {count: 2, method: 'Coordinates'},
       functions: {count: 1, method: 'Functions'},
 
@@ -45,6 +46,7 @@ class ApplicationController < ActionController::Base
     @concepts = [
       :variables,
       :for_loops,
+      :while_loops,
       :coordinates,
       :functions
     ]
@@ -73,6 +75,7 @@ class ApplicationController < ActionController::Base
         concepts: [
           :variables,
           :for_loops,
+          :while_loops,
           :coordinates,
           :functions
         ]
