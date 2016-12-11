@@ -1,10 +1,27 @@
-.code-preview
+.code-preview.mb-3
   %p
     %strong Previous Challenge:
     View your
-    %span.code-preview-link{data: {editorid: editor_id}} code from the previous challenge
+    %span.code-preview-link{data: {editorid: editor_id}}
+      code from
+      Stage
+      = stage
+      Challenge
+      = challenge
     to use on this challenge.
 
+  .code-preview-missing
+    %strong Code Missing:
+    You have not yet entered any code in to the previous challenge:
+    Stage
+    = stage
+    Challenge
+    = challenge
+
   .code-preview-view
-    %strong= challenge_name
+    %strong
+      Stage
+      = stage
+      Challenge
+      = challenge
     .code-preview-code

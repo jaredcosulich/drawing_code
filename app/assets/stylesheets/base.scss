@@ -120,10 +120,13 @@ img {
 
   .code-preview-view {
     display: none;
-    margin-bottom: 12px;
 
     .code-preview-code {
       height: 300px;
     }
+  }
+
+  .code-preview-missing {
+    display: none;
   }
 }

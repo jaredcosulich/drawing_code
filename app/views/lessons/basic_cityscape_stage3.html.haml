@@ -149,7 +149,7 @@
             as complete by selecting "Yes, it looks good".
 
           = render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect]
-          = render 'lessons/code_preview', challenge_name: 'Stage 2 Challenge 3', editor_id: 'basic_cityscape_stage2_challenge3_editor'
+          = render 'lessons/code_preview', stage: 2, challenge: 3, editor_id: 'basic_cityscape_stage2_challenge3_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage3_challenge1_editor'} do
@@ -283,8 +283,10 @@
             ), we don't have to change the context.fillStyle in the drawBuilding() function before calling
             drawRoof(). Also, for a case that does nothing, either leave the case out or include the case with
             a comment explaining what it is supposed to do (make sure to include the break statement).
-      .row
-        .col-xs-6
+
+          .float-xs-right
+            = image_tag('lessons/basic_cityscape_stage3/challenge2Visual2.png', style: 'background-color: #EEEEEE;')
+
           %p
             Draw three buildings with different sizes, window, and roof types.
           %p
@@ -303,8 +305,7 @@
             If your drawing looks like the image to the right, mark the challenge
             as complete by selecting "Yes, it looks good".
           = render 'lessons/relevant', relevant: [:functions, :variables, :line_to]
-        .col-xs-6
-          = image_tag('lessons/basic_cityscape_stage3/challenge2Visual2.png', style: 'background-color: #EEEEEE;')
+          = render 'lessons/code_preview', stage: 3, challenge: 1, editor_id: 'basic_cityscape_stage3_challenge1_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage3_challenge2_editor'} do
@@ -465,6 +466,7 @@
               Then, once you feel satisfied with your drawings, mark the challenge as complete by
               selecting "Yes, it looks good".
           = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
+          = render 'lessons/code_preview', stage: 3, challenge: 2, editor_id: 'basic_cityscape_stage3_challenge2_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage3_challenge3_editor'} do
@@ -596,6 +598,7 @@
               Then, once you feel satisfied with your drawings, mark the challenge as complete by
               selecting "Yes, it looks good".
           = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
+          = render 'lessons/code_preview', stage: 3, challenge: 3, editor_id: 'basic_cityscape_stage3_challenge3_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage3_challenge4_editor'} do
