@@ -22,7 +22,6 @@ class App.Canvas
 
   initAlert: ->
     @alertElement = @canvas.closest('.visual').find('.alert')
-    @alertElement.width(@container.width() - 39)
 
   alert: (message, success) ->
     @alertElement.html(message)

@@ -17,6 +17,12 @@ class App.Editor
         useSoftTabs: true
         wrap: 'on'
 
+    currentEditorHeight = @editor.height()
+    @editor.on 'mousemove', =>
+      if @editor.height() != currentEditorHeight
+        currentEditorHeight = @editor.height()
+        @aceEditor.resize()
+
     @editor.on 'keyup', =>
       @ensureValidCanvasReference()
       App.currentProgress.storeEditorValue(@editorElement.id, @aceEditor.getValue())
