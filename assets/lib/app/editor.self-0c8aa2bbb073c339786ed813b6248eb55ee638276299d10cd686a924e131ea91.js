@@ -8,7 +8,7 @@
       this.editorElement = $(editor)[0];
       this.editor = $(this.editorElement);
       this.codeEditor = this.editor.closest('.code-editor');
-      ace.config.set('workerPath', '/ace/');
+      ace.config.set('workerPath', '/drawing_code/ace/');
       this.aceEditor = ace.edit(this.editorElement);
       this.editor.data({
         ace: this.aceEditor
