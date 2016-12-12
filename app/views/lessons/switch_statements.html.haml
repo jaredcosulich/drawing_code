@@ -1,0 +1,305 @@
+#switch_statements.lesson
+  %h1 Switch Statements
+
+  = render 'lessons/challenge_count'
+
+  .official.row.py-3
+    .col-xs-6
+      %h2.py-2
+        Overview
+      %p
+        A switch statement will run different blocks of code depending on the value
+        assigned to a variable.
+
+    .col-xs-6
+      = image_tag('lessons/switch_statements/overviewVisual1.png', class: 'img-fluid')
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Example
+          %p
+            When we want to run different blocks of code depending on the value of a
+            variable, we can use an if statement. But if we have to handle many different
+            cases, it can be simpler to use a switch statement.
+          %p
+            In this example, we print different text messages depending on the value
+            of the variable <i>option</i>. The switch statement checks the value of <i>option</i>
+            and, if <i>option</i> = 0, it runs the block of code in case 0.
+          %p
+            Change the value of <i>option</i> to a different number between 0-4 and see
+            what the code in those other cases do. The break statement at the end of each
+            case code block tells the program to exit the switch statement after running
+            the block of code.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'switch_statements_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('switch_statements_example1');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                var option = 0; // Set option to a number from 0-4
+                
+                context.save();
+                switch (option) {
+                  case 0:
+                    context.font = '16px sans-serif';
+                    context.fillStyle = 'Black';
+                    context.fillText('You chose option 0.', 20, 40);
+                    break;
+                  
+                  case 1:
+                    context.font = '24px sans-serif';
+                    context.fillStyle = 'Crimson';
+                    context.fillText('Yay! Option 1!', 300, 250);
+                    break;
+                  
+                  case 2:
+                    context.font = '36px sans-serif';
+                    context.fillStyle = 'DarkMagenta';
+                    context.fillText('Groovy, man. Option 2.', 80, 200);
+                    break;
+                  
+                  case 3:
+                    context.font = 'bold 48px sans-serif';
+                    context.fillStyle = 'DeepPink';
+                    context.strokeStyle = 'DarkSlateBlue';
+                    context.lineWidth = 4;
+                    context.textAlign = 'center';
+                    context.translate(220, 150);
+                    context.rotate(-Math.PI / 9);
+                    context.strokeText('Wow! Option 3!', 0, 0);
+                    context.fillText('Wow! Option 3!', 0, 0);
+                    break;
+                  
+                  case 4:
+                    context.font = 'bold 54px sans-serif';
+                    context.fillStyle = 'SeaGreen';
+                    context.translate(10, 120);
+                    context.fillText('MIRROR OPTION 4', 0, 0);
+                    context.scale(1, -3);
+                    var gradient = context.createLinearGradient(0,0,0,-36);
+                    gradient.addColorStop(0,'rgba(0, 0, 0, 1)');
+                    gradient.addColorStop(1,'rgba(0, 0, 0, 0)');
+                    context.fillStyle = gradient;
+                    context.fillText('MIRROR OPTION 4', 0, 0);
+                    break;
+                }
+                
+                context.restore();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#switch_statements_example1
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Example
+          %p
+            In this example, we use a switch statement to change the expression on
+            Rectangle Man's face.
+          %p
+            Change the value of the parameter <i>expression</i> to 'happy', 'angry', or
+            'scared' to see Rectangle Man's expression change. Note that those values are
+            text strings, and the case values are also text strings to match. If we enter
+            drawFace(happy), he won't be happy. We have to enter drawFace('happy').
+          %p
+            There is a special case called default. If we enter an expression that
+            Rectangle Man doesn't recognize, such as drawFace('sad'), the switch statement
+            will run the default code black. This is useful because, if we enter drawFace()
+            with no value for <i>expression</i>, we get Rectangle Man's default expression.
+          %p
+            If the switch statement had no default and no case matched the value of
+            <i>expression</i>, then the program would draw Rectangle Man's head and nose,
+            but with no eyes or mouth.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'switch_statements_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('switch_statements_example2');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                
+                context.save();
+                context.translate(260, 20);
+                
+                drawFace('happy'); // Change Rectangle Man's expression to 'happy', 'angry', 'scared', or none
+                context.restore();
+                
+                function drawFace(expression) {
+                  context.save();
+                  context.fillStyle = '#000000';
+                  context.strokeStyle = '#000000';
+                  context.strokeRect(-80, 0, 160, 280); // Draw head
+                  context.strokeRect(-15, 120, 30, 60); // Draw nose
+                  context.strokeRect(15, 160, 10, 20); // Draw right nostril
+                  context.strokeRect(-25, 160, 10, 20); // Draw left nostril
+                  
+                  switch (expression) {
+                    case 'happy':
+                      context.strokeRect(20, 80, 30, 30);
+                      context.fillRect(29, 89, 12, 12);
+                      context.strokeRect(-50, 80, 30, 30);
+                      context.fillRect(-41, 89, 12, 12);
+                      context.strokeRect(-45, 200, 90, 30);
+                      for (var i = 0; i < 6; i = i + 1) {
+                        context.strokeRect(-45 + 15 * i, 200, 15, 15);
+                        context.strokeRect(-45 + 15 * i, 215, 15, 15);
+                      }
+                      break;
+                    
+                    case 'angry':
+                      context.strokeRect(15, 90, 40, 10);
+                      context.fillRect(25, 90, 10, 10);
+                      context.strokeRect(-55, 90, 40, 10);
+                      context.fillRect(-35, 90, 10, 10);
+                      context.strokeRect(-40, 200, 80, 10);
+                      break;
+                    
+                    case 'scared':
+                      context.strokeRect(20, 75, 30, 40);
+                      context.fillRect(28, 88, 14, 14);
+                      context.strokeRect(-50, 75, 30, 40);
+                      context.fillRect(-42, 88, 14, 14);
+                      context.strokeRect(-25, 200, 50, 60);
+                      break;
+                    
+                    default:
+                      context.strokeRect(20, 80, 30, 30);
+                      context.fillRect(30, 90, 10, 10);
+                      context.strokeRect(-50, 80, 30, 30);
+                      context.fillRect(-40, 90, 10, 10);
+                      context.strokeRect(-30, 200, 60, 20);
+                      break;
+                  }
+                  
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#switch_statements_example2
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Example
+          %p
+            In this example, we use a switch statement to draw Rectangle Man's face
+            with some bling.
+          %p
+            Change the value of the parameter <i>bling</i> to a number from 0 (no bling)
+            to 4 (max bling) to see Rectangle Man's bling change. Note that those values are
+            numbers, and the case values are also numbers to match.
+          %p
+            Because we are not ending the code blocks in each case with a break statement,
+            the program does not break out of the switch statement when the code block is
+            done. For example, if we pass a value of 2 into the <i>bling</i> parameter, then
+            case 2 in the switch statement will be true, and the program will run that code
+            block. But when that code block is over, the program will continue running code
+            in the lower code blocks, even though those cases are false, until it reaches a break statement or the switch statement
+            ends.
+          %p
+            By leaving out the break statements for each case, Rectangle Man gets the bling
+            from both case 2 and case 1 if we set his <i>bling</i> to 2. And he gets all the
+            bling if we set his <i>bling</i> to 4.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'switch_statements_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('switch_statements_example3');
+                var context = canvas.getContext("2d");
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                
+                context.save();
+                context.translate(260, 50);
+                
+                drawFaceWithBling(0); // Give Rectangle Man some bling (0-4);
+                context.restore();
+                
+                function drawFaceWithBling(bling) {
+                  context.save();
+                  context.fillStyle = '#000000';
+                  context.strokeStyle = '#000000';
+                  context.strokeRect(-64, 0, 128, 224); // Draw head
+                  context.strokeRect(-12, 96, 24, 48); // Draw nose
+                  context.strokeRect(12, 128, 8, 16); // Draw right nostril
+                  context.strokeRect(-20, 128, 8, 16); // Draw left nostril
+                  context.strokeRect(16, 64, 24, 24);
+                  context.fillRect(24, 72, 8, 8);
+                  context.strokeRect(-40, 64, 24, 24);
+                  context.fillRect(-32, 72, 8, 8);
+                  context.strokeRect(-24, 160, 48, 16);
+                  context.strokeRect(64, 80, 12, 30);
+                  context.strokeRect(-76, 80, 12, 30);
+                  
+                  switch (bling) {
+                    case 4:
+                      context.save();
+                      context.translate(0, 132);
+                      context.fillStyle = '#EECC00';
+                      context.fillRect(-16, 104, 32, 60);
+                      context.rotate(-Math.PI / 5);
+                      for (var i = 0; i < 9; i = i + 1) {
+                        context.fillRect(-8, 114, 16, 40);
+                        context.rotate(Math.PI / 20);
+                      }
+                      context.restore();
+                    
+                    case 3:
+                      context.save();
+                      context.fillStyle = '#EECC00';
+                      context.fillRect(-76, 110, 8, 8);
+                      context.fillRect(-76, 120, 8, 8);
+                      context.fillRect(-76, 130, 8, 8);
+                      context.fillRect(-77, 140, 10, 16);
+                      context.restore();
+                    
+                    case 2:
+                      context.save();
+                      context.fillRect(-68, -40, 136, 88);
+                      context.fillRect(-88, 40, 176, 8);
+                      context.fillStyle = 'FireBrick';
+                      context.fillRect(-68, 16, 136, 24);
+                      context.restore();
+                    
+                    case 1:
+                      context.save();
+                      context.fillRect(-72, 72, 144, 8);
+                      context.fillStyle = '#660000';
+                      context.fillRect(2, 64, 56, 24);
+                      context.fillRect(-58, 64, 56, 24);
+                      context.restore();
+                  }
+                  
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#switch_statements_example3
+
+
