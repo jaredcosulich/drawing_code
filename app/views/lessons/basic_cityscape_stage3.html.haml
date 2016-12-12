@@ -33,7 +33,7 @@
             and a Thai flag if country = 'Thailand'.
           %p
             Try drawing a Thai flag instead of a Colombian flag to see what it looks like.
-          = render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect]
+          = render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect, :switch_statements]
 
         .col-xs-12
           .interactive.row.py-1
@@ -148,7 +148,7 @@
             If your drawing looks like the image to the right, mark the challenge
             as complete by selecting "Yes, it looks good".
 
-          = render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect]
+          = render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect, :switch_statements]
           = render 'lessons/code_preview', stage: 2, challenge: 3, editor_id: 'basic_cityscape_stage2_challenge3_editor'
 
       .row
@@ -208,7 +208,7 @@
           %p
             The roof doesn't work when the number of office units is smaller than 4 and
             it doesn't look good when it's greater than 8. We will fix those issues later.
-          = render 'lessons/relevant', relevant: [:functions, :variables, :line_to]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :line_to, :switch_statements]
 
         .col-xs-12
           .interactive.row.py-1
@@ -306,7 +306,7 @@
           %p
             If your drawing looks like the image to the right, mark the challenge
             as complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:functions, :variables, :line_to]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :line_to, :switch_statements]
           = render 'lessons/code_preview', stage: 3, challenge: 1, editor_id: 'basic_cityscape_stage3_challenge1_editor'
 
       .row

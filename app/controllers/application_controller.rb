@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
       while_loops: {count: 0, method: 'While Loops'},
       coordinates: {count: 2, method: 'Coordinates'},
       functions: {count: 1, method: 'Functions'},
+      switch_statements: {count: 0, method: 'Switch Statements'},
 
       basic_cityscape_stage1: {count: 4, method: 'Stage 1'},
       basic_cityscape_stage2: {count: 3, method: 'Stage 2'},
@@ -48,7 +49,8 @@ class ApplicationController < ActionController::Base
       :for_loops,
       :while_loops,
       :coordinates,
-      :functions
+      :functions,
+      :switch_statements
     ]
 
     @challenge_paths = [
@@ -69,15 +71,16 @@ class ApplicationController < ActionController::Base
           :save,
           :translate,
           :scale,
-          :floor,
-          :random
+          :random,
+          :floor
         ],
         concepts: [
           :variables,
           :for_loops,
           :while_loops,
           :coordinates,
-          :functions
+          :functions,
+          :switch_statements
         ]
       }
     ]

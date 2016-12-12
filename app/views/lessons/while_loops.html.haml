@@ -1,4 +1,4 @@
-#translate.lesson
+#while_loops.lesson
   %h1 While Loops
 
   = render 'lessons/challenge_count'
@@ -15,7 +15,7 @@
         stuck. Close the browser window if that happens.
 
     .col-xs-6
-      = image_tag('lessons/scale/overviewVisual1.png', class: 'img-fluid')
+      = image_tag('lessons/while_loops/overviewVisual1.png', class: 'img-fluid')
 
 
   .example.row.py-3
@@ -110,24 +110,22 @@
           %h2.py-2
             Example
           %p
-            The scale() method doesn't just shrink or enlarge a shape. It changes the
-            size of the coordinate system, which also moves a shape. The only point in
-            the context that does not move when the context is scaled is the origin (0, 0).
+            In this example, we use a while loop to draw the trajectory of a cannonball.
+            Because the number of cannonballs drawn will vary with the angle of the cannon,
+            we use a while loop.
           %p
-            In this example, the red circle is positioned at the origin of the context,
-            (0, 0). The purple rectangle is positioned at (20, 40), 20 pixels to the right
-            and 40 pixels down from the origin.
+            Change the angle of the cannon to see the trajectory of the cannonball change.
           %p
-            Change the scale of the context by entering new values into context.scale().
-            What happens? The size of both the red circle and purple rectangle change, but
-            the red circle stays in the same place while the purple rectangle moves. This
-            is because the red circle is centered on the origin.
+            The condition of the while loop is to keep drawing cannonballs while the
+            center of the cannonball is at least 5 pixels above the ground. We use 5 pixels
+            because the radius of the cannonball is 5 pixels. Inside of the while loop,
+            we calculate the coordinates of the next cannonball and adjust the velocity of the
+            cannonball according to gravity.
           %p
-            Move the purple rectangle to a new position relative to the red circle by
-            changing its x- and y-coordinates (the first two values in context.fillRect()).
-            Then change the scale of the context again and watch what happens. If we increase
-            the scale, the rectangle moves farther from the origin. If we decrease the scale,
-            it moves closer.
+            By using a while loop, we don't have to do any calculus or solve any quadratic
+            equations in order to plot the trajectory of the cannonball ahead of time.
+            We just keep drawing cannonballs as long as the position of the cannonball is still
+            above the ground.
 
         .col-xs-12
           .interactive.row.py-1
@@ -137,7 +135,7 @@
                 var context = canvas.getContext("2d");
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 
-                var angle = 45; // The angle of the cannon (10 - 80);
+                var angle = 30; // The angle of the cannon (10 - 80);
                 
                 angle = -Math.PI * Math.min(80, Math.max(10, angle)) / 180;
                 var g = 1;
@@ -192,117 +190,68 @@
           %h2.py-2
             Example
           %p
-            We don't have to scale the coordinate system of the context the same amount
-            along both the x-axis and the y-axis.
+            In this example, we are dividing a rectangle into squares. The number of
+            squares drawn depends on the size of the rectangle.
           %p
-            In this example, we use context.scale() to stretch three circles along the
-            y-axis, turning them into ovals and creating a flame effect. The red, orange,
-            and yellow circles are all drawn with the same radius.
+            Change the width and height of the rectangle to see how many squares it contains.
           %p
-            The origin of the context is at the bottom of all three circles, which makes
-            it easy to line them up.
+            The condition of the while loop is to keep drawing squares while the width
+            and the height of the remaining rectangle are both greater than zero.
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_example2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'while_loops_example3_editor'} do
               :preserve
-                var canvas = document.getElementById('scale_example2');
+                var canvas = document.getElementById('while_loops_example3');
                 var context = canvas.getContext("2d");
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 
-                context.save();
-                context.translate(260, 280);
+                var n = 0;
+                var w = 20; // The width of the rectangle (1-25)
+                var h = 16; // The height of the rectangle (1-25)
+                var color = ['#FF0000', 'FFA500', 'FFFF00', '#00FF00', '#0000FF', '#4B0082', '#EE82EE'];
+                
+                w = 10 * Math.min(25, Math.max(w, 1));
+                h = 10 * Math.min(25, Math.max(h, 1));
                 
                 context.save();
-                context.scale(1, 3); // SET THE SCALE FOR THE YELLOW CIRCLE
-                context.fillStyle = '#FFFF00';
-                context.beginPath();
-                context.arc(0, -40, 40, 0, 2 * Math.PI, false);
-                context.closePath();
-                context.fill();
+                context.translate(10, 10);
+                
+                while (w > 0 && h > 0) {
+                  var nextW, nextH;
+                  context.fillStyle = color[n % color.length]; // Set the color of the rectangle
+                  context.fillRect(0, 0, w, h);
+                  
+                  n = n + 1;
+                  
+                  if (w > h) {
+                    w = w - h;
+                    if (Math.random() > 0.5) context.translate(h, 0);
+                  } else {
+                    h = h - w;
+                    if (Math.random() > 0.5) context.translate(0, w);
+                  }
+                }
+                
                 context.restore();
                 
-                context.save();
-                context.scale(0.8, 2); // SET THE SCALE FOR THE ORANGE CIRCLE
-                context.fillStyle = '#FFA500';
-                context.beginPath();
-                context.arc(0, -40, 40, 0, 2 * Math.PI, false);
-                context.closePath();
-                context.fill();
-                context.restore();
+                var s = 's';
+                var are = 'are ';
                 
-                context.save();
-                context.scale(0.6, 1.2); // SET THE SCALE FOR THE RED CIRCLE
-                context.fillStyle = '#FF0000';
-                context.beginPath();
-                context.arc(0, -40, 40, 0, 2 * Math.PI, false);
-                context.closePath();
-                context.fill();
-                context.restore();
-
-                context.restore();
+                if (n == 1) {
+                  s = '';
+                  are = 'is ';
+                }
+                
+                context.fillStyle = '#000000';
+                context.font = '16px sans-serif';
+                context.fillText('There ' + are + n + ' rectangle' + s, 10, 290);
 
             .visual.col-xs-6
               %h5
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#scale_example2
+                %canvas#while_loops_example3
 
 
-  .example.row.py-3
-    .col-xs-12
-      .row
-        .col-xs-12
-          %h2.py-2
-            Example
-          %p
-            If we scale the coordinate system of the context by -1 along either the
-            x-axis or the y-axis, we can flip a drawing and create a mirror image.
-          %p
-            In this example, we draw the text 'Rightside Up' at (0, -80), 80 pixels above
-            the origin of the context at the red circle. Then we draw the text 'Upside Down',
-            also at (0, -80). But before drawing the text 'Upside Down', we scale the context
-            using context.scale(1, -1).
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'scale_example3_editor'} do
-              :preserve
-                var canvas = document.getElementById('scale_example3');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                context.font = '48px sans-serif';
-                context.textAlign = 'center';
-                
-                context.save();
-                context.translate(260, 160);
-                
-                context.save();
-                context.scale(1, 1);
-                context.fillStyle = '#009900';
-                context.fillText('Rightside Up', 0, -80);
-                context.restore();
-                
-                context.save();
-                context.scale(1, -1);
-                context.fillStyle = '#009900';
-                context.fillText('Upside Down', 0, -80);
-                context.restore();
-                
-                context.save();
-                context.fillStyle = '#FF0000';
-                context.beginPath();
-                context.arc(0, 0, 5, 0, 2 * Math.PI, false);
-                context.closePath();
-                context.fill();
-                context.restore();
-
-                context.restore();
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#scale_example3
