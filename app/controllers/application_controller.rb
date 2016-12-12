@@ -34,8 +34,9 @@ class ApplicationController < ActionController::Base
         :line_to,
         :fill_rect,
         :fill_style,
+        :save,
         :translate,
-        :save
+        :scale
       ],
       Math: [
         :floor,
