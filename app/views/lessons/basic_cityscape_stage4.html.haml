@@ -51,7 +51,7 @@
             %span.highlight
               Press "Run" a few times and count the number of squares drawn. The number of squares
               will change depending on the size of the squares.
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :while_loops]
 
         .col-xs-12
           .interactive.row.py-1
@@ -136,7 +136,7 @@
               similar to the image above.
             Obviously, the buildings will be random. If your drawBuildingRow() function seems to be
             working, mark the challenge as complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :while_loops]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge1_editor', cols: 12} do
@@ -211,7 +211,7 @@
             not have to be the same.
           %p
             Note: The scale of the context gets saved and restored with context.save() and context.restore().
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :while_loops, :scale]
 
         .col-xs-12
           .interactive.row.py-1
@@ -327,7 +327,7 @@
               similar to the image above.
             Obviously, the buildings will be random. If your drawBuildingRow() function seems to be
             working, mark the challenge as complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :while_loops, :scale]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge2_editor', cols: 12} do
@@ -407,7 +407,7 @@
           %p
             %span.highlight
               Press "Run" to change the color of the rectangle.
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :fill_style]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :fill_style, :while_loops, :scale]
 
         .col-xs-12
           .interactive.row.py-1
@@ -497,7 +497,7 @@
               similar to the image above, especially the building color.
             Obviously, the buildings will be random. If your drawBuildingRow() function seems to be
             working, mark the challenge as complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:functions, :variables, :fill_style]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :fill_style, :while_loops, :scale]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge3_editor', cols: 12} do
@@ -560,7 +560,7 @@
           %p
             %span.highlight
               In this example, we draw a cake for celebrating! Press "Run" to find your favorite cake.
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :fill_style]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor, :fill_style, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -740,7 +740,7 @@
             %span.highlight
               Once you feel satisfied with your drawings, mark the challenge as complete by
               selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
+          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor, :fill_style, :fill_rect]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge4_editor', cols: 12} do
