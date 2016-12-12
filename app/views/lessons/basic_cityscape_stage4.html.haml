@@ -110,6 +110,13 @@
             %span.highlight
               Create a drawBuildingRow() function to draw a row of random buildings.
           %p
+            Because we are drawing a row of buildings, we will set groundY for the entire row and
+            then position each building at (x, 0).
+          %p
+            To set the groundY for the entire row, we can either apply context.translate(x, y) before
+            calling drawBuildingRow(), or we can call drawBuildingRow(x, y) and apply the context.translate(x, y)
+            inside of the function. Either approach works.
+          %p
             %span.highlight
               Inside the drawBuildingRow() function, draw the first building at x = 0, add
               a 12-pixel space between buildings, and keep drawing buildings while the x-coordinate
