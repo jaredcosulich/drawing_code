@@ -24,13 +24,25 @@ describe("Basic Cityscape Stage 1", function() {
       expect(page.challengeResult(challengeNumber, code)).toBe(true);
     });
 
-    it("fails with bad solution", function() {
+    it("fails when not covering the black x's", function() {
       code = "\
         var canvas = document.getElementById('basic_cityscape_stage1_challenge1');\
         var context = canvas.getContext('2d');\
         \
         var ground = 240;\
         context.fillRect(40, 160, 320, 160);\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(false);
+    });
+
+    it("fails when covering the red x's", function() {
+      code = "\
+        var canvas = document.getElementById('basic_cityscape_stage1_challenge1');\
+        var context = canvas.getContext('2d');\
+        \
+        var ground = 240;\
+        context.fillRect(40, 160, 320, 200);\
       "
 
       expect(page.challengeResult(challengeNumber, code)).toBe(false);

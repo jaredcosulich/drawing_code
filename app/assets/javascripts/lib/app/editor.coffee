@@ -5,7 +5,7 @@ class App.Editor
 
     @codeEditor = @editor.closest('.code-editor')
 
-    ace.config.set('workerPath', '/ace/')
+    ace.config.set('workerPath', '/drawing_code/ace/')
     @aceEditor = ace.edit(@editorElement)
     @editor.data(ace: @aceEditor)
 

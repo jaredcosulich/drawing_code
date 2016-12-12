@@ -13,7 +13,11 @@ initBasicCityscapeStage1Challenge1 = (page) ->
 
   points = [
     new Test.Point(x: 40, y: 240, canvas: canvas),
-    new Test.Point(x: 360, y: 80, canvas: canvas)
+    new Test.Point(x: 360, y: 80, canvas: canvas),
+    new Test.Point(x: 20, y: 240, badPoint: true, canvas: canvas)
+    new Test.Point(x: 40, y: 260, badPoint: true, canvas: canvas)
+    new Test.Point(x: 360, y: 60, badPoint: true, canvas: canvas)
+    new Test.Point(x: 380, y: 80, badPoint: true, canvas: canvas)
   ]
 
   challenge.find('.run').click ->
