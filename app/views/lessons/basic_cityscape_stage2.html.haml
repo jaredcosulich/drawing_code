@@ -117,6 +117,7 @@
             The corners of the building should cover the black x's and the window should
             cover the red x.
           = render 'lessons/relevant', relevant: [:functions, :save, :translate, :fill_style, :fill_rect]
+          = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'basic_cityscape_stage1_challenge4_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage2_challenge1_editor'} do
@@ -246,6 +247,7 @@
               units across and 8 floors tall sitting on the ground at (50, 300).
             The corners of the building should cover the black x's and the windows should cover the red x's.
           = render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
+          = render 'lessons/code_preview', stage: 2, challenge: 1, editor_id: 'basic_cityscape_stage2_challenge1_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage2_challenge2_editor'} do
@@ -382,6 +384,7 @@
               units across and 10 floors tall sitting on the ground at (80, 300).
             The corners of the building should cover the black x's and the windows should cover the red x's.
           = render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
+          = render 'lessons/code_preview', stage: 2, challenge: 2, editor_id: 'basic_cityscape_stage2_challenge2_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {editor_id: 'basic_cityscape_stage2_challenge3_editor'} do

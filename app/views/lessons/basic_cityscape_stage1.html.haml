@@ -171,6 +171,8 @@
             to the end of your program, where (x, y) are the coordinates of the top left
             corner of your building, and w and h are the width and height of your building.
           = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_style, :fill_rect]
+          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'basic_cityscape_stage1_challenge1_editor'
+
 
       .row.pt-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge2_editor'} do
@@ -194,10 +196,10 @@
             var canvas = document.getElementById('basic_cityscape_stage1_challenge2');
             var context = canvas.getContext('2d');
             context.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             var units = 8;
             var floors = 10;
-            
+
             // YOUR CODE TO CALCULATE THE WIDTH AND HEIGHT OF THE BUILDING HERE
 
             // YOUR CODE TO DRAW THE GRAY (#999999) BUILDING HERE
@@ -298,6 +300,7 @@
             Just like with Challenge 2, both buildings should be gray (color #999999) and each
             office should be 16 x 16 width 4 pixels of padding around the whole building.
           = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :variables, :functions]
+          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'basic_cityscape_stage1_challenge2_editor'
 
       .row.pt-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge3_editor'} do
@@ -422,6 +425,7 @@
             Just like with Challenges 2 & 3, both buildings should be gray (color #999999) and each office
             should be 16 x 16 width 4 pixels of padding around the whole building.
           = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :functions, :save, :translate]
+          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'basic_cityscape_stage1_challenge3_editor'
 
       .row.py-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge4_editor'} do
