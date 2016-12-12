@@ -62,6 +62,7 @@ class App.Editor
     @canvas.hideAlert()
     try
       App.currentEditor = @
+      @canvas.reset()
       eval(@aceEditor.getValue())
     catch e
       try
