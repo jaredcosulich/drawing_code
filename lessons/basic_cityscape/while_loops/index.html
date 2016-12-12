@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="TOo+jYNpttzCcsGwqumllh64wCX7BdqeaNqlPJvWrA5HnIo1Iw2KlHwfPXPKUJSeUqJ5gB57Y5iGBhezhJDNJw==" />
+<meta name="csrf-token" content="4QVhYGlHGLThh6ZLEQz9kEl6g8piBv6Dxp4QxJLPNlrqc9XYySMk/F/qWohxtcyYBWA6b4d4R4UoQqJLjYlXcw==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-ed7084ebfb075728806e484534903adee4f76afade9b05f2d4d402eff95c8577-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -159,6 +159,9 @@ Concepts
 <small class='functions'>0 / 1</small>
 </span>
 </li>
+<li>
+<a href="../../concepts/switch_statements/index.html">Switch Statements</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -233,10 +236,10 @@ Concepts
 <a href="../scale/index.html">scale()</a>
 </li>
 <li class='small '>
-<a href="../floor/index.html">floor() / ceil()</a>
+<a href="../random/index.html">random()</a>
 </li>
 <li class='small '>
-<a href="../random/index.html">random()</a>
+<a href="../floor/index.html">floor() / ceil()</a>
 </li>
 <li class='section small mt-1'>
 <strong>Relevant Concepts</strong>
@@ -268,13 +271,16 @@ Concepts
 <small class='functions'>0 / 1</small>
 </span>
 </li>
+<li class='small '>
+<a href="../switch_statements/index.html">Switch Statements</a>
+</li>
 </ul>
 </li>
 </ul>
 
 </div>
 <div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
-<div class='lesson' id='translate'>
+<div class='lesson' id='while_loops'>
 <h1>While Loops</h1>
 
 <div class='official row py-3'>
@@ -291,7 +297,7 @@ stuck. Close the browser window if that happens.
 </p>
 </div>
 <div class='col-xs-6'>
-<img class="img-fluid" src="../../../assets/lessons/scale/overviewVisual1-78b6a3077a04da722f7cb04c7de59b0c72e0dccc456b4034de83dbb5aecb54af.png" alt="Overviewvisual1" />
+<img class="img-fluid" src="../../../assets/lessons/while_loops/overviewVisual1-1a98ba00fa52741eabc0dc8fb5f0483dccd80390b837a127f5e8c2b147c6d43b.png" alt="Overviewvisual1" />
 </div>
 </div>
 <div class='example row py-3'>
@@ -370,27 +376,25 @@ Canvas
 Example
 </h2>
 <p>
-The scale() method doesn't just shrink or enlarge a shape. It changes the
-size of the coordinate system, which also moves a shape. The only point in
-the context that does not move when the context is scaled is the origin (0, 0).
+In this example, we use a while loop to draw the trajectory of a cannonball.
+Because the number of cannonballs drawn will vary with the angle of the cannon,
+we use a while loop.
 </p>
 <p>
-In this example, the red circle is positioned at the origin of the context,
-(0, 0). The purple rectangle is positioned at (20, 40), 20 pixels to the right
-and 40 pixels down from the origin.
+Change the angle of the cannon to see the trajectory of the cannonball change.
 </p>
 <p>
-Change the scale of the context by entering new values into context.scale().
-What happens? The size of both the red circle and purple rectangle change, but
-the red circle stays in the same place while the purple rectangle moves. This
-is because the red circle is centered on the origin.
+The condition of the while loop is to keep drawing cannonballs while the
+center of the cannonball is at least 5 pixels above the ground. We use 5 pixels
+because the radius of the cannonball is 5 pixels. Inside of the while loop,
+we calculate the coordinates of the next cannonball and adjust the velocity of the
+cannonball according to gravity.
 </p>
 <p>
-Move the purple rectangle to a new position relative to the red circle by
-changing its x- and y-coordinates (the first two values in context.fillRect()).
-Then change the scale of the context again and watch what happens. If we increase
-the scale, the rectangle moves farther from the origin. If we decrease the scale,
-it moves closer.
+By using a while loop, we don't have to do any calculus or solve any quadratic
+equations in order to plot the trajectory of the cannonball ahead of time.
+We just keep drawing cannonballs as long as the position of the cannonball is still
+above the ground.
 </p>
 </div>
 <div class='col-xs-12'>
@@ -400,7 +404,7 @@ it moves closer.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='while_loops_example2_editor'>var canvas = document.getElementById('while_loops_example2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;var angle = 45; // The angle of the cannon (10 - 80);&#x000A;&#x000A;angle = -Math.PI * Math.min(80, Math.max(10, angle)) / 180;&#x000A;var g = 1;&#x000A;var dX = 20 * Math.cos(angle);&#x000A;var dY = 20 * Math.sin(angle);&#x000A;&#x000A;context.save();&#x000A;context.fillStyle = '#333333';&#x000A;context.fillRect(0, 300, canvas.width, 2); // Draw the ground&#x000A;context.translate(10, 285);&#x000A;&#x000A;context.save();&#x000A;context.rotate(angle);&#x000A;context.fillStyle = '#999999';&#x000A;context.fillRect(-10, -5, 30, 10); // Draw the cannon's barrel&#x000A;context.restore();&#x000A;context.translate(0, 15);&#x000A;context.fillStyle = '#666666';&#x000A;context.beginPath();&#x000A;context.arc(0, -10, 10, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill(); // Draw the cannon's tire&#x000A;&#x000A;var x = 2 * dX;&#x000A;var y = 2 * dY - 15; // Set the coordinates of the first cannonball&#x000A;&#x000A;while (y < -5) { // Keep drawing the cannonball while it is above the ground&#x000A;  context.beginPath();&#x000A;  context.arc(x, y, 5, 0, 2 * Math.PI, false);&#x000A;  context.closePath();&#x000A;  context.fill(); // Draw the cannonball&#x000A;  &#x000A;  x = x + dX;&#x000A;  y = y + dY; // Calculate the coordinates of the next cannonball&#x000A;  dY = dY + g; // Calculate the effect of gravity&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='while_loops_example2_editor'>var canvas = document.getElementById('while_loops_example2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;var angle = 30; // The angle of the cannon (10 - 80);&#x000A;&#x000A;angle = -Math.PI * Math.min(80, Math.max(10, angle)) / 180;&#x000A;var g = 1;&#x000A;var dX = 20 * Math.cos(angle);&#x000A;var dY = 20 * Math.sin(angle);&#x000A;&#x000A;context.save();&#x000A;context.fillStyle = '#333333';&#x000A;context.fillRect(0, 300, canvas.width, 2); // Draw the ground&#x000A;context.translate(10, 285);&#x000A;&#x000A;context.save();&#x000A;context.rotate(angle);&#x000A;context.fillStyle = '#999999';&#x000A;context.fillRect(-10, -5, 30, 10); // Draw the cannon's barrel&#x000A;context.restore();&#x000A;context.translate(0, 15);&#x000A;context.fillStyle = '#666666';&#x000A;context.beginPath();&#x000A;context.arc(0, -10, 10, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill(); // Draw the cannon's tire&#x000A;&#x000A;var x = 2 * dX;&#x000A;var y = 2 * dY - 15; // Set the coordinates of the first cannonball&#x000A;&#x000A;while (y < -5) { // Keep drawing the cannonball while it is above the ground&#x000A;  context.beginPath();&#x000A;  context.arc(x, y, 5, 0, 2 * Math.PI, false);&#x000A;  context.closePath();&#x000A;  context.fill(); // Draw the cannonball&#x000A;  &#x000A;  x = x + dX;&#x000A;  y = y + dY; // Calculate the coordinates of the next cannonball&#x000A;  dY = dY + g; // Calculate the effect of gravity&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -441,17 +445,15 @@ Canvas
 Example
 </h2>
 <p>
-We don't have to scale the coordinate system of the context the same amount
-along both the x-axis and the y-axis.
+In this example, we are dividing a rectangle into squares. The number of
+squares drawn depends on the size of the rectangle.
 </p>
 <p>
-In this example, we use context.scale() to stretch three circles along the
-y-axis, turning them into ovals and creating a flame effect. The red, orange,
-and yellow circles are all drawn with the same radius.
+Change the width and height of the rectangle to see how many squares it contains.
 </p>
 <p>
-The origin of the context is at the bottom of all three circles, which makes
-it easy to line them up.
+The condition of the while loop is to keep drawing squares while the width
+and the height of the remaining rectangle are both greater than zero.
 </p>
 </div>
 <div class='col-xs-12'>
@@ -461,7 +463,7 @@ it easy to line them up.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='scale_example2_editor'>var canvas = document.getElementById('scale_example2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.save();&#x000A;context.translate(260, 280);&#x000A;&#x000A;context.save();&#x000A;context.scale(1, 3); // SET THE SCALE FOR THE YELLOW CIRCLE&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.beginPath();&#x000A;context.arc(0, -40, 40, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(0.8, 2); // SET THE SCALE FOR THE ORANGE CIRCLE&#x000A;context.fillStyle = '#FFA500';&#x000A;context.beginPath();&#x000A;context.arc(0, -40, 40, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(0.6, 1.2); // SET THE SCALE FOR THE RED CIRCLE&#x000A;context.fillStyle = '#FF0000';&#x000A;context.beginPath();&#x000A;context.arc(0, -40, 40, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='while_loops_example3_editor'>var canvas = document.getElementById('while_loops_example3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;var n = 0;&#x000A;var w = 20; // The width of the rectangle (1-25)&#x000A;var h = 16; // The height of the rectangle (1-25)&#x000A;var color = ['#FF0000', 'FFA500', 'FFFF00', '#00FF00', '#0000FF', '#4B0082', '#EE82EE'];&#x000A;&#x000A;w = 10 * Math.min(25, Math.max(w, 1));&#x000A;h = 10 * Math.min(25, Math.max(h, 1));&#x000A;&#x000A;context.save();&#x000A;context.translate(10, 10);&#x000A;&#x000A;while (w > 0 && h > 0) {&#x000A;  var nextW, nextH;&#x000A;  context.fillStyle = color[n % color.length]; // Set the color of the rectangle&#x000A;  context.fillRect(0, 0, w, h);&#x000A;  &#x000A;  n = n + 1;&#x000A;  &#x000A;  if (w > h) {&#x000A;    w = w - h;&#x000A;    if (Math.random() > 0.5) context.translate(h, 0);&#x000A;  } else {&#x000A;    h = h - w;&#x000A;    if (Math.random() > 0.5) context.translate(0, w);&#x000A;  }&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;&#x000A;var s = 's';&#x000A;var are = 'are ';&#x000A;&#x000A;if (n == 1) {&#x000A;  s = '';&#x000A;  are = 'is ';&#x000A;}&#x000A;&#x000A;context.fillStyle = '#000000';&#x000A;context.font = '16px sans-serif';&#x000A;context.fillText('There ' + are + n + ' rectangle' + s, 10, 290);&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -486,65 +488,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='scale_example2'></canvas>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class='example row py-3'>
-<div class='col-xs-12'>
-<div class='row'>
-<div class='col-xs-12'>
-<h2 class='py-2'>
-Example
-</h2>
-<p>
-If we scale the coordinate system of the context by -1 along either the
-x-axis or the y-axis, we can flip a drawing and create a mirror image.
-</p>
-<p>
-In this example, we draw the text 'Rightside Up' at (0, -80), 80 pixels above
-the origin of the context at the red circle. Then we draw the text 'Upside Down',
-also at (0, -80). But before drawing the text 'Upside Down', we scale the context
-using context.scale(1, -1).
-</p>
-</div>
-<div class='col-xs-12'>
-<div class='interactive row py-1'>
-<div class='code-editor col-xs-6'>
-<h5>
-Editor
-<small>(write code below)</small>
-</h5>
-<div class='editor' id='scale_example3_editor'>var canvas = document.getElementById('scale_example3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;context.font = '48px sans-serif';&#x000A;context.textAlign = 'center';&#x000A;&#x000A;context.save();&#x000A;context.translate(260, 160);&#x000A;&#x000A;context.save();&#x000A;context.scale(1, 1);&#x000A;context.fillStyle = '#009900';&#x000A;context.fillText('Rightside Up', 0, -80);&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(1, -1);&#x000A;context.fillStyle = '#009900';&#x000A;context.fillText('Upside Down', 0, -80);&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.fillStyle = '#FF0000';&#x000A;context.beginPath();&#x000A;context.arc(0, 0, 5, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.restore();&#x000A;</div>
-<div class='log bg-faded text-muted small'>
-<button aria-label='Close' class='close' type='button'>
-<span aria-hidden='true'>×</span>
-</button>
-<div class='title'>
-<strong>Message Log</strong>
-</div>
-<div class='messages'></div>
-</div>
-<div class='buttons py-1'>
-<div class='run btn btn-success'>
-Run
-</div>
-<div class='reset btn btn-danger float-xs-right'>
-Reset
-</div>
-</div>
-</div>
-<div class='visual col-xs-6'>
-<h5>
-Canvas
-<small>(your drawing will display here)</small>
-</h5>
-<div class='canvas'>
-<canvas id='scale_example3'></canvas>
+<canvas id='while_loops_example3'></canvas>
 </div>
 </div>
 </div>
