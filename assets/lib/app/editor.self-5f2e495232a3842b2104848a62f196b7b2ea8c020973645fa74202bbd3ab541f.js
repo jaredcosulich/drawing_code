@@ -23,7 +23,7 @@
       this.resize();
       this.editor.on('mousemove', (function(_this) {
         return function() {
-          if (_this.editor.height() !== currentEditorHeight) {
+          if (_this.editor.height() !== _this.currentEditorHeight) {
             return _this.resize();
           }
         };
@@ -49,8 +49,7 @@
     }
 
     Editor.prototype.resize = function() {
-      var currentEditorHeight;
-      currentEditorHeight = this.editor.height();
+      this.currentEditorHeight = this.editor.height();
       this.aceEditor.resize();
       return setTimeout(((function(_this) {
         return function() {
