@@ -3,7 +3,7 @@
 
   App.Editor = (function() {
     function Editor(editor, canvas) {
-      var currentEditorHeight, previousCode;
+      var previousCode;
       this.canvas = canvas;
       this.editorElement = $(editor)[0];
       this.editor = $(this.editorElement);
@@ -20,13 +20,17 @@
         useSoftTabs: true,
         wrap: 'on'
       });
-      currentEditorHeight = this.editor.height();
+      this.resize();
       this.editor.on('mousemove', (function(_this) {
         return function() {
           if (_this.editor.height() !== currentEditorHeight) {
-            currentEditorHeight = _this.editor.height();
-            return _this.aceEditor.resize();
+            return _this.resize();
           }
+        };
+      })(this));
+      this.aceEditor.session.on('changeScrollTop', (function(_this) {
+        return function() {
+          return _this.resize();
         };
       })(this));
       this.editor.on('keyup', (function(_this) {
@@ -43,6 +47,19 @@
       }
       this.ensureValidCanvasReference();
     }
+
+    Editor.prototype.resize = function() {
+      var currentEditorHeight;
+      currentEditorHeight = this.editor.height();
+      this.aceEditor.resize();
+      return setTimeout(((function(_this) {
+        return function() {
+          return _this.editor.find('.ace_scrollbar-v').css({
+            bottom: '15px'
+          });
+        };
+      })(this)), 250);
+    };
 
     Editor.prototype.ensureValidCanvasReference = function() {
       var canvasId, code;
