@@ -245,7 +245,7 @@ describe("Basic Cityscape Stage 2", function() {
           var width = (units * unitDimension) + (4*2);\
           var height = (floors * floorDimension) + (4*2);\
           \
-          context.translate(leftX, groundY - height)\
+          context.translate(leftX, groundY - height);\
           context.fillStyle = '#999999';\
           context.fillRect(0, 0, width, height);\
           \
