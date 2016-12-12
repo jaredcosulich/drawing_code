@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="VoMoiC1xM/ZZYgv5QO/6mBk6N/PTN8xoXfZuSS1BGzpd9ZwwjRUPvucP9zogVsuQVSCOVjZJdW6zKtzGMgd6Ew==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-ed7084ebfb075728806e484534903adee4f76afade9b05f2d4d402eff95c8577-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="nzthK5v+eA4zTKAj2s7Z0WNIzGIO5KrT+KMYO4BZ4v2UTdWTO5pERo0hXOC6d+jZL1J1x+uaE9UWf6q0nx+D1A==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-e2f119e40115eeded3620d15ded9252f7f09b44e888984838ac1d96dc081b6f9-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -34,8 +34,8 @@
 <script src="../../../assets/lessons/save.self-40009da7858c56166ef5dbae9087a3b9cdc7b0c7bbf2c49751dc35678f068df5.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/translate.self-12f5a51ccf4b3f0f72e2079f0069bab57fd3af696731c66057284b4338745fba.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/variables.self-c87145ec3cf2327e7b3eb2ef815bed8ee4b3a42f7408ff8faa7e3353fb824132.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/canvas.self-7b607cac23a26f3ce093917627e9b6f8916f02bd10cea861d1570a8285a8d260.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/editor.self-aac1136f89ee11d958386e02f1c0e977e1507ff3ea85ef30d327df1b64f9c5c8.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/canvas.self-b52889fbcc95596df984bd6d45afa0432b9fc335e82d815f253fc8b5132cee4b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/editor.self-cf4b3999f1996c33c9af890f4eb03ad813a810ba11c9049f6202175661eeb66d.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/progress.self-df819cacc21fdae026057e6db599fcba5baf17b174f7fe4094037e1211928b6a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/image_comparison.self-dfa9f99c9bf4098bad92d0bb61034c213840ac43793b6b12dc2150061cbba67a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/point.self-57f97666d941e0e32f6db69b324362ae324dd3bdcddbca02997bb347578f357a.js?body=1" data-turbolinks-track="reload"></script>
@@ -197,12 +197,6 @@ Concepts
 <strong>Relevant Reference</strong>
 </li>
 <li class='small '>
-<a href="../../basic_cityscape/clear_rect/index.html">clearRect()</a>
-<span class='tag tag-default'>
-<small class='clear_rect'>0 / 2</small>
-</span>
-</li>
-<li class='small '>
 <a href="../../basic_cityscape/fill_rect/index.html">fillRect()</a>
 <span class='tag tag-default'>
 <small class='fill_rect'>0 / 3</small>
@@ -329,7 +323,7 @@ Using variables makes it easier to draw a pyramid.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='variables_example1_editor'>var canvas = document.getElementById('variables_example1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.save();&#x000A;context.clearRect(0, 0, 600, 360);&#x000A;&#x000A;var xPosition = 50;&#x000A;var yPosition = 200;&#x000A;var width = 200;&#x000A;var height = 50;&#x000A;var change = 25;&#x000A;var red = 255;&#x000A;&#x000A;for (var i=0; i<4; ++i) {&#x000A;  context.fillStyle = 'rgb(' + red + ',0,0)';&#x000A;  context.fillRect(xPosition, yPosition, width, height);&#x000A;  yPosition -= height;&#x000A;  xPosition += change;&#x000A;  width -= (change * 2);&#x000A;  red -= (change * 3);&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='variables_example1_editor'>var canvas = document.getElementById('variables_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;context.save();&#x000A;&#x000A;var xPosition = 50;&#x000A;var yPosition = 200;&#x000A;var width = 200;&#x000A;var height = 50;&#x000A;var change = 25;&#x000A;var red = 255;&#x000A;&#x000A;for (var i=0; i<4; ++i) {&#x000A;  context.fillStyle = 'rgb(' + red + ',0,0)';&#x000A;  context.fillRect(xPosition, yPosition, width, height);&#x000A;  yPosition -= height;&#x000A;  xPosition += change;&#x000A;  width -= (change * 2);&#x000A;  red -= (change * 3);&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -380,7 +374,7 @@ Using variables makes it easier to draw stairs.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='variables_example2_editor'>var canvas = document.getElementById('variables_example2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 600, 360);&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;var x = 50;&#x000A;var y = 50;&#x000A;context.moveTo(x, y);&#x000A;&#x000A;for (var i=0; i<6; ++i) {&#x000A;  if (i % 2 == 0) x += 50;&#x000A;  if (i % 2 == 1) y += 50;&#x000A;  context.lineTo(x, y);&#x000A;}&#x000A;&#x000A;context.stroke();&#x000A;&#x000A;</div>
+<div class='editor' id='variables_example2_editor'>var canvas = document.getElementById('variables_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;var x = 50;&#x000A;var y = 50;&#x000A;context.moveTo(x, y);&#x000A;&#x000A;for (var i=0; i<6; ++i) {&#x000A;  if (i % 2 == 0) x += 50;&#x000A;  if (i % 2 == 1) y += 50;&#x000A;  context.lineTo(x, y);&#x000A;}&#x000A;&#x000A;context.stroke();&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -430,7 +424,7 @@ x's starting at (100,100), (100,200), increasing x by 50 each time.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='variables_challenge1_editor'>var canvas = document.getElementById('variables_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 600, 360);&#x000A;&#x000A;var x = 100;&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;for (var i=0; i<3; ++i) {&#x000A;  context.moveTo(x, 100);&#x000A;  context.lineTo(x, 200);&#x000A;&#x000A;  // YOUR CODE HERE&#x000A;}&#x000A;&#x000A;context.stroke();&#x000A;</div>
+<div class='editor' id='variables_challenge1_editor'>var canvas = document.getElementById('variables_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var x = 100;&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;for (var i=0; i<3; ++i) {&#x000A;  context.moveTo(x, 100);&#x000A;  context.lineTo(x, 200);&#x000A;&#x000A;  // YOUR CODE HERE&#x000A;}&#x000A;&#x000A;context.stroke();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -486,7 +480,7 @@ It should look like this:
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='variables_challenge2_editor'>var canvas = document.getElementById('variables_challenge2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, 600, 360);&#x000A;context.save();&#x000A;&#x000A;var x = 50;&#x000A;var c = 255;&#x000A;&#x000A;for (var i=0; i<9; ++i) {&#x000A;  context.fillStyle = 'rgb(' + c + ',' + c + ',' + c + ')';&#x000A;  context.fillRect(x, 50, 25, 100);&#x000A;&#x000A;  // YOUR CODE HERE&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='variables_challenge2_editor'>var canvas = document.getElementById('variables_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;context.save();&#x000A;&#x000A;var x = 50;&#x000A;var c = 255;&#x000A;&#x000A;for (var i=0; i<9; ++i) {&#x000A;  context.fillStyle = 'rgb(' + c + ',' + c + ',' + c + ')';&#x000A;  context.fillRect(x, 50, 25, 100);&#x000A;&#x000A;  // YOUR CODE HERE&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>

@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="TDl67zt/OONOwaqUg2bRZVqKyM32WrYVelHms10HcpZHT85XmxsEq/CsVlfj3+BtFpBxaBMkDxOUjVQ8QkETvw==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-ed7084ebfb075728806e484534903adee4f76afade9b05f2d4d402eff95c8577-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="ykNOjRvh99zsH5PovcK88dvk0pwORzmHu37p7DQDgPnBNfo1u4XLlFJybyvde435l/5rOes5gIFVoltjK0Xh0A==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-e2f119e40115eeded3620d15ded9252f7f09b44e888984838ac1d96dc081b6f9-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -34,8 +34,8 @@
 <script src="../../../assets/lessons/save.self-40009da7858c56166ef5dbae9087a3b9cdc7b0c7bbf2c49751dc35678f068df5.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/translate.self-12f5a51ccf4b3f0f72e2079f0069bab57fd3af696731c66057284b4338745fba.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/variables.self-c87145ec3cf2327e7b3eb2ef815bed8ee4b3a42f7408ff8faa7e3353fb824132.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/canvas.self-7b607cac23a26f3ce093917627e9b6f8916f02bd10cea861d1570a8285a8d260.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/editor.self-aac1136f89ee11d958386e02f1c0e977e1507ff3ea85ef30d327df1b64f9c5c8.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/canvas.self-b52889fbcc95596df984bd6d45afa0432b9fc335e82d815f253fc8b5132cee4b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/editor.self-cf4b3999f1996c33c9af890f4eb03ad813a810ba11c9049f6202175661eeb66d.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/progress.self-df819cacc21fdae026057e6db599fcba5baf17b174f7fe4094037e1211928b6a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/image_comparison.self-dfa9f99c9bf4098bad92d0bb61034c213840ac43793b6b12dc2150061cbba67a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/point.self-57f97666d941e0e32f6db69b324362ae324dd3bdcddbca02997bb347578f357a.js?body=1" data-turbolinks-track="reload"></script>
@@ -197,12 +197,6 @@ Concepts
 <strong>Relevant Reference</strong>
 </li>
 <li class='small '>
-<a href="../clear_rect/index.html">clearRect()</a>
-<span class='tag tag-default'>
-<small class='clear_rect'>0 / 2</small>
-</span>
-</li>
-<li class='small '>
 <a href="../fill_rect/index.html">fillRect()</a>
 <span class='tag tag-default'>
 <small class='fill_rect'>0 / 3</small>
@@ -329,7 +323,7 @@ scale of the context does not affect anything already drawn on the canvas.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='scale_example1_editor'>var canvas = document.getElementById('scale_example1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;context.font = '16px sans-serif';&#x000A;context.textAlign = 'center';&#x000A;&#x000A;context.save();&#x000A;context.scale(0.5, 0.5); // SET THE SCALE OF THE CONTEXT TO 50%&#x000A;context.fillStyle = '#228B22';&#x000A;context.fillRect(180, 35, 60, 60);&#x000A;context.fillStyle = '#8B4513';&#x000A;context.fillRect(200, 75, 20, 60);&#x000A;context.fillStyle = '#000000';&#x000A;context.fillText('50% scale', 210, 155);&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(1, 1);  // SET THE SCALE OF THE CONTEXT TO 100%&#x000A;context.fillStyle = '#228B22';&#x000A;context.fillRect(180, 35, 60, 60);&#x000A;context.fillStyle = '#8B4513';&#x000A;context.fillRect(200, 75, 20, 60);&#x000A;context.fillStyle = '#000000';&#x000A;context.fillText('100% scale', 210, 155);&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(2.0, 2.0);  // SET THE SCALE OF THE CONTEXT TO 200%&#x000A;context.fillStyle = '#228B22';&#x000A;context.fillRect(180, 35, 60, 60);&#x000A;context.fillStyle = '#8B4513';&#x000A;context.fillRect(200, 75, 20, 60);&#x000A;context.fillStyle = '#000000';&#x000A;context.fillText('200% scale', 210, 155);&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='scale_example1_editor'>var canvas = document.getElementById('scale_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;context.font = '16px sans-serif';&#x000A;context.textAlign = 'center';&#x000A;&#x000A;context.save();&#x000A;context.scale(0.5, 0.5); // SET THE SCALE OF THE CONTEXT TO 50%&#x000A;context.fillStyle = '#228B22';&#x000A;context.fillRect(180, 35, 60, 60);&#x000A;context.fillStyle = '#8B4513';&#x000A;context.fillRect(200, 75, 20, 60);&#x000A;context.fillStyle = '#000000';&#x000A;context.fillText('50% scale', 210, 155);&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(1, 1);  // SET THE SCALE OF THE CONTEXT TO 100%&#x000A;context.fillStyle = '#228B22';&#x000A;context.fillRect(180, 35, 60, 60);&#x000A;context.fillStyle = '#8B4513';&#x000A;context.fillRect(200, 75, 20, 60);&#x000A;context.fillStyle = '#000000';&#x000A;context.fillText('100% scale', 210, 155);&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(2.0, 2.0);  // SET THE SCALE OF THE CONTEXT TO 200%&#x000A;context.fillStyle = '#228B22';&#x000A;context.fillRect(180, 35, 60, 60);&#x000A;context.fillStyle = '#8B4513';&#x000A;context.fillRect(200, 75, 20, 60);&#x000A;context.fillStyle = '#000000';&#x000A;context.fillText('200% scale', 210, 155);&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -400,7 +394,7 @@ it moves closer.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='scale_example2_editor'>var canvas = document.getElementById('scale_example2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.save();&#x000A;context.translate(260, 160);&#x000A;&#x000A;context.scale(1, 1); // SET THE SCALE OF THE CONTEXT HERE&#x000A;&#x000A;context.fillStyle = '#663399';&#x000A;context.fillRect(20, 40, 80, 60); // SET THE (X, Y) COORDINATES OF THE RECTANGLE HERE&#x000A;&#x000A;context.fillStyle = '#FF0000';&#x000A;context.beginPath();&#x000A;context.arc(0, 0, 5, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='scale_example2_editor'>var canvas = document.getElementById('scale_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.save();&#x000A;context.translate(260, 160);&#x000A;&#x000A;context.scale(1, 1); // SET THE SCALE OF THE CONTEXT HERE&#x000A;&#x000A;context.fillStyle = '#663399';&#x000A;context.fillRect(20, 40, 80, 60); // SET THE (X, Y) COORDINATES OF THE RECTANGLE HERE&#x000A;&#x000A;context.fillStyle = '#FF0000';&#x000A;context.beginPath();&#x000A;context.arc(0, 0, 5, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -461,7 +455,7 @@ it easy to line them up.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='scale_example3_editor'>var canvas = document.getElementById('scale_example3');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.save();&#x000A;context.translate(260, 280);&#x000A;&#x000A;context.save();&#x000A;context.scale(1, 3); // SET THE SCALE FOR THE YELLOW CIRCLE&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.beginPath();&#x000A;context.arc(0, -40, 40, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(0.8, 2); // SET THE SCALE FOR THE ORANGE CIRCLE&#x000A;context.fillStyle = '#FFA500';&#x000A;context.beginPath();&#x000A;context.arc(0, -40, 40, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(0.6, 1.2); // SET THE SCALE FOR THE RED CIRCLE&#x000A;context.fillStyle = '#FF0000';&#x000A;context.beginPath();&#x000A;context.arc(0, -40, 40, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='scale_example3_editor'>var canvas = document.getElementById('scale_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.save();&#x000A;context.translate(260, 280);&#x000A;&#x000A;context.save();&#x000A;context.scale(1, 3); // SET THE SCALE FOR THE YELLOW CIRCLE&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.beginPath();&#x000A;context.arc(0, -40, 40, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(0.8, 2); // SET THE SCALE FOR THE ORANGE CIRCLE&#x000A;context.fillStyle = '#FFA500';&#x000A;context.beginPath();&#x000A;context.arc(0, -40, 40, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(0.6, 1.2); // SET THE SCALE FOR THE RED CIRCLE&#x000A;context.fillStyle = '#FF0000';&#x000A;context.beginPath();&#x000A;context.arc(0, -40, 40, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -519,7 +513,7 @@ using context.scale(1, -1).
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='scale_example4_editor'>var canvas = document.getElementById('scale_example4');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;context.font = '48px sans-serif';&#x000A;context.textAlign = 'center';&#x000A;&#x000A;context.save();&#x000A;context.translate(260, 160);&#x000A;&#x000A;context.save();&#x000A;context.scale(1, 1);&#x000A;context.fillStyle = '#009900';&#x000A;context.fillText('Rightside Up', 0, -80);&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(1, -1);&#x000A;context.fillStyle = '#009900';&#x000A;context.fillText('Upside Down', 0, -80);&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.fillStyle = '#FF0000';&#x000A;context.beginPath();&#x000A;context.arc(0, 0, 5, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.restore();&#x000A;</div>
+<div class='editor' id='scale_example4_editor'>var canvas = document.getElementById('scale_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;context.font = '48px sans-serif';&#x000A;context.textAlign = 'center';&#x000A;&#x000A;context.save();&#x000A;context.translate(260, 160);&#x000A;&#x000A;context.save();&#x000A;context.scale(1, 1);&#x000A;context.fillStyle = '#009900';&#x000A;context.fillText('Rightside Up', 0, -80);&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.scale(1, -1);&#x000A;context.fillStyle = '#009900';&#x000A;context.fillText('Upside Down', 0, -80);&#x000A;context.restore();&#x000A;&#x000A;context.save();&#x000A;context.fillStyle = '#FF0000';&#x000A;context.beginPath();&#x000A;context.arc(0, 0, 5, 0, 2 * Math.PI, false);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.restore();&#x000A;&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>

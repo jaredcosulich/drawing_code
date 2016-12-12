@@ -81,6 +81,7 @@
       this.canvas.hideAlert();
       try {
         App.currentEditor = this;
+        this.canvas.reset();
         return eval(this.aceEditor.getValue());
       } catch (error1) {
         e = error1;

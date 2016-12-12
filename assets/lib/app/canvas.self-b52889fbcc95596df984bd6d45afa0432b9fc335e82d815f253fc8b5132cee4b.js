@@ -4,6 +4,7 @@
       var backgroundImage;
       this.canvasElement = $(canvas)[0];
       this.canvas = $(this.canvasElement);
+      this.container = this.canvas.closest('.canvas');
       if ((backgroundImage = this.canvas.closest('.canvas').find('.background img')).length > 0) {
         this.canvas.css('background-image', 'url(' + backgroundImage.attr('src') + ')');
       }
@@ -12,8 +13,26 @@
         width: this.canvas.width(),
         height: this.canvas.height()
       });
-      this.alertElement = this.canvas.closest('.visual').find('.alert');
+      if (this.container.width() > this.canvas.width()) {
+        this.container.width(this.canvas.width());
+      }
+      this.initAlert();
     }
+
+    Canvas.prototype.reset = function() {
+      var i, j, results;
+      this.context.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height);
+      results = [];
+      for (i = j = 0; j <= 50; i = ++j) {
+        results.push(this.context.restore());
+      }
+      return results;
+    };
+
+    Canvas.prototype.initAlert = function() {
+      this.alertElement = this.canvas.closest('.visual').find('.alert');
+      return this.alertElement.width(this.container.width() - 39);
+    };
 
     Canvas.prototype.alert = function(message, success) {
       this.alertElement.html(message);

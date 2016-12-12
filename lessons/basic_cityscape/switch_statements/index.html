@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="36NiUZqbFfTi3nVBIbNzWvizw03DfNgRqp9H5OZWR1/U1dbpOv8pvFyziYJBCkJStKl66CYCYRdEQ/Vr+RAmdg==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-ed7084ebfb075728806e484534903adee4f76afade9b05f2d4d402eff95c8577-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="EViKFQ07a9xS8Qmam/g2Ap/frxsuA56eZO2+zC7YNSYaLj6trV9XlOyc9Vn7QQcK08UWvst9J5iKMQxDMZ5UDw==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-e2f119e40115eeded3620d15ded9252f7f09b44e888984838ac1d96dc081b6f9-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -34,8 +34,8 @@
 <script src="../../../assets/lessons/save.self-40009da7858c56166ef5dbae9087a3b9cdc7b0c7bbf2c49751dc35678f068df5.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/translate.self-12f5a51ccf4b3f0f72e2079f0069bab57fd3af696731c66057284b4338745fba.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/variables.self-c87145ec3cf2327e7b3eb2ef815bed8ee4b3a42f7408ff8faa7e3353fb824132.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/canvas.self-7b607cac23a26f3ce093917627e9b6f8916f02bd10cea861d1570a8285a8d260.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/editor.self-aac1136f89ee11d958386e02f1c0e977e1507ff3ea85ef30d327df1b64f9c5c8.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/canvas.self-b52889fbcc95596df984bd6d45afa0432b9fc335e82d815f253fc8b5132cee4b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/editor.self-cf4b3999f1996c33c9af890f4eb03ad813a810ba11c9049f6202175661eeb66d.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/progress.self-df819cacc21fdae026057e6db599fcba5baf17b174f7fe4094037e1211928b6a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/image_comparison.self-dfa9f99c9bf4098bad92d0bb61034c213840ac43793b6b12dc2150061cbba67a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/point.self-57f97666d941e0e32f6db69b324362ae324dd3bdcddbca02997bb347578f357a.js?body=1" data-turbolinks-track="reload"></script>
@@ -78,7 +78,7 @@ Reference
 <li class='section mt-1'>
 <strong>Context2D</strong>
 </li>
-<li class='active'>
+<li>
 <a href="../../reference/clear_rect/index.html">clearRect()</a>
 <span class='tag tag-default'>
 <small class='clear_rect'>0 / 2</small>
@@ -159,7 +159,7 @@ Concepts
 <small class='functions'>0 / 1</small>
 </span>
 </li>
-<li>
+<li class='active'>
 <a href="../../concepts/switch_statements/index.html">Switch Statements</a>
 </li>
 </ul>
@@ -195,12 +195,6 @@ Concepts
 </li>
 <li class='section small mt-2'>
 <strong>Relevant Reference</strong>
-</li>
-<li class='small active'>
-<a href="index.html">clearRect()</a>
-<span class='tag tag-default'>
-<small class='clear_rect'>0 / 2</small>
-</span>
 </li>
 <li class='small '>
 <a href="../fill_rect/index.html">fillRect()</a>
@@ -271,8 +265,8 @@ Concepts
 <small class='functions'>0 / 1</small>
 </span>
 </li>
-<li class='small '>
-<a href="../switch_statements/index.html">Switch Statements</a>
+<li class='small active'>
+<a href="index.html">Switch Statements</a>
 </li>
 </ul>
 </li>
@@ -280,60 +274,45 @@ Concepts
 
 </div>
 <div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
-<div class='lesson' id='clear_rect'>
-<h1>CanvasRenderingContext2D.clearRect()</h1>
-<p class='challenges'>
-<strong>Challenges:</strong>
-<span class='no_challenges_completed'>
-There
-are
-2 challenges
-for you to do.
-<a href="#challenge1">Jump to challenges &gt;</a>
-</span>
-<span class='challenges_completed'>
-You've completed
-<span class='completed_challenges_count'></span>
-out of
-2 challenges.
-<a href="#challenge1">Jump to challenges &gt;</a>
-</span>
-</p>
+<div class='lesson' id='switch_statements'>
+<h1>Switch Statements</h1>
 
 <div class='official row py-3'>
 <div class='col-xs-6'>
-<h2>The Official Description</h2>
-<p class='py-2'>
-The CanvasRenderingContext2D.clearRect() method of the Canvas 2D API sets all
-pixels in the rectangle defined by starting point (x, y) and size (width, height)
-to transparent black, erasing any previously drawn content
+<h2 class='py-2'>
+Overview
+</h2>
+<p>
+A switch statement will run different blocks of code depending on the value
+assigned to a variable.
 </p>
-<div class='source text-xs-right'>
-<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect">Mozilla Developer&#39;s Network</a>
-</div>
 </div>
 <div class='col-xs-6'>
-<img class="img-fluid" src="../../../assets/lessons/clear_rect/visual1-42d69aa660638eef4fbe08b7b64a1de65982e4a0f76e14502dc53f5d2e313230.png" alt="Visual1" />
+<img class="img-fluid" src="../../../assets/lessons/switch_statements/overviewVisual1-446df2c0e2cd3808e54188a5e09b25d9ba037a2f606990c181b6fbf1063cd735.png" alt="Overviewvisual1" />
 </div>
 </div>
-<div class='simple row py-3'>
+<div class='example row py-3'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
-<h2>
-Why Would I Use This?
+<h2 class='py-2'>
+Example
 </h2>
-<p class='pt-2'>
-clearRect() allows you to clear areas of the canvas.
+<p>
+When we want to run different blocks of code depending on the value of a
+variable, we can use an if statement. But if we have to handle many different
+cases, it can be simpler to use a switch statement.
 </p>
 <p>
-We use clearRect() in these lessons and challenges to reset the canvas
-each time you run your code.
+In this example, we print different text messages depending on the value
+of the variable <i>option</i>. The switch statement checks the value of <i>option</i>
+and, if <i>option</i> = 0, it runs the block of code in case 0.
 </p>
 <p>
-clearRect() is also used when running animations to clear the canvas
-between frames of animation. This example demonstrates how clearRect()
-is used in a simple animation.
+Change the value of <i>option</i> to a different number between 0-4 and see
+what the code in those other cases do. The break statement at the end of each
+case code block tells the program to exit the switch statement after running
+the block of code.
 </p>
 </div>
 <div class='col-xs-12'>
@@ -343,7 +322,7 @@ is used in a simple animation.
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='clear_rect_interactive1_editor'>var canvas = document.getElementById('clear_rect_interactive1');&#x000A;var context = canvas.getContext("2d");&#x000A;if (window.animation) clearTimeout(window.animation);&#x000A;context.save();&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;var boxX = 0;&#x000A;var boxY = 0;&#x000A;var boxCommandQueue = [];&#x000A;&#x000A;function setLoopInstructions() {&#x000A;  boxX = 50;&#x000A;  boxY = 50;&#x000A;  moveBox(1, 0, 100);&#x000A;  moveBox(1, 1, 200);&#x000A;  moveBox(-1, 0, 100);&#x000A;  moveBox(-1, -1, 100);&#x000A;  moveBox(0, 1, 100);&#x000A;  moveBox(1, -1, 200);&#x000A;  moveBox(-1, 0, 300);&#x000A;}&#x000A;&#x000A;function runAnimation() {&#x000A;  if (boxCommandQueue.length > 0) {&#x000A;    context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;    var command = boxCommandQueue.shift();&#x000A;    drawBox(command[0], command[1]);&#x000A;  } else {&#x000A;    setLoopInstructions();&#x000A;  }&#x000A;  window.animation = setTimeout(runAnimation, 10);&#x000A;}&#x000A;&#x000A;function moveBox(xShift, yShift, steps) {&#x000A;  for (var i=0; i < steps; ++i) {&#x000A;    boxCommandQueue.push([xShift, yShift]);&#x000A;  }&#x000A;}&#x000A;&#x000A;function drawBox(xShift, yShift) {&#x000A;  boxX += xShift;&#x000A;  boxY += yShift;&#x000A;  context.fillRect(boxX, boxY, 25, 25);&#x000A;}&#x000A;&#x000A;drawBox(0, 0);&#x000A;runAnimation();&#x000A;&#x000A;context.restore();&#x000A;&#x000A;</div>
+<div class='editor' id='switch_statements_example1_editor'>var canvas = document.getElementById('switch_statements_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var option = 0; // Set option to a number from 0-4&#x000A;&#x000A;context.save();&#x000A;switch (option) {&#x000A;  case 0:&#x000A;    context.font = '16px sans-serif';&#x000A;    context.fillStyle = 'Black';&#x000A;    context.fillText('You chose option 0.', 20, 40);&#x000A;    break;&#x000A;&#x000A;  case 1:&#x000A;    context.font = '24px sans-serif';&#x000A;    context.fillStyle = 'Crimson';&#x000A;    context.fillText('Yay! Option 1!', 300, 250);&#x000A;    break;&#x000A;&#x000A;  case 2:&#x000A;    context.font = '36px sans-serif';&#x000A;    context.fillStyle = 'DarkMagenta';&#x000A;    context.fillText('Groovy, man. Option 2.', 80, 200);&#x000A;    break;&#x000A;&#x000A;  case 3:&#x000A;    context.font = 'bold 48px sans-serif';&#x000A;    context.fillStyle = 'DeepPink';&#x000A;    context.strokeStyle = 'DarkSlateBlue';&#x000A;    context.lineWidth = 4;&#x000A;    context.textAlign = 'center';&#x000A;    context.translate(220, 150);&#x000A;    context.rotate(-Math.PI / 9);&#x000A;    context.strokeText('Wow! Option 3!', 0, 0);&#x000A;    context.fillText('Wow! Option 3!', 0, 0);&#x000A;    break;&#x000A;&#x000A;  case 4:&#x000A;    context.font = 'bold 54px sans-serif';&#x000A;    context.fillStyle = 'SeaGreen';&#x000A;    context.translate(10, 120);&#x000A;    context.fillText('MIRROR OPTION 4', 0, 0);&#x000A;    context.scale(1, -3);&#x000A;    var gradient = context.createLinearGradient(0,0,0,-36);&#x000A;    gradient.addColorStop(0,'rgba(0, 0, 0, 1)');&#x000A;    gradient.addColorStop(1,'rgba(0, 0, 0, 0)');&#x000A;    context.fillStyle = gradient;&#x000A;    context.fillText('MIRROR OPTION 4', 0, 0);&#x000A;    break;&#x000A;}&#x000A;&#x000A;context.restore();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -368,7 +347,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='clear_rect_interactive1'></canvas>
+<canvas id='switch_statements_example1'></canvas>
 </div>
 </div>
 </div>
@@ -376,23 +355,43 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-3' id='challenge1'>
+<div class='example row py-3'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
-<h2 class='challenge-title'>Challenge 1</h2>
-<p class='py-2'>
-Use clear_rect() to clear a space that is 25 wide and 100 tall starting at x = 100, y=100;
+<h2 class='py-2'>
+Example
+</h2>
+<p>
+In this example, we use a switch statement to change the expression on
+Rectangle Man's face.
+</p>
+<p>
+Change the value of the parameter <i>expression</i> to 'happy', 'angry', or
+'scared' to see Rectangle Man's expression change. Note that those values are
+text strings, and the case values are also text strings to match. If we enter
+drawFace(happy), he won't be happy. We have to enter drawFace('happy').
+</p>
+<p>
+There is a special case called default. If we enter an expression that
+Rectangle Man doesn't recognize, such as drawFace('sad'), the switch statement
+will run the default code black. This is useful because, if we enter drawFace()
+with no value for <i>expression</i>, we get Rectangle Man's default expression.
+</p>
+<p>
+If the switch statement had no default and no case matched the value of
+<i>expression</i>, then the program would draw Rectangle Man's head and nose,
+but with no eyes or mouth.
 </p>
 </div>
-</div>
-<div class='row'>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
 <div class='code-editor col-xs-6'>
 <h5>
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='clear_rect_challenge1_editor'>var canvas = document.getElementById('clear_rect_challenge1');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;context.save();&#x000A;&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;// YOUR CODE TO CLEAR A RECTANGLE HERE.&#x000A;&#x000A;context.restore();&#x000A;&#x000A;</div>
+<div class='editor' id='switch_statements_example2_editor'>var canvas = document.getElementById('switch_statements_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.save();&#x000A;context.translate(260, 20);&#x000A;&#x000A;drawFace('happy'); // Change Rectangle Man's expression to 'happy', 'angry', 'scared', or none&#x000A;context.restore();&#x000A;&#x000A;function drawFace(expression) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#000000';&#x000A;  context.strokeStyle = '#000000';&#x000A;  context.strokeRect(-80, 0, 160, 280); // Draw head&#x000A;  context.strokeRect(-15, 120, 30, 60); // Draw nose&#x000A;  context.strokeRect(15, 160, 10, 20); // Draw right nostril&#x000A;  context.strokeRect(-25, 160, 10, 20); // Draw left nostril&#x000A;&#x000A;  switch (expression) {&#x000A;    case 'happy':&#x000A;      context.strokeRect(20, 80, 30, 30);&#x000A;      context.fillRect(29, 89, 12, 12);&#x000A;      context.strokeRect(-50, 80, 30, 30);&#x000A;      context.fillRect(-41, 89, 12, 12);&#x000A;      context.strokeRect(-45, 200, 90, 30);&#x000A;      for (var i = 0; i < 6; i = i + 1) {&#x000A;        context.strokeRect(-45 + 15 * i, 200, 15, 15);&#x000A;        context.strokeRect(-45 + 15 * i, 215, 15, 15);&#x000A;      }&#x000A;      break;&#x000A;&#x000A;    case 'angry':&#x000A;      context.strokeRect(15, 90, 40, 10);&#x000A;      context.fillRect(25, 90, 10, 10);&#x000A;      context.strokeRect(-55, 90, 40, 10);&#x000A;      context.fillRect(-35, 90, 10, 10);&#x000A;      context.strokeRect(-40, 200, 80, 10);&#x000A;      break;&#x000A;&#x000A;    case 'scared':&#x000A;      context.strokeRect(20, 75, 30, 40);&#x000A;      context.fillRect(28, 88, 14, 14);&#x000A;      context.strokeRect(-50, 75, 30, 40);&#x000A;      context.fillRect(-42, 88, 14, 14);&#x000A;      context.strokeRect(-25, 200, 50, 60);&#x000A;      break;&#x000A;&#x000A;    default:&#x000A;      context.strokeRect(20, 80, 30, 30);&#x000A;      context.fillRect(30, 90, 10, 10);&#x000A;      context.strokeRect(-50, 80, 30, 30);&#x000A;      context.fillRect(-40, 90, 10, 10);&#x000A;      context.strokeRect(-30, 200, 60, 20);&#x000A;      break;&#x000A;  }&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -417,31 +416,53 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='clear_rect_challenge1'></canvas>
-</div>
-<div class='alert'></div>
+<canvas id='switch_statements_example2'></canvas>
 </div>
 </div>
 </div>
 </div>
-<div class='challenge row py-3' id='challenge2'>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
-<h2 class='challenge-title'>Challenge 2</h2>
-<p class='py-2'>
-Use clear_rect() to clear the whole canvas. The canvas width can be determined by
-calling "canvas.width" and the height by calling "canvas.height".
+<h2 class='py-2'>
+Example
+</h2>
+<p>
+In this example, we use a switch statement to draw Rectangle Man's face
+with some bling.
+</p>
+<p>
+Change the value of the parameter <i>bling</i> to a number from 0 (no bling)
+to 4 (max bling) to see Rectangle Man's bling change. Note that those values are
+numbers, and the case values are also numbers to match.
+</p>
+<p>
+Because we are not ending the code blocks in each case with a break statement,
+the program does not break out of the switch statement when the code block is
+done. For example, if we pass a value of 2 into the <i>bling</i> parameter, then
+case 2 in the switch statement will be true, and the program will run that code
+block. But when that code block is over, the program will continue running code
+in the lower code blocks, even though those cases are false, until it reaches a break statement or the switch statement
+ends.
+</p>
+<p>
+By leaving out the break statements for each case, Rectangle Man gets the bling
+from both case 2 and case 1 if we set his <i>bling</i> to 2. And he gets all the
+bling if we set his <i>bling</i> to 4.
 </p>
 </div>
-</div>
-<div class='row'>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
 <div class='code-editor col-xs-6'>
 <h5>
 Editor
 <small>(write code below)</small>
 </h5>
-<div class='editor' id='clear_rect_challenge2_editor'>var canvas = document.getElementById('clear_rect_challenge2');&#x000A;var context = canvas.getContext("2d");&#x000A;context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;context.save();&#x000A;&#x000A;context.fillStyle = 'green';&#x000A;context.fillRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;// YOUR CODE TO CLEAR THE CANVAS HERE.&#x000A;&#x000A;context.restore();&#x000A;&#x000A;</div>
+<div class='editor' id='switch_statements_example3_editor'>var canvas = document.getElementById('switch_statements_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.save();&#x000A;context.translate(260, 50);&#x000A;&#x000A;drawFaceWithBling(0); // Give Rectangle Man some bling (0-4);&#x000A;context.restore();&#x000A;&#x000A;function drawFaceWithBling(bling) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#000000';&#x000A;  context.strokeStyle = '#000000';&#x000A;  context.strokeRect(-64, 0, 128, 224); // Draw head&#x000A;  context.strokeRect(-12, 96, 24, 48); // Draw nose&#x000A;  context.strokeRect(12, 128, 8, 16); // Draw right nostril&#x000A;  context.strokeRect(-20, 128, 8, 16); // Draw left nostril&#x000A;  context.strokeRect(16, 64, 24, 24);&#x000A;  context.fillRect(24, 72, 8, 8);&#x000A;  context.strokeRect(-40, 64, 24, 24);&#x000A;  context.fillRect(-32, 72, 8, 8);&#x000A;  context.strokeRect(-24, 160, 48, 16);&#x000A;  context.strokeRect(64, 80, 12, 30);&#x000A;  context.strokeRect(-76, 80, 12, 30);&#x000A;&#x000A;  switch (bling) {&#x000A;    case 4:&#x000A;      context.save();&#x000A;      context.translate(0, 132);&#x000A;      context.fillStyle = '#EECC00';&#x000A;      context.fillRect(-16, 104, 32, 60);&#x000A;      context.rotate(-Math.PI / 5);&#x000A;      for (var i = 0; i < 9; i = i + 1) {&#x000A;        context.fillRect(-8, 114, 16, 40);&#x000A;        context.rotate(Math.PI / 20);&#x000A;      }&#x000A;      context.restore();&#x000A;&#x000A;    case 3:&#x000A;      context.save();&#x000A;      context.fillStyle = '#EECC00';&#x000A;      context.fillRect(-76, 110, 8, 8);&#x000A;      context.fillRect(-76, 120, 8, 8);&#x000A;      context.fillRect(-76, 130, 8, 8);&#x000A;      context.fillRect(-77, 140, 10, 16);&#x000A;      context.restore();&#x000A;&#x000A;    case 2:&#x000A;      context.save();&#x000A;      context.fillRect(-68, -40, 136, 88);&#x000A;      context.fillRect(-88, 40, 176, 8);&#x000A;      context.fillStyle = 'FireBrick';&#x000A;      context.fillRect(-68, 16, 136, 24);&#x000A;      context.restore();&#x000A;&#x000A;    case 1:&#x000A;      context.save();&#x000A;      context.fillRect(-72, 72, 144, 8);&#x000A;      context.fillStyle = '#660000';&#x000A;      context.fillRect(2, 64, 56, 24);&#x000A;      context.fillRect(-58, 64, 56, 24);&#x000A;      context.restore();&#x000A;  }&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -466,9 +487,10 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='clear_rect_challenge2'></canvas>
+<canvas id='switch_statements_example3'></canvas>
 </div>
-<div class='alert'></div>
+</div>
+</div>
 </div>
 </div>
 </div>

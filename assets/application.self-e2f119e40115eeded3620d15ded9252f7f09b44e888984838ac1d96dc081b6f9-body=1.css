@@ -6452,7 +6452,7 @@ img.bordered {
   overflow: hidden; }
   /* line 60, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
   .visual .canvas canvas {
-    width: 600px;
+    width: 800px;
     height: 360px;
     background-repeat: no-repeat;
     background-position: left top; }
