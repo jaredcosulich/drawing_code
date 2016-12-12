@@ -19,8 +19,7 @@ class App.Editor
 
     @resize()
     @editor.on 'mousemove', =>
-      if @editor.height() != currentEditorHeight
-        @resize()
+      @resize() if @editor.height() != @currentEditorHeight
 
     @aceEditor.session.on 'changeScrollTop', => @resize()
 
@@ -39,7 +38,7 @@ class App.Editor
     @ensureValidCanvasReference()
 
   resize: ->
-    currentEditorHeight = @editor.height()
+    @currentEditorHeight = @editor.height()
     @aceEditor.resize()
     setTimeout(( =>
       @editor.find('.ace_scrollbar-v').css(bottom: '15px')
