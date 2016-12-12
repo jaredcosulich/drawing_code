@@ -42,10 +42,15 @@ class TestPage {
       var visual = $(document.createElement('DIV'));
       visual.addClass('visual');
 
+      var canvasContainer = $(document.createElement('DIV'));
+      canvasContainer.addClass('canvas');
+
       var canvas = $(document.createElement('CANVAS'));
       canvas.attr('id', this.pageId + '_' + challengeId);
+      canvas.css({width: '600px', height: '360px'});
       canvas.width(600).height(360);
-      visual.append(canvas);
+      canvasContainer.append(canvas)
+      visual.append(canvasContainer);
 
       this.challengeCanvases.push(canvas);
 
@@ -56,22 +61,21 @@ class TestPage {
 
       this.challengeAlerts.push(alert)
 
-      challenge.css({position: 'absolute', top: '-1000px', left: '-1000px'})
-
       this.page.append(challenge);
     }
-    $(document.body).append(this.page);
+    this.page.css({position: 'absolute', top: '-1000px', left: '-1000px'})
+    $('#jasmine_content').append(this.page);
   }
 
   runChallengeCode(challengeNumber, code) {
     var aceEditor = this.challengeEditors[challengeNumber - 1].data('ace');
     aceEditor.setValue(code);
-    this.challengeRunButtons[challengeNumber - 1].click()
+    this.challengeRunButtons[challengeNumber - 1].click();
   }
 
   challengeResult(challengeNumber) {
-    this.runChallengeCode(challengeNumber, code)
-    jasmine.clock().tick(200);
+    this.runChallengeCode(challengeNumber, code);
+    jasmine.clock().tick(300);
 
     return this.challengeAlerts[challengeNumber - 1].hasClass('alert-success')
   }

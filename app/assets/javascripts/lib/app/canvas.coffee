@@ -1,5 +1,6 @@
 class App.Canvas
   constructor: (@canvas) ->
+    @index = 0
     @init()
     @initAlert()
 
@@ -13,11 +14,14 @@ class App.Canvas
 
     @context = @canvasElement.getContext('2d')
     @canvas.attr(width: @canvas.width(), height: @canvas.height())
+    @index += 1
+    @canvas.data(index: @index)
 
   reset: ->
-    @container.find('canvas').remove()
-    @canvas = @canvas.clone()
-    @container.append(@canvas)
+    c = @canvas.clone()
+    @canvas.remove()
+    @container.append(c)
+    @canvas = c
     @init()
 
   initAlert: ->
