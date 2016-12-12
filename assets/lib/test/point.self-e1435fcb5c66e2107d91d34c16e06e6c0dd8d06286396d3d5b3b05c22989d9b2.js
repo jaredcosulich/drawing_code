@@ -3,16 +3,16 @@
     function Point(options) {
       var ref, ref1, ref2, ref3;
       this.x = options.x, this.y = options.y, this.canvas = options.canvas, this.colors = (ref = options.colors) != null ? ref : [], this.buffer = (ref1 = options.buffer) != null ? ref1 : 1, this.badPoint = (ref2 = options.badPoint) != null ? ref2 : false, this.badColor = (ref3 = options.badColor) != null ? ref3 : false;
-      this.context = this.canvas.context;
       this.status = 0;
     }
 
     Point.prototype.test = function(buffer) {
-      var alpha, colorFound, colorMatch, colorValue, i, index, j, k, l, len, len1, len2, pointColor, pointData, ref, ref1, ref2, totalAlpha;
+      var alpha, colorFound, colorMatch, colorValue, context, i, index, j, k, l, len, len1, len2, pointColor, pointData, ref, ref1, ref2, totalAlpha;
       if (buffer == null) {
         buffer = this.buffer;
       }
-      pointData = this.context.getImageData(this.x - buffer, this.y - buffer, (buffer * 2) + 1, (buffer * 2) + 1);
+      context = this.canvas.context;
+      pointData = context.getImageData(this.x - buffer, this.y - buffer, (buffer * 2) + 1, (buffer * 2) + 1);
       totalAlpha = 0;
       ref = pointData.data;
       for (i = j = 0, len = ref.length; j < len; i = ++j) {
@@ -59,22 +59,23 @@
     };
 
     Point.prototype.display = function(success) {
-      var strokeStyle;
+      var context, strokeStyle;
       if (success == null) {
         success = this.status;
       }
       if (success <= 0 || this.badPoint) {
         return;
       }
-      strokeStyle = this.context.strokeStyle;
-      this.context.strokeStyle = '#00FF00';
-      this.context.beginPath();
-      this.context.moveTo(this.x - 3, this.y);
-      this.context.lineTo(this.x + 3, this.y);
-      this.context.moveTo(this.x, this.y - 3);
-      this.context.lineTo(this.x, this.y + 3);
-      this.context.stroke();
-      return this.context.strokeStyle = strokeStyle;
+      context = this.canvas.context;
+      strokeStyle = context.strokeStyle;
+      context.strokeStyle = '#00FF00';
+      context.beginPath();
+      context.moveTo(this.x - 3, this.y);
+      context.lineTo(this.x + 3, this.y);
+      context.moveTo(this.x, this.y - 3);
+      context.lineTo(this.x, this.y + 3);
+      context.stroke();
+      return context.strokeStyle = strokeStyle;
     };
 
     return Point;

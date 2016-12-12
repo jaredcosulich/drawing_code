@@ -1,32 +1,31 @@
 (function() {
   App.Canvas = (function() {
     function Canvas(canvas) {
+      this.canvas = canvas;
+      this.init();
+      this.initAlert();
+    }
+
+    Canvas.prototype.init = function() {
       var backgroundImage;
-      this.canvasElement = $(canvas)[0];
+      this.canvasElement = $(this.canvas)[0];
       this.canvas = $(this.canvasElement);
       this.container = this.canvas.closest('.canvas');
       if ((backgroundImage = this.canvas.closest('.canvas').find('.background img')).length > 0) {
         this.canvas.css('background-image', 'url(' + backgroundImage.attr('src') + ')');
       }
       this.context = this.canvasElement.getContext('2d');
-      this.canvas.attr({
+      return this.canvas.attr({
         width: this.canvas.width(),
         height: this.canvas.height()
       });
-      if (this.container.width() > this.canvas.width()) {
-        this.container.width(this.canvas.width());
-      }
-      this.initAlert();
-    }
+    };
 
     Canvas.prototype.reset = function() {
-      var i, j, results;
-      this.context.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height);
-      results = [];
-      for (i = j = 0; j <= 50; i = ++j) {
-        results.push(this.context.restore());
-      }
-      return results;
+      this.container.find('canvas').remove();
+      this.canvas = this.canvas.clone();
+      this.container.append(this.canvas);
+      return this.init();
     };
 
     Canvas.prototype.initAlert = function() {
