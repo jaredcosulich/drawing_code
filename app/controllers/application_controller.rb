@@ -64,7 +64,6 @@ class ApplicationController < ActionController::Base
           :basic_cityscape_stage4
         ],
         reference: [
-          :clear_rect,
           :fill_rect,
           :fill_style,
           :line_to,

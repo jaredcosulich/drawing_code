@@ -10,8 +10,7 @@
           = render :layout => '/lessons/editor', :locals => {:editor_id => 'my_drawings_editor', cols: 12} do
             :preserve
               var canvas = document.getElementById('my_drawings_canvas');
-              var context = canvas.getContext("2d");
-              context.clearRect(0, 0, canvas.width, canvas.height);
+              var context = canvas.getContext('2d');
 
         .row.py-1
           .visual.col-xs-12

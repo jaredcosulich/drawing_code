@@ -36,7 +36,7 @@
             and the y-coordinates increase moving down. So, the rectangle is positioned
             100 pixels to the right and 50 pixels down from the top left corner of the
             canvas.
-          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect, :fill_style, :fill_rect]
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
 
 
         .col-xs-12
@@ -45,7 +45,6 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage1_example1');
                 var context = canvas.getContext('2d');
-                context.clearRect(0, 0, canvas.width, canvas.height);
 
                 context.fillStyle = '#1E90FF';
                 context.fillRect(100, 50, 160, 240);
@@ -76,14 +75,13 @@
             We are positioning the building's bottom left corner so the building
             is sitting on the ground. You will have to do some math to find the coordinates
             of the building's top left corner.
-          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect, :fill_style, :fill_rect]
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage1_challenge1');
             var context = canvas.getContext('2d');
-            context.clearRect(0, 0, canvas.width, canvas.height);
 
             // YOUR CODE HERE
 
@@ -115,7 +113,7 @@
             of the building (assigning it to the variable <i>h</i>) and the y-coordinate
             of the top of the building (assigning it to the variable <i>y</i>). These
             variables are then used to draw the building.
-          = render 'lessons/relevant', relevant: [:variables, :coordinates, :clear_rect, :fill_style, :fill_rect]
+          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_style, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -123,7 +121,6 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage1_example2');
                 var context = canvas.getContext('2d');
-                context.clearRect(0, 0, canvas.width, canvas.height);
 
                 var w = 80;
                 var h = 2 * w;
@@ -195,7 +192,6 @@
 
             var canvas = document.getElementById('basic_cityscape_stage1_challenge2');
             var context = canvas.getContext('2d');
-            context.clearRect(0, 0, canvas.width, canvas.height);
 
             var units = 8;
             var floors = 10;
@@ -250,7 +246,6 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage1_example3');
                 var context = canvas.getContext('2d');
-                context.clearRect(0, 0, canvas.width, canvas.height);
 
                 function drawFrenchFlag(x, y) {
                   context.fillStyle = '#0055A4';
@@ -306,8 +301,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge3_editor'} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage1_challenge3');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            var context = canvas.getContext('2d');
 
             function drawBuilding(leftX, groundY, units, floors) {
 
@@ -374,7 +368,6 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage1_example4');
                 var context = canvas.getContext('2d');
-                context.clearRect(0, 0, canvas.width, canvas.height);
 
                 function drawFrenchFlag(x, y) {
                   context.save();
@@ -431,8 +424,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge4_editor'} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage1_challenge4');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            var context = canvas.getContext('2d');
 
             function drawBuilding(leftX, groundY, units, floors) {
 

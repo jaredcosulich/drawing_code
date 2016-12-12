@@ -37,8 +37,7 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'random_interactive1_editor'} do
               :preserve
                 var canvas = document.getElementById('random_interactive1');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
+                var context = canvas.getContext('2d');
 
                 var squareCount = Math.ceil(Math.random() * 10)
                 for (var i = 0; i < squareCount; ++i) {

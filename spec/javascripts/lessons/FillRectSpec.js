@@ -16,7 +16,6 @@ describe("FillRect", function() {
       code = "\
         var canvas = document.getElementById('fill_rect_challenge1'); \
         var context = canvas.getContext('2d'); \
-        context.clearRect(0, 0, 600, 360); \
         context.beginPath(); \
         context.fillStyle = 'red'; \
         context.fillRect(50,50,100,100); \
@@ -30,7 +29,6 @@ describe("FillRect", function() {
       code = "\
         var canvas = document.getElementById('fill_rect_challenge1'); \
         var context = canvas.getContext('2d'); \
-        context.clearRect(0, 0, 600, 360); \
         context.beginPath(); \
         context.fillStyle = 'red'; \
         context.fillRect(150,150,100,100); \
@@ -48,7 +46,6 @@ describe("FillRect", function() {
       code = "\
         var canvas = document.getElementById('fill_rect_challenge2');\
         var context = canvas.getContext('2d');\
-        context.clearRect(0, 0, 600, 360);\
         \
         context.beginPath();\
         \
@@ -64,7 +61,6 @@ describe("FillRect", function() {
       code = "\
         var canvas = document.getElementById('fill_rect_challenge2');\
         var context = canvas.getContext('2d');\
-        context.clearRect(0, 0, 600, 360);\
         \
         context.beginPath();\
         \

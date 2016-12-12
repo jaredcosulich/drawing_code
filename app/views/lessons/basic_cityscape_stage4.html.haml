@@ -59,7 +59,6 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage4_example1');
                 var context = canvas.getContext('2d');
-                context.clearRect(0, 0, canvas.width, canvas.height);
 
                 function randomInteger(min, max) {
                   var i = min + Math.floor((max - min + 1) * Math.random());
@@ -143,8 +142,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge1_editor', cols: 12} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage4_challenge1');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            var context = canvas.getContext('2d');
 
             function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
 
@@ -220,7 +218,6 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage4_example2');
                 var context = canvas.getContext('2d');
-                context.clearRect(0, 0, canvas.width, canvas.height);
 
                 function randomInteger(min, max) {
                   var i = min + Math.floor((max - min + 1) * Math.random());
@@ -336,7 +333,6 @@
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage4_challenge2');
             var context = canvas.getContext('2d');
-            context.clearRect(0, 0, canvas.width, canvas.height);
 
             function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
 
@@ -417,7 +413,6 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage4_example3');
                 var context = canvas.getContext('2d');
-                context.clearRect(0, 0, canvas.width, canvas.height);
 
                 function drawText(text, x, y) {
                   context.save();
@@ -506,8 +501,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge3_editor', cols: 12} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage4_challenge3');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            var context = canvas.getContext('2d');
 
             function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
 
@@ -571,7 +565,6 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage4_example4');
                 var context = canvas.getContext('2d');
-                context.clearRect(0, 0, canvas.width, canvas.height);
 
                 function randomInteger(min, max) {
                   var i = min + Math.floor((max - min + 1) * Math.random());
@@ -750,8 +743,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage4_challenge4_editor', cols: 12} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage4_challenge4');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            var context = canvas.getContext('2d');
 
             function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
 

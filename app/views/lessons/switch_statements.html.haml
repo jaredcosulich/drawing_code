@@ -40,11 +40,10 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'switch_statements_example1_editor'} do
               :preserve
                 var canvas = document.getElementById('switch_statements_example1');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
+                var context = canvas.getContext('2d');
 
                 var option = 0; // Set option to a number from 0-4
-                
+
                 context.save();
                 switch (option) {
                   case 0:
@@ -52,19 +51,19 @@
                     context.fillStyle = 'Black';
                     context.fillText('You chose option 0.', 20, 40);
                     break;
-                  
+
                   case 1:
                     context.font = '24px sans-serif';
                     context.fillStyle = 'Crimson';
                     context.fillText('Yay! Option 1!', 300, 250);
                     break;
-                  
+
                   case 2:
                     context.font = '36px sans-serif';
                     context.fillStyle = 'DarkMagenta';
                     context.fillText('Groovy, man. Option 2.', 80, 200);
                     break;
-                  
+
                   case 3:
                     context.font = 'bold 48px sans-serif';
                     context.fillStyle = 'DeepPink';
@@ -76,7 +75,7 @@
                     context.strokeText('Wow! Option 3!', 0, 0);
                     context.fillText('Wow! Option 3!', 0, 0);
                     break;
-                  
+
                   case 4:
                     context.font = 'bold 54px sans-serif';
                     context.fillStyle = 'SeaGreen';
@@ -90,7 +89,7 @@
                     context.fillText('MIRROR OPTION 4', 0, 0);
                     break;
                 }
-                
+
                 context.restore();
 
             .visual.col-xs-6
@@ -130,15 +129,14 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'switch_statements_example2_editor'} do
               :preserve
                 var canvas = document.getElementById('switch_statements_example2');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                
+                var context = canvas.getContext('2d');
+
                 context.save();
                 context.translate(260, 20);
-                
+
                 drawFace('happy'); // Change Rectangle Man's expression to 'happy', 'angry', 'scared', or none
                 context.restore();
-                
+
                 function drawFace(expression) {
                   context.save();
                   context.fillStyle = '#000000';
@@ -147,7 +145,7 @@
                   context.strokeRect(-15, 120, 30, 60); // Draw nose
                   context.strokeRect(15, 160, 10, 20); // Draw right nostril
                   context.strokeRect(-25, 160, 10, 20); // Draw left nostril
-                  
+
                   switch (expression) {
                     case 'happy':
                       context.strokeRect(20, 80, 30, 30);
@@ -160,7 +158,7 @@
                         context.strokeRect(-45 + 15 * i, 215, 15, 15);
                       }
                       break;
-                    
+
                     case 'angry':
                       context.strokeRect(15, 90, 40, 10);
                       context.fillRect(25, 90, 10, 10);
@@ -168,7 +166,7 @@
                       context.fillRect(-35, 90, 10, 10);
                       context.strokeRect(-40, 200, 80, 10);
                       break;
-                    
+
                     case 'scared':
                       context.strokeRect(20, 75, 30, 40);
                       context.fillRect(28, 88, 14, 14);
@@ -176,7 +174,7 @@
                       context.fillRect(-42, 88, 14, 14);
                       context.strokeRect(-25, 200, 50, 60);
                       break;
-                    
+
                     default:
                       context.strokeRect(20, 80, 30, 30);
                       context.fillRect(30, 90, 10, 10);
@@ -185,7 +183,7 @@
                       context.strokeRect(-30, 200, 60, 20);
                       break;
                   }
-                  
+
                   context.restore();
                 }
 
@@ -228,15 +226,14 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'switch_statements_example3_editor'} do
               :preserve
                 var canvas = document.getElementById('switch_statements_example3');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                
+                var context = canvas.getContext('2d');
+
                 context.save();
                 context.translate(260, 50);
-                
+
                 drawFaceWithBling(0); // Give Rectangle Man some bling (0-4);
                 context.restore();
-                
+
                 function drawFaceWithBling(bling) {
                   context.save();
                   context.fillStyle = '#000000';
@@ -252,7 +249,7 @@
                   context.strokeRect(-24, 160, 48, 16);
                   context.strokeRect(64, 80, 12, 30);
                   context.strokeRect(-76, 80, 12, 30);
-                  
+
                   switch (bling) {
                     case 4:
                       context.save();
@@ -265,7 +262,7 @@
                         context.rotate(Math.PI / 20);
                       }
                       context.restore();
-                    
+
                     case 3:
                       context.save();
                       context.fillStyle = '#EECC00';
@@ -274,7 +271,7 @@
                       context.fillRect(-76, 130, 8, 8);
                       context.fillRect(-77, 140, 10, 16);
                       context.restore();
-                    
+
                     case 2:
                       context.save();
                       context.fillRect(-68, -40, 136, 88);
@@ -282,7 +279,7 @@
                       context.fillStyle = 'FireBrick';
                       context.fillRect(-68, 16, 136, 24);
                       context.restore();
-                    
+
                     case 1:
                       context.save();
                       context.fillRect(-72, 72, 144, 8);
@@ -291,7 +288,7 @@
                       context.fillRect(-58, 64, 56, 24);
                       context.restore();
                   }
-                  
+
                   context.restore();
                 }
 
@@ -301,5 +298,3 @@
                 %small (your drawing will display here)
               .canvas
                 %canvas#switch_statements_example3
-
-

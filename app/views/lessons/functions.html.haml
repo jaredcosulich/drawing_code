@@ -31,8 +31,7 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'functions_example1_editor'} do
               :preserve
                 var canvas = document.getElementById('functions_example1');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
+                var context = canvas.getContext('2d');
 
                 function flag(x, y) {
                   context.save();
@@ -75,7 +74,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'functions_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('functions_challenge1');
-            var context = canvas.getContext("2d");
+            var context = canvas.getContext('2d');
             context.save();
 
             // WRITE YOUR FUNCTION HERE

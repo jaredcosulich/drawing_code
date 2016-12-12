@@ -26,10 +26,7 @@
           %p.pt-2
             clearRect() allows you to clear areas of the canvas.
           %p
-            We use clearRect() in these lessons and challenges to reset the canvas
-            each time you run your code.
-          %p
-            clearRect() is also used when running animations to clear the canvas
+            clearRect() is often used when running animations to clear the canvas
             between frames of animation. This example demonstrates how clearRect()
             is used in a simple animation.
 
@@ -40,7 +37,7 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'clear_rect_interactive1_editor'} do
               :preserve
                 var canvas = document.getElementById('clear_rect_interactive1');
-                var context = canvas.getContext("2d");
+                var context = canvas.getContext('2d');
                 if (window.animation) clearTimeout(window.animation);
                 context.save();
                 context.clearRect(0, 0, canvas.width, canvas.height);
@@ -111,8 +108,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'clear_rect_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('clear_rect_challenge1');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            var context = canvas.getContext('2d');
             context.save();
 
             context.fillStyle = 'red';
@@ -145,7 +141,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'clear_rect_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('clear_rect_challenge2');
-            var context = canvas.getContext("2d");
+            var context = canvas.getContext('2d');
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.save();
 

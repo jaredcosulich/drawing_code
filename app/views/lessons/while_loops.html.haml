@@ -47,20 +47,19 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'while_loops_example1_editor'} do
               :preserve
                 var canvas = document.getElementById('while_loops_example1');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
+                var context = canvas.getContext('2d');
 
                 context.save();
                 context.translate(260, 50);
-                
+
                 var h = 200 + 50 * Math.random(); // Set the height of the stem to a random number (200 - 250)
-                
+
                 context.fillStyle = '#228B22';
                 context.fillRect(-6, 0, 12, h); // Draw the stem
-                
+
                 var n = 0; // Set a counter for the number of leaves
                 var y = 40 + 40 * Math.random(); // Set the y-coordinate of the first leaf to a random number (40 - 80)
-                
+
                 while (y < h - 40) { // Keep drawing leaves while the y-coordinate of the next leaf is < the height of the stem - 40
                   n = n + 1; // Update the counter
                   context.save();
@@ -71,10 +70,10 @@
                   context.closePath();
                   context.fill(); // Draw the leaf
                   context.restore();
-                  
+
                   y = y + (15 + 35 * Math.random()); // Calculate the y-coordinate of the next leaf by adding a random number (15 - 50)
                 }
-                
+
                 context.save();
                 context.fillStyle = '#FFA500';
                 for (var i = 0; i < 6; i = i + 1) {
@@ -84,15 +83,15 @@
                   context.fill(); // Draw a flower petal
                   context.rotate(Math.PI / 3);
                 }
-                
+
                 context.restore();
-                
+
                 context.fillStyle = '#FFFF00';
                 context.beginPath();
                 context.arc(0, 0, 24, 0, 2 * Math.PI, false);
                 context.closePath();
                 context.fill(); // Draw the flower center
-                
+
                 context.restore();
 
             .visual.col-xs-6
@@ -132,21 +131,20 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'while_loops_example2_editor'} do
               :preserve
                 var canvas = document.getElementById('while_loops_example2');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                
+                var context = canvas.getContext('2d');
+
                 var angle = 30; // The angle of the cannon (10 - 80);
-                
+
                 angle = -Math.PI * Math.min(80, Math.max(10, angle)) / 180;
                 var g = 1;
                 var dX = 20 * Math.cos(angle);
                 var dY = 20 * Math.sin(angle);
-                
+
                 context.save();
                 context.fillStyle = '#333333';
                 context.fillRect(0, 300, canvas.width, 2); // Draw the ground
                 context.translate(10, 285);
-                
+
                 context.save();
                 context.rotate(angle);
                 context.fillStyle = '#999999';
@@ -158,16 +156,16 @@
                 context.arc(0, -10, 10, 0, 2 * Math.PI, false);
                 context.closePath();
                 context.fill(); // Draw the cannon's tire
-                
+
                 var x = 2 * dX;
                 var y = 2 * dY - 15; // Set the coordinates of the first cannonball
-                
+
                 while (y < -5) { // Keep drawing the cannonball while it is above the ground
                   context.beginPath();
                   context.arc(x, y, 5, 0, 2 * Math.PI, false);
                   context.closePath();
                   context.fill(); // Draw the cannonball
-                  
+
                   x = x + dX;
                   y = y + dY; // Calculate the coordinates of the next cannonball
                   dY = dY + g; // Calculate the effect of gravity
@@ -203,27 +201,26 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'while_loops_example3_editor'} do
               :preserve
                 var canvas = document.getElementById('while_loops_example3');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                
+                var context = canvas.getContext('2d');
+
                 var n = 0;
                 var w = 20; // The width of the rectangle (1-25)
                 var h = 16; // The height of the rectangle (1-25)
                 var color = ['#FF0000', 'FFA500', 'FFFF00', '#00FF00', '#0000FF', '#4B0082', '#EE82EE'];
-                
+
                 w = 10 * Math.min(25, Math.max(w, 1));
                 h = 10 * Math.min(25, Math.max(h, 1));
-                
+
                 context.save();
                 context.translate(10, 10);
-                
+
                 while (w > 0 && h > 0) {
                   var nextW, nextH;
                   context.fillStyle = color[n % color.length]; // Set the color of the rectangle
                   context.fillRect(0, 0, w, h);
-                  
+
                   n = n + 1;
-                  
+
                   if (w > h) {
                     w = w - h;
                     if (Math.random() > 0.5) context.translate(h, 0);
@@ -232,17 +229,17 @@
                     if (Math.random() > 0.5) context.translate(0, w);
                   }
                 }
-                
+
                 context.restore();
-                
+
                 var s = 's';
                 var are = 'are ';
-                
+
                 if (n == 1) {
                   s = '';
                   are = 'is ';
                 }
-                
+
                 context.fillStyle = '#000000';
                 context.font = '16px sans-serif';
                 context.fillText('There ' + are + n + ' rectangle' + s, 10, 290);
@@ -253,5 +250,3 @@
                 %small (your drawing will display here)
               .canvas
                 %canvas#while_loops_example3
-
-

@@ -31,8 +31,7 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'save_interactive1_editor'} do
               :preserve
                 var canvas = document.getElementById('save_interactive1');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
+                var context = canvas.getContext('2d');
 
                 context.save();
 
@@ -69,8 +68,7 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'save_example1_editor'} do
               :preserve
                 var canvas = document.getElementById('save_example1');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
+                var context = canvas.getContext('2d');
 
                 context.fillRect(25,25,25,25);
 
@@ -118,8 +116,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'save_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('save_challenge1');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            var context = canvas.getContext('2d');
             context.save();
 
             context.fillRect(30, 80, 40, 40);

@@ -25,9 +25,8 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'variables_example1_editor'} do
               :preserve
                 var canvas = document.getElementById('variables_example1');
-                var context = canvas.getContext("2d");
+                var context = canvas.getContext('2d');
                 context.save();
-                context.clearRect(0, 0, 600, 360);
 
                 var xPosition = 50;
                 var yPosition = 200;
@@ -69,8 +68,7 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'variables_example2_editor'} do
               :preserve
                 var canvas = document.getElementById('variables_example2');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, 600, 360);
+                var context = canvas.getContext('2d');
 
                 context.beginPath();
 
@@ -107,8 +105,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'variables_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('variables_challenge1');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, 600, 360);
+            var context = canvas.getContext('2d');
 
             var x = 100;
 
@@ -149,8 +146,7 @@
       = render :layout => '/lessons/editor', :locals => {:editor_id => 'variables_challenge2_editor'} do
         :preserve
           var canvas = document.getElementById('variables_challenge2');
-          var context = canvas.getContext("2d");
-          context.clearRect(0, 0, 600, 360);
+          var context = canvas.getContext('2d');
           context.save();
 
           var x = 50;

@@ -33,8 +33,7 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_interactive1_editor'} do
               :preserve
                 var canvas = document.getElementById('translate_interactive1');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, 600, 360);
+                var context = canvas.getContext('2d');
 
                 for (var i=0; i<3; ++i) {
                   context.save();
@@ -87,9 +86,8 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_example1_editor'} do
               :preserve
                 var canvas = document.getElementById('translate_example1');
-                var context = canvas.getContext("2d");
+                var context = canvas.getContext('2d');
                 context.save();
-                context.clearRect(0, 0, 600, 360);
 
                 context.fillRect(50,175,100,100);
 
@@ -122,8 +120,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('translate_challenge1');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, 600, 360);
+            var context = canvas.getContext('2d');
             context.save();
 
             context.fillStyle = '#2A32A3';

@@ -37,11 +37,11 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'coordinates_interactive1_editor'} do
               :preserve
                 var canvas = document.getElementById('coordinates_interactive1');
-                var context = canvas.getContext("2d");
+                var context = canvas.getContext('2d');
 
                 context.font= '30px Arial';
                 canvas.addEventListener('mousemove', function(e) {
-                  context.clearRect(0, 0, 600, 360);
+                  context.clearRect(0, 0, canvas.width, canvas.height);
                   text = 'Your mouse is at (' + e.layerX + ', ' + e.layerY + ')';
                   context.fillText(text, 50, 100);
                 });
@@ -66,8 +66,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'coordinates_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('coordinates_challenge1');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, 600, 360);
+            var context = canvas.getContext('2d');
 
             // YOUR CODE HERE
 
@@ -91,8 +90,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'coordinates_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('coordinates_challenge2');
-            var context = canvas.getContext("2d");
-            context.clearRect(0, 0, 600, 360);
+            var context = canvas.getContext('2d');
 
             // YOUR CODE HERE
 

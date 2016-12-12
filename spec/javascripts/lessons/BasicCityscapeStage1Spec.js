@@ -16,7 +16,6 @@ describe("Basic Cityscape Stage 1", function() {
       code = "\
         var canvas = document.getElementById('basic_cityscape_stage1_challenge1');\
         var context = canvas.getContext('2d');\
-        context.clearRect(0, 0, canvas.width, canvas.height);\
         \
         var ground = 240;\
         context.fillRect(40, ground - 160, 320, 160);\
@@ -29,7 +28,6 @@ describe("Basic Cityscape Stage 1", function() {
       code = "\
         var canvas = document.getElementById('basic_cityscape_stage1_challenge1');\
         var context = canvas.getContext('2d');\
-        context.clearRect(0, 0, canvas.width, canvas.height);\
         \
         var ground = 240;\
         context.fillRect(40, 160, 320, 160);\
@@ -65,8 +63,6 @@ describe("Basic Cityscape Stage 1", function() {
         var units = 8;\
         var floors = 10;\
 \
-        context.clearRect(0, 0, canvas.width, canvas.height);\
-\
         var h = (floors * 16) + (4*2);\
         var w = (units*16) + (4*2);\
         var x = 120;\
@@ -103,8 +99,6 @@ describe("Basic Cityscape Stage 1", function() {
         var units = 8;\
         var floors = 10;\
   \
-        context.clearRect(0, 0, canvas.width, canvas.height);\
-  \
         var h = (floors * 16) + (4*2);\
         var w = (units*16) + (4*2);\
         var x = 120;\
@@ -140,9 +134,7 @@ describe("Basic Cityscape Stage 1", function() {
         var context = canvas.getContext('2d');\
         var units = 8;\
         var floors = 10;\
-  \
-        context.clearRect(0, 0, canvas.width, canvas.height);\
-  \
+        \
         var h = (floors * 16);\
         var w = (units*16);\
         var x = 120;\
@@ -166,8 +158,7 @@ describe("Basic Cityscape Stage 1", function() {
       code = "\
         var canvas = document.getElementById('basic_cityscape_stage1_challenge3');\
         var context = canvas.getContext('2d');\
-        context.clearRect(0, 0, canvas.width, canvas.height);\
-\
+        \
         function drawBuilding(leftX, groundY, units, floors) {\
           var unitDimension = 16;\
           var floorDimension = 16;\
@@ -189,7 +180,6 @@ describe("Basic Cityscape Stage 1", function() {
       code = "\
         var canvas = document.getElementById('basic_cityscape_stage1_challenge3');\
         var context = canvas.getContext('2d');\
-        context.clearRect(0, 0, canvas.width, canvas.height);\
 \
         function drawBuilding(leftX, groundY, units, floors) {\
           var unitDimension = 16;\
@@ -212,7 +202,6 @@ describe("Basic Cityscape Stage 1", function() {
       code = "\
         var canvas = document.getElementById('basic_cityscape_stage1_challenge3');\
         var context = canvas.getContext('2d');\
-        context.clearRect(0, 0, canvas.width, canvas.height);\
 \
         function drawBuilding(leftX, groundY, units, floors) {\
           var unitDimension = 16;\
@@ -239,7 +228,6 @@ describe("Basic Cityscape Stage 1", function() {
       code = "\
         var canvas = document.getElementById('basic_cityscape_stage1_challenge4');\
         var context = canvas.getContext('2d');\
-        context.clearRect(0, 0, canvas.width, canvas.height);\
 \
         function drawBuilding(leftX, groundY, units, floors) {\
           context.save();\
@@ -265,7 +253,6 @@ describe("Basic Cityscape Stage 1", function() {
       code = "\
         var canvas = document.getElementById('basic_cityscape_stage1_challenge4');\
         var context = canvas.getContext('2d');\
-        context.clearRect(0, 0, canvas.width, canvas.height);\
   \
         function drawBuilding(leftX, groundY, units, floors) {\
           context.save();\

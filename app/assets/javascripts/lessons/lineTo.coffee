@@ -97,8 +97,7 @@ $(document).on('initialization:complete', initLineToChallenges)
 
 
 # var canvas = document.getElementById('line_to_challenge');
-# var context = canvas.getContext("2d");
-# context.clearRect(0, 0, 300, 300);
+# var context = canvas.getContext('2d');
 # context.beginPath();
 #
 # context.moveTo(52, 223);
@@ -122,8 +121,7 @@ $(document).on('initialization:complete', initLineToChallenges)
 
 
 # var canvas = document.getElementById('line_to_challenge');
-# var context = canvas.getContext("2d");
-# context.clearRect(0, 0, 300, 300);
+# var context = canvas.getContext('2d');
 # context.beginPath();
 # context.moveTo(55,226);
 # context.lineTo(155,80);

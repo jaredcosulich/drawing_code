@@ -32,8 +32,7 @@
             = render :layout => '/lessons/editor', :locals => {:editor_id => 'for_loops_example1_editor'} do
               :preserve
                 var canvas = document.getElementById('for_loops_example1');
-                var context = canvas.getContext("2d");
-                context.clearRect(0, 0, canvas.width, canvas.height);
+                var context = canvas.getContext('2d');
 
                 function flag(x, y) {
                   context.save();
@@ -77,7 +76,7 @@
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'for_loops_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('for_loops_challenge1');
-            var context = canvas.getContext("2d");
+            var context = canvas.getContext('2d');
             context.save();
 
             // WRITE YOUR LOOP HERE
