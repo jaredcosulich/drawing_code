@@ -17,11 +17,12 @@ class App.Editor
         useSoftTabs: true
         wrap: 'on'
 
-    currentEditorHeight = @editor.height()
+    @resize()
     @editor.on 'mousemove', =>
       if @editor.height() != currentEditorHeight
-        currentEditorHeight = @editor.height()
-        @aceEditor.resize()
+        @resize()
+
+    @aceEditor.session.on 'changeScrollTop', => @resize()
 
     @editor.on 'keyup', =>
       @ensureValidCanvasReference()
@@ -36,6 +37,13 @@ class App.Editor
       @aceEditor.setValue(previousCode, -1)
 
     @ensureValidCanvasReference()
+
+  resize: ->
+    currentEditorHeight = @editor.height()
+    @aceEditor.resize()
+    setTimeout(( =>
+      @editor.find('.ace_scrollbar-v').css(bottom: '15px')
+    ), 250)
 
   ensureValidCanvasReference: ->
     code = @aceEditor.getValue()
