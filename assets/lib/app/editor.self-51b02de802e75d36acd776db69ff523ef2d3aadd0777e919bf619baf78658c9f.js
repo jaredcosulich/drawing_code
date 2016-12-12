@@ -3,7 +3,7 @@
 
   App.Editor = (function() {
     function Editor(editor, canvas) {
-      var previousCode;
+      var currentEditorHeight, previousCode;
       this.canvas = canvas;
       this.editorElement = $(editor)[0];
       this.editor = $(this.editorElement);
@@ -20,6 +20,15 @@
         useSoftTabs: true,
         wrap: 'on'
       });
+      currentEditorHeight = this.editor.height();
+      this.editor.on('mousemove', (function(_this) {
+        return function() {
+          if (_this.editor.height() !== currentEditorHeight) {
+            currentEditorHeight = _this.editor.height();
+            return _this.aceEditor.resize();
+          }
+        };
+      })(this));
       this.editor.on('keyup', (function(_this) {
         return function() {
           _this.ensureValidCanvasReference();

@@ -29,8 +29,7 @@
     };
 
     Canvas.prototype.initAlert = function() {
-      this.alertElement = this.canvas.closest('.visual').find('.alert');
-      return this.alertElement.width(this.container.width() - 39);
+      return this.alertElement = this.canvas.closest('.visual').find('.alert');
     };
 
     Canvas.prototype.alert = function(message, success) {
