@@ -47,12 +47,13 @@
       %a.section_link{:href => '#', data: {section: challenge_path[:slug]}}= challenge_path[:name]
 
       %ul.nav.nav-sidebar{id: challenge_path[:slug], class: (params[:section] == challenge_path[:slug] ? 'collapse in' : 'collapse')}
-        - challenge_path[:stages].each do |lesson|
-          %li{class: ('active' if params[:id] == lesson.to_s)}
-            = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug])
-            - if @lessons[lesson][:count] > 0
+        - challenge_path[:stages].each_with_index do |challenge_count, index|
+          - lesson_index = index + 1
+          %li{class: ('active' if params[:id] == "stage#{lesson_index}")}
+            = link_to_lesson("Stage #{lesson_index}", "stage#{lesson_index}", challenge_path[:slug])
+            - if challenge_count > 0
               %span.tag.tag-default
-                %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+                %small{class: "#{challenge_path[:slug]}_stage#{lesson_index}"}= "0 / #{challenge_count}"
 
         %li.section.small.mt-2
           %strong Relevant Reference

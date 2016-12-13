@@ -1,21 +1,50 @@
 class LessonsController < ApplicationController
 
   def show
-    lessons = []
+    lesson_slug = params[:id].to_sym
+
     if ['reference', 'design'].include?(params[:section])
+
       lessons = instance_variable_get("@#{params[:section]}")
       lessons = lessons.values.flatten if lessons.try(:values).present?
+      @challenge_count = @lessons[lesson_slug][:count]
+
+      render_reference(lessons, lesson_slug)
+
     else
-      lessons = @challenge_paths.first { |cp| cp[:slug] == params[:section] }[:stages]
+
+      challenge_path = @challenge_paths.first { |cp| cp[:slug] == params[:section] }
+
+      if @lessons[lesson_slug].present?
+
+        @challenge_count = @lessons[lesson_slug][:count]
+        lessons = challenge_path[:reference].index(lesson_slug).present? ?
+          challenge_path[:reference] : challenge_path[:concept]
+        render_reference(lessons, lesson_slug)
+
+      else
+
+        lessons = challenge_path[:stages]
+        lesson_index = params[:id].gsub(/stage/, '').to_i
+        @challenge_count = lessons[lesson_index - 1]
+
+        if lessons.length > lesson_index
+          @next_lesson = {name: "Stage: #{lesson_index + 1}", slug: "stage#{lesson_index + 1}"}
+        end
+        render "lessons/#{params[:section]}/#{params[:id]}"
+
+      end
     end
+  end
 
-    lesson_index = lessons.index(params[:id].to_sym)
-
-    if lesson_index.present?
-      @next_lesson = lessons[lesson_index + 1]
+  def render_reference(lessons, slug)
+    if (lesson_index = lessons.index(slug)).present?
+      next_lesson_slug = lessons[lesson_index + 1]
+      if @lessons[next_lesson_slug].present?
+        @next_lesson = {name: @lessons[next_lesson_slug][:method], slug: next_lesson_slug}
+      end
     end
-
-    render params[:id]
+    render slug
   end
 
 end

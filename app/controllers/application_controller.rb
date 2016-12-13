@@ -21,11 +21,6 @@ class ApplicationController < ActionController::Base
       coordinates: {count: 2, method: 'Coordinates'},
       functions: {count: 1, method: 'Functions'},
       switch_statements: {count: 0, method: 'Switch Statements'},
-
-      basic_cityscape_stage1: {count: 4, method: 'Stage 1'},
-      basic_cityscape_stage2: {count: 3, method: 'Stage 2'},
-      basic_cityscape_stage3: {count: 4, method: 'Stage 3'},
-      basic_cityscape_stage4: {count: 4, method: 'Stage 4'}
     }
 
     @reference = {
@@ -44,7 +39,6 @@ class ApplicationController < ActionController::Base
       ]
     }
 
-
     @concepts = [
       :variables,
       :for_loops,
@@ -58,12 +52,7 @@ class ApplicationController < ActionController::Base
       {
         name: 'Basic Cityscape',
         slug: 'basic_cityscape',
-        stages: [
-          :basic_cityscape_stage1,
-          :basic_cityscape_stage2,
-          :basic_cityscape_stage3,
-          :basic_cityscape_stage4
-        ],
+        stages: [4, 3, 4, 4],
         reference: [
           :fill_rect,
           :fill_style,

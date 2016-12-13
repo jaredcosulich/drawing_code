@@ -24,4 +24,4 @@
                 Ready for the next lesson?
               %p.py-1
                 Next up, the
-                = link_to("\"#{@lessons[@next_lesson][:method]}\" lesson >", "/lessons/#{params[:section]}/#{@next_lesson}")
+                = link_to("\"#{@next_lesson[:name]}\" lesson >", "/lessons/#{params[:section]}/#{@next_lesson[:slug]}")

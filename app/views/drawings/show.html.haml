@@ -3,22 +3,22 @@
 
   %p.drawing-description
 
-  .simple.row.py-3
+  .simple.row.pb-3.pt-2
     .col-xs-12
       .freeform
-        .row.py-1
-          = render :layout => '/lessons/editor', :locals => {:editor_id => 'my_drawings_editor', cols: 12} do
-            :preserve
-              var canvas = document.getElementById('my_drawings_canvas');
-              var context = canvas.getContext('2d');
-
-        .row.py-1
+        .row.pb-3
           .visual.col-xs-12
             %h5
               Canvas
               %small (your drawing will display here)
             .canvas
               %canvas#my_drawings_canvas
+
+        .row.py-1
+          = render :layout => '/lessons/editor', :locals => {:editor_id => 'my_drawings_editor', cols: 12} do
+            :preserve
+              var canvas = document.getElementById('my_drawings_canvas');
+              var context = canvas.getContext('2d');
 
   .save.row.py-3
     .col-xs-12
