@@ -2,6 +2,7 @@
   App.Canvas = (function() {
     function Canvas(canvas) {
       this.canvas = canvas;
+      this.index = 0;
       this.init();
       this.initAlert();
     }
@@ -15,16 +16,22 @@
         this.canvas.css('background-image', 'url(' + backgroundImage.attr('src') + ')');
       }
       this.context = this.canvasElement.getContext('2d');
-      return this.canvas.attr({
+      this.canvas.attr({
         width: this.canvas.width(),
         height: this.canvas.height()
+      });
+      this.index += 1;
+      return this.canvas.data({
+        index: this.index
       });
     };
 
     Canvas.prototype.reset = function() {
-      this.container.find('canvas').remove();
-      this.canvas = this.canvas.clone();
-      this.container.append(this.canvas);
+      var c;
+      c = this.canvas.clone();
+      this.canvas.remove();
+      this.container.append(c);
+      this.canvas = c;
       return this.init();
     };
 
