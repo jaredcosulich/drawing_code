@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :drawings, only: [:index, :show]
 
   get '/lessons/:section/:id', to: 'lessons#show', as: 'lesson'
+  get '/lessons/:section', to: 'lessons#index', as: 'lesson_index'
 
   root 'welcome#index'
 

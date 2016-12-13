@@ -71,6 +71,16 @@ class ApplicationController < ActionController::Base
           :functions,
           :switch_statements
         ]
+      },
+      {
+        experimental: true,
+        name: 'Snake Game',
+        slug: 'snake_game',
+        stages: [],
+        reference: [
+        ],
+        concepts: [
+        ]
       }
     ]
 

@@ -37,6 +37,19 @@ class LessonsController < ApplicationController
     end
   end
 
+  def index
+    challenge_path = @challenge_paths.first { |cp| cp[:slug] == params[:section] }
+    redirect_to root_path if challenge_path.nil?
+
+    lessons = challenge_path[:stages]
+    @challenge_count = lessons[0]
+
+    if lessons.length > 1
+      @next_lesson = {name: "Stage: 2", slug: "stage2"}
+    end
+    render "lessons/#{params[:section]}/stage1"
+  end
+
   def render_reference(lessons, slug)
     if (lesson_index = lessons.index(slug)).present?
       next_lesson_slug = lessons[lesson_index + 1]

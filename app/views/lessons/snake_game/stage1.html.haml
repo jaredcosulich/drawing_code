@@ -1,0 +1,445 @@
+#basic_cityscape_stage1.lesson
+  %h1 Stage 1
+
+  = render 'lessons/challenge_count'
+
+  .description.row.py-3
+    .col-xs-6
+      %h2.py-2
+        Overview
+      %p
+        In the first stage of the Cityscape Challenge, we will draw the shapes of
+        buildings with different sizes. Because we will be drawing lots of buildings,
+        we will automate the process using functions and variables.
+
+    .col-xs-6
+      = image_tag('lessons/basic_cityscape_stage1/overviewVisual1.png', class: 'img-fluid')
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw a Building
+          %p
+            A building is a filled in rectangle. We use context.fillStyle to set
+            the color of the rectangle, and context.fillRect() to draw the rectangle.
+          %p
+            %span.highlight
+              In this example, we draw a building that is blue (the color #1E90FF),
+              160 pixels wide, 240 pixels tall, and positioned so its top left corner
+              is at (100, 50).
+          %p
+            In the context's coordinate system, the origin (0, 0) is at the top left
+            corner of the canvas, and the x-coordinates increase moving to the right
+            and the y-coordinates increase moving down. So, the rectangle is positioned
+            100 pixels to the right and 50 pixels down from the top left corner of the
+            canvas.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('basic_cityscape_stage1_example1');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = '#1E90FF';
+                context.fillRect(100, 50, 160, 240);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#basic_cityscape_stage1_example1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %p
+            %span.highlight
+              Draw a building (a rectangle) that is 320 pixels wide and 160
+              pixels tall so the bottom left corner of the building is covering the
+              x at (40, 240) and the top right corner is covering the other x,
+              but not covering the red x's.
+          %p
+            Remember, the point (40, 240) is 40 pixels to the right and 240 pixels
+            down from the origin, which is the top left corner of the canvas.
+          %p
+            We are positioning the building's bottom left corner so the building
+            is sitting on the ground. You will have to do some math to find the coordinates
+            of the building's top left corner.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('basic_cityscape_stage1_challenge1');
+            var context = canvas.getContext('2d');
+
+            // YOUR CODE HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/basic_cityscape_stage1/challenge1.png')
+            %canvas#basic_cityscape_stage1_challenge1
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use Variables to Size and Position a Building
+          %p
+            We can use variables to automatically size and position a building.
+          %p
+            %span.highlight
+              In this example, we draw a green building (color #228B22) that is twice
+              as tall as it is wide, and sitting on the ground at (60, 280).
+          %p
+            To change the size of the building, all we do is store a different value
+            in the variable <i>w</i>. The program automatically calculates the height
+            of the building (assigning it to the variable <i>h</i>) and the y-coordinate
+            of the top of the building (assigning it to the variable <i>y</i>). These
+            variables are then used to draw the building.
+          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_style, :fill_rect]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('basic_cityscape_stage1_example2');
+                var context = canvas.getContext('2d');
+
+                var w = 80;
+                var h = 2 * w;
+                var y = 280 - h;
+
+                context.fillStyle = '#228B22';
+                context.fillRect(60, y, w, h);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#basic_cityscape_stage1_example2
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-6
+          %h2.challenge-title.py-2
+            Challenge 2
+          %p
+            For our cityscape, we don't want think about buildings in terms of pixels.
+            We want to size buildings based on the number of floors they have and the
+            number of office units on each floor, and then write the program so it
+            calculates the number of pixels for us.
+          %p
+            Each office unit is 16 pixels wide and 16 pixels tall. The outer walls,
+            roof, and floor of the building are each 4 pixels thick.
+        .col-xs-6
+          = image_tag('lessons/basic_cityscape_stage1/challenge2Visual1.png')
+      .row
+        .col-xs-12
+          %p
+            Write a program to calculate the size and position of the building for you.
+            The variable <i>units</i> stores the number of office units on each floor.
+            The variable <i>floors</i> stores the number of floors in the building.
+          %p
+            %span.highlight
+              Then draw a gray (color #999999) building with 10 floors and 8 office units
+              on each floor sitting on the ground at (120, 280).
+          %p
+            To see the office units in your building, add the line "drawOffices(x, y, w, h);"
+            to the end of your program, where (x, y) are the coordinates of the top left
+            corner of your building, and w and h are the width and height of your building.
+          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_style, :fill_rect]
+          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'basic_cityscape_stage1_challenge1_editor'
+
+
+      .row.pt-2
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge2_editor'} do
+          :preserve
+            function drawOffices(x, y, w, h) {
+              var u = Math.floor((w - 4) / 16);
+              var f = Math.floor((h - 4) / 16);
+
+              context.save();
+              context.translate(x + 4, y + 4);
+              context.strokeWidth = 1;
+              context.strokeStyle = '#000000';
+
+              for (var i = 0; i < f; i++) {
+                for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);
+              }
+
+              context.restore();
+            }
+
+            var canvas = document.getElementById('basic_cityscape_stage1_challenge2');
+            var context = canvas.getContext('2d');
+
+            var units = 8;
+            var floors = 10;
+
+            // YOUR CODE TO CALCULATE THE WIDTH AND HEIGHT OF THE BUILDING HERE
+
+            // YOUR CODE TO DRAW THE GRAY (COLOR #999999) BUILDING HERE
+
+            // drawOffices(x, y, w, h);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/basic_cityscape_stage1/challenge2.png')
+            %canvas#basic_cityscape_stage1_challenge2
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use a Function to Draw a Building
+          %p
+            Drawing a single building takes quite a few steps. We have to calculate
+            the width and height of the building, and the y-coordinate of the top of
+            the building. Then we have to set the building color and draw the rectangle.
+            Once we start drawing in windows, the list of steps will get much longer.
+          %p
+            To draw our cityscape, we have to draw dozens of buildings. Typing in all
+            that code for each building is going to be a lot of work.
+          %p
+            If there is a chunk of code that you are going to use over and over again,
+            putting that code into a function can make your life much easier. Then,
+            to run the code, all you have to do is call the function by typing one line.
+          %p
+            %span.highlight
+              In this example, we create a function that will draw a French flag. Because
+              we might want to draw a French flag in lots of different places, we make the
+              x- and y-coordinates of the flag variables.
+            When we call drawFrenchFlag(30, 100), the 30 is assigned to the variable <i>x</i>
+            and the 100 is assigned to the variable <i>y</i> inside of the function. Now we can
+            easily draw as many French flags as we want!
+          = render 'lessons/relevant', relevant: [:fill_rect, :fill_style, :coordinates, :variables, :functions]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('basic_cityscape_stage1_example3');
+                var context = canvas.getContext('2d');
+
+                function drawFrenchFlag(x, y) {
+                  context.fillStyle = '#0055A4';
+                  context.fillRect(x, y, 20, 40);
+
+                  context.fillStyle = '#FFFFFF';
+                  context.fillRect(x + 20, y, 20, 40);
+
+                  context.fillStyle = '#EF4135';
+                  context.fillRect(x + 40, y, 20, 40);
+                }
+
+                drawFrenchFlag(30, 100);
+                drawFrenchFlag(150, 50);
+                drawFrenchFlag(300, 180);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#basic_cityscape_stage1_example3
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %p
+            %span.highlight
+              Write a function to draw the building from Challenge 2.
+            The function will be passed four values that it will assign to the following
+            four variables (called parameters). The first parameter, <i>leftX</i>, is the
+            x-coordinate of the left side of the building. The second parameter, <i>groundY</i>,
+            is the y-coordinate of the base of the building. The third parameter, <i>units</i>,
+            is the number of office units on a floor. The fourth parameter, <i>floors</i>, is
+            the number of floors in the building.
+          %p
+            %span.highlight
+              Then use the function to draw two buildings. The first building will have
+              12 floors and 8 office units per floor, and it will be sitting on the ground
+              at (50, 300). The second building will have 18 floors and 6 office units per
+              floor, and it will be sitting on the ground at (200, 300).
+          %p
+            Just like with Challenge 2, both buildings should be gray (color #999999) and each
+            office should be 16 x 16 width 4 pixels of padding around the whole building.
+          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :variables, :functions]
+          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'basic_cityscape_stage1_challenge2_editor'
+
+      .row.pt-2
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('basic_cityscape_stage1_challenge3');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors) {
+
+              // YOUR CODE FOR DRAWING A GENERAL BUILDING HERE
+
+            }
+
+            // YOUR CODE FOR DRAWING THE TWO SPECIFIC BUILDINGS HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/basic_cityscape_stage1/challenge3.png')
+            %canvas#basic_cityscape_stage1_challenge3
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use translate() to Position the Building
+          %p
+            Now we are going to clean up our functions a little bit.
+          %p
+            A well-written function is like a polite robot who comes over to your house
+            to do a job, and then leaves everything exactly as it found it. But if you
+            look at the function used to draw a French flag in the previous example, it
+            wasn't so tidy. It changed the context.fillStyle to '#EF4135' and never
+            changed it back.
+          %p
+            %span.highlight
+              To make our function more tidy, we are going to call context.save() at the
+              start of the function and context.restore() at the end of the function.
+            Calling context.save() saves the state of the context (including the current
+            context.fillStyle), and context.restore() restores the context to the last
+            time you saved it.
+          %p
+            %span.highlight
+              The other change we are going to make to our function is to use context.translate().
+            Notice how we had to do some calculations with x and y to figure out the positions
+            of the white and red rectangles in the French flag? Imagine you had to do the same
+            calculations for a hundred windows in a building. By using context.translate(), we can
+            eliminate a lot of that math.
+          %p
+            Calling context.translate() moves the origin of the context. If we move the origin
+            of the context to the top left corner of the flag, then we can draw the rectangles
+            in the flag as though the flag is positioned at (0, 0). The math is much easier.
+            However, when using context.translate(), it's even more important to save and then
+            restore the context. If you think changing the context.fillStyle is rude, changing
+            the origin of the context and not changing it back is much ruder!
+          %p
+            (As an exercise, try to predict what would happen if you took out the context.save()
+            and context.restore() from the function. You'll have to reset the example and then
+            refresh the entire page to get everything back to normal.)
+          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :functions, :save, :translate]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('basic_cityscape_stage1_example4');
+                var context = canvas.getContext('2d');
+
+                function drawFrenchFlag(x, y) {
+                  context.save();
+                  context.translate(x, y);
+
+                  context.fillStyle = '#0055A4';
+                  context.fillRect(0, 0, 20, 40);
+
+                  context.fillStyle = '#FFFFFF';
+                  context.fillRect(20, 0, 20, 40);
+
+                  context.fillStyle = '#EF4135';
+                  context.fillRect(40, 0, 20, 40);
+
+                  context.restore();
+                }
+
+                drawFrenchFlag(30, 100);
+                drawFrenchFlag(150, 50);
+                drawFrenchFlag(300, 180);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#basic_cityscape_stage1_example4
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %p
+            %span.highlight
+              Tidy up the drawBuilding() function from Challenge 3 in the same way.
+            Call context.save() at the start of the function and context.restore() at
+            the end of the function, and use context.translate() to move the origin
+            to (x, y).
+          %p
+            %span.highlight
+              Once the drawBuilding() function is tidy, draw one building with 12 office
+              units per floor and 6 floors sitting on the ground at (40, 300) and
+              another building with 10 office units per floor and 15 floors at (280, 300).
+          %p
+            Just like with Challenges 2 & 3, both buildings should be gray (color #999999) and each office
+            should be 16 x 16 width 4 pixels of padding around the whole building.
+          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :functions, :save, :translate]
+          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'basic_cityscape_stage1_challenge3_editor'
+
+      .row.py-2
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('basic_cityscape_stage1_challenge4');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors) {
+
+              // YOUR CODE FOR DRAWING A BUILDING HERE
+
+            }
+
+            // YOUR CODE FOR DRAWING THE TWO BUILDINGS HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/basic_cityscape_stage1/challenge4.png')
+            %canvas#basic_cityscape_stage1_challenge4
+          .alert

@@ -43,7 +43,9 @@
 
 %ul.nav.nav-sidebar
   - @challenge_paths.each do |challenge_path|
-    %li.section
+    - next if challenge_path[:experimental] && params[:section] != challenge_path[:slug]
+
+    %li.section.my-1
       %a.section_link{:href => '#', data: {section: challenge_path[:slug]}}= challenge_path[:name]
 
       %ul.nav.nav-sidebar{id: challenge_path[:slug], class: (params[:section] == challenge_path[:slug] ? 'collapse in' : 'collapse')}
