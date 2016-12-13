@@ -59,13 +59,14 @@
 
   #challenge1.challenge.row.py-3
     .col-xs-12
-      .row
+      .row.pb-2
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 1
 
-          .float-xs-right.px-2.pb-3
+          %figure.float-xs-right.px-2
             = image_tag('lessons/basic_cityscape/stage1/challenge1Example.png', class: 'img-fluid challenge-example')
+            %figcaption.text-xs-center.small Challenge 1 Sample Solution
 
           %p
             %span.highlight
@@ -151,12 +152,11 @@
           %h2.challenge-title.py-2
             Challenge 2
 
-          .float-xs-right.px-2
-            = image_tag('lessons/basic_cityscape/stage1/challenge2Visual1.png', class: 'img-fluid')
-
-            %br
+          %figure.float-xs-right.px-2
+            .pb-1= image_tag('lessons/basic_cityscape/stage1/challenge2Visual1.png', class: 'img-fluid')
 
             = image_tag('lessons/basic_cityscape/stage1/challenge2Example.png', class: 'img-fluid challenge-example')
+            %figcaption.text-xs-center.small Challenge 2 Sample Solution
 
           %p
             For our cityscape, we don't want think about buildings in terms of pixels.
@@ -291,6 +291,11 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 3
+
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/basic_cityscape/stage1/challenge3Example.png', class: 'img-fluid challenge-example')
+            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+
           %p
             %span.highlight
               Write a function to draw the building from Challenge 2.
@@ -418,6 +423,11 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 4
+
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/basic_cityscape/stage1/challenge4Example.png', class: 'img-fluid challenge-example')
+            %figcaption.text-xs-center.small Challenge 4 Sample Solution
+
           %p
             %span.highlight
               Tidy up the drawBuilding() function from Challenge 3 in the same way.

@@ -3,7 +3,7 @@ class LessonsController < ApplicationController
   def show
     lesson_slug = params[:id].to_sym
 
-    if ['reference', 'design'].include?(params[:section])
+    if ['reference', 'concepts'].include?(params[:section])
 
       lessons = instance_variable_get("@#{params[:section]}")
       lessons = lessons.values.flatten if lessons.try(:values).present?
@@ -19,7 +19,7 @@ class LessonsController < ApplicationController
 
         @challenge_count = @lessons[lesson_slug][:count]
         lessons = challenge_path[:reference].index(lesson_slug).present? ?
-          challenge_path[:reference] : challenge_path[:concept]
+          challenge_path[:reference] : challenge_path[:concepts]
         render_reference(lessons, lesson_slug)
 
       else

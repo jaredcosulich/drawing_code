@@ -9,36 +9,36 @@ describe("Basic Cityscape Stage 3", function() {
     page.destroy();
   });
 
-  describe("Challenge 1", function() {
-    var challengeNumber = 1;
-
-    it("succeeds with good solution", function() {
-      code = "\
-      "
-
-      expect(page.challengeResult(challengeNumber, code)).toBe(true);
-    });
-
-    it("fails if you don't translate again for the window", function() {
-      code = "\
-      "
-
-      expect(page.challengeResult(challengeNumber, code)).toBe(false);
-    });
-
-    it("fails if you don't set the window color", function() {
-      code = "\
-      "
-
-      expect(page.challengeResult(challengeNumber, code)).toBe(false);
-    });
-
-    it("fails if you restore too early", function() {
-      code = "\
-      "
-
-      expect(page.challengeResult(challengeNumber, code)).toBe(false);
-    });
-  });
+  // describe("Challenge 1", function() {
+  //   var challengeNumber = 1;
+  //
+  //   it("succeeds with good solution", function() {
+  //     code = "\
+  //     "
+  //
+  //     expect(page.challengeResult(challengeNumber, code)).toBe(true);
+  //   });
+  //
+  //   it("fails if you don't translate again for the window", function() {
+  //     code = "\
+  //     "
+  //
+  //     expect(page.challengeResult(challengeNumber, code)).toBe(false);
+  //   });
+  //
+  //   it("fails if you don't set the window color", function() {
+  //     code = "\
+  //     "
+  //
+  //     expect(page.challengeResult(challengeNumber, code)).toBe(false);
+  //   });
+  //
+  //   it("fails if you restore too early", function() {
+  //     code = "\
+  //     "
+  //
+  //     expect(page.challengeResult(challengeNumber, code)).toBe(false);
+  //   });
+  // });
 
 });
