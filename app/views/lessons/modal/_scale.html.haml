@@ -1,1 +1,26 @@
-SCALE
+.title context.scale()
+
+.content
+  .row
+    .col-xs-12
+      %p
+        context.scale(percentX, percentY) scales the x and y coordinates of the context, making drawings
+        larger or smaller.
+
+      %p
+        This code will produce the image below (note that all rectangles are defined to be the same size
+        in the code are drawn in different sizes due to the scale of the context):
+
+      %pre.mb-2
+        %code
+          :preserve
+            context.fillRect(25,25,25,25);
+            context.scale(2, 1);
+            context.fillRect(75,25,25,25);
+            context.scale(0.5, 1);
+            context.fillRect(150,25,25,25);
+            context.scale(2, 2);
+            context.fillRect(300,25,25,25);
+
+      %p.text-xs-center
+        = image_tag('lessons/scale/reference.png', class: 'img-fluid canvas-example')
