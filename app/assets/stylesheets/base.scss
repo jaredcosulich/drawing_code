@@ -112,10 +112,6 @@ img {
   .test-image {
     display: none;
   }
-
-  .challenge-example {
-    border: 1px solid #333;
-  }
 }
 
 .highlight {
@@ -143,4 +139,14 @@ img {
 
 .canvas-example {
   background-color: #EEEEEE;
+  border: 1px solid #333;
+}
+
+.reference-modal-content {
+  display: none;
+}
+
+pre {
+  background-color: #efefef;
+  padding: 12px;
 }

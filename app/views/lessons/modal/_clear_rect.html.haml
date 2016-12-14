@@ -1,0 +1,27 @@
+.title context.clearRect()
+
+.content
+  .row
+    .col-xs-12
+      %p
+        context.clearRect(x, y, width, height) will clear a rectangle starting
+        at (x, y) and clearing to the right width and down height.
+
+      %p This code will produce the image below:
+
+      %pre.mb-2
+        %code
+          :preserve
+            context.fillStyle = '#FF0000';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            context.clearRect(40, 20, 20, 100);
+            context.clearRect(60, 60, 20, 20);
+            context.clearRect(80, 20, 20, 100);
+
+            context.clearRect(120, 20, 60, 20);
+            context.clearRect(140, 40, 20, 60);
+            context.clearRect(120, 100, 60, 20);
+
+      %p.text-xs-center
+        = image_tag('lessons/clear_rect/reference.png', class: 'img-fluid canvas-example')

@@ -27,6 +27,8 @@
             - if @lessons[lesson][:count] > 0
               %span.tag.tag-default
                 %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+            .reference-modal-content{id: "reference-modal-#{id}"}
+              = render partial: "lessons/modal/#{id}"
 
 %ul.nav.nav-sidebar
   %li.section
@@ -40,6 +42,9 @@
           - if @lessons[lesson][:count] > 0
             %span.tag.tag-default
               %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+          .reference-modal-content{id: "reference-modal-#{lesson}"}
+            = render partial: "lessons/modal/#{lesson}"
+
 
 %ul.nav.nav-sidebar
   - @challenge_paths.each do |challenge_path|
@@ -62,7 +67,7 @@
 
         - challenge_path[:reference].each do |lesson|
           %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
-            = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug])
+            = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug], class: 'reference-link', data: {slug: lesson})
             - if @lessons[lesson][:count] > 0
               %span.tag.tag-default
                 %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
