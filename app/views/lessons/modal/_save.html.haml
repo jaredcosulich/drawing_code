@@ -1,1 +1,27 @@
-SAVE
+.title context.save()
+
+.content
+  .row
+    .col-xs-12
+      %p
+        context.save() saves all of the properties of the context. Then, when you call
+        context.restore() it will reset all changes to the context you've made.
+
+      %p
+        This code will produce the image below (note how the second rectangle is black
+        and closer to the original origin despite calling translate and setting the
+        fillStyle earlier):
+
+      %pre.mb-2
+        %code
+          :preserve
+            context.save();
+            context.translate(100,50);
+            context.fillStyle = 'red';
+            context.fillRect(10, 10, 25, 25);
+            context.restore();
+
+            context.fillRect(10, 10, 25, 25);
+
+      %p.text-xs-center
+        = image_tag('lessons/save/reference.png', class: 'img-fluid canvas-example')

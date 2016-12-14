@@ -1,1 +1,25 @@
-TRANSLATE
+.title context.translate()
+
+.content
+  .row
+    .col-xs-12
+      %p
+        context.translate(x, y) shifts the origin of the context (where the (0,0) point is)
+        right by x and down by y. This allows you to draw execute multiple commands in a specific
+        area of the context more easily.
+
+      %p
+        This code will produce the image below (note how the fillRect commands are
+        relative to the translation point (100,100)):
+
+      %pre.mb-2
+        %code
+          :preserve
+            context.translate(50,50);
+            context.fillStyle = 'red';
+            context.fillRect(0, 0, 100, 100);
+            context.fillStyle = 'green';
+            context.fillRect(10, 10, 25, 25);
+
+      %p.text-xs-center
+        = image_tag('lessons/translate/reference.png', class: 'img-fluid canvas-example')

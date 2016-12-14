@@ -1,1 +1,15 @@
-RANDOM
+.title Math.random()
+
+.content
+  .row
+    .col-xs-12
+      %p
+        Math.random() will produce a random decimal betweek 0 and 1. Calling it many
+        times will produce a different random number each time.
+      %p
+        Often you will multiple Math.random() by another number to get a random
+        integer larger than 1. You may also call Math.floor() or Math.ceil() on the result
+        to get an rounded integer.
+
+      %p.text-xs-center
+        = image_tag('lessons/random/reference.png', class: 'img-fluid canvas-example')
