@@ -1,1 +1,23 @@
-LINE TO
+.title context.lineTo()
+
+.content
+  .row
+    .col-xs-12
+      %p
+        context.lineTo(x, y) creates a path from the current point - default (0,0) -
+        to the point (x, y). In order to see the line you must call context.stroke().
+
+      %p This code will produce the image below:
+
+      %pre.mb-2
+        %code
+          :preserve
+            context.beginPath();
+            context.moveTo(50, 50);
+            context.lineTo(100,100);
+            context.lineTo(150, 50);
+            context.lineTo(200, 100);
+            context.stroke();
+
+      %p.text-xs-center
+        = image_tag('lessons/line_to/reference.png', class: 'img-fluid canvas-example')

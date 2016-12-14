@@ -1,1 +1,18 @@
-FILL RECT
+.title context.fillRect()
+
+.content
+  .row
+    .col-xs-12
+      %p
+        context.fillRect(x, y, width, height) will draw a rectangle starting
+        at (x, y) and filling the area "width" to the right and "height" down.
+
+      %p This code will produce the image below:
+
+      %pre.mb-2
+        %code
+          :preserve
+            context.fillRect(50, 50, 300, 200);
+
+      %p.text-xs-center
+        = image_tag('lessons/fill_rect/reference.png', class: 'img-fluid canvas-example')

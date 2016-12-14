@@ -5,33 +5,32 @@ class ApplicationController < ActionController::Base
   def lesson_map
     @lessons = {
       clear_rect: {count: 2, method: 'clearRect()'},
-      line_to: {count: 3, method: 'lineTo()'},
       fill_rect: {count: 3, method: 'fillRect()'},
       fill_style: {count: 2, method: 'fillStyle'},
+      floor: {count: 0, method: 'floor() / ceil()'},
+      line_to: {count: 3, method: 'lineTo()'},
       translate: {count: 1, method: 'translate()'},
+      random: {count: 0, method: 'random()'},
       save: {count: 1, method: 'save()'},
       scale: {count: 0, method: 'scale()'},
 
-      floor: {count: 0, method: 'floor() / ceil()'},
-      random: {count: 0, method: 'random()'},
-
-      variables: {count: 2, method: 'Variables'},
-      for_loops: {count: 1, method: 'For Loops'},
-      while_loops: {count: 0, method: 'While Loops'},
       coordinates: {count: 2, method: 'Coordinates'},
+      for_loops: {count: 1, method: 'For Loops'},
       functions: {count: 1, method: 'Functions'},
       switch_statements: {count: 0, method: 'Switch Statements'},
+      variables: {count: 2, method: 'Variables'},
+      while_loops: {count: 0, method: 'While Loops'},
     }
 
     @reference = {
       Context2D: [
         :clear_rect,
-        :line_to,
         :fill_rect,
         :fill_style,
+        :line_to,
         :save,
+        :scale,
         :translate,
-        :scale
       ],
       Math: [
         :floor,
@@ -56,12 +55,12 @@ class ApplicationController < ActionController::Base
         reference: [
           :fill_rect,
           :fill_style,
+          :floor,
           :line_to,
-          :save,
-          :translate,
-          :scale,
           :random,
-          :floor
+          :translate,
+          :save,
+          :scale,
         ],
         concepts: [
           :variables,
@@ -69,7 +68,7 @@ class ApplicationController < ActionController::Base
           :while_loops,
           :coordinates,
           :functions,
-          :switch_statements
+          :switch_statements,
         ]
       },
       {

@@ -1,1 +1,25 @@
-FILL STYLE
+.title context.fillStyle
+
+.content
+  .row
+    .col-xs-12
+      %p
+        context.fillStyle will set the color for all future fills such as
+        context.fillRect(). It's important to note theat context.fillStyle
+        is not a method, it is an attribute. You set it like so:
+
+      %pre.mb-2
+        %code
+          :preserve
+            context.fillStyle = 'red';
+
+      %p This code will produce the image below:
+
+      %pre.mb-2
+        %code
+          :preserve
+            context.fillStyle = 'rgb(0,255,0)';
+            context.fillRect(50, 50, 100, 200);
+
+      %p.text-xs-center
+        = image_tag('lessons/fill_style/reference.png', class: 'img-fluid canvas-example')

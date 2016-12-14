@@ -11,7 +11,7 @@ initReferenceModal = ->
     modal.find('.lesson-link').click ->
       modal.modal('hide')
       location.href = href
-      
+
     modal.modal('show')
     return false
 
