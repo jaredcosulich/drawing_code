@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
       switch_statements: {count: 0, method: 'Switch Statements'},
       variables: {count: 2, method: 'Variables'},
       while_loops: {count: 0, method: 'While Loops'},
+      
+      dng_coordinate_system: {count: 2, method: 'DNG Coordinate System'},
+      dng_fill_rect: {count: 3, method: 'DNG fillRect()'},
+      dng_fill_style: {count: 2, method: 'DNG fillStyle'}
     }
 
     @reference = {
@@ -79,6 +83,19 @@ class ApplicationController < ActionController::Base
         reference: [
         ],
         concepts: [
+        ]
+      },
+      {
+        experimental: true,
+        name: 'DNG Basic Cityscape',
+        slug: 'dng_basic_cityscape',
+        stages: [4, 3, 4, 4],
+        reference: [
+          :dng_fill_rect,
+          :dng_fill_style
+        ],
+        concepts: [
+          :dng_coordinate_system
         ]
       }
     ]
