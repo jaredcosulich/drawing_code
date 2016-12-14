@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="pFw0ju7URMA90aNSCV6GLG02zOyIEt0lpmJ9EZXETfmvKoA2TrB4iIO8X5Fp57ckISx1SW1sZCNIvs+eioIs0A==" />
+<meta name="csrf-token" content="/Kzmj6xx4aSSMK8cmcI2Be+rZBlikr7XWwNXUq6+fqr32lI3DBXd7CxdU9/5ewcNo7HdvIfsB9G13+Xdsfgfgw==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-6f63c625c08681e9560990020d8343a3a8275dddf55ba71f21e113c7d371401a-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -328,30 +328,154 @@ Concepts
 <span class='tag tag-default'>
 <small class='variables'>0 / 2</small>
 </span>
+<div class='reference-modal-content' id='reference-modal-variables'>
+<div class='title'>Variables</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+A variable allows you to store information to use or change later.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/variables/visual1-b8e07ae4cdc5e13b2ee681381d7fa203f8442ff2e8abeb1cf4012cfb427439db.png" alt="Visual1" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
 </li>
 <li>
 <a href="../../concepts/for_loops/index.html">For Loops</a>
 <span class='tag tag-default'>
 <small class='for_loops'>0 / 1</small>
 </span>
+<div class='reference-modal-content' id='reference-modal-for_loops'>
+<div class='title'>For Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+For-loops allow you to repeat code over and over again, potentially
+adjusting the code a little bit each time.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>for (var i=1; i<10; ++i) {&#x000A;  context.fillRect(10 * i, 75 - (5 * i), 10 * i, 10 * i);&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/for_loops/reference-ab4edc41708c315c5bc65d0ca07c1d49061a8185eb1420dbb6a056fa1be194bd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
 </li>
 <li>
 <a href="../../concepts/while_loops/index.html">While Loops</a>
+<div class='reference-modal-content' id='reference-modal-while_loops'>
+<div class='title'>While Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+While-loops allow you to repeat code over and over again until a condition is met.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>var i = 10;&#x000A;while (i < 200) {&#x000A;  context.fillRect(5, 5, i, 50);&#x000A;  i += 10;&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/while_loops/reference-b71bb24ae903b89143b68f3a561a455d71ca8c08674b34a2d9ffbde1753fc005.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
 </li>
 <li>
 <a href="../../concepts/coordinates/index.html">Coordinates</a>
 <span class='tag tag-default'>
 <small class='coordinates'>0 / 2</small>
 </span>
+<div class='reference-modal-content' id='reference-modal-coordinates'>
+<div class='title'>The Coordinate System</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+The coordinate system consists of X and Y values starting at (0, 0) in the upper left corner.
+</p>
+<p>
+As you move down the canvas Y gets larger. As you move right on the canvas X gets larger.
+</p>
+<p>
+So the point (100, 50) means you move right 100 and down 50.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid" src="../../../assets/lessons/coordinates/visual1-9de91fb2064dacecd3e79a9b5cf6a4729cc80cf6687d1f161ac7310eec49aa78.png" alt="Visual1" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
 </li>
 <li>
 <a href="../../concepts/functions/index.html">Functions</a>
 <span class='tag tag-default'>
 <small class='functions'>0 / 1</small>
 </span>
+<div class='reference-modal-content' id='reference-modal-functions'>
+<div class='title'>Functions</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Functions allow you to create chunks of code that can be called with
+different parameters.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>function fillColorRect(x, y, w, h, color) {&#x000A;  context.save();&#x000A;  context.fillStyle = color;&#x000A;  context.fillRect(x, y, w, h);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;fillColorRect(50, 50, 50, 50, 'red');&#x000A;fillColorRect(150, 50, 50, 50, 'blue');&#x000A;fillColorRect(250, 50, 50, 50, 'green');&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/functions/reference-2d2a07b0286e84d953685386201fe7e0bc20198460907e83c7895681f6b37a45.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
 </li>
 <li>
 <a href="../../concepts/switch_statements/index.html">Switch Statements</a>
+<div class='reference-modal-content' id='reference-modal-switch_statements'>
+<div class='title'>Switch Statements</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Switch statements allow you to perform different code depending on
+the value of a variable.
+</p>
+<p>
+The following code will produce the picture below (the switch statement
+only performs the code inside of case 2 because "i" is set to 2):
+</p>
+<pre class='mb-2'><code>var i = 2;&#x000A;switch (i) {&#x000A;  case 1:&#x000A;    context.fillStyle = 'red';&#x000A;    break;&#x000A;  case 2:&#x000A;    context.fillStyle = 'yellow';&#x000A;    break;&#x000A;  case 3:&#x000A;    context.fillStyle = 'blue';&#x000A;    break;&#x000A;}&#x000A;context.fillRect(50, 50, 100, 50);&#x000A;&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/switch_statements/reference-3ab4709f6beedfca8a197ba64c75c9604abf7ccdb78c9adc16cf035c60914e8b.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
 </li>
 </ul>
 </li>
@@ -430,34 +554,34 @@ Concepts
 <strong>Relevant Concepts</strong>
 </li>
 <li class='small '>
-<a href="../variables/index.html">Variables</a>
+<a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a>
 <span class='tag tag-default'>
 <small class='variables'>0 / 2</small>
 </span>
 </li>
 <li class='small '>
-<a href="../for_loops/index.html">For Loops</a>
+<a class="reference-link" data-slug="for_loops" href="../for_loops/index.html">For Loops</a>
 <span class='tag tag-default'>
 <small class='for_loops'>0 / 1</small>
 </span>
 </li>
 <li class='small '>
-<a href="../while_loops/index.html">While Loops</a>
+<a class="reference-link" data-slug="while_loops" href="../while_loops/index.html">While Loops</a>
 </li>
 <li class='small '>
-<a href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <span class='tag tag-default'>
 <small class='coordinates'>0 / 2</small>
 </span>
 </li>
 <li class='small '>
-<a href="../functions/index.html">Functions</a>
+<a class="reference-link" data-slug="functions" href="../functions/index.html">Functions</a>
 <span class='tag tag-default'>
 <small class='functions'>0 / 1</small>
 </span>
 </li>
 <li class='small '>
-<a href="../switch_statements/index.html">Switch Statements</a>
+<a class="reference-link" data-slug="switch_statements" href="../switch_statements/index.html">Switch Statements</a>
 </li>
 </ul>
 </li>
