@@ -42,8 +42,8 @@
           - if @lessons[lesson][:count] > 0
             %span.tag.tag-default
               %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
-          .reference-modal-content{id: "reference-modal-#{lesson}"}
-            = render partial: "lessons/modal/#{lesson}"
+          -# .reference-modal-content{id: "reference-modal-#{lesson}"}
+          -#   = render partial: "lessons/modal/#{lesson}"
 
 
 %ul.nav.nav-sidebar

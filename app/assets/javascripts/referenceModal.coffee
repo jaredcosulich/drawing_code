@@ -4,6 +4,8 @@ initReferenceModal = ->
     slug = $(this).data('slug')
     modal = $('#reference-modal')
     modalContent = $("#reference-modal-#{slug}")
+    return true if modalContent.length == 0
+
     modal.find('.modal-title').html(modalContent.find('.title').html())
     modal.find('.modal-body').html(modalContent.find('.content').html())
 
