@@ -128,9 +128,13 @@
             w inside the while loop because w is only defined inside of the drawBuilding() function.
             What we can do instead is use the variable units, which is the number of office units
             on a floor in the building, to calculate the value of x for the next loop.
+
       .row.py-1
         .col-xs-12
-          = image_tag('lessons/basic_cityscape/stage4/challenge1Visual1.png', style: 'background-color: #EEEEEE;')
+          %figure
+            = image_tag('lessons/basic_cityscape/stage4/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.small Challenge 1 Sample Solution
+
       .row
         .col-xs-12
           %p
@@ -317,9 +321,13 @@
             To draw a row of buildings at 0.6 scale that is at least 800 pixels long on the canvas,
             we need to adjust the condition inside our while loop. Instead of x < 800, we should keep
             drawing buildings as long as x < 800 / scale. For 0.6 scale, that works out to x < 1333.
+
       .row.py-1
         .col-xs-12
-          = image_tag('lessons/basic_cityscape/stage4/challenge2Visual1.png', style: 'background-color: #EEEEEE;')
+          %figure
+            = image_tag('lessons/basic_cityscape/stage4/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.small Challenge 2 Sample Solution
+
       .row
         .col-xs-12
           %p
@@ -485,9 +493,13 @@
           %p
             Inside the drawBuilding() function, set the context.fillStyle to buildingColor
             when drawing the building and roof, and to windowColor when drawing the windows.
+
       .row.py-1
         .col-xs-12
-          = image_tag('lessons/basic_cityscape/stage4/challenge3Visual1.png', style: 'background-color: #EEEEEE;')
+          %figure
+            = image_tag('lessons/basic_cityscape/stage4/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.small Challenge 3 Sample Solution
+
       .row
         .col-xs-12
           %p
@@ -714,9 +726,13 @@
               In the drawBuildingRow() function, change the while loop to run as long as
               x < canvas.width.
             This will ensure each row of buildings will cover the entire width of the canvas.
+
       .row.py-1
         .col-xs-12
-          = image_tag('lessons/basic_cityscape/stage4/challenge4Visual1.png', style: 'background-color: #EEEEEE;')
+          %figure
+            = image_tag('lessons/basic_cityscape/stage4/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.small Challenge 4 Sample Solution
+
       .row
         .col-xs-12
           %p

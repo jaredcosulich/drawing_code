@@ -120,15 +120,16 @@
           %p
             The dimensions of the four window types are given below:
           = image_tag('lessons/basic_cityscape/stage3/challenge1Visual1.png')
+
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/basic_cityscape/stage3/challenge1Visual2.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 1 Sample Solution
+
           %p
             Note: Since all four window types use the same dark gray color (
             %span.highlight>
               \#666666
             ), set the context.fillStyle in the drawBuilding() function before calling drawWindow().
-
-          .float-xs-right
-            = image_tag('lessons/basic_cityscape/stage3/challenge1Visual2.png', class: 'canvas-example mx-3')
-
           %p
             Draw three buildings with different sizes and window types.
           %p
@@ -275,6 +276,11 @@
           %p
             The dimensions of the four window types are given below, where w is the width of the building:
           = image_tag('lessons/basic_cityscape/stage3/challenge2Visual1.png')
+
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/basic_cityscape/stage3/challenge2Visual2.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 2 Sample Solution
+
           %p
             Note: Since all four roof types use the same gray color as the building (
             %span.highlight>
@@ -282,10 +288,6 @@
             ), we don't have to change the context.fillStyle in the drawBuilding() function before calling
             drawRoof(). Also, for a case that does nothing, either leave the case out or include the case with
             a comment explaining what it is supposed to do (make sure to include the break statement).
-
-          .float-xs-right
-            = image_tag('lessons/basic_cityscape/stage3/challenge2Visual2.png', class: 'canvas-example mx-3')
-
           %p
             Draw three buildings with different sizes, window, and roof types.
           %p
