@@ -6489,28 +6489,35 @@ img.bordered {
 /* line 112, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .challenge .test-image {
   display: none; }
-/* line 116, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
-.challenge .challenge-example {
-  border: 1px solid #333; }
 
-/* line 121, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 117, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .highlight {
   background-color: #FDF2B1; }
 
-/* line 126, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 122, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .code-preview .code-preview-link {
   color: #0275d8;
   cursor: pointer; }
-/* line 131, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 127, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .code-preview .code-preview-view {
   display: none; }
-  /* line 134, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+  /* line 130, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
   .code-preview .code-preview-view .code-preview-code {
     height: 300px; }
-/* line 139, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 135, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .code-preview .code-preview-missing {
   display: none; }
 
-/* line 144, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 140, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .canvas-example {
-  background-color: #EEEEEE; }
+  background-color: #EEEEEE;
+  border: 1px solid #333; }
+
+/* line 145, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.reference-modal-content {
+  display: none; }
+
+/* line 149, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+pre {
+  background-color: #efefef;
+  padding: 12px; }

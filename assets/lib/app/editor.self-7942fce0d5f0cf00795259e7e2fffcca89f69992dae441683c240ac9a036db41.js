@@ -115,7 +115,7 @@
         } catch (error2) {
           error = error2;
           errorLineNumber = 'N/A';
-          console.log('Could not split stack.', e.stack);
+          console.log('Could not split stack.', this.aceEditor.getValue(), e.stack);
         }
         return this.log("<strong class='text-danger'>Error:</strong> " + e.message + " (Line " + errorLineNumber + ")");
       }
