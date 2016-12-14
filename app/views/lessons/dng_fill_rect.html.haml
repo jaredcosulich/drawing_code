@@ -1,0 +1,157 @@
+#dng_fill_rect.lesson
+  %h1 CanvasRenderingContext2D.fillRect()
+
+  = render 'lessons/challenge_count'
+
+  .official.row.py-3
+    .col-xs-6
+      %h2 The Official Description
+      %p.py-2
+        The CanvasRenderingContext2D.fillRect() method of the Canvas 2D API draws a
+        filled rectangle at (x, y) position whose size is determined by width and
+        height and whose style is determined by the fillStyle attribute.
+      .source.text-xs-right
+        = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect', target: '_blank')
+
+    .col-xs-6
+      = image_tag('lessons/dng_fill_rect/visual1.png', class: 'img-fluid')
+
+
+  .simple.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Draw A Rectangle and Fill It In
+          %p.pt-2
+            context.fillRect() draws a rectangle and fills it in with the color
+            defined by context.fillStyle.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_interactive1_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_fill_rect_interactive1');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = 'red';
+                context.fillRect(100,100,100,50);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_fill_rect_interactive1
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Example
+          %p.pt-2
+            Using fillRect() to draw the flag of Madagascar.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_fill_rect_example1');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = 'white';
+                context.fillRect(50, 50, 100, 200);
+
+                context.fillStyle = '#EB4D37';
+                context.fillRect(150, 50, 200, 100);
+
+                context.fillStyle = '#337D3F';
+                context.fillRect(150, 150, 200, 100);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_fill_rect_example1
+
+
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title Challenge 1
+          %p.py-2 Draw a red rectangle covering the x at (100,100).
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_fill_rect_challenge1');
+            var context = canvas.getContext('2d');
+
+            // YOUR CODE HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_fill_rect/challenge1.png')
+            %canvas#dng_fill_rect_challenge1
+          .alert
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title Challenge 2
+          %p.py-2 Draw a rectangle that covers the two x's at (100,100), and (100,200).
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_fill_rect_challenge2');
+            var context = canvas.getContext('2d');
+
+            // YOUR CODE HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_fill_rect/challenge2.png')
+            %canvas#dng_fill_rect_challenge2
+          .alert
+
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title Challenge 3
+          %p.py-2
+            Draw the flag of France by drawing rectangles covering the x's at
+            (100,150) with #0F278F, (200,150) with white, and (300,150) with #DB5443.
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_fill_rect_challenge3');
+            var context = canvas.getContext('2d');
+
+            // YOUR CODE HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_fill_rect/challenge3.png')
+            %canvas#dng_fill_rect_challenge3
+          .alert
