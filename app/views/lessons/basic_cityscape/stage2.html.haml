@@ -87,8 +87,11 @@
           %h2.challenge-title.py-2
             Challenge 1
 
-          .float-xs-right
+          %figure.float-xs-right.px-2
             = image_tag('lessons/basic_cityscape/stage1/challenge2Visual1.png')
+            %br
+            = image_tag('lessons/basic_cityscape/stage2/challenge1Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 1 Sample Solution
 
           %p
             Copy the drawBuilding() function that you wrote in Stage 1 Challenge 4.
@@ -219,8 +222,11 @@
           %h2.challenge-title.py-2
             Challenge 2
 
-          .float-xs-right
+          %figure.float-xs-right.px-2
             = image_tag('lessons/basic_cityscape/stage1/challenge2Visual1.png')
+            %br
+            = image_tag('lessons/basic_cityscape/stage2/challenge2Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 2 Sample Solution
 
           %p
             Replace the code for drawing one window in your drawBuilding() function
@@ -355,9 +361,14 @@
   #challenge3.challenge.row.py-3
     .col-xs-12
       .row
-        .col-xs-6
+        .col-xs-12
           %h2.challenge-title.py-2
             Challenge 3
+
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/basic_cityscape/stage2/challenge3Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+
           %p
             Replace the code for drawing a top row of windows in your drawBuilding()
             function from Challenge 2 with two for loops (one inside the other) that
@@ -369,10 +380,6 @@
             %span.highlight
               Draw the same dark gray window (color #666666) that is 8 pixels wide and 10
               pixels tall at (4, 2) in each office on every floor.
-        .col-xs-6
-          = image_tag('lessons/basic_cityscape/stage1/challenge2Visual1.png')
-      .row
-        .col-xs-12
           %p
             %span.highlight
               Then use the drawBuilding() function to draw a building that is 7 office
