@@ -1,1 +1,21 @@
-FOR LOOPS
+.title For Loops
+
+.content
+  .row
+    .col-xs-12
+      %p
+        For-loops allow you to repeat code over and over again, potentially
+        adjusting the code a little bit each time.
+
+      %p
+        The following code will produce the picture below:
+
+      %pre.mb-2
+        %code
+          :preserve
+            for (var i=1; i<10; ++i) {
+              context.fillRect(10 * i, 75 - (5 * i), 10 * i, 10 * i);
+            }
+
+      %p.text-xs-center
+        = image_tag('lessons/for_loops/reference.png', class: 'img-fluid canvas-example')

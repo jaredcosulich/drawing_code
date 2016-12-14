@@ -1,1 +1,22 @@
-WHILE LOOPS
+.title While Loops
+
+.content
+  .row
+    .col-xs-12
+      %p
+        While-loops allow you to repeat code over and over again until a condition is met.
+
+      %p
+        The following code will produce the picture below:
+
+      %pre.mb-2
+        %code
+          :preserve
+            var i = 10;
+            while (i < 200) {
+              context.fillRect(5, 5, i, 50);
+              i += 10;
+            }
+
+      %p.text-xs-center
+        = image_tag('lessons/while_loops/reference.png', class: 'img-fluid canvas-example')

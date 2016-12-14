@@ -1,1 +1,28 @@
-FUNCTIONS
+.title Functions
+
+.content
+  .row
+    .col-xs-12
+      %p
+        Functions allow you to create chunks of code that can be called with
+        different parameters.
+
+      %p
+        The following code will produce the picture below:
+
+      %pre.mb-2
+        %code
+          :preserve
+            function fillColorRect(x, y, w, h, color) {
+              context.save();
+              context.fillStyle = color;
+              context.fillRect(x, y, w, h);
+              context.restore();
+            }
+
+            fillColorRect(50, 50, 50, 50, 'red');
+            fillColorRect(150, 50, 50, 50, 'blue');
+            fillColorRect(250, 50, 50, 50, 'green');
+
+      %p.text-xs-center
+        = image_tag('lessons/functions/reference.png', class: 'img-fluid canvas-example')

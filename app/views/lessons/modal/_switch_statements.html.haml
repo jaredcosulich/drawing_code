@@ -1,1 +1,33 @@
-SWITCH STATEMENT
+.title Switch Statements
+
+.content
+  .row
+    .col-xs-12
+      %p
+        Switch statements allow you to perform different code depending on
+        the value of a variable.
+
+      %p
+        The following code will produce the picture below (the switch statement
+        only performs the code inside of case 2 because "i" is set to 2):
+
+      %pre.mb-2
+        %code
+          :preserve
+            var i = 2;
+            switch (i) {
+              case 1:
+                context.fillStyle = 'red';
+                break;
+              case 2:
+                context.fillStyle = 'yellow';
+                break;
+              case 3:
+                context.fillStyle = 'blue';
+                break;
+            }
+            context.fillRect(50, 50, 100, 50);
+
+
+      %p.text-xs-center
+        = image_tag('lessons/switch_statements/reference.png', class: 'img-fluid canvas-example')
