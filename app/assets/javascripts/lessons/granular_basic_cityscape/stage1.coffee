@@ -43,27 +43,21 @@ initBasicCityscapeStage1Challenge2 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  # points = [
-  #   new Test.Point(x: 120, y: 280, colors: [153,153,153], canvas: canvas),
-  #   new Test.Point(x: 256, y: 112, colors: [153,153,153], canvas: canvas)
-  # ]
-  #
-  # challenge.find('.run').click ->
-  #   setTimeout(( ->
-  #     success = true
-  #     for point in points
-  #       if point.test() < 1
-  #         success = false
-  #         break
-  #
-  #     if success
-  #       message = '<strong>Success!</strong> Your gray building is sitting on the x!'
-  #       App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge2')
-  #     else
-  #       message = 'Nice try, but you need to draw a gray (#999999) building sitting on the x.'
-  #
-  #     canvas.alert(message, success)
-  #   ), 200)
+  solution = (canvas, context) ->
+    context.fillStyle = '#999999'
+    context.fillRect(60, 280 - 210, 90, 210)
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> Your gray building is sitting on the x!'
+        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge2')
+      else
+        message = 'Nice try, but you need to draw a gray (#999999) building sitting on the x.'
+
+      canvas.alert(message, success)
 
 
 initBasicCityscapeStage1Challenge3 = (page) ->

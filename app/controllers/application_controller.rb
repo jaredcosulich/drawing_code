@@ -89,7 +89,7 @@ class ApplicationController < ActionController::Base
         experimental: true,
         name: 'Basic Cityscape',
         slug: 'granular_basic_cityscape',
-        stages: [2],
+        stages: [2, 3, 4, 4],
         reference: [
         ],
         concepts: [
