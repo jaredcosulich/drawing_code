@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       switch_statements: {count: 0, method: 'Switch Statements'},
       variables: {count: 2, method: 'Variables'},
       while_loops: {count: 0, method: 'While Loops'},
-      
+
       dng_coordinate_system: {count: 2, method: 'DNG Coordinate System'},
       dng_fill_rect: {count: 3, method: 'DNG fillRect()'},
       dng_fill_style: {count: 2, method: 'DNG fillStyle'}
@@ -80,6 +80,16 @@ class ApplicationController < ActionController::Base
         name: 'Snake Game',
         slug: 'snake_game',
         stages: [],
+        reference: [
+        ],
+        concepts: [
+        ]
+      },
+      {
+        experimental: true,
+        name: 'Basic Cityscape',
+        slug: 'granular_basic_cityscape',
+        stages: [2],
         reference: [
         ],
         concepts: [
