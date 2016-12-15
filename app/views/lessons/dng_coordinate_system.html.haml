@@ -1,49 +1,61 @@
 #dng_coordinate_system.lesson
-  %h1 Coordinates within 2D Context
+  %h1 The 2D Context's Coordinate System
 
   = render 'lessons/challenge_count'
 
-  .official.row.py-3
+  .description.row.py-3
     .col-xs-6
-      %h2 The Coordinate System
-      %p.pt-2
-        The 2D context provided by the canvas has a coordinate system consisting of X and Y values.
+      %h2.py-2
+        Overview
       %p
-        Starting at the top, left of the canvas is the point (0, 0).
+        When drawing on a canvas, the canvas's context uses a coordinate system to
+        position lines, rectangles, and other shapes on the canvas.
       %p
-        As you move down the canvas Y gets larger.
+        By default, the origin (0, 0) of the context's coordinate system is the top
+        left corner of the canvas. The x-coordinate is the distance of a point from the
+        origin moving to the right and the y-coordinate is the distance from the origin
+        moving down.
       %p
-        As you move right on the canvas X gets larger.
-      %p
-        So the point (100, 50) means you move right 100 and down 50.
-
+        For example, the point (80, 50) is 80 pixels to the right of the origin and 50
+        pixels down.
 
     .col-xs-6
-      = image_tag('lessons/dng_coordinate_system/visual1.png', class: 'img-fluid')
+      = image_tag('lessons/dng_coordinate_system/overviewVisual1.png', class: 'img-fluid')
 
 
-  .simple.row.py-3
+  .example.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2
-            Explore The Coordinate System.
-          %p.pt-2
-            Mouse over the grey area to the right to see where your mouse is in
-            the coordinate system.
+          %h2.py-2
+            Explore the Coordinate System
+          %p
+            To see the coordinates of a point on the canvas, mouse over the grey area in
+            the canvas to the right.
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_interactive1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_example1_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_coordinate_system_interactive1');
+                var canvas = document.getElementById('dng_coordinate_system_example1');
                 var context = canvas.getContext('2d');
 
-                context.font= '30px Arial';
+                context.font= '16px Arial';
+                context.textBaseline = 'middle';
+                context.fillStyle = '#000000';
+                
+                canvas.addEventListener('mouseout', function(e) {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                });
+                
                 canvas.addEventListener('mousemove', function(e) {
                   context.clearRect(0, 0, canvas.width, canvas.height);
-                  text = 'Your mouse is at (' + e.layerX + ', ' + e.layerY + ')';
-                  context.fillText(text, 50, 100);
+                  context.beginPath();
+                  context.arc(e.layerX, e.layerY, 3, 0, 2 * Math.PI, false);
+                  context.closePath();
+                  context.fill();
+                  var text = '(' + e.layerX + ', ' + e.layerY + ')';
+                  context.fillText(text, e.layerX + 5, e.layerY);
                 });
 
             .visual.col-xs-6
@@ -51,53 +63,149 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_coordinate_system_interactive1
-
+                %canvas#dng_coordinate_system_example1
 
 
   #challenge1.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 1
-          %p.py-2 Draw a square that starts in the top left corner of the canvas and is 100px tall and 100px wide.
+          %h2.challenge-title.py-2
+            Challenge 1
+          %p
+            Use the
+            %span{:style => 'font-family: Menlo; font-size: 14.4px; background-color: #EEEEEE'}<
+              drawPoint()
+            function to draw three points. The first point at (50, 150),
+            the second point at (200, 100), and the third point at (250, 200).
+          %p
+            For example, to draw a point at (80, 120), you would type:
+          %pre
+            %code
+              :preserve
+                drawPoint(80, 120);
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('dng_coordinate_system_challenge1');
             var context = canvas.getContext('2d');
-
+            
+            context.font= '16px Arial';
+            context.textBaseline = 'middle';
+            context.fillStyle = '#0000FF';
+            
+            
             // YOUR CODE HERE
+            
+            
+            function drawPoint(x, y) {
+              context.beginPath();
+              context.arc(x, y, 3, 0, 2 * Math.PI, false);
+              context.closePath();
+              context.fill();
+              var text = '(' + x + ', ' + y + ')';
+              context.fillText(text, x + 5, y);
+            }
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_coordinate_system/challenge1.png')
             %canvas#dng_coordinate_system_challenge1
           .alert
+
 
   #challenge2.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 2
-          %p.py-2
-            The canvas is 360px tall and 600px wide. Draw a rectangle that covers the whole canvas.
+          %h2.challenge-title.py-2
+            Challenge 2
+          %p
+            Use the
+            %span{:style => 'font-family: Menlo; font-size: 14.4px; background-color: #EEEEEE'}<
+              drawPoint()
+            function to draw points at the four corners of the rectangle.
+          %p
+            The top left corner of the rectangle is at (80, 40). The width of the rectangle
+            is 200 and the height is 120.
+          %p
+            Hint: The bottom right corner of the rectangle is 200 to the right and 120 down from
+            the top left corner of the rectangle. The top left corner is 80 to the right and 40 down
+            from the origin. Where is the bottom right corner relative to the origin?
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('dng_coordinate_system_challenge2');
             var context = canvas.getContext('2d');
-
+            
+            context.fillStyle = '#0000FF';
+            
+            
             // YOUR CODE HERE
+            
+            
+            function drawPoint(x, y) {
+              context.beginPath();
+              context.arc(x, y, 3, 0, 2 * Math.PI, false);
+              context.closePath();
+              context.fill();
+            }
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_coordinate_system/challenge2.png')
             %canvas#dng_coordinate_system_challenge2
+          .alert
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %p
+            Use the
+            %span{:style => 'font-family: Menlo; font-size: 14.4px; background-color: #EEEEEE'}<
+              drawPoint()
+            function to draw points at the bottom left corner of the green rectangle and the
+            top right corner of the yellow rectangle.
+          %p
+            The top left corner of the green rectangle is at (50, 200), and its width is 140 and
+            its height is 60. The width of the yellow rectangle is 220 and its height is 180.
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_coordinate_system_challenge3');
+            var context = canvas.getContext('2d');
+            
+            context.fillStyle = '#0000FF';
+            
+            
+            // YOUR CODE HERE
+            
+            
+            function drawPoint(x, y) {
+              context.beginPath();
+              context.arc(x, y, 3, 0, 2 * Math.PI, false);
+              context.closePath();
+              context.fill();
+            }
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_coordinate_system/challenge3.png')
+            %canvas#dng_coordinate_system_challenge3
           .alert
