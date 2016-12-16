@@ -53,6 +53,7 @@ class ApplicationController < ActionController::Base
 
     @challenge_paths = [
       {
+        experimental: true,
         name: 'Basic Cityscape',
         slug: 'basic_cityscape',
         stages: [4, 3, 4, 4],
@@ -86,7 +87,6 @@ class ApplicationController < ActionController::Base
         ]
       },
       {
-        experimental: true,
         name: 'Basic Cityscape',
         slug: 'granular_basic_cityscape',
         stages: [6, 3, 4, 4],
