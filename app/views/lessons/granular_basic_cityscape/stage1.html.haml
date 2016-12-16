@@ -484,7 +484,6 @@
             %canvas#granular_basic_cityscape_stage1_challenge5
           .alert
 
--#
   .example.row.py-3
     .col-xs-12
       .row
@@ -561,44 +560,50 @@
                 %canvas#granular_basic_cityscape_stage1_example4
 
 
-  #challenge4.challenge.row.py-3
+  #challenge6.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 4
+            Challenge 6
 
           %figure.float-xs-right.px-2
-            = image_tag('lessons/granular_basic_cityscape/stage1/challenge4Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 4 Sample Solution
+            = image_tag('lessons/granular_basic_cityscape/stage1/challenge6Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 6 Sample Solution
 
           %p
-            %span.highlight
-              Tidy up the drawBuilding() function from Challenge 3 in the same way.
-            Call context.save() at the start of the function and context.restore() at
-            the end of the function, and use context.translate() to move the origin
-            to (x, y).
+            This time, write the drawBuilding() function, but using
+            %span.highlight context.save(), context.translate(), and context.retore()
+            provided in the function. You'll need to adjust your code from Challenge 5
+            accordingly.
           %p
             %span.highlight
-              Once the drawBuilding() function is tidy, draw one building with 12 office
+              Then use the drawBuilding function to draw one building with 12 office
               units per floor and 6 floors sitting on the ground at (40, 300) and
               another building with 10 office units per floor and 15 floors at (280, 300).
           %p
             Just like with Challenges 2 & 3, both buildings should be gray (color #999999) and each office
             should be 16 x 16 width 4 pixels of padding around the whole building.
           = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :functions, :save, :translate]
-          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'granular_basic_cityscape_stage1_challenge3_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 5, editor_id: 'granular_basic_cityscape_stage1_challenge5_editor'
 
       .row.py-2
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge4_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge6_editor'} do
           :preserve
-            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge4');
+            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge6');
             var context = canvas.getContext('2d');
 
             function drawBuilding(leftX, groundY, units, floors) {
+              context.save();
+
+              var width = (units * 16) + (4 * 2);
+              var height = (floors * 16) + (4 * 2);
+
+              context.translate(leftX, groundY - height);
 
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
+              context.restore();
             }
 
             // YOUR CODE FOR DRAWING THE TWO BUILDINGS HERE
@@ -608,6 +613,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge4.png')
-            %canvas#granular_basic_cityscape_stage1_challenge4
+            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge6.png')
+            %canvas#granular_basic_cityscape_stage1_challenge6
           .alert

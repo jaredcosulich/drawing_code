@@ -5,6 +5,7 @@ initBasicCityscapeStage1Challenges = ->
     initBasicCityscapeStage1Challenge3(page)
     initBasicCityscapeStage1Challenge4(page)
     initBasicCityscapeStage1Challenge5(page)
+    initBasicCityscapeStage1Challenge6(page)
 
 
 initBasicCityscapeStage1Challenge1 = (page) ->
@@ -124,6 +125,27 @@ initBasicCityscapeStage1Challenge5 = (page) ->
       canvas.alert(message, success)
 
 
+initBasicCityscapeStage1Challenge6 = (page) ->
+  challenge = page.find('#challenge6')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  testCode = new Test.Code(code: challenge6Solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You\'ve successfully used translate() to draw your buildings!'
+        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge6')
+      else
+        message = '''
+          Nice try, but you need to draw the buildings as described.
+          If you don\'t see anything make sure you aren\'t translating
+          and then drawing the rectangle without factoring in the translation.
+        '''
+
+      canvas.alert(message, success)
+
 $(document).on('initialization:complete', initBasicCityscapeStage1Challenges)
 
 
@@ -177,3 +199,17 @@ challenge5Solution = (canvas, context) ->
   context.stroke()
   drawBuilding 50, ground, 8, 12
   drawBuilding 200, ground, 6, 18
+
+
+challenge6Solution = (canvas, context) ->
+  drawBuilding = (leftX, groundY, units, floors) ->
+    context.save()
+    width = units * 16 + 4 * 2
+    height = floors * 16 + 4 * 2
+    context.translate leftX, groundY - height
+    context.fillStyle = '#999999'
+    context.fillRect 0, 0, width, height
+    context.restore()
+
+  drawBuilding 40, 300, 12, 6
+  drawBuilding 280, 300, 10, 15
