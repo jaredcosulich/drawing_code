@@ -4,7 +4,7 @@ initBasicCityscapeStage1Challenges = ->
     initBasicCityscapeStage1Challenge2(page)
     initBasicCityscapeStage1Challenge3(page)
     initBasicCityscapeStage1Challenge4(page)
-    # initBasicCityscapeStage1Challenge5(page)
+    initBasicCityscapeStage1Challenge5(page)
 
 
 initBasicCityscapeStage1Challenge1 = (page) ->
@@ -106,6 +106,23 @@ initBasicCityscapeStage1Challenge4 = (page) ->
       canvas.alert(message, success)
 
 
+initBasicCityscapeStage1Challenge5 = (page) ->
+  challenge = page.find('#challenge5')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  testCode = new Test.Code(code: challenge5Solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You\'ve draw two buildings using a function!'
+        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge5')
+      else
+        message = 'Nice try, but you need to buildings of color #999999 that meet the description provided.'
+
+      canvas.alert(message, success)
+
 
 $(document).on('initialization:complete', initBasicCityscapeStage1Challenges)
 
@@ -140,3 +157,23 @@ challenge4Solution = (canvas, context) ->
   context.fillStyle = '#999999'
   context.fillRect x, y, w, h
   drawOffices x, y, w, h
+
+
+challenge5Solution = (canvas, context) ->
+  ground = 300
+
+  drawBuilding = (leftX, groundY, units, floors) ->
+    context.save()
+    context.fillStyle = '#999999'
+    width = units * 16 + 4 * 2
+    height = floors * 16 + 4 * 2
+    context.fillRect leftX, groundY - height, width, height
+    context.restore()
+    return
+
+  context.beginPath()
+  context.moveTo 0, ground
+  context.lineTo 900, ground
+  context.stroke()
+  drawBuilding 50, ground, 8, 12
+  drawBuilding 200, ground, 6, 18
