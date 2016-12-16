@@ -91,8 +91,22 @@ class ApplicationController < ActionController::Base
         slug: 'granular_basic_cityscape',
         stages: [2, 3, 4, 4],
         reference: [
+          :fill_rect,
+          :fill_style,
+          :floor,
+          :line_to,
+          :random,
+          :translate,
+          :save,
+          :scale,
         ],
         concepts: [
+          :variables,
+          :for_loops,
+          :while_loops,
+          :coordinates,
+          :functions,
+          :switch_statements,
         ]
       },
       {

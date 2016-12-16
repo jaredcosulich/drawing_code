@@ -2,8 +2,9 @@ initBasicCityscapeStage1Challenges = ->
   if (page = $('#granular_basic_cityscape_stage1')).length > 0
     initBasicCityscapeStage1Challenge1(page)
     initBasicCityscapeStage1Challenge2(page)
-    # initBasicCityscapeStage1Challenge3(page)
-    # initBasicCityscapeStage1Challenge4(page)
+    initBasicCityscapeStage1Challenge3(page)
+    initBasicCityscapeStage1Challenge4(page)
+    # initBasicCityscapeStage1Challenge5(page)
 
 
 initBasicCityscapeStage1Challenge1 = (page) ->
@@ -65,29 +66,26 @@ initBasicCityscapeStage1Challenge3 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  points = [
-    new Test.Point(x: 50, y: 300, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 186, y: 100, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 200, y: 300, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 304, y: 4, colors: [153, 153, 153], canvas: canvas)
-  ]
+  solution = (canvas, context) ->
+    ground = 240
+    width = 200
+    height = 80
+    x = 60
+    y = ground - height
+    context.fillStyle = '#666666'
+    context.fillRect x, y, width, height
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
-    setTimeout(( ->
-      success = true
-      for point in points
-        if point.test() < 1
-          success = false
-          break
-
+    testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> Your gray building is covering on the x\'s!'
+        message = '<strong>Success!</strong> Your gray building is the proper size and in the proper position!'
         App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge3')
       else
-        message = 'Nice try, but you need to draw a gray building covering the x\'s.'
+        message = 'Nice try, but you need to gray building (#666666) that is the proper size and in the proper position.'
 
       canvas.alert(message, success)
-    ), 200)
 
 
 initBasicCityscapeStage1Challenge4 = (page) ->
@@ -95,49 +93,50 @@ initBasicCityscapeStage1Challenge4 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  points = [
-    new Test.Point(x: 40, y: 300, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 240, y: 196, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 280, y: 300, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 448, y: 52, colors: [153, 153, 153], canvas: canvas)
-  ]
+  testCode = new Test.Code(code: challenge4Solution, canvas: canvas)
 
   challenge.find('.run').click ->
-    setTimeout(( ->
-      success = true
-      for point in points
-        if point.test() < 1
-          success = false
-          break
-
+    testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> Your gray building is covering on the x\'s!'
+        message = '<strong>Success!</strong> Your gray building matches the description!'
         App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge4')
       else
-        message = 'Nice try, but you need to draw a gray building covering the x\'s.'
+        message = 'Nice try, but you need to draw a gray (#999999) building that is in the proper position and is the proper width and height.'
 
       canvas.alert(message, success)
-    ), 200)
+
 
 
 $(document).on('initialization:complete', initBasicCityscapeStage1Challenges)
 
 
 
-#
-# context.moveTo(52, 223);
-# context.lineTo(58, 229);
-# context.moveTo(58, 223);
-# context.lineTo(52, 229);
+challenge4Solution = (canvas, context) ->
+  ground = 280
+  units = 8
+  floors = 10
+  w = units * 16 + 4 * 2
+  h = floors * 16 + 4 * 2
+  x = 120
+  y = ground - h
 
+  drawOffices = (x, y, w, h) ->
+    u = Math.floor((w - 4) / 16)
+    f = Math.floor((h - 4) / 16)
+    context.save()
+    context.translate x + 4, y + 4
+    context.strokeWidth = 1
+    context.strokeStyle = '#000000'
+    i = 0
+    while i < f
+      j = 0
+      while j < u
+        context.strokeRect 16 * j, 16 * i, 16, 16
+        j++
+      i++
+    context.restore()
+    return
 
-
-
-# context.fillStyle = '#0F278F';
-# context.fillRect(50, 50, 100, 200);
-#
-# context.fillStyle = 'white';
-# context.fillRect(150, 50, 100, 200);
-#
-# context.fillStyle = '#DB5443';
-# context.fillRect(250, 50, 100, 200);
+  context.fillStyle = '#999999'
+  context.fillRect x, y, w, h
+  drawOffices x, y, w, h

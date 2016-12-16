@@ -180,23 +180,6 @@
             %canvas#granular_basic_cityscape_stage1_challenge2
           .alert
 
--#
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   .example.row.py-3
     .col-xs-12
@@ -239,19 +222,81 @@
               .canvas
                 %canvas#granular_basic_cityscape_stage1_example2
 
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
 
-  #challenge2.challenge.row.py-3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/granular_basic_cityscape/stage1/challenge3Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+
+          %p
+            This time
+            %span.highlight use a variable
+            to calculate the x and y position of the building and the width and height (
+            = link_to_lesson('more info about variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+            ). Setting a variable looks like this:
+
+          %pre
+            %code
+              :preserve
+                var x = 9;
+
+          %p
+            Using these variables draw a
+            %span.highlight gray (#666666) building
+            that is positioned on the
+            %span.highlight ground at (60, 240)
+            and is
+            %span.highlight 80 pixels tall and 200 pixels wide.
+
+          %p In the end your building should look like the example provided to the right.
+
+          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_style, :fill_rect]
+          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'granular_basic_cityscape_stage1_challenge1_editor'
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge3');
+            var context = canvas.getContext('2d');
+
+            // SET THE VARIABLES PROPERLY
+            // var ground =
+            // var width =
+            // var height =
+            // var x =
+            // var y =
+
+            // CODE TO SET THE BUILDING COLOR (#666666) HERE
+
+            context.fillRect(x, y, width, height);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge3.png')
+            %canvas#granular_basic_cityscape_stage1_challenge3
+          .alert
+
+
+  #challenge4.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 2
+            Challenge 4
 
           %figure.float-xs-right.px-2
-            .pb-1= image_tag('lessons/granular_basic_cityscape/stage1/challenge2Visual1.png', class: 'img-fluid')
+            .pb-1= image_tag('lessons/granular_basic_cityscape/stage1/challenge4Visual1.png', class: 'img-fluid')
 
-            = image_tag('lessons/granular_basic_cityscape/stage1/challenge2Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 2 Sample Solution
+            = image_tag('lessons/granular_basic_cityscape/stage1/challenge4Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 4 Sample Solution
 
           %p
             For our cityscape, we don't want think about buildings in terms of pixels.
@@ -259,8 +304,10 @@
             number of office units on each floor, and then write the program so it
             calculates the number of pixels for us.
           %p
-            Each office unit is 16 pixels wide and 16 pixels tall. The outer walls,
-            roof, and floor of the building are each 4 pixels thick.
+            Each office unit is
+            %span.highlight 16 pixels wide and 16 pixels tall.
+            The outer walls, roof, and floor of the building are each
+            %span.highlight 4 pixels thick.
           %p
             Write a program to calculate the size and position of the building for you.
             The variable <i>units</i> stores the number of office units on each floor.
@@ -277,23 +324,26 @@
             In the end your drawing should look like the example on the right.
 
           = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_style, :fill_rect]
-          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'granular_basic_cityscape_stage1_challenge1_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'granular_basic_cityscape_stage1_challenge3_editor'
 
 
       .row.pt-2
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge4_editor'} do
           :preserve
-            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge2');
+            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge4');
             var context = canvas.getContext('2d');
 
+            var ground = 280;
             var units = 8;
             var floors = 10;
 
-            // YOUR CODE TO CALCULATE THE WIDTH, HEIGHT, X, AND Y OF THE BUILDING HERE
+            // YOUR CODE TO CALCULATE THE WIDTH (w) AND HEIGHT (h) HERE
 
-            // YOUR CODE TO SET THE COLOR OF THE BUILDING (#999999)
+            // YOUR CODE TO CALCULATE X AND Y OF THE BUILDING HERE
 
-            // context.fillRect(x, y, w, h);
+            // YOUR CODE TO SET THE COLOR OF THE BUILDING (#999999) HERE
+
+            context.fillRect(x, y, w, h);
 
             drawOffices(x, y, w, h);
 
@@ -317,10 +367,9 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge2.png')
-            %canvas#granular_basic_cityscape_stage1_challenge2
+            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge4.png')
+            %canvas#granular_basic_cityscape_stage1_challenge4
           .alert
-
 
   .example.row.py-3
     .col-xs-12
