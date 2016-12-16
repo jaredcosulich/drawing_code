@@ -143,6 +143,8 @@
             var canvas = document.getElementById('dng_coordinate_system_challenge2');
             var context = canvas.getContext('2d');
             
+            context.font= '16px Arial';
+            context.textBaseline = 'middle';
             context.fillStyle = '#0000FF';
             
             
@@ -154,6 +156,8 @@
               context.arc(x, y, 3, 0, 2 * Math.PI, false);
               context.closePath();
               context.fill();
+              var text = '(' + x + ', ' + y + ')';
+              context.fillText(text, x + 5, y);
             }
 
         .visual.col-xs-6
@@ -188,6 +192,8 @@
             var canvas = document.getElementById('dng_coordinate_system_challenge3');
             var context = canvas.getContext('2d');
             
+            context.font= '16px Arial';
+            context.textBaseline = 'middle';
             context.fillStyle = '#0000FF';
             
             
@@ -199,6 +205,8 @@
               context.arc(x, y, 3, 0, 2 * Math.PI, false);
               context.closePath();
               context.fill();
+              var text = '(' + x + ', ' + y + ')';
+              context.fillText(text, x + 5, y);
             }
 
         .visual.col-xs-6
