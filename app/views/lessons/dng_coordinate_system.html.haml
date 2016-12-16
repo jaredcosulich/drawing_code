@@ -43,11 +43,11 @@
                 context.font= '16px Arial';
                 context.textBaseline = 'middle';
                 context.fillStyle = '#000000';
-                
+
                 canvas.addEventListener('mouseout', function(e) {
                   context.clearRect(0, 0, canvas.width, canvas.height);
                 });
-                
+
                 canvas.addEventListener('mousemove', function(e) {
                   context.clearRect(0, 0, canvas.width, canvas.height);
                   context.beginPath();
@@ -74,8 +74,7 @@
             Challenge 1
           %p
             Use the
-            %span{:style => 'font-family: Menlo; font-size: 14.4px; background-color: #EEEEEE'}<
-              drawPoint()
+            %code drawPoint()
             function to draw three points. The first point at (50, 150),
             the second point at (200, 100), and the third point at (250, 200).
           %p
@@ -90,15 +89,15 @@
           :preserve
             var canvas = document.getElementById('dng_coordinate_system_challenge1');
             var context = canvas.getContext('2d');
-            
+
             context.font= '16px Arial';
             context.textBaseline = 'middle';
             context.fillStyle = '#0000FF';
-            
-            
+
+
             // YOUR CODE HERE
-            
-            
+
+
             function drawPoint(x, y) {
               context.beginPath();
               context.arc(x, y, 3, 0, 2 * Math.PI, false);
@@ -126,8 +125,7 @@
             Challenge 2
           %p
             Use the
-            %span{:style => 'font-family: Menlo; font-size: 14.4px; background-color: #EEEEEE'}<
-              drawPoint()
+            %code drawPoint()
             function to draw points at the four corners of the rectangle.
           %p
             The top left corner of the rectangle is at (80, 40). The width of the rectangle
@@ -143,14 +141,12 @@
             var canvas = document.getElementById('dng_coordinate_system_challenge2');
             var context = canvas.getContext('2d');
             
-            context.font= '16px Arial';
-            context.textBaseline = 'middle';
             context.fillStyle = '#0000FF';
-            
-            
+
+
             // YOUR CODE HERE
-            
-            
+
+
             function drawPoint(x, y) {
               context.beginPath();
               context.arc(x, y, 3, 0, 2 * Math.PI, false);
@@ -178,8 +174,7 @@
             Challenge 3
           %p
             Use the
-            %span{:style => 'font-family: Menlo; font-size: 14.4px; background-color: #EEEEEE'}<
-              drawPoint()
+            %code drawPoint()
             function to draw points at the bottom left corner of the green rectangle and the
             top right corner of the yellow rectangle.
           %p
@@ -192,14 +187,12 @@
             var canvas = document.getElementById('dng_coordinate_system_challenge3');
             var context = canvas.getContext('2d');
             
-            context.font= '16px Arial';
-            context.textBaseline = 'middle';
             context.fillStyle = '#0000FF';
-            
-            
+
+
             // YOUR CODE HERE
-            
-            
+
+
             function drawPoint(x, y) {
               context.beginPath();
               context.arc(x, y, 3, 0, 2 * Math.PI, false);

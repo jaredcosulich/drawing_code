@@ -48,7 +48,7 @@
 
 %ul.nav.nav-sidebar
   - @challenge_paths.each do |challenge_path|
-    - next if challenge_path[:experimental] && params[:section] != challenge_path[:slug]
+    - next unless params[:section] == challenge_path[:slug]
 
     %li.section.my-1
       %a.section_link{:href => '#', data: {section: challenge_path[:slug]}}= challenge_path[:name]
@@ -81,3 +81,26 @@
             - if @lessons[lesson][:count] > 0
               %span.tag.tag-default
                 %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+
+
+%ul.nav.nav-sidebar.hidden-xs-up
+  %li.section
+    %a.section_link{:href => '#', data: {section: 'experimental'}}
+      All
+
+  %ul.nav.nav-sidebar
+    %li.section.small
+      %strong Active
+
+      - @challenge_paths.each do |challenge_path|
+        - next if challenge_path[:experimental]
+        %li{class: "small #{('active' if params[:id] == challenge_path[:slug].to_s)}"}
+          = link_to_lesson(challenge_path[:name], 'stage1', challenge_path[:slug])
+
+    %li.section.small.mt-2
+      %strong Experimental
+
+      - @challenge_paths.each do |challenge_path|
+        - next unless challenge_path[:experimental]
+        %li{class: "small #{('active' if params[:id] == challenge_path[:slug].to_s)}"}
+          = link_to_lesson(challenge_path[:name], 'stage1', challenge_path[:slug])

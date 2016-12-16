@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       switch_statements: {count: 0, method: 'Switch Statements'},
       variables: {count: 2, method: 'Variables'},
       while_loops: {count: 0, method: 'While Loops'},
-      
+
       dng_fill_rect: {count: 3, method: 'DNG fillRect()'},
       dng_fill_style: {count: 2, method: 'DNG fillStyle'},
       dng_coordinate_system: {count: 3, method: 'DNG Coordinate System'}
@@ -53,7 +53,8 @@ class ApplicationController < ActionController::Base
 
     @challenge_paths = [
       {
-        name: 'Basic Cityscape',
+        experimental: true,
+        name: 'Original Basic Cityscape',
         slug: 'basic_cityscape',
         stages: [4, 3, 4, 4],
         reference: [
@@ -83,6 +84,29 @@ class ApplicationController < ActionController::Base
         reference: [
         ],
         concepts: [
+        ]
+      },
+      {
+        name: 'Basic Cityscape',
+        slug: 'granular_basic_cityscape',
+        stages: [6, 3, 4, 4],
+        reference: [
+          :fill_rect,
+          :fill_style,
+          :floor,
+          :line_to,
+          :random,
+          :translate,
+          :save,
+          :scale,
+        ],
+        concepts: [
+          :variables,
+          :for_loops,
+          :while_loops,
+          :coordinates,
+          :functions,
+          :switch_statements,
         ]
       },
       {
