@@ -9,8 +9,8 @@
         .col-xs-12
           %h2.py-2
             Overview
-      .row
-        .col-xs-6
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_fill_rect/overviewVisual1.png', class: 'img-fluid canvas-example')
           %p
             We program the context to draw a filled rectangle on the canvas using the
             %code
@@ -39,9 +39,6 @@
             property.
           .source
             = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect', target: '_blank')
-
-        .col-xs-6
-          = image_tag('lessons/dng_fill_rect/overviewVisual1.png', class: 'img-fluid')
 
 
   .example.row.py-3
@@ -99,7 +96,7 @@
           %p
             The red rectangle should sit directly on top of the rectangle pre-drawn on the canvas.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('dng_fill_rect_challenge1');
@@ -189,7 +186,7 @@
           %p
             Your drawing should look like the image on the right.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('dng_fill_rect_challenge2');
@@ -235,7 +232,7 @@
           %p
             Your drawing should look like the image on the right.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_challenge3_editor'} do
           :preserve
             var canvas = document.getElementById('dng_fill_rect_challenge3');
@@ -274,7 +271,7 @@
           %p
             Your drawing should look like the image on the right.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_challenge4_editor'} do
           :preserve
             var canvas = document.getElementById('dng_fill_rect_challenge4');
@@ -356,7 +353,7 @@
           %p
             Your drawing should look like the image on the right.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_challenge5_editor'} do
           :preserve
             var canvas = document.getElementById('dng_fill_rect_challenge5');
@@ -397,7 +394,7 @@
           %p
             Note: It is possible to draw this image with only four rectangles. Can you figure out how?
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_challenge6_editor'} do
           :preserve
             var canvas = document.getElementById('dng_fill_rect_challenge6');

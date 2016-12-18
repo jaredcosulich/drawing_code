@@ -6,9 +6,11 @@
   .description.row.py-3
     .col-xs-12
       .row
-        .col-xs-6
+        .col-xs-12
           %h2.py-2
             Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_coordinate_system/overviewVisual1.png', class: 'img-fluid')
           %p
             When drawing on a canvas, the canvas's context uses a coordinate system to
             position lines, rectangles, and other shapes on the canvas.
@@ -20,9 +22,6 @@
           %p
             For example, the point (80, 50) is 80 pixels to the right of the origin and 50
             pixels down.
-    
-        .col-xs-6
-          = image_tag('lessons/dng_coordinate_system/overviewVisual1.png', class: 'img-fluid')
 
 
   .example.row.py-3
@@ -87,7 +86,7 @@
               :preserve
                 drawPoint(80, 120);
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('dng_coordinate_system_challenge1');
@@ -138,7 +137,7 @@
             the top left corner of the rectangle. The top left corner is 80 to the right and 40 down
             from the origin. Where is the bottom right corner relative to the origin?
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('dng_coordinate_system_challenge2');
@@ -189,7 +188,7 @@
             Hint: If you are unsure how to figure out the coordinates of the two points, start
             by drawing in the points you know. It's okay to draw extra points.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge3_editor'} do
           :preserve
             var canvas = document.getElementById('dng_coordinate_system_challenge3');
