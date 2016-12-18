@@ -32,6 +32,7 @@ class App.Editor
 
     @initLog()
     @initRun()
+    @initFiles() if @codeEditor.data('files')
 
     if (previousCode = App.currentProgress.getEditorValue(@editorElement.id))?
       @aceEditor.setValue(previousCode, -1)
@@ -49,8 +50,8 @@ class App.Editor
   ensureValidCanvasReference: ->
     code = @aceEditor.getValue()
     canvasId = @canvas.canvasElement.id
-    return if code.match(canvasId)?
-    code = code.replace(/getElementById\('([^)]*)'\);/, "getElementById('#{canvasId}');")
+    return if code.match(canvasId)? || !code.match(/var canvas = document/)?
+    code = code.replace(/var canvas = document.getElementById\('([^)]*)'\);/, "var canvas = document.getElementById('#{canvasId}');")
     @setCode(code)
 
   setCode: (code) ->
@@ -66,6 +67,55 @@ class App.Editor
       if (confirm('Are you sure you want to reset your code?'))
         @reset()
 
+  initFiles: ->
+    filesElement = @codeEditor.find('.files')
+    filesElement.show()
+
+    @files = {
+      selected: 'Base'
+      button: filesElement.find('button')
+      menu: filesElement.find('.dropdown-menu')
+      files: [
+        {name: 'Base'}
+      ]
+    }
+
+    @buildFileMenu()
+
+  buildFileMenu: ->
+    @files.menu.html('')
+    for file in @files.files
+      do (file) =>
+        fileItem = $(document.createElement('span'))
+        fileItem.addClass('dropdown-item')
+        if @files.selected == file.name
+          @files.button.html("Files (#{file.name})")
+          fileItem.addClass('active')
+        fileItem.html(file.name)
+        fileItem.click => @switchFiles(file.name)
+        @files.menu.append(fileItem)
+
+    @files.menu.append('<div class=\'dropdown-divider\'></div>')
+    @files.menu.append('<a class=\'dropdown-item\'>Rename Current File</a>')
+
+    addItem = $(document.createElement('span'))
+    addItem.addClass('dropdown-item')
+    addItem.html('Add New File')
+    addItem.click =>
+      name = prompt('What would you like to call your new file?')
+      @files.files.push({name: name})
+      @switchFiles(name)
+    @files.menu.append(addItem)
+
+  switchFiles: (name) ->
+    return if @files.selected == name
+    currentFile = @files.files.find((file) => file.name == @files.selected)
+    currentFile.code = @aceEditor.getValue()
+    newFile = @files.files.find((file) => file.name == name)
+    @setCode(newFile.code || '')
+    @files.selected = name
+    @buildFileMenu()
+
   reset: ->
     @hideLog()
     @clearLog()
@@ -79,7 +129,9 @@ class App.Editor
     App.currentEditor = @
     @canvas.reset()
     try
-      eval(@aceEditor.getValue())
+      if @files
+      else
+        eval(@aceEditor.getValue())
     catch e
       try
         errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]

@@ -1,4 +1,10 @@
-.code-editor{class: "col-xs-#{local_assigns[:cols] ? local_assigns[:cols] : 6}"}
+.code-editor{class: "col-xs-#{local_assigns[:cols] ? local_assigns[:cols] : 6}", data: {files: "#{1 if local_assigns[:files]}"}}
+  .files
+    .btn-group
+      %button.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+        Files
+      .dropdown-menu.dropdown-menu-right
+
   %h5
     Editor
     %small (write code below)
