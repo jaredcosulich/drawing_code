@@ -4,23 +4,24 @@
   = render 'lessons/challenge_count'
 
   .description.row.py-3
-    .col-xs-6
-      %h2.py-2
-        Overview
-      %p
-        When drawing on a canvas, the canvas's context uses a coordinate system to
-        position lines, rectangles, and other shapes on the canvas.
-      %p
-        By default, the origin (0, 0) of the context's coordinate system is the top
-        left corner of the canvas. The x-coordinate is the distance of a point from the
-        origin moving to the right and the y-coordinate is the distance from the origin
-        moving down.
-      %p
-        For example, the point (80, 50) is 80 pixels to the right of the origin and 50
-        pixels down.
-
-    .col-xs-6
-      = image_tag('lessons/dng_coordinate_system/overviewVisual1.png', class: 'img-fluid')
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_coordinate_system/overviewVisual1.png', class: 'img-fluid')
+          %p
+            When drawing on a canvas, the canvas's context uses a coordinate system to
+            position lines, rectangles, and other shapes on the canvas.
+          %p
+            By default, the origin (0, 0) of the context's coordinate system is the top
+            left corner of the canvas. The x-coordinate is the distance of a point from the
+            origin moving to the right and the y-coordinate is the distance from the origin
+            moving down.
+          %p
+            For example, the point (80, 50) is 80 pixels to the right of the origin and 50
+            pixels down.
 
 
   .example.row.py-3
@@ -74,7 +75,8 @@
             Challenge 1
           %p
             Use the
-            %code drawPoint()
+            %code
+              drawPoint()
             function to draw three points. The first point at (50, 150),
             the second point at (200, 100), and the third point at (250, 200).
           %p
@@ -84,7 +86,7 @@
               :preserve
                 drawPoint(80, 120);
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('dng_coordinate_system_challenge1');
@@ -135,12 +137,14 @@
             the top left corner of the rectangle. The top left corner is 80 to the right and 40 down
             from the origin. Where is the bottom right corner relative to the origin?
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('dng_coordinate_system_challenge2');
             var context = canvas.getContext('2d');
             
+            context.font= '16px Arial';
+            context.textBaseline = 'middle';
             context.fillStyle = '#0000FF';
 
 
@@ -180,13 +184,18 @@
           %p
             The top left corner of the green rectangle is at (50, 200), and its width is 140 and
             its height is 60. The width of the yellow rectangle is 220 and its height is 180.
+          %p
+            Hint: If you are unsure how to figure out the coordinates of the two points, start
+            by drawing in the points you know. It's okay to draw extra points.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge3_editor'} do
           :preserve
             var canvas = document.getElementById('dng_coordinate_system_challenge3');
             var context = canvas.getContext('2d');
             
+            context.font= '16px Arial';
+            context.textBaseline = 'middle';
             context.fillStyle = '#0000FF';
 
 
