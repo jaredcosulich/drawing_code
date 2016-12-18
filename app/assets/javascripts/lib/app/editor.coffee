@@ -75,24 +75,25 @@ class App.Editor
       selected: 'Base'
       button: filesElement.find('button')
       menu: filesElement.find('.dropdown-menu')
-      files: [
-        {name: 'Base'}
-      ]
+      order: ['Base']
+      files: {
+        Base: {}
+      }
     }
 
     @buildFileMenu()
 
   buildFileMenu: ->
     @files.menu.html('')
-    for file in @files.files
-      do (file) =>
+    for name in @files.order
+      do (name) =>
         fileItem = $(document.createElement('span'))
         fileItem.addClass('dropdown-item')
-        if @files.selected == file.name
-          @files.button.html("Files (#{file.name})")
+        if @files.selected == name
+          @files.button.html("Files (#{name})")
           fileItem.addClass('active')
-        fileItem.html(file.name)
-        fileItem.click => @switchFiles(file.name)
+        fileItem.html(name)
+        fileItem.click => @switchFiles(name)
         @files.menu.append(fileItem)
 
     @files.menu.append('<div class=\'dropdown-divider\'></div>')
@@ -103,15 +104,15 @@ class App.Editor
     addItem.html('Add New File')
     addItem.click =>
       name = prompt('What would you like to call your new file?')
-      @files.files.push({name: name})
+      @files.files[name] = {}
+      @files.order.push(name)
       @switchFiles(name)
     @files.menu.append(addItem)
 
   switchFiles: (name) ->
     return if @files.selected == name
-    currentFile = @files.files.find((file) => file.name == @files.selected)
-    currentFile.code = @aceEditor.getValue()
-    newFile = @files.files.find((file) => file.name == name)
+    @files.files[@files.selected].code = @aceEditor.getValue()
+    newFile = @files.files[name]
     @setCode(newFile.code || '')
     @files.selected = name
     @buildFileMenu()
@@ -130,8 +131,10 @@ class App.Editor
     @canvas.reset()
     try
       if @files
+        @files.files[@files.selected].code = @aceEditor.getValue()
+        @runCode(@files.files[fileName].code, fileName) for fileName in @files.order.reverse()
       else
-        eval(@aceEditor.getValue())
+        @runCode(@aceEditor.getValue())
     catch e
       try
         errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]
@@ -139,6 +142,20 @@ class App.Editor
         errorLineNumber = 'N/A'
         console.log('Could not split stack.', e.stack)
       @log("<strong class='text-danger'>Error:</strong> #{e.message} (Line #{errorLineNumber})")
+
+  runCode: (code, fileName) ->
+    try
+      eval(code)
+    catch e
+      try
+        errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]
+      catch error
+        errorLineNumber = 'N/A'
+        console.log('Could not split stack.', e.stack)
+      errorMessage = "<strong class='text-danger'>Error:</strong> #{e.message} ("
+      errorMessage += "File: #{fileName}, " if fileName
+      errorMessage += "Line: #{errorLineNumber})"
+      @log(errorMessage)
 
   initLog: ->
     @logElement = @codeEditor.find('.log')
