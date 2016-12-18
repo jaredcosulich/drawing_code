@@ -7,6 +7,7 @@ class App.Editor
 
     ace.config.set('workerPath', '/drawing_code/ace/')
     @aceEditor = ace.edit(@editorElement)
+    @editor.data(editor: @)
     @editor.data(ace: @aceEditor)
 
     @aceEditor.$blockScrolling = Infinity
@@ -41,7 +42,8 @@ class App.Editor
     @currentEditorHeight = @editor.height()
     @aceEditor.resize()
     setTimeout(( =>
-      @editor.find('.ace_scrollbar-v').css(bottom: '15px')
+      @editor.find('.ace_scroller').css(right: '18px')
+      @editor.find('.ace_scrollbar-v').css(bottom: '18px')
     ), 250)
 
   ensureValidCanvasReference: ->
@@ -53,6 +55,7 @@ class App.Editor
 
   setCode: (code) ->
     @aceEditor.setValue(code, -1)
+    @ensureValidCanvasReference()
     App.currentProgress?.storeEditorValue(@editorElement.id, code)
 
   initRun: ->
@@ -73,16 +76,16 @@ class App.Editor
     @hideLog()
     @clearLog()
     @canvas.hideAlert()
+    App.currentEditor = @
+    @canvas.reset()
     try
-      App.currentEditor = @
-      @canvas.reset()
       eval(@aceEditor.getValue())
     catch e
       try
         errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]
       catch error
         errorLineNumber = 'N/A'
-        console.log('Could not split stack.', @aceEditor.getValue(), e.stack)
+        console.log('Could not split stack.', e.stack)
       @log("<strong class='text-danger'>Error:</strong> #{e.message} (Line #{errorLineNumber})")
 
   initLog: ->

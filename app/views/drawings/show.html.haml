@@ -12,13 +12,12 @@
               Canvas
               %small (your drawing will display here)
             .canvas
-              %canvas#my_drawings_canvas
+              %canvas{id: "my_drawings_#{params[:id]}_canvas"}
 
         .row.py-1
-          = render :layout => '/lessons/editor', :locals => {:editor_id => 'my_drawings_editor', cols: 12} do
+          = render :layout => '/lessons/editor', :locals => {:editor_id => "my_drawings#{params[:id]}_editor", cols: 12} do
             :preserve
-              var canvas = document.getElementById('my_drawings_canvas');
-              var context = canvas.getContext('2d');
+              hi
 
   .save.row.py-3
     .col-xs-12

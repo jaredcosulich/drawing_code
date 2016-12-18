@@ -3,6 +3,9 @@ window.Test ||= {}
 window.log = (messageText...) ->
   App.currentEditor?.log(messageText...)
 
+window.onerror = ->
+  App.currentEditor?.log("<strong class='text-danger'>Unknown Error</strong> Check Console")
+
 # App.confirmOnPageExit = (e) ->
 #   e = e || window.event
 #   message = 'Are you sure you want to leave this page? Your code changes will be lost.'
