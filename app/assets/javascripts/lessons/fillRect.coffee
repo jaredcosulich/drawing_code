@@ -1,8 +1,8 @@
 initFillRectChallenges = ->
-  # if (page = $('#fill_rect')).length > 0
-  #   initFillRectChallenge1(page)
-  #   initFillRectChallenge2(page)
-  #   initFillRectChallenge3(page)
+  if (page = $('#fill_rect')).length > 0
+    initFillRectChallenge1(page)
+    initFillRectChallenge2(page)
+    initFillRectChallenge3(page)
 
 
 initFillRectChallenge1 = (page) ->
