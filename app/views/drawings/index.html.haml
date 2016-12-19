@@ -8,8 +8,9 @@
     .col-xs-12
       .freeform
         .row.py-1
-          = render :layout => '/lessons/editor', :locals => {:editor_id => 'my_drawings_editor', cols: 12} do
+          = render :layout => '/lessons/editor', :locals => {:editor_id => 'my_drawings_editor', cols: 12, files: true} do
             :preserve
+              ~!@Base@!~
               var canvas = document.getElementById('my_drawings_canvas');
               var context = canvas.getContext('2d');
 

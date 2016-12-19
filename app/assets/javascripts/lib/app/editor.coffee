@@ -18,6 +18,8 @@ class App.Editor
         useSoftTabs: true
         wrap: 'on'
 
+    @initFiles() if @codeEditor.data('files')
+
     @resize()
     @editor.on 'mousemove', =>
       @resize() if @editor.height() != @currentEditorHeight
@@ -26,7 +28,7 @@ class App.Editor
 
     @editor.on 'keyup', =>
       @ensureValidCanvasReference()
-      App.currentProgress.storeEditorValue(@editorElement.id, @aceEditor.getValue())
+      App.currentProgress.storeEditorValue(@editorElement.id, @getCode())
 
     @startCode = @aceEditor.getValue()
 
@@ -34,7 +36,7 @@ class App.Editor
     @initRun()
 
     if (previousCode = App.currentProgress.getEditorValue(@editorElement.id))?
-      @aceEditor.setValue(previousCode, -1)
+      @setCode(previousCode)
 
     @ensureValidCanvasReference()
 
@@ -49,14 +51,28 @@ class App.Editor
   ensureValidCanvasReference: ->
     code = @aceEditor.getValue()
     canvasId = @canvas.canvasElement.id
-    return if code.match(canvasId)?
-    code = code.replace(/getElementById\('([^)]*)'\);/, "getElementById('#{canvasId}');")
+    return if code.match(canvasId)? || !code.match(/var canvas = document/)?
+    code = code.replace(/var canvas = document.getElementById\('([^)]*)'\);/, "var canvas = document.getElementById('#{canvasId}');")
     @setCode(code)
 
+  setStartCode: (code) ->
+    @startCode = code    
+
   setCode: (code) ->
-    @aceEditor.setValue(code, -1)
+    if @files && @files.validAllCode(code)
+      @files.setAllCode(code)
+    else
+      @aceEditor.setValue(code, -1)
     @ensureValidCanvasReference()
+
+    code = @files.getAllCode() if @files
     App.currentProgress?.storeEditorValue(@editorElement.id, code)
+
+  getCode: ->
+    if @files
+      @files.getAllCode()
+    else
+      @aceEditor.getValue()
 
   initRun: ->
     @codeEditor.find('.buttons .run').click (e) =>
@@ -65,6 +81,15 @@ class App.Editor
     @codeEditor.find('.buttons .reset').click (e) =>
       if (confirm('Are you sure you want to reset your code?'))
         @reset()
+
+  initFiles: ->
+    filesElement = @codeEditor.find('.files')
+    filesElement.show()
+    @files = new App.Files(
+      filesElement,
+      () => @aceEditor.getValue(),
+      (code) => @setCode(code)
+    )
 
   reset: ->
     @hideLog()
@@ -78,15 +103,27 @@ class App.Editor
     @canvas.hideAlert()
     App.currentEditor = @
     @canvas.reset()
+    if @files
+      @files.files[@files.selected].code = @aceEditor.getValue()
+      reverseFileNames = (fileName for fileName in @files.order).reverse()
+      for fileName in reverseFileNames
+        @runCode(@files.files[fileName].code, fileName)
+    else
+      @runCode(@aceEditor.getValue())
+
+  runCode: (code, fileName) ->
     try
-      eval(@aceEditor.getValue())
+      eval(code)
     catch e
       try
         errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]
       catch error
         errorLineNumber = 'N/A'
         console.log('Could not split stack.', e.stack)
-      @log("<strong class='text-danger'>Error:</strong> #{e.message} (Line #{errorLineNumber})")
+      errorMessage = "<strong class='text-danger'>Error:</strong> #{e.message} ("
+      errorMessage += "File: #{fileName}, " if fileName
+      errorMessage += "Line: #{errorLineNumber})"
+      @log(errorMessage)
 
   initLog: ->
     @logElement = @codeEditor.find('.log')

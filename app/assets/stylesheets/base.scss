@@ -153,3 +153,17 @@ pre {
   background-color: #efefef;
   padding: 12px;
 }
+
+.files {
+  display: none;
+  float: right;
+  margin-bottom: -3px;
+
+  .dropdown-menu {
+    margin-top: -3px;
+  }
+
+  .btn-group > .btn:hover, .btn-group-vertical > .btn:hover {
+    z-index: auto;
+  }
+}
