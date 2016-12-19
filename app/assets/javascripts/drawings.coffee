@@ -2,10 +2,8 @@ initDrawings = ->
   initDrawingsForm()
   initSavedDrawing()
 
-
 drawingSlug = (title) ->
   title.replace(/\s/ig, '-').toLowerCase()
-
 
 saveDrawing = (form) ->
   title = form.find('.my_drawing_title').val()
@@ -33,7 +31,7 @@ initSavedDrawing = ->
     page.find('.drawing-description').html(drawingInfo['description'])
     page.find('.my_drawing_title').val(drawingInfo['title'])
     page.find('.my_drawing_description').val(drawingInfo['description'])
-    page.find('.editor').data('editor').setCode(drawingInfo['code'])
+    page.find('.editor').data('editor').setStartCode(drawingInfo['code'])
     page.find('.run').click()
     $("#drawings #navigation-drawing-#{slug}").addClass('active')
 

@@ -1,5 +1,6 @@
 class App.Files
   constructor: (@element, @getCode, @setCode) ->
+    @editorElement = @element.closest('.code-editor').find('.editor')[0]
     @button = @element.find('button')
     @menu = @element.find('.dropdown-menu')
     @reset()
@@ -35,8 +36,18 @@ class App.Files
       @addFile(prompt('What would you like to call your new file?'), true)
     @menu.append(addItem)
 
-    @menu.append('<a class=\'dropdown-item\'>Rename Current File</a>')
-    @menu.append('<a class=\'dropdown-item\'>Delete Current File</a>')
+    renameItem = $(document.createElement('span'))
+    renameItem.addClass('dropdown-item')
+    renameItem.html('Rename Current File')
+    renameItem.click =>
+      @renameFile(prompt('What would you like to rename the current file to?'))
+    @menu.append(renameItem)
+
+    deleteItem = $(document.createElement('span'))
+    deleteItem.addClass('dropdown-item')
+    deleteItem.html('Delete Current File')
+    deleteItem.click => @deleteFile(@selected)
+    @menu.append(deleteItem)
 
   addFile: (name, switchToFile, code) ->
     return if name.length == 0
@@ -45,6 +56,25 @@ class App.Files
     @order.push(name) if @order.indexOf(name) == -1
     @buildMenu()
     @switchFiles(name) if switchToFile
+
+  renameFile: (name) ->
+    @files[name] = @files[@selected]
+    @order[@order.indexOf(@selected)] = name
+    delete @files[@selected]
+    @selected = name
+    @buildMenu()
+    App.currentProgress?.storeEditorValue(@editorElement.id, @getAllCode())
+
+  deleteFile: (name) ->
+    return unless confirm('Are you sure you want to delete this file?')
+    if @order.length == 1
+      alert('This is the only file. You can not delete the only file.')
+    else
+      @switchFiles(@order[0])
+      delete @files[name]
+      @order.splice(@order.indexOf(name), 1)
+      @buildMenu()
+      App.currentProgress?.storeEditorValue(@editorElement.id, @getAllCode())
 
   switchFiles: (name) ->
     return if @selected == name

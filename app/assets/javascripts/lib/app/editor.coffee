@@ -55,6 +55,9 @@ class App.Editor
     code = code.replace(/var canvas = document.getElementById\('([^)]*)'\);/, "var canvas = document.getElementById('#{canvasId}');")
     @setCode(code)
 
+  setStartCode: (code) ->
+    @startCode = code    
+
   setCode: (code) ->
     if @files && @files.validAllCode(code)
       @files.setAllCode(code)
