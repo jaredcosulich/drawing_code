@@ -61,6 +61,8 @@ class App.Editor
     else
       @aceEditor.setValue(code, -1)
     @ensureValidCanvasReference()
+
+    code = @files.getAllCode() if @files
     App.currentProgress?.storeEditorValue(@editorElement.id, code)
 
   getCode: ->

@@ -29,13 +29,18 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_interactive1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_interactive1_editor', files: true} do
               :preserve
+                ~!@Base@!~
                 var canvas = document.getElementById('fill_rect_interactive1');
                 var context = canvas.getContext('2d');
 
                 context.fillStyle = 'red';
                 context.fillRect(100,100,100,50);
+
+                console.log('Base')
+                ~!@Test@!~
+                console.log('Test')
 
             .visual.col-xs-6
               %h5
@@ -44,7 +49,7 @@
               .canvas
                 %canvas#fill_rect_interactive1
 
-
+-#
   .example.row.py-3
     .col-xs-12
       .row

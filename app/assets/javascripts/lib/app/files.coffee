@@ -44,22 +44,23 @@ class App.Files
   switchFiles: (name) ->
     return if @selected == name
     @files[@selected].code = @getCode()
-    @setCode(@files[name].code || '')
     @selected = name
+    @setCode(@files[name].code || '')
     @buildMenu()
 
   getAllCode: ->
     @files[@selected].code = @getCode()
-    code = []
+    allCode = []
     for fileName in @order
-      code.push("#{fileName}~!@#{@files[fileName].code}")
-    code.join('@!~')
+      allCode.push("#{fileName}@!~#{@files[fileName].code}")
+    allCode.join('~!@')
 
   setAllCode: (allCode) ->
     if (@validAllCode(allCode))
-      for fileInfo in allCode.split('@!~')
-        [name, code] = fileInfo.split('~!@')
+      for fileInfo in allCode.split('~!@')
+        [name, code] = fileInfo.split('@!~')
         continue if !name || name.length == 0 || !code || code.length == 0
+        code = code.replace(/\s*/, '')
         @addFile(name, false)
         @files[name].code = code
         @setCode(code) if name == @selected
