@@ -53,10 +53,10 @@ class App.Editor
     canvasId = @canvas.canvasElement.id
     return if code.match(canvasId)? || !code.match(/var canvas = document/)?
     code = code.replace(/var canvas = document.getElementById\('([^)]*)'\);/, "var canvas = document.getElementById('#{canvasId}');")
-    @setCode(code, true)
+    @setCode(code)
 
-  setCode: (code, currentEditorOnly) ->
-    if @files && !currentEditorOnly
+  setCode: (code) ->
+    if @files && @files.validAllCode(code)
       @files.setAllCode(code)
     else
       @aceEditor.setValue(code, -1)
@@ -83,7 +83,7 @@ class App.Editor
     @files = new App.Files(
       filesElement,
       () => @aceEditor.getValue(),
-      (code) => @setCode(code, true)
+      (code) => @setCode(code)
     )
     @files.buildMenu()
 
@@ -91,7 +91,7 @@ class App.Editor
     @hideLog()
     @clearLog()
     @canvas.hideAlert()
-    @setCode(@startCode, true)
+    @setCode(@startCode)
 
   run: ->
     @hideLog()
@@ -99,19 +99,11 @@ class App.Editor
     @canvas.hideAlert()
     App.currentEditor = @
     @canvas.reset()
-    try
-      if @files
-        @files.files[@files.selected].code = @aceEditor.getValue()
-        @runCode(@files.files[fileName].code, fileName) for fileName in @files.order.reverse()
-      else
-        @runCode(@aceEditor.getValue())
-    catch e
-      try
-        errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]
-      catch error
-        errorLineNumber = 'N/A'
-        console.log('Could not split stack.', e.stack)
-      @log("<strong class='text-danger'>Error:</strong> #{e.message} (Line #{errorLineNumber})")
+    if @files
+      @files.files[@files.selected].code = @aceEditor.getValue()
+      @runCode(@files.files[fileName].code, fileName) for fileName in @files.order.reverse()
+    else
+      @runCode(@aceEditor.getValue())
 
   runCode: (code, fileName) ->
     try

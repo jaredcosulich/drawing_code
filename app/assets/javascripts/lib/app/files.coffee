@@ -56,8 +56,14 @@ class App.Files
     code.join('@!~')
 
   setAllCode: (allCode) ->
-    for fileInfo in allCode.split('@!~')
-      [name, code] = fileInfo.split('~!@')
-      continue if !name || name.length == 0 || !code || code.length == 0
-      @addFile(name, false)
-      @files[name].code = code
+    if (@validAllCode(allCode))
+      for fileInfo in allCode.split('@!~')
+        [name, code] = fileInfo.split('~!@')
+        continue if !name || name.length == 0 || !code || code.length == 0
+        @addFile(name, false)
+        @files[name].code = code
+        @setCode(code) if name == @selected
+    else
+      @setCode(allCode)
+
+  validAllCode: (code) -> code.indexOf('@!~') > -1
