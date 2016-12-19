@@ -209,7 +209,6 @@
             // ASSIGN THE FILLSTYLE COLOR FOR THE SECOND RECTANGLE HERE
             
             context.fillRect(140, 40, 200, 200);
-            
 
         .visual.col-xs-6
           %h5
@@ -315,7 +314,6 @@
             context.fillRect(200, 200, 80, 40);
             context.fillRect(120, 40, 40, 200);
             context.fillRect(220, 80, 40, 120);
-            
 
         .visual.col-xs-6
           %h5
@@ -395,7 +393,7 @@
             %code
               context.fillRect()
             method.
-          = render 'lessons/relevant', relevant: [:variables, :dng_coordinate_system, :dng_fill_rect]
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_coordinate_system, :dng_fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -412,7 +410,6 @@
                 context.fillRect(20, 20, 300, 80);
                 context.fillRect(200, 120, 200, 80);
                 context.fillRect(80, 220, 200, 80);
-                
 
             .visual.col-xs-6
               %h5
@@ -465,11 +462,10 @@
                 context.fill(); // Fills the circle
                 
                 context.font = 'bold 96px Arial'; // Sets the context's font
-                context.textAlign = 'center' // Sets the context's text alignment
+                context.textAlign = 'center'; // Sets the context's text alignment
                 context.fillText('SUNRISE', 220, 250); // Fills a text string
                 context.strokeStyle = 'Red'; // Sets the context's strokeStyle
                 context.strokeText('SUNRISE', 220, 250); // Strokes the same text string
-                
 
             .visual.col-xs-6
               %h5
@@ -553,7 +549,7 @@
             %code
               context.fillRect()
             method.
-          = render 'lessons/relevant', relevant: [:variables, :dng_coordinate_system, :dng_fill_rect]
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_coordinate_system, :dng_fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -571,8 +567,7 @@
                   context.fillRect(10, 20, 300, 80);
                   context.fillRect(155, 115, 100, 190);
                   context.fillRect(80, 160, 240, 80);
-                }
-                
+                };
 
             .visual.col-xs-6
               %h5
@@ -645,8 +640,7 @@
                   context.translate(80, 160);
                   context.fillRect(0, 0, 240, 80);
                   context.restore();
-                }
-                
+                };
 
             .visual.col-xs-6
               %h5

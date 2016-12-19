@@ -1,0 +1,875 @@
+#dng_variables.lesson
+  %h1 Variables
+
+  = render 'lessons/challenge_count'
+
+  .description.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_variables/overviewVisual1.png', class: 'img-fluid')
+          %p
+            Variables are containers used to store values.
+          %p
+            To store a value in a variable, first declare the variable:
+          %pre
+            %code
+              :preserve
+                var myVariable;
+          %p
+            Then, assign a value to it:
+          %pre
+            %code
+              :preserve
+                myVariable = 42;
+          %p
+            We can also declare a variable and assign a value to it in one line:
+          %pre
+            %code
+              :preserve
+                var myVariable = 42;
+          %p
+            If we declare a variable but don't assign a value to it, the value of the variable is
+            %code
+              undefined
+            , which is an actual value we can check.
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Store and Use Values in Variables
+          %p
+            In this example, we use variables to draw a small rectangle next to a larger
+            rectangle. The larger rectangle is twice as wide and twice as tall as the small
+            rectangle. We fill the small rectangle with the color
+            %code
+              'BurlyWood'
+            and the larger rectangle with the color
+            %code
+              Coral
+            \.
+          %p
+            We start by declaring and assigning values to the variables
+            %code
+              x
+            ,
+            %code
+              y
+            , and
+            %code
+              w
+            \.
+          %pre
+            %code
+              :preserve
+                var x = 40;
+                var y = 20;
+                var w = 50;
+          %p
+            We also declare and assign a value to the variable
+            %code
+              h
+            , but instead of assigning it a number, we use an expression to calculate its value.
+            Since the value of
+            %code
+              w
+            is 50, the value of
+            %code
+              1.5 * w
+            is 75, so the value of
+            %code
+              h
+            is 75.
+          %pre
+            %code
+              :preserve
+                var h = 1.5 * w;
+          %p
+            Changing the value of
+            %code
+              w
+            after assigning the value of
+            %code
+              1.5 * w
+            to
+            %code
+              h
+            does not change the value of
+            %code
+              h
+            \. The value of
+            %code
+              h
+            would still be 75 because it stores the value of the expression, not the expression itself.
+          %p
+            We then use the values stored in
+            %code
+              x
+            ,
+            %code
+              y
+            ,
+            %code
+              w
+            , and
+            %code
+              h
+            to draw the small rectangle.
+          %pre
+            %code
+              :preserve
+                context.fillRect(x, y, w, h);
+          %p
+            To draw the larger rectangle, we calculate and assign new values for our variables.
+            For example, the x-coodinate of the larger rectangle is the x-coordinate of the small
+            rectangle plus the width of the small rectangle, and the width of the larger rectangle
+            is twice the width of the small rectangle.
+          %pre
+            %code
+              :preserve
+                x = x + w;
+                w = 2 * w;
+                h = 2 * h;
+          %p
+            Note that we did not re-declare our variables before assigning new values to
+            them. Variables should only be declared once.
+          %p
+            Also, the order of these calculations and new assignments can be important. If we had assigned a new
+            value to
+            %code
+              w
+            before assigning a new value to
+            %code
+              x
+            , the x-coordinate of the larger rectangle would be too far to the right.
+          %p
+            When we draw the larger rectangle, we use the same variables, but all of them have
+            new values except for the variable
+            %code
+              y
+            \.
+          %pre
+            %code
+              :preserve
+                context.fillRect(x, y, w, h);
+          %p
+            By using variables to calculate its size and position, the larger rectangle is
+            always next to the small rectangle and it is always twice as wide and twice as
+            tall as the small rectangle. Change the intial values for
+            %code
+              x
+            ,
+            %code
+              y
+            , and
+            %code
+              w
+            to see what happens.
+          %p
+            Visit the relevant lessons to learn more about
+            %code
+              context.fillRect
+            ,
+            %code
+              context.fillStyle
+            , and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_coordinate_system, :dng_fill_rect, :dng_fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_variables_example1');
+                var context = canvas.getContext('2d');
+
+                var x = 40; // Declare x and assign x = 40
+                var y = 20; // Declare y and assign y = 20
+                var w = 50; // Declare w and assign w = 50
+                var h = 1.5 * w; // Declare h and assign h = 75
+                
+                context.fillStyle = 'BurlyWood';
+                context.fillRect(x, y, w, h); // Use the values stored in x, y, w, and h to draw a filled rectangle
+                
+                x = x + w; // Re-assign x = 90
+                w = 2 * w; // Re-assign w = 100
+                h = 2 * h; // Re-assign h = 150
+                
+                context.fillStyle = 'Coral';
+                context.fillRect(x, y, w, h); // Use the values stored in x, y, w, and h to draw a filled rectangle
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_variables_example1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_variables/challenge1Visual1.png', class: 'img-fluid canvas-example')
+          %p
+            Declare the variable
+            %code
+              x
+            and assign it the value 60.
+          %p
+            Declare the variable
+            %code
+              y
+            and assign it the value 40.
+          %p
+            Declare the variable
+            %code
+              h
+            and assign it the value 150.
+          %p
+            Declare the variable
+            %code
+              w
+            and assign it the value of
+            %code
+              2 * h
+            \.
+          %p
+            Then, use the
+            %code
+              context.fillRect()
+            method to draw a rectangle at (
+            %code
+              x
+            ,
+            %code
+              y
+            ) with width
+            %code
+              w
+            and height
+            %code
+              h
+            filled with the color
+            %code
+              '#483D8B'
+            \.
+          %p
+            Your drawing should look like the image on the right.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_variables_challenge1');
+            var context = canvas.getContext('2d');
+
+            // DECLARE AND ASSIGN VARIABLES HERE
+            
+            context.fillStyle = '#483D8B';
+            
+            // DRAW RECTANGLE HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_variables/challenge1.png')
+            %canvas#dng_variables_challenge1
+          .alert
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_variables/challenge2Visual1.png', class: 'img-fluid canvas-example')
+          %p
+            Declare the variable
+            %code
+              x
+            and assign it the value 100.
+          %p
+            Declare the variable
+            %code
+              y
+            and assign it the value 30.
+          %p
+            Declare the variable
+            %code
+              s
+            and assign it the value 160.
+          %p
+            Use the
+            %code
+              context.fillRect()
+            method to draw a square at (
+            %code
+              x
+            ,
+            %code
+              y
+            ) with side length
+            %code
+              s
+            filled with the color
+            %code
+              '#A0522D'
+            \.
+          %p
+            Then, use expressions to calculate and assign new values for
+            %code
+              x
+            ,
+            %code
+              y
+            , and
+            %code
+              s
+            to draw a square with half the side length as the first square positioned
+            at the first square's bottom right corner.
+          %p
+            Draw the second square using the
+            %code
+              context.fillRect()
+            method, filling it with the same color
+            %code
+              '#A0522D'
+            \.
+          %p
+            Your drawing should look like the image on the right.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_variables_challenge2');
+            var context = canvas.getContext('2d');
+            
+            // DECLARE AND ASSIGN VARIABLES FOR THE FIRST SQUARE HERE
+            
+            context.fillStyle = '#A0522D';
+            
+            // DRAW THE FIRST SQUARE HERE
+            
+            // ASSIGN THE VARIABLES NEW VALUES FOR THE SECOND SQUARE HERE
+
+            // DRAW THE SECOND SQUARE HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_variables/challenge2.png')
+            %canvas#dng_variables_challenge2
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use Variable Expressions Directly as Values
+          %p
+            In this example, we draw a forest green rectangle and then a lime green
+            rectangle covering the bottom right quarter of the forest green rectangle.
+          %p
+            We start by declaring and assigning values to the variables
+            %code
+              x
+            ,
+            %code
+              y
+            ,
+            %code
+              w
+            , and
+            %code
+              h
+            for the forest green rectangle:
+          %pre
+            %code
+              :preserve
+                var x = 50;
+                var y = 50;
+                var w = 200;
+                var h = 150;
+          %p
+            After setting the fillStyle to
+            %code
+              'ForestGreen'
+            , we use the
+            %code
+              context.fillRect()
+            method to draw the forest green rectangle:
+          %pre
+            %code
+              :preserve
+                context.fillRect(x, y, w, h);
+          %p
+            Then, instead of assigning new values to our variables for the lime green
+            rectangle, we set the fillStyle to
+            %code
+              'LimeGreen'
+            and simply draw the lime green rectangle using the
+            %code
+              context.fillRect()
+            method by passing it variable expressions instead variables:
+          %pre
+            %code
+              :preserve
+                context.fillRect(x + w / 2, y + h / 2, w / 2, h / 2);
+          %p
+            The x-coordinate of the lime green rectangle is the value of the variable expression
+            %code
+              x + w / 2
+            , which is the x-coordinate of the forest green rectangle plus half its width.
+            In JavaScript, mathematical expressions follow order of operations, so the division
+            is evaluated before the addition.
+          %p
+            The y-coordinate of the lime green rectangle is the value of the variable expression
+            %code
+              y + h / 2
+            , and its width is the value of
+            %code
+              w / 2
+            and its height is the value of
+            %code
+              h / 2
+            \.
+          %p
+            Visit the relevant lessons to learn more about
+            %code
+              context.fillRect
+            ,
+            %code
+              context.fillStyle
+            , and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_coordinate_system, :dng_fill_rect, :dng_fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_variables_example2');
+                var context = canvas.getContext('2d');
+
+                var x = 50;
+                var y = 50;
+                var w = 200;
+                var h = 150;
+
+                context.fillStyle = 'ForestGreen';
+                context.fillRect(x, y, w, h);
+
+                context.fillStyle = 'LimeGreen';
+                context.fillRect(x + w / 2, y + h / 2, w / 2, h / 2);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_variables_example2
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_variables/challenge3Visual1.png', class: 'img-fluid canvas-example')
+          %p
+            Declare and assign variables to draw a rectangle filled with the color
+            %code
+              'Crimson'
+            at the coordinates (40, 20) with width 260 and height 200.
+          %p
+            Use the
+            %code
+              context.fillRect()
+            method to draw the rectangle.
+          %p
+            Then, after setting the fillStyle to the color
+            %code
+              'Tomato'
+            , draw a second rectangle on top of the first rectangle so the first rectangle
+            forms a 20-pixel-wide border around the second rectangle. When using the
+            %code
+              context.fillRect()
+            method to draw the second rectangle, use variable expressions for its x-coordinate,
+            y-coordinate, width, and height.
+          %p
+            Your drawing should look like the image on the right.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_variables_challenge3');
+            var context = canvas.getContext('2d');
+
+            // DECLARE AND ASSIGN VARIABLES FOR THE FIRST RECTANGLE HERE
+            
+            context.fillStyle = 'Crimson';
+            
+            // DRAW THE FIRST RECTANGLE HERE
+            
+            context.fillStyle = 'Tomato';
+            
+            // DRAW THE SECOND RECTANGLE HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_variables/challenge3.png')
+            %canvas#dng_variables_challenge3
+          .alert
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_variables/challenge4Visual1.png', class: 'img-fluid canvas-example')
+          %p
+            Use variable expressions to draw the letter H by drawing two dark violet
+            rectangles and one violet square.
+          %p
+            The two dark violet rectangles have the same width and height. Their heights
+            are three times as long as their widths. The dark violet rectangle on the left
+            is positioned at (100, 40) and its width is 80.
+          %p
+            The violet square has the same width as the two dark violet rectangles and
+            is centered between them.
+          %p
+            Your drawing should look like the image on the right.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_variables_challenge4');
+            var context = canvas.getContext('2d');
+
+            // DECLARE AND ASSIGN VARIABLES FOR THE RECTANGLE ON THE LEFT HERE
+            
+            context.fillStyle = 'DarkViolet';
+            
+            // DRAW THE TWO RECTANGLES HERE
+            
+            context.fillStyle = 'Violet';
+            
+            // DRAW THE ONE SQUARE HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_variables/challenge4.png')
+            %canvas#dng_variables_challenge4
+          .alert
+
+
+  #challenge5.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 5
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_variables/challenge5Visual1.png', class: 'img-fluid canvas-example')
+          %p
+            Use variable expressions to draw a rectangle filled with the color
+            %code
+              'Khaki'
+            at position (20, 40) with width 360 and height 200, and four squares filled with the color
+            %code
+              'White'
+            with side length 25 inside each corner of the rectangle.
+          %p
+            Your drawing should look like the image on the right.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_challenge5_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_variables_challenge5');
+            var context = canvas.getContext('2d');
+
+            // DECLARE AND ASSIGN VARIABLES FOR THE RECTANGLE HERE
+            
+            context.fillStyle = 'Khaki';
+            
+            // DRAW THE RECTANGLE HERE
+            
+            context.fillStyle = 'White';
+            
+            // DRAW THE FOUR SQUARES HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_variables/challenge5.png')
+            %canvas#dng_variables_challenge5
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Variable Names and Scope
+          %p
+            Variable names are case-sensitive and may contain letters, underscores (_), dollar
+            signs ($), and numerals (0-9). However, variable names cannot start with a numeral
+            and must not be a JavaScript reserved word. Here is a list of
+            = link_to('JavaScript reserved words', 'http://www.rapidtables.com/web/color/html-color-codes.htm', target: '_blank')
+          %p
+            Also, variable names must be unique. There must not be two variables with the same
+            name within the same scope.
+          %p
+            Variables are either global or local depending on where they are declared. Variables
+            declared within a function are local. Variables declared outside of a function are global.
+            Local variables have a local scope and can only be accessed from within the function
+            where they were declared. Global variables, on the other hand, have a global scope and
+            can be accessed from anywhere.
+          %p
+            In this example, we declare the variables
+            %code
+              x
+            and
+            %code
+              y
+            in the global scope, the variables
+            %code
+              x
+            and
+            %code
+              z
+            in the local scope of
+            %code
+              myFunctionA()
+            , and the variables
+            %code
+              x
+            and
+            %code
+              y
+            in the local scope of
+            %code
+              myFunctionB()
+            \.
+          %p
+            It is perfectly fine to declare three different variables with the same name in
+            three different scopes. If we try to access variable
+            %code
+              x
+            inside
+            %code
+              myFunctionA()
+            , the computer assumes we're trying to access the variable
+            %code
+              x
+            declared locally in that function.
+          %p
+            If, on the other hand, we try to access variable
+            %code
+              y
+            inside
+            %code
+              myFunctionA()
+            , because there is no variable
+            %code
+              y
+            declared locally, the computer assumes we're trying to access the global variable
+            %code
+              y
+            \.
+          %p
+            Trying to access variable
+            %code
+              z
+            either from the global scope or inside
+            %code
+              myFunctionB()
+            results in an error because variable
+            %code
+              z
+            has only been declared inside
+            %code
+              myFunctionA()
+            , where the global scope and
+            %code
+              myFunctionB()
+            can't see it.
+          %p
+            Visit the relevant lessons to learn more about functions.
+          = render 'lessons/relevant', relevant: [:functions]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_variables_example3');
+                var context = canvas.getContext('2d');
+                
+                var x = 1;
+                var y = 2;
+
+                function myFunctionA() {
+                  var x = 10;
+                  var z = 30;
+                  context.fillText('Inside myFunctionA(), x is ' + x + ', y is ' + y + ', and z is ' + ((typeof z != 'undefined') ? z : 'undeclared') + '.', 10, 32);
+                }
+                
+                function myFunctionB() {
+                  var x = 100;
+                  var y = 200;
+                  context.fillText('Inside myFunctionB(), x is ' + x + ', y is ' + y + ', and z is ' + ((typeof z != 'undefined') ? z : 'undeclared') + '.', 10, 64);
+                }
+                
+                context.font = '16px Arial';
+                myFunctionA();
+                myFunctionB();
+                context.fillText('In the global scope, x is ' + x + ', y is ' + y + ', and z is ' + ((typeof z != 'undefined') ? z : 'undeclared') + '.', 10, 96);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_variables_example3
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Variables and Data Types
+          %p
+            Variables can store more than numbers. Variables can store numbers, strings (text),
+            booleans (
+            %code
+              true
+            or
+            %code
+              false
+            ),
+            %code
+              null
+            and
+            %code
+              undefined
+            values, and objects (including arrays).
+          %p
+            Javascript is considered a loosely typed language because a value's type can change
+            depending on how it is being used.
+          %p
+            For example, in JavaScript, we can add numbers and we can add strings. If
+            %code
+              a = 10
+            and
+            %code
+              b = 16
+            , then the value of
+            %code
+              a + b
+            is
+            %code
+              26
+            \. And if
+            %code
+              a = 'The fox'
+            and
+            %code
+              b = ' is hungry'
+            , then
+            %code
+              a + b
+            is
+            %code
+              'The fox is hungry'
+            \.
+          %p
+            But what happens if
+            %code
+              a = 10
+            and
+            %code
+              b = ' is hungry'
+            ? Instead of saying it can't add a number and a string, JavaScript will convert
+            the number into a string, so the value of
+            %code
+              a + b
+            will be the string
+            %code
+              '10 is hungry'
+            \.
+          %p
+            While the ability to add strings and numbers is useful, sometimes the results can
+            be unexpected. Be careful when converting between data types and try to be as explicit
+            as possible.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_variables_example4');
+                var context = canvas.getContext('2d');
+                
+                var a;
+                var b;
+                
+                context.font = '16px Arial';
+                context.fillStyle = 'rgb(' + (3 * 25) + ', ' + 0 + ', ' + (13 * 10) + ')';
+
+                context.fillText('The color of this text is ' + context.fillStyle, 10, 32);
+                
+                a = 5;
+                b = null;
+                context.fillText(a + b, 10, 64); // null is converted to 0
+                
+                a = '5';
+                b = null;
+                context.fillText(a + b, 10, 96); // null is convereted to 'null'
+                
+                a = '5';
+                b = 2;
+                context.fillText(a + b, 10, 128); // 2 is converted to '2'
+                
+                a = '5';
+                b = 2;
+                context.fillText(a - b, 10, 160); // '5' is converted to 5
+                
+                a = '5';
+                b = '2';
+                context.fillText(a * b, 10, 192); // '5' is converted to 5 and '2' is converted to 2
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_variables_example4

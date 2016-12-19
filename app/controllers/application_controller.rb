@@ -23,7 +23,8 @@ class ApplicationController < ActionController::Base
 
       dng_fill_rect: {count: 6, method: 'DNG fillRect()'},
       dng_fill_style: {count: 3, method: 'DNG fillStyle'},
-      dng_coordinate_system: {count: 3, method: 'DNG Coordinate System'}
+      dng_coordinate_system: {count: 3, method: 'DNG Coordinate System'},
+      dng_variables: {count: 5, method: 'DNG Variables'}
     }
 
     @reference = {
@@ -119,7 +120,8 @@ class ApplicationController < ActionController::Base
           :dng_fill_style
         ],
         concepts: [
-          :dng_coordinate_system
+          :dng_coordinate_system,
+          :dng_variables
         ]
       }
     ]
