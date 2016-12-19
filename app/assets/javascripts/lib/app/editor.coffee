@@ -87,7 +87,6 @@ class App.Editor
       () => @aceEditor.getValue(),
       (code) => @setCode(code)
     )
-    @files.buildMenu()
 
   reset: ->
     @hideLog()
@@ -103,7 +102,9 @@ class App.Editor
     @canvas.reset()
     if @files
       @files.files[@files.selected].code = @aceEditor.getValue()
-      @runCode(@files.files[fileName].code, fileName) for fileName in @files.order.reverse()
+      reverseFileNames = (fileName for fileName in @files.order).reverse()
+      for fileName in reverseFileNames
+        @runCode(@files.files[fileName].code, fileName)
     else
       @runCode(@aceEditor.getValue())
 

@@ -1,12 +1,17 @@
 class App.Files
   constructor: (@element, @getCode, @setCode) ->
-    @selected = 'Base'
     @button = @element.find('button')
     @menu = @element.find('.dropdown-menu')
+    @reset()
+    window.files = @
+
+  reset: ->
+    @selected = 'Base'
     @order = ['Base']
     @files = {
       Base: {}
     }
+    @buildMenu()
 
   buildMenu: ->
     @menu.html('')
@@ -27,19 +32,19 @@ class App.Files
     addItem.addClass('dropdown-item')
     addItem.html('Add New File')
     addItem.click =>
-      @addFile(prompt('What would you like to call your new file?'))
+      @addFile(prompt('What would you like to call your new file?'), true)
     @menu.append(addItem)
 
     @menu.append('<a class=\'dropdown-item\'>Rename Current File</a>')
     @menu.append('<a class=\'dropdown-item\'>Delete Current File</a>')
 
-
-  addFile: (name, switchFile=true) ->
+  addFile: (name, switchToFile, code) ->
     return if name.length == 0
     @files[name] = {}
+    @files[name].code = code if code
     @order.push(name) if @order.indexOf(name) == -1
     @buildMenu()
-    @switchFiles(name) if switchFile
+    @switchFiles(name) if switchToFile
 
   switchFiles: (name) ->
     return if @selected == name
@@ -56,13 +61,13 @@ class App.Files
     allCode.join('~!@')
 
   setAllCode: (allCode) ->
+    @reset()
     if (@validAllCode(allCode))
       for fileInfo in allCode.split('~!@')
         [name, code] = fileInfo.split('@!~')
         continue if !name || name.length == 0 || !code || code.length == 0
         code = code.replace(/\s*/, '')
-        @addFile(name, false)
-        @files[name].code = code
+        @addFile(name, false, code)
         @setCode(code) if name == @selected
     else
       @setCode(allCode)
