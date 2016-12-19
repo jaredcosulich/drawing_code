@@ -15,7 +15,7 @@
               %canvas{id: "my_drawings_#{params[:id]}_canvas"}
 
         .row.py-1
-          = render :layout => '/lessons/editor', :locals => {:editor_id => "my_drawings#{params[:id]}_editor", cols: 12} do
+          = render :layout => '/lessons/editor', :locals => {:editor_id => "my_drawings#{params[:id]}_editor", cols: 12, files: true} do
             :preserve
               hi
 

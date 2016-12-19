@@ -22,17 +22,24 @@ class App.Files
         @menu.append(fileItem)
 
     @menu.append('<div class=\'dropdown-divider\'></div>')
-    @menu.append('<a class=\'dropdown-item\'>Rename Current File</a>')
 
     addItem = $(document.createElement('span'))
     addItem.addClass('dropdown-item')
     addItem.html('Add New File')
     addItem.click =>
-      name = prompt('What would you like to call your new file?')
-      @files[name] = {}
-      @order.push(name)
-      @switchFiles(name)
+      @addFile(prompt('What would you like to call your new file?'))
     @menu.append(addItem)
+
+    @menu.append('<a class=\'dropdown-item\'>Rename Current File</a>')
+    @menu.append('<a class=\'dropdown-item\'>Delete Current File</a>')
+
+
+  addFile: (name, switchFile=true) ->
+    return if name.length == 0
+    @files[name] = {}
+    @order.push(name) if @order.indexOf(name) == -1
+    @buildMenu()
+    @switchFiles(name) if switchFile
 
   switchFiles: (name) ->
     return if @selected == name
@@ -40,3 +47,17 @@ class App.Files
     @setCode(@files[name].code || '')
     @selected = name
     @buildMenu()
+
+  getAllCode: ->
+    @files[@selected].code = @getCode()
+    code = []
+    for fileName in @order
+      code.push("#{fileName}~!@#{@files[fileName].code}")
+    code.join('@!~')
+
+  setAllCode: (allCode) ->
+    for fileInfo in allCode.split('@!~')
+      [name, code] = fileInfo.split('~!@')
+      continue if !name || name.length == 0 || !code || code.length == 0
+      @addFile(name, false)
+      @files[name].code = code

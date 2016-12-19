@@ -10,7 +10,7 @@ drawingSlug = (title) ->
 saveDrawing = (form) ->
   title = form.find('.my_drawing_title').val()
   description = form.find('.my_drawing_description').val()
-  code = $('.editor').data('ace').getValue()
+  code = $('.editor').data('editor').getCode()
 
   App.currentProgress.deleteDrawing($('#saved_drawing').data('slug'))
 
@@ -25,7 +25,6 @@ initDrawingsForm = ->
     location.href = "/drawings/#{slug}"
     return false
 
-
 initSavedDrawing = ->
   if (page = $('#saved_drawing')).length > 0
     slug = page.data('slug')
@@ -34,6 +33,7 @@ initSavedDrawing = ->
     page.find('.drawing-description').html(drawingInfo['description'])
     page.find('.my_drawing_title').val(drawingInfo['title'])
     page.find('.my_drawing_description').val(drawingInfo['description'])
+    console.log(drawingInfo['code'])
     page.find('.editor').data('editor').setCode(drawingInfo['code'])
     page.find('.run').click()
     $("#drawings #navigation-drawing-#{slug}").addClass('active')

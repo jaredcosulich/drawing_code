@@ -18,6 +18,8 @@ class App.Editor
         useSoftTabs: true
         wrap: 'on'
 
+    @initFiles() if @codeEditor.data('files')
+
     @resize()
     @editor.on 'mousemove', =>
       @resize() if @editor.height() != @currentEditorHeight
@@ -26,16 +28,15 @@ class App.Editor
 
     @editor.on 'keyup', =>
       @ensureValidCanvasReference()
-      App.currentProgress.storeEditorValue(@editorElement.id, @aceEditor.getValue())
+      App.currentProgress.storeEditorValue(@editorElement.id, @getCode())
 
     @startCode = @aceEditor.getValue()
 
     @initLog()
     @initRun()
-    @initFiles() if @codeEditor.data('files')
 
     if (previousCode = App.currentProgress.getEditorValue(@editorElement.id))?
-      @aceEditor.setValue(previousCode, -1)
+      @setCode(previousCode)
 
     @ensureValidCanvasReference()
 
@@ -52,12 +53,21 @@ class App.Editor
     canvasId = @canvas.canvasElement.id
     return if code.match(canvasId)? || !code.match(/var canvas = document/)?
     code = code.replace(/var canvas = document.getElementById\('([^)]*)'\);/, "var canvas = document.getElementById('#{canvasId}');")
-    @setCode(code)
+    @setCode(code, true)
 
-  setCode: (code) ->
-    @aceEditor.setValue(code, -1)
+  setCode: (code, currentEditorOnly) ->
+    if @files && !currentEditorOnly
+      @files.setAllCode(code)
+    else
+      @aceEditor.setValue(code, -1)
     @ensureValidCanvasReference()
     App.currentProgress?.storeEditorValue(@editorElement.id, code)
+
+  getCode: ->
+    if @files
+      @files.getAllCode()
+    else
+      @aceEditor.getValue()
 
   initRun: ->
     @codeEditor.find('.buttons .run').click (e) =>
@@ -73,7 +83,7 @@ class App.Editor
     @files = new App.Files(
       filesElement,
       () => @aceEditor.getValue(),
-      (code) => @setCode(code)
+      (code) => @setCode(code, true)
     )
     @files.buildMenu()
 
@@ -81,7 +91,7 @@ class App.Editor
     @hideLog()
     @clearLog()
     @canvas.hideAlert()
-    @setCode(@startCode)
+    @setCode(@startCode, true)
 
   run: ->
     @hideLog()
