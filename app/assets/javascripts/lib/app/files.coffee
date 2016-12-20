@@ -4,7 +4,6 @@ class App.Files
     @button = @element.find('button')
     @menu = @element.find('.dropdown-menu')
     @reset()
-    window.files = @
 
   reset: ->
     @selected = 'Base'
@@ -96,7 +95,7 @@ class App.Files
       for fileInfo in allCode.split('~!@')
         [name, code] = fileInfo.split('@!~')
         continue if !name || name.length == 0 || !code || code.length == 0
-        code = code.replace(/\s*/, '')
+        code = code.replace(/^\s*/, '').replace(/\s*$/, '')
         @addFile(name, false, code)
         @setCode(code) if name == @selected
     else
