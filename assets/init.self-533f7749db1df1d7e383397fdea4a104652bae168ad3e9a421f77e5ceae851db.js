@@ -12,6 +12,11 @@
     return (ref = App.currentEditor) != null ? ref.log.apply(ref, messageText) : void 0;
   };
 
+  window.onerror = function() {
+    var ref;
+    return (ref = App.currentEditor) != null ? ref.log("<strong class='text-danger'>Unknown Error</strong> Check Console") : void 0;
+  };
+
   init = function() {
     initProgress();
     initInteractives();

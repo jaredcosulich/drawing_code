@@ -11,6 +11,9 @@
       ace.config.set('workerPath', '/drawing_code/ace/');
       this.aceEditor = ace.edit(this.editorElement);
       this.editor.data({
+        editor: this
+      });
+      this.editor.data({
         ace: this.aceEditor
       });
       this.aceEditor.$blockScrolling = Infinity;
@@ -53,8 +56,11 @@
       this.aceEditor.resize();
       return setTimeout(((function(_this) {
         return function() {
+          _this.editor.find('.ace_scroller').css({
+            right: '18px'
+          });
           return _this.editor.find('.ace_scrollbar-v').css({
-            bottom: '15px'
+            bottom: '18px'
           });
         };
       })(this)), 250);
@@ -74,6 +80,7 @@
     Editor.prototype.setCode = function(code) {
       var ref;
       this.aceEditor.setValue(code, -1);
+      this.ensureValidCanvasReference();
       return (ref = App.currentProgress) != null ? ref.storeEditorValue(this.editorElement.id, code) : void 0;
     };
 
@@ -104,9 +111,9 @@
       this.hideLog();
       this.clearLog();
       this.canvas.hideAlert();
+      App.currentEditor = this;
+      this.canvas.reset();
       try {
-        App.currentEditor = this;
-        this.canvas.reset();
         return eval(this.aceEditor.getValue());
       } catch (error1) {
         e = error1;
@@ -115,7 +122,7 @@
         } catch (error2) {
           error = error2;
           errorLineNumber = 'N/A';
-          console.log('Could not split stack.', this.aceEditor.getValue(), e.stack);
+          console.log('Could not split stack.', e.stack);
         }
         return this.log("<strong class='text-danger'>Error:</strong> " + e.message + " (Line " + errorLineNumber + ")");
       }

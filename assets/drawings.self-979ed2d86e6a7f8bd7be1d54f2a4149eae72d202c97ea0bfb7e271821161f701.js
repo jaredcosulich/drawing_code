@@ -14,7 +14,7 @@
     var code, description, slug, title;
     title = form.find('.my_drawing_title').val();
     description = form.find('.my_drawing_description').val();
-    code = $('.editor').data('ace').getValue();
+    code = $('.editor').data('editor').getCode();
     App.currentProgress.deleteDrawing($('#saved_drawing').data('slug'));
     slug = drawingSlug(title);
     App.currentProgress.saveDrawing(slug, title, description, code);
@@ -40,7 +40,7 @@
       page.find('.drawing-description').html(drawingInfo['description']);
       page.find('.my_drawing_title').val(drawingInfo['title']);
       page.find('.my_drawing_description').val(drawingInfo['description']);
-      page.find('.editor').data('ace').setValue(drawingInfo['code']);
+      page.find('.editor').data('editor').setStartCode(drawingInfo['code']);
       page.find('.run').click();
       $("#drawings #navigation-drawing-" + slug).addClass('active');
       page.find('.save .submit').click(function() {
