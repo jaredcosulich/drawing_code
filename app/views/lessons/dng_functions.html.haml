@@ -1,0 +1,840 @@
+#dng_functions.lesson
+  %h1 Functions
+
+  = render 'lessons/challenge_count'
+
+  .description.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_functions/overviewVisual1.png', class: 'img-fluid')
+          %p
+            A function is a block of code that is run whenever the function is called within a program.
+          %p
+            Functions are declared using the
+            %code
+              function
+            keyword. For example, we create a function named
+            %code>
+              doSomething()
+            by typing:
+          %pre
+            %code
+              :preserve
+                function doSomething() {
+                  
+                  // the code to do something
+                  
+                }
+          %p
+            The curly braces {&hellip;} mark the beginning and end of the function's code block,
+            which is the code run when the function is called. While computers are excellent at
+            spotting the curly braces in a program, sometimes human eyes miss them. That's why it
+            is standard practice to also indent the code in a block, making the code block stand
+            out visually from the code around it.
+          %p
+            Functions enable you to reuse your code instead of re-writing it every time, and
+            they also make your programs easier to read and maintain.
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Define and Call a Function
+          %p
+            In this example, we create a function named
+            %code
+              drawSandwich()
+            that draws a sandwich. Another standard practice is to give functions descriptive
+            names, so we know what they do, and to write them using camel case, capitalizing each
+            word after the first one.
+          %p
+            We start by declaring and defining the function:
+          %pre
+            %code
+              :preserve
+                function drawSandwich() {
+                  context.save();
+                  context.fillStyle = '#F5DEB3';
+                  context.fillRect(20, 20, 200, 30);
+                  context.fillRect(20, 100, 200, 30);
+                  context.fillStyle = '#663300';
+                  context.fillRect(30, 50, 180, 50);
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(20, 62, 200, 8);
+                  context.fillRect(20, 80, 200, 8);
+                  context.restore();
+                }
+          %p
+            Think of a function definition as a recipe. If we put a recipe for a sandwich up
+            on the refrigerator, it doesn't mean there will be a sandwich waiting for us
+            when we get home. We have to tell someone to use the recipe to make us a sandwich.
+          %p
+            Right now, we have given the computer a recipe to follow if we ask it to draw a sandwich,
+            but we haven't told it to draw a sandwich yet. To do that, we have to call the function using:
+          %pre
+            %code
+              :preserve
+                drawSandwich();
+          %p
+            If we step through our program line by line, here is what happens:
+          %p
+            First, the computer gets a reference to the canvas and stores it in the global variable
+            %span
+              %code>
+                canvas
+              \.
+          %pre
+            %code
+              :preserve
+                var canvas = document.getElementById('dng_functions_example1');
+          %p
+            Second, the computer gets a reference to the canvas's context and stores it in the global variable
+            %span
+              %code>
+                context
+              \.
+          %pre
+            %code
+              :preserve
+                var context = canvas.getContext('2d');
+          %p
+            Then, the computer looks up and runs our function.
+          %pre
+            %code
+              :preserve
+                drawSandwich();
+          %p
+            The computer recognizes that
+            %code
+              drawSandwich()
+            is a function because of the parentheses (), so it searches for the function's
+            definition in the program. It doesn't actually matter where we place the definition
+            in the program; the computer will find it and run the function's code block.
+          %p
+            In functions that use the context, it's generally a good idea to save and restore the
+            context at the start and end of the function, respectively.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            variables, and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinate_system]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_functions_example1');
+                var context = canvas.getContext('2d');
+                
+                drawSandwich();
+
+                function drawSandwich() {
+                  context.save();
+                  context.fillStyle = '#F5DEB3';
+                  context.fillRect(20, 20, 200, 30);
+                  context.fillRect(20, 100, 200, 30);
+                  context.fillStyle = '#663300';
+                  context.fillRect(30, 50, 180, 50);
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(20, 62, 200, 8);
+                  context.fillRect(20, 80, 200, 8);
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_functions_example1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_functions/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Define a function named
+            %span
+              %code>
+                drawRedSquare()
+              \.
+            Inside the function's code block, set the context's fillStyle to
+            %code
+              '#FF0000'
+            and use the
+            %code
+              context.fillRect()
+            method to draw a filled rectangle at (60, 40) with a width of 200 and a height of 200.
+          %p
+            Then, call the function
+            %span
+              %code>
+                drawRedSquare()
+              \.
+          %p
+            The
+            %code
+              context.fillRect()
+            method is simply a function that other programmers have created for us to use. The
+            computer knows where to find its function definition, and it's called a method because
+            it is a property of the context.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_functions_challenge1');
+            var context = canvas.getContext('2d');
+
+            // DEFINE THE FUNCTION HERE
+            
+            // CALL THE FUNCTION HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_functions/challenge1.png')
+            %canvas#dng_functions_challenge1
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Pass Values into a Function
+          %p
+            While our function
+            %code
+              drawSandwich()
+            works, it's not very useful. It is hardcoded to always draw a sandwich with its
+            top left corner at (20, 20). One of the reasons why we place code in functions is
+            so we can use it over and over again without having to re-write it. But calling
+            %code
+              drawSandwich()
+            more than once will only draw another sandwich directly on top of the first one.
+          %p
+            To make the function more useful, we are going to re-define it to draw a sandwich
+            at a set of coordinates we pass it, not just (20, 20). Values passed into a function are
+            called arguments, and they are stored in local variables called parameters.
+          %p
+            We add parameters to a function by listing them in the parentheses next to the function's
+            name in its definition:
+          %pre
+            %code
+              :preserve
+                function drawSandwich(x, y) {
+                  
+                  // code block
+                  
+                }
+          %p
+            In this case, parameter
+            %code
+              x
+            will store the value of the sandwich's x-coordinate and parameter
+            %code
+              y
+            will store the value of the y-coordinate.
+          %p
+            We then update the code inside the function to draw the rectangles for the
+            bread, meat, and cheese at coordinates based on
+            %code
+              x
+            and
+            %span
+              %code>
+                y
+              \:
+          %pre
+            %code
+              :preserve
+                function drawSandwich(x, y) {
+                  context.save();
+                  context.fillStyle = '#F5DEB3';
+                  context.fillRect(x, y, 200, 30);
+                  context.fillRect(x, y + 80, 200, 30);
+                  context.fillStyle = '#663300';
+                  context.fillRect(x + 10, y + 30, 180, 50);
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(x, y + 42, 200, 8);
+                  context.fillRect(x, y + 60, 200, 8);
+                  context.restore();
+                }
+          %p
+            There is a much easier way to draw a sandwich at coordinates (x, y) using the
+            %code
+              context.translate()
+            method, but we will discuss that in the
+            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
+            lesson.
+          %p
+            Now we can draw a stack of sandwiches by drawing three sandwiches at three
+            different sets of coordinates:
+          %pre
+            %code
+              :preserve
+                drawSandwich(125, 20);
+                drawSandwich(20, 130);
+                drawSandwich(230, 130);
+          %p
+            When we call the function
+            %code
+              drawSandwich()
+            and pass it the arguments 125 and 20, the value 125 is stored in the parameter
+            %code
+              x
+            and the value 20 in the parameter
+            %span
+              %code>
+                y
+              \.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            variables, and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinate_system]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_functions_example2');
+                var context = canvas.getContext('2d');
+                
+                drawSandwich(125, 20);
+                drawSandwich(20, 130);
+                drawSandwich(230, 130);
+
+                function drawSandwich(x, y) {
+                  context.save();
+                  context.fillStyle = '#F5DEB3';
+                  context.fillRect(x, y, 200, 30);
+                  context.fillRect(x, y + 80, 200, 30);
+                  context.fillStyle = '#663300';
+                  context.fillRect(x + 10, y + 30, 180, 50);
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(x, y + 42, 200, 8);
+                  context.fillRect(x, y + 60, 200, 8);
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_functions_example2
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_functions/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Re-define the function
+            %code
+              drawRedSquare()
+            with the parameters
+            %span
+              %code>
+                x
+              ,
+            %span
+              %code>
+                y
+              ,
+            and
+            %span
+              %code>
+                s
+              ,
+            where
+            %code
+              x
+            is the x-coordinate of the square,
+            %code
+              y
+            is the y-coordinate, and
+            %code
+              s
+            is the side length.
+          %p
+            Then, use the function to draw three squares: the first at (160, 20) with a side
+            length of 50; the second at (40, 80) with a side length of 120; and the third at
+            (70, 210) with a side length of 90.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_functions_challenge2');
+            var context = canvas.getContext('2d');
+            
+            // DEFINE THE FUNCTION HERE
+            
+            // CALL THE FUNCTION TO DRAW THE FIRST SQUARE HERE
+            
+            // CALL THE FUNCTION TO DRAW THE SECOND SQUARE HERE
+            
+            // CALL THE FUNCTION TO DRAW THE THIRD SQUARE HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_functions/challenge2.png')
+            %canvas#dng_functions_challenge2
+          .alert
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_functions/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            The function
+            %code
+              drawTheLetterL()
+            is currently hardcoded to draw a letter L at (100, 50).
+          %p
+            Re-define the function using parameters so it will draw a letter L at any set
+            of coordinates passed into it.
+          %p
+            Then, draw three letter L's: the first at (20, 120), the second at (110, 70),
+            and the third at (200, 20);
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_functions_challenge3');
+            var context = canvas.getContext('2d');
+
+            function drawTheLetterL() {
+              context.save();
+              context.fillStyle = 'SlateBlue';
+              context.fillRect(100, 50, 30, 120);
+              context.fillRect(130, 140, 60, 30);
+              context.restore();
+            }
+            
+            // DRAW THE THREE LETTER L'S HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_functions/challenge3.png')
+            %canvas#dng_functions_challenge3
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Return Values from Functions
+          %p
+            One way to pass values into a function is through the use of parameters. One way
+            to get values out of a function is through the use of return values.
+          %p
+            In this example, we define and call a function that calculates the distance between
+            two points.
+          %p
+            The function
+            %code
+              distance()
+            has four parameters:
+          %pre
+            %code
+              :preserve
+                function distance(x1, y1, x2, y2) {
+                  
+                  // code block
+                  
+                }
+          %p
+            We pass the x- and y-coordinates of the first point into parameters
+            %code
+              x1
+            and
+            %span
+              %code>
+                y1
+              ,
+            and the x- and y-coordinates of the second point into
+            %code
+              x2
+            and
+            %span
+              %code>
+                y2
+              \.
+          %p
+            To calculate the distance, we are going to use some math functions other
+            programmers have defined for us. Don't worry about these math functions for now, but
+            %code
+              Math.pow()
+            accepts two arguments, a base and an exponent, and calculates the base raised to the
+            power of the exponent, and
+            %code
+              Math.sqrt()
+            accepts one argument and calculates the square root of that number.
+          %pre
+            %code
+              :preserve
+                function distance(x1, y1, x2, y2) {
+                  var d = Math.sqrt( Math.pow( x2 - x1, 2 ) + Math.pow( y2 - y1, 2 ) );
+                }
+          %p
+            Our function uses the
+            %code
+              Math.pow()
+            and
+            %code
+              Math.sqrt()
+            functions to calculate the distance between (x2, y2) and (x1, y1) and stores the
+            value in the local variable
+            %span
+              %code
+                d
+              \.
+            Great. How do we get the value stored in the variable
+            %code
+              d
+            out of the function so we can use it?
+          %p
+            Because it is a local variable declared inside the
+            %code
+              distance()
+            function, the variable
+            %code
+              d
+            can only be accessed from within the function. It won't exist once the function
+            stops running. To get the value of
+            %code
+              d
+            out of the function, we use a return statement.
+          %p
+            A return statement inside a function does two things. First, it ends the function
+            even if there is more code to run below it. Second, it can return a value if one is
+            provided. In this case, the
+            %code
+              distance()
+            function returns the value of
+            %span
+              %code>
+                d
+              \.
+          %pre
+            %code
+              :preserve
+                function distance(x1, y1, x2, y2) {
+                  var d = Math.sqrt( Math.pow( x2 - x1, 2 ) + Math.pow( y2 - y1, 2 ) );
+                  return d;
+                }
+          %p
+          %p
+            Never assign a value to a variable that hasn't been declared. Undeclared variables
+            are automatically given a global scope, and global variables should only be created deliberately.
+          %p
+            Visit the relevant lessons to learn more about functions.
+          = render 'lessons/relevant', relevant: [:functions]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_functions_example3');
+                var context = canvas.getContext('2d');
+                
+                var x = 1;
+                var y = 2;
+
+                function myFunctionA() {
+                  var x = 10;
+                  var z = 30;
+                  context.fillText('Inside myFunctionA(), x is ' + x + ', y is ' + y + ', and z is ' + ((typeof z != 'undefined') ? z : 'undeclared') + '.', 10, 32);
+                }
+                
+                function myFunctionB() {
+                  var x = 100;
+                  var y = 200;
+                  context.fillText('Inside myFunctionB(), x is ' + x + ', y is ' + y + ', and z is ' + ((typeof z != 'undefined') ? z : 'undeclared') + '.', 10, 64);
+                }
+                
+                context.font = '16px Arial';
+                myFunctionA();
+                myFunctionB();
+                context.fillText('In the global scope, x is ' + x + ', y is ' + y + ', and z is ' + ((typeof z != 'undefined') ? z : 'undeclared') + '.', 10, 96);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_functions_example3
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_functions/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Use variable expressions to draw the letter H by drawing two dark violet
+            rectangles and one violet square.
+          %p
+            The two dark violet rectangles have the same width and height. Their heights
+            are three times as long as their widths. The dark violet rectangle on the left
+            is positioned at (100, 40) and its width is 80.
+          %p
+            The violet square has the same width as the two dark violet rectangles and
+            is centered between them.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_functions_challenge4');
+            var context = canvas.getContext('2d');
+
+            // DECLARE AND ASSIGN VARIABLES FOR THE RECTANGLE ON THE LEFT HERE
+            
+            context.fillStyle = 'DarkViolet';
+            
+            // DRAW THE TWO RECTANGLES HERE
+            
+            context.fillStyle = 'Violet';
+            
+            // DRAW THE ONE SQUARE HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_functions/challenge4.png')
+            %canvas#dng_functions_challenge4
+          .alert
+
+
+  #challenge5.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 5
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_functions/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Use variable expressions to draw a rectangle filled with the color
+            %code
+              'Khaki'
+            at position (20, 40) with width 360 and height 200, and four squares filled with the color
+            %code
+              'White'
+            with side length 25 inside each corner of the rectangle.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge5_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_functions_challenge5');
+            var context = canvas.getContext('2d');
+
+            // DECLARE AND ASSIGN VARIABLES FOR THE RECTANGLE HERE
+            
+            context.fillStyle = 'Khaki';
+            
+            // DRAW THE RECTANGLE HERE
+            
+            context.fillStyle = 'White';
+            
+            // DRAW THE FOUR SQUARES HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_functions/challenge5.png')
+            %canvas#dng_functions_challenge5
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use Functions Inside of Functions
+          %p
+            Variables can store more than numbers. Variables can store numbers, strings (text),
+            booleans
+            %span
+              (
+              %code><
+                true
+            or
+            %span
+              %code>
+                false
+              ),
+            %code
+              null
+            and
+            %code
+              undefined
+            values, and objects (including arrays).
+          %p
+            Javascript is considered a loosely typed language because a value's type can change
+            depending on how it is being used.
+          %p
+            For example, in JavaScript, we can add numbers and we can add strings. If
+            %code
+              a = 10
+            and
+            %span
+              %code>
+                b = 16
+              ,
+            then the value of
+            %code
+              a + b
+            is
+            %span
+              %code>
+                26
+              \.
+            And if
+            %code
+              a = 'The fox'
+            and
+            %span
+              %code>
+                b = ' is hungry'
+              ,
+            then
+            %code
+              a + b
+            is
+            %span
+              %code>
+                'The fox is hungry'
+              \.
+          %p
+            But what happens if
+            %code
+              a = 10
+            and
+            %span
+              %code>
+                b = ' is hungry'
+              ?
+            Instead of saying it can't add a number and a string, JavaScript will convert
+            the number into a string, so the value of
+            %code
+              a + b
+            will be the string
+            %span
+              %code>
+                '10 is hungry'
+              \.
+          %p
+            While the ability to add strings and numbers is useful, sometimes the results can
+            be unexpected. Be careful when converting between data types and try to be as explicit
+            as possible.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_functions_example4');
+                var context = canvas.getContext('2d');
+                
+                var a;
+                var b;
+                
+                context.font = '16px Arial';
+                context.fillStyle = 'rgb(' + (3 * 25) + ', ' + 0 + ', ' + (13 * 10) + ')';
+
+                context.fillText('The color of this text is ' + context.fillStyle, 10, 32);
+                
+                a = 5;
+                b = null;
+                context.fillText(a + b, 10, 64); // null is converted to 0
+                
+                a = '5';
+                b = null;
+                context.fillText(a + b, 10, 96); // null is convereted to 'null'
+                
+                a = '5';
+                b = 2;
+                context.fillText(a + b, 10, 128); // 2 is converted to '2'
+                
+                a = '5';
+                b = 2;
+                context.fillText(a - b, 10, 160); // '5' is converted to 5
+                
+                a = '5';
+                b = '2';
+                context.fillText(a * b, 10, 192); // '5' is converted to 5 and '2' is converted to 2
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_functions_example4
