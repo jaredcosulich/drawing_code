@@ -68,10 +68,15 @@
               %code
                 context.fillStyle = 'DarkOrchid'
               really means
-              %code
-                context.fillStyle = '#9932CC'
-              \. Here is a full list of
-              = link_to('HTML5 color names', 'http://www.rapidtables.com/web/color/html-color-codes.htm', target: '_blank')
+              %span
+                %code>
+                  context.fillStyle = '#9932CC'
+                \.
+              Here is a full list of
+              %span
+                %span><
+                  = link_to('HTML5 color names', 'http://www.rapidtables.com/web/color/html-color-codes.htm', target: '_blank')
+                \.
             %li.py-1
               %strong Hex Triplets
               %br
@@ -83,19 +88,26 @@
               and the third number (CC) is the amount of blue. The value for each color component
               (red, green, and blue) can range from 00 (none) to FF (maximum). For example, the
               color red is
-              %code
-                '#FF0000'
-              , which is maximum red, no green, and no blue. Here is a list of
-              = link_to('common hex triplets', 'http://www.rapidtables.com/web/color/Web_Safe.htm', target: '_blank')
+              %span
+                %code>
+                  '#FF0000'
+                ,
+              which is maximum red, no green, and no blue. Here is a list of
+              %span
+                %span><
+                  = link_to('common hex triplets', 'http://www.rapidtables.com/web/color/Web_Safe.htm', target: '_blank')
+                \.
             %li.py-1
               %strong RGB Values
               %br
               Instead of describing colors in base-16, colors can also be described using RGB
               values, which are in base-10. To describe a color using RGB values, we use a text string
               in the format:
-              %code
-                'rgb(red, green, blue)'
-              \. Since the numbers 99, 32, and CC in base-16 are equal to 153, 50, and 204 in base-10,
+              %span
+                %code>
+                  'rgb(red, green, blue)'
+                \.
+              Since the numbers 99, 32, and CC in base-16 are equal to 153, 50, and 204 in base-10,
               %code
                 '#9932CC'
               and
@@ -103,7 +115,10 @@
                 'rgb(153, 50, 204)'
               both describe the same color. RGB values must be whole numbers, and they range from 0-255.
               To find RGB values for different colors, you can use this tool:
-              = link_to('RGB Colors', 'http://www.rapidtables.com/web/color/RGB_Color.htm', target: '_blank')
+              %span
+                %span><
+                  = link_to('RGB Colors', 'http://www.rapidtables.com/web/color/RGB_Color.htm', target: '_blank')
+                \.
             %li.py-1
               %strong RGBA Format
               %br
@@ -111,9 +126,11 @@
               which is its degree of transparency. Alpha values range from 0-1, where 0 is fully
               transparent and 1 is fully opaque. To set the context's fillStyle to a dark orchid
               color that is 50% transparent, we would use the text string
-              %code
-                'rgba(153, 50, 204, 0.5)'
-              , where the first three numbers are RGB values and the fourth number is the alpha value.
+              %span
+                %code>
+                  'rgba(153, 50, 204, 0.5)'
+                ,
+              where the first three numbers are RGB values and the fourth number is the alpha value.
           %p
             In this example, we draw four filled rectangles using four different colors.
           %p
@@ -123,7 +140,7 @@
           %p
             Visit the relevant lessons to learn more about the context's coordinate system and the
             %code
-              context.fillRect
+              context.fillRect()
             method.
           = render 'lessons/relevant', relevant: [:dng_coordinate_system, :dng_fill_rect]
 
@@ -288,6 +305,7 @@
             Challenge 3
           %figure.float-xs-right.px-2
             = image_tag('lessons/dng_fill_style/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Rearrange the lines of code below to draw the image to the right.
           %p
@@ -499,9 +517,11 @@
             Normally, we would load the image before running our program, which would make the code much simpler.
           %p
             We start by creating our image, assigning it to the variable
-            %code
-              img
-            , and supplying the URL where the actual image file is located on the web server.
+            %span
+              %code>
+                img
+              ,
+            and supplying the URL where the actual image file is located on the web server.
           %pre
             %code
               :preserve
@@ -601,16 +621,18 @@
             those patterns were drawn using two different coordinate systems.
           %p
             Visit the relevant lessons to learn more about
-            %code
-              context.save()
-            ,
-            %code
-              context.translate()
-            ,
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.translate()
+              ,
             %code
               context.fillRect()
             and, the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_coordinate_system, :save, :translate, :dng_fill_rect]
+          = render 'lessons/relevant', relevant: [:save, :translate, :dng_fill_rect, :dng_coordinate_system]
 
         .col-xs-12
           .interactive.row.py-1

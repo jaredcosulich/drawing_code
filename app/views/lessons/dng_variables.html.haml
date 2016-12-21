@@ -33,9 +33,11 @@
                 var myVariable = 42;
           %p
             If we declare a variable but don't assign a value to it, the value of the variable is
-            %code
-              undefined
-            , which is an actual value we can check.
+            %span
+              %code>
+                undefined
+              ,
+            which is an actual value we can check.
 
 
   .example.row.py-3
@@ -51,20 +53,25 @@
             %code
               'BurlyWood'
             and the larger rectangle with the color
-            %code
-              Coral
-            \.
+            %span
+              %code>
+                Coral
+              \.
           %p
             We start by declaring and assigning values to the variables
-            %code
-              x
-            ,
-            %code
-              y
-            , and
-            %code
-              w
-            \.
+            %span
+              %code>
+                x
+              ,
+            %span
+              %code>
+                y
+              ,
+            and
+            %span
+              %code>
+                w
+              \.
           %pre
             %code
               :preserve
@@ -73,9 +80,11 @@
                 var w = 50;
           %p
             We also declare and assign a value to the variable
-            %code
-              h
-            , but instead of assigning it a number, we use an expression to calculate its value.
+            %span
+              %code>
+                h
+              ,
+            but instead of assigning it a number, we use an expression to calculate its value.
             Since the value of
             %code
               w
@@ -101,23 +110,29 @@
             %code
               h
             does not change the value of
-            %code
-              h
-            \. The value of
+            %span
+              %code>
+                h
+              \.
+            The value of
             %code
               h
             would still be 75 because it stores the value of the expression, not the expression itself.
           %p
             We then use the values stored in
-            %code
-              x
-            ,
-            %code
-              y
-            ,
-            %code
-              w
-            , and
+            %span
+              %code>
+                x
+              ,
+            %span
+              %code>
+                y
+              ,
+            %span
+              %code>
+                w
+              ,
+            and
             %code
               h
             to draw the small rectangle.
@@ -145,15 +160,18 @@
             %code
               w
             before assigning a new value to
-            %code
-              x
-            , the x-coordinate of the larger rectangle would be too far to the right.
+            %span
+              %code>
+                x
+              ,
+            the x-coordinate of the larger rectangle would be too far to the right.
           %p
             When we draw the larger rectangle, we use the same variables, but all of them have
             new values except for the variable
-            %code
-              y
-            \.
+            %span
+              %code>
+                y
+              \.
           %pre
             %code
               :preserve
@@ -162,24 +180,30 @@
             By using variables to calculate its size and position, the larger rectangle is
             always next to the small rectangle and it is always twice as wide and twice as
             tall as the small rectangle. Change the intial values for
-            %code
-              x
-            ,
-            %code
-              y
-            , and
+            %span
+              %code>
+                x
+              ,
+            %span
+              %code>
+                y
+              ,
+            and
             %code
               w
             to see what happens.
           %p
             Visit the relevant lessons to learn more about
-            %code
-              context.fillRect
-            ,
-            %code
-              context.fillStyle
-            , and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_coordinate_system, :dng_fill_rect, :dng_fill_style]
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinate_system]
 
         .col-xs-12
           .interactive.row.py-1
@@ -219,6 +243,7 @@
             Challenge 1
           %figure.float-xs-right.px-2
             = image_tag('lessons/dng_variables/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Declare the variable
             %code
@@ -239,31 +264,33 @@
             %code
               w
             and assign it the value of
-            %code
-              2 * h
-            \.
+            %span
+              %code>
+                2 * h
+              \.
           %p
             Then, use the
             %code
               context.fillRect()
             method to draw a rectangle at (
-            %code
+            %code>
               x
             ,
-            %code
-              y
-            ) with width
+            %span
+              %code>
+                y
+              )
+            with width
             %code
               w
             and height
             %code
               h
             filled with the color
-            %code
-              '#483D8B'
-            \.
-          %p
-            Your drawing should look like the image on the right.
+            %span
+              %code>
+                '#483D8B'
+              \.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_challenge1_editor'} do
@@ -295,6 +322,7 @@
             Challenge 2
           %figure.float-xs-right.px-2
             = image_tag('lessons/dng_variables/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Declare the variable
             %code
@@ -315,26 +343,32 @@
             %code
               context.fillRect()
             method to draw a square at (
-            %code
+            %code>
               x
             ,
-            %code
-              y
-            ) with side length
+            %span
+              %code>
+                y
+              )
+            with side length
             %code
               s
             filled with the color
-            %code
-              '#A0522D'
-            \.
+            %span
+              %code>
+                '#A0522D'
+              \.
           %p
             Then, use expressions to calculate and assign new values for
-            %code
-              x
-            ,
-            %code
-              y
-            , and
+            %span
+              %code>
+                x
+              ,
+            %span
+              %code>
+                y
+              ,
+            and
             %code
               s
             to draw a square with half the side length as the first square positioned
@@ -344,11 +378,10 @@
             %code
               context.fillRect()
             method, filling it with the same color
-            %code
-              '#A0522D'
-            \.
-          %p
-            Your drawing should look like the image on the right.
+            %span
+              %code>
+                '#A0522D'
+              \.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_challenge2_editor'} do
@@ -387,15 +420,19 @@
             rectangle covering the bottom right quarter of the forest green rectangle.
           %p
             We start by declaring and assigning values to the variables
-            %code
-              x
-            ,
-            %code
-              y
-            ,
-            %code
-              w
-            , and
+            %span
+              %code>
+                x
+              ,
+            %span
+              %code>
+                y
+              ,
+            %span
+              %code>
+                w
+              ,
+            and
             %code
               h
             for the forest green rectangle:
@@ -408,9 +445,11 @@
                 var h = 150;
           %p
             After setting the fillStyle to
-            %code
-              'ForestGreen'
-            , we use the
+            %span
+              %code>
+                'ForestGreen'
+              ,
+            we use the
             %code
               context.fillRect()
             method to draw the forest green rectangle:
@@ -433,31 +472,39 @@
                 context.fillRect(x + w / 2, y + h / 2, w / 2, h / 2);
           %p
             The x-coordinate of the lime green rectangle is the value of the variable expression
-            %code
-              x + w / 2
-            , which is the x-coordinate of the forest green rectangle plus half its width.
+            %span
+              %code>
+                x + w / 2
+              ,
+            which is the x-coordinate of the forest green rectangle plus half its width.
             In JavaScript, mathematical expressions follow order of operations, so the division
             is evaluated before the addition.
           %p
             The y-coordinate of the lime green rectangle is the value of the variable expression
-            %code
-              y + h / 2
-            , and its width is the value of
+            %span
+              %code>
+                y + h / 2
+              ,
+            and its width is the value of
             %code
               w / 2
             and its height is the value of
-            %code
-              h / 2
-            \.
+            %span
+              %code>
+                h / 2
+              \.
           %p
             Visit the relevant lessons to learn more about
-            %code
-              context.fillRect
-            ,
-            %code
-              context.fillStyle
-            , and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_coordinate_system, :dng_fill_rect, :dng_fill_style]
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinate_system]
 
         .col-xs-12
           .interactive.row.py-1
@@ -493,6 +540,7 @@
             Challenge 3
           %figure.float-xs-right.px-2
             = image_tag('lessons/dng_variables/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Declare and assign variables to draw a rectangle filled with the color
             %code
@@ -505,16 +553,16 @@
             method to draw the rectangle.
           %p
             Then, after setting the fillStyle to the color
-            %code
-              'Tomato'
-            , draw a second rectangle on top of the first rectangle so the first rectangle
+            %span
+              %code>
+                'Tomato'
+              ,
+            draw a second rectangle over the first rectangle so the first rectangle
             forms a 20-pixel-wide border around the second rectangle. When using the
             %code
               context.fillRect()
             method to draw the second rectangle, use variable expressions for its x-coordinate,
             y-coordinate, width, and height.
-          %p
-            Your drawing should look like the image on the right.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_challenge3_editor'} do
@@ -550,6 +598,7 @@
             Challenge 4
           %figure.float-xs-right.px-2
             = image_tag('lessons/dng_variables/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Use variable expressions to draw the letter H by drawing two dark violet
             rectangles and one violet square.
@@ -560,8 +609,6 @@
           %p
             The violet square has the same width as the two dark violet rectangles and
             is centered between them.
-          %p
-            Your drawing should look like the image on the right.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_challenge4_editor'} do
@@ -597,6 +644,7 @@
             Challenge 5
           %figure.float-xs-right.px-2
             = image_tag('lessons/dng_variables/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Use variable expressions to draw a rectangle filled with the color
             %code
@@ -605,8 +653,6 @@
             %code
               'White'
             with side length 25 inside each corner of the rectangle.
-          %p
-            Your drawing should look like the image on the right.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_variables_challenge5_editor'} do
@@ -644,7 +690,10 @@
             Variable names are case-sensitive and may contain letters, underscores (_), dollar
             signs ($), and numerals (0-9). However, variable names cannot start with a numeral
             and must not be a JavaScript reserved word. Here is a list of
-            = link_to('JavaScript reserved words', 'http://www.rapidtables.com/web/color/html-color-codes.htm', target: '_blank')
+            %span
+              %span><
+                = link_to('JavaScript reserved words', 'http://www.rapidtables.com/web/color/html-color-codes.htm', target: '_blank')
+              \.
           %p
             Also, variable names must be unique. There must not be two variables with the same
             name within the same scope.
@@ -668,27 +717,32 @@
             %code
               z
             in the local scope of
-            %code
-              myFunctionA()
-            , and the variables
+            %span
+              %code>
+                myFunctionA()
+              ,
+            and the variables
             %code
               x
             and
             %code
               y
             in the local scope of
-            %code
-              myFunctionB()
-            \.
+            %span
+              %code>
+                myFunctionB()
+              \.
           %p
             It is perfectly fine to declare three different variables with the same name in
             three different scopes. If we try to access variable
             %code
               x
             inside
-            %code
-              myFunctionA()
-            , the computer assumes we're trying to access the variable
+            %span
+              %code>
+                myFunctionA()
+              ,
+            the computer assumes we're trying to access the variable
             %code
               x
             declared locally in that function.
@@ -697,15 +751,18 @@
             %code
               y
             inside
-            %code
-              myFunctionA()
-            , because there is no variable
+            %span
+              %code>
+                myFunctionA()
+              ,
+            because there is no variable
             %code
               y
             declared locally, the computer assumes we're trying to access the global variable
-            %code
-              y
-            \.
+            %span
+              %code>
+                y
+              \.
           %p
             Trying to access variable
             %code
@@ -717,12 +774,29 @@
             %code
               z
             has only been declared inside
-            %code
-              myFunctionA()
-            , where the global scope and
+            %span
+              %code>
+                myFunctionA()
+              ,
+            where the global scope and
             %code
               myFunctionB()
             can't see it.
+          %p
+            In most of our programs, we store references to the canvas and the canvas's context
+            in the global variables
+            %code
+              canvas
+            and
+            %span
+              %code>
+                context
+              ,
+            respectively, because we typically need to access the canvas and its context inside
+            many different functions.
+          %p
+            Never assign a value to a variable that hasn't been declared. Undeclared variables
+            are automatically given a global scope, and global variables should only be created deliberately.
           %p
             Visit the relevant lessons to learn more about functions.
           = render 'lessons/relevant', relevant: [:functions]
@@ -770,13 +844,16 @@
             Variables and Data Types
           %p
             Variables can store more than numbers. Variables can store numbers, strings (text),
-            booleans (
-            %code
-              true
+            booleans
+            %span
+              (
+              %code><
+                true
             or
-            %code
-              false
-            ),
+            %span
+              %code>
+                false
+              ),
             %code
               null
             and
@@ -791,42 +868,52 @@
             %code
               a = 10
             and
-            %code
-              b = 16
-            , then the value of
+            %span
+              %code>
+                b = 16
+              ,
+            then the value of
             %code
               a + b
             is
-            %code
-              26
-            \. And if
+            %span
+              %code>
+                26
+              \.
+            And if
             %code
               a = 'The fox'
             and
-            %code
-              b = ' is hungry'
-            , then
+            %span
+              %code>
+                b = ' is hungry'
+              ,
+            then
             %code
               a + b
             is
-            %code
-              'The fox is hungry'
-            \.
+            %span
+              %code>
+                'The fox is hungry'
+              \.
           %p
             But what happens if
             %code
               a = 10
             and
-            %code
-              b = ' is hungry'
-            ? Instead of saying it can't add a number and a string, JavaScript will convert
+            %span
+              %code>
+                b = ' is hungry'
+              ?
+            Instead of saying it can't add a number and a string, JavaScript will convert
             the number into a string, so the value of
             %code
               a + b
             will be the string
-            %code
-              '10 is hungry'
-            \.
+            %span
+              %code>
+                '10 is hungry'
+              \.
           %p
             While the ability to add strings and numbers is useful, sometimes the results can
             be unexpected. Be careful when converting between data types and try to be as explicit
