@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
       random: {count: 0, method: 'random()'},
       save: {count: 1, method: 'save()'},
       scale: {count: 0, method: 'scale()'},
+      setInterval: {count: 0, method: 'setInterval()'},
 
       coordinates: {count: 2, method: 'Coordinates'},
       for_loops: {count: 1, method: 'For Loops'},
@@ -82,6 +83,29 @@ class ApplicationController < ActionController::Base
         name: 'Snake Game',
         slug: 'snake_game',
         stages: [],
+        reference: [
+        ],
+        concepts: [
+        ]
+      },
+      {
+        experimental: true,
+        name: 'Flappy Square',
+        slug: 'flappy_square',
+        stages: [3],
+        reference: [
+          :clear_rect,
+          :fill_rect,
+          :set_interval,
+        ],
+        concepts: [
+        ]
+      },
+      {
+        experimental: true,
+        name: 'Flappy Birds',
+        slug: 'flappy_birds',
+        stages: [1],
         reference: [
         ],
         concepts: [

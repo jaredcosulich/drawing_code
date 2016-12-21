@@ -12,8 +12,7 @@ class LessonsController < ApplicationController
       render_reference(lessons, lesson_slug)
 
     else
-
-      challenge_path = @challenge_paths.first { |cp| cp[:slug] == params[:section] }
+      challenge_path = @challenge_paths.select { |cp| cp[:slug] == params[:section] }.first      
 
       if @lessons[lesson_slug].present?
 

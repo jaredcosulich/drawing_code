@@ -1,0 +1,399 @@
+#flappy_square_stage1.lesson
+  %h1 Stage 1
+
+  = render 'lessons/challenge_count'
+
+  .description.row.py-3
+    .col-xs-6
+      %h2.py-2
+        Flappy Square Overview
+      %p
+        In the first stage of the Flappy Square challenge we'll focus
+        on drawing and interacting with our little flappy square.
+    .col-xs-6
+      = image_tag('flappy_square.gif', class: 'img-fluid')
+
+
+
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Draw The Flappy Square
+          %p
+            In our game our flying square will be just that, a simple square.
+          %p
+            In this example, we'll draw a simple square using
+            = link_to_lesson('context.fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            that is
+            %span.highlight 50 pixels wide and 50 pixels tall.
+            We'll position it so that its
+            %span.highlight top left corner is at x = 100, y = 50: (100, 50).
+          %p
+            Note: In the context's
+            = link_to_lesson('coordinate system', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+            the origin (0, 0) is at the top left corner of the canvas.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson1_editor'} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage1_lesson1');
+                var context = canvas.getContext('2d');
+
+                context.fillRect(100, 50, 50, 50);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#flappy_square_stage1_lesson1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+
+          %figure.float-xs-right.pl-2
+            = image_tag('lessons/flappy_square/stage1/challenge1Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 1 Sample Solution
+
+          %p
+            Draw a flappy square that is
+            %span.highlight 20 pixels wide and 20 pixels tall
+            and position it at
+            %span.highlight (50, 100).
+
+          %p In the end your flappy square should look like the example provided to the right.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage1_challenge1');
+            var context = canvas.getContext('2d');
+
+            // YOUR CODE HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/flappy_square/stage1/challenge1.png')
+            %canvas#flappy_square_stage1_challenge1
+          .alert
+
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Use Variables to Size and Position Our Flappy Square
+
+          %p
+            Variables allow us to control the size and position of the
+            flappy square more easily.
+          %p
+            As the flappy squares flies it will move up and down.
+            %span.highlight Variables will allow us to store where it is and position it effectively.
+          %p
+            In this example we position the flappy bird at the position
+            %span.highlight (200,50)
+            by setting the assigned variables.
+
+          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_style, :fill_rect]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson2_editor'} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage1_lesson2');
+                var context = canvas.getContext('2d');
+
+                var size = 20;
+                var x = 50;
+                var y = 200;
+
+                context.fillRect(x, y, size, size);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#flappy_square_stage1_lesson2
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+
+          %figure.float-xs-right.pl-2
+            = image_tag('lessons/flappy_square/stage1/challenge2Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+
+          %p
+            We can
+            %span.highlight
+              use
+              = link_to_lesson('variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+              to automatically size and position
+            the flappy square.
+          %p
+            Setting a variable looks like this:
+
+          %pre
+            %code
+              :preserve
+                var x = 9;
+
+          %p
+            Our flappy square won't change in size during the game, but it will move up
+            and down as we make it fly.
+          %p
+            Set the variables below appropriates so that the flappy bird is positioned
+            at
+            %span.highlight (50, 150).
+
+          %p In the end your flappy square should look like the example provided to the right.
+
+          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_rect]
+          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'flappy_square_stage1_challenge1_editor'
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage1_challenge2');
+            var context = canvas.getContext('2d');
+
+            // SET THE VARIABLES PROPERLY
+            // var size =
+            // var x =
+            // var y =
+
+            context.fillRect(x, y, size, size);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/flappy_square/stage1/challenge2.png')
+            %canvas#flappy_square_stage1_challenge2
+          .alert
+
+
+
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Use a Function to Draw the Flappy Square
+          %p
+            Once we start animating out flappy square we'll want to
+            draw it using a function so that we can draw it very fast in different
+            locations.
+          %p
+            If there is a chunk of code that you are going to use over and over again,
+            putting that code into a function can make your life much easier. Then,
+            to run the code, all you have to do is call the function by typing one line.
+          %p
+            %span.highlight
+              In this example, we create a function that will draw a French flag. Because
+              we might want to draw a French flag in lots of different places, we make the
+              x- and y-coordinates of the flag variables.
+            When we call drawFrenchFlag(30, 100), the 30 is assigned to the variable <i>x</i>
+            and the 100 is assigned to the variable <i>y</i> inside of the function. Now we can
+            easily draw as many French flags as we want!
+          = render 'lessons/relevant', relevant: [:fill_rect, :fill_style, :coordinates, :variables, :functions]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson3_editor'} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage1_lesson3');
+                var context = canvas.getContext('2d');
+
+                function drawFrenchFlag(x, y) {
+                  context.fillStyle = '#0055A4';
+                  context.fillRect(x, y, 20, 40);
+
+                  context.fillStyle = '#FFFFFF';
+                  context.fillRect(x + 20, y, 20, 40);
+
+                  context.fillStyle = '#EF4135';
+                  context.fillRect(x + 40, y, 20, 40);
+                }
+
+                drawFrenchFlag(30, 100);
+                drawFrenchFlag(150, 50);
+                drawFrenchFlag(300, 180);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#flappy_square_stage1_lesson3
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+
+          %figure.float-xs-right.pl-2
+            = image_tag('lessons/flappy_square/stage1/challenge3Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+
+          %p
+            %span.highlight
+              Write a function to draw the flappy bird from Challenge 2.
+          %p
+            The function will be called drawSquare() accept three values x, y, and size (called parameters) that
+            will be used to position our flappy square.
+          %p
+            Then use the function to draw our flappy square at the
+            %span.highlight
+              coordinates (50, 100) and size 20.
+          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :variables, :functions]
+          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'flappy_square_stage1_challenge2_editor'
+
+      .row.pt-2
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage1_challenge5');
+            var context = canvas.getContext('2d');
+
+            function drawSquare(x, y, size) {
+
+              // YOUR CODE FOR DRAWING A SQUARE HERE
+
+            }
+
+            // YOUR CODE FOR CALLING THE drawSquare FUNCTION HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/flappy_square/stage1/challenge3.png')
+            %canvas#flappy_square_stage1_challenge3
+          .alert
+
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Basic Animation
+
+          .float-xs-right.pl-2.pb-2
+            = image_tag('lessons/flappy_square/stage1/lesson4Visual.png')
+
+          %p
+            There are
+            %span.highlight three components to basic animation
+            in canvas.
+          %ul
+            %li Drawing frames in rapid sequence.
+            %li Clearing the canvas in between frames.
+            %li Making small changes to the scene in each frame.
+          %p
+            Drawing frames in rapid sequence can be done a number of ways.
+            For our purposes we'll use the
+            = link_to_lesson('setInterval() and clearInterval()', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
+            methods.
+
+          = render 'lessons/relevant', relevant: [:set_interval, :clear_rect, :functions]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson3_editor'} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage1_lesson3');
+                var context = canvas.getContext('2d');
+
+                function drawFrenchFlag(x, y) {
+                  context.fillStyle = '#0055A4';
+                  context.fillRect(x, y, 20, 40);
+
+                  context.fillStyle = '#FFFFFF';
+                  context.fillRect(x + 20, y, 20, 40);
+
+                  context.fillStyle = '#EF4135';
+                  context.fillRect(x + 40, y, 20, 40);
+                }
+
+                drawFrenchFlag(30, 100);
+                drawFrenchFlag(150, 50);
+                drawFrenchFlag(300, 180);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#flappy_square_stage1_lesson3
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+
+          %figure.float-xs-right.pl-2
+            = image_tag('lessons/flappy_square/stage1/challenge3Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+
+          %p
+            %span.highlight
+              Write a function to draw the flappy bird from Challenge 2.
+          %p
+            The function will be called drawSquare() accept three values x, y, and size (called parameters) that
+            will be used to position our flappy square.
+          %p
+            Then use the function to draw our flappy square at the
+            %span.highlight
+              coordinates (50, 100) and size 20.
+          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :variables, :functions]
+          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'flappy_square_stage1_challenge2_editor'
+
+      .row.pt-2
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage1_challenge5');
+            var context = canvas.getContext('2d');
+
+            function drawSquare(x, y, size) {
+
+              // YOUR CODE FOR DRAWING A SQUARE HERE
+
+            }
+
+            // YOUR CODE FOR CALLING THE drawSquare FUNCTION HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/flappy_square/stage1/challenge3.png')
+            %canvas#flappy_square_stage1_challenge3
+          .alert

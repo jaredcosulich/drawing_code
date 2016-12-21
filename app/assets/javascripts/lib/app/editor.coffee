@@ -56,7 +56,7 @@ class App.Editor
     @setCode(code)
 
   setStartCode: (code) ->
-    @startCode = code    
+    @startCode = code
 
   setCode: (code) ->
     if @files && @files.validAllCode(code)
@@ -103,6 +103,7 @@ class App.Editor
     @canvas.hideAlert()
     App.currentEditor = @
     @canvas.reset()
+    @canvas.canvasElement.focus()
     if @files
       @files.files[@files.selected].code = @aceEditor.getValue()
       reverseFileNames = (fileName for fileName in @files.order).reverse()
