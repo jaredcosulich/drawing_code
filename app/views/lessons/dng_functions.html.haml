@@ -486,108 +486,95 @@
             One way to pass values into a function is through the use of parameters. One way
             to get values out of a function is through the use of return values.
           %p
-            In this example, we define and call a function that calculates the distance between
-            two points.
-          %p
-            The function
+            In this example, we define the
             %code
-              distance()
-            has four parameters:
-          %pre
+              calculateArea()
+            function, which calculates the area of a rectangle using the values stored in parameters
             %code
-              :preserve
-                function distance(x1, y1, x2, y2) {
-                  
-                  // code block
-                  
-                }
-          %p
-            We pass the x- and y-coordinates of the first point into parameters
-            %code
-              x1
+              w
             and
             %span
               %code>
-                y1
+                h
               ,
-            and the x- and y-coordinates of the second point into
-            %code
-              x2
-            and
+            and stores it in the local variable
             %span
               %code>
-                y2
+                area
               \.
-          %p
-            To calculate the distance, we are going to use some math functions other
-            programmers have defined for us. Don't worry about these math functions for now, but
+            Because
             %code
-              Math.pow()
-            accepts two arguments, a base and an exponent, and calculates the base raised to the
-            power of the exponent, and
+              area
+            is a local variable, it can't be accessed from outside of the function and it will
+            no longer exist once the function ends. To get the value of
             %code
-              Math.sqrt()
-            accepts one argument and calculates the square root of that number.
+              area
+            out of the function, we use a return statement.
           %pre
             %code
               :preserve
-                function distance(x1, y1, x2, y2) {
-                  var d = Math.sqrt( Math.pow( x2 - x1, 2 ) + Math.pow( y2 - y1, 2 ) );
+                function calculateArea(w, h) {
+                  var area = w * h;
+                  return area;
                 }
-          %p
-            Our function uses the
-            %code
-              Math.pow()
-            and
-            %code
-              Math.sqrt()
-            functions to calculate the distance between (x2, y2) and (x1, y1) and stores the
-            value in the local variable
-            %span
-              %code
-                d
-              \.
-            Great. How do we get the value stored in the variable
-            %code
-              d
-            out of the function so we can use it?
-          %p
-            Because it is a local variable declared inside the
-            %code
-              distance()
-            function, the variable
-            %code
-              d
-            can only be accessed from within the function. It won't exist once the function
-            stops running. To get the value of
-            %code
-              d
-            out of the function, we use a return statement.
           %p
             A return statement inside a function does two things. First, it ends the function
             even if there is more code to run below it. Second, it can return a value if one is
             provided. In this case, the
             %code
-              distance()
+              calculateArea()
             function returns the value of
             %span
               %code>
-                d
+                area
               \.
+          %p
+            To use the
+            %code
+              calculateArea()
+            function, we call it and store its return value in the global variable
+            %span
+              %code>
+                area
+              \.
+            We can name two variables
+            %code
+              area
+            in this situation because one is global and the other is local to the function
+            %span
+              %code>
+                calculateArea()
+              \.
+            To learn more about variables and scope, visit the
+            = link_to_lesson('variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            lesson.
           %pre
             %code
               :preserve
-                function distance(x1, y1, x2, y2) {
-                  var d = Math.sqrt( Math.pow( x2 - x1, 2 ) + Math.pow( y2 - y1, 2 ) );
-                  return d;
-                }
+                var area = calculateArea(200, 100);
           %p
+            Finally, we draw the value stored in the global variable
+            %code
+              area
+            on the canvas using the
+            %code
+              context.fillText()
+            method.
+          %pre
+            %code
+              :preserve
+                context.font = '16px Arial';
+                context.fillStyle = 'Black';
+                context.fillText('The area is ' + area + '.', 10, 40);
           %p
-            Never assign a value to a variable that hasn't been declared. Undeclared variables
-            are automatically given a global scope, and global variables should only be created deliberately.
+            Change the values passed into the
+            %code
+              calculateArea()
+            function to see what happens. The function should automatically re-calculate
+            the area drawn on the canvas.
           %p
-            Visit the relevant lessons to learn more about functions.
-          = render 'lessons/relevant', relevant: [:functions]
+            Visit the relevant lessons to learn more about variables.
+          = render 'lessons/relevant', relevant: [:dng_variables]
 
         .col-xs-12
           .interactive.row.py-1
@@ -596,25 +583,15 @@
                 var canvas = document.getElementById('dng_functions_example3');
                 var context = canvas.getContext('2d');
                 
-                var x = 1;
-                var y = 2;
-
-                function myFunctionA() {
-                  var x = 10;
-                  var z = 30;
-                  context.fillText('Inside myFunctionA(), x is ' + x + ', y is ' + y + ', and z is ' + ((typeof z != 'undefined') ? z : 'undeclared') + '.', 10, 32);
+                function calculateArea(w, h) {
+                  var area = w * h;
+                  return area;
                 }
                 
-                function myFunctionB() {
-                  var x = 100;
-                  var y = 200;
-                  context.fillText('Inside myFunctionB(), x is ' + x + ', y is ' + y + ', and z is ' + ((typeof z != 'undefined') ? z : 'undeclared') + '.', 10, 64);
-                }
-                
+                var area = calculateArea(200, 100);
                 context.font = '16px Arial';
-                myFunctionA();
-                myFunctionB();
-                context.fillText('In the global scope, x is ' + x + ', y is ' + y + ', and z is ' + ((typeof z != 'undefined') ? z : 'undeclared') + '.', 10, 96);
+                context.fillStyle = 'Black';
+                context.fillText('The area is ' + area + '.', 10, 40);
 
             .visual.col-xs-6
               %h5
@@ -630,19 +607,57 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 4
-          %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_functions/challenge4Visual1.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Use variable expressions to draw the letter H by drawing two dark violet
-            rectangles and one violet square.
+            Define a function named
+            %code
+              randomIntegerFrom0To255()
+            to calculate and return a random integer from 0 to 255.
           %p
-            The two dark violet rectangles have the same width and height. Their heights
-            are three times as long as their widths. The dark violet rectangle on the left
-            is positioned at (100, 40) and its width is 80.
+            The
+            %code
+              Math
+            object has a set of functions that other programmers have defined for us to
+            use. Here is a full list of available
+            %span
+              %span><
+                = link_to('math functions', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math', target: '_blank')
+              \.
           %p
-            The violet square has the same width as the two dark violet rectangles and
-            is centered between them.
+            To calculate a random integer from 0 to 255, we will use the
+            %code
+              Math.random()
+            function, which returns a random number from 0 to 1, but not including 1. By
+            multiplying the value returned by the
+            %code
+              Math.random()
+            function by 256, we will have a random number from 0 to 256, but not including 256.
+            Then, to round that value down to an integer, we pass that value into the
+            %code
+              Math.floor()
+            function. We want to round down because we don't want to round up to 256.
+          %p
+            Here is what the code for the calculation looks like on one line:
+          %pre
+            %code
+              :preserve
+                var i = Math.floor( 256 * Math.random() );
+          %p
+            The random integer from 0 to 255 is stored in the local variable
+            %span
+              %code>
+                i
+              ,
+            which is what we want to return at the end of the function.
+          %p
+            Call the
+            %code
+              randomIntegerFrom0To255()
+            function and store its return value in a global variable. Then, draw the value stored
+            in this global variable on the canvas at (10, 40) by passing it into the
+            %code
+              context.fillText()
+            method. Every time you run the program, a new random integer from 0 to 255 should be drawn.
+            If your program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge4_editor'} do
@@ -650,24 +665,281 @@
             var canvas = document.getElementById('dng_functions_challenge4');
             var context = canvas.getContext('2d');
 
-            // DECLARE AND ASSIGN VARIABLES FOR THE RECTANGLE ON THE LEFT HERE
+            // DEFINE THE randomIntegerFrom0To255() FUNCTION HERE
             
-            context.fillStyle = 'DarkViolet';
+            // CALL THE randomIntegerFrom0To255() FUNCTION AND STORE ITS RETURN VALUE HERE
             
-            // DRAW THE TWO RECTANGLES HERE
-            
-            context.fillStyle = 'Violet';
-            
-            // DRAW THE ONE SQUARE HERE
+            context.font = '16px Arial';
+            context.fillStyle = 'Black';
+            context.fillText('', 10, 40); // EDIT THIS FUNCTION CALL TO DRAW THE RANDOM INTEGER ON THE CANVAS AT (10, 40)
             
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_functions/challenge4.png')
             %canvas#dng_functions_challenge4
           .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Call Functions from Inside of Other Functions
+          %p
+            So far, we have been defining a function and calling it from the global scope
+            (outside of any function). But it is possible to call one function from inside of
+            another function.
+          %p
+            In this example, we define four separate functions. The
+            %code
+              drawRectangleWithArea()
+            function has four parameters that it uses to draw a green rectangle. It then calls the
+            %code
+              calculateMidPoint()
+            function twice to calculate the coordinates for the center of the rectangle, storing
+            those values in the local variables
+            %code
+              midX
+            and
+            %span
+              %code>
+                midY
+              \.
+            Finally, it passes the values of
+            %span
+              %code>
+                midX
+              ,
+            %span
+              %code>
+                midY
+              ,
+            %span
+              %code>
+                w
+              ,
+            and
+            %code
+              h
+            into the
+            %code
+              printArea()
+            function.
+          %pre
+            %code
+              :preserve
+                function drawRectangleWithArea(x, y, w, h) {
+                  context.save();
+                  context.fillStyle = 'MediumSeaGreen';
+                  context.fillRect(x, y, w, h);
+                  
+                  var midX = calculateMidPoint(x, x + w);
+                  var midY = calculateMidPoint(y, y + h);
+                  
+                  printArea(midX, midY, w, h);
+                  
+                  context.restore();
+                }
+          %p
+            The
+            %code
+              calculateMidPoint()
+            function has two parameters,
+            %code
+              a
+            and
+            %span
+              %code>
+                b
+              \.
+            It calculates the average of
+            %code
+              a
+            and
+            %span
+              %code>
+                b
+              ,
+            and returns the value using a return statement. Note that we aren't storing
+            the average in a local variable and then returning the value of that variable.
+            We are just returning the value directly, cutting out an unneccesary step.
+          %pre
+            %code
+              :preserve
+                function calculateMidPoint(a, b) {
+                  return (a + b) / 2;
+                }
+          %p
+            The
+            %code
+              printArea()
+            function has four parameters. It passes the value of
+            %code
+              w
+            and
+            %code
+              h
+            into the
+            %code
+              calculateArea()
+            function and stores the return value in the local variable
+            %span
+              %code>
+                area
+              \.
+            It then sets a few properties the context uses to format text and calls the
+            %code
+              context.fillText()
+            method to draw a string of text with the value of
+            %code
+              area
+            at the coordinates
+            %span
+              (
+              %code><
+                x
+              ,
+            %span
+              %code>
+                y
+              ),
+            which is the midpoint of the rectangle.
+          %pre
+            %code
+              :preserve
+                function printArea(x, y, w, h) {
+                  var area = calculateArea(w, h);
+                  
+                  context.save();
+                  context.font = '16px Arial';
+                  context.fillStyle = 'Black';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'middle';
+                  context.fillText('My area is ' + area, x, y);
+                  context.restore();
+                }
+          %p
+            The
+            %code
+              calculateArea()
+            function calculates the area of a rectangle using the values stored in parameters
+            %code
+              w
+            and
+            %span
+              %code>
+                h
+              ,
+            and returns the value. Again, we are cutting out a step by returning the value of
+            the area directly.
+          %pre
+            %code
+              :preserve
+                function calculateArea(w, h) {
+                  return w * h;
+                }
+          %p
+            At this point, we have defined four functions. All four functions have a global
+            scope because their function definitions have been declared at the top level of the program,
+            not inside of another function.
+            And because each function has a global scope, we can access and call them
+            from inside any other function. That's why we can call the
+            %code
+              calculateMidPoint()
+            and
+            %code
+              printArea()
+            functions from inside the
+            %code
+              drawRectangleWithArea()
+            function, and we can call the
+            %code
+              calculateArea()
+            function from inside the
+            %code
+              printArea()
+            function.
+          %p
+            Although we have defined our four functions, our program isn't doing anything. It's
+            stored references to the canvas and the canvas's context in the global variables
+            %code
+              canvas
+            and
+            %span
+              %code>
+                context
+              ,
+            respectively, but that's it. We still need to call the
+            %code
+              drawRectangleWithArea()
+            function:
+          %pre
+            %code
+              :preserve
+                drawRectangleWithArea(60, 40, 100, 80);
+          %p
+            This draws a green rectangle and prints the area at its midpoint.
+          %p
+            Change the position and dimensions of the rectangle being passed into the
+            %code
+              drawRectangleWithArea()
+            function. The drawing will automatically update to draw the new rectangle and print its
+            area at its midpoint.
+          %p
+            Visit the relevant lessons to learn more about variables.
+          = render 'lessons/relevant', relevant: [:dng_variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_functions_example4');
+                var context = canvas.getContext('2d');
+                
+                function drawRectangleWithArea(x, y, w, h) {
+                  context.save();
+                  context.fillStyle = 'MediumSeaGreen';
+                  context.fillRect(x, y, w, h);
+                  
+                  var midX = calculateMidPoint(x, x + w);
+                  var midY = calculateMidPoint(y, y + h);
+                  
+                  printArea(midX, midY, w, h);
+                  
+                  context.restore();
+                }
+                
+                function calculateMidPoint(a, b) {
+                  return (a + b) / 2;
+                }
+                
+                function printArea(x, y, w, h) {
+                  var area = calculateArea(w, h);
+                  
+                  context.save();
+                  context.font = '16px Arial';
+                  context.fillStyle = 'Black';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'middle';
+                  context.fillText('My area is ' + area, x, y);
+                  context.restore();
+                }
+                
+                function calculateArea(w, h) {
+                  return w * h;
+                }
+                
+                drawRectangleWithArea(60, 40, 100, 80);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_functions_example4
 
 
   #challenge5.challenge.row.py-3
@@ -676,17 +948,76 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 5
-          %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_functions/challenge5Visual1.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Use variable expressions to draw a rectangle filled with the color
+            Copy the code you wrote for the
             %code
-              'Khaki'
-            at position (20, 40) with width 360 and height 200, and four squares filled with the color
+              randomIntegerFrom0To255()
+            function in Challenge 4. You are going to use that function to draw random
+            rectangles with random colors.
+          %p
+            In the definition for the
             %code
-              'White'
-            with side length 25 inside each corner of the rectangle.
+              randomColor()
+            function, declare three local variables named
+            %span
+              %code>
+                r
+              ,
+            %span
+              %code>
+                g
+              ,
+            and
+            %span
+              %code>
+                b
+              ,
+            and use them to store three random integers from 0 to 255. We will use those
+            three values to return a text string describing a color in rgb() notation.
+          %p
+            In the definition for the
+            %code
+              drawRandomRectangle()
+            function, declare two local variables named
+            %code
+              w
+            and
+            %span
+              %code>
+                h
+              ,
+            and use them to store two random integers from 0 to 255. Store a random color
+            in the
+            %code
+              context.fillStyle
+            property. Then, use the
+            %code
+              context.fillRect()
+            method to draw a rectangle at position
+            %span
+              (
+              %code><
+                x
+              ,
+            %span
+              %code>
+                y
+              )
+            with a width of
+            %code
+              w
+            and a height of
+            %span
+              %code>
+                h
+              \.
+          %p
+            Finally, call the
+            %code
+              drawRandomRectangle()
+            function to draw one or more random rectangles on the canvas. Every time you run the
+            program, the dimensions and color of the rectangles should change. If your program seems
+            to be working, mark the challenge as complete by selecting "Yes, it looks good".
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge5_editor'} do
@@ -694,22 +1025,34 @@
             var canvas = document.getElementById('dng_functions_challenge5');
             var context = canvas.getContext('2d');
 
-            // DECLARE AND ASSIGN VARIABLES FOR THE RECTANGLE HERE
+            function randomIntegerFrom0To255() {
+              // PASTE YOUR CODE FROM CHALLENGE 3 HERE
+            }
             
-            context.fillStyle = 'Khaki';
+            function randomColor() {
+              // DECLARE THREE LOCAL VARIABLES NAMED r, g, AND b
+              // USE THE VARIABLES TO STORE THREE RANDOM INTEGERS FROM 0 TO 255
+              
+              return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+            }
             
-            // DRAW THE RECTANGLE HERE
+            function drawRandomRectangle(x, y) {
+              // DECLARE TWO LOCAL VARIABLES NAMED w AND h
+              // USE THE VARIABLES TO STORE TWO RANDOM INTEGERS FROM 0 TO 255
+              
+              context.save();
+              // STORE A RANDOM COLOR IN THE context.fillStyle PROPERTY
+              // USE THE context.fillRect() METHOD TO DRAW A RECTANGLE AT (x, y) AND WITH WIDTH w AND HEIGHT h
+              context.restore();
+            }
             
-            context.fillStyle = 'White';
-            
-            // DRAW THE FOUR SQUARES HERE
+            // DRAW A RANDOM RECTANGLE AT SOME POSITION
             
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_functions/challenge5.png')
             %canvas#dng_functions_challenge5
           .alert
 
@@ -719,122 +1062,493 @@
       .row
         .col-xs-12
           %h2.py-2
-            Use Functions Inside of Functions
+            Make Programs Easier to Read and Maintain
           %p
-            Variables can store more than numbers. Variables can store numbers, strings (text),
-            booleans
-            %span
-              (
-              %code><
-                true
-            or
-            %span
-              %code>
-                false
-              ),
-            %code
-              null
-            and
-            %code
-              undefined
-            values, and objects (including arrays).
+            Functions are helpful because they make it possible for us to re-use a block of
+            code instead of typing it each time we need it. However, there are other important
+            reasons to use functions.
           %p
-            Javascript is considered a loosely typed language because a value's type can change
-            depending on how it is being used.
+            Take a look at the function definition we created to draw sandwiches:
+          %pre
+            %code
+              :preserve
+                function drawSandwich(x, y) {
+                  context.save();
+                  context.fillStyle = '#F5DEB3';
+                  context.fillRect(x, y, 200, 30);
+                  context.fillRect(x, y + 80, 200, 30);
+                  context.fillStyle = '#663300';
+                  context.fillRect(x + 10, y + 30, 180, 50);
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(x, y + 42, 200, 8);
+                  context.fillRect(x, y + 60, 200, 8);
+                  context.restore();
+                }
           %p
-            For example, in JavaScript, we can add numbers and we can add strings. If
-            %code
-              a = 10
-            and
-            %span
-              %code>
-                b = 16
-              ,
-            then the value of
-            %code
-              a + b
-            is
-            %span
-              %code>
-                26
-              \.
-            And if
-            %code
-              a = 'The fox'
-            and
-            %span
-              %code>
-                b = ' is hungry'
-              ,
-            then
-            %code
-              a + b
-            is
-            %span
-              %code>
-                'The fox is hungry'
-              \.
+            It's difficult to know what the function is doing just by glancing at it. If this
+            was someone else's function or a function we had defined a long time ago, we would
+            have to go through it carefully line by line to figure it out.
           %p
-            But what happens if
+            Now take a look at the same function re-written by calling other functions:
+          %pre
             %code
-              a = 10
-            and
-            %span
-              %code>
-                b = ' is hungry'
-              ?
-            Instead of saying it can't add a number and a string, JavaScript will convert
-            the number into a string, so the value of
-            %code
-              a + b
-            will be the string
-            %span
-              %code>
-                '10 is hungry'
-              \.
+              :preserve
+                function drawSandwich(x, y) {
+                  context.save();
+                  
+                  drawBread(x, y);
+                  drawRoastBeef(x + 10, y + 30);
+                  drawCheeseSlice(x, y + 42);
+                  drawCheeseSlice(x, y + 60);
+                  drawBread(x, y + 80);
+                  
+                  context.restore();
+                }
           %p
-            While the ability to add strings and numbers is useful, sometimes the results can
-            be unexpected. Be careful when converting between data types and try to be as explicit
-            as possible.
+            The function is much easier to read and understand, and it is also much easier
+            to maintain. For example, if we want to update our cheese slices, we can do it in one place
+            in the program, instead of in multiple places scattered throughout the program.
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example4_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example5_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_functions_example4');
+                var canvas = document.getElementById('dng_functions_example5');
                 var context = canvas.getContext('2d');
                 
-                var a;
-                var b;
+                drawSandwich(125, 20);
+                drawSandwich(20, 130);
+                drawSandwich(230, 130);
                 
-                context.font = '16px Arial';
-                context.fillStyle = 'rgb(' + (3 * 25) + ', ' + 0 + ', ' + (13 * 10) + ')';
-
-                context.fillText('The color of this text is ' + context.fillStyle, 10, 32);
+                function drawSandwich(x, y) {
+                  context.save();
+                  
+                  drawBread(x, y);
+                  drawRoastBeef(x + 10, y + 30);
+                  drawCheeseSlice(x, y + 42);
+                  drawCheeseSlice(x, y + 60);
+                  drawBread(x, y + 80);
+                  
+                  context.restore();
+                }
                 
-                a = 5;
-                b = null;
-                context.fillText(a + b, 10, 64); // null is converted to 0
+                function drawBread(x, y) {
+                  context.save();
+                  context.fillStyle = '#F5DEB3';
+                  context.fillRect(x, y, 200, 30);
+                  context.restore();
+                }
                 
-                a = '5';
-                b = null;
-                context.fillText(a + b, 10, 96); // null is convereted to 'null'
+                function drawRoastBeef(x, y) {
+                  context.save();
+                  context.fillStyle = '#663300';
+                  context.fillRect(x, y, 180, 50);
+                  context.restore();
+                }
                 
-                a = '5';
-                b = 2;
-                context.fillText(a + b, 10, 128); // 2 is converted to '2'
-                
-                a = '5';
-                b = 2;
-                context.fillText(a - b, 10, 160); // '5' is converted to 5
-                
-                a = '5';
-                b = '2';
-                context.fillText(a * b, 10, 192); // '5' is converted to 5 and '2' is converted to 2
+                function drawCheeseSlice(x, y) {
+                  context.save();
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(x, y, 200, 8);
+                  context.restore();
+                }
 
             .visual.col-xs-6
               %h5
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_functions_example4
+                %canvas#dng_functions_example5
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Pass Functions into Other Functions
+          %p
+            Besides calling functions from inside of other functions, we can also pass functions
+            into other functions and store them in parameters.
+          %p
+            Why would we want to do that? Well, when we define function
+            %code
+              a()
+            to call function
+            %span
+              %code>
+                b()
+              ,
+            we are hardcoding function
+            %code
+              a()
+            to call function
+            %span
+              %code>
+                b()
+              \.
+            Most of the time, that's what we want. But sometimes we want function
+            %code
+              a()
+            to a call a function to be determined later.
+          %p
+            In this example, we define the
+            %code
+              drawPlate()
+            function, which has three parameters:
+          %pre
+            %code
+              :preserve
+                function drawPlate(x, y, drawFood) {
+                  context.save();
+                  context.fillStyle = '#FFFFFF';
+                  context.strokeStyle = '#999999';
+                  context.fillRect(x - 120, y - 20, 240, 20);
+                  context.strokeRect(x - 120, y - 20, 240, 20);
+                  context.restore();
+                  
+                  if (drawFood === undefined) {
+                    return;
+                  }
+                  
+                  drawFood(x, y - 20);
+                }
+          %p
+            The parameters
+            %code
+              x
+            and
+            %code
+              y
+            are the coordinates of the bottom center point of the plate. We draw a white
+            rectangle with a gray outline centered at
+            %code
+              x
+            and sitting on top of
+            %span
+              %code>
+                y
+              \.
+          %p
+            Then, we do something odd. We check if the parameter
+            %code
+              drawFood
+            is
+            %span
+              %code>
+                undefined
+              \.
+            If a variable is undefined, it means a value was never assigned to it. If that's the
+            case here, we are going to end the function with a return statement. There are
+            other ways we could have done this, but we wanted to show you how to end a function early.
+          %p
+            If
+            %code
+              drawFood
+            is not undefined, then we call it as a function. Notice the parentheses () after the
+            parameter name. We are calling it as a function and passing it the coordinates of the top
+            center point of the plate. This is where we want the food drawn on the plate  to be positioned.
+          %p
+            To draw a sandwich on top of a plate, we have refactored the
+            %code
+              drawSandwich()
+            function so it now draws the sandwich centered at the parameter
+            %code
+              x
+            and on top of
+            %span
+              %code>
+                y
+              \.
+          %pre
+            %code
+              :preserve
+                function drawSandwich(x, y) {
+                  context.save();
+                  
+                  drawBread(x - 100, y - 110);
+                  drawRoastBeef(x - 90, y - 80);
+                  drawCheeseSlice(x - 100, y - 68);
+                  drawCheeseSlice(x - 100, y - 50);
+                  drawBread(x -100, y - 30);
+                  
+                  context.restore();
+                }
+          %p
+            To draw a piece of cake on top of a plate, we have defined the
+            %code
+              drawCake()
+            function:
+          %pre
+            %code
+              :preserve
+                function drawCake(x, y) {
+                  context.save();
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(x - 90, y - 180, 180, 180);
+                  context.fillStyle = '#CD853F';
+                  context.fillRect(x - 90, y - 8, 180, 8);
+                  context.fillRect(x - 90, y - 51, 180, 8);
+                  context.fillRect(x - 90, y - 94, 180, 8);
+                  context.fillRect(x - 90, y - 137, 180, 8);
+                  context.fillRect(x - 90, y - 180, 180, 8);
+                  context.fillRect(x - 90, y - 180, 8, 180);
+                  context.restore();
+                }
+          %p
+            Putting everything together, we draw one plate with a piece of cake and one
+            plate with a sandwich by calling:
+          %pre
+            %code
+              :preserve
+                drawPlate(140, 240, drawCake);
+                drawPlate(400, 240, drawSandwich);
+          %p
+            Note that we are passing the name of the
+            %code
+              drawCake()
+            or
+            %code
+              drawSandwich()
+            function without putting parentheses () after them. We use parentheses to call
+            a function. Here we are treating the function name as a variable that we are passing
+            into the
+            %code
+              drawPlate()
+            function to be called later. If we don't pass in a function at all, the plate will
+            be drawn empty.
+          %p
+            When we call the
+            %code
+              drawCake()
+            or
+            %code
+              drawSandwich()
+            functions inside of the
+            %code
+              drawPlate()
+            function after passing them into the function as arguments, they behave as local functions
+            that have been declared inside of the
+            %code
+              drawPlate()
+            function, not as global functions. This means they have access to the local variables
+            declared inside of the
+            %code
+              drawPlate()
+            function.
+          %p
+            Visit the relevant lessons to learn more about variables.
+          = render 'lessons/relevant', relevant: [:dng_variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example6_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_functions_example6');
+                var context = canvas.getContext('2d');
+                
+                drawPlate(140, 240, drawCake);
+                drawPlate(400, 240, drawSandwich);
+                
+                function drawPlate(x, y, drawFood) {
+                  context.save();
+                  context.fillStyle = '#FFFFFF';
+                  context.strokeStyle = '#999999';
+                  context.fillRect(x - 120, y - 20, 240, 20);
+                  context.strokeRect(x - 120, y - 20, 240, 20);
+                  context.restore();
+                  
+                  if (drawFood === undefined) {
+                    return;
+                  }
+                  
+                  drawFood(x, y - 20);
+                }
+                
+                function drawCake(x, y) {
+                  context.save();
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(x - 90, y - 180, 180, 180);
+                  context.fillStyle = '#CD853F';
+                  context.fillRect(x - 90, y - 8, 180, 8);
+                  context.fillRect(x - 90, y - 51, 180, 8);
+                  context.fillRect(x - 90, y - 94, 180, 8);
+                  context.fillRect(x - 90, y - 137, 180, 8);
+                  context.fillRect(x - 90, y - 180, 180, 8);
+                  context.fillRect(x - 90, y - 180, 8, 180);
+                  context.restore();
+                }
+                
+                function drawSandwich(x, y) {
+                  context.save();
+                  
+                  drawBread(x - 100, y - 110);
+                  drawRoastBeef(x - 90, y - 80);
+                  drawCheeseSlice(x - 100, y - 68);
+                  drawCheeseSlice(x - 100, y - 50);
+                  drawBread(x -100, y - 30);
+                  
+                  context.restore();
+                }
+                
+                function drawBread(x, y) {
+                  context.save();
+                  context.fillStyle = '#F5DEB3';
+                  context.fillRect(x, y, 200, 30);
+                  context.restore();
+                }
+                
+                function drawRoastBeef(x, y) {
+                  context.save();
+                  context.fillStyle = '#663300';
+                  context.fillRect(x, y, 180, 50);
+                  context.restore();
+                }
+                
+                function drawCheeseSlice(x, y) {
+                  context.save();
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(x, y, 200, 8);
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_functions_example6
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Anonymous Functions
+          %p
+            In JavaScript, we can also define anonymous functions.
+          %p
+            In this example, we will draw a purple square on a plate by passing the
+            %code
+              drawPlate()
+            function an anonymous function.
+          %pre
+            %code
+              :preserve
+                drawPlate(140, 240, function(x, y) {
+                  context.save();
+                  context.fillStyle = 'Purple';
+                  context.fillRect(x - 60, y - 120, 120, 120);
+                  context.restore();
+                });
+          %p
+            We could have defined a
+            %code
+              drawPurpleSquare()
+            function and passed it into the
+            %code
+              drawPlate()
+            function by name, but sometimes we don't want to bother naming a function
+            we will only use once.
+          %p
+            It is also possible to save an anonymous function in a variable to be called later:
+          %pre
+            %code
+              :preserve
+                var drawPurpleSquare = function(x, y) {
+                  context.save();
+                  context.fillStyle = 'Purple';
+                  context.fillRect(x - 60, y - 120, 120, 120);
+                  context.restore();
+                };
+          %p
+            When a function is declared with a name, it is automatically stored in a variable
+            with the same name. But in JavaScript, functions are actually objects, so we can store
+            them and pass them like any other object.
+          %p
+            Visit the relevant lessons to learn more about variables.
+          = render 'lessons/relevant', relevant: [:dng_variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example7_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_functions_example7');
+                var context = canvas.getContext('2d');
+                
+                drawPlate(140, 240, function(x, y) {
+                  context.save();
+                  context.fillStyle = 'Purple';
+                  context.fillRect(x - 60, y - 120, 120, 120);
+                  context.restore();
+                });
+                
+                function drawPlate(x, y, drawFood) {
+                  context.save();
+                  context.fillStyle = '#FFFFFF';
+                  context.strokeStyle = '#999999';
+                  context.fillRect(x - 120, y - 20, 240, 20);
+                  context.strokeRect(x - 120, y - 20, 240, 20);
+                  context.restore();
+                  
+                  if (drawFood === undefined) {
+                    return;
+                  }
+                  
+                  drawFood(x, y - 20);
+                }
+                
+                function drawCake(x, y) {
+                  context.save();
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(x - 90, y - 180, 180, 180);
+                  context.fillStyle = '#CD853F';
+                  context.fillRect(x - 90, y - 8, 180, 8);
+                  context.fillRect(x - 90, y - 51, 180, 8);
+                  context.fillRect(x - 90, y - 94, 180, 8);
+                  context.fillRect(x - 90, y - 137, 180, 8);
+                  context.fillRect(x - 90, y - 180, 180, 8);
+                  context.fillRect(x - 90, y - 180, 8, 180);
+                  context.restore();
+                }
+                
+                function drawSandwich(x, y) {
+                  context.save();
+                  
+                  drawBread(x - 100, y - 110);
+                  drawRoastBeef(x - 90, y - 80);
+                  drawCheeseSlice(x - 100, y - 68);
+                  drawCheeseSlice(x - 100, y - 50);
+                  drawBread(x -100, y - 30);
+                  
+                  context.restore();
+                }
+                
+                function drawBread(x, y) {
+                  context.save();
+                  context.fillStyle = '#F5DEB3';
+                  context.fillRect(x, y, 200, 30);
+                  context.restore();
+                }
+                
+                function drawRoastBeef(x, y) {
+                  context.save();
+                  context.fillStyle = '#663300';
+                  context.fillRect(x, y, 180, 50);
+                  context.restore();
+                }
+                
+                function drawCheeseSlice(x, y) {
+                  context.save();
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(x, y, 200, 8);
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_functions_example7
