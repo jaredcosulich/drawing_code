@@ -3,9 +3,13 @@
 
   initNavigation = function() {
     return $('.nav-sidebar .section a.section_link').click(function() {
-      var expanded, toExpand;
+      var expanded, section, toExpand;
+      section = $(this).data('section');
+      if (!section) {
+        return;
+      }
       expanded = $('.section .collapse.in');
-      toExpand = $("#" + ($(this).data('section')));
+      toExpand = $("#" + section);
       if (expanded[0] === toExpand[0]) {
         return;
       }
