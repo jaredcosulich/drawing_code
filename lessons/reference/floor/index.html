@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="POgRtHzASgPxA2oe/4VVlnfYerlfBcgpLsJbc9s0DoU3nqUM3KR2S09ult2fPGSeO8LDHLp7cS/AHun8xHJvrA==" />
+<meta name="csrf-token" content="UaVelXPT6zLd5GJsf6CikyUJ9RCAUP0KT869YBmMbyBa0+ot07fXemOJnq8fGZObaRNMtWUuRAyhEg/vBsoOCQ==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-ca95cacfb3bf8d9fafc29614581f65c94a379e6263a31f3b1cad9ef2e515949c-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -33,9 +33,12 @@
 <script src="../../../assets/lessons/dng_coordinate_system.self-d6dd587a720331c11f0eb953bdf686e8a76961c13993b87187e5c4776e6060ef.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/dng_fill_rect.self-076d63c8d73048e0d6f132484e13c1c7e2576aa91bb4e8822a11539c8c95362c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/dng_fill_style.self-0780a395ceafcb392fecb963760a24a14f3943e7b2b8a52584025658d066d884.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_functions.self-cba56ccc21c728db8f03ac4fffeba803a24edb96ecd1c3f68d1cb7f99583b55b.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/dng_variables.self-408df4937c1e6a9cd8aebb5ca22558d421cedc2b8b11b77ffa38f37dd8f6773e.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/fillRect.self-9e0e0969e446a2f464878a94809b7b44591a6ae159472a8744b33622cbec1b46.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/fillStyle.self-ee4e83b95686dac1cd630c036eb0353cfaeaa2b9701b0c7a6565ba0dc6091ec7.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage1.self-bc9495402f2bbaee7a90f5007adef9988155484d6a125df57d544a800f1aea71.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/for_loops.self-9dce154b577b9344744a8e7d16f6ca874805d4a157a4c326af1e9fd1e30627d5.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/functions.self-492d38bff26f435c0469d8a38da45ce7857e334d3bc3a41d8d4b97d5571abd02.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/granular_basic_cityscape/stage1.self-6f7e9f649607ed5446f60274031a33a7f77df629acea947be626e6dd5a92468a.js?body=1" data-turbolinks-track="reload"></script>
@@ -46,9 +49,9 @@
 <script src="../../../assets/lessons/save.self-40009da7858c56166ef5dbae9087a3b9cdc7b0c7bbf2c49751dc35678f068df5.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/translate.self-12f5a51ccf4b3f0f72e2079f0069bab57fd3af696731c66057284b4338745fba.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/variables.self-c87145ec3cf2327e7b3eb2ef815bed8ee4b3a42f7408ff8faa7e3353fb824132.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/canvas.self-6ffa332face19b6df965a377753d519e16da6b4654e8227849f76422b350d20b.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/editor.self-030aa467e41a423836ca96c3986dd8239ab580bdf0dcd2ece69a2f595e90f800.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/files.self-44ea3c495e4a7dcd0f21868609244481434df7346d11da6e2cf7dab0d8d14118.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/canvas.self-8dc23d2892405b0dbfb5bce9677279029b818fce74ed5e54e005f1b0262fe594.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/editor.self-3a56d563af7556e0a10db17ff6a4a71a57754611d26517e6bdb58c5998923627.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/files.self-16fff0bc3c9a315d22413e3b6a090fb8ef8f5f1257b42dade438f57a0de1f134.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/progress.self-df819cacc21fdae026057e6db599fcba5baf17b174f7fe4094037e1211928b6a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/code.self-33cf64aa5611284bd92306241f5dd3609372e9841934c0f0df5e1677e21ea9ce.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/image_comparison.self-83be79c1bfdac13ff2c69e6916a326f2698035d7381c28f12e44637de7618bac.js?body=1" data-turbolinks-track="reload"></script>
@@ -491,6 +494,34 @@ only performs the code inside of case 2 because "i" is set to 2):
 
 </div>
 </li>
+<li>
+<a href="../../concepts/set_interval/index.html">setInterval()</a>
+<div class='reference-modal-content' id='reference-modal-set_interval'>
+<div class='title'>setInterval()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+setInterval() allows you to execute code at specified intervals. It
+is frequently used to create animations.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>var index = 0;&#x000A;function count() {&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText(index, canvas.width / 2, canvas.height / 2);&#x000A;}&#x000A;setInterval(count, 1000)&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/set_interval/reference-a47ff17199d8182591ccb0d45fa57147ee1136677cff7955671c6a01337479fa.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/event_listeners/index.html">Event Listeners</a>
+<div class='reference-modal-content' id='reference-modal-event_listeners'>
+
+</div>
+</li>
 </ul>
 </li>
 </ul>
@@ -518,6 +549,12 @@ All
 <a href="../../snake_game/stage1/index.html">Snake Game</a>
 </li>
 <li class='small '>
+<a href="../../flappy_square/stage1/index.html">Flappy Square</a>
+</li>
+<li class='small '>
+<a href="../../flappy_birds/stage1/index.html">Flappy Birds</a>
+</li>
+<li class='small '>
 <a href="../../dng_basic_cityscape/stage1/index.html">DNG Basic Cityscape</a>
 </li>
 </li>
@@ -528,7 +565,6 @@ All
 <div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
 <div class='lesson' id='floor'>
 <h1>Math.floor() & Math.ceil()</h1>
-
 <div class='official row py-3'>
 <div class='col-xs-12'>
 <h2>The Official Description</h2>
