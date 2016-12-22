@@ -295,6 +295,13 @@
             %canvas#flappy_square_stage1_challenge3
           .alert
 
+  -#
+    NEED TO BREAK THIS NEXT LESSON UP
+    IDEAS:
+      Break out a lesson for event listeners and the focus/blur strategy using a static drawing.
+
+
+
   .lesson.row.py-3
     .col-xs-12
       .row
@@ -327,7 +334,18 @@
             %code clearInterval()
             will stop those regular intervals.
           %p
-            This allows us to draw frames in rapid sequence. Before each frame is drawn
+            %span.highlight Important:
+            we'll have to call setInterval from an
+            = link_to_lesson('event listener', :event_listeners, nil, class: 'reference-link', data: {slug: :event_listeners})
+            An event listener allows our code
+            to "listen" to an event. In this case we'll be listening for the canvas to gain focus.
+            When you click on the canvas you give it focus. We also give it focus automatically
+            when we run the code (this happens behind the scenes). We will also call clearInterval
+            from the "blur" event on the canvas. This means that when we click away from the canvas
+            the animation will stop. It also ensures that if we run the code multiple times our
+            setInterval doesn't continue to run.
+          %p
+            Our setInterval() allows us to draw frames in rapid sequence. Before each frame is drawn
             we need to erase the canvas so that the drawings do not overlap. We use
             = link_to_lesson('clearRect()', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
             like this:
@@ -340,7 +358,7 @@
             slow it down, it looks jumpy.
 
 
-          = render 'lessons/relevant', relevant: [:set_interval, :clear_rect, :functions]
+          = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
 
         .col-xs-12
           .interactive.row.py-1
@@ -379,11 +397,11 @@
                   drawSquare();
                 }
 
-                function playGame() {
+                function startAnimation() {
                   interval = setInterval(runProgram, 10);
                 }
 
-                function pauseGame() {
+                function pauseAnimation() {
                   clearInterval(interval);
 
                   context.font = "20px serif";
@@ -391,8 +409,8 @@
                   context.fillText('Click anywhere on the canvas to restart animation.', canvas.width / 2, 50);
                 }
 
-                canvas.addEventListener('focus', playGame);
-                canvas.addEventListener('blur', pauseGame);
+                canvas.addEventListener('focus', startAnimation);
+                canvas.addEventListener('blur', pauseAnimation);
 
 
 
@@ -412,41 +430,77 @@
             Challenge 4
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage1/challenge3Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+            = image_tag('lessons/flappy_square/stage1/challenge4Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 4 Sample Solution
 
           %p
-            %span.highlight
-              Write a function to draw the flappy bird from Challenge 2.
+            There's a lot of new stuff in this challenge, so make sure to
+            %span.highlight look at the lesson above.
+            It provides explanations for the different components of this challenge.
           %p
-            The function will be called drawSquare() accept three values x, y, and size (called parameters) that
-            will be used to position our flappy square.
+            Use
+            %span.highlight setInterval(),
+            called from the canvas "focus" event", to
+            %span.highlight animate the flappy square falling.
           %p
-            Then use the function to draw our flappy square at the
-            %span.highlight
-              coordinates (50, 100) and size 20.
-          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :variables, :functions]
-          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'flappy_square_stage1_challenge2_editor'
+            Have your flappy square
+            %span.highlight start at (50, 100) and move down 10 pixels every 300 milliseconds.
+
+          = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
+          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'flappy_square_stage1_challenge3_editor'
 
       .row.pt-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge3_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage1_challenge5');
+            var canvas = document.getElementById('flappy_square_stage1_challenge4');
             var context = canvas.getContext('2d');
 
-            function drawSquare(x, y, size) {
+            var interval;
+            var size = 20;
+
+            // SET YOUR POSITION VARIABLES HERE
+            // var x =
+            // var y =
+
+            function drawSquare() {
 
               // YOUR CODE FOR DRAWING A SQUARE HERE
 
             }
 
-            // YOUR CODE FOR CALLING THE drawSquare FUNCTION HERE
+            function adjustPosition() {
+
+              // YOUR CODE FOR CHANGING THE POSITION OF THE SQUARE HERE
+
+            }
+
+            function runProgram() {
+              // YOUR CODE TO CLEAR THE CANVAS BEFORE DRAWING THE NEXT FRAME HERE
+
+              adjustPosition();
+              drawSquare();
+            }
+
+            function startAnimation() {
+
+              // FILL IN THE CORRECT PARAMETER FOR SET INTERVAL HERE
+              // setInterval(runProgram, )
+
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+
+
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/flappy_square/stage1/challenge3.png')
-            %canvas#flappy_square_stage1_challenge3
+            %canvas#flappy_square_stage1_challenge4
           .alert

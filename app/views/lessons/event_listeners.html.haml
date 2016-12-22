@@ -1,0 +1,171 @@
+#event_listeners.lesson
+  %h1 Event Listeners
+
+
+
+  .description.row.py-3
+    .col-xs-6
+      %h2 What is a variable?
+      %p.pt-2
+        A variable allows you to store information to use or change later.
+    .col-xs-6
+      = image_tag('lessons/event_listeners/visual1.png', class: 'img-fluid bordered')
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Draw a pyramid
+          %p.pt-2
+            Using event_listeners makes it easier to draw a pyramid.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'event_listeners_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('event_listeners_example1');
+                var context = canvas.getContext('2d');
+                context.save();
+
+                var xPosition = 50;
+                var yPosition = 200;
+                var width = 200;
+                var height = 50;
+                var change = 25;
+                var red = 255;
+
+                for (var i=0; i<4; ++i) {
+                  context.fillStyle = 'rgb(' + red + ',0,0)';
+                  context.fillRect(xPosition, yPosition, width, height);
+                  yPosition -= height;
+                  xPosition += change;
+                  width -= (change * 2);
+                  red -= (change * 3);
+                }
+
+                context.restore();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#event_listeners_example1
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Draw stairs
+          %p.pt-2
+            Using event_listeners makes it easier to draw stairs.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'event_listeners_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('event_listeners_example2');
+                var context = canvas.getContext('2d');
+
+                context.beginPath();
+
+                var x = 50;
+                var y = 50;
+                context.moveTo(x, y);
+
+                for (var i=0; i<6; ++i) {
+                  if (i % 2 == 0) x += 50;
+                  if (i % 2 == 1) y += 50;
+                  context.lineTo(x, y);
+                }
+
+                context.stroke();
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#event_listeners_example2
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title Challenge 1
+          %p.py-2
+            Use the variable provided to draw lines going through each of the
+            x's starting at (100,100), (100,200), increasing x by 50 each time.
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'event_listeners_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('event_listeners_challenge1');
+            var context = canvas.getContext('2d');
+
+            var x = 100;
+
+            context.beginPath();
+
+            for (var i=0; i<3; ++i) {
+              context.moveTo(x, 100);
+              context.lineTo(x, 200);
+
+              // YOUR CODE HERE
+            }
+
+            context.stroke();
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/event_listeners/challenge1.png')
+            %canvas#event_listeners_challenge1
+          .alert
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title Challenge 2
+          %p.pt-2
+            Create a grayscale pattern by drawing rectangles over the x's,
+            starting at (50,50) and moving 25 to the left while reducing the
+            red, green, and blue of each rectangle by 25 each time.
+          %p.pb-2
+            It should look like this:
+            = image_tag('lessons/event_listeners/grayscale.png')
+    .row
+      = render :layout => '/lessons/editor', :locals => {:editor_id => 'event_listeners_challenge2_editor'} do
+        :preserve
+          var canvas = document.getElementById('event_listeners_challenge2');
+          var context = canvas.getContext('2d');
+          context.save();
+
+          var x = 50;
+          var c = 255;
+
+          for (var i=0; i<9; ++i) {
+            context.fillStyle = 'rgb(' + c + ',' + c + ',' + c + ')';
+            context.fillRect(x, 50, 25, 100);
+
+            // YOUR CODE HERE
+          }
+
+          context.restore();
+
+      .visual.col-xs-6
+        %h5
+          Canvas
+          %small (your drawing will display here)
+        .canvas
+          .background.hidden-xl-down= image_tag('lessons/event_listeners/challenge2.png')
+          %canvas#event_listeners_challenge2
+        .alert

@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
       scale: {count: 0, method: 'scale()'},
 
       coordinates: {count: 2, method: 'Coordinates'},
+      event_listeners: {count: 0, method: 'Event Listeners'},
       for_loops: {count: 1, method: 'For Loops'},
       functions: {count: 1, method: 'Functions'},
       set_interval: {count: 0, method: 'setInterval()'},
@@ -53,6 +54,7 @@ class ApplicationController < ActionController::Base
       :functions,
       :switch_statements,
       :set_interval,
+      :event_listeners
     ]
 
     @challenge_paths = [
@@ -101,6 +103,7 @@ class ApplicationController < ActionController::Base
         ],
         concepts: [
           :set_interval,
+          :event_listeners
         ]
       },
       {
