@@ -1,9 +1,97 @@
 #set_interval.lesson
   %h1 setInterval()
 
-
-
   .official.row.py-3
     .col-xs-6
-      %h2.py-2
-        Official Description
+      %h2 The Official Description
+      %p.py-2
+        Repeatedly calls a function or executes a code snippet,
+        with a fixed time delay between each call. Returns an intervalID.
+      .source.text-xs-right
+        = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval', target: '_blank')
+
+    .col-xs-6
+      = image_tag('lessons/set_interval/visual1.gif', class: 'img-fluid canvas-example')
+
+
+  .simple.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2
+            Using setInterval()
+          %p.pt-2
+            A major use for setInterval() is in animation. In animation you need
+            to display a frame of the scene every few milliseconds
+            = "(#{link_to('what is frame rate?', 'https://www.youtube.com/watch?v=wrgoKNSfi5M', target: '_blank')})".html_safe
+            in order to fool the eye into thinking the animation is continuous.
+          %p
+            setInterval() allows you to do this. It will execute the code you choose
+            at a specified interval. If you want to run your animation at 25 FPS (Frames Per Second)
+            then you would call setInterval passing in 4 as the second parameter. This
+            will call your code ever 4 milliseconds or 25 times in one second.
+          %p
+            The example below calls a function every 10 milliseconds creating the illusion of a
+            square moving across the canvs.
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'set_interval_interactive1_editor'} do
+              :preserve
+                var canvas = document.getElementById('set_interval_interactive1');
+                var context = canvas.getContext('2d');
+
+                var direction = 'right';
+                var size = 30;
+                var x = 0;
+                var y = 150;
+                var interval;
+
+                function drawSquare() {
+                  context.fillRect(x, y, size, size);
+                }
+
+                function adjustPosition() {
+                  if (direction == 'right') {
+                    x += 1;
+                    if (x + size >= canvas.width) {
+                      direction = 'left';
+                    }
+                  } else {
+                    x -= 1;
+                    if (x <= 0) {
+                      direction = 'right';
+                    }
+                  }
+                }
+
+                function runProgram() {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  adjustPosition();
+                  drawSquare();
+                }
+
+                function playGame() {
+                  interval = setInterval(runProgram, 10);
+                }
+
+                function pauseGame() {
+                  clearInterval(interval);
+
+                  context.font = "20px serif";
+                  context.textAlign = 'center';
+                  context.fillText('Click anywhere on the canvas to restart animation.', canvas.width / 2, 50);
+                }
+
+                canvas.addEventListener('focus', playGame);
+                canvas.addEventListener('blur', pauseGame);
+
+
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#set_interval_interactive1

@@ -4,24 +4,21 @@
   .row
     .col-xs-12
       %p
-        context.clearRect(x, y, width, height) will clear a rectangle starting
-        at (x, y) and clearing to the right width and down height.
+        setInterval() allows you to execute code at specified intervals. It
+        is frequently used to create animations.
 
       %p This code will produce the image below:
 
       %pre.mb-2
         %code
           :preserve
-            context.fillStyle = '#FF0000';
-            context.fillRect(0, 0, canvas.width, canvas.height);
-
-            context.clearRect(40, 20, 20, 100);
-            context.clearRect(60, 60, 20, 20);
-            context.clearRect(80, 20, 20, 100);
-
-            context.clearRect(120, 20, 60, 20);
-            context.clearRect(140, 40, 20, 60);
-            context.clearRect(120, 100, 60, 20);
+            var index = 0;
+            function count() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+              context.fillText(index, canvas.width / 2, canvas.height / 2);
+            }
+            setInterval(count, 1000)
 
       %p.text-xs-center
-        = image_tag('lessons/clear_rect/reference.png', class: 'img-fluid canvas-example')
+        = image_tag('lessons/set_interval/reference.gif', class: 'img-fluid canvas-example')
