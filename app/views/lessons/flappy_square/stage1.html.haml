@@ -429,8 +429,8 @@
           %h2.challenge-title.py-2
             Challenge 4
 
-          %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage1/challenge4Example.png', class: 'img-fluid canvas-example')
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/flappy_square/stage1/challenge4Example.gif', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small Challenge 4 Sample Solution
 
           %p
@@ -445,6 +445,8 @@
           %p
             Have your flappy square
             %span.highlight start at (50, 100) and move down 10 pixels every 300 milliseconds.
+          %p
+            Your animation should look like the example to the right.
 
           = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
           = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'flappy_square_stage1_challenge3_editor'

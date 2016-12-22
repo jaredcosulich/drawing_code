@@ -84,7 +84,7 @@ initFlappySquareStage1Challenge4 = (page) ->
           testSolution(index + 1)
         else
           message = '<strong>Success!</strong> You\'re successfull animated a flappy square moving down at the correct pace!'
-          App.currentProgress.challengeComplete('flappy_square_stage1', 'challenge3')
+          App.currentProgress.challengeComplete('flappy_square_stage1', 'challenge4')
           canvas.alert(message, success)
       else
         message = 'Nice try, but you need to animate a flappy square moving down at the correct pace.'
