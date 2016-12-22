@@ -13,7 +13,7 @@ class App.Canvas
       @canvas.css('background-image', 'url(' + backgroundImage.attr('src') + ')')
 
     @context = @canvasElement.getContext('2d')
-    @canvas.attr(width: @canvas.width(), height: @canvas.height())
+    @canvas.attr(tabIndex: 0, width: @canvas.width(), height: @canvas.height())
     @index += 1
     @canvas.data(index: @index)
 

@@ -1,7 +1,7 @@
 #flappy_square_stage1.lesson
   %h1 Stage 1
 
-  = render 'lessons/challenge_count'
+
 
   .description.row.py-3
     .col-xs-6
@@ -306,8 +306,12 @@
             = image_tag('lessons/flappy_square/stage1/lesson4Visual.png')
 
           %p
-            There are
-            %span.highlight three components to basic animation
+            Ok, this lesson is a little long. To start, if the animation below
+            isn't playing you
+            %span.highlight can click on the canvas to restart it.
+          %p
+            There are a few aspects of basic animation we need to cover. To start, there are
+            %span.highlight three required aspects to basic animation
             in canvas.
           %ul
             %li Drawing frames in rapid sequence.
@@ -318,45 +322,94 @@
             For our purposes we'll use the
             = link_to_lesson('setInterval() and clearInterval()', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
             methods.
+            %code setInterval()
+            will call run the specified code at regular intervals.
+            %code clearInterval()
+            will stop those regular intervals.
+          %p
+            This allows us to draw frames in rapid sequence. Before each frame is drawn
+            we need to erase the canvas so that the drawings do not overlap. We use
+            = link_to_lesson('clearRect()', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
+            like this:
+            %code context.clearRect(0, 0, canvas.width, canvas.height)
+            to clear a rectangle starting at the coordinates (0,0) and clearing
+            an area as wide and tall as the canvas (it clears the whole canvas).
+          %p
+            Then we draw the next frame, slightly different from the last frame. If we
+            do this frequently enough then the animation looks smooth and natural. If we
+            slow it down, it looks jumpy.
+
 
           = render 'lessons/relevant', relevant: [:set_interval, :clear_rect, :functions]
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson3_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson4_editor'} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage1_lesson3');
+                var canvas = document.getElementById('flappy_square_stage1_lesson4');
                 var context = canvas.getContext('2d');
 
-                function drawFrenchFlag(x, y) {
-                  context.fillStyle = '#0055A4';
-                  context.fillRect(x, y, 20, 40);
+                var direction = 'up';
+                var size = 1;
+                var interval;
 
-                  context.fillStyle = '#FFFFFF';
-                  context.fillRect(x + 20, y, 20, 40);
-
-                  context.fillStyle = '#EF4135';
-                  context.fillRect(x + 40, y, 20, 40);
+                function drawSquare() {
+                  var x = (canvas.width - size) / 2;
+                  var y = (canvas.height - size) / 2;
+                  context.fillRect(x, y, size, size);
                 }
 
-                drawFrenchFlag(30, 100);
-                drawFrenchFlag(150, 50);
-                drawFrenchFlag(300, 180);
+                function adjustSize() {
+                  if (direction == 'up') {
+                    size += 1;
+                    if (size > 250) {
+                      direction = 'down';
+                    }
+                  } else {
+                    size -= 1;
+                    if (size <= 0) {
+                      direction = 'up';
+                    }
+                  }
+                }
+
+                function runProgram() {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  adjustSize();
+                  drawSquare();
+                }
+
+                function playGame() {
+                  interval = setInterval(runProgram, 10);
+                }
+
+                function pauseGame() {
+                  clearInterval(interval);
+
+                  context.font = "20px serif";
+                  context.textAlign = 'center';
+                  context.fillText('Click anywhere on the canvas to restart animation.', canvas.width / 2, 50);
+                }
+
+                canvas.addEventListener('focus', playGame);
+                canvas.addEventListener('blur', pauseGame);
+
+
 
             .visual.col-xs-6
               %h5
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage1_lesson3
+                %canvas#flappy_square_stage1_lesson4
 
 
-  #challenge3.challenge.row.py-3
+  #challenge4.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 3
+            Challenge 4
 
           %figure.float-xs-right.pl-2
             = image_tag('lessons/flappy_square/stage1/challenge3Example.png', class: 'img-fluid canvas-example')

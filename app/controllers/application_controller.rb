@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
       random: {count: 0, method: 'random()'},
       save: {count: 1, method: 'save()'},
       scale: {count: 0, method: 'scale()'},
-      setInterval: {count: 0, method: 'setInterval()'},
 
       coordinates: {count: 2, method: 'Coordinates'},
       for_loops: {count: 1, method: 'For Loops'},
       functions: {count: 1, method: 'Functions'},
+      set_interval: {count: 0, method: 'setInterval()'},
       switch_statements: {count: 0, method: 'Switch Statements'},
       variables: {count: 2, method: 'Variables'},
       while_loops: {count: 0, method: 'While Loops'},
@@ -51,7 +51,8 @@ class ApplicationController < ActionController::Base
       :while_loops,
       :coordinates,
       :functions,
-      :switch_statements
+      :switch_statements,
+      :set_interval,
     ]
 
     @challenge_paths = [
@@ -97,9 +98,9 @@ class ApplicationController < ActionController::Base
         reference: [
           :clear_rect,
           :fill_rect,
-          :set_interval,
         ],
         concepts: [
+          :set_interval,
         ]
       },
       {
