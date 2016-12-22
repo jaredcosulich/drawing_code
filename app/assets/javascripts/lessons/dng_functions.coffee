@@ -85,24 +85,9 @@ initDngFunctionsChallenge4 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  solution = (canvas, context) ->
-    context.fillStyle = 'DarkViolet'
-    context.fillRect(100, 40, 80, 240)
-    context.fillRect(260, 40, 80, 240)
-    context.fillStyle = 'Violet'
-    context.fillRect(180, 120, 80, 80)
-
-  testCode = new Test.Code(code: solution, canvas: canvas)
-
   challenge.find('.run').click ->
-    testCode.test (success) ->
-      if success
-        message = '<strong>Success!</strong> Your variable expressions are correct!'
-        App.currentProgress.challengeComplete('dng_functions', 'challenge4')
-      else
-        message = 'Nice try, but your variable expressions are incorrect.'
-
-      canvas.alert(message, success)
+    canvas.selfAssess ->
+      App.currentProgress.challengeComplete('dng_functions', 'challenge4')
 
 
 initDngFunctionsChallenge5 = (page) ->
@@ -110,26 +95,9 @@ initDngFunctionsChallenge5 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  solution = (canvas, context) ->
-    context.fillStyle = 'Khaki'
-    context.fillRect(20, 40, 360, 200)
-    context.fillStyle = 'White'
-    context.fillRect(20, 40, 25, 25)
-    context.fillRect(355, 40, 25, 25)
-    context.fillRect(20, 215, 25, 25)
-    context.fillRect(355, 215, 25, 25)
-
-  testCode = new Test.Code(code: solution, canvas: canvas)
-
   challenge.find('.run').click ->
-    testCode.test (success) ->
-      if success
-        message = '<strong>Success!</strong> Your variable expressions are correct!'
-        App.currentProgress.challengeComplete('dng_functions', 'challenge5')
-      else
-        message = 'Nice try, but your variable expressions are incorrect.'
-
-      canvas.alert(message, success)
+    canvas.selfAssess ->
+      App.currentProgress.challengeComplete('dng_functions', 'challenge5')
 
 
 $(document).on('initialization:complete', initDngFunctionsChallenges)
