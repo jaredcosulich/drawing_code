@@ -44,7 +44,7 @@ class App.Editor
     @currentEditorHeight = @editor.height()
     @aceEditor.resize()
     setTimeout(( =>
-      @editor.find('.ace_scroller').css(right: '18px')
+      @editor.find('.ace_scroller').css(bottom: '18px')
       @editor.find('.ace_scrollbar-v').css(bottom: '18px')
     ), 250)
 

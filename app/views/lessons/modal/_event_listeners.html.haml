@@ -1,0 +1,24 @@
+.title Event Listeners
+
+.content
+  .row
+    .col-xs-12
+      %p
+        Event listeners allow you to "listen" for an event, such as a click, on an element
+        in your html.
+      %p
+        A full list of events can be found here:
+        = link_to('HTML5 Events', 'https://www.tutorialspoint.com/html5/html5_events.htm', target: '_blank')
+
+      %p This code will produce the image below (if you were to click and draw the letters on the canvas):
+
+      %pre.mb-2
+        %code
+          :preserve
+            canvas.addEventListener('mousemove', function(e) {
+              if (e.buttons === 0) return;
+              context.fillRect(e.layerX - 3, e.layerY - 3, 7, 7);
+            });
+
+      %p.text-xs-center
+        = image_tag('lessons/event_listeners/reference.gif', class: 'img-fluid canvas-example')

@@ -1,7 +1,10 @@
 initNavigation = ->
   $('.nav-sidebar .section a.section_link').click ->
+    section = $(this).data('section')
+    return unless section
+
     expanded = $('.section .collapse.in')
-    toExpand = $("##{$(this).data('section')}")
+    toExpand = $("##{section}")
     return if expanded[0] == toExpand[0]
 
     expanded.collapse('hide').on 'hidden.bs.collapse', ->
