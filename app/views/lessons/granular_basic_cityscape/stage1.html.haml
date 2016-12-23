@@ -21,18 +21,28 @@
       .row
         .col-xs-12
           %h2.py-2
-            Lesson: Draw a Building
+            Lesson: Drawing In The Coordinate System
+
+          .float-xs-right.mx-2
+            = image_tag('lessons/coordinates/visual1.png', class: 'img-fluid')
+
           %p
-            In our drawing a building will be a rectangle. We use context.fillRect() to draw the rectangle.
-          %p
-            In this example, we draw a building that is
-            %span.highlight 160 pixels wide, 240 pixels tall,
-            and positioned so its
-            %span.highlight top left corner is at (100, 50).
-          %p
-            Note: In the context's
+            When drawing on canvas it is important to understand how the
             = link_to_lesson('coordinate system', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
-            the origin (0, 0) is at the top left corner of the canvas.
+            works.
+          %p
+            Unlike with a normal graph, where the positive "y" values go up, in the canvas
+            positive "y" values go down from the top.
+          %p
+            So the point (50, 100) is 50 pixels from the right of the top left corner of the canvas and
+            100 pixels down from the top left corner.
+          %p
+            In this example, the black square is at (0, 0) so it's top left corner
+            is in the top left corner of the canvas. The blue square is at (50, 100)
+            so it's top left corner is 50 pixels to the right and 100 pixels down.
+          %p
+            Try adjusting the coordinates of the two squares and see how they move around
+            the coordinate system.
           = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
 
@@ -43,7 +53,11 @@
                 var canvas = document.getElementById('granular_basic_cityscape_stage1_lesson1');
                 var context = canvas.getContext('2d');
 
-                context.fillRect(100, 50, 160, 240);
+                context.fillRect(0, 0, 50, 50);
+
+                context.fillStyle = 'blue';
+                context.fillRect(50, 100, 50, 50);
+
 
             .visual.col-xs-6
               %h5
@@ -60,21 +74,21 @@
           %h2.challenge-title.py-2
             Challenge 1
 
-          %figure.float-xs-right.px-2
+          %figure.float-xs-right.pl-2
             = image_tag('lessons/granular_basic_cityscape/stage1/challenge1Example.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small Challenge 1 Sample Solution
 
           %p
-            Draw a building (a rectangle) that is
-            %span.highlight 320 pixels wide and 160 pixels tall
-            so the
-            %span.highlight bottom left corner of the building is covering the x at (40, 240)
-            and the top right corner is covering the other x, but not covering the red x's.
+            Draw a rectangle using the code
+            %code fillRect(x, y, width, height)
+            where you replace x with the top left x coordinate, y with the top left y coordinate,
+            width with the width of the rectangle and height with the height of the rectangle.
           %p
-            Remember the you need to draw from the top left corner, not from the ground,
-            which is 240 pixels down. You'll need to calculate the top of the building.
+            Draw the rectangle so that it's top left corner is 60px to the right of the top
+            left corner of the canvas and 90px down. The rectangle should be 45px wide (width) and
+            45px tall (height).
 
-          %p In the end your building should look like the example provided to the right.
+          %p In the end your drawing should look like the example provided to the right.
           = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
 
       .row
@@ -94,7 +108,166 @@
             %canvas#granular_basic_cityscape_stage1_challenge1
           .alert
 
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: The Ground
 
+          %p
+            When drawing a cityscape you need to to draw all of the buildings
+            sitting on the ground.
+          %p
+            This complicates our drawing because we need to draw each building
+            as a rectangle that starts from the top left corner, but we need
+            to draw it relative to the ground, not the top.
+          %p
+            This example shows the ground as a simple line, 240px from the top
+            of the canvas.
+
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_lesson2_editor'} do
+              :preserve
+                var canvas = document.getElementById('granular_basic_cityscape_stage1_lesson2');
+                var context = canvas.getContext('2d');
+
+                context.fillRect(0, 240, canvas.width, 5);
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#granular_basic_cityscape_stage1_lesson2
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+
+          %figure.float-xs-right.pl-2
+            = image_tag('lessons/granular_basic_cityscape/stage1/challenge2Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 2 Sample Solution
+
+          %p
+            Try drawing the ground yourself. The only important variable in the
+            ground drawing is the height from the top of the canvas.
+          %p
+            So uncomment out the ground variable and fill in the correct value to
+            place the ground 260px from the top of the canvas.
+
+          %p In the end your drawing should look like the example provided to the right.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge2');
+            var context = canvas.getContext('2d');
+
+            // Uncomment out the ground variable and set it properly.
+            // var ground =
+
+            context.fillRect(0, ground, canvas.width, 5);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge2.png')
+            %canvas#granular_basic_cityscape_stage1_challenge2
+          .alert
+
+-#
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Draw a Building
+          %p
+            In our drawing a building will be a rectangle. We use context.fillRect() to draw the rectangle.
+          %p
+            In this example, we draw a building that is
+            %span.highlight 160 pixels wide, 240 pixels tall,
+            and positioned so its
+            %span.highlight top left corner is at (100, 50).
+          %p
+            Remember: In the context's
+            = link_to_lesson('coordinate system', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+            the origin (0, 0) is at the top left corner of the canvas.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_lesson2_editor'} do
+              :preserve
+                var canvas = document.getElementById('granular_basic_cityscape_stage1_lesson2');
+                var context = canvas.getContext('2d');
+
+                context.fillRect(100, 50, 160, 240);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#granular_basic_cityscape_stage1_lesson2
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/granular_basic_cityscape/stage1/challenge2Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 2 Sample Solution
+
+          %p
+            Draw a building (a rectangle) that is
+            %span.highlight 320 pixels wide and 160 pixels tall
+            so the
+            %span.highlight bottom left corner of the building is covering the x at (40, 240)
+            and the top right corner is covering the other x, but not covering the red x's.
+          %p
+            Remember the you need to draw from the top left corner, not from the ground,
+            which is 240 pixels down. You'll need to calculate the top of the building.
+
+          %p In the end your building should look like the example provided to the right.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge2');
+            var context = canvas.getContext('2d');
+
+            // YOUR CODE HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge2.png')
+            %canvas#granular_basic_cityscape_stage1_challenge2
+          .alert
+
+-#
 
   .lesson.row.py-3
     .col-xs-12
@@ -264,7 +437,7 @@
             var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge3');
             var context = canvas.getContext('2d');
 
-            // SET THE VARIABLES PROPERLY
+            // UNCOMMENT THE VARIABLES AND SET THEM PROPERLY 
             // var ground =
             // var width =
             // var height =
