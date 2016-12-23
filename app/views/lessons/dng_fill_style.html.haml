@@ -1,8 +1,6 @@
 #dng_fill_style.lesson
-  %h1 CanvasRenderingContext2D.fillStyle
-
-
-
+  %h1
+    context.fillStyle
   .description.row.py-3
     .col-xs-12
       .row
@@ -266,6 +264,12 @@
             %code
               context.fillStyle
             property three times. Can you think of a way to draw the flag using only eight rectangles?
+          %p
+            Visit the relevant lessons to learn more about the context's coordinate system and the
+            %code
+              context.fillRect()
+            method.
+          = render 'lessons/relevant', relevant: [:dng_coordinate_system, :dng_fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -460,6 +464,12 @@
             %code
               context.strokeStyle
             property.
+          %p
+            Visit the relevant lessons to learn more about variables, the context's coordinate system, and the
+            %code
+              context.fillRect()
+            method.
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_coordinate_system, :dng_fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -632,7 +642,7 @@
             %code
               context.fillRect()
             and, the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:save, :translate, :dng_fill_rect, :dng_coordinate_system]
+          = render 'lessons/relevant', relevant: [:dng_save, :translate, :dng_fill_rect, :dng_coordinate_system]
 
         .col-xs-12
           .interactive.row.py-1

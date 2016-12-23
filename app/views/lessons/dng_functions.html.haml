@@ -1,8 +1,6 @@
 #dng_functions.lesson
-  %h1 Functions
-
-
-
+  %h1
+    Functions
   .description.row.py-3
     .col-xs-12
       .row
@@ -134,7 +132,7 @@
                 context.fillStyle
               ,
             variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinate_system]
+          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinate_system]
 
         .col-xs-12
           .interactive.row.py-1
@@ -329,7 +327,7 @@
                 context.fillStyle
               ,
             variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinate_system]
+          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinate_system]
 
         .col-xs-12
           .interactive.row.py-1
@@ -889,8 +887,21 @@
             function. The drawing will automatically update to draw the new rectangle and print its
             area at its midpoint.
           %p
-            Visit the relevant lessons to learn more about variables.
-          = render 'lessons/relevant', relevant: [:dng_variables]
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            variables, and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinate_system]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1108,6 +1119,22 @@
             The function is much easier to read and understand, and it is also much easier
             to maintain. For example, if we want to update our cheese slices, we can do it in one place
             in the program, instead of in multiple places scattered throughout the program.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            variables, and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinate_system]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1337,8 +1364,21 @@
               drawPlate()
             function.
           %p
-            Visit the relevant lessons to learn more about variables.
-          = render 'lessons/relevant', relevant: [:dng_variables]
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            variables, and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinate_system]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1467,8 +1507,21 @@
             with the same name. But in JavaScript, functions are actually objects, so we can store
             them and pass them like any other object.
           %p
-            Visit the relevant lessons to learn more about variables.
-          = render 'lessons/relevant', relevant: [:dng_variables]
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            variables, and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinate_system]
 
         .col-xs-12
           .interactive.row.py-1

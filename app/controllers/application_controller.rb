@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
 
       dng_fill_rect: {count: 6, method: 'DNG fillRect()'},
       dng_fill_style: {count: 3, method: 'DNG fillStyle'},
+      dng_save: {count: 5, method: 'DNG save()/restore()'},
       dng_coordinate_system: {count: 3, method: 'DNG Coordinate System'},
       dng_variables: {count: 5, method: 'DNG Variables'},
       dng_functions: {count: 5, method: 'DNG Functions'}
@@ -146,7 +147,8 @@ class ApplicationController < ActionController::Base
         stages: [4, 3, 4, 4],
         reference: [
           :dng_fill_rect,
-          :dng_fill_style
+          :dng_fill_style,
+          :dng_save
         ],
         concepts: [
           :dng_coordinate_system,
