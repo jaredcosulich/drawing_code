@@ -28,7 +28,8 @@ class ApplicationController < ActionController::Base
       dng_save: {count: 5, method: 'DNG save()/restore()'},
       dng_coordinate_system: {count: 3, method: 'DNG Coordinate System'},
       dng_variables: {count: 5, method: 'DNG Variables'},
-      dng_functions: {count: 5, method: 'DNG Functions'}
+      dng_functions: {count: 5, method: 'DNG Functions'},
+      dng_translate: {count: 5, method: 'DNG translate()'}
     }
 
     @reference = {
@@ -148,7 +149,8 @@ class ApplicationController < ActionController::Base
         reference: [
           :dng_fill_rect,
           :dng_fill_style,
-          :dng_save
+          :dng_save,
+          :dng_translate
         ],
         concepts: [
           :dng_coordinate_system,

@@ -1,0 +1,1257 @@
+#dng_translate.lesson
+  %h1
+    context.translate()
+  .description.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_translate/overviewVisual1.png', class: 'img-fluid')
+          %p
+            The
+            %code
+              context.translate()
+            method moves the origin of the context's coordinate system by passing it two values:
+          %pre
+            %code
+              :preserve
+                context.translate(x, y);
+          %p
+            The
+            %code
+              x
+            value moves the origin of the coordinate system horizontally and the
+            %code
+              y
+            value moves it vertically. For example,
+            %code
+              context.translate(90, 60)
+            moves the origin 90 pixels to the right and 60 pixels down.
+          .source
+            = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/translate', target: '_blank')
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Translate the Origin to Move the Drawing Paper
+          %p
+            While transforming the context's coordinate system may sound highly mathematical, it
+            actually simplifies any math we might need to do when drawing.
+          %p
+            Think of moving the origin of the coordinate system like moving a sheet of drawing paper.
+            If we were drawing a house on a sheet of paper, we would move the paper so the house's
+            position is directly under our pencil, and then we would draw the house. Once the house is
+            directly under our pencil, we can draw the house without thinking about its position.
+          %p
+            On the canvas, the origin of the coordinate system (0, 0) is the point directly under our
+            pencil. In this example, we draw a house at the origin and use the
+            %code
+              context.translate()
+            method to position it wherever we want.
+          %p
+            We start by translating the origin to (0, 0). This doesn't move the origin at all, for
+            now, which is what we want. We'll move the origin later.
+          %pre
+            %code
+              :preserve
+                context.translate(0, 0); // Position house here
+          %p
+            Then, we draw our house at the origin.
+          %pre
+            %code
+              :preserve
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+          %p
+            Finally, we have defined a function that will draw a set of axes at the origin of
+            the coordinate system. This will help us see the position of the origin any time we want.
+            Call it after drawing the house.
+          %pre
+            %code
+              :preserve
+                drawAxes();
+          %p
+            At this point, we have drawn a yellow house with two windows and a red door at
+            the origin of the coordinate system, which is in the top left corner of the canvas.
+          %p
+            Go back up to the top of the program where we translate the origin of the coordinate
+            system to (0, 0). Change the line of code to move the origin to (100, 50). Then, try
+            drawing the house at different positions.
+          %pre
+            %code
+              :preserve
+                context.translate(100, 50);  // Position house here
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinate_system]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_translate_example1');
+                var context = canvas.getContext('2d');
+                
+                context.translate(0, 0); // Position house here
+                
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                
+                drawAxes();
+                
+                function drawAxes() {
+                  context.save();
+                  context.fillStyle = 'Red';
+                  context.strokeStyle = 'Red';
+                  context.font = '16px Arial';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'middle';
+                  drawPoint(0, 0);
+                  drawLine(0, 0, 50, 0);
+                  drawArrow(50, 0, 0);
+                  context.fillText('x', 60, 0);
+                  drawLine(0, 0, 0, 50);
+                  drawArrow(0, 50, 0.5 * Math.PI);
+                  context.fillText('y', 0, 60);
+                  context.restore();
+                }
+                
+                function drawPoint(x, y) {
+                  context.beginPath();
+                  context.arc(x, y, 3, 0, 2 * Math.PI, false);
+                  context.closePath();
+                  context.fill();
+                }
+                
+                function drawLine(x1, y1, x2, y2) {
+                  context.beginPath();
+                  context.moveTo(x1, y1);
+                  context.lineTo(x2, y2);
+                  context.stroke();
+                }
+                
+                function drawArrow(x, y, angle) {
+                  context.save();
+                  context.translate(x, y);
+                  context.rotate(angle);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(-10, 5);
+                  context.lineTo(-10, -5);
+                  context.closePath();
+                  context.fill();
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_translate_example1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_translate/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Right now, this program draws a French flag at the position (0, 0).
+          %p
+            Use the
+            %code
+              context.translate()
+            method to draw the French flag at the position (120, 40).
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_translate_challenge1');
+            var context = canvas.getContext('2d');
+            
+            context.fillStyle = '#0055A4';
+            context.fillRect(0, 0, 80, 160); // Blue bar
+            context.fillStyle = '#FFFFFF';
+            context.fillRect(80, 0, 80, 160); // White bar
+            context.fillStyle = '#EF4135';
+            context.fillRect(160, 0, 80, 160); // Red bar
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_translate/challenge1.png')
+            %canvas#dng_translate_challenge1
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Combine Multiple Translations
+          %p
+            When we use the
+            %code
+              context.translate()
+            method to position a drawing, it is important to remember that we are moving
+            the entire coordinate system and not just a single drawing.
+          %p
+            In this example, we translate the origin of the coordinate system to position
+            (100, 50) and draw a house and a set of axes.
+          %pre
+            %code
+              :preserve
+                context.translate(50, 100); // Position of the first house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                drawAxes();
+          %p
+            Then, we translate the origin of the coordinate system to position (200, 0)
+            and draw second house and a second set of axes.
+          %pre
+            %code
+              :preserve
+                context.translate(200, 0); // Position of the second house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                drawAxes();
+          %p
+            The second house is not drawn at (200, 0) in absolute coordinates on the canvas.
+            It is drawn at (250, 100) because, when we apply the second translation, we are
+            doing it in a coordinate system that has already been moved. The second house is
+            drawn 200 pixels to the right of the origin for the first house. And if we did
+            another translation and drew a third house, it would be positioned relative to the
+            origin for the second house.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinate_system]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_translate_example2');
+                var context = canvas.getContext('2d');
+                
+                context.translate(50, 100); // Position of the first house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                drawAxes();
+                
+                context.translate(200, 0); // Position of the second house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                drawAxes();
+
+                function drawAxes() {
+                  context.save();
+                  context.fillStyle = 'Red';
+                  context.strokeStyle = 'Red';
+                  context.font = '16px Arial';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'middle';
+                  drawPoint(0, 0);
+                  drawLine(0, 0, 50, 0);
+                  drawArrow(50, 0, 0);
+                  context.fillText('x', 60, 0);
+                  drawLine(0, 0, 0, 50);
+                  drawArrow(0, 50, 0.5 * Math.PI);
+                  context.fillText('y', 0, 60);
+                  context.restore();
+                }
+                
+                function drawPoint(x, y) {
+                  context.beginPath();
+                  context.arc(x, y, 3, 0, 2 * Math.PI, false);
+                  context.closePath();
+                  context.fill();
+                }
+                
+                function drawLine(x1, y1, x2, y2) {
+                  context.beginPath();
+                  context.moveTo(x1, y1);
+                  context.lineTo(x2, y2);
+                  context.stroke();
+                }
+                
+                function drawArrow(x, y, angle) {
+                  context.save();
+                  context.translate(x, y);
+                  context.rotate(angle);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(-10, 5);
+                  context.lineTo(-10, -5);
+                  context.closePath();
+                  context.fill();
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_translate_example2
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_translate/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Right now, this program draws a French flag at the position (0, 0).
+          %p
+            Copy the code to draw two more French flags. Use the
+            %code
+              context.translate()
+            method to position the first French flag at (20, 40). Then, position the
+            second French flag 200 pixels to the right of the origin for the first French
+            flag, and position the third French flag 140 pixels down and 80 pixels to the
+            left of the origin for the second French flag.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_translate_challenge2');
+            var context = canvas.getContext('2d');
+            
+            context.fillStyle = '#0055A4';
+            context.fillRect(0, 0, 60, 120); // Blue bar
+            context.fillStyle = '#FFFFFF';
+            context.fillRect(60, 0, 60, 120); // White bar
+            context.fillStyle = '#EF4135';
+            context.fillRect(120, 0, 60, 120); // Red bar
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_translate/challenge2.png')
+            %canvas#dng_translate_challenge2
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Restore the Coordinate System After a Translation
+          %p
+            Sometimes we want to combine our translations, like when we are drawing a row of
+            houses. But usually, we want to restore the coordinate system immediately after drawing
+            a house so we can position and draw something else. Because the transformation matrix
+            for the coordinate system is stored in the canvas's drawing state, we can use the
+            %code
+              context.save()
+            and
+            %code
+              context.restore()
+            methods to save the coordinate system and restore it back to its original state.
+          %p
+            In this example, we start by saving the drawing state when the origin of the
+            coordinate system is in the top left corner of the canvas:
+          %pre
+            %code
+              :preserve
+                context.save(); // Save original drawing state
+          %p
+            Then, we translate the origin of the coordinate system to (200, 50) and draw a house:
+          %pre
+            %code
+              :preserve
+                context.translate(200, 50); // Position of the first house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+          %p
+            Before translating the origin again and drawing a second house, we restore the
+            drawing state we saved earlier:
+          %pre
+            %code
+              :preserve
+                context.restore(); // Restore original drawing state
+          %p
+            This returns the origin back to the top left corner of the canvas. So, when we translate
+            the origin to (50, 150) and draw a second house, the second house is positioned at (50, 150)
+            in absolute coordinates on the canvas.
+          %pre
+            %code
+              :preserve
+                context.translate(50, 150); // Position of the second house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            %span
+              %code>
+                context.save()
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_coordinate_system]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_translate_example3');
+                var context = canvas.getContext('2d');
+                
+                context.save(); // Save original drawing state
+                
+                context.translate(200, 50); // Position of the first house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                
+                context.restore(); // Restore original drawing state
+                
+                context.translate(50, 150); // Position of the second house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_translate_example3
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_translate/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Use the
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.restore()
+              ,
+            and
+            %code
+              context.translate()
+            methods to draw the first French flag at position (10, 50). Then, restore the coordinate
+            system to its original state and draw the second French flag at position (220, 100);
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_translate_challenge3');
+            var context = canvas.getContext('2d');
+
+            context.fillStyle = '#0055A4';
+            context.fillRect(0, 0, 60, 120); // Blue bar
+            context.fillStyle = '#FFFFFF';
+            context.fillRect(60, 0, 60, 120); // White bar
+            context.fillStyle = '#EF4135';
+            context.fillRect(120, 0, 60, 120); // Red bar
+            
+            context.fillStyle = '#0055A4';
+            context.fillRect(0, 0, 60, 120); // Blue bar
+            context.fillStyle = '#FFFFFF';
+            context.fillRect(60, 0, 60, 120); // White bar
+            context.fillStyle = '#EF4135';
+            context.fillRect(120, 0, 60, 120); // Red bar
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_translate/challenge3.png')
+            %canvas#dng_translate_challenge3
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use a Function to Translate a Drawing
+          %p
+            It doesn't make sense to keep copying the same code over and over again every
+            time we want to draw a yellow house or French flag. To re-use a drawing, we should
+            draw it in a function.
+          %p
+            In this example, we define a
+            %code
+              drawYellowHouse()
+            function to draw a yellow house.
+          %pre
+            %code
+              :preserve
+                function drawYellowHouse(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 120, 100); // Yellow house
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(15, 20, 20, 40); // Left window
+                  context.fillRect(85, 20, 20, 40); // Right window
+                  context.fillStyle = '#FF0000';
+                  context.fillRect(45, 40, 30, 60); // Red door
+                  context.restore();
+                }
+          %p
+            The
+            %code
+              drawYellowHouse()
+            function has two parameters:
+            %code
+              x
+            is the x-coordinate of the house's origin and
+            %code
+              y
+            is the y-coordinate. We save and restore the drawing state by calling the
+            %code
+              context.save()
+            method at the start of the function and the
+            %code
+              context.restore()
+            method at the end. This restores both the coordinate system and the
+            %code
+              context.fillStyle
+            property to the way they were before the function made any changes.
+          %p
+            Now we can draw as many yellow houses as we want simply by calling the
+            %code
+              drawYellowHouse()
+            function and passing it the coordinates for the house.
+          %pre
+            %code
+              :preserve
+                drawYellowHouse(40, 40);
+                drawYellowHouse(120, 200);
+                drawYellowHouse(280, 100);
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            %span
+              %code>
+                context.save()
+              ,
+            functions, and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_functions, :dng_coordinate_system]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_translate_example4');
+                var context = canvas.getContext('2d');
+                
+                function drawYellowHouse(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 120, 100); // Yellow house
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(15, 20, 20, 40); // Left window
+                  context.fillRect(85, 20, 20, 40); // Right window
+                  context.fillStyle = '#FF0000';
+                  context.fillRect(45, 40, 30, 60); // Red door
+                  context.restore();
+                }
+                
+                drawYellowHouse(40, 40);
+                drawYellowHouse(120, 200);
+                drawYellowHouse(280, 100);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_translate_example4
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_translate/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            The
+            %code
+              drawPineTree()
+            function draws a pine tree at the origin. Re-define the function so it draws the
+            pine tree at coordinates passed into the function.
+          %p
+            Then, use the function to draw pine trees at the positions (0, 40), (100, 10), (200, 60), and (300, 30).
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_translate_challenge4');
+            var context = canvas.getContext('2d');
+            
+            function drawPineTree() {
+              context.fillStyle = 'ForestGreen';
+              context.fillRect(40, 0, 20, 40);
+              context.fillRect(30, 40, 40, 40);
+              context.fillRect(20, 80, 60, 40);
+              context.fillRect(10, 120, 80, 40);
+              context.fillRect(0, 160, 100, 40);
+              context.fillStyle = 'Sienna';
+              context.fillRect(40, 200, 20, 40);
+            }
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_translate/challenge4.png')
+            %canvas#dng_translate_challenge4
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Nested Frames of Reference
+          %p
+            There are situations where we want to restore to the same drawing state more
+            than once. This is simple to do. We just have to remember that, when we restore
+            a drawing state, we pop it off the stack. So, if we want to restore to that
+            same state again later, we need to re-save it to push it back onto the stack.
+          %p
+            In this example, we use the
+            %code
+              context.translate()
+            method to draw squares in the form of the letter K. To form the letter K, we
+            have to return to the same position in the middle of the vertical line twice,
+            once to draw the diagonal line up and again to draw the diagonal line down.
+          %p
+            We start by saving the original drawing state, setting the
+            %code
+              context.fillStyle
+            property to the color
+            %span
+              %code>
+                'Orange'
+              ,
+            and then translating to the top of the K at (40, 40).
+          %pre
+            %code
+              :preserve
+                context.save(); // Save original drawing state
+                context.fillStyle = 'Orange';
+                context.translate(40, 40);
+          %p
+            Then, we draw five squares in a row vertically down, translating 50 pixels down
+            each time. After moving the origin of the coordinate system to the position of the
+            third square, we save the drawing state so we can return to that position later.
+          %pre
+            %code
+              :preserve
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.save(); // Save drawing state A
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+          %p
+            To draw the diagonal line up, we restore drawing state A, moving the origin of the
+            coordinate system back to the position of the third block. Since we know we will have
+            to return to this position again, we immediately re-save drawing state A. We form
+            the diagonal line up by translating 50 pixels up and 50 pixels to the right.
+          %pre
+            %code
+              :preserve
+                context.restore(); // Restore drawing state A
+                context.save(); // Re-save drawing state A
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+          %p
+            To draw the diagonal line down, we repeat the process, restoring drawing state A again.
+            We form the diagonal line down by translating 50 pixels down and 50 pixels to the right.
+            Then, with the letter K complete, we restore the original drawing state.
+          %pre
+            %code
+              :preserve
+                context.restore(); // Restore drawing state A again
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore original drawing state
+          %p
+            If you are having a hard time figuring out where the origin of the coordinate system
+            is after a translation, use the
+            %code
+              drawBlackDotAtOrigin()
+            function to draw a black dot at the origin.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            %span
+              %code>
+                context.translate()
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :translate, :dng_coordinate_system]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_example5_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_translate_example5');
+                var context = canvas.getContext('2d');
+                
+                context.save(); // Save original drawing state
+                context.fillStyle = 'Orange';
+                context.translate(40, 40);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.save(); // Save drawing state A
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore drawing state A
+                context.save(); // Re-save drawing state A
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore drawing state A again
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore original drawing state
+                
+                function drawBlackDotAtOrigin() {
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.beginPath();
+                  context.arc(0, 0, 4, 0, 2 * Math.PI, false);
+                  context.closePath();
+                  context.fill();
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_translate_example5
+
+
+  #challenge5.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 5
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_translate/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Without changing the order of the lines of code in the program below, add calls to the
+            %code
+              context.save()
+            and
+            %code
+              context.restore()
+            methods so the program draws the image to the right.
+          %p
+            Right now, the program is drawing five squares in a row diagonally down, two
+            squares in a row diagonally up, and two squares in a row diagonally down and
+            to the left.
+          %p
+            Think about the positions you will need to save so you can restore and return to them
+            later. If you are having a hard time figuring out where the origin of the coordinate system
+            is after a translation, use the
+            %code
+              drawBlackDotAtOrigin()
+            function to draw a black dot at the origin.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_challenge5_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_translate_challenge5');
+            var context = canvas.getContext('2d');
+
+            context.save(); // Save original drawing state
+            
+            context.fillStyle = 'Crimson';
+            context.translate(40, 40);
+            context.fillRect(0, 0, 45, 45);
+            context.translate(50, 50);
+            context.fillRect(0, 0, 45, 45);
+            context.translate(50, 50);
+            context.fillRect(0, 0, 45, 45);
+            context.translate(50, 50);
+            context.fillRect(0, 0, 45, 45);
+            context.translate(50, 50);
+            context.fillRect(0, 0, 45, 45);
+            context.translate(50, -50);
+            context.fillRect(0, 0, 45, 45);
+            context.translate(50, -50);
+            context.fillRect(0, 0, 45, 45);
+            context.translate(-50, 50);
+            context.fillRect(0, 0, 45, 45);
+            context.translate(-50, 50);
+            context.fillRect(0, 0, 45, 45);
+            
+            context.restore(); // Restore original drawing state
+            
+            function drawBlackDotAtOrigin() {
+              context.save();
+              context.fillStyle = 'Black';
+              context.beginPath();
+              context.arc(0, 0, 4, 0, 2 * Math.PI, false);
+              context.closePath();
+              context.fill();
+              context.restore();
+            }
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_translate/challenge5.png')
+            %canvas#dng_translate_challenge5
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Anchor Points
+          %p
+            There are situations where we want to restore to the same drawing state more
+            than once. This is simple to do. We just have to remember that, when we restore
+            a drawing state, we pop it off the stack. So, if we want to restore to that
+            same state again later, we need to re-save it to push it back onto the stack.
+          %p
+            In this example, we use the
+            %code
+              context.translate()
+            method to draw squares in the form of the letter K. To form the letter K, we
+            have to return to the same position in the middle of the vertical line twice,
+            once to draw the diagonal line up and again to draw the diagonal line down.
+          %p
+            We start by saving the original drawing state, setting the
+            %code
+              context.fillStyle
+            property to the color
+            %span
+              %code>
+                'Orange'
+              ,
+            and then translating to the top of the K at (40, 40).
+          %pre
+            %code
+              :preserve
+                context.save(); // Save original drawing state
+                context.fillStyle = 'Orange';
+                context.translate(40, 40);
+          %p
+            Then, we draw five squares in a row vertically down, translating 50 pixels down
+            each time. After moving the origin of the coordinate system to the position of the
+            third square, we save the drawing state so we can return to that position later.
+          %pre
+            %code
+              :preserve
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.save(); // Save drawing state A
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+          %p
+            To draw the diagonal line up, we restore drawing state A, moving the origin of the
+            coordinate system back to the position of the third block. Since we know we will have
+            to return to this position again, we immediately re-save drawing state A. We form
+            the diagonal line up by translating 50 pixels up and 50 pixels to the right.
+          %pre
+            %code
+              :preserve
+                context.restore(); // Restore drawing state A
+                context.save(); // Re-save drawing state A
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+          %p
+            To draw the diagonal line down, we repeat the process, restoring drawing state A again.
+            We form the diagonal line down by translating 50 pixels down and 50 pixels to the right.
+            Then, with the letter K complete, we restore the original drawing state.
+          %pre
+            %code
+              :preserve
+                context.restore(); // Restore drawing state A again
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore original drawing state
+          %p
+            If you are having a hard time figuring out where the origin of the coordinate system
+            is after a translation, use the
+            %code
+              drawBlackDotAtOrigin()
+            function to draw a black dot at the origin.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            %span
+              %code>
+                context.translate()
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :translate, :dng_coordinate_system]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_example6_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_translate_example6');
+                var context = canvas.getContext('2d');
+                
+                context.save(); // Save original drawing state
+                context.fillStyle = 'Orange';
+                context.translate(40, 40);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.save(); // Save drawing state A
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore drawing state A
+                context.save(); // Re-save drawing state A
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore drawing state A again
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore original drawing state
+                
+                function drawBlackDotAtOrigin() {
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.beginPath();
+                  context.arc(0, 0, 4, 0, 2 * Math.PI, false);
+                  context.closePath();
+                  context.fill();
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_translate_example6
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use Translation with Other Transformations
+          %p
+            There are situations where we want to restore to the same drawing state more
+            than once. This is simple to do. We just have to remember that, when we restore
+            a drawing state, we pop it off the stack. So, if we want to restore to that
+            same state again later, we need to re-save it to push it back onto the stack.
+          %p
+            In this example, we use the
+            %code
+              context.translate()
+            method to draw squares in the form of the letter K. To form the letter K, we
+            have to return to the same position in the middle of the vertical line twice,
+            once to draw the diagonal line up and again to draw the diagonal line down.
+          %p
+            We start by saving the original drawing state, setting the
+            %code
+              context.fillStyle
+            property to the color
+            %span
+              %code>
+                'Orange'
+              ,
+            and then translating to the top of the K at (40, 40).
+          %pre
+            %code
+              :preserve
+                context.save(); // Save original drawing state
+                context.fillStyle = 'Orange';
+                context.translate(40, 40);
+          %p
+            Then, we draw five squares in a row vertically down, translating 50 pixels down
+            each time. After moving the origin of the coordinate system to the position of the
+            third square, we save the drawing state so we can return to that position later.
+          %pre
+            %code
+              :preserve
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.save(); // Save drawing state A
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+          %p
+            To draw the diagonal line up, we restore drawing state A, moving the origin of the
+            coordinate system back to the position of the third block. Since we know we will have
+            to return to this position again, we immediately re-save drawing state A. We form
+            the diagonal line up by translating 50 pixels up and 50 pixels to the right.
+          %pre
+            %code
+              :preserve
+                context.restore(); // Restore drawing state A
+                context.save(); // Re-save drawing state A
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+          %p
+            To draw the diagonal line down, we repeat the process, restoring drawing state A again.
+            We form the diagonal line down by translating 50 pixels down and 50 pixels to the right.
+            Then, with the letter K complete, we restore the original drawing state.
+          %pre
+            %code
+              :preserve
+                context.restore(); // Restore drawing state A again
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore original drawing state
+          %p
+            If you are having a hard time figuring out where the origin of the coordinate system
+            is after a translation, use the
+            %code
+              drawBlackDotAtOrigin()
+            function to draw a black dot at the origin.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            %span
+              %code>
+                context.translate()
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :translate, :dng_coordinate_system]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_example7_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_translate_example7');
+                var context = canvas.getContext('2d');
+                
+                context.save(); // Save original drawing state
+                context.fillStyle = 'Orange';
+                context.translate(40, 40);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.save(); // Save drawing state A
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(0, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore drawing state A
+                context.save(); // Re-save drawing state A
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, -50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore drawing state A again
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.translate(50, 50);
+                context.fillRect(0, 0, 45, 45);
+                context.restore(); // Restore original drawing state
+                
+                function drawBlackDotAtOrigin() {
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.beginPath();
+                  context.arc(0, 0, 4, 0, 2 * Math.PI, false);
+                  context.closePath();
+                  context.fill();
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_translate_example7
