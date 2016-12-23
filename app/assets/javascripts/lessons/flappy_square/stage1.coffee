@@ -3,6 +3,7 @@ initFlappySquareStage1Challenges = ->
     initFlappySquareStage1Challenge1(page)
     initFlappySquareStage1Challenge2(page)
     initFlappySquareStage1Challenge3(page)
+    initFlappySquareStage1Challenge4(page)
 
 
 initFlappySquareStage1Challenge1 = (page) ->
@@ -65,5 +66,34 @@ initFlappySquareStage1Challenge3 = (page) ->
         message = 'Nice try, but you need to write code in the function to draw the flappy square.'
 
       canvas.alert(message, success)
+
+initFlappySquareStage1Challenge4 = (page) ->
+  challenge = page.find('#challenge4')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  testSolution = (index) ->
+    solution = (canvas, context) ->
+      context.fillRect(50, 100 + (index * 10), 20, 20)
+
+    testCode = new Test.Code(code: solution, canvas: canvas)
+
+    testCode.test (success) ->
+      if success
+        if index < 5
+          testSolution(index + 1)
+        else
+          message = '<strong>Success!</strong> You\'re successfull animated a flappy square moving down at the correct pace!'
+          App.currentProgress.challengeComplete('flappy_square_stage1', 'challenge4')
+          canvas.alert(message, success)
+      else
+        message = 'Nice try, but you need to animate a flappy square moving down at the correct pace.'
+        canvas.alert(message, success)
+
+  challenge.find('.run').click ->
+    testSolution(1)
+
+
+
 
 $(document).on('initialization:complete', initFlappySquareStage1Challenges)
