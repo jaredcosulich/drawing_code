@@ -29,6 +29,7 @@
 
     Canvas.prototype.reset = function() {
       var c;
+      this.hideAlert();
       c = this.canvas.clone();
       this.canvas.remove();
       this.container.append(c);

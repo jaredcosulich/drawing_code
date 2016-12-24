@@ -9,6 +9,10 @@
         $(this.testCanvas.remove());
       }
       this.testCanvas = document.createElement('CANVAS');
+      $(this.testCanvas).css({
+        width: this.canvas.canvasElement.width,
+        height: this.canvas.canvasElement.height
+      });
       this.testCanvas.width = this.canvas.canvasElement.width;
       this.testCanvas.height = this.canvas.canvasElement.height;
       return this.testContext = this.testCanvas.getContext('2d');

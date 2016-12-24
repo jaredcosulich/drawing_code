@@ -2,9 +2,10 @@
   var slice = [].slice;
 
   App.Editor = (function() {
-    function Editor(editor, canvas) {
+    function Editor(editor, canvas, runDelay) {
       var previousCode;
       this.canvas = canvas;
+      this.runDelay = runDelay != null ? runDelay : 0;
       this.editorElement = $(editor)[0];
       this.editor = $(this.editorElement);
       this.codeEditor = this.editor.closest('.code-editor');
@@ -21,8 +22,7 @@
         mode: "ace/mode/javascript",
         tabSize: 2,
         useSoftTabs: true,
-        wrap: 'on',
-        wrapBehavioursEnabled: true
+        wrap: 'on'
       });
       if (this.codeEditor.data('files')) {
         this.initFiles();
@@ -140,37 +140,41 @@
     Editor.prototype.reset = function() {
       this.hideLog();
       this.clearLog();
-      this.canvas.hideAlert();
+      this.canvas.reset();
       return this.setCode(this.startCode);
     };
 
     Editor.prototype.run = function() {
-      var fileName, i, len, reverseFileNames;
       this.hideLog();
       this.clearLog();
       this.canvas.hideAlert();
       App.currentEditor = this;
       this.canvas.reset();
-      if (this.files) {
-        this.files.files[this.files.selected].code = this.aceEditor.getValue();
-        reverseFileNames = ((function() {
-          var i, len, ref, results;
-          ref = this.files.order;
-          results = [];
-          for (i = 0, len = ref.length; i < len; i++) {
-            fileName = ref[i];
-            results.push(fileName);
+      return setTimeout(((function(_this) {
+        return function() {
+          var fileName, i, len, reverseFileNames;
+          if (_this.files) {
+            _this.files.files[_this.files.selected].code = _this.aceEditor.getValue();
+            reverseFileNames = ((function() {
+              var i, len, ref, results;
+              ref = this.files.order;
+              results = [];
+              for (i = 0, len = ref.length; i < len; i++) {
+                fileName = ref[i];
+                results.push(fileName);
+              }
+              return results;
+            }).call(_this)).reverse();
+            for (i = 0, len = reverseFileNames.length; i < len; i++) {
+              fileName = reverseFileNames[i];
+              _this.runCode(_this.files.files[fileName].code, fileName);
+            }
+          } else {
+            _this.runCode(_this.aceEditor.getValue());
           }
-          return results;
-        }).call(this)).reverse();
-        for (i = 0, len = reverseFileNames.length; i < len; i++) {
-          fileName = reverseFileNames[i];
-          this.runCode(this.files.files[fileName].code, fileName);
-        }
-      } else {
-        this.runCode(this.aceEditor.getValue());
-      }
-      return this.canvas.canvas.focus();
+          return _this.canvas.canvas.focus();
+        };
+      })(this)), this.runDelay);
     };
 
     Editor.prototype.runCode = function(code, fileName) {

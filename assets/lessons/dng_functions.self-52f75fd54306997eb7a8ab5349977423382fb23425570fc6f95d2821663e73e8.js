@@ -29,10 +29,10 @@
       return testCode.test(function(success) {
         var message;
         if (success) {
-          message = '<strong>Success!</strong> You defined and called the function drawRedSquare()!';
+          message = '<strong>Success!</strong> You defined and called the drawRedSquare() function!';
           App.currentProgress.challengeComplete('dng_functions', 'challenge1');
         } else {
-          message = 'Nice try, but you need to define and call the function drawRedSquare().';
+          message = 'Nice try, but you need to define and call the drawRedSquare() function.';
         }
         return canvas.alert(message, success);
       });
@@ -58,10 +58,10 @@
       return testCode.test(function(success) {
         var message;
         if (success) {
-          message = '<strong>Success!</strong> You re-defined the function drawRedSquare() and used it to draw the three squares!';
+          message = '<strong>Success!</strong> You re-defined the drawRedSquare() function and used it to draw the three squares!';
           App.currentProgress.challengeComplete('dng_functions', 'challenge2');
         } else {
-          message = 'Nice try, but you need to re-define the function drawRedSquare() and use it to draw the squares.';
+          message = 'Nice try, but you need to re-define the drawRedSquare() function and use it to draw the squares.';
         }
         return canvas.alert(message, success);
       });
@@ -90,10 +90,10 @@
       return testCode.test(function(success) {
         var message;
         if (success) {
-          message = '<strong>Success!</strong> You re-defined the function drawTheLetterL() and used it to draw three letter L\'s!';
+          message = '<strong>Success!</strong> You re-defined the drawTheLetterL() function and used it to draw three letter L\'s!';
           App.currentProgress.challengeComplete('dng_functions', 'challenge3');
         } else {
-          message = 'Nice try, but you need to re-define the function drawTheLetterL() and use it to draw three letter L\'s.';
+          message = 'Nice try, but you need to re-define the drawTheLetterL() function and use it to draw three letter L\'s.';
         }
         return canvas.alert(message, success);
       });

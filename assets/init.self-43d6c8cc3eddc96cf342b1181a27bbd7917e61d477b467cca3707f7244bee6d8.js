@@ -33,7 +33,8 @@
       interactiveElement = ref[i];
       interactive = $(interactiveElement);
       canvas = new App.Canvas(interactive.find('canvas'));
-      editor = new App.Editor(interactive.find('.editor'), canvas);
+      editor = new App.Editor(interactive.find('.editor'), canvas, 300);
+      interactive.find('.instructions').html('(change the code below)');
       results.push(editor.run());
     }
     return results;
