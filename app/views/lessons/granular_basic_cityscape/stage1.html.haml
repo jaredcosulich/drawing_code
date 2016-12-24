@@ -29,7 +29,8 @@
           %p
             When drawing on canvas it is important to understand how the
             = link_to_lesson('coordinate system', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
-            works.
+            works, specifically that
+            %span.highlight "y" values go down.
           %p
             Unlike with a normal graph, where the positive "y" values go up, in the canvas
             positive "y" values go down from the top.
@@ -37,7 +38,7 @@
             So the point (50, 100) is 50 pixels from the right of the top left corner of the canvas and
             100 pixels down from the top left corner.
           %p
-            In this example, the black square is at (0, 0) so it's top left corner
+            In the example below, the black square is at (0, 0) so it's top left corner
             is in the top left corner of the canvas. The blue square is at (50, 100)
             so it's top left corner is 50 pixels to the right and 100 pixels down.
           %p
@@ -188,7 +189,6 @@
             %canvas#granular_basic_cityscape_stage1_challenge2
           .alert
 
--#
   .lesson.row.py-3
     .col-xs-12
       .row
@@ -196,12 +196,14 @@
           %h2.py-2
             Lesson: Draw a Building
           %p
-            In our drawing a building will be a rectangle. We use context.fillRect() to draw the rectangle.
+            In our drawing a building will be a rectangle. We use context.fillRect() to draw the rectangle,
+            just as we did above.
           %p
             In this example, we draw a building that is
             %span.highlight 160 pixels wide, 240 pixels tall,
             and positioned so its
-            %span.highlight top left corner is at (100, 50).
+            %span.highlight top left corner is at (100, 50)
+            with it's bottom touching the ground.
           %p
             Remember: In the context's
             = link_to_lesson('coordinate system', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
@@ -211,9 +213,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_lesson2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_lesson3_editor'} do
               :preserve
-                var canvas = document.getElementById('granular_basic_cityscape_stage1_lesson2');
+                var canvas = document.getElementById('granular_basic_cityscape_stage1_lesson3');
                 var context = canvas.getContext('2d');
 
                 context.fillRect(100, 50, 160, 240);
@@ -223,37 +225,41 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#granular_basic_cityscape_stage1_lesson2
+                %canvas#granular_basic_cityscape_stage1_lesson3
 
 
-  #challenge1.challenge.row.py-3
+  #challenge3.challenge.row.py-3
     .col-xs-12
       .row.pb-2
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 2
+            Challenge 3
 
           %figure.float-xs-right.px-2
-            = image_tag('lessons/granular_basic_cityscape/stage1/challenge2Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 2 Sample Solution
+            = image_tag('lessons/granular_basic_cityscape/stage1/challenge3Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 3 Sample Solution
 
           %p
             Draw a building (a rectangle) that is
-            %span.highlight 320 pixels wide and 160 pixels tall
-            so the
-            %span.highlight bottom left corner of the building is covering the x at (40, 240)
+            %span.highlight 320 pixels wide and 160 pixels tall.
+            Make sure the bottom of the building rests on the ground
+            which is
+            %span.highlight 240 pixels from the top.
+            The building should also be
+            %span.highlight 40 pixels from the left, so the
+            bottom left corner of the building is covering the x at (40, 240)
             and the top right corner is covering the other x, but not covering the red x's.
           %p
-            Remember the you need to draw from the top left corner, not from the ground,
-            which is 240 pixels down. You'll need to calculate the top of the building.
+            Remember the you need to draw from the top left corner, not from the ground.
+            You'll need to calculate the top of the building.
 
           %p In the end your building should look like the example provided to the right.
           = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge3_editor'} do
           :preserve
-            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge2');
+            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge3');
             var context = canvas.getContext('2d');
 
             // YOUR CODE HERE
@@ -263,8 +269,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge2.png')
-            %canvas#granular_basic_cityscape_stage1_challenge2
+            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge3.png')
+            %canvas#granular_basic_cityscape_stage1_challenge3
           .alert
 
 -#
@@ -437,7 +443,7 @@
             var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge3');
             var context = canvas.getContext('2d');
 
-            // UNCOMMENT THE VARIABLES AND SET THEM PROPERLY 
+            // UNCOMMENT THE VARIABLES AND SET THEM PROPERLY
             // var ground =
             // var width =
             // var height =
