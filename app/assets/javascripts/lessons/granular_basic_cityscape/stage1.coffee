@@ -42,6 +42,7 @@ initBasicCityscapeStage1Challenge2 = (page) ->
 
   challenge.find('.run').click ->
     testCode.test (success) ->
+      console.log('2', success)
       if success
         message = '<strong>Success!</strong> You\'ve drawn the ground at the right distance from the top!'
         App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge2')

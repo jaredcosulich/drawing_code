@@ -5,6 +5,7 @@ class Test.Code
   initTestCanvas: ->
     $(@testCanvas.remove()) if @testCanvas
     @testCanvas = document.createElement('CANVAS')
+    $(@testCanvas).css(width: @canvas.canvasElement.width, height: @canvas.canvasElement.height)
     @testCanvas.width = @canvas.canvasElement.width
     @testCanvas.height = @canvas.canvasElement.height
     @testContext = @testCanvas.getContext('2d')
