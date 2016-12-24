@@ -1,5 +1,5 @@
 class App.Editor
-  constructor: (editor, @canvas) ->
+  constructor: (editor, @canvas, @runDelay=0) ->
     @editorElement = $(editor)[0]
     @editor = $(@editorElement)
 
@@ -94,7 +94,7 @@ class App.Editor
   reset: ->
     @hideLog()
     @clearLog()
-    @canvas.hideAlert()
+    @canvas.reset()
     @setCode(@startCode)
 
   run: ->
@@ -103,14 +103,16 @@ class App.Editor
     @canvas.hideAlert()
     App.currentEditor = @
     @canvas.reset()
-    if @files
-      @files.files[@files.selected].code = @aceEditor.getValue()
-      reverseFileNames = (fileName for fileName in @files.order).reverse()
-      for fileName in reverseFileNames
-        @runCode(@files.files[fileName].code, fileName)
-    else
-      @runCode(@aceEditor.getValue())
-    @canvas.canvas.focus()
+    setTimeout(( =>
+      if @files
+        @files.files[@files.selected].code = @aceEditor.getValue()
+        reverseFileNames = (fileName for fileName in @files.order).reverse()
+        for fileName in reverseFileNames
+          @runCode(@files.files[fileName].code, fileName)
+      else
+        @runCode(@aceEditor.getValue())
+      @canvas.canvas.focus()
+    ), @runDelay)
 
   runCode: (code, fileName) ->
     try
