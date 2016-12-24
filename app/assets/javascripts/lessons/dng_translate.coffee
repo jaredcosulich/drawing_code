@@ -5,6 +5,7 @@ initDngTranslateChallenges = ->
     initDngTranslateChallenge3(page)
     initDngTranslateChallenge4(page)
     initDngTranslateChallenge5(page)
+    initDngTranslateChallenge6(page)
 
 
 initDngTranslateChallenge1 = (page) ->
@@ -110,45 +111,34 @@ initDngTranslateChallenge4 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    context.save()
-    context.fillStyle = 'DodgerBlue'
-    context.translate(40, 40)
-    context.fillRect(0, 0, 45, 45)
-    context.translate(0, 50)
-    context.fillRect(0, 0, 45, 45)
-    context.translate(0, 50)
-    context.save()
-    context.fillRect(0, 0, 45, 45)
-    context.translate(0, 50)
-    context.fillRect(0, 0, 45, 45)
-    context.translate(0, 50)
-    context.fillRect(0, 0, 45, 45)
-    context.restore()
-    context.translate(50, 0)
-    context.fillRect(0, 0, 45, 45)
-    context.translate(50, 0)
-    context.save()
-    context.fillRect(0, 0, 45, 45)
-    context.translate(0, -50)
-    context.fillRect(0, 0, 45, 45)
-    context.translate(0, -50)
-    context.fillRect(0, 0, 45, 45)
-    context.restore()
-    context.translate(0, 50)
-    context.fillRect(0, 0, 45, 45)
-    context.translate(0, 50)
-    context.fillRect(0, 0, 45, 45)
-    context.restore()
+    drawPineTree = (x, y) ->
+      context.save()
+      context.translate(x, y)
+      context.fillStyle = 'ForestGreen'
+      context.fillRect(40, 0, 20, 40)
+      context.fillRect(30, 40, 40, 40)
+      context.fillRect(20, 80, 60, 40)
+      context.fillRect(10, 120, 80, 40)
+      context.fillRect(0, 160, 100, 40)
+      context.fillStyle = 'Sienna'
+      context.fillRect(40, 200, 20, 40)
+      context.restore()
+      return
+    
+    drawPineTree(5, 40)
+    drawPineTree(105, 10)
+    drawPineTree(205, 60)
+    drawPineTree(305, 30)
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You drew the letter H by saving and restoring the position of the coordinate system in the correct order!'
+        message = '<strong>Success!</strong> You updated the function and positioned the four pine trees correctly!'
         App.currentProgress.challengeComplete('dng_translate', 'challenge4')
       else
-        message = 'Nice try, but you need to draw the letter H by saving and restoring the position of the coordinate system in the correct order.'
+        message = 'Nice try, but you need to update the function and position the four pine trees correctly.'
 
       canvas.alert(message, success)
 
@@ -158,42 +148,54 @@ initDngTranslateChallenge5 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
+  challenge.find('.run').click ->
+    canvas.selfAssess ->
+      App.currentProgress.challengeComplete('dng_translate', 'challenge5')
+
+
+initDngTranslateChallenge6 = (page) ->
+  challenge = page.find('#challenge6')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
   solution = (canvas, context) ->
-    context.save()
-    context.fillStyle = 'Crimson'
-    context.translate(40, 40)
-    context.fillRect(0, 0, 45, 45)
-    context.translate(50, 50)
-    context.fillRect(0, 0, 45, 45)
-    context.translate(50, 50)
-    context.save()
-    context.fillRect(0, 0, 45, 45)
-    context.translate(50, 50)
-    context.fillRect(0, 0, 45, 45)
-    context.translate(50, 50)
-    context.fillRect(0, 0, 45, 45)
-    context.restore()
-    context.save()
-    context.translate(50, -50)
-    context.fillRect(0, 0, 45, 45)
-    context.translate(50, -50)
-    context.fillRect(0, 0, 45, 45)
-    context.restore()
-    context.translate(-50, 50)
-    context.fillRect(0, 0, 45, 45)
-    context.translate(-50, 50)
-    context.fillRect(0, 0, 45, 45)
-    context.restore()
+    drawTheGround = (groundY) ->
+      context.save()
+      context.strokeStyle = 'Black'
+      context.beginPath()
+      context.moveTo(0, groundY)
+      context.lineTo(canvas.width, groundY)
+      context.stroke()
+      context.restore()
+      return
+    
+    drawPineTree = (centerX, groundY) ->
+      context.save()
+      context.translate(centerX, groundY)
+      context.translate(-50, -240)
+      context.fillStyle = 'ForestGreen'
+      context.fillRect(40, 0, 20, 40)
+      context.fillRect(30, 40, 40, 40)
+      context.fillRect(20, 80, 60, 40)
+      context.fillRect(10, 120, 80, 40)
+      context.fillRect(0, 160, 100, 40)
+      context.fillStyle = 'Sienna'
+      context.fillRect(40, 200, 20, 40)
+      context.restore()
+      return
+    
+    drawTheGround(280)
+    drawPineTree(150, 280)
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You drew the letter X by saving and restoring the position of the coordinate system in the correct order!'
-        App.currentProgress.challengeComplete('dng_translate', 'challenge5')
+        message = '<strong>Success!</strong> You updated the function to position a pine tree by its anchor point correctly!'
+        App.currentProgress.challengeComplete('dng_translate', 'challenge6')
       else
-        message = 'Nice try, but you need to draw the letter X by saving and restoring the position of the coordinate system in the correct order.'
+        message = 'Nice try, but you need to update the function to position a pine tree by its anchor point and then draw a pine tree on the ground.'
 
       canvas.alert(message, success)
 
