@@ -218,7 +218,11 @@
                 var canvas = document.getElementById('granular_basic_cityscape_stage1_lesson3');
                 var context = canvas.getContext('2d');
 
-                context.fillRect(100, 50, 160, 240);
+                // THE GROUND
+                context.fillRect(0, 290, canvas.width, 3);
+
+                // THE BUILDING
+                context.fillRect(100, 290 - 240, 160, 240);
 
             .visual.col-xs-6
               %h5
@@ -273,8 +277,6 @@
             %canvas#granular_basic_cityscape_stage1_challenge3
           .alert
 
--#
-
   .lesson.row.py-3
     .col-xs-12
       .row
@@ -298,35 +300,36 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_lesson2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_lesson4_editor'} do
               :preserve
-                var canvas = document.getElementById('granular_basic_cityscape_stage1_lesson2');
+                var canvas = document.getElementById('granular_basic_cityscape_stage1_lesson4');
                 var context = canvas.getContext('2d');
 
+                var ground = 280;
                 context.fillStyle = 'blue';
-                context.fillRect(50, 280 - 160, 90, 160);
+                context.fillRect(50, ground - 160, 90, 160);
 
                 context.fillStyle = '#FF0000';
-                context.fillRect(200, 280 - 90, 160, 90);
+                context.fillRect(200, ground - 90, 160, 90);
 
             .visual.col-xs-6
               %h5
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#granular_basic_cityscape_stage1_lesson2
+                %canvas#granular_basic_cityscape_stage1_lesson4
 
 
-  #challenge2.challenge.row.py-3
+  #challenge4.challenge.row.py-3
     .col-xs-12
       .row.pb-2
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 2
+            Challenge 4
 
           %figure.float-xs-right.px-2
-            = image_tag('lessons/granular_basic_cityscape/stage1/challenge2Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 2 Sample Solution
+            = image_tag('lessons/granular_basic_cityscape/stage1/challenge4Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 4 Sample Solution
 
           %p
             Draw a gray building that is
@@ -340,12 +343,12 @@
 
           %p In the end your building should look like the example provided to the right.
           = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
-          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'granular_basic_cityscape_stage1_challenge1_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'granular_basic_cityscape_stage1_challenge3_editor'
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge4_editor'} do
           :preserve
-            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge2');
+            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge4');
             var context = canvas.getContext('2d');
 
             // YOUR CODE HERE
@@ -355,8 +358,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge2.png')
-            %canvas#granular_basic_cityscape_stage1_challenge2
+            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge4.png')
+            %canvas#granular_basic_cityscape_stage1_challenge4
           .alert
 
 
@@ -382,9 +385,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_example2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_example5_editor'} do
               :preserve
-                var canvas = document.getElementById('granular_basic_cityscape_stage1_example2');
+                var canvas = document.getElementById('granular_basic_cityscape_stage1_example5');
                 var context = canvas.getContext('2d');
 
                 var w = 80;
@@ -399,18 +402,18 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#granular_basic_cityscape_stage1_example2
+                %canvas#granular_basic_cityscape_stage1_example5
 
-  #challenge3.challenge.row.py-3
+  #challenge5.challenge.row.py-3
     .col-xs-12
       .row.pb-2
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 3
+            Challenge 5
 
           %figure.float-xs-right.px-2
-            = image_tag('lessons/granular_basic_cityscape/stage1/challenge3Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+            = image_tag('lessons/granular_basic_cityscape/stage1/challenge5Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 5 Sample Solution
 
           %p
             This time
@@ -435,12 +438,12 @@
           %p In the end your building should look like the example provided to the right.
 
           = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_style, :fill_rect]
-          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'granular_basic_cityscape_stage1_challenge1_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'granular_basic_cityscape_stage1_challenge4_editor'
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge5_editor'} do
           :preserve
-            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge3');
+            var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge5');
             var context = canvas.getContext('2d');
 
             // UNCOMMENT THE VARIABLES AND SET THEM PROPERLY
@@ -459,11 +462,11 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge3.png')
-            %canvas#granular_basic_cityscape_stage1_challenge3
+            .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge5.png')
+            %canvas#granular_basic_cityscape_stage1_challenge5
           .alert
 
-
+-#
   #challenge4.challenge.row.py-3
     .col-xs-12
       .row
