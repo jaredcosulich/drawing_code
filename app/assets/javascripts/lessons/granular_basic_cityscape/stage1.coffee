@@ -6,10 +6,53 @@ initBasicCityscapeStage1Challenges = ->
     initBasicCityscapeStage1Challenge4(page)
     initBasicCityscapeStage1Challenge5(page)
     initBasicCityscapeStage1Challenge6(page)
+    initBasicCityscapeStage1Challenge7(page)
+    initBasicCityscapeStage1Challenge8(page)
 
 
 initBasicCityscapeStage1Challenge1 = (page) ->
   challenge = page.find('#challenge1')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  solution = (canvas, context) ->
+    context.fillRect(60, 90, 45, 45)
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> Your rectangle is in the correct position and is the correct size!'
+        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge1')
+      else
+        message = 'Nice try, but you need to draw a rectangle in the correct position that is the correct size.'
+
+      canvas.alert(message, success)
+
+initBasicCityscapeStage1Challenge2 = (page) ->
+  challenge = page.find('#challenge2')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  solution = (canvas, context) ->
+    context.fillRect(0, 260, canvas.width, 5)
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      console.log('2', success)
+      if success
+        message = '<strong>Success!</strong> You\'ve drawn the ground at the right distance from the top!'
+        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge2')
+      else
+        message = 'Nice try, but you need to draw the ground the right distance from the top.'
+
+      canvas.alert(message, success)
+
+initBasicCityscapeStage1Challenge3 = (page) ->
+  challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
@@ -32,16 +75,15 @@ initBasicCityscapeStage1Challenge1 = (page) ->
 
       if success
         message = '<strong>Success!</strong> Your building is sitting on the x!'
-        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge1')
+        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge3')
       else
         message = 'Nice try, but you need to draw a building sitting on the lower left x and covering the top right x.'
 
       canvas.alert(message, success)
     ), 200)
 
-
-initBasicCityscapeStage1Challenge2 = (page) ->
-  challenge = page.find('#challenge2')
+initBasicCityscapeStage1Challenge4 = (page) ->
+  challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
@@ -55,15 +97,14 @@ initBasicCityscapeStage1Challenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your gray building is sitting on the x!'
-        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge2')
+        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge4')
       else
         message = 'Nice try, but you need to draw a gray (#999999) building sitting on the x.'
 
       canvas.alert(message, success)
 
-
-initBasicCityscapeStage1Challenge3 = (page) ->
-  challenge = page.find('#challenge3')
+initBasicCityscapeStage1Challenge5 = (page) ->
+  challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
@@ -82,45 +123,9 @@ initBasicCityscapeStage1Challenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your gray building is the proper size and in the proper position!'
-        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge3')
-      else
-        message = 'Nice try, but you need to gray building (#666666) that is the proper size and in the proper position.'
-
-      canvas.alert(message, success)
-
-
-initBasicCityscapeStage1Challenge4 = (page) ->
-  challenge = page.find('#challenge4')
-  canvas = new App.Canvas(challenge.find('canvas'))
-  editor = new App.Editor(challenge.find('.editor'), canvas)
-
-  testCode = new Test.Code(code: challenge4Solution, canvas: canvas)
-
-  challenge.find('.run').click ->
-    testCode.test (success) ->
-      if success
-        message = '<strong>Success!</strong> Your gray building matches the description!'
-        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge4')
-      else
-        message = 'Nice try, but you need to draw a gray (#999999) building that is in the proper position and is the proper width and height.'
-
-      canvas.alert(message, success)
-
-
-initBasicCityscapeStage1Challenge5 = (page) ->
-  challenge = page.find('#challenge5')
-  canvas = new App.Canvas(challenge.find('canvas'))
-  editor = new App.Editor(challenge.find('.editor'), canvas)
-
-  testCode = new Test.Code(code: challenge5Solution, canvas: canvas)
-
-  challenge.find('.run').click ->
-    testCode.test (success) ->
-      if success
-        message = '<strong>Success!</strong> You\'ve draw two buildings using a function!'
         App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge5')
       else
-        message = 'Nice try, but you need to buildings of color #999999 that meet the description provided.'
+        message = 'Nice try, but you need to gray building (#666666) that is the proper size and in the proper position.'
 
       canvas.alert(message, success)
 
@@ -135,8 +140,44 @@ initBasicCityscapeStage1Challenge6 = (page) ->
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You\'ve successfully used translate() to draw your buildings!'
+        message = '<strong>Success!</strong> Your gray building matches the description!'
         App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge6')
+      else
+        message = 'Nice try, but you need to draw a gray (#999999) building that is in the proper position and is the proper width and height.'
+
+      canvas.alert(message, success)
+
+
+initBasicCityscapeStage1Challenge7 = (page) ->
+  challenge = page.find('#challenge7')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  testCode = new Test.Code(code: challenge7Solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You\'ve draw two buildings using a function!'
+        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge7')
+      else
+        message = 'Nice try, but you need to buildings of color #999999 that meet the description provided.'
+
+      canvas.alert(message, success)
+
+
+initBasicCityscapeStage1Challenge8 = (page) ->
+  challenge = page.find('#challenge8')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  testCode = new Test.Code(code: challenge8Solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You\'ve successfully used translate() to draw your buildings!'
+        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge8')
       else
         message = '''
           Nice try, but you need to draw the buildings as described.
@@ -150,7 +191,7 @@ $(document).on('initialization:complete', initBasicCityscapeStage1Challenges)
 
 
 
-challenge4Solution = (canvas, context) ->
+challenge6Solution = (canvas, context) ->
   ground = 280
   units = 8
   floors = 10
@@ -181,7 +222,7 @@ challenge4Solution = (canvas, context) ->
   drawOffices x, y, w, h
 
 
-challenge5Solution = (canvas, context) ->
+challenge7Solution = (canvas, context) ->
   ground = 300
 
   drawBuilding = (leftX, groundY, units, floors) ->
@@ -201,7 +242,7 @@ challenge5Solution = (canvas, context) ->
   drawBuilding 200, ground, 6, 18
 
 
-challenge6Solution = (canvas, context) ->
+challenge8Solution = (canvas, context) ->
   drawBuilding = (leftX, groundY, units, floors) ->
     context.save()
     width = units * 16 + 4 * 2
