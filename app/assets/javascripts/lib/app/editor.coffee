@@ -94,7 +94,7 @@ class App.Editor
   reset: ->
     @hideLog()
     @clearLog()
-    @canvas.hideAlert()
+    @canvas.reset()
     @setCode(@startCode)
 
   run: ->

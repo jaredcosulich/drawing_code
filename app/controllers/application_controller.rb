@@ -120,7 +120,7 @@ class ApplicationController < ActionController::Base
       {
         name: 'Basic Cityscape',
         slug: 'granular_basic_cityscape',
-        stages: [7, 3, 4, 4],
+        stages: [8, 3, 4, 4],
         reference: [
           :fill_rect,
           :fill_style,

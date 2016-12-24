@@ -18,6 +18,7 @@ class App.Canvas
     @canvas.data(index: @index)
 
   reset: ->
+    @hideAlert()
     c = @canvas.clone()
     @canvas.remove()
     @container.append(c)
