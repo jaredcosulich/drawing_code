@@ -334,42 +334,107 @@ describe("Granular Basic Cityscape Stage 1", function() {
       expect(page.challengeResult(challengeNumber, code)).toBe(false);
     });
   });
-  //
-  //
-  // describe("Challenge 7", function() {
-  //   var challengeNumber = 7;
-  //
-  //   it("succeeds with good solution", function() {
-  //     code = "\
-  //     "
-  //
-  //     expect(page.challengeResult(challengeNumber, code)).toBe(true);
-  //   });
-  //
-  //   it("fails if you don't set the color properly", function() {
-  //     code = "\
-  //     "
-  //
-  //     expect(page.challengeResult(challengeNumber, code)).toBe(false);
-  //   });
-  // });
-  //
-  //
-  // describe("Challenge 8", function() {
-  //   var challengeNumber = 8;
-  //
-  //   it("succeeds with good solution", function() {
-  //     code = "\
-  //     "
-  //
-  //     expect(page.challengeResult(challengeNumber, code)).toBe(true);
-  //   });
-  //
-  //   it("fails if you don't set the color properly", function() {
-  //     code = "\
-  //     "
-  //
-  //     expect(page.challengeResult(challengeNumber, code)).toBe(false);
-  //   });
-  // });
+
+
+  describe("Challenge 7", function() {
+    var challengeNumber = 7;
+
+    it("succeeds with good solution", function() {
+      code = "\
+        var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge7');\
+        var context = canvas.getContext('2d');\
+\
+        function drawBuilding(leftX, groundY, units, floors) {\
+          var w = (units * 16) + (4 * 2);\
+          var h = (floors * 16) + (4 * 2);\
+          var x = leftX;\
+          var y = groundY - h;\
+          \
+          context.fillStyle = '#999999';\
+          context.fillRect(x, y, w, h);\
+        }\
+\
+        drawBuilding(50, 300, 8, 12);\
+        drawBuilding(200, 300, 6, 18);\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(true);
+    });
+
+    it("fails if you don't call the function twice", function() {
+      code = "\
+        var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge7');\
+        var context = canvas.getContext('2d');\
+  \
+        function drawBuilding(leftX, groundY, units, floors) {\
+          var w = (units * 16) + (4 * 2);\
+          var h = (floors * 16) + (4 * 2);\
+          var x = leftX;\
+          var y = groundY - h;\
+          \
+          context.fillStyle = '#999999';\
+          context.fillRect(x, y, w, h);\
+        }\
+  \
+        drawBuilding(50, 300, 8, 12);\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(false);
+    });
+  });
+
+
+  describe("Challenge 8", function() {
+    var challengeNumber = 8;
+
+    it("succeeds with good solution", function() {
+      code = "\
+        var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge8');\
+        var context = canvas.getContext('2d');\
+\
+        function drawBuilding(leftX, groundY, units, floors) {\
+          context.save();\
+\
+          var width = (units * 16) + (4 * 2);\
+          var height = (floors * 16) + (4 * 2);\
+\
+          context.translate(leftX, groundY - height);\
+\
+          context.fillStyle = '#999999';\
+          context.fillRect(0, 0, width, height);\
+          context.restore();\
+        }\
+\
+        drawBuilding(40, 300, 12, 6);\
+        drawBuilding(280, 300, 10, 15);\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(true);
+    });
+
+    it("fails if you don't respect the translation", function() {
+      code = "\
+        var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge8');\
+        var context = canvas.getContext('2d');\
+  \
+        function drawBuilding(leftX, groundY, units, floors) {\
+          context.save();\
+  \
+          var width = (units * 16) + (4 * 2);\
+          var height = (floors * 16) + (4 * 2);\
+  \
+          context.translate(leftX, groundY - height);\
+  \
+          context.fillStyle = '#999999';\
+          context.fillRect(leftX, groundY - height, width, height);\
+          context.restore();\
+        }\
+  \
+        drawBuilding(40, 300, 12, 6);\
+        drawBuilding(280, 300, 10, 15);\
+      "
+
+      expect(page.challengeResult(challengeNumber, code)).toBe(false);
+    });
+  });
 });

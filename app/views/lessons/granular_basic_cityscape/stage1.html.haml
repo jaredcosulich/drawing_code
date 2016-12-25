@@ -630,7 +630,7 @@
 
           %p
             %span.highlight
-              Write a function to draw the building from Challenge 4.
+              Write a function to draw the building from Challenge 6.
             The function will be passed four values that it will assign to the following
             four variables (called parameters). The first parameter, <i>leftX</i>, is the
             x-coordinate of the left side of the building. The second parameter, <i>groundY</i>,
@@ -644,10 +644,10 @@
               at (50, 300). The second building will have 18 floors and 6 office units per
               floor, and it will be sitting on the ground at (200, 300).
           %p
-            Just like with Challenge 4, both buildings should be gray (color #999999) and each
+            Just like with Challenge 6, both buildings should be gray (color #999999) and each
             office should be 16 x 16 width 4 pixels of padding around the whole building.
           = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :variables, :functions]
-          = render 'lessons/code_preview', stage: 1, challenge: 6, editor_id: 'granular_basic_cityscape_stage1_challenge6editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 6, editor_id: 'granular_basic_cityscape_stage1_challenge6_editor'
 
       .row.pt-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage1_challenge7_editor'} do
@@ -772,6 +772,10 @@
           %p
             Both buildings should be gray (color #999999) and each office
             should be 16 x 16 width 4 pixels of padding around the whole building.
+          %p
+            Just remember if you call translate but don't restore the state of the context
+            then the next translation will be relative to the first translation and your
+            drawing may be off the canvas!
           = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :functions, :save, :translate]
           = render 'lessons/code_preview', stage: 1, challenge: 7, editor_id: 'granular_basic_cityscape_stage1_challenge7_editor'
 

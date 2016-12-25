@@ -234,10 +234,6 @@ challenge7Solution = (canvas, context) ->
     context.restore()
     return
 
-  context.beginPath()
-  context.moveTo 0, ground
-  context.lineTo 900, ground
-  context.stroke()
   drawBuilding 50, ground, 8, 12
   drawBuilding 200, ground, 6, 18
 
