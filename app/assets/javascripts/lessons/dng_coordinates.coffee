@@ -1,11 +1,11 @@
-initDngCoordinateSystemChallenges = ->
-  if (page = $('#dng_coordinate_system')).length > 0
-    initDngCoordinateSystemChallenge1(page)
-    initDngCoordinateSystemChallenge2(page)
-    initDngCoordinateSystemChallenge3(page)
+initDngCoordinatesChallenges = ->
+  if (page = $('#dng_coordinates')).length > 0
+    initDngCoordinatesChallenge1(page)
+    initDngCoordinatesChallenge2(page)
+    initDngCoordinatesChallenge3(page)
 
 
-initDngCoordinateSystemChallenge1 = (page) ->
+initDngCoordinatesChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -36,11 +36,11 @@ initDngCoordinateSystemChallenge1 = (page) ->
         message = 'Almost there. Two points are correct. Only one more to go.'
 
       canvas.alert(message, success)
-      App.currentProgress.challengeComplete('dng_coordinate_system', 'challenge1') if success
+      App.currentProgress.challengeComplete('dng_coordinates', 'challenge1') if success
     ), 200)
 
 
-initDngCoordinateSystemChallenge2 = (page) ->
+initDngCoordinatesChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -74,11 +74,11 @@ initDngCoordinateSystemChallenge2 = (page) ->
         message = 'Almost there. Three points are correct. Only one more to go.'
 
       canvas.alert(message, success)
-      App.currentProgress.challengeComplete('dng_coordinate_system', 'challenge2') if success
+      App.currentProgress.challengeComplete('dng_coordinates', 'challenge2') if success
     ), 200)
 
 
-initDngCoordinateSystemChallenge3 = (page) ->
+initDngCoordinatesChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -106,8 +106,8 @@ initDngCoordinateSystemChallenge3 = (page) ->
         message = 'Good start. One point is correct. Only one more to go.'
 
       canvas.alert(message, success)
-      App.currentProgress.challengeComplete('dng_coordinate_system', 'challenge3') if success
+      App.currentProgress.challengeComplete('dng_coordinates', 'challenge3') if success
     ), 200)
 
 
-$(document).on('initialization:complete', initDngCoordinateSystemChallenges)
+$(document).on('initialization:complete', initDngCoordinatesChallenges)

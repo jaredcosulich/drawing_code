@@ -1,4 +1,4 @@
-#dng_coordinate_system.lesson
+#dng_coordinates.lesson
   %h1
     The Coordinate System
   .description.row.py-3
@@ -8,7 +8,7 @@
           %h2.py-2
             Overview
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_coordinate_system/overviewVisual1.png', class: 'img-fluid')
+            = image_tag('lessons/dng_coordinates/overviewVisual1.png', class: 'img-fluid')
           %p
             When drawing on a canvas, the canvas's context uses a coordinate system to
             position lines, rectangles, and other shapes on the canvas.
@@ -34,9 +34,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_example1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinates_example1_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_coordinate_system_example1');
+                var canvas = document.getElementById('dng_coordinates_example1');
                 var context = canvas.getContext('2d');
 
                 context.font= '16px Arial';
@@ -62,7 +62,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_coordinate_system_example1
+                %canvas#dng_coordinates_example1
 
 
   #challenge1.challenge.row.py-3
@@ -85,9 +85,9 @@
                 drawPoint(80, 120);
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge1_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinates_challenge1_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_coordinate_system_challenge1');
+            var canvas = document.getElementById('dng_coordinates_challenge1');
             var context = canvas.getContext('2d');
 
             context.font= '16px Arial';
@@ -112,8 +112,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_coordinate_system/challenge1.png')
-            %canvas#dng_coordinate_system_challenge1
+            .background.hidden-xl-down= image_tag('lessons/dng_coordinates/challenge1.png')
+            %canvas#dng_coordinates_challenge1
           .alert
 
 
@@ -136,9 +136,9 @@
             from the origin. Where is the bottom right corner relative to the origin?
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinates_challenge2_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_coordinate_system_challenge2');
+            var canvas = document.getElementById('dng_coordinates_challenge2');
             var context = canvas.getContext('2d');
             
             context.font= '16px Arial';
@@ -163,8 +163,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_coordinate_system/challenge2.png')
-            %canvas#dng_coordinate_system_challenge2
+            .background.hidden-xl-down= image_tag('lessons/dng_coordinates/challenge2.png')
+            %canvas#dng_coordinates_challenge2
           .alert
 
 
@@ -187,9 +187,9 @@
             by drawing in the points you know. It's okay to draw extra points.
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinate_system_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinates_challenge3_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_coordinate_system_challenge3');
+            var canvas = document.getElementById('dng_coordinates_challenge3');
             var context = canvas.getContext('2d');
             
             context.font= '16px Arial';
@@ -214,6 +214,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_coordinate_system/challenge3.png')
-            %canvas#dng_coordinate_system_challenge3
+            .background.hidden-xl-down= image_tag('lessons/dng_coordinates/challenge3.png')
+            %canvas#dng_coordinates_challenge3
           .alert
