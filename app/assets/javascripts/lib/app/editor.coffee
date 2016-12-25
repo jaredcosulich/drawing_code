@@ -111,7 +111,7 @@ class App.Editor
           @runCode(@files.files[fileName].code, fileName)
       else
         @runCode(@aceEditor.getValue())
-      @canvas.canvas.focus()
+      # @canvas.canvas.focus()
     ), @runDelay)
 
   runCode: (code, fileName) ->
