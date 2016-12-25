@@ -152,7 +152,7 @@
       this.canvas.reset();
       return setTimeout(((function(_this) {
         return function() {
-          var fileName, i, len, reverseFileNames;
+          var fileName, i, len, results, reverseFileNames;
           if (_this.files) {
             _this.files.files[_this.files.selected].code = _this.aceEditor.getValue();
             reverseFileNames = ((function() {
@@ -165,14 +165,15 @@
               }
               return results;
             }).call(_this)).reverse();
+            results = [];
             for (i = 0, len = reverseFileNames.length; i < len; i++) {
               fileName = reverseFileNames[i];
-              _this.runCode(_this.files.files[fileName].code, fileName);
+              results.push(_this.runCode(_this.files.files[fileName].code, fileName));
             }
+            return results;
           } else {
-            _this.runCode(_this.aceEditor.getValue());
+            return _this.runCode(_this.aceEditor.getValue());
           }
-          return _this.canvas.canvas.focus();
         };
       })(this)), this.runDelay);
     };
