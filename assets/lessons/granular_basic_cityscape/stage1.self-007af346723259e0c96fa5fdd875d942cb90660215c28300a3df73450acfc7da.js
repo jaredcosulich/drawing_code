@@ -302,10 +302,6 @@
       context.fillRect(leftX, groundY - height, width, height);
       context.restore();
     };
-    context.beginPath();
-    context.moveTo(0, ground);
-    context.lineTo(900, ground);
-    context.stroke();
     drawBuilding(50, ground, 8, 12);
     return drawBuilding(200, ground, 6, 18);
   };

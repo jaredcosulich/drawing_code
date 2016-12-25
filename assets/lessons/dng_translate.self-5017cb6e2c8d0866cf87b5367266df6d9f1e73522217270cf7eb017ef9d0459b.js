@@ -1,5 +1,5 @@
 (function() {
-  var initDngTranslateChallenge1, initDngTranslateChallenge2, initDngTranslateChallenge3, initDngTranslateChallenge4, initDngTranslateChallenge5, initDngTranslateChallenges;
+  var initDngTranslateChallenge1, initDngTranslateChallenge2, initDngTranslateChallenge3, initDngTranslateChallenge4, initDngTranslateChallenge5, initDngTranslateChallenge6, initDngTranslateChallenges;
 
   initDngTranslateChallenges = function() {
     var page;
@@ -8,7 +8,8 @@
       initDngTranslateChallenge2(page);
       initDngTranslateChallenge3(page);
       initDngTranslateChallenge4(page);
-      return initDngTranslateChallenge5(page);
+      initDngTranslateChallenge5(page);
+      return initDngTranslateChallenge6(page);
     }
   };
 
@@ -130,35 +131,24 @@
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
     solution = function(canvas, context) {
-      context.save();
-      context.fillStyle = 'DodgerBlue';
-      context.translate(40, 40);
-      context.fillRect(0, 0, 45, 45);
-      context.translate(0, 50);
-      context.fillRect(0, 0, 45, 45);
-      context.translate(0, 50);
-      context.save();
-      context.fillRect(0, 0, 45, 45);
-      context.translate(0, 50);
-      context.fillRect(0, 0, 45, 45);
-      context.translate(0, 50);
-      context.fillRect(0, 0, 45, 45);
-      context.restore();
-      context.translate(50, 0);
-      context.fillRect(0, 0, 45, 45);
-      context.translate(50, 0);
-      context.save();
-      context.fillRect(0, 0, 45, 45);
-      context.translate(0, -50);
-      context.fillRect(0, 0, 45, 45);
-      context.translate(0, -50);
-      context.fillRect(0, 0, 45, 45);
-      context.restore();
-      context.translate(0, 50);
-      context.fillRect(0, 0, 45, 45);
-      context.translate(0, 50);
-      context.fillRect(0, 0, 45, 45);
-      return context.restore();
+      var drawPineTree;
+      drawPineTree = function(x, y) {
+        context.save();
+        context.translate(x, y);
+        context.fillStyle = 'ForestGreen';
+        context.fillRect(40, 0, 20, 40);
+        context.fillRect(30, 40, 40, 40);
+        context.fillRect(20, 80, 60, 40);
+        context.fillRect(10, 120, 80, 40);
+        context.fillRect(0, 160, 100, 40);
+        context.fillStyle = 'Sienna';
+        context.fillRect(40, 200, 20, 40);
+        context.restore();
+      };
+      drawPineTree(5, 40);
+      drawPineTree(105, 10);
+      drawPineTree(205, 60);
+      return drawPineTree(305, 30);
     };
     testCode = new Test.Code({
       code: solution,
@@ -168,10 +158,10 @@
       return testCode.test(function(success) {
         var message;
         if (success) {
-          message = '<strong>Success!</strong> You drew the letter H by saving and restoring the position of the coordinate system in the correct order!';
+          message = '<strong>Success!</strong> You updated the function and positioned the four pine trees correctly!';
           App.currentProgress.challengeComplete('dng_translate', 'challenge4');
         } else {
-          message = 'Nice try, but you need to draw the letter H by saving and restoring the position of the coordinate system in the correct order.';
+          message = 'Nice try, but you need to update the function and position the four pine trees correctly.';
         }
         return canvas.alert(message, success);
       });
@@ -179,36 +169,49 @@
   };
 
   initDngTranslateChallenge5 = function(page) {
-    var canvas, challenge, editor, solution, testCode;
+    var canvas, challenge, editor;
     challenge = page.find('#challenge5');
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
+    return challenge.find('.run').click(function() {
+      return canvas.selfAssess(function() {
+        return App.currentProgress.challengeComplete('dng_translate', 'challenge5');
+      });
+    });
+  };
+
+  initDngTranslateChallenge6 = function(page) {
+    var canvas, challenge, editor, solution, testCode;
+    challenge = page.find('#challenge6');
+    canvas = new App.Canvas(challenge.find('canvas'));
+    editor = new App.Editor(challenge.find('.editor'), canvas);
     solution = function(canvas, context) {
-      context.save();
-      context.fillStyle = 'Crimson';
-      context.translate(40, 40);
-      context.fillRect(0, 0, 45, 45);
-      context.translate(50, 50);
-      context.fillRect(0, 0, 45, 45);
-      context.translate(50, 50);
-      context.save();
-      context.fillRect(0, 0, 45, 45);
-      context.translate(50, 50);
-      context.fillRect(0, 0, 45, 45);
-      context.translate(50, 50);
-      context.fillRect(0, 0, 45, 45);
-      context.restore();
-      context.save();
-      context.translate(50, -50);
-      context.fillRect(0, 0, 45, 45);
-      context.translate(50, -50);
-      context.fillRect(0, 0, 45, 45);
-      context.restore();
-      context.translate(-50, 50);
-      context.fillRect(0, 0, 45, 45);
-      context.translate(-50, 50);
-      context.fillRect(0, 0, 45, 45);
-      return context.restore();
+      var drawPineTree, drawTheGround;
+      drawTheGround = function(groundY) {
+        context.save();
+        context.strokeStyle = 'Black';
+        context.beginPath();
+        context.moveTo(0, groundY);
+        context.lineTo(canvas.width, groundY);
+        context.stroke();
+        context.restore();
+      };
+      drawPineTree = function(centerX, groundY) {
+        context.save();
+        context.translate(centerX, groundY);
+        context.translate(-50, -240);
+        context.fillStyle = 'ForestGreen';
+        context.fillRect(40, 0, 20, 40);
+        context.fillRect(30, 40, 40, 40);
+        context.fillRect(20, 80, 60, 40);
+        context.fillRect(10, 120, 80, 40);
+        context.fillRect(0, 160, 100, 40);
+        context.fillStyle = 'Sienna';
+        context.fillRect(40, 200, 20, 40);
+        context.restore();
+      };
+      drawTheGround(280);
+      return drawPineTree(150, 280);
     };
     testCode = new Test.Code({
       code: solution,
@@ -218,10 +221,10 @@
       return testCode.test(function(success) {
         var message;
         if (success) {
-          message = '<strong>Success!</strong> You drew the letter X by saving and restoring the position of the coordinate system in the correct order!';
-          App.currentProgress.challengeComplete('dng_translate', 'challenge5');
+          message = '<strong>Success!</strong> You updated the function to position a pine tree by its anchor point correctly!';
+          App.currentProgress.challengeComplete('dng_translate', 'challenge6');
         } else {
-          message = 'Nice try, but you need to draw the letter X by saving and restoring the position of the coordinate system in the correct order.';
+          message = 'Nice try, but you need to update the function to position a pine tree by its anchor point and then draw a pine tree on the ground.';
         }
         return canvas.alert(message, success);
       });
