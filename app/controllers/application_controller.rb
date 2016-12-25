@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
       dng_coordinate_system: {count: 3, method: 'DNG Coordinate System'},
       dng_variables: {count: 5, method: 'DNG Variables'},
       dng_functions: {count: 5, method: 'DNG Functions'},
-      dng_translate: {count: 5, method: 'DNG translate()'}
+      dng_translate: {count: 6, method: 'DNG translate()'}
     }
 
     @reference = {
