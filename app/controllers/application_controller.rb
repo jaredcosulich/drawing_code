@@ -26,10 +26,11 @@ class ApplicationController < ActionController::Base
       dng_fill_rect: {count: 6, method: 'DNG fillRect()'},
       dng_fill_style: {count: 3, method: 'DNG fillStyle'},
       dng_save: {count: 5, method: 'DNG save()/restore()'},
-      dng_coordinate_system: {count: 3, method: 'DNG Coordinate System'},
+      dng_translate: {count: 6, method: 'DNG translate()'},
+      dng_coordinates: {count: 3, method: 'DNG Coordinates'},
       dng_variables: {count: 5, method: 'DNG Variables'},
       dng_functions: {count: 5, method: 'DNG Functions'},
-      dng_translate: {count: 6, method: 'DNG translate()'}
+      dng_for_loops: {count: 5, method: 'DNG For Loops'}
     }
 
     @reference = {
@@ -153,9 +154,10 @@ class ApplicationController < ActionController::Base
           :dng_translate
         ],
         concepts: [
-          :dng_coordinate_system,
+          :dng_coordinates,
           :dng_variables,
-          :dng_functions
+          :dng_functions,
+          :dng_for_loops
         ]
       }
     ]

@@ -1,6 +1,6 @@
-#dng_functions.lesson
+#dng_for_loops.lesson
   %h1
-    Functions
+    For Loops
   .description.row.py-3
     .col-xs-12
       .row
@@ -8,7 +8,7 @@
           %h2.py-2
             Overview
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_functions/overviewVisual1.png', class: 'img-fluid')
+            = image_tag('lessons/dng_for_loops/overviewVisual1.png', class: 'img-fluid')
           %p
             A function is a block of code that is run whenever the function is called within a program.
           %p
@@ -90,7 +90,7 @@
           %pre
             %code
               :preserve
-                var canvas = document.getElementById('dng_functions_example1');
+                var canvas = document.getElementById('dng_for_loops_example1');
           %p
             Second, the computer gets a reference to the canvas's context and stores it in the global variable
             %span
@@ -136,9 +136,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_example1_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_functions_example1');
+                var canvas = document.getElementById('dng_for_loops_example1');
                 var context = canvas.getContext('2d');
                 
                 drawSandwich();
@@ -161,7 +161,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_functions_example1
+                %canvas#dng_for_loops_example1
 
 
   #challenge1.challenge.row.py-3
@@ -171,7 +171,7 @@
           %h2.challenge-title.py-2
             Challenge 1
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_functions/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/dng_for_loops/challenge1Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
             Define a function named
@@ -201,9 +201,9 @@
             it is a property of the context.
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge1_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_challenge1_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_functions_challenge1');
+            var canvas = document.getElementById('dng_for_loops_challenge1');
             var context = canvas.getContext('2d');
 
             // DEFINE THE FUNCTION HERE
@@ -215,8 +215,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_functions/challenge1.png')
-            %canvas#dng_functions_challenge1
+            .background.hidden-xl-down= image_tag('lessons/dng_for_loops/challenge1.png')
+            %canvas#dng_for_loops_challenge1
           .alert
 
 
@@ -331,9 +331,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_example2_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_functions_example2');
+                var canvas = document.getElementById('dng_for_loops_example2');
                 var context = canvas.getContext('2d');
                 
                 drawSandwich(125, 20);
@@ -358,7 +358,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_functions_example2
+                %canvas#dng_for_loops_example2
 
 
   #challenge2.challenge.row.py-3
@@ -368,7 +368,7 @@
           %h2.challenge-title.py-2
             Challenge 2
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_functions/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/dng_for_loops/challenge2Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
             Re-define the function
@@ -404,9 +404,9 @@
             (70, 210) with a side length of 90.
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_challenge2_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_functions_challenge2');
+            var canvas = document.getElementById('dng_for_loops_challenge2');
             var context = canvas.getContext('2d');
             
             // DEFINE THE FUNCTION HERE
@@ -422,8 +422,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_functions/challenge2.png')
-            %canvas#dng_functions_challenge2
+            .background.hidden-xl-down= image_tag('lessons/dng_for_loops/challenge2.png')
+            %canvas#dng_for_loops_challenge2
           .alert
 
 
@@ -434,7 +434,7 @@
           %h2.challenge-title.py-2
             Challenge 3
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_functions/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/dng_for_loops/challenge3Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
             The function
@@ -449,9 +449,9 @@
             and the third at (200, 20);
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_challenge3_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_functions_challenge3');
+            var canvas = document.getElementById('dng_for_loops_challenge3');
             var context = canvas.getContext('2d');
 
             function drawTheLetterL() {
@@ -469,8 +469,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_functions/challenge3.png')
-            %canvas#dng_functions_challenge3
+            .background.hidden-xl-down= image_tag('lessons/dng_for_loops/challenge3.png')
+            %canvas#dng_for_loops_challenge3
           .alert
 
 
@@ -576,9 +576,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example3_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_example3_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_functions_example3');
+                var canvas = document.getElementById('dng_for_loops_example3');
                 var context = canvas.getContext('2d');
                 
                 function calculateArea(w, h) {
@@ -596,7 +596,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_functions_example3
+                %canvas#dng_for_loops_example3
 
 
   #challenge4.challenge.row.py-3
@@ -658,9 +658,9 @@
             If your program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge4_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_challenge4_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_functions_challenge4');
+            var canvas = document.getElementById('dng_for_loops_challenge4');
             var context = canvas.getContext('2d');
 
             // DEFINE THE randomIntegerFrom0To255() FUNCTION HERE
@@ -676,7 +676,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#dng_functions_challenge4
+            %canvas#dng_for_loops_challenge4
           .alert
 
 
@@ -905,9 +905,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example4_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_example4_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_functions_example4');
+                var canvas = document.getElementById('dng_for_loops_example4');
                 var context = canvas.getContext('2d');
                 
                 function drawRectangleWithArea(x, y, w, h) {
@@ -950,7 +950,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_functions_example4
+                %canvas#dng_for_loops_example4
 
 
   #challenge5.challenge.row.py-3
@@ -1031,9 +1031,9 @@
             to be working, mark the challenge as complete by selecting "Yes, it looks good".
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge5_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_challenge5_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_functions_challenge5');
+            var canvas = document.getElementById('dng_for_loops_challenge5');
             var context = canvas.getContext('2d');
 
             function randomIntegerFrom0To255() {
@@ -1064,7 +1064,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#dng_functions_challenge5
+            %canvas#dng_for_loops_challenge5
           .alert
 
 
@@ -1138,9 +1138,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example5_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_example5_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_functions_example5');
+                var canvas = document.getElementById('dng_for_loops_example5');
                 var context = canvas.getContext('2d');
                 
                 drawSandwich(125, 20);
@@ -1185,7 +1185,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_functions_example5
+                %canvas#dng_for_loops_example5
 
 
   .example.row.py-3
@@ -1382,9 +1382,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example6_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_example6_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_functions_example6');
+                var canvas = document.getElementById('dng_for_loops_example6');
                 var context = canvas.getContext('2d');
                 
                 drawPlate(140, 240, drawCake);
@@ -1457,7 +1457,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_functions_example6
+                %canvas#dng_for_loops_example6
 
 
   .example.row.py-3
@@ -1525,9 +1525,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_example7_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_example7_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_functions_example7');
+                var canvas = document.getElementById('dng_for_loops_example7');
                 var context = canvas.getContext('2d');
                 
                 drawPlate(140, 240, function(x, y) {
@@ -1604,4 +1604,4 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_functions_example7
+                %canvas#dng_for_loops_example7
