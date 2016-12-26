@@ -9,10 +9,9 @@ initFlappySquareStage2Challenge1 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   challenge.find('.run').click ->
-    canvas.selfAssess ->
-      App.currentProgress.challengeComplete('flappy_square_stage2', 'challenge1')
-
-
-
+    setTimeout(( ->
+      canvas.selfAssess ->
+        App.currentProgress.challengeComplete('flappy_square_stage2', 'challenge1')
+    ), 1000)
 
 $(document).on('initialization:complete', initFlappySquareStage2Challenges)
