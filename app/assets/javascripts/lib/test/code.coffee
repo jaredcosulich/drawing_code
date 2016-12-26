@@ -11,15 +11,23 @@ class Test.Code
     @testContext = @testCanvas.getContext('2d')
 
   drawCode: ->
-    @code(@testCanvas, @testContext)
+    unless (startTime = @canvas.canvas.data('startTime'))
+      setTimeout(( => @drawCode()), 5)
+      return
+    @code(@testCanvas, @testContext, @canvas.canvas.data('startTime'))
 
   test: (callback) ->
     @initTestCanvas()
-    @drawCode()
 
-    setTimeout(( =>
-      callback(@compareImageData())
-    ), 300)
+    count = 0
+    testInterval = setInterval(( =>
+      @drawCode() if count == 0
+      success = @compareImageData()
+      if success || count > 30
+        clearInterval(testInterval)
+        callback(success)
+      count += 1
+    ), 10)
 
   compareImageData: ->
     context = @canvas.context

@@ -76,7 +76,7 @@ class App.Editor
 
   initRun: ->
     @codeEditor.find('.buttons .run').click (e) =>
-      @run()
+      @run( => @canvas.canvas.focus())
 
     @codeEditor.find('.buttons .reset').click (e) =>
       if (confirm('Are you sure you want to reset your code?'))
@@ -97,13 +97,14 @@ class App.Editor
     @canvas.reset()
     @setCode(@startCode)
 
-  run: ->
+  run: (callback) ->
     @hideLog()
     @clearLog()
     @canvas.hideAlert()
     App.currentEditor = @
     @canvas.reset()
     setTimeout(( =>
+      @canvas.canvas.data(startTime: new Date())
       if @files
         @files.files[@files.selected].code = @aceEditor.getValue()
         reverseFileNames = (fileName for fileName in @files.order).reverse()
@@ -111,7 +112,7 @@ class App.Editor
           @runCode(@files.files[fileName].code, fileName)
       else
         @runCode(@aceEditor.getValue())
-      # @canvas.canvas.focus()
+      callback() if callback
     ), @runDelay)
 
   runCode: (code, fileName) ->

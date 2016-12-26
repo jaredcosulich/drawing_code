@@ -2,7 +2,6 @@
   %h1 Stage 1
 
 
-
   .description.row.py-3
     .col-xs-6
       %h2.py-2
@@ -12,7 +11,6 @@
         on drawing and interacting with our little flappy square.
     .col-xs-6
       = image_tag('flappy_square.gif', class: 'img-fluid')
-
 
 
   .lesson.row.py-3
@@ -406,12 +404,12 @@
 
                   context.font = "20px serif";
                   context.textAlign = 'center';
-                  context.fillText('Click anywhere on the canvas to restart animation.', canvas.width / 2, 50);
+                  context.fillText('Click anywhere on the canvas to start animation.', canvas.width / 2, 50);
                 }
 
                 canvas.addEventListener('focus', startAnimation);
                 canvas.addEventListener('blur', pauseAnimation);
-
+                pauseAnimation();
 
 
             .visual.col-xs-6
@@ -452,7 +450,7 @@
           = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'flappy_square_stage1_challenge3_editor'
 
       .row.pt-2
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge4_editor'} do
           :preserve
             var canvas = document.getElementById('flappy_square_stage1_challenge4');
             var context = canvas.getContext('2d');
@@ -485,8 +483,8 @@
 
             function startAnimation() {
 
-              // FILL IN THE CORRECT PARAMETER FOR SET INTERVAL HERE
-              // setInterval(runProgram, )
+              // FILL IN THE CORRECT setInterval PARAMETERS HERE
+              interval = setInterval();
 
             }
 
@@ -505,4 +503,173 @@
             %small (your drawing will display here)
           .canvas
             %canvas#flappy_square_stage1_challenge4
+          .alert
+
+
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Gravity
+          %p
+            Now we need to make our flappy square fall more realistically.
+          %p
+            This essentially requires
+            %span.highlight simulating gravity.
+          %p
+            For our purposes gravity is a force that affects the velocity
+            of our flappy square. This force will cause the flappy square
+            to accelerate downward.
+          %p
+            In this examples when you click "Run" a ball will shoot out at
+            a constant velocity moving right while gravity pulls it toward
+            the ground (first it will stop the ball's upward momentum).
+          %p
+            Gravity is set to 0.4. This is an arbitrary value that simply makes
+            the simulation look good as we're not actually trying to simulate
+            gravity accurately. With each frame we subtract gravity from the yVelocity,
+            causing the ball to accelerate downward.
+
+          = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson5_editor'} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage1_lesson5');
+                var context = canvas.getContext('2d');
+
+                var gravity = 0.4;
+                var size = 10;
+                var interval;
+                var x = 0;
+                var y = 0;
+                var xVelocity = 0;
+                var yVelocity = 0;
+
+                function drawBall() {
+                  context.beginPath();
+                  context.arc(x, y, size, 0, Math.PI*2, true);
+                  context.closePath();
+                  context.fill();
+                }
+
+                function adjustPosition() {
+                  yVelocity -= gravity;
+                  x += xVelocity;
+                  y -= yVelocity;
+                }
+
+                function runProgram() {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  adjustPosition();
+                  drawBall();
+                }
+
+                function resetAnimation() {
+                  x = 0;
+                  y = canvas.height - 60;
+                  xVelocity = 8;
+                  yVelocity = 12;
+                }
+
+                function startAnimation() {
+                  interval = setInterval(runProgram, 20);
+                }
+
+                function pauseAnimation() {
+                  clearInterval(interval);
+
+                  context.font = "20px serif";
+                  context.textAlign = 'center';
+                  context.fillText('Click anywhere on the canvas to start the animation.', canvas.width / 2, 50);
+                }
+
+                canvas.addEventListener('click', resetAnimation);
+                canvas.addEventListener('focus', startAnimation);
+                canvas.addEventListener('blur', pauseAnimation);
+                pauseAnimation();
+
+
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#flappy_square_stage1_lesson5
+
+
+  #challenge5.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 5
+
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/flappy_square/stage1/challenge5Example.gif', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 5 Sample Solution
+
+          %p
+            Let's give our flappy square animation a more realistic simulation
+            of gravity.
+          %p
+            Using your code from Challenge 4, instead of just moving the flappy square
+            down 10 pixels each frame let's track the y velocity of the flappy
+            square and with each frame let's subtract gravity to increase the velocity
+            downward.
+          %p.highlight
+            Our flappy square should start at (50, 100) with a yVelocity of 0. Gravity
+            should be set to 0.5. So in each frame you'll subtract gravity from yVelocity and then
+            you'll subtract yVelocity to the y variable. This will cause the y variable to go down
+            at an increasing rate.
+          %p
+            Let's also speed up our animation and instead of running a frame every 300
+            miliseconds, let's draw a frame every 25 miliseconds.
+          %p
+            Your animation should look like the example to the right.
+
+          = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
+          = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'flappy_square_stage1_challenge4_editor'
+
+      .row.pt-2
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge5_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage1_challenge5');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var size = 20;
+
+            function drawSquare() {
+            }
+
+            function adjustPosition() {
+            }
+
+            function runProgram() {
+            }
+
+            function startAnimation() {
+              interval =
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#flappy_square_stage1_challenge5
           .alert
