@@ -119,7 +119,7 @@ initFlappySquareStage1Challenge5 = (page) ->
           testSolution(index + 1)
         else
           message = '<strong>Success!</strong> You\'re successfull animated a flappy square affected by gravity!'
-          App.currentProgress.challengeComplete('flappy_square_stage1', 'challenge4')
+          App.currentProgress.challengeComplete('flappy_square_stage1', 'challenge5')
           canvas.alert(message, success)
       else
         message = 'Nice try, but you need to animate a flappy square being affected by gravity.'

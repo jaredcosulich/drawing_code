@@ -7,10 +7,27 @@
       %h2.py-2
         Flappy Square Overview
       %p
-        In the first stage of the Flappy Square challenge we'll focus
-        on drawing and interacting with our little flappy square.
+        In the Flappy Square challenge we'll create a simplified version
+        of the popular mobile game,
+        = "#{link_to('Flappy Birds', 'https://www.flappybird.com/', target: '_blank')}.".html_safe
+      %p
+        For our game we won't be creating any fancy graphics, we'll simply use
+        a basic squre that flies when you click the 'up' key and falls when you
+        don't. You'll have to navigate through randomly generated holes in the course.
+
     .col-xs-6
       = image_tag('flappy_square.gif', class: 'img-fluid')
+
+  .description.row.py-3
+    .col-xs-6
+      %h2.py-2
+        Stage 1 Overview
+      %p
+        In the first stage of the Flappy Square challenge we'll focus
+        on drawing our little flappy square and giving it a realistic
+        falling animation (i.e. simulating gravity).
+    .col-xs-6
+      = image_tag('lessons/flappy_square/stage1/challenge5Example.gif', class: 'img-fluid canvas-example')
 
 
   .lesson.row.py-3
@@ -621,14 +638,17 @@
             down 10 pixels each frame let's track the y velocity of the flappy
             square and with each frame let's subtract gravity to increase the velocity
             downward.
-          %p.highlight
-            Our flappy square should start at (50, 100) with a yVelocity of 0. Gravity
-            should be set to 0.5. So in each frame you'll subtract gravity from yVelocity and then
+          %p
+            %span.highlight
+              Our flappy square should start at (50, 100) with a yVelocity of 0. Gravity
+              should be set to 0.5.
+            So in each frame you'll subtract gravity from yVelocity and then
             you'll subtract yVelocity to the y variable. This will cause the y variable to go down
             at an increasing rate.
           %p
             Let's also speed up our animation and instead of running a frame every 300
-            miliseconds, let's draw a frame every 25 miliseconds.
+            miliseconds, let's
+            %span.highlight draw a frame every 25 miliseconds.
           %p
             Your animation should look like the example to the right.
 
