@@ -117,24 +117,35 @@ class App.Editor
       callback() if callback
     ), @runDelay)
 
+  wrapCode: (code, fileName) ->
+    errorLineNumber = 'N/A';
+    try
+      code()
+    catch e
+      try
+        errorLineNumber = parseInt(e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]) - 2;
+      catch error
+        console.log('Could not split stack.', e.stack)
+      errorMessage = "<strong class='text-danger'>Error: </strong> #{e.message} ("
+      errorMessage += "File: #{fileName}, " if fileName
+      errorMessage += "Line: #{errorLineNumber})"
+      @log(errorMessage)
+
+  setTimeout: (f, time) ->
+    setTimeout(( => @wrapCode(f)), time)
+
+  setInterval: (f, time) ->
+    setInterval(( => @wrapCode(f)), time)
+
   runCode: (code, fileName) ->
+    code = code.replace(/setTimeout/g, 'wrappedTimeouts.setTimeout')
+    code = code.replace(/setInterval/g, 'wrappedTimeouts.setInterval')
+
     wrappedCode = """
-      var errorLineNumber = 'N/A';
-      try {
+      this.wrapCode(function() {
+        var wrappedTimeouts = this;
         #{code}
-      } catch (e) {
-        try {
-          var errorLineNumber = parseInt(e.stack.split(/\\n/)[1].split('<anonymous>:')[1].split(':')[0]) - 2;
-        } catch (error) {
-          console.log('Could not split stack.', e.stack)
-        }
-        var errorMessage = '<strong class=\\'text-danger\\'>Error: </strong>'
-        errorMessage += e.message;
-        errorMessage += ' (';
-        #{if fileName then "errorMessage += 'File: #{fileName}, ';" else ''}
-        errorMessage += 'Line: ' + errorLineNumber + ')';
-        this.log(errorMessage)
-      }
+      }.bind(this)#{if fileName then ", '#{fileName}'" else ''})
     """
     eval(wrappedCode)
 
