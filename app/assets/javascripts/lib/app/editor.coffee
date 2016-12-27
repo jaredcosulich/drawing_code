@@ -110,14 +110,20 @@ class App.Editor
       if @files
         @files.files[@files.selected].code = @aceEditor.getValue()
         reverseFileNames = (fileName for fileName in @files.order).reverse()
+        fileMap = []
+        code = []
         for fileName in reverseFileNames
-          @runCode(@files.files[fileName].code, fileName)
+          fileStart = code.length
+          for line in @files.files[fileName].code.split(/\n/)
+            code.push(line)
+            fileMap.push(name: fileName, start: fileStart)
+        @runCode(code.join('\n'), fileMap)
       else
         @runCode(@aceEditor.getValue())
       callback() if callback
     ), @runDelay)
 
-  wrapCode: (code, fileName) ->
+  wrapCode: (code) ->
     errorLineNumber = 'N/A';
     try
       code()
@@ -127,7 +133,10 @@ class App.Editor
       catch error
         console.log('Could not split stack.', e.stack)
       errorMessage = "<strong class='text-danger'>Error: </strong> #{e.message} ("
-      errorMessage += "File: #{fileName}, " if fileName
+      if @currentFileMap && !isNaN(errorLineNumber)
+        fileInfo = @currentFileMap[errorLineNumber]
+        errorLineNumber = errorLineNumber - fileInfo.start
+        errorMessage += "File: #{fileInfo.name}, "
       errorMessage += "Line: #{errorLineNumber})"
       @log(errorMessage)
 
@@ -137,15 +146,16 @@ class App.Editor
   setInterval: (f, time) ->
     setInterval(( => @wrapCode(f)), time)
 
-  runCode: (code, fileName) ->
+  runCode: (code, fileMap) ->
     code = code.replace(/setTimeout/g, 'wrappedTimeouts.setTimeout')
     code = code.replace(/setInterval/g, 'wrappedTimeouts.setInterval')
 
+    @currentFileMap = fileMap
     wrappedCode = """
       this.wrapCode(function() {
         var wrappedTimeouts = this;
         #{code}
-      }.bind(this)#{if fileName then ", '#{fileName}'" else ''})
+      }.bind(this))
     """
     eval(wrappedCode)
 
