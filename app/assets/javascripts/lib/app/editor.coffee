@@ -118,34 +118,25 @@ class App.Editor
     ), @runDelay)
 
   runCode: (code, fileName) ->
-    # eval(
-    #   """
-    #   try {
-    #     #{code}
-    #   } catch (e) {
-    #     try {
-    #       var errorLineNumber = 'x';
-    #     } catch (error) {
-    #       errorLineNumber = 'N/A'
-    #       console.log('Could not split stack.', e.stack)
-    #     }
-    #     this.log('hi');
-    #   }
-    #   """
-    # )
-
-    try
-      eval(code)
-    catch e
-      try
-        errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]
-      catch error
-        errorLineNumber = 'N/A'
-        console.log('Could not split stack.', e.stack)
-      errorMessage = "<strong class='text-danger'>Error:</strong> #{e.message} ("
-      errorMessage += "File: #{fileName}, " if fileName
-      errorMessage += "Line: #{errorLineNumber})"
-      @log(errorMessage)
+    wrappedCode = """
+      var errorLineNumber = 'N/A';
+      try {
+        #{code}
+      } catch (e) {
+        try {
+          var errorLineNumber = parseInt(e.stack.split(/\\n/)[1].split('<anonymous>:')[1].split(':')[0]) - 2;
+        } catch (error) {
+          console.log('Could not split stack.', e.stack)
+        }
+        var errorMessage = '<strong class=\\'text-danger\\'>Error: </strong>'
+        errorMessage += e.message;
+        errorMessage += ' (';
+        #{if fileName then "errorMessage += 'File: #{fileName}, ';" else ''}
+        errorMessage += 'Line: ' + errorLineNumber + ')';
+        this.log(errorMessage)
+      }
+    """
+    eval(wrappedCode)
 
   initLog: ->
     @logElement = @codeEditor.find('.log')
