@@ -4,6 +4,7 @@ initFlappySquareStage1Challenges = ->
     initFlappySquareStage1Challenge2(page)
     initFlappySquareStage1Challenge3(page)
     initFlappySquareStage1Challenge4(page)
+    initFlappySquareStage1Challenge5(page)
 
 
 initFlappySquareStage1Challenge1 = (page) ->
@@ -93,6 +94,39 @@ initFlappySquareStage1Challenge4 = (page) ->
   challenge.find('.run').click ->
     testSolution(1)
 
+
+initFlappySquareStage1Challenge5 = (page) ->
+  challenge = page.find('#challenge5')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  solution = (canvas, context, startTime)->
+    frames = Math.floor((new Date() - startTime) / 25) + 2
+    y = 100
+    yVelocity = 0
+    gravity = 0.5
+    for i in [0...frames]
+      yVelocity -= gravity
+      y -= yVelocity
+    context.fillRect(50, y, 20, 20)
+
+  testSolution = (index) ->
+    testCode = new Test.Code(code: solution, canvas: canvas)
+
+    testCode.test (success) ->
+      if success
+        if index < 3
+          testSolution(index + 1)
+        else
+          message = '<strong>Success!</strong> You\'re successfull animated a flappy square affected by gravity!'
+          App.currentProgress.challengeComplete('flappy_square_stage1', 'challenge5')
+          canvas.alert(message, success)
+      else
+        message = 'Nice try, but you need to animate a flappy square being affected by gravity.'
+        canvas.alert(message, success)
+
+  challenge.find('.run').click ->
+    testSolution(1)
 
 
 

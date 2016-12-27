@@ -1,0 +1,405 @@
+#flappy_square_stage2.lesson
+  %h1 Stage 2
+
+  .description.row.py-3
+    .col-xs-6
+      %h2.py-2
+        Stage 2 Overview
+      %p
+        In this stage we'll make our flappy bird fly!
+        We'll listen for the "up" key to be pressed and
+        make our flappy bird fly a bit before falling
+        back down.
+    .col-xs-6
+      = image_tag('lessons/flappy_square/stage2/challenge5Example.gif', class: 'img-fluid canvas-example')
+
+
+
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Responding To Key Events
+          %p
+            In Stage 1 we caught a glimpse of
+            = link_to_lesson('event listeners', :event_listeners, nil, class: 'reference-link', data: {slug: :event_listeners})
+            when we used them to start and pause our animations when the
+            canvas receives or loses focus (the 'focus' and 'blur' events).
+          %p
+            In this example we'll use key events to move our square around the canvas.
+          %p
+            With key events we need to not only listen for the keydown event but also
+            make sure we're listening for the right key. We do this by checking the
+            keyCode on the event object that is passed to the event listener.
+
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_lesson1_editor'} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage2_lesson1');
+                var context = canvas.getContext('2d');
+
+                var interval;
+                var running = false;
+                var size = 10;
+                var move = 5;
+                var x = 0;
+                var y = 0;
+
+                function drawSquare() {
+                  context.fillRect(x, y, size, size);
+                }
+
+                function adjustPosition(e) {
+                  if (running) {
+                    switch (e.keyCode) {
+                      case(37):
+                        x -= move;
+                        break;
+                      case(38):
+                        y -= move;
+                        break;
+                      case(39):
+                        x += move;
+                        break;
+                      case(40):
+                        y += move;
+                        break;
+                    }
+                  }
+                  e.preventDefault();
+                }
+
+                function runProgram() {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  drawSquare();
+                }
+
+                function startAnimation() {
+                  running = true;
+                  interval = setInterval(runProgram, 20);
+                }
+
+                function pauseAnimation() {
+                  running = false;
+                  clearInterval(interval);
+
+                  context.font = "20px serif";
+                  context.textAlign = 'center';
+                  context.fillText('Click on the canvas to start the animation.', canvas.width / 2, 50);
+                  context.fillText('Then use arrow keys to control the square.', canvas.width / 2, 100);
+                }
+
+                canvas.addEventListener('keydown', adjustPosition);
+
+                canvas.addEventListener('focus', startAnimation);
+                canvas.addEventListener('blur', pauseAnimation);
+                pauseAnimation();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#flappy_square_stage2_lesson1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+
+          %figure.float-xs-right.pl-2
+            = image_tag('lessons/flappy_square/stage2/challenge1Example.gif', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 1 Sample Solution
+
+          %p
+            Take your code from Stage 1 Challenge 5 and make your flappy square fly.
+          %p
+            %span.highlight
+              Listen for the keydown event and make sure the
+              'up' key is being pressed (keyCode = 38).
+          %p
+            When the 'up' key is pressed then set the
+            %span.highlight yVelocity at 8.
+            This will cause the flappy square to jump up before
+            being pulled back down by gravity.
+          %p
+            We'll also slow down the framerate so that you have more time to
+            hit the up key before the square falls off the canvas. For now
+            let's set it to draw one frame every
+            %span.highlight 80 miliseconds
+            (this will be slow, but it will be a better framerate for testing).
+
+          %p In the end your flappy square should behave like the example provided to the right.
+          = render 'lessons/relevant', relevant: [:event_listeners]
+          = render 'lessons/code_preview', stage: 1, challenge: 5, editor_id: 'flappy_square_stage1_challenge5_editor'
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage2_challenge5');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var size = 20;
+
+            function drawSquare() {
+            }
+
+            function adjustPosition() {
+            }
+
+            function runProgram() {
+            }
+
+            function startAnimation() {
+              interval =
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#flappy_square_stage2_challenge1
+          .alert
+
+
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: A Moving Background
+          %p
+            In our game our flappy square will fly through a series of
+            random holes. These holes will move toward the flappy square,
+            giving the impression that the flappy square is flying through
+            them even though it is staying in the same spot on the canvas.
+          %p
+            In this example we'll demonstrate a background that moves to the
+            left while a red ball stays stationary, giving the impression
+            that the ball is rolling through the background.
+          %p
+
+
+
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_lesson2_editor'} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage2_lesson2');
+                var context = canvas.getContext('2d');
+
+                var interval;
+                var ball = {
+                  x: 50,
+                  y: canvas.height - 70,
+                  size: 15,
+                  color: 'red'
+                };
+                var roadHeight = 75;
+                var grassHeights = {};
+                var trees = {
+                  start: 0,
+                  size: 25,
+                  list: []
+                };
+                var distance = 0;
+
+                function drawRoad() {
+                  context.save();
+                  context.fillStyle = '#cccccc';
+                  context.fillRect(0, canvas.height - roadHeight, canvas.width, roadHeight);
+                  context.restore();
+                }
+
+                function drawGrass() {
+                  context.save();
+                  context.translate(0, canvas.height - roadHeight);
+                  var grassWidth = 1;
+                  context.lineWidth = grassWidth;
+                  context.strokeStyle = '#238d23';
+                  for (var i=distance; i < canvas.width + distance; i+=grassWidth) {
+                    if (!grassHeights[i]) {
+                      grassHeights[i] = (Math.random() * 4) + 6;
+                    }
+                    var grassHeight = grassHeights[i];
+                    context.beginPath();
+                    context.moveTo(i, grassHeight * -1);
+                    context.lineTo(i, 0);
+                    context.stroke();
+                  }
+                  context.restore();
+                }
+
+                function randomTreeDistance() {
+                  var spaceBetween = 60;
+                  return Math.floor((Math.random() * spaceBetween) + 10)
+                }
+
+                function drawTrees() {
+                  var nextTree = trees.start + randomTreeDistance();
+                  trees.list.push(nextTree);
+                  trees.start = nextTree;
+
+                  var maxX = canvas.width + distance;
+                  for (var i=nextTree; i < maxX; i+=randomTreeDistance()) {
+                    trees.list.push(i);
+                    trees.start = i;
+                  }
+
+                  for (var index=0; index < trees.list.length; ++index) {
+                    context.save();
+                    context.translate(trees.list[index], canvas.height - roadHeight);
+                    drawTree();
+                    context.restore();
+                  }
+                }
+
+                function drawTree() {
+                  context.save();
+                  context.fillStyle = '#a5681c';
+                  context.fillRect(0, -60, 12, 60);
+
+                  context.beginPath();
+                  context.arc(trees.size/4, -60, trees.size, 0, Math.PI*2, true);
+                  context.closePath();
+                  context.fillStyle = '#238d23';
+                  context.fill();
+
+                  context.restore();
+                }
+
+                function drawBall() {
+                  context.save();
+                  context.beginPath();
+                  context.arc(ball.x, ball.y, ball.size, 0, Math.PI*2, true);
+                  context.closePath();
+                  context.fillStyle = ball.color;
+                  context.fill();
+                  context.restore();
+                }
+
+                function runProgram() {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  drawRoad();
+                  distance += 5;
+                  context.save();
+                  context.translate(distance * -1, 0);
+                  drawTrees();
+                  drawGrass();
+                  context.restore();
+                  drawBall();
+                }
+
+                function startAnimation() {
+                  interval = setInterval(runProgram, 50);
+                }
+
+                function pauseAnimation() {
+                  clearInterval(interval);
+
+                  context.font = "20px serif";
+                  context.textAlign = 'center';
+                  context.fillText('Click on the canvas to start the animation.', canvas.width / 2, 50);
+                }
+
+                canvas.addEventListener('focus', startAnimation);
+                canvas.addEventListener('blur', pauseAnimation);
+                pauseAnimation();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#flappy_square_stage2_lesson2
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+
+          %figure.float-xs-right.pl-2
+            = image_tag('lessons/flappy_square/stage2/challenge1Example.gif', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 1 Sample Solution
+
+          %p
+            Take your code from Stage 1 Challenge 5 and make your flappy square fly.
+          %p
+            %span.highlight
+              Listen for the keydown event and make sure the
+              'up' key is being pressed (keyCode = 38).
+          %p
+            When the 'up' key is pressed then set the
+            %span.highlight yVelocity at 8.
+            This will cause the flappy square to jump up before
+            being pulled back down by gravity.
+          %p
+            We'll also slow down the framerate so that you have more time to
+            hit the up key before the square falls off the canvas. For now
+            let's set it to draw one frame every
+            %span.highlight 80 miliseconds
+            (this will be slow, but it will be a better framerate for testing).
+
+          %p In the end your flappy square should behave like the example provided to the right.
+          = render 'lessons/relevant', relevant: [:event_listeners]
+          = render 'lessons/code_preview', stage: 1, challenge: 5, editor_id: 'flappy_square_stage1_challenge5_editor'
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage2_challenge5');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var size = 20;
+
+            function drawSquare() {
+            }
+
+            function adjustPosition() {
+            }
+
+            function runProgram() {
+            }
+
+            function startAnimation() {
+              interval =
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#flappy_square_stage2_challenge1
+          .alert

@@ -44,9 +44,9 @@ class App.Canvas
   hideAlert: ->
     @alertElement.slideUp(100)
 
-  selfAssess: (successCallback) ->
+  selfAssess: (successCallback, delay=0) ->
     message = $(document.createElement('DIV'))
-    message.html('Do you feel satisfied with your drawing?')
+    message.html('Do you feel satisfied with your work?')
 
     confirm = $(document.createElement('DIV'))
     confirm.addClass('mt-1')
