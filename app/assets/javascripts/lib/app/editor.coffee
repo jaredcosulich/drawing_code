@@ -20,11 +20,11 @@ class App.Editor
 
     @initFiles() if @codeEditor.data('files')
 
-    @resize()
-    @editor.on 'mousemove', =>
-      @resize() if @editor.height() != @currentEditorHeight
-
-    @aceEditor.session.on 'changeScrollTop', => @resize()
+    # @resize()
+    # @editor.on 'mousemove', =>
+    #   @resize() if @editor.height() != @currentEditorHeight
+    #
+    # @aceEditor.session.on 'changeScrollTop', => @resize()
 
     @editor.on 'keyup', =>
       @ensureValidCanvasReference()
@@ -43,10 +43,11 @@ class App.Editor
   resize: ->
     @currentEditorHeight = @editor.height()
     @aceEditor.resize()
-    setTimeout(( =>
-      @editor.find('.ace_scroller').css(bottom: '18px')
-      @editor.find('.ace_scrollbar-v').css(bottom: '18px')
-    ), 250)
+    # setTimeout(( =>
+    #   @editor.find('.ace_scroller').css(right: '18px')
+    #   @editor.find('.ace_scrollbar-v').css(bottom: '18px')
+    #   @editor.find('.ace_scrollbar-h').css(bottom: '18px')
+    # ), 250)
 
   ensureValidCanvasReference: ->
     code = @aceEditor.getValue()
@@ -103,6 +104,7 @@ class App.Editor
     @canvas.hideAlert()
     App.currentEditor = @
     @canvas.reset()
+
     setTimeout(( =>
       @canvas.canvas.data(startTime: new Date())
       if @files
@@ -116,6 +118,22 @@ class App.Editor
     ), @runDelay)
 
   runCode: (code, fileName) ->
+    # eval(
+    #   """
+    #   try {
+    #     #{code}
+    #   } catch (e) {
+    #     try {
+    #       var errorLineNumber = 'x';
+    #     } catch (error) {
+    #       errorLineNumber = 'N/A'
+    #       console.log('Could not split stack.', e.stack)
+    #     }
+    #     this.log('hi');
+    #   }
+    #   """
+    # )
+
     try
       eval(code)
     catch e
