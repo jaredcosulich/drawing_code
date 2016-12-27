@@ -209,66 +209,35 @@
                 var context = canvas.getContext('2d');
 
                 var interval;
-                var ball = {
-                  x: 50,
-                  y: canvas.height - 70,
-                  size: 15,
-                  color: 'red'
-                };
                 var roadHeight = 75;
-                var grassHeights = {};
-                var trees = {
-                  start: 0,
-                  size: 25,
-                  list: []
-                };
                 var distance = 0;
 
                 function drawRoad() {
                   context.save();
                   context.fillStyle = '#cccccc';
-                  context.fillRect(0, canvas.height - roadHeight, canvas.width, roadHeight);
+                  var roadY = canvas.height - roadHeight;
+                  context.fillRect(0, roadY, canvas.width, roadHeight);
                   context.restore();
                 }
 
                 function drawGrass() {
                   context.save();
-                  context.translate(0, canvas.height - roadHeight);
-                  var grassWidth = 1;
-                  context.lineWidth = grassWidth;
-                  context.strokeStyle = '#238d23';
-                  for (var i=distance; i < canvas.width + distance; i+=grassWidth) {
-                    if (!grassHeights[i]) {
-                      grassHeights[i] = (Math.random() * 4) + 6;
-                    }
-                    var grassHeight = grassHeights[i];
-                    context.beginPath();
-                    context.moveTo(i, grassHeight * -1);
-                    context.lineTo(i, 0);
-                    context.stroke();
-                  }
+                  context.fillStyle = '#238d23';
+                  var grassHeight = 6;
+                  var grassY = canvas.height - roadHeight - grassHeight;
+                  context.fillRect(0, grassY, canvas.width, grassHeight);
                   context.restore();
                 }
 
-                function randomTreeDistance() {
-                  var spaceBetween = 60;
-                  return Math.floor((Math.random() * spaceBetween) + 10)
-                }
-
                 function drawTrees() {
-                  var nextTree = trees.start + randomTreeDistance();
-                  trees.list.push(nextTree);
-                  trees.start = nextTree;
-
-                  var maxX = canvas.width + distance;
-                  for (var i=nextTree; i < maxX; i+=randomTreeDistance()) {
-                    trees.list.push(i);
-                    trees.start = i;
-                  }
-
-                  for (var index=0; index < trees.list.length; ++index) {
+                  var space = 100;
+                  var startX = distance - space;
+                  var maxX = canvas.width + distance + space;
+                  for (var i=startX; i < maxX; ++i) {
+                    if (i % space !== 0) continue;
                     context.save();
-                    context.translate(trees.list[index], canvas.height - roadHeight);
+                    var treeY = canvas.height - roadHeight;
+                    context.translate(i - distance, treeY);
                     drawTree();
                     context.restore();
                   }
@@ -280,7 +249,7 @@
                   context.fillRect(0, -60, 12, 60);
 
                   context.beginPath();
-                  context.arc(trees.size/4, -60, trees.size, 0, Math.PI*2, true);
+                  context.arc(8, -60, 32, 0, Math.PI*2, true);
                   context.closePath();
                   context.fillStyle = '#238d23';
                   context.fill();
@@ -290,23 +259,21 @@
 
                 function drawBall() {
                   context.save();
+                  context.translate(50, canvas.height - 70);
                   context.beginPath();
-                  context.arc(ball.x, ball.y, ball.size, 0, Math.PI*2, true);
+                  context.arc(0, 0, 15, 0, Math.PI*2, true);
                   context.closePath();
-                  context.fillStyle = ball.color;
+                  context.fillStyle = 'red';
                   context.fill();
                   context.restore();
                 }
 
                 function runProgram() {
                   context.clearRect(0, 0, canvas.width, canvas.height);
+                  distance += 2;
                   drawRoad();
-                  distance += 5;
-                  context.save();
-                  context.translate(distance * -1, 0);
                   drawTrees();
                   drawGrass();
-                  context.restore();
                   drawBall();
                 }
 
