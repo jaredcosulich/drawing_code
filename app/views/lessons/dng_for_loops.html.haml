@@ -8,34 +8,57 @@
           %h2.py-2
             Overview
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_for_loops/overviewVisual1.png', class: 'img-fluid')
+            = image_tag('lessons/dng_for_loops/overviewVisual1.png', class: 'img-fluid canvas-example')
           %p
-            A function is a block of code that is run whenever the function is called within a program.
+            A for loop runs a block of code repeatedly until a condition evaluates to false.
           %p
-            Functions are declared using the
-            %code
-              function
-            keyword. For example, we create a function named
-            %code>
-              doSomething()
-            by typing:
+            For loops have four parts:
           %pre
             %code
               :preserve
-                function doSomething() {
+                for (var i = 0; i < 5; i = i + 1) {
                   
                   // the code to do something
                   
                 }
           %p
-            The curly braces {&hellip;} mark the beginning and end of the function's code block,
-            which is the code run when the function is called. While computers are excellent at
-            spotting the curly braces in a program, sometimes human eyes miss them. That's why it
-            is standard practice to also indent the code in a block, making the code block stand
-            out visually from the code around it.
+            In this for loop, we are using the variable
+            %code
+              i
+            as the counter for our loop.
           %p
-            Functions enable you to reuse your code instead of re-writing it every time, and
-            they also make your programs easier to read and maintain.
+            Inside the parentheses, there are three
+            statements separated by semicolons. We start by assigning the counter an
+            initial value. In this case,
+            %span
+              %code>
+                i = 0
+              \.
+            Then, we define the condition that has to be true for the loop to run. In this
+            case, our loop continues running as long as
+            %span
+              %code>
+                i < 5
+              \.
+            Once
+            %code
+              i < 5
+            is
+            %span
+              %code>
+                false
+              ,
+            the loop ends. The third statement increments the counter at the end of the loop. In
+            this case, we increase the value of the counter by 1 each time through the loop by assigning
+            %span
+              %code>
+                i = i + 1
+              \.
+          %p
+            The curly braces {&hellip;} mark the beginning and end of the for loop's code block,
+            which is the code run each time through the loop. Just like it is standard practice to
+            indent the code in a function's code block so it's easier to see where a function
+            starts and ends, it is also standard practice to indent the code block in a for loop.
 
 
   .example.row.py-3
@@ -43,86 +66,100 @@
       .row
         .col-xs-12
           %h2.py-2
-            Define and Call a Function
+            Create a For Loop and Use the Counter
           %p
-            In this example, we create a function named
+            In this example, we create a for loop that uses the
             %code
-              drawSandwich()
-            that draws a sandwich. Another standard practice is to give functions descriptive
-            names, so we know what they do, and to write them using camel case, capitalizing each
-            word after the first one.
+              context.fillRect()
+            method to draw a rectangle and the
+            %code
+              context.fillText()
+            method to draw a string of text on top of the rectangle. We will run this code six times.
           %p
-            We start by declaring and defining the function:
+            We create the for loop using:
           %pre
             %code
               :preserve
-                function drawSandwich() {
-                  context.save();
-                  context.fillStyle = '#F5DEB3';
-                  context.fillRect(20, 20, 200, 30);
-                  context.fillRect(20, 100, 200, 30);
-                  context.fillStyle = '#663300';
-                  context.fillRect(30, 50, 180, 50);
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(20, 62, 200, 8);
-                  context.fillRect(20, 80, 200, 8);
-                  context.restore();
+                for (var i = 0; i < 6; i = i + 1) {
+                  
+                  // code block
+                  
                 }
           %p
-            Think of a function definition as a recipe. If we put a recipe for a sandwich up
-            on the refrigerator, it doesn't mean there will be a sandwich waiting for us
-            when we get home. We have to tell someone to use the recipe to make us a sandwich.
-          %p
-            Right now, we have given the computer a recipe to follow if we ask it to draw a sandwich,
-            but we haven't told it to draw a sandwich yet. To do that, we have to call the function using:
-          %pre
-            %code
-              :preserve
-                drawSandwich();
-          %p
-            If we step through our program line by line, here is what happens:
-          %p
-            First, the computer gets a reference to the canvas and stores it in the global variable
+            This loop will run six times. In the first loop,
             %span
               %code>
-                canvas
-              \.
-          %pre
-            %code
-              :preserve
-                var canvas = document.getElementById('dng_for_loops_example1');
-          %p
-            Second, the computer gets a reference to the canvas's context and stores it in the global variable
+                i = 0
+              ;
+            in the second loop
             %span
               %code>
-                context
+                i = 1
+              ;
+            in the third loop
+            %span
+              %code>
+                i = 2
+              ;
+            and so on, until
+            %span
+              %code>
+                i = 5
               \.
+            When
+            %span
+              %code>
+                i = 6
+              ,
+            the condition is false, so the loop ends.
+          %p
+            If we draw the same rectangle and string of text inside the code block at the same
+            position each time, we won't see six rectangles and six strings of text, we will only
+            see the last rectangle and the last string of text. That's not very useful. To change
+            the position of the rectangle and text each time through the loop, we use the counter
+            variable
+            %span
+              %code>
+                i
+              \.
+            Although
+            %code
+              i
+            plays a special role in the loop, it's still just a variable, and we can use it
+            like any other variable.
           %pre
             %code
               :preserve
-                var context = canvas.getContext('2d');
+                for (var i = 0; i < 6; i = i + 1) {
+                  context.fillStyle = 'Orange';
+                  context.fillRect(30 * i, 50 * i, 100, 40);
+                  context.fillStyle = 'Black';
+                  context.fillText('i = ' + i, 30 * i + 10, 50 * i + 20);
+                }
           %p
-            Then, the computer looks up and runs our function.
-          %pre
+            Here, we use the variable
             %code
-              :preserve
-                drawSandwich();
-          %p
-            The computer recognizes that
+              i
+            to calculate the position of the rectangle. In the first loop, when
+            %span
+              %code>
+                i = 0
+              ,
+            the rectangle is drawn at (0, 0). In the second loop, when
+            %span
+              %code>
+                i = 1
+              ,
+            the rectangle is drawn at (30, 50). We also use the variable
             %code
-              drawSandwich()
-            is a function because of the parentheses (), so it searches for the function's
-            definition in the program. It doesn't actually matter where we place the definition
-            in the program; the computer will find it and run the function's code block.
+              i
+            to calculate the position of the text string and inside the text string itself.
+            The position of the text string in the first loop is (10, 20). Can you figure out the
+            position of the text string in the second loop?
           %p
-            In functions that use the context, it's generally a good idea to save and restore the
-            context at the start and end of the function, respectively.
+            The best way to understand a for loop is to step through the code one loop at a time.
           %p
             Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.save()
-              ,
             %span
               %code>
                 context.fillRect()
@@ -132,7 +169,7 @@
                 context.fillStyle
               ,
             variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -141,19 +178,14 @@
                 var canvas = document.getElementById('dng_for_loops_example1');
                 var context = canvas.getContext('2d');
                 
-                drawSandwich();
-
-                function drawSandwich() {
-                  context.save();
-                  context.fillStyle = '#F5DEB3';
-                  context.fillRect(20, 20, 200, 30);
-                  context.fillRect(20, 100, 200, 30);
-                  context.fillStyle = '#663300';
-                  context.fillRect(30, 50, 180, 50);
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(20, 62, 200, 8);
-                  context.fillRect(20, 80, 200, 8);
-                  context.restore();
+                context.font = '16px Arial';
+                context.textBaseline = 'middle';
+                
+                for (var i = 0; i < 6; i = i + 1) {
+                  context.fillStyle = 'Orange';
+                  context.fillRect(30 * i, 50 * i, 100, 40);
+                  context.fillStyle = 'Black';
+                  context.fillText('i = ' + i, 30 * i + 10, 50 * i + 20);
                 }
 
             .visual.col-xs-6
@@ -174,31 +206,14 @@
             = image_tag('lessons/dng_for_loops/challenge1Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Define a function named
-            %span
-              %code>
-                drawRedSquare()
-              \.
-            Inside the function's code block, set the context's fillStyle to
-            %code
-              '#FF0000'
-            and use the
-            %code
-              context.fillRect()
-            method to draw a filled rectangle at (60, 40) with a width of 200 and a height of 200.
+            Right now, the for loop below is set up to run through the loop one time
+            and to draw a rectangle at (0, 0).
           %p
-            Then, call the function
-            %span
-              %code>
-                drawRedSquare()
-              \.
-          %p
-            The
-            %code
-              context.fillRect()
-            method is simply a function that other programmers have created for us to use. The
-            computer knows where to find its function definition, and it's called a method because
-            it is a property of the context.
+            Change the for loop so it runs through the loop five times. The first time
+            through the loop, it draws the rectangle at (0, 0). The second time through
+            the loop, it draws the rectangle at (40, 60). The third time through the loop,
+            it draws the rectangle at (80, 120). Each time, it shifts the rectangle 40
+            pixels to the right and 60 pixels down.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_challenge1_editor'} do
@@ -206,9 +221,11 @@
             var canvas = document.getElementById('dng_for_loops_challenge1');
             var context = canvas.getContext('2d');
 
-            // DEFINE THE FUNCTION HERE
+            context.fillStyle = 'BlueViolet';
             
-            // CALL THE FUNCTION HERE
+            for (var i = 0; i < 1; i = i + 1) {
+              context.fillRect(0, 0, 200, 50);
+            }
 
         .visual.col-xs-6
           %h5
@@ -218,147 +235,6 @@
             .background.hidden-xl-down= image_tag('lessons/dng_for_loops/challenge1.png')
             %canvas#dng_for_loops_challenge1
           .alert
-
-
-  .example.row.py-3
-    .col-xs-12
-      .row
-        .col-xs-12
-          %h2.py-2
-            Pass Values into a Function
-          %p
-            While our function
-            %code
-              drawSandwich()
-            works, it's not very useful. It is hardcoded to always draw a sandwich with its
-            top left corner at (20, 20). One of the reasons why we place code in functions is
-            so we can use it over and over again without having to re-write it. But calling
-            %code
-              drawSandwich()
-            more than once will only draw another sandwich directly on top of the first one.
-          %p
-            To make the function more useful, we are going to re-define it to draw a sandwich
-            at a set of coordinates we pass it, not just (20, 20). Values passed into a function are
-            called arguments, and they are stored in local variables called parameters.
-          %p
-            We add parameters to a function by listing them in the parentheses next to the function's
-            name in its definition:
-          %pre
-            %code
-              :preserve
-                function drawSandwich(x, y) {
-                  
-                  // code block
-                  
-                }
-          %p
-            In this case, parameter
-            %code
-              x
-            will store the value of the sandwich's x-coordinate and parameter
-            %code
-              y
-            will store the value of the y-coordinate.
-          %p
-            We then update the code inside the function to draw the rectangles for the
-            bread, meat, and cheese at coordinates based on
-            %code
-              x
-            and
-            %span
-              %code>
-                y
-              \:
-          %pre
-            %code
-              :preserve
-                function drawSandwich(x, y) {
-                  context.save();
-                  context.fillStyle = '#F5DEB3';
-                  context.fillRect(x, y, 200, 30);
-                  context.fillRect(x, y + 80, 200, 30);
-                  context.fillStyle = '#663300';
-                  context.fillRect(x + 10, y + 30, 180, 50);
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(x, y + 42, 200, 8);
-                  context.fillRect(x, y + 60, 200, 8);
-                  context.restore();
-                }
-          %p
-            There is a much easier way to draw a sandwich at coordinates (x, y) using the
-            %code
-              context.translate()
-            method, but we will discuss that in the
-            = link_to_lesson('translate()', :dng_translate, nil, class: 'reference-link', data: {slug: :dng_translate})
-            lesson.
-          %p
-            Now we can draw a stack of sandwiches by drawing three sandwiches at three
-            different sets of coordinates:
-          %pre
-            %code
-              :preserve
-                drawSandwich(125, 20);
-                drawSandwich(20, 130);
-                drawSandwich(230, 130);
-          %p
-            When we call the function
-            %code
-              drawSandwich()
-            and pass it the arguments 125 and 20, the value 125 is stored in the parameter
-            %code
-              x
-            and the value 20 in the parameter
-            %span
-              %code>
-                y
-              \.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.save()
-              ,
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_example2_editor'} do
-              :preserve
-                var canvas = document.getElementById('dng_for_loops_example2');
-                var context = canvas.getContext('2d');
-                
-                drawSandwich(125, 20);
-                drawSandwich(20, 130);
-                drawSandwich(230, 130);
-
-                function drawSandwich(x, y) {
-                  context.save();
-                  context.fillStyle = '#F5DEB3';
-                  context.fillRect(x, y, 200, 30);
-                  context.fillRect(x, y + 80, 200, 30);
-                  context.fillStyle = '#663300';
-                  context.fillRect(x + 10, y + 30, 180, 50);
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(x, y + 42, 200, 8);
-                  context.fillRect(x, y + 60, 200, 8);
-                  context.restore();
-                }
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#dng_for_loops_example2
 
 
   #challenge2.challenge.row.py-3
@@ -371,37 +247,15 @@
             = image_tag('lessons/dng_for_loops/challenge2Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Re-define the function
-            %code
-              drawRedSquare()
-            with the parameters
+            Create a for loop that will run through the loop ten times. Each loop draws a
+            rectangle positioned at x = 10 with a height of 20. The first rectangle is positioned
+            at (10, 10) with a width of 80. Each rectangle is 30 pixels wider than the previous
+            rectangle, and each rectangle is drawn below the previous rectangle with a space that is
+            5-pixels tall between them. Fill all of the rectangles with the color
             %span
               %code>
-                x
-              ,
-            %span
-              %code>
-                y
-              ,
-            and
-            %span
-              %code>
-                s
-              ,
-            where
-            %code
-              x
-            is the x-coordinate of the square,
-            %code
-              y
-            is the y-coordinate, and
-            %code
-              s
-            is the side length.
-          %p
-            Then, use the function to draw three squares: the first at (160, 20) with a side
-            length of 50; the second at (40, 80) with a side length of 120; and the third at
-            (70, 210) with a side length of 90.
+                'MediumSeaGreen'
+              \.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_challenge2_editor'} do
@@ -409,13 +263,9 @@
             var canvas = document.getElementById('dng_for_loops_challenge2');
             var context = canvas.getContext('2d');
             
-            // DEFINE THE FUNCTION HERE
+            context.fillStyle = 'MediumSeaGreen';
             
-            // CALL THE FUNCTION TO DRAW THE FIRST SQUARE HERE
-            
-            // CALL THE FUNCTION TO DRAW THE SECOND SQUARE HERE
-            
-            // CALL THE FUNCTION TO DRAW THE THIRD SQUARE HERE
+            // CREATE THE FOR LOOP TO DRAW THE RECTANGLES HERE
             
         .visual.col-xs-6
           %h5
@@ -425,6 +275,152 @@
             .background.hidden-xl-down= image_tag('lessons/dng_for_loops/challenge2.png')
             %canvas#dng_for_loops_challenge2
           .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use Transformations in a For Loop
+          %p
+            While using the value of the counter to position drawings inside of a for loop
+            works, it's often simpler to position drawings by using transformations. You will
+            need to be familiar with the
+            %code
+              context.save()
+            and
+            %code
+              context.translate()
+            methods to understand this example and complete the following challenge. To learn
+            more, visit the
+            = link_to_lesson('save()', :dng_save, nil, class: 'reference-link', data: {slug: :dng_save})
+            and
+            = link_to_lesson('translate()', :dng_translate, nil, class: 'reference-link', data: {slug: :dng_translate})
+            lessons.
+          %p
+            In this example, we draw a grid of lines using two separate for loops. We start
+            by translating to the top left corner of the grid, which is at coordinates (0, 0),
+            setting the
+            %code
+              context.strokeStyle
+            property, and saving the drawing state:
+          %pre
+            %code
+              :preserve
+                context.translate(10, 10);
+                context.strokeStyle = 'Crimson';
+                context.save(); // The origin of the coordinate system is at the top left corner of the grid
+          %p
+            We save the drawing state because we will want to restore the origin of the coordinate
+            system back to the top left corner of the grid later.
+          %p
+            Next, we create the first for loop to draw 17 vertical lines that are 240 pixels
+            long and 20 pixels apart.
+          %pre
+            %code
+              :preserve
+                for (var i = 0; i < 17; i = i + 1) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(0, 240);
+                  context.stroke();
+                  context.translate(20, 0);
+                }
+          %p
+            Note that we are drawing each line from (0, 0) to (0, 240). To position each line
+            20 pixels over from the previous line, we use the
+            %code
+              context.translate()
+            method to move the entire coordinate system 20 pixels to the right.
+          %p
+            Once the first for loop is finished, we are ready to draw the horizontal lines in
+            our grid, but the origin of the coordinate system is currently 20 pixels to the right
+            of the last vertical line drawn. Before we can draw our horizontal lines, we need to
+            restore the origin back to the top left corner of the grid:
+          %pre
+            %code
+              :preserve
+                context.restore(); // Restores the origin of the coordinate system back to the top left corner of the grid
+          %p
+            Finally, we create the second for loop to draw 13 horizontal lines that are 320 pixels
+            long and 20 pixels apart.
+          %pre
+            %code
+              :preserve
+                for (var j = 0; j < 13; j = j + 1) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(320, 0);
+                  context.stroke();
+                  context.translate(0, 20);
+                }
+          %p
+            Once again, we are drawing the same line from (0, 0) to (320, 0) each time
+            through the loop. To position each line 20 pixels down from the previous line, we use the
+            %code
+              context.translate()
+            method to move the entire coordinate system 20 pixels down.
+          %p
+            Because the second for loop happens after the first for loop, we could have
+            used the same counter,
+            %span
+              %code>
+                i
+              ,
+            for both loops. If we re-used the variable
+            %code
+              i
+            in the second loop, we would still initialize it by assigning it the value of
+            0, but we would not declare it again.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.translate()
+              ,
+            variables, and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_save, :dng_translate, :dng_variables, :dng_coordinates]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_for_loops_example2');
+                var context = canvas.getContext('2d');
+                
+                context.translate(10, 10);
+                context.strokeStyle = 'Crimson';
+                context.save(); // The origin of the coordinate system is at the top left corner of the grid
+                
+                for (var i = 0; i < 17; i = i + 1) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(0, 240);
+                  context.stroke();
+                  context.translate(20, 0);
+                }
+                
+                context.restore(); // Restores the origin of the coordinate system back to the top left corner of the grid
+                
+                for (var j = 0; j < 13; j = j + 1) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(320, 0);
+                  context.stroke();
+                  context.translate(0, 20);
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_for_loops_example2
 
 
   #challenge3.challenge.row.py-3
@@ -437,16 +433,18 @@
             = image_tag('lessons/dng_for_loops/challenge3Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            The function
+            Create a for loop that will run through the loop twelve times. Each loop draws a
+            square with a width and height of 20. The first square is positioned
+            at (100, 20), and the top left corner of the next square touches the bottom right
+            corner of the previous square. Fill all of the squares with the color
+            %span
+              %code>
+                'SaddleBrown'
+              \.
+            Use the
             %code
-              drawTheLetterL()
-            is currently hardcoded to draw a letter L at (100, 50).
-          %p
-            Re-define the function using parameters so it will draw a letter L at any set
-            of coordinates passed into it.
-          %p
-            Then, draw three letter L's: the first at (20, 120), the second at (110, 70),
-            and the third at (200, 20);
+              context.translate()
+            method to position the squares.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_challenge3_editor'} do
@@ -454,15 +452,11 @@
             var canvas = document.getElementById('dng_for_loops_challenge3');
             var context = canvas.getContext('2d');
 
-            function drawTheLetterL() {
-              context.save();
-              context.fillStyle = 'SlateBlue';
-              context.fillRect(100, 50, 30, 120);
-              context.fillRect(130, 140, 60, 30);
-              context.restore();
-            }
+            // TRANSLATE TO THE TOP LEFT CORNER OF THE DRAWING HERE
             
-            // DRAW THE THREE LETTER L'S HERE
+            // SET THE CONTEXT'S FILLSTYLE HERE
+            
+            // CREATE A FOR LOOP TO DRAW 12 SQUARES HERE
             
         .visual.col-xs-6
           %h5
@@ -479,100 +473,137 @@
       .row
         .col-xs-12
           %h2.py-2
-            Return Values from Functions
+            Shortcuts for Incrementing the Loop
           %p
-            One way to pass values into a function is through the use of parameters. One way
-            to get values out of a function is through the use of return values.
+            So far, we have been using the statement
+            %code
+              i = i + 1
+            to increment our counter by 1 each time through the loop. Because incrementing
+            variables is so common in programming, there are a number of shortcuts for writing the
+            same statement.
           %p
-            In this example, we define the
+            Writing
             %code
-              calculateArea()
-            function, which calculates the area of a rectangle using the values stored in parameters
+              i += 10
+            is a shorter way to write
             %code
-              w
+              i = i + 10
             and
+            %code
+              i -= 5
+            is a shorter way to write
             %span
               %code>
-                h
-              ,
-            and stores it in the local variable
-            %span
-              %code>
-                area
+                i = i - 5
               \.
-            Because
+            We can even write
             %code
-              area
-            is a local variable, it can't be accessed from outside of the function and it will
-            no longer exist once the function ends. To get the value of
+              i++
+            for
             %code
-              area
-            out of the function, we use a return statement.
+              i = i + 1
+            and
+            %code
+              i--
+            for
+            %span
+              %code>
+                i = i - 1
+              \.
+            While shortcuts mean less typing, code should also be easy to read and understand.
+          %p
+            In this example, we change how we implement the counters in our for loops and make
+            our program more flexible.
+          %p
+            We start by declaring three variables:
           %pre
             %code
               :preserve
-                function calculateArea(w, h) {
-                  var area = w * h;
-                  return area;
+                var gridWidth = 320;
+                var gridHeight = 240;
+                var gridSpace = 20;
+          %p
+            Next, we update the condition and increment statement in the first for loop:
+          %pre
+            %code
+              :preserve
+                for (var i = 0; i <= gridWidth; i += gridSpace) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(0, gridHeight);
+                  context.stroke();
+                  context.translate(gridSpace, 0);
                 }
           %p
-            A return statement inside a function does two things. First, it ends the function
-            even if there is more code to run below it. Second, it can return a value if one is
-            provided. In this case, the
+            Instead of hardcoding the number of vertical lines drawn by the for loop, we
+            simply intialize the counter
             %code
-              calculateArea()
-            function returns the value of
+              i = 0
+            and increment it by the amount of space between grid lines. This means the value of
+            %code
+              i
+            is the x-coordinate of the next line. We continue drawing lines as long as
             %span
               %code>
-                area
+                i <= gridWidth
               \.
           %p
-            To use the
-            %code
-              calculateArea()
-            function, we call it and store its return value in the global variable
-            %span
-              %code>
-                area
-              \.
-            We can name two variables
-            %code
-              area
-            in this situation because one is global and the other is local to the function
-            %span
-              %code>
-                calculateArea()
-              \.
-            To learn more about variables and scope, visit the
-            = link_to_lesson('variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
-            lesson.
+            Inside of the for loop, we draw the vertical grid lines so they are as long as
+            the height of the grid, and we shift the coordinate system to the right based on
+            the amount of space between grid lines.
+          %p
+            Finally, we make similar changes to the second for loop:
           %pre
             %code
               :preserve
-                var area = calculateArea(200, 100);
+                for (var j = 0; j <= gridHeight; j += gridSpace) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(gridWidth, 0);
+                  context.stroke();
+                  context.translate(0, gridSpace);
+                }
           %p
-            Finally, we draw the value stored in the global variable
+            Now we can adjust the size and spacing in the grid simply by assigning new
+            values to the
+            %span
+              %code>
+                gridWidth
+              ,
+            %span
+              %code>
+                gridHeight
+              ,
+            and
             %code
-              area
-            on the canvas using the
+              gridSpace
+            variables, and we will have a nice grid as long as the
             %code
-              context.fillText()
-            method.
-          %pre
+              gridWidth
+            and
             %code
-              :preserve
-                context.font = '16px Arial';
-                context.fillStyle = 'Black';
-                context.fillText('The area is ' + area + '.', 10, 40);
+              gridHeight
+            are evenly divisible by the
+            %span
+              %code>
+                gridSpace
+              \.
           %p
-            Change the values passed into the
-            %code
-              calculateArea()
-            function to see what happens. The function should automatically re-calculate
-            the area drawn on the canvas.
-          %p
-            Visit the relevant lessons to learn more about variables.
-          = render 'lessons/relevant', relevant: [:dng_variables]
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.lineTo()
+              ,
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.translate()
+              ,
+            variables, and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:line_to, :dng_save, :dng_translate, :dng_variables, :dng_coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -581,15 +612,31 @@
                 var canvas = document.getElementById('dng_for_loops_example3');
                 var context = canvas.getContext('2d');
                 
-                function calculateArea(w, h) {
-                  var area = w * h;
-                  return area;
+                var gridWidth = 320;
+                var gridHeight = 240;
+                var gridSpace = 20;
+                
+                context.translate(10, 10);
+                context.strokeStyle = 'Crimson';
+                context.save(); // The origin of the coordinate system is at the top left corner of the grid
+                
+                for (var i = 0; i <= gridWidth; i += gridSpace) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(0, gridHeight);
+                  context.stroke();
+                  context.translate(gridSpace, 0);
                 }
                 
-                var area = calculateArea(200, 100);
-                context.font = '16px Arial';
-                context.fillStyle = 'Black';
-                context.fillText('The area is ' + area + '.', 10, 40);
+                context.restore(); // Restores the origin of the coordinate system back to the top left corner of the grid
+                
+                for (var j = 0; j <= gridHeight; j += gridSpace) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(gridWidth, 0);
+                  context.stroke();
+                  context.translate(0, gridSpace);
+                }
 
             .visual.col-xs-6
               %h5
@@ -605,57 +652,39 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_for_loops/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Define a function named
+            Create a for loop that assigns the counter
             %code
-              randomIntegerFrom0To255()
-            to calculate and return a random integer from 0 to 255.
+              i
+            an intial value of 0, increments
+            %code
+              i
+            by 15 each time through the loop, and continues running as long as the value of
+            %code
+              i
+            is less than or equal to 255.
           %p
-            The
+            Inside the for loop's code block, use the counter
             %code
-              Math
-            object has a set of functions that other programmers have defined for us to
-            use. Here is a full list of available
-            %span
-              %span><
-                = link_to('math functions', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math', target: '_blank')
-              \.
-          %p
-            To calculate a random integer from 0 to 255, we will use the
+              i
+            to set the
             %code
-              Math.random()
-            function, which returns a random number from 0 to 1, but not including 1. By
-            multiplying the value returned by the
-            %code
-              Math.random()
-            function by 256, we will have a random number from 0 to 256, but not including 256.
-            Then, to round that value down to an integer, we pass that value into the
-            %code
-              Math.floor()
-            function. We want to round down because we don't want to round up to 256.
-          %p
-            Here is what the code for the calculation looks like on one line:
+              context.fillStyle
+            property to a shade of blue:
           %pre
             %code
               :preserve
-                var i = Math.floor( 256 * Math.random() );
+                context.fillStyle = 'rgb(0, 0, ' + i + ')';
           %p
-            The random integer from 0 to 255 is stored in the local variable
-            %span
-              %code>
-                i
-              ,
-            which is what we want to return at the end of the function.
-          %p
-            Call the
+            Then, draw a filled rectangle with a width of 20 and height of 200. The first
+            rectangle is positioned at (10, 10), and the next rectangle is positioned just to the
+            right of the previous one. Use the
             %code
-              randomIntegerFrom0To255()
-            function and store its return value in a global variable. Then, draw the value stored
-            in this global variable on the canvas at (10, 40) by passing it into the
-            %code
-              context.fillText()
-            method. Every time you run the program, a new random integer from 0 to 255 should be drawn.
-            If your program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
+              context.translate()
+            method to position the rectangles.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_challenge4_editor'} do
@@ -663,13 +692,7 @@
             var canvas = document.getElementById('dng_for_loops_challenge4');
             var context = canvas.getContext('2d');
 
-            // DEFINE THE randomIntegerFrom0To255() FUNCTION HERE
-            
-            // CALL THE randomIntegerFrom0To255() FUNCTION AND STORE ITS RETURN VALUE HERE
-            
-            context.font = '16px Arial';
-            context.fillStyle = 'Black';
-            context.fillText('', 10, 40); // EDIT THIS FUNCTION CALL TO DRAW THE RANDOM INTEGER ON THE CANVAS AT (10, 40)
+            // CREATE THE FOR LOOP HERE
             
         .visual.col-xs-6
           %h5
@@ -685,213 +708,114 @@
       .row
         .col-xs-12
           %h2.py-2
-            Call Functions from Inside of Other Functions
+            Iterate Over an Array
           %p
-            So far, we have been defining a function and calling it from the global scope
-            (outside of any function). But it is possible to call one function from inside of
-            another function.
+            For loops are often used to iterate over arrays, which are lists of values.
           %p
-            In this example, we define four separate functions. The
+            In this example, we start by declaring a variable named
             %code
-              drawRectangleWithArea()
-            function has four parameters that it uses to draw a green rectangle. It then calls the
+              colors
+            and assign it an array of HTML5 color names:
+          %pre
             %code
-              calculateMidPoint()
-            function twice to calculate the coordinates for the center of the rectangle, storing
-            those values in the local variables
+              :preserve
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+          %p
+            To iterate over the array
             %code
-              midX
-            and
+              colors
+            using a for loop, we assign the counter an intial value of 0, increment the counter
+            by 1, and use
+            %code
+              i < colors.length
+            as the condition:
+          %pre
+            %code
+              :preserve
+                for (var i = 0; i < colors.length; i += 1) {
+                  
+                  // code block
+                  
+                }
+          %p
+            Because there are seven elements in the array,
+            %code
+              colors.length
+            is 7. By using
+            %code
+              i < colors.length
+            as our condition, we will run through the loop seven times, once per element.
+          %p
+            Inside the for loop's code block, we set the
+            %code
+              context.fillStyle
+            property to
             %span
               %code>
-                midY
+                colors[i]
               \.
-            Finally, it passes the values of
+            In the first loop,
             %span
               %code>
-                midX
-              ,
-            %span
-              %code>
-                midY
-              ,
-            %span
-              %code>
-                w
+                i = 0
               ,
             and
             %code
-              h
-            into the
-            %code
-              printArea()
-            function.
-          %pre
-            %code
-              :preserve
-                function drawRectangleWithArea(x, y, w, h) {
-                  context.save();
-                  context.fillStyle = 'MediumSeaGreen';
-                  context.fillRect(x, y, w, h);
-                  
-                  var midX = calculateMidPoint(x, x + w);
-                  var midY = calculateMidPoint(y, y + h);
-                  
-                  printArea(midX, midY, w, h);
-                  
-                  context.restore();
-                }
-          %p
-            The
-            %code
-              calculateMidPoint()
-            function has two parameters,
-            %code
-              a
-            and
+              colors[0]
+            accesses the first element in the array, which is the color
             %span
               %code>
-                b
+                'Red'
               \.
-            It calculates the average of
-            %code
-              a
-            and
+            In the second loop,
             %span
               %code>
-                b
+                i = 1
               ,
-            and returns the value using a return statement. Note that we aren't storing
-            the average in a local variable and then returning the value of that variable.
-            We are just returning the value directly, cutting out an unneccesary step.
-          %pre
-            %code
-              :preserve
-                function calculateMidPoint(a, b) {
-                  return (a + b) / 2;
-                }
-          %p
-            The
-            %code
-              printArea()
-            function has four parameters. It passes the value of
-            %code
-              w
             and
             %code
-              h
-            into the
-            %code
-              calculateArea()
-            function and stores the return value in the local variable
+              colors[1]
+            accesses the second element in the array, which is the color
             %span
               %code>
-                area
+                'Orange'
               \.
-            It then sets a few properties the context uses to format text and calls the
-            %code
-              context.fillText()
-            method to draw a string of text with the value of
-            %code
-              area
-            at the coordinates
-            %span
-              (
-              %code><
-                x
-              ,
-            %span
-              %code>
-                y
-              ),
-            which is the midpoint of the rectangle.
+            The elements in an array are indexed starting at the number zero.
           %pre
             %code
               :preserve
-                function printArea(x, y, w, h) {
-                  var area = calculateArea(w, h);
+                for (var i = 0; i < colors.length; i += 1) {
                   
-                  context.save();
-                  context.font = '16px Arial';
-                  context.fillStyle = 'Black';
-                  context.textAlign = 'center';
-                  context.textBaseline = 'middle';
-                  context.fillText('My area is ' + area, x, y);
-                  context.restore();
+                  context.fillStyle = colors[i];
+                  
                 }
           %p
-            The
-            %code
-              calculateArea()
-            function calculates the area of a rectangle using the values stored in parameters
-            %code
-              w
-            and
-            %span
-              %code>
-                h
-              ,
-            and returns the value. Again, we are cutting out a step by returning the value of
-            the area directly.
+            Finally, we draw a rectangle with the fill color and translate the origin of the
+            coordinate system to draw the rectangle in the next loop.
           %pre
             %code
               :preserve
-                function calculateArea(w, h) {
-                  return w * h;
+                for (var i = 0; i < colors.length; i += 1) {
+                  context.fillStyle = colors[i];
+                  context.fillRect(0, 0, 40, 240);
+                  context.translate(40, 0);
                 }
           %p
-            At this point, we have defined four functions. All four functions have a global
-            scope because their function definitions have been declared at the top level of the program,
-            not inside of another function.
-            And because each function has a global scope, we can access and call them
-            from inside any other function. That's why we can call the
-            %code
-              calculateMidPoint()
-            and
-            %code
-              printArea()
-            functions from inside the
-            %code
-              drawRectangleWithArea()
-            function, and we can call the
-            %code
-              calculateArea()
-            function from inside the
-            %code
-              printArea()
-            function.
-          %p
-            Although we have defined our four functions, our program isn't doing anything. It's
-            stored references to the canvas and the canvas's context in the global variables
-            %code
-              canvas
-            and
+            You can change the drawing simply by changing the colors listed in the array. Here is a full list of
             %span
-              %code>
-                context
-              ,
-            respectively, but that's it. We still need to call the
+              %span><
+                = link_to('HTML5 color names', 'http://www.rapidtables.com/web/color/html-color-codes.htm', target: '_blank')
+              \.
+            If you add or remove colors, the for loop will run through the correct number of loops
+            because it is using
             %code
-              drawRectangleWithArea()
-            function:
-          %pre
+              i < colors.length
+            as its condition, and the value of the
             %code
-              :preserve
-                drawRectangleWithArea(60, 40, 100, 80);
-          %p
-            This draws a green rectangle and prints the area at its midpoint.
-          %p
-            Change the position and dimensions of the rectangle being passed into the
-            %code
-              drawRectangleWithArea()
-            function. The drawing will automatically update to draw the new rectangle and print its
-            area at its midpoint.
+              colors.length
+            property is automatically updated.
           %p
             Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.save()
-              ,
             %span
               %code>
                 context.fillRect()
@@ -900,8 +824,12 @@
               %code>
                 context.fillStyle
               ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+            %span
+              %code>
+                context.translate()
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -910,40 +838,15 @@
                 var canvas = document.getElementById('dng_for_loops_example4');
                 var context = canvas.getContext('2d');
                 
-                function drawRectangleWithArea(x, y, w, h) {
-                  context.save();
-                  context.fillStyle = 'MediumSeaGreen';
-                  context.fillRect(x, y, w, h);
-                  
-                  var midX = calculateMidPoint(x, x + w);
-                  var midY = calculateMidPoint(y, y + h);
-                  
-                  printArea(midX, midY, w, h);
-                  
-                  context.restore();
-                }
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
                 
-                function calculateMidPoint(a, b) {
-                  return (a + b) / 2;
-                }
+                context.translate(20, 20);
                 
-                function printArea(x, y, w, h) {
-                  var area = calculateArea(w, h);
-                  
-                  context.save();
-                  context.font = '16px Arial';
-                  context.fillStyle = 'Black';
-                  context.textAlign = 'center';
-                  context.textBaseline = 'middle';
-                  context.fillText('My area is ' + area, x, y);
-                  context.restore();
+                for (var i = 0; i < colors.length; i += 1) {
+                  context.fillStyle = colors[i];
+                  context.fillRect(0, 0, 40, 240);
+                  context.translate(40, 0);
                 }
-                
-                function calculateArea(w, h) {
-                  return w * h;
-                }
-                
-                drawRectangleWithArea(60, 40, 100, 80);
 
             .visual.col-xs-6
               %h5
@@ -959,76 +862,35 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 5
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_for_loops/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Copy the code you wrote for the
+            Create a for loop to iterate over the array
             %code
-              randomIntegerFrom0To255()
-            function in Challenge 4. You are going to use that function to draw random
-            rectangles with random colors.
+              data
+            provided below. The for loop will use the list of values stored in the array
+            %code
+              data
+            to draw a bar graph.
           %p
-            In the definition for the
-            %code
-              randomColor()
-            function, declare three local variables named
+            The top left corner of the bar graph is at (10, 10). Each bar is positioned at
+            x = 10 with a height of 20. The width of the first bar is the value accessed by
             %span
               %code>
-                r
+                data[0]
               ,
+            the width of the second bar is the value accessed by
             %span
               %code>
-                g
+                data[1]
               ,
-            and
+            etc. The vertical space between bars is 5-pixels tall, and all of the bars
+            are filled with the color
             %span
               %code>
-                b
-              ,
-            and use them to store three random integers from 0 to 255. We will use those
-            three values to return a text string describing a color in rgb() notation.
-          %p
-            In the definition for the
-            %code
-              drawRandomRectangle()
-            function, declare two local variables named
-            %code
-              w
-            and
-            %span
-              %code>
-                h
-              ,
-            and use them to store two random integers from 0 to 255. Store a random color
-            in the
-            %code
-              context.fillStyle
-            property. Then, use the
-            %code
-              context.fillRect()
-            method to draw a rectangle at position
-            %span
-              (
-              %code><
-                x
-              ,
-            %span
-              %code>
-                y
-              )
-            with a width of
-            %code
-              w
-            and a height of
-            %span
-              %code>
-                h
+                'MediumSeaGreen'
               \.
-          %p
-            Finally, call the
-            %code
-              drawRandomRectangle()
-            function to draw one or more random rectangles on the canvas. Every time you run the
-            program, the dimensions and color of the rectangles should change. If your program seems
-            to be working, mark the challenge as complete by selecting "Yes, it looks good".
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_challenge5_editor'} do
@@ -1036,34 +898,18 @@
             var canvas = document.getElementById('dng_for_loops_challenge5');
             var context = canvas.getContext('2d');
 
-            function randomIntegerFrom0To255() {
-              // PASTE YOUR CODE FROM CHALLENGE 3 HERE
-            }
+            var data = [120, 280, 150, 90, 300, 400, 220, 250];
             
-            function randomColor() {
-              // DECLARE THREE LOCAL VARIABLES NAMED r, g, AND b
-              // USE THE VARIABLES TO STORE THREE RANDOM INTEGERS FROM 0 TO 255
-              
-              return 'rgb(' + r + ', ' + g + ', ' + b + ')';
-            }
+            // POSITION THE BAR GRAPH AND SET THE BAR COLOR HERE
             
-            function drawRandomRectangle(x, y) {
-              // DECLARE TWO LOCAL VARIABLES NAMED w AND h
-              // USE THE VARIABLES TO STORE TWO RANDOM INTEGERS FROM 0 TO 255
-              
-              context.save();
-              // STORE A RANDOM COLOR IN THE context.fillStyle PROPERTY
-              // USE THE context.fillRect() METHOD TO DRAW A RECTANGLE AT (x, y) AND WITH WIDTH w AND HEIGHT h
-              context.restore();
-            }
-            
-            // DRAW A RANDOM RECTANGLE AT SOME POSITION
+            // CREATE THE FOR LOOP TO DRAW THE BARS HERE
             
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_for_loops/challenge5.png')
             %canvas#dng_for_loops_challenge5
           .alert
 
@@ -1073,57 +919,91 @@
       .row
         .col-xs-12
           %h2.py-2
-            Make Programs Easier to Read and Maintain
+            Nested For Loops
           %p
-            Functions are helpful because they make it possible for us to re-use a block of
-            code instead of typing it each time we need it. However, there are other important
-            reasons to use functions.
+            To draw a grid of squares, we are going to use a for loop inside of another
+            for loop. The inner for loop will draw a row of squares. The outer for loop
+            will draw a column of rows.
           %p
-            Take a look at the function definition we created to draw sandwiches:
+            The number of rows in our grid will be determined by the number of colors in the array
+            %code
+              colors.
+            At the moment, there are seven colors in the array, so there will be seven rows.
+            All of the squares in a row will have the same color.
+          %p
+            We start by setting up the outer for loop first:
           %pre
             %code
               :preserve
-                function drawSandwich(x, y) {
-                  context.save();
-                  context.fillStyle = '#F5DEB3';
-                  context.fillRect(x, y, 200, 30);
-                  context.fillRect(x, y + 80, 200, 30);
-                  context.fillStyle = '#663300';
-                  context.fillRect(x + 10, y + 30, 180, 50);
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(x, y + 42, 200, 8);
-                  context.fillRect(x, y + 60, 200, 8);
-                  context.restore();
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                for (var i = 0; i < colors.length; i += 1) {
+                  context.save(); // Save the drawing state with the origin at the start of the row
+                  context.fillStyle = colors[i];
+                  
+                  // Draw row of squares
+                  
+                  context.restore(); // Restore the origin back to the start of the row
+                  context.translate(0, 40); // Move the origin down 40 pixels to start of the next row
                 }
           %p
-            It's difficult to know what the function is doing just by glancing at it. If this
-            was someone else's function or a function we had defined a long time ago, we would
-            have to go through it carefully line by line to figure it out.
+            The first thing we do in the code block for the outer for loop is save the drawing
+            state. When drawing a row of squares, we use the
+            %code
+              context.translate()
+            method to move the origin of the coordinate system down the row. We need some way to
+            return to the start of the row so we can be ready to draw the next row. That's why we
+            call the
+            %code
+              context.restore()
+            method after drawing the row of squares. Then, we use the
+            %code
+              context.translate()
+            method to move the origin down to the start of the next row. Before drawing the row
+            of squares, we set the
+            %code
+              context.fillStyle
+            property to the color accessed from the array at index
+            %span
+              %code>
+                i
+              \.
           %p
-            Now take a look at the same function re-written by calling other functions:
+            With the outer for loop set up, the inner for loop is fairly simple. We run
+            through the inner loop ten times, drawing a square filled with the color stored in the
+            %code
+              context.fillStyle
+            property and then moving the origin of the coordinate system over each time.
           %pre
             %code
               :preserve
-                function drawSandwich(x, y) {
-                  context.save();
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                for (var i = 0; i < colors.length; i += 1) {
+                  context.save(); // Save the drawing state with the origin at the start of the row
+                  context.fillStyle = colors[i];
                   
-                  drawBread(x, y);
-                  drawRoastBeef(x + 10, y + 30);
-                  drawCheeseSlice(x, y + 42);
-                  drawCheeseSlice(x, y + 60);
-                  drawBread(x, y + 80);
+                  for (var j = 0; j < 10; j += 1) {
+                    context.fillRect(0, 0, 30, 30);
+                    context.translate(40, 0); // Move the origin over 40 pixels to draw the next square
+                  }
                   
-                  context.restore();
+                  context.restore(); // Restore the origin back to the start of the row
+                  context.translate(0, 40); // Move the origin down 40 pixels to start of the next row
                 }
           %p
-            The function is much easier to read and understand, and it is also much easier
-            to maintain. For example, if we want to update our cheese slices, we can do it in one place
-            in the program, instead of in multiple places scattered throughout the program.
+            Because the inner for loop is inside of the outer for loop, we have to use different
+            counters for both loops. Also, indenting the code blocks makes the code much easier to read
+            once there are code blocks inside of other code blocks.
           %p
             Visit the relevant lessons to learn more about
             %span
               %code>
                 context.save()
+              ,
+            %span
+              %code>
+                context.translate()
               ,
             %span
               %code>
@@ -1133,8 +1013,8 @@
               %code>
                 context.fillStyle
               ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_save, :dng_translate, :dng_fill_rect, :dng_fill_style, :dng_coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1143,41 +1023,21 @@
                 var canvas = document.getElementById('dng_for_loops_example5');
                 var context = canvas.getContext('2d');
                 
-                drawSandwich(125, 20);
-                drawSandwich(20, 130);
-                drawSandwich(230, 130);
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
                 
-                function drawSandwich(x, y) {
-                  context.save();
+                context.translate(10, 10);
+                
+                for (var i = 0; i < colors.length; i += 1) {
+                  context.save(); // Save the drawing state with the origin at the start of the row
+                  context.fillStyle = colors[i];
                   
-                  drawBread(x, y);
-                  drawRoastBeef(x + 10, y + 30);
-                  drawCheeseSlice(x, y + 42);
-                  drawCheeseSlice(x, y + 60);
-                  drawBread(x, y + 80);
+                  for (var j = 0; j < 10; j += 1) {
+                    context.fillRect(0, 0, 30, 30);
+                    context.translate(40, 0); // Move the origin over 40 pixels to draw the next square
+                  }
                   
-                  context.restore();
-                }
-                
-                function drawBread(x, y) {
-                  context.save();
-                  context.fillStyle = '#F5DEB3';
-                  context.fillRect(x, y, 200, 30);
-                  context.restore();
-                }
-                
-                function drawRoastBeef(x, y) {
-                  context.save();
-                  context.fillStyle = '#663300';
-                  context.fillRect(x, y, 180, 50);
-                  context.restore();
-                }
-                
-                function drawCheeseSlice(x, y) {
-                  context.save();
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(x, y, 200, 8);
-                  context.restore();
+                  context.restore(); // Restore the origin back to the start of the row
+                  context.translate(0, 40); // Move the origin down 40 pixels to start of the next row
                 }
 
             .visual.col-xs-6
@@ -1188,187 +1048,97 @@
                 %canvas#dng_for_loops_example5
 
 
+  #challenge6.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 6
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_for_loops/challenge6Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Use nested for loops to create a grid of rectangles filled with the color
+            %span
+              %code>
+                'SlateBlue'
+              \.
+          %p
+            Each rectangle has a width of 30 and a height of 20. There are ten rectangles
+            in a row and eight rows in the column. The rectangle in the top left corner is
+            positioned at (10, 10). The spacing between rows, both horizontally and
+            vertically, is 10 pixels.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_for_loops_challenge6_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_for_loops_challenge6');
+            var context = canvas.getContext('2d');
+            
+            // POSITION THE TOP LEFT CORNER OF THE GRID HERE
+            
+            // SET THE FILLSTYLE FOR THE RECTANGLES HERE
+            
+            // CREATE THE NESTED FOR LOOPS TO DRAW THE RECTANGLES HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_for_loops/challenge6.png')
+            %canvas#dng_for_loops_challenge6
+          .alert
+
+
   .example.row.py-3
     .col-xs-12
       .row
         .col-xs-12
           %h2.py-2
-            Pass Functions into Other Functions
+            Break out of a For Loop
           %p
-            Besides calling functions from inside of other functions, we can also pass functions
-            into other functions and store them in parameters.
+            There are times when we want to break out of a for loop before its
+            condition returns false.
           %p
-            Why would we want to do that? Well, when we define function
-            %code
-              a()
-            to call function
+            In this example, we use a for loop to iterate over the array
             %span
               %code>
-                b()
-              ,
-            we are hardcoding function
-            %code
-              a()
-            to call function
-            %span
-              %code>
-                b()
+                colors
               \.
-            Most of the time, that's what we want. But sometimes we want function
-            %code
-              a()
-            to a call a function to be determined later.
-          %p
-            In this example, we define the
-            %code
-              drawPlate()
-            function, which has three parameters:
+            Just like we did before, we draw a rectangle with each color in the array,
+            except this time we break out of the loop, ending it early, if we find the color
+            %span
+              %code>
+                'Blue'
+              \.
           %pre
             %code
               :preserve
-                function drawPlate(x, y, drawFood) {
-                  context.save();
-                  context.fillStyle = '#FFFFFF';
-                  context.strokeStyle = '#999999';
-                  context.fillRect(x - 120, y - 20, 240, 20);
-                  context.strokeRect(x - 120, y - 20, 240, 20);
-                  context.restore();
-                  
-                  if (drawFood === undefined) {
-                    return;
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                context.translate(20, 20);
+                
+                for (var i = 0; i < colors.length; i += 1) {
+                  if (colors[i] == 'Blue') {
+                    break;
                   }
                   
-                  drawFood(x, y - 20);
+                  context.fillStyle = colors[i];
+                  context.fillRect(0, 0, 40, 240);
+                  context.translate(40, 0);
                 }
           %p
-            The parameters
-            %code
-              x
-            and
-            %code
-              y
-            are the coordinates of the bottom center point of the plate. We draw a white
-            rectangle with a gray outline centered at
-            %code
-              x
-            and sitting on top of
+            Inside of the for loop, we have added an if statement to check if
             %span
               %code>
-                y
+                colors[i] == 'Blue'
               \.
-          %p
-            Then, we do something odd. We check if the parameter
-            %code
-              drawFood
-            is
-            %span
-              %code>
-                undefined
-              \.
-            If a variable is undefined, it means a value was never assigned to it. If that's the
-            case here, we are going to end the function with a return statement. There are
-            other ways we could have done this, but we wanted to show you how to end a function early.
-          %p
-            If
-            %code
-              drawFood
-            is not undefined, then we call it as a function. Notice the parentheses () after the
-            parameter name. We are calling it as a function and passing it the coordinates of the top
-            center point of the plate. This is where we want the food drawn on the plate  to be positioned.
-          %p
-            To draw a sandwich on top of a plate, we have refactored the
-            %code
-              drawSandwich()
-            function so it now draws the sandwich centered at the parameter
-            %code
-              x
-            and on top of
-            %span
-              %code>
-                y
-              \.
-          %pre
-            %code
-              :preserve
-                function drawSandwich(x, y) {
-                  context.save();
-                  
-                  drawBread(x - 100, y - 110);
-                  drawRoastBeef(x - 90, y - 80);
-                  drawCheeseSlice(x - 100, y - 68);
-                  drawCheeseSlice(x - 100, y - 50);
-                  drawBread(x -100, y - 30);
-                  
-                  context.restore();
-                }
-          %p
-            To draw a piece of cake on top of a plate, we have defined the
-            %code
-              drawCake()
-            function:
-          %pre
-            %code
-              :preserve
-                function drawCake(x, y) {
-                  context.save();
-                  context.fillStyle = '#FFFF00';
-                  context.fillRect(x - 90, y - 180, 180, 180);
-                  context.fillStyle = '#CD853F';
-                  context.fillRect(x - 90, y - 8, 180, 8);
-                  context.fillRect(x - 90, y - 51, 180, 8);
-                  context.fillRect(x - 90, y - 94, 180, 8);
-                  context.fillRect(x - 90, y - 137, 180, 8);
-                  context.fillRect(x - 90, y - 180, 180, 8);
-                  context.fillRect(x - 90, y - 180, 8, 180);
-                  context.restore();
-                }
-          %p
-            Putting everything together, we draw one plate with a piece of cake and one
-            plate with a sandwich by calling:
-          %pre
-            %code
-              :preserve
-                drawPlate(140, 240, drawCake);
-                drawPlate(400, 240, drawSandwich);
-          %p
-            Note that we are passing the name of the
-            %code
-              drawCake()
-            or
-            %code
-              drawSandwich()
-            function without putting parentheses () after them. We use parentheses to call
-            a function. Here we are treating the function name as a variable that we are passing
-            into the
-            %code
-              drawPlate()
-            function to be called later. If we don't pass in a function at all, the plate will
-            be drawn empty.
-          %p
-            When we call the
-            %code
-              drawCake()
-            or
-            %code
-              drawSandwich()
-            functions inside of the
-            %code
-              drawPlate()
-            function after passing them into the function as arguments, they behave as local functions
-            that have been declared inside of the
-            %code
-              drawPlate()
-            function, not as global functions. This means they have access to the local variables
-            declared inside of the
-            %code
-              drawPlate()
-            function.
+            If the condition inside the if statement returns true, then we use a break
+            statement to break out of the loop. Note that our for loop only draws the first
+            four rectangles even though there are seven colors in the array.
           %p
             Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.save()
-              ,
             %span
               %code>
                 context.fillRect()
@@ -1377,8 +1147,12 @@
               %code>
                 context.fillStyle
               ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+            %span
+              %code>
+                context.translate()
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1387,69 +1161,18 @@
                 var canvas = document.getElementById('dng_for_loops_example6');
                 var context = canvas.getContext('2d');
                 
-                drawPlate(140, 240, drawCake);
-                drawPlate(400, 240, drawSandwich);
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
                 
-                function drawPlate(x, y, drawFood) {
-                  context.save();
-                  context.fillStyle = '#FFFFFF';
-                  context.strokeStyle = '#999999';
-                  context.fillRect(x - 120, y - 20, 240, 20);
-                  context.strokeRect(x - 120, y - 20, 240, 20);
-                  context.restore();
-                  
-                  if (drawFood === undefined) {
-                    return;
+                context.translate(20, 20);
+                
+                for (var i = 0; i < colors.length; i += 1) {
+                  if (colors[i] == 'Blue') {
+                    break;
                   }
                   
-                  drawFood(x, y - 20);
-                }
-                
-                function drawCake(x, y) {
-                  context.save();
-                  context.fillStyle = '#FFFF00';
-                  context.fillRect(x - 90, y - 180, 180, 180);
-                  context.fillStyle = '#CD853F';
-                  context.fillRect(x - 90, y - 8, 180, 8);
-                  context.fillRect(x - 90, y - 51, 180, 8);
-                  context.fillRect(x - 90, y - 94, 180, 8);
-                  context.fillRect(x - 90, y - 137, 180, 8);
-                  context.fillRect(x - 90, y - 180, 180, 8);
-                  context.fillRect(x - 90, y - 180, 8, 180);
-                  context.restore();
-                }
-                
-                function drawSandwich(x, y) {
-                  context.save();
-                  
-                  drawBread(x - 100, y - 110);
-                  drawRoastBeef(x - 90, y - 80);
-                  drawCheeseSlice(x - 100, y - 68);
-                  drawCheeseSlice(x - 100, y - 50);
-                  drawBread(x -100, y - 30);
-                  
-                  context.restore();
-                }
-                
-                function drawBread(x, y) {
-                  context.save();
-                  context.fillStyle = '#F5DEB3';
-                  context.fillRect(x, y, 200, 30);
-                  context.restore();
-                }
-                
-                function drawRoastBeef(x, y) {
-                  context.save();
-                  context.fillStyle = '#663300';
-                  context.fillRect(x, y, 180, 50);
-                  context.restore();
-                }
-                
-                function drawCheeseSlice(x, y) {
-                  context.save();
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(x, y, 200, 8);
-                  context.restore();
+                  context.fillStyle = colors[i];
+                  context.fillRect(0, 0, 40, 240);
+                  context.translate(40, 0);
                 }
 
             .visual.col-xs-6
@@ -1465,53 +1188,100 @@
       .row
         .col-xs-12
           %h2.py-2
-            Anonymous Functions
+            Use a For Loop to Delete Elements in an Array
           %p
-            In JavaScript, we can also define anonymous functions.
+            There are also times when we want to use a for loop to iterate over an array
+            in order to find elements that meet a certain condition and delete them.
           %p
-            In this example, we will draw a purple square on a plate by passing the
-            %code
-              drawPlate()
-            function an anonymous function.
-          %pre
-            %code
-              :preserve
-                drawPlate(140, 240, function(x, y) {
-                  context.save();
-                  context.fillStyle = 'Purple';
-                  context.fillRect(x - 60, y - 120, 120, 120);
-                  context.restore();
-                });
-          %p
-            We could have defined a
-            %code
-              drawPurpleSquare()
-            function and passed it into the
-            %code
-              drawPlate()
-            function by name, but sometimes we don't want to bother naming a function
-            we will only use once.
-          %p
-            It is also possible to save an anonymous function in a variable to be called later:
-          %pre
-            %code
-              :preserve
-                var drawPurpleSquare = function(x, y) {
-                  context.save();
-                  context.fillStyle = 'Purple';
-                  context.fillRect(x - 60, y - 120, 120, 120);
-                  context.restore();
-                };
-          %p
-            When a function is declared with a name, it is automatically stored in a variable
-            with the same name. But in JavaScript, functions are actually objects, so we can store
-            them and pass them like any other object.
-          %p
-            Visit the relevant lessons to learn more about
+            In this example, we use a for loop to iterate over the array
             %span
               %code>
-                context.save()
-              ,
+                colors
+              \.
+            If we find the color
+            %code
+              'Yellow'
+            in the array, we delete the color from the array. While this process is fairly
+            straightforward, there is one complication. If we start from the beginning of the
+            array, find the color
+            %code
+              'Yellow'
+            in the array at index 2, and delete it&mdash;the index of the color
+            %code
+              'Green'
+            suddenly becomes 2 and the index of the color
+            %code
+              'Blue'
+            suddenly becomes 3.
+          %p
+            Then, when the for loop repeats and goes to check the color at index 3, it skips
+            the color
+            %code
+              'Green'
+            entirely and finds the color
+            %code
+              'Blue'
+            instead. If the color
+            %code
+              'Yellow'
+            only appears in the array once, this is not a problem. But it is a problem if the
+            color
+            %code
+              'Yellow'
+            is in the array at two consecutive indices or if we are doing more than deleting
+            elements from the array.
+          %p
+            The best way to loop through an array and delete elements is to start at the end of 
+            the array and work backwards.
+          %pre
+            %code
+              :preserve
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                for (var i = colors.length - 1; i >= 0; i -= 1) {
+                  if (colors[i] == 'Yellow') {
+                    colors.splice(i, 1);
+                  } else {
+                    context.fillStyle = colors[i];
+                    context.fillRect(0, 0, 40, 240);
+                    context.translate(40, 0);
+                  }
+                }
+          %p
+            We initialize the counter using
+            %code
+              var i = colors.length - 1
+            because
+            %code
+              colors.length - 1
+            is the index of the last element. Remember, the index of an array starts at zero.
+            We decrement the counter by subtracting 1 from it at the end of each loop until the
+            condition
+            %code
+              i <= 0
+            returns false.
+          %p
+            Inside of the for loop, we use an if statement to check if the color is
+            %span
+              %code>
+                'Yellow'
+              \.
+            If the condition inside of the if statement returns true, we use the array's
+            %code
+              splice()
+            method to delete the element at index
+            %span
+              %code>
+                i
+              \.
+            But if the statement returns false, we draw a rectangle filled with the color.
+          %p
+            Note that the colors in the array are drawn in reverse order and the color
+            %code
+              'Yellow'
+            is not included. We have successfully deleted it from the array.
+          %p
+            Visit the relevant lessons to learn more about
             %span
               %code>
                 context.fillRect()
@@ -1520,8 +1290,12 @@
               %code>
                 context.fillStyle
               ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+            %span
+              %code>
+                context.translate()
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1530,73 +1304,18 @@
                 var canvas = document.getElementById('dng_for_loops_example7');
                 var context = canvas.getContext('2d');
                 
-                drawPlate(140, 240, function(x, y) {
-                  context.save();
-                  context.fillStyle = 'Purple';
-                  context.fillRect(x - 60, y - 120, 120, 120);
-                  context.restore();
-                });
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
                 
-                function drawPlate(x, y, drawFood) {
-                  context.save();
-                  context.fillStyle = '#FFFFFF';
-                  context.strokeStyle = '#999999';
-                  context.fillRect(x - 120, y - 20, 240, 20);
-                  context.strokeRect(x - 120, y - 20, 240, 20);
-                  context.restore();
-                  
-                  if (drawFood === undefined) {
-                    return;
+                context.translate(20, 20);
+                
+                for (var i = colors.length - 1; i >= 0; i -= 1) {
+                  if (colors[i] == 'Yellow') {
+                    colors.splice(i, 1);
+                  } else {
+                    context.fillStyle = colors[i];
+                    context.fillRect(0, 0, 40, 240);
+                    context.translate(40, 0);
                   }
-                  
-                  drawFood(x, y - 20);
-                }
-                
-                function drawCake(x, y) {
-                  context.save();
-                  context.fillStyle = '#FFFF00';
-                  context.fillRect(x - 90, y - 180, 180, 180);
-                  context.fillStyle = '#CD853F';
-                  context.fillRect(x - 90, y - 8, 180, 8);
-                  context.fillRect(x - 90, y - 51, 180, 8);
-                  context.fillRect(x - 90, y - 94, 180, 8);
-                  context.fillRect(x - 90, y - 137, 180, 8);
-                  context.fillRect(x - 90, y - 180, 180, 8);
-                  context.fillRect(x - 90, y - 180, 8, 180);
-                  context.restore();
-                }
-                
-                function drawSandwich(x, y) {
-                  context.save();
-                  
-                  drawBread(x - 100, y - 110);
-                  drawRoastBeef(x - 90, y - 80);
-                  drawCheeseSlice(x - 100, y - 68);
-                  drawCheeseSlice(x - 100, y - 50);
-                  drawBread(x -100, y - 30);
-                  
-                  context.restore();
-                }
-                
-                function drawBread(x, y) {
-                  context.save();
-                  context.fillStyle = '#F5DEB3';
-                  context.fillRect(x, y, 200, 30);
-                  context.restore();
-                }
-                
-                function drawRoastBeef(x, y) {
-                  context.save();
-                  context.fillStyle = '#663300';
-                  context.fillRect(x, y, 180, 50);
-                  context.restore();
-                }
-                
-                function drawCheeseSlice(x, y) {
-                  context.save();
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(x, y, 200, 8);
-                  context.restore();
                 }
 
             .visual.col-xs-6

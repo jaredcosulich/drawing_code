@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       dng_coordinates: {count: 3, method: 'DNG Coordinates'},
       dng_variables: {count: 5, method: 'DNG Variables'},
       dng_functions: {count: 5, method: 'DNG Functions'},
-      dng_for_loops: {count: 5, method: 'DNG For Loops'}
+      dng_for_loops: {count: 6, method: 'DNG For Loops'}
     }
 
     @reference = {
