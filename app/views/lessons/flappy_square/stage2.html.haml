@@ -148,13 +148,16 @@
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge1_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage2_challenge5');
+            var canvas = document.getElementById('flappy_square_stage2_challenge1');
             var context = canvas.getContext('2d');
 
             var interval;
             var size = 20;
 
             function drawSquare() {
+            }
+
+            function flap() {
             }
 
             function adjustPosition() {
@@ -181,6 +184,8 @@
           .canvas
             %canvas#flappy_square_stage2_challenge1
           .alert
+
+
 
   .lesson.row.py-3
     .col-xs-12
@@ -253,55 +258,108 @@
                 %canvas#flappy_square_stage2_lesson2
 
 
-  #challenge1.challenge.row.py-3
+  #challenge2.challenge.row.py-3
     .col-xs-12
       .row.pb-2
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 1
+            Challenge 2
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage2/challenge1Example.gif', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 1 Sample Solution
+            = image_tag('lessons/flappy_square/stage2/challenge2Example.gif', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 2 Sample Solution
 
           %p
-            Take your code from Stage 1 Challenge 5 and make your flappy square fly.
+            Let's take the code from Challenge 1 and add a boundary for our game.
           %p
-            %span.highlight
-              Listen for the keydown event and make sure the
-              'up' key is being pressed (keyCode = 38).
+            The boundary should
+            %span.highlight start at (25, 25) and extend to (300, 450),
+            forming a rectangle.
           %p
-            When the 'up' key is pressed then set the
-            %span.highlight yVelocity at 8.
-            This will cause the flappy square to jump up before
-            being pulled back down by gravity.
+            Then let's track whether our flappy square has fallen outside of our
+            boundary. When it goes above the maximum y value for the boundary
+            (remember y values are larger at the bottom of the canvas) we'll
+            stop the game and display a message.
           %p
-            We'll also slow down the framerate so that you have more time to
-            hit the up key before the square falls off the canvas. For now
-            let's set it to draw one frame every
-            %span.highlight 80 miliseconds
-            (this will be slow, but it will be a better framerate for testing).
+            We'll also start organizing our variables into hashes which allow us to
+            reference variables more easily. Here's an example:
+          %pre
+            %code
+              :preserve
+                var rectangle = {
+                  height: 10,
+                  width: 20
+                }
+
+                rectangle.width
+                => 20
 
           %p In the end your flappy square should behave like the example provided to the right.
-          = render 'lessons/relevant', relevant: [:event_listeners]
-          = render 'lessons/code_preview', stage: 1, challenge: 5, editor_id: 'flappy_square_stage1_challenge5_editor'
+          = render 'lessons/relevant', relevant: [:line_to, :event_listeners]
+          = render 'lessons/code_preview', stage: 2, challenge: 1, editor_id: 'flappy_square_stage2_challenge1_editor'
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge1_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge2_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage2_challenge5');
+            var canvas = document.getElementById('flappy_square_stage2_challenge2');
             var context = canvas.getContext('2d');
 
             var interval;
-            var size = 20;
+
+            // FILL IN YOUR VARIABLES USING THIS HASH FORMAT HERE.
+            var square = {
+              size: 20,
+              x: ,
+              y: ,
+              jump: ,
+              yVelocity:
+            };
+
+            var boundary = {
+              minX: ,
+              minY: ,
+              maxX: ,
+              maxY:
+            };
+            var gravity = 0.5;
+
+            function drawBoundary() {
+
+              // Draw your boundary using boundary.minX, boundary.minY, etc. here.
+
+            }
 
             function drawSquare() {
+            }
+
+            function flap(e) {
             }
 
             function adjustPosition() {
             }
 
+            function checkBoundary() {
+
+              // CODE TO CHECK WHETHER FLAPPY SQUARE
+              // IS ABOVE BOUNDARY FLOOR HERE.
+              if () {
+                pauseAnimation();
+                context.font = "20px serif";
+                context.textAlign = 'center';
+
+                var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+                var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+                context.fillText('Game Over', xCenter, yCenter);
+                context.fillText('Game Over', xCenter, yCenter);
+              }
+
+            }
+
             function runProgram() {
+
+              // Don't forget to draw your boundary!
+
+
             }
 
             function startAnimation() {
@@ -320,5 +378,5 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage2_challenge1
+            %canvas#flappy_square_stage2_challenge2
           .alert

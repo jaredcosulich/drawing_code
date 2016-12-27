@@ -123,10 +123,10 @@ class App.Editor
       callback() if callback
     ), @runDelay)
 
-  wrapCode: (code) ->
+  wrapCode: (code, event) ->
     errorLineNumber = 'N/A';
     try
-      code()
+      code(event)
     catch e
       try
         errorLineNumber = parseInt(e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]) - 2;
@@ -146,14 +146,18 @@ class App.Editor
   setInterval: (f, time) ->
     setInterval(( => @wrapCode(f)), time)
 
+  addCanvasEventListener: (event, f) ->
+    @canvas.canvasElement.addEventListener(event, (e) => @wrapCode(f, e))
+
   runCode: (code, fileMap) ->
-    code = code.replace(/setTimeout/g, 'wrappedTimeouts.setTimeout')
-    code = code.replace(/setInterval/g, 'wrappedTimeouts.setInterval')
+    code = code.replace(/setTimeout/g, 'wrapper.setTimeout')
+    code = code.replace(/setInterval/g, 'wrapper.setInterval')
+    code = code.replace(/canvas\.addEventListener/g, 'wrapper.addCanvasEventListener')
 
     @currentFileMap = fileMap
     wrappedCode = """
       this.wrapCode(function() {
-        var wrappedTimeouts = this;
+        var wrapper = this;
         #{code}
       }.bind(this))
     """
