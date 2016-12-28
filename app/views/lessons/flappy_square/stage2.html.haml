@@ -15,7 +15,7 @@
         we'll end the game.
 
     .col-xs-6
-      = image_tag('lessons/flappy_square/stage2/challenge5Example.gif', class: 'img-fluid canvas-example')
+      = image_tag('lessons/flappy_square/stage2/challenge4Example.gif', class: 'img-fluid canvas-example')
 
 
 
@@ -241,13 +241,13 @@
                   } else {
                    inOut = 'outside the game area.';
                   }
-                  context.fillText('Your mouse is: ' + inOut, minX, 25);
+                  context.fillText('Your mouse is: ' + inOut, minX, 30);
                 }
 
                 canvas.addEventListener('mousemove', handleMouseMove);
 
                 context.font = "20px serif";
-                context.fillText('Mouse over the canvas.', minX, 25);
+                context.fillText('Mouse over the canvas.', minX, 30);
                 drawBoundary();
 
             .visual.col-xs-6
@@ -273,7 +273,7 @@
             Let's take the code from Challenge 1 and add a boundary for our game.
           %p
             The boundary should
-            %span.highlight start at (25, 25) and extend to (300, 450),
+            %span.highlight start at (25, 25) and extend to (450, 300),
             forming a rectangle.
           %p
             Then let's track whether our flappy square has fallen outside of our
@@ -556,7 +556,7 @@
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge3_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage2_challenge2');
+            var canvas = document.getElementById('flappy_square_stage2_challenge3');
             var context = canvas.getContext('2d');
 
             var interval;
@@ -655,13 +655,19 @@
                 var context = canvas.getContext('2d');
 
                 var interval;
-                var roadHeight = 75;
+                var roadHeight = 30;
                 var distance = 0;
+                var boundary = {
+                  minX: 100,
+                  maxX: 400,
+                  minY: 100,
+                  maxY: 200
+                };
 
                 function drawRoad() {
                   context.save();
                   context.fillStyle = '#cccccc';
-                  var roadY = canvas.height - roadHeight;
+                  var roadY = boundary.maxY - roadHeight;
                   context.fillRect(0, roadY, canvas.width, roadHeight);
                   context.restore();
                 }
@@ -670,7 +676,7 @@
                   context.save();
                   context.fillStyle = '#238d23';
                   var grassHeight = 6;
-                  var grassY = canvas.height - roadHeight - grassHeight;
+                  var grassY = boundary.maxY - roadHeight - grassHeight;
                   context.fillRect(0, grassY, canvas.width, grassHeight);
                   context.restore();
                 }
@@ -682,7 +688,7 @@
                   for (var i=startX; i < maxX; ++i) {
                     if (i % space !== 0) continue;
                     context.save();
-                    var treeY = canvas.height - roadHeight;
+                    var treeY = boundary.maxY - roadHeight;
                     context.translate(i - distance, treeY);
                     drawTree();
                     context.restore();
@@ -703,9 +709,16 @@
                   context.restore();
                 }
 
+                function clearBoundary() {
+                  context.clearRect(0, 0, boundary.minX, canvas.height);
+                  context.clearRect(0, 0, canvas.width, boundary.minY);
+                  context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+                  context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
+                }
+
                 function drawBall() {
                   context.save();
-                  context.translate(50, canvas.height - 70);
+                  context.translate(boundary.minX + 50, boundary.maxY - (roadHeight / 2) - 10);
                   context.beginPath();
                   context.arc(0, 0, 15, 0, Math.PI*2, true);
                   context.closePath();
@@ -721,6 +734,7 @@
                   drawTrees();
                   drawGrass();
                   drawBall();
+                  clearBoundary();
                 }
 
                 function startAnimation() {
@@ -760,48 +774,35 @@
             %figcaption.text-xs-center.small Challenge 4 Sample Solution
 
           %p
-            Ok, now we're going to take our flappy square game and add
-            a moving background that the flappy square will eventually
-            have to navigate.
+            For this challenge we're going to clean up the edges of our game.
           %p
-            Let's start by a series of rectangles on the roof of the game
-            area with matching rectangles on the floor of the game area.
+            Right now the walls appear outside of the boundary and, if the flappy square
+            goes above or below the boundary we still show it.
           %p
-            We'll have to track the position of each rectangle and draw
-            them at different points along the x axis as time goes on
-            and our flappy square flies through them.
+            So we're going to add a method
+            %code clearBoundary()
+            that will clear the areas outside of the boundary after each frame is drawn.
           %p
-            Draw two rectangles, one attached to the
-            %span.highlight roof (y = 50)
-            and one to the
-            %span.highlight floor (y = 300)
-            Each of them should be
-            %span.highlight 100 pixels tall and 50 pixels wide.
-            and each wall should be space
-            %span.highlight 125 pixels apart.
-          %p
-            You'll need to track a
-            %code distance
-            variable and adjust the position of each wall (two rectangles)
-            as the distance changes.
-            %span.highlight Change the distance by 2 every frame.
+            We're basically drawing our full frame and then erasing everything outside of the
+            boundary. We'll use the
+            = link_to_lesson('context.clearRect()', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
+            to erase everything outside of the boundary we've drawn.
 
           %p In the end your flappy square should behave like the example provided to the right.
 
           = render 'lessons/relevant', relevant: [:fill_rect]
-          = render 'lessons/code_preview', stage: 2, challenge: 2, editor_id: 'flappy_square_stage2_challenge2_editor'
+          = render 'lessons/code_preview', stage: 2, challenge: 3, editor_id: 'flappy_square_stage2_challenge3_editor'
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge4_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage2_challenge2');
+            var canvas = document.getElementById('flappy_square_stage2_challenge4');
             var context = canvas.getContext('2d');
 
             var interval;
             var gravity = 0.5;
             var distance = 0;
 
-            // FILL IN YOUR VARIABLES USING THIS HASH FORMAT HERE.
             var square = {
               size: 20,
               x: ,
@@ -836,7 +837,10 @@
             }
 
             function adjustPosition() {
-              // CODE TO ADJUST DISTANCE HERE
+            }
+
+            function clearBoundary() {
+              // CODE HERE TO CLEAR ALL AREAS OUTSIDE OF THE BOUNDARY
             }
 
             function checkBoundary() {
@@ -861,5 +865,5 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage2_challenge3
+            %canvas#flappy_square_stage2_challenge4
           .alert
