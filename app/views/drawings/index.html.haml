@@ -3,19 +3,30 @@
 
   %p Create your own drawings using the expanded editor and canvas below.
   %p If you like your drawing you can save it below as well.
+  - if params.include?(:side)
+    %p
+      Want a wider editor and canvas?
+      = link_to('Wide Editor & Canvas', drawings_path)
+  - else
+    %p
+      Want to see your editor and canvas side by side?
+      = link_to('Side By Side Editor & Canvas', drawings_path(side: 1))
 
   .simple.row.py-2
     .col-xs-12
       .freeform
         .row.py-1
-          = render :layout => '/lessons/editor', :locals => {:editor_id => 'my_drawings_editor', cols: 12, files: true} do
+          = render :layout => '/lessons/editor', :locals => {:editor_id => 'my_drawings_editor', cols: (params.include?(:side) ? 6 : 12), files: true} do
             :preserve
               ~!@Base@!~
               var canvas = document.getElementById('my_drawings_canvas');
               var context = canvas.getContext('2d');
 
-        .row.py-1
-          .visual.col-xs-12
+          - unless params.include?(:side)
+            .col-xs-12.py-1
+              &nbsp;
+
+          .visual{class: "col-xs-#{params.include?(:side) ? 6 : 12}"}
             %h5
               Canvas
               %small (your drawing will display here)
