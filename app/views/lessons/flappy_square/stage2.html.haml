@@ -305,6 +305,7 @@
             var context = canvas.getContext('2d');
 
             var interval;
+            var gravity = 0.5;
 
             // FILL IN YOUR VARIABLES USING THIS HASH FORMAT HERE.
             var square = {
@@ -321,7 +322,6 @@
               maxX: ,
               maxY:
             };
-            var gravity = 0.5;
 
             function drawBoundary() {
 
@@ -349,7 +349,6 @@
 
                 var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
                 var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
-                context.fillText('Game Over', xCenter, yCenter);
                 context.fillText('Game Over', xCenter, yCenter);
               }
 
@@ -453,7 +452,7 @@
                   context.fillRect(0, -60, 12, 60);
 
                   context.beginPath();
-                  context.arc(8, -60, 32, 0, Math.PI*2, true);
+                  context.arc(6, -60, 32, 0, Math.PI*2, true);
                   context.closePath();
                   context.fillStyle = '#238d23';
                   context.fill();
@@ -517,40 +516,86 @@
             %figcaption.text-xs-center.small Challenge 3 Sample Solution
 
           %p
-            Take your code from Challenge 2 and make your flappy square fly.
+            Ok, now we're going to take our flappy square game and add
+            a moving background that the flappy square will eventually
+            have to navigate.
           %p
-            %span.highlight
-              Listen for the keydown event and make sure the
-              'up' key is being pressed (keyCode = 38).
+            Let's start by a series of rectangles on the roof of the game
+            area with matching rectangles on the floor of the game area.
           %p
-            When the 'up' key is pressed then set the
-            %span.highlight yVelocity at 8.
-            This will cause the flappy square to jump up before
-            being pulled back down by gravity.
+            We'll have to track the position of each rectangle and draw
+            them at different points along the x axis as time goes on
+            and our flappy square flies through them.
           %p
-            We'll also slow down the framerate so that you have more time to
-            hit the up key before the square falls off the canvas. For now
-            let's set it to draw one frame every
-            %span.highlight 80 miliseconds
-            (this will be slow, but it will be a better framerate for testing).
+            Draw two rectangles, one attached to the
+            %span.highlight roof (y = 50)
+            and one to the
+            %span.highlight floor (y = 300)
+            Each of them should be
+            %span.highlight 100 pixels tall and 50 pixels wide.
+            and each wall should be space
+            %span.highlight 125 pixels apart.
+          %p
+            You'll need to track a
+            %code distance
+            variable and adjust the position of each wall (two rectangles)
+            as the distance changes.
+            %span.highlight Change the distance by 2 every frame.
 
           %p In the end your flappy square should behave like the example provided to the right.
-          = render 'lessons/relevant', relevant: [:event_listeners]
+
+          = render 'lessons/relevant', relevant: [:fill_rect]
           = render 'lessons/code_preview', stage: 2, challenge: 2, editor_id: 'flappy_square_stage2_challenge2_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge3_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage2_challenge3');
+            var canvas = document.getElementById('flappy_square_stage2_challenge2');
             var context = canvas.getContext('2d');
 
             var interval;
-            var size = 20;
+            var gravity = 0.5;
+            var distance = 0;
+
+            // FILL IN YOUR VARIABLES USING THIS HASH FORMAT HERE.
+            var square = {
+              size: 20,
+              x: ,
+              y: ,
+              jump: ,
+              yVelocity:
+            };
+
+            var boundary = {
+              minX: ,
+              minY: ,
+              maxX: ,
+              maxY:
+            };
+
+            var walls = {
+              spacing:
+              width:
+              height:
+            };
+
+            function drawBoundary() {
+            }
+
+            function drawWalls() {
+            }
 
             function drawSquare() {
             }
 
+            function flap(e) {
+            }
+
             function adjustPosition() {
+              // CODE TO ADJUST DISTANCE HERE
+            }
+
+            function checkBoundary() {
             }
 
             function runProgram() {
