@@ -19,17 +19,36 @@
     };
 
     Code.prototype.drawCode = function() {
-      return this.code(this.testCanvas, this.testContext);
+      var startTime;
+      if (!(startTime = this.canvas.canvas.data('startTime'))) {
+        setTimeout(((function(_this) {
+          return function() {
+            return _this.drawCode();
+          };
+        })(this)), 5);
+        return;
+      }
+      return this.code(this.testCanvas, this.testContext, this.canvas.canvas.data('startTime'));
     };
 
     Code.prototype.test = function(callback) {
+      var count, testInterval;
       this.initTestCanvas();
-      this.drawCode();
-      return setTimeout(((function(_this) {
+      count = 0;
+      return testInterval = setInterval(((function(_this) {
         return function() {
-          return callback(_this.compareImageData());
+          var success;
+          if (count === 0) {
+            _this.drawCode();
+          }
+          success = _this.compareImageData();
+          if (success || count > 30) {
+            clearInterval(testInterval);
+            callback(success);
+          }
+          return count += 1;
         };
-      })(this)), 300);
+      })(this)), 10);
     };
 
     Code.prototype.compareImageData = function() {

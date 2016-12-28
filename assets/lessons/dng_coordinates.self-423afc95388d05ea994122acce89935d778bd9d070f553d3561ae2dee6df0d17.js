@@ -1,16 +1,16 @@
 (function() {
-  var initDngCoordinateSystemChallenge1, initDngCoordinateSystemChallenge2, initDngCoordinateSystemChallenge3, initDngCoordinateSystemChallenges;
+  var initDngCoordinatesChallenge1, initDngCoordinatesChallenge2, initDngCoordinatesChallenge3, initDngCoordinatesChallenges;
 
-  initDngCoordinateSystemChallenges = function() {
+  initDngCoordinatesChallenges = function() {
     var page;
-    if ((page = $('#dng_coordinate_system')).length > 0) {
-      initDngCoordinateSystemChallenge1(page);
-      initDngCoordinateSystemChallenge2(page);
-      return initDngCoordinateSystemChallenge3(page);
+    if ((page = $('#dng_coordinates')).length > 0) {
+      initDngCoordinatesChallenge1(page);
+      initDngCoordinatesChallenge2(page);
+      return initDngCoordinatesChallenge3(page);
     }
   };
 
-  initDngCoordinateSystemChallenge1 = function(page) {
+  initDngCoordinatesChallenge1 = function(page) {
     var canvas, challenge, editor, points;
     challenge = page.find('#challenge1');
     canvas = new App.Canvas(challenge.find('canvas'));
@@ -54,13 +54,13 @@
         }
         canvas.alert(message, success);
         if (success) {
-          return App.currentProgress.challengeComplete('dng_coordinate_system', 'challenge1');
+          return App.currentProgress.challengeComplete('dng_coordinates', 'challenge1');
         }
       }), 200);
     });
   };
 
-  initDngCoordinateSystemChallenge2 = function(page) {
+  initDngCoordinatesChallenge2 = function(page) {
     var canvas, challenge, editor, points;
     challenge = page.find('#challenge2');
     canvas = new App.Canvas(challenge.find('canvas'));
@@ -110,13 +110,13 @@
         }
         canvas.alert(message, success);
         if (success) {
-          return App.currentProgress.challengeComplete('dng_coordinate_system', 'challenge2');
+          return App.currentProgress.challengeComplete('dng_coordinates', 'challenge2');
         }
       }), 200);
     });
   };
 
-  initDngCoordinateSystemChallenge3 = function(page) {
+  initDngCoordinatesChallenge3 = function(page) {
     var canvas, challenge, editor, points;
     challenge = page.find('#challenge3');
     canvas = new App.Canvas(challenge.find('canvas'));
@@ -154,12 +154,12 @@
         }
         canvas.alert(message, success);
         if (success) {
-          return App.currentProgress.challengeComplete('dng_coordinate_system', 'challenge3');
+          return App.currentProgress.challengeComplete('dng_coordinates', 'challenge3');
         }
       }), 200);
     });
   };
 
-  $(document).on('initialization:complete', initDngCoordinateSystemChallenges);
+  $(document).on('initialization:complete', initDngCoordinatesChallenges);
 
 }).call(this);

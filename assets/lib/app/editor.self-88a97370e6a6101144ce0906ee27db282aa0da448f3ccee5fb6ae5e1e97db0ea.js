@@ -27,19 +27,6 @@
       if (this.codeEditor.data('files')) {
         this.initFiles();
       }
-      this.resize();
-      this.editor.on('mousemove', (function(_this) {
-        return function() {
-          if (_this.editor.height() !== _this.currentEditorHeight) {
-            return _this.resize();
-          }
-        };
-      })(this));
-      this.aceEditor.session.on('changeScrollTop', (function(_this) {
-        return function() {
-          return _this.resize();
-        };
-      })(this));
       this.editor.on('keyup', (function(_this) {
         return function() {
           _this.ensureValidCanvasReference();
@@ -57,17 +44,7 @@
 
     Editor.prototype.resize = function() {
       this.currentEditorHeight = this.editor.height();
-      this.aceEditor.resize();
-      return setTimeout(((function(_this) {
-        return function() {
-          _this.editor.find('.ace_scroller').css({
-            bottom: '18px'
-          });
-          return _this.editor.find('.ace_scrollbar-v').css({
-            bottom: '18px'
-          });
-        };
-      })(this)), 250);
+      return this.aceEditor.resize();
     };
 
     Editor.prototype.ensureValidCanvasReference = function() {
@@ -110,7 +87,9 @@
     Editor.prototype.initRun = function() {
       this.codeEditor.find('.buttons .run').click((function(_this) {
         return function(e) {
-          return _this.run();
+          return _this.run(function() {
+            return _this.canvas.canvas.focus();
+          });
         };
       })(this));
       return this.codeEditor.find('.buttons .reset').click((function(_this) {
@@ -144,7 +123,7 @@
       return this.setCode(this.startCode);
     };
 
-    Editor.prototype.run = function() {
+    Editor.prototype.run = function(callback) {
       this.hideLog();
       this.clearLog();
       this.canvas.hideAlert();
@@ -152,7 +131,10 @@
       this.canvas.reset();
       return setTimeout(((function(_this) {
         return function() {
-          var fileName, i, len, results, reverseFileNames;
+          var code, fileMap, fileName, fileStart, i, j, len, len1, line, ref, reverseFileNames;
+          _this.canvas.canvas.data({
+            startTime: new Date()
+          });
           if (_this.files) {
             _this.files.files[_this.files.selected].code = _this.aceEditor.getValue();
             reverseFileNames = ((function() {
@@ -165,39 +147,88 @@
               }
               return results;
             }).call(_this)).reverse();
-            results = [];
+            fileMap = [];
+            code = [];
             for (i = 0, len = reverseFileNames.length; i < len; i++) {
               fileName = reverseFileNames[i];
-              results.push(_this.runCode(_this.files.files[fileName].code, fileName));
+              fileStart = code.length;
+              ref = _this.files.files[fileName].code.split(/\n/);
+              for (j = 0, len1 = ref.length; j < len1; j++) {
+                line = ref[j];
+                code.push(line);
+                fileMap.push({
+                  name: fileName,
+                  start: fileStart
+                });
+              }
             }
-            return results;
+            _this.runCode(code.join('\n'), fileMap);
           } else {
-            return _this.runCode(_this.aceEditor.getValue());
+            _this.runCode(_this.aceEditor.getValue());
+          }
+          if (callback) {
+            return callback();
           }
         };
       })(this)), this.runDelay);
     };
 
-    Editor.prototype.runCode = function(code, fileName) {
-      var e, error, error1, error2, errorLineNumber, errorMessage;
+    Editor.prototype.wrapCode = function(code, event) {
+      var e, error, error1, error2, errorLineNumber, errorMessage, fileInfo;
+      errorLineNumber = 'N/A';
       try {
-        return eval(code);
+        return code(event);
       } catch (error1) {
         e = error1;
         try {
-          errorLineNumber = e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0];
+          errorLineNumber = parseInt(e.stack.split(/\n/)[1].split('<anonymous>:')[1].split(':')[0]) - 2;
         } catch (error2) {
           error = error2;
-          errorLineNumber = 'N/A';
           console.log('Could not split stack.', e.stack);
         }
-        errorMessage = "<strong class='text-danger'>Error:</strong> " + e.message + " (";
-        if (fileName) {
-          errorMessage += "File: " + fileName + ", ";
+        errorMessage = "<strong class='text-danger'>Error: </strong> " + e.message + " (";
+        if (this.currentFileMap && !isNaN(errorLineNumber)) {
+          fileInfo = this.currentFileMap[errorLineNumber];
+          errorLineNumber = errorLineNumber - fileInfo.start;
+          errorMessage += "File: " + fileInfo.name + ", ";
         }
         errorMessage += "Line: " + errorLineNumber + ")";
         return this.log(errorMessage);
       }
+    };
+
+    Editor.prototype.setTimeout = function(f, time) {
+      return setTimeout(((function(_this) {
+        return function() {
+          return _this.wrapCode(f);
+        };
+      })(this)), time);
+    };
+
+    Editor.prototype.setInterval = function(f, time) {
+      return setInterval(((function(_this) {
+        return function() {
+          return _this.wrapCode(f);
+        };
+      })(this)), time);
+    };
+
+    Editor.prototype.addCanvasEventListener = function(event, f) {
+      return this.canvas.canvasElement.addEventListener(event, (function(_this) {
+        return function(e) {
+          return _this.wrapCode(f, e);
+        };
+      })(this));
+    };
+
+    Editor.prototype.runCode = function(code, fileMap) {
+      var wrappedCode;
+      code = code.replace(/setTimeout/g, 'wrapper.setTimeout');
+      code = code.replace(/setInterval/g, 'wrapper.setInterval');
+      code = code.replace(/canvas\.addEventListener/g, 'wrapper.addCanvasEventListener');
+      this.currentFileMap = fileMap;
+      wrappedCode = "this.wrapCode(function() {\n  var wrapper = this;\n  " + code + "\n}.bind(this))";
+      return eval(wrappedCode);
     };
 
     Editor.prototype.initLog = function() {

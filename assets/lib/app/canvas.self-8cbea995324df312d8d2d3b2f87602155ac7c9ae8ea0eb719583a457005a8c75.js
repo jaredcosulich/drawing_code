@@ -60,10 +60,13 @@
       return this.alertElement.slideUp(100);
     };
 
-    Canvas.prototype.selfAssess = function(successCallback) {
+    Canvas.prototype.selfAssess = function(successCallback, delay) {
       var confirm, message, noButton, yesButton;
+      if (delay == null) {
+        delay = 0;
+      }
       message = $(document.createElement('DIV'));
-      message.html('Do you feel satisfied with your drawing?');
+      message.html('Do you feel satisfied with your work?');
       confirm = $(document.createElement('DIV'));
       confirm.addClass('mt-1');
       yesButton = $(document.createElement('BUTTON'));

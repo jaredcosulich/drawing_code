@@ -56,7 +56,6 @@
     return challenge.find('.run').click(function() {
       return testCode.test(function(success) {
         var message;
-        console.log('2', success);
         if (success) {
           message = '<strong>Success!</strong> You\'ve drawn the ground at the right distance from the top!';
           App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge2');
