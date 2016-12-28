@@ -31,7 +31,12 @@ initSavedDrawing = ->
     page.find('.drawing-description').html(drawingInfo['description'])
     page.find('.my_drawing_title').val(drawingInfo['title'])
     page.find('.my_drawing_description').val(drawingInfo['description'])
-    page.find('.editor').data('editor').setStartCode(drawingInfo['code'])
+
+    editor = page.find('.editor').data('editor')
+    editor.setStartCode(drawingInfo['code'])
+    if !(App.currentProgress.getEditorValue(editor.editorElement.id))?
+      editor.setCode(drawingInfo['code'])
+
     page.find('.run').click()
     $("#drawings #navigation-drawing-#{slug}").addClass('active')
 
