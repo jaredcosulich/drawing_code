@@ -271,22 +271,49 @@
             %figcaption.text-xs-center.small Challenge 1 Sample Solution
 
           %p
-            Take your code from Stage 1 Challenge 5 and make your flappy square fly.
+            So now we're going to take our code from Stage 2 and we're going
+            to track whether our flappy square runs into a wall.
           %p
-            %span.highlight
-              Listen for the keydown event and make sure the
-              'up' key is being pressed (keyCode = 38).
+            Collision detection is one of the more complicated problems you'll
+            deal with when developing a game. The lesson above demonstrates how
+            complex the calculations are. So take your time with this challenge
+            and don't get discouraged. It's hard stuff.
           %p
-            When the 'up' key is pressed then set the
-            %span.highlight yVelocity at 8.
-            This will cause the flappy square to jump up before
-            being pulled back down by gravity.
+            Luckily we don't need to calculate the bounce effect off the wall,
+            so this challenge will be considerably easier than the lesson above.
           %p
-            We'll also slow down the framerate so that you have more time to
-            hit the up key before the square falls off the canvas. For now
-            let's set it to draw one frame every
-            %span.highlight 80 miliseconds
-            (this will be slow, but it will be a better framerate for testing).
+            In each frame we'll need to check to see if our flappy square overlaps
+            with any of the walls. This will looks something like (which checks if
+            the flappy square has collided with a wall to its right):
+          %pre
+            %code
+              :preserve
+                var right = square.x + square.size;
+                var bottom = square.y + square.size;
+                for (var i=0; i < walls.positions.length, ++i) {
+                  var wall = walls.positions[i];
+                  var wallRight = wall.x + walls.size;
+                  var wallBottom = wall.y + walls.size;
+                  var leftOverlap = (square.x >= wall.x && square.x <= wallRight);
+                  var rightOverlap = (right >= wall.x && right <= wallRight);
+                  var topOverlap = (square.y <= wallBottom && square.y >= wall.y);
+                  var bottomOverlap = (bottom <= wallBottom && bottom >= wall.y);
+                  if (right && (top || bottom)) {
+                    return true;
+                  }
+                }
+
+          %p
+            Yea, it's complicated. Try to imagine each interaction (e.g. the square
+            running into a top wall from the left side) and figuring out how you would
+            know that the right side of the square has connected with the left side of
+            the way while the square is above the bottom of the wall and below the top of
+            the wall.
+          %p
+            Yea, it's complicated.
+          %p
+            
+
 
           %p In the end your flappy square should behave like the example provided to the right.
           = render 'lessons/relevant', relevant: [:event_listeners]
