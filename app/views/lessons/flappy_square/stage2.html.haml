@@ -418,7 +418,7 @@
                 var context = canvas.getContext('2d');
 
                 var interval;
-                var roadHeight = 75;
+                var roadHeight = 30;
                 var distance = 0;
 
                 function drawRoad() {
@@ -467,10 +467,11 @@
                 }
 
                 function drawBall() {
+                  var ballRadius = 15;
                   context.save();
-                  context.translate(50, canvas.height - 70);
+                  context.translate(50, canvas.height - (roadHeight/2) - ballRadius);
                   context.beginPath();
-                  context.arc(0, 0, 15, 0, Math.PI*2, true);
+                  context.arc(0, 0, ballRadius, 0, Math.PI*2, true);
                   context.closePath();
                   context.fillStyle = 'red';
                   context.fill();
