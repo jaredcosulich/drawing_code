@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="b4K1PcGjNMnltqVRUQc4RUGK2/TKdtn5Jstzz0VIJxSTHBz7DWpKPfDZ+DCyWDdcQdaPq2zMJIeBjot23IyCMQ==" />
+<meta name="csrf-token" content="pBJ2mIGjqVmd4khSYJAe0L4N7c2C0PKMH+7CM1YkFw9YjN9eTWrXrYiNFTODzxHJvlG5kiRqD/K4qzqKz+CyKg==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-ca95cacfb3bf8d9fafc29614581f65c94a379e6263a31f3b1cad9ef2e515949c-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -42,7 +42,7 @@
 <script src="../../../assets/lessons/fillStyle.self-ee4e83b95686dac1cd630c036eb0353cfaeaa2b9701b0c7a6565ba0dc6091ec7.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage1.self-b0357b06d17eb2337d688e8fd5be0fef7e762c85bcdd0cb7798605e0195c9947.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/flappy_square/stage2.self-dd479b8e7ffc8c56599bf6c4d4272056304d0f320461bf37e9e9ecb823acdd97.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage2.self-8eb29add53aabb7af941f9c84c2abd840c7dbf61669906cae52b8a4c84bcd409.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/for_loops.self-9dce154b577b9344744a8e7d16f6ca874805d4a157a4c326af1e9fd1e30627d5.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/functions.self-492d38bff26f435c0469d8a38da45ce7857e334d3bc3a41d8d4b97d5571abd02.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/granular_basic_cityscape/stage1.self-9a6bb1b4e3de5f46da1e072c0fa52d0391b4f64454b97d5b34b6ec01e46dfb32.js?body=1" data-turbolinks-track="reload"></script>
@@ -567,7 +567,7 @@ A full list of events can be found here:
 <li class='active'>
 <a href="index.html">Stage 2</a>
 <span class='tag tag-default'>
-<small class='flappy_square_stage2'>0 / 3</small>
+<small class='flappy_square_stage2'>0 / 4</small>
 </span>
 </li>
 <li class='section small mt-2'>
@@ -652,7 +652,7 @@ we'll end the game.
 </p>
 </div>
 <div class='col-xs-6'>
-<img class="img-fluid canvas-example" src="../../../images/lessons/flappy_square/stage2/challenge5Example.gif" alt="Challenge5example" />
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/challenge4Example-52c5bfb4ea79c66315ae4fa7035543062e4556cf6094f2a67b0727918655c6cb.gif" alt="Challenge4example" />
 </div>
 </div>
 <div class='lesson row py-3'>
@@ -886,7 +886,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage2_lesson2_editor'>var canvas = document.getElementById('flappy_square_stage2_lesson2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var minX = 50;&#x000A;var maxX = 400;&#x000A;var minY = 50;&#x000A;var maxY = 300;&#x000A;&#x000A;function drawBoundary() {&#x000A;  context.lineWidth = 2;&#x000A;  context.beginPath();&#x000A;  context.moveTo(minX, minY);&#x000A;  context.lineTo(minX, maxY);&#x000A;  context.lineTo(maxX, maxY);&#x000A;  context.lineTo(maxX, minY);&#x000A;  context.closePath();&#x000A;  context.stroke();&#x000A;}&#x000A;&#x000A;function handleMouseMove(e) {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;  drawBoundary();&#x000A;&#x000A;  var x = e.layerX;&#x000A;  var y = e.layerY;&#x000A;  var inOut;&#x000A;  if (x > minX && x < maxX && y > minY && y < maxY) {&#x000A;   inOut = 'inside the game area.';&#x000A;  } else {&#x000A;   inOut = 'outside the game area.';&#x000A;  }&#x000A;  context.fillText('Your mouse is: ' + inOut, minX, 25);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('mousemove', handleMouseMove);&#x000A;&#x000A;context.font = "20px serif";&#x000A;context.fillText('Mouse over the canvas.', minX, 25);&#x000A;drawBoundary();&#x000A;</div>
+<div class='editor' id='flappy_square_stage2_lesson2_editor'>var canvas = document.getElementById('flappy_square_stage2_lesson2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var minX = 50;&#x000A;var maxX = 400;&#x000A;var minY = 50;&#x000A;var maxY = 300;&#x000A;&#x000A;function drawBoundary() {&#x000A;  context.lineWidth = 2;&#x000A;  context.beginPath();&#x000A;  context.moveTo(minX, minY);&#x000A;  context.lineTo(minX, maxY);&#x000A;  context.lineTo(maxX, maxY);&#x000A;  context.lineTo(maxX, minY);&#x000A;  context.closePath();&#x000A;  context.stroke();&#x000A;}&#x000A;&#x000A;function handleMouseMove(e) {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;  drawBoundary();&#x000A;&#x000A;  var x = e.layerX;&#x000A;  var y = e.layerY;&#x000A;  var inOut;&#x000A;  if (x > minX && x < maxX && y > minY && y < maxY) {&#x000A;   inOut = 'inside the game area.';&#x000A;  } else {&#x000A;   inOut = 'outside the game area.';&#x000A;  }&#x000A;  context.fillText('Your mouse is: ' + inOut, minX, 30);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('mousemove', handleMouseMove);&#x000A;&#x000A;context.font = "20px serif";&#x000A;context.fillText('Mouse over the canvas.', minX, 30);&#x000A;drawBoundary();&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -935,7 +935,7 @@ Let's take the code from Challenge 1 and add a boundary for our game.
 </p>
 <p>
 The boundary should
-<span class='highlight'>start at (25, 25) and extend to (300, 450),</span>
+<span class='highlight'>start at (25, 25) and extend to (450, 300),</span>
 forming a rectangle.
 </p>
 <p>
@@ -1053,7 +1053,17 @@ In this example we'll demonstrate a background that moves to the
 left while a red ball stays stationary, giving the impression
 that the ball is rolling through the background.
 </p>
-<p></p>
+<p>
+We'll use a variable, distance, to track the position of the background,
+adjusting the position of each tree drawn by 'distance'. Each frame
+adjusts 'distance' by 2 pixels, causing each tree to be drawn 2 pixels
+to the left.
+</p>
+<p>
+When this is done fast enough it creates the illusion of the trees
+moving slowly, which in turn creates the illusion of the ball moving
+because in real life backgrounds don't move.
+</p>
 <p>
 <strong>Relevant Lessons:</strong>
 <a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>, <a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
@@ -1204,7 +1214,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage2_challenge3_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var gravity = 0.5;&#x000A;var distance = 0;&#x000A;&#x000A;// FILL IN YOUR VARIABLES USING THIS HASH FORMAT HERE.&#x000A;var square = {&#x000A;  size: 20,&#x000A;  x: ,&#x000A;  y: ,&#x000A;  jump: ,&#x000A;  yVelocity:&#x000A;};&#x000A;&#x000A;var boundary = {&#x000A;  minX: ,&#x000A;  minY: ,&#x000A;  maxX: ,&#x000A;  maxY:&#x000A;};&#x000A;&#x000A;var walls = {&#x000A;  spacing:&#x000A;  width:&#x000A;  height:&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;}&#x000A;&#x000A;function flap(e) {&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  // CODE TO ADJUST DISTANCE HERE&#x000A;}&#x000A;&#x000A;function checkBoundary() {&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;}&#x000A;&#x000A;function startAnimation() {&#x000A;  interval =&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;</div>
+<div class='editor' id='flappy_square_stage2_challenge3_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var gravity = 0.5;&#x000A;var distance = 0;&#x000A;&#x000A;// FILL IN YOUR VARIABLES USING THIS HASH FORMAT HERE.&#x000A;var square = {&#x000A;  size: 20,&#x000A;  x: ,&#x000A;  y: ,&#x000A;  jump: ,&#x000A;  yVelocity:&#x000A;};&#x000A;&#x000A;var boundary = {&#x000A;  minX: ,&#x000A;  minY: ,&#x000A;  maxX: ,&#x000A;  maxY:&#x000A;};&#x000A;&#x000A;var walls = {&#x000A;  spacing:&#x000A;  width:&#x000A;  height:&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;}&#x000A;&#x000A;function flap(e) {&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  // CODE TO ADJUST DISTANCE HERE&#x000A;}&#x000A;&#x000A;function checkBoundary() {&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;}&#x000A;&#x000A;function startAnimation() {&#x000A;  interval =&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1230,6 +1240,196 @@ Canvas
 </h5>
 <div class='canvas'>
 <canvas id='flappy_square_stage2_challenge3'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='lesson row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Lesson: Clearing The Edges
+</h2>
+<p>
+Since we have a boundary to our game area, it doesn't look
+great to have any part of our drawing (walls or the flappy square)
+display outside of the boundary.
+</p>
+<p>
+Clearing areas can allow you to accomplish this goal. It can also
+allow you to create complex animations on a single canvas.
+</p>
+<p>
+In this example we take our ball rolling animation and draw it
+in the middle of the canvase, clearing the areas around it so that
+it stays within the designated boundary.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>, <a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage2_lesson4_editor'>var canvas = document.getElementById('flappy_square_stage2_lesson4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var roadHeight = 30;&#x000A;var distance = 0;&#x000A;var boundary = {&#x000A;  minX: 100,&#x000A;  maxX: 400,&#x000A;  minY: 100,&#x000A;  maxY: 200&#x000A;};&#x000A;&#x000A;function drawRoad() {&#x000A;  context.save();&#x000A;  context.fillStyle = '#cccccc';&#x000A;  var roadY = boundary.maxY - roadHeight;&#x000A;  context.fillRect(0, roadY, canvas.width, roadHeight);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawGrass() {&#x000A;  context.save();&#x000A;  context.fillStyle = '#238d23';&#x000A;  var grassHeight = 6;&#x000A;  var grassY = boundary.maxY - roadHeight - grassHeight;&#x000A;  context.fillRect(0, grassY, canvas.width, grassHeight);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawTrees() {&#x000A;  var space = 100;&#x000A;  var startX = distance - space;&#x000A;  var maxX = canvas.width + distance + space;&#x000A;  for (var i=startX; i < maxX; ++i) {&#x000A;    if (i % space !== 0) continue;&#x000A;    context.save();&#x000A;    var treeY = boundary.maxY - roadHeight;&#x000A;    context.translate(i - distance, treeY);&#x000A;    drawTree();&#x000A;    context.restore();&#x000A;  }&#x000A;}&#x000A;&#x000A;function drawTree() {&#x000A;  context.save();&#x000A;  context.fillStyle = '#a5681c';&#x000A;  context.fillRect(0, -60, 12, 60);&#x000A;&#x000A;  context.beginPath();&#x000A;  context.arc(6, -60, 32, 0, Math.PI*2, true);&#x000A;  context.closePath();&#x000A;  context.fillStyle = '#238d23';&#x000A;  context.fill();&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function clearBoundary() {&#x000A;  context.clearRect(0, 0, boundary.minX, canvas.height);&#x000A;  context.clearRect(0, 0, canvas.width, boundary.minY);&#x000A;  context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);&#x000A;  context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);&#x000A;}&#x000A;&#x000A;function drawBall() {&#x000A;  context.save();&#x000A;  context.translate(boundary.minX + 50, boundary.maxY - (roadHeight / 2) - 10);&#x000A;  context.beginPath();&#x000A;  context.arc(0, 0, 15, 0, Math.PI*2, true);&#x000A;  context.closePath();&#x000A;  context.fillStyle = 'red';&#x000A;  context.fill();&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  distance += 2;&#x000A;  drawRoad();&#x000A;  drawTrees();&#x000A;  drawGrass();&#x000A;  drawBall();&#x000A;  clearBoundary();&#x000A;}&#x000A;&#x000A;function startAnimation() {&#x000A;  interval = setInterval(runProgram, 50);&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click on the canvas to start the animation.', canvas.width / 2, 50);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage2_lesson4'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge4'>
+<div class='col-xs-12'>
+<div class='row pb-2'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 4
+</h2>
+<figure class='float-xs-right pl-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/challenge4Example-52c5bfb4ea79c66315ae4fa7035543062e4556cf6094f2a67b0727918655c6cb.gif" alt="Challenge4example" />
+<figcaption class='text-xs-center small'>Challenge 4 Sample Solution</figcaption>
+</figure>
+<p>
+For this challenge we're going to clean up the edges of our game.
+</p>
+<p>
+Right now the walls appear outside of the boundary and, if the flappy square
+goes above or below the boundary we still show it.
+</p>
+<p>
+So we're going to add a method
+<code>clearBoundary()</code>
+that will clear the areas outside of the boundary after each frame is drawn.
+</p>
+<p>
+We're basically drawing our full frame and then erasing everything outside of the
+boundary. We'll use the
+<a class="reference-link" data-slug="clear_rect" href="../clear_rect/index.html">context.clearRect()</a>
+to erase everything outside of the boundary we've drawn.
+</p>
+<p>In the end your flappy square should behave like the example provided to the right.</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+</p>
+
+<div class='code-preview mb-2'>
+<p>
+<strong>Previous Challenge:</strong>
+View your
+<span class='code-preview-link' data-editorid='flappy_square_stage2_challenge3_editor'>
+code from
+Stage
+2
+Challenge
+3
+</span>
+to use on this challenge.
+</p>
+<div class='code-preview-missing'>
+<strong>Code Missing:</strong>
+You have not yet entered any code in to the previous challenge:
+Stage
+2
+Challenge
+3
+</div>
+<div class='code-preview-view'>
+<strong>
+Stage
+2
+Challenge
+3
+</strong>
+<div class='code-preview-code'></div>
+</div>
+</div>
+
+</div>
+</div>
+<div class='row'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage2_challenge4_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var gravity = 0.5;&#x000A;var distance = 0;&#x000A;&#x000A;var square = {&#x000A;  size: 20,&#x000A;  x: ,&#x000A;  y: ,&#x000A;  jump: ,&#x000A;  yVelocity:&#x000A;};&#x000A;&#x000A;var boundary = {&#x000A;  minX: ,&#x000A;  minY: ,&#x000A;  maxX: ,&#x000A;  maxY:&#x000A;};&#x000A;&#x000A;var walls = {&#x000A;  spacing:&#x000A;  width:&#x000A;  height:&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;}&#x000A;&#x000A;function flap(e) {&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;}&#x000A;&#x000A;function clearBoundary() {&#x000A;  // CODE HERE TO CLEAR ALL AREAS OUTSIDE OF THE BOUNDARY&#x000A;}&#x000A;&#x000A;function checkBoundary() {&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;}&#x000A;&#x000A;function startAnimation() {&#x000A;  interval =&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage2_challenge4'></canvas>
 </div>
 <div class='alert'></div>
 </div>
