@@ -267,7 +267,7 @@
             Challenge 1
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage2/challenge1Example.gif', class: 'img-fluid canvas-example')
+            = image_tag('lessons/flappy_square/stage3/challenge1Example.gif', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small Challenge 1 Sample Solution
 
           %p
@@ -279,45 +279,66 @@
             complex the calculations are. So take your time with this challenge
             and don't get discouraged. It's hard stuff.
           %p
-            Luckily we don't need to calculate the bounce effect off the wall,
-            so this challenge will be considerably easier than the lesson above.
+            Luckily because our flappy square is flying constantly to the right
+            we only need to check for collisions to the right. We just
+            need to make sure the flappy square isn't flying through the hole
+            in the wall.
           %p
-            In each frame we'll need to check to see if our flappy square overlaps
-            with any of the walls. This will looks something like (which checks if
-            the flappy square has collided with a wall to its right):
+            In each frame we'll find the wall that the flappy square is flying
+            through (if any) and make sure it is not flying through any of the
+            "wall" area.
+          %p
+            We'll also need to keep track of the positions of each wall to find
+            the wall the flappy square is flying through.
+          %p
+            In the example code below we find the wall that the flappy square is passing
+            through and check to see that the flappy square is above the bottom
+            of the top part of the wall (not going through the hole). If it is
+            then we call a new method, endGame(), that pulls out the logic
+            from checkBoundary() so that both checkBoundary() and checkWalls()
+            can end the game.
+
           %pre
             %code
               :preserve
+                var left = square.x;
                 var right = square.x + square.size;
+                var top = square.y;
                 var bottom = square.y + square.size;
-                for (var i=0; i < walls.positions.length, ++i) {
-                  var wall = walls.positions[i];
-                  var wallRight = wall.x + walls.size;
-                  var wallBottom = wall.y + walls.size;
-                  var leftOverlap = (square.x >= wall.x && square.x <= wallRight);
-                  var rightOverlap = (right >= wall.x && right <= wallRight);
-                  var topOverlap = (square.y <= wallBottom && square.y >= wall.y);
-                  var bottomOverlap = (bottom <= wallBottom && bottom >= wall.y);
-                  if (right && (top || bottom)) {
-                    return true;
+
+                for (var i=0; i < walls.positions.length; ++i) {
+                  var wallLeft = walls.positions[i];
+                  var wallRight = position + walls.width;
+
+                  if (wallLeft > right) continue;
+                  if (wallRight < left) continue;
+
+                  var topWallBottom = boundary.minY + walls.height;
+                  if (top < topWallBottom) {
+                    endGame();
                   }
                 }
 
           %p
-            Yea, it's complicated. Try to imagine each interaction (e.g. the square
-            running into a top wall from the left side) and figuring out how you would
+            Remember this is only checking if the flappy square is hitting the
+            top portion of the wall. You'll need to ensure it isn't hitting the bottom
+            portion as well.
+
+          %p
+            It's a bit complicated. Try to imagine each interaction (e.g. the square
+            moving to the right and running into a top wall) and figuring out how you would
             know that the right side of the square has connected with the left side of
-            the way while the square is above the bottom of the wall and below the top of
-            the wall.
+            the wall while the square is above the bottom of the wall (for the top part
+            of the wall).
           %p
             Yea, it's complicated.
           %p
-            
+            Take it slowly and try to work it out.
 
-
-          %p In the end your flappy square should behave like the example provided to the right.
-          = render 'lessons/relevant', relevant: [:event_listeners]
-          = render 'lessons/code_preview', stage: 1, challenge: 5, editor_id: 'flappy_square_stage1_challenge5_editor'
+          %p
+            In the end your flappy square should behave like the example provided at
+            the beginning of this description.
+          = render 'lessons/code_preview', stage: 2, challenge: 4, editor_id: 'flappy_square_stage2_challenge4_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge1_editor'} do
@@ -329,7 +350,6 @@
             var gravity = 0.5;
             var distance = 0;
 
-            // FILL IN YOUR VARIABLES USING THIS HASH FORMAT HERE.
             var square = {
               size: 20,
               x: ,
@@ -349,12 +369,14 @@
               spacing:
               width:
               height:
+              positions: []
             };
 
             function drawBoundary() {
             }
 
             function drawWalls() {
+              // Remember to track their positions in wall.positions as well.
             }
 
             function drawSquare() {
@@ -364,13 +386,23 @@
             }
 
             function adjustPosition() {
-              // CODE TO ADJUST DISTANCE HERE
             }
 
             function checkBoundary() {
             }
 
+            function checkWalls() {
+              // CODE TO CHECK FOR WALL COLLISIONS HERE
+            }
+
+            function endGame() {
+              // EXTRACT CODE FROM checkBoundary()
+              // TO CREATE A COMMON endGame() method
+            }
+
             function runProgram() {
+              // Remember to run checkBoundary()
+              // and checkWalls() from there.
             }
 
             function startAnimation() {
@@ -383,6 +415,7 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
+            canvas.addEventListener('keydown', flap);
 
         .visual.col-xs-6
           %h5

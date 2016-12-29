@@ -11,7 +11,7 @@ initFlappySquareStage3Challenge1 = (page) ->
   challenge.find('.run').click ->
     setTimeout(( ->
       canvas.selfAssess ->
-        App.currentProgress.challengeComplete('flappy_square_stage2', 'challenge1')
-    ), 1000)
+        App.currentProgress.challengeComplete('flappy_square_stage3', 'challenge1')
+    ), 3000)
 
 $(document).on('initialization:complete', initFlappySquareStage3Challenges)
