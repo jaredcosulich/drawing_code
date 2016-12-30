@@ -94,22 +94,29 @@ initDngLineToChallenge4 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    context.fillStyle = 'Green'
-    context.fillRect(140, 80, 120, 120)
-    context.fillRect(80, 20, 60, 60)
-    context.fillRect(260, 20, 60, 60)
-    context.fillRect(80, 200, 60, 60)
-    context.fillRect(260, 200, 60, 60)
-
+    context.lineWidth = 5
+    context.strokeStyle = 'SaddleBrown'
+    context.beginPath()
+    context.moveTo(20, 180)
+    context.lineTo(20, 100)
+    context.lineTo(80, 95)
+    context.lineTo(110, 40)
+    context.lineTo(220, 40)
+    context.lineTo(270, 95)
+    context.lineTo(360, 110)
+    context.lineTo(360, 180)
+    context.closePath()
+    context.stroke()
+  
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> All five of your green squares are positioned and drawn correctly!'
+        message = '<strong>Success!</strong> You drew the outline of the polygon correctly!'
         App.currentProgress.challengeComplete('dng_line_to', 'challenge4')
       else
-        message = 'Nice try, but not all of your five green squares are positioned and drawn correctly.'
+        message = 'Nice try, but you need to draw a polygon by connecting all of the points correctly.'
 
       canvas.alert(message, success)
 
@@ -120,20 +127,26 @@ initDngLineToChallenge5 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    context.fillStyle = 'SaddleBrown'
-    context.fillRect(60, 40, 280, 240)
-    context.fillStyle = 'SkyBlue'
-    context.fillRect(100, 80, 200, 160)
-
+    context.fillStyle = 'MediumPurple'
+    context.beginPath()
+    context.moveTo(20, 90)
+    context.lineTo(60, 20)
+    context.lineTo(210, 20)
+    context.lineTo(270, 90)
+    context.lineTo(360, 110)
+    context.lineTo(360, 200)
+    context.lineTo(20, 200)
+    context.fill()
+  
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> The sky blue and saddle brown rectangles are layered, positioned, and drawn correctly!'
+        message = '<strong>Success!</strong> You connected the points and filled the polygon correctly!'
         App.currentProgress.challengeComplete('dng_line_to', 'challenge5')
       else
-        message = 'Nice try, but the sky blue and saddle brown rectangles are not layered, positioned, and drawn correctly.'
+        message = 'Nice try, but you need to connect the points and fill the polygon correctly.'
 
       canvas.alert(message, success)
 
@@ -144,23 +157,27 @@ initDngLineToChallenge6 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    context.fillStyle = 'MidnightBlue'
-    context.fillRect(20, 20, 360, 240)
-    context.fillStyle = 'Plum'
-    context.fillRect(80, 80, 240, 120)
-    context.fillStyle = 'LemonChiffon'
-    context.fillRect(80, 80, 120, 60)
-    context.fillRect(200, 140, 120, 60)
-
+    context.lineWidth = 6
+    context.strokeStyle = 'DarkGreen'
+    context.fillStyle = 'MediumSeaGreen'
+    context.beginPath()
+    context.moveTo(200, 20)
+    context.lineTo(320, 220)
+    context.lineTo(160, 280)
+    context.lineTo(90, 140)
+    context.closePath()
+    context.fill()
+    context.stroke()
+  
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> Your drawing matches the image precisely!'
+        message = '<strong>Success!</strong> You connected the points and filled and outlined the polygon correctly!'
         App.currentProgress.challengeComplete('dng_line_to', 'challenge6')
       else
-        message = 'Nice try, but your drawing does not match the image precisely.'
+        message = 'Nice try, but you need to connect the points and fill and outline the polygon correctly.'
 
       canvas.alert(message, success)
 
