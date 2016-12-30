@@ -168,10 +168,13 @@ class App.Editor
     @logElement.find('.close').click => @hideLog()
 
   log: (messageText...) ->
+    messages = @logElement.find('.messages')
     message = $(document.createElement('DIV'))
     message.addClass('message')
     message.html(messageText.join(', '))
-    @logElement.find('.messages').append(message)
+    if messages.find('.message').length >= 3
+      messages.find('.message').first().remove();
+    messages.append(message)
     @logElement.slideDown()
 
   clearLog: ->

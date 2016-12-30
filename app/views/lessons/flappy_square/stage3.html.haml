@@ -12,10 +12,10 @@
         then we end the game.
       %p
         It would also be good to randomize how often they appear and how
-        big the whole is that the flappy square needs to fly through.
+        big the hole is that the flappy square needs to fly through.
 
     .col-xs-6
-      = image_tag('lessons/flappy_square/stage2/challenge5Example.gif', class: 'img-fluid canvas-example')
+      = image_tag('lessons/flappy_square/stage3/challenge3Example.gif', class: 'img-fluid canvas-example')
 
 
   .lesson.row.py-3
@@ -449,9 +449,9 @@
           = render 'lessons/code_preview', stage: 2, challenge: 4, editor_id: 'flappy_square_stage2_challenge4_editor'
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge1_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage3_challenge1_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage2_challenge3');
+            var canvas = document.getElementById('flappy_square_stage3_challenge1');
             var context = canvas.getContext('2d');
 
             var interval;
@@ -530,7 +530,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage2_challenge1
+            %canvas#flappy_square_stage3_challenge1
           .alert
 
 
@@ -541,240 +541,81 @@
       .row
         .col-xs-12
           %h2.py-2
-            Lesson: Collision Detection
+            Lesson: Randomization
           %p
-            Collision detection is very common in games. You don't want your
-            characters running through walls like our flappy square currently is.
+            Our game isn't very interesting with every wall looking the exact same.
           %p
-            In order to detect the collision with something else in the game you
-            need to compare the position and size of everything in the game to make
-            sure nothing overlaps. Unfortunately it takes quite a few calculations to
-            check every object (and you have to check each side of the object)
-            against every other object. Luckily the computer is very good at making these
-            calculations so we can easily make these calculation each frame without slowing
-            the animation down.
+            Randomizing the spacing between the walls, and the location and size of
+            the hole in the wall would make the game more interesting and challenging.
           %p
-            In this example we'll show boxes that bounce off of each other if they
-            collide. In order to do this we have to compare every box to every other
-            box (as well as the borders of the game) to ensure nothing overlaps.
+            In this lesson we look at creating a drawing using random numbers.
+          %p
+            We'll create a simple cityscape using rectangles that are different widths
+            and heights drawn next to each other.
+          %p
+            The
+            %code Math.random()
+            method allows us to randomize this process so if you hit "Run" multiple
+            times you'll see the randomly generated "buildings" change each time.
+          %p
+            So if we wanted to generate a random number between 40 and 200 for our
+            building height we can do something like this:
+          %pre
+            %code
+              :preserve
+                40 + Math.floor(Math.random() * 160)
+
+          %p
+            The
+            %code Math.random()
+            generates a random decimal between 0 and 1 (such as 0.8). We multiply
+            that decimal by the maximum number we want (in this case 160 or 200 - 40)
+            to get a number between 0 and that maximum number.
+          %p
+            %code Math.floor()
+            then rounds that number down (for example from 129.83 to just 129) and we
+            add 40 to give us a random integer between 40 and 200.
+
+
+
+
+
 
           = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage3_lesson2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage3_lesson3_editor'} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage3_lesson2');
+                var canvas = document.getElementById('flappy_square_stage3_lesson3');
                 var context = canvas.getContext('2d');
 
-                var interval;
-                var count = 15;
-                var size = 20;
-                var boxes = [];
-                var boundary = {
-                  minX: 25,
-                  minY: 25,
-                  maxX: 450,
-                  maxY: 300
-                };
-
-                function overlaps(x, y, size, buffer) {
-                  if (!buffer) buffer = 0;
-                  var minX = x - buffer;
-                  var minY = y - buffer;
-                  var maxX = x + size + buffer;
-                  var maxY = y + size + buffer;
-
-                  for (var i=0; i< boxes.length; ++i) {
-                    var box = boxes[i];
-                    if (box.x == x && box.y == y) continue;
-
-                    var minBoxX = box.x - buffer;
-                    var minBoxY = box.y - buffer;
-                    var maxBoxX = box.x + size + buffer;
-                    var maxBoxY = box.y + size + buffer;
-
-                    var left = (minX <= maxBoxX && minX >= minBoxX);
-                    var right = (maxX >= minBoxX && maxX <= maxBoxX);
-                    var top = (minY <= maxBoxY && minY >= minBoxY);
-                    var bottom = (maxY >= minBoxY && maxY <= maxBoxY);
-
-                    if ((left || right) && (top || bottom)) {
-                      var leftOverlap = maxBoxX - minX;
-                      var rightOverlap = maxX - minBoxX;
-                      var topOverlap = maxBoxY - minY;
-                      var bottomOverlap = maxY - minBoxY;
-
-                      var overlaps = [
-                        (left ? leftOverlap : 9999),
-                        (right ? rightOverlap : 9999),
-                        (top ? topOverlap : 9999),
-                        (bottom ? bottomOverlap : 9999)
-                      ];
-
-                      var info = {box: box};
-                      switch(Math.min.apply(null, overlaps)) {
-                        case leftOverlap:
-                          info.direction = 'left';
-                          break;
-                        case rightOverlap:
-                          info.direction = 'right';
-                          break;
-                        case topOverlap:
-                          info.direction = 'top';
-                          break;
-                        case bottomOverlap:
-                          info.direction = 'bottom';
-                          break;
-                      }
-                      return info;
-                    }
-                  }
-                  return false;
+                var ground = canvas.height - 20;
+                function drawBuilding(x, width, height) {
+                  context.fillRect(x, ground - height, width, height);
                 }
 
-                function checkBoundary(x, y, size, buffer) {
-                  if (!buffer) buffer = 0;
-                  outOfBounds = {};
-                  if (x + size + buffer > canvas.width) {
-                    outOfBounds.right = true;
-                  } else if (x < 0) {
-                    outOfBounds.left = true;
-                  }
-
-                  if (y + size + buffer > canvas.height) {
-                    outOfBounds.bottom = true;
-                  } else if (y < 0) {
-                    outOfBounds.top = true;
-                  }
-                  return outOfBounds;
+                function random(lowerBound, upperBound) {
+                  return lowerBound + Math.floor(
+                    Math.random() * (upperBound - lowerBound)
+                  );
                 }
 
-                function random(floor, ceil) {
-                  return floor + Math.floor(Math.random() * ((ceil + 1) - floor));
+                var totalX = 0;
+                while(totalX < canvas.width) {
+                  var width = random(40, 100);
+                  var height = random(50, 250);
+                  drawBuilding(totalX, width, height);
+                  totalX += width + 2;
                 }
-
-                function generateRandomPosition() {
-                  var x;
-                  var y;
-                  do {
-                    x = random(boundary.minX, boundary.maxX);
-                    y = random(boundary.minY, boundary.maxY);
-                  } while (overlaps(x, y, size, size));
-                  return {x: x, y: y};
-                }
-
-                function generateBoxes() {
-                  for (var i=0; i< count; ++i) {
-                    var position = generateRandomPosition();
-
-                    boxes.push({
-                      x: position.x,
-                      y: position.y,
-                      xVelocity: [random(2, 6), random(-2, -6)][random(0, 1)],
-                      yVelocity: [random(2, 6), random(-2, -6)][random(0, 1)],
-                      collidedWith: {}
-                    });
-                  }
-                }
-
-                function adjustPositions() {
-                  for (var i=0; i< count; ++i) {
-                    boxes[i].x += boxes[i].xVelocity;
-                    boxes[i].y += boxes[i].yVelocity;
-
-                    var collision = overlaps(boxes[i].x, boxes[i].y, size);
-                    if (collision) {
-                      if (collision.box.collidedWith[i] > 0) {
-                        collision.box.collidedWith[i] -= 1;
-                      } else {
-                        collision.box.collidedWith[i] = 5;
-
-                        var newVelocity;
-                        switch(collision.direction) {
-                          case 'left':
-                          case 'right':
-                            newVelocity = collision.box.xVelocity;
-                            collision.box.xVelocity = boxes[i].xVelocity;
-                            boxes[i].xVelocity = newVelocity;
-                            break;
-                          case 'top':
-                          case 'bottom':
-                            newVelocity = collision.box.yVelocity;
-                            collision.box.yVelocity = boxes[i].yVelocity;
-                            boxes[i].yVelocity = newVelocity;
-                            break;
-                        }
-                      }
-                    } else {
-                      boxes[i].collidedWith = {};
-                    }
-
-                    var boundary = checkBoundary(boxes[i].x, boxes[i].y, size);
-                    if (Object.keys(boundary).length > 0) {
-                      if (boundary.left || boundary.right) {
-                        if (boundary.left) boxes[i].x = 1;
-                        if (boundary.right) boxes[i].x = canvas.width - size - 1;
-                        boxes[i].xVelocity = boxes[i].xVelocity * -1;
-                      }
-
-                      if (boundary.top || boundary.bottom) {
-                        if (boundary.top) boxes[i].y = 1;
-                        if (boundary.bottom) boxes[i].y = canvas.height - size - 1;
-                        boxes[i].yVelocity = boxes[i].yVelocity * -1;
-                      }
-                    }
-                  }
-                }
-
-                function drawBoxes() {
-                  for (var i=0; i< count; ++i) {
-                    var box = boxes[i];
-                    context.save();
-                    context.translate(box.x, box.y);
-                    context.fillRect(0, 0, size, size);
-                    context.fillStyle = 'white';
-                    context.font = "10px serif";
-                    context.textAlign = 'center';
-                    context.textBaseline="middle";
-                    context.fillText(i + 1, size/2, size/2);
-                    context.restore();
-                  }
-                }
-
-                function runProgram() {
-                  context.clearRect(0, 0, canvas.width, canvas.height);
-
-                  adjustPositions();
-                  drawBoxes();
-                }
-
-                function startAnimation() {
-                  interval = setInterval(runProgram, 50);
-                }
-
-                function pauseAnimation() {
-                  clearInterval(interval);
-
-                  context.font = "20px serif";
-                  context.textAlign = 'center';
-                  context.fillText('Click on the canvas to start the animation.', canvas.width / 2, 50);
-                }
-
-                canvas.addEventListener('focus', startAnimation);
-                canvas.addEventListener('blur', pauseAnimation);
-
-                generateBoxes();
-                pauseAnimation();
-
 
             .visual.col-xs-6
               %h5
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage3_lesson2
+                %canvas#flappy_square_stage3_lesson3
 
 
   #challenge2.challenge.row.py-3
@@ -789,69 +630,51 @@
             %figcaption.text-xs-center.small Challenge 2 Sample Solution
 
           %p
-            So now we're going to take our code from Stage 2 and we're going
-            to track whether our flappy square runs into a wall.
+            Our game landscape is a little repetitive. Each wall is equally spaced apart
+            and the holes through the walls are all the same size and in the same position.
+            We need to mix it up a bit more.
           %p
-            Collision detection is one of the more complicated problems you'll
-            deal with when developing a game. The lesson above demonstrates how
-            complex the calculations are. So take your time with this challenge
-            and don't get discouraged. It's hard stuff.
+            Let's take our code from challenge 1 and randomize both the spacing of the walls
+            and the size and position of the holes.
           %p
-            Luckily because our flappy square is flying constantly to the right
-            we only need to check for collisions to the right. We just
-            need to make sure the flappy square isn't flying through the hole
-            in the wall.
+            Use the
+            %code Math.random()
+            method to produce a random decimal between 0 and 1.
+            Then multiply that decimal by a larger number to create a random number
+            between 0 and that number. Use
+            %code Math.floor()
+            to produce an integer. Then you can add to that randomly produced integer
+            to change the range (for example add 40 to go from 0 - 160 to 40 - 200).
           %p
-            In each frame we'll find the wall that the flappy square is flying
-            through (if any) and make sure it is not flying through any of the
-            "wall" area.
-          %p
-            We'll also need to keep track of the positions of each wall to find
-            the wall the flappy square is flying through.
-          %p
-            In the example code below we find the wall that the flappy square is passing
-            through and check to see that the flappy square is above the bottom
-            of the top part of the wall (not going through the hole). If it is
-            then we call a new method, endGame(), that pulls out the logic
-            from checkBoundary() so that both checkBoundary() and checkWalls()
-            can end the game.
-
+            This looks something like this:
           %pre
             %code
               :preserve
-                var left = square.x;
-                var right = square.x + square.size;
-                var top = square.y;
-                var bottom = square.y + square.size;
-
-                for (var i=0; i < walls.positions.length; ++i) {
-                  var wallLeft = walls.positions[i];
-                  var wallRight = position + walls.width;
-
-                  if (wallLeft > right) continue;
-                  if (wallRight < left) continue;
-
-                  var topWallBottom = boundary.minY + walls.height;
-                  if (top < topWallBottom) {
-                    endGame();
-                  }
-                }
-
+                40 + Math.floor(Math.random() * 160)
           %p
-            Remember this is only checking if the flappy square is hitting the
-            top portion of the wall. You'll need to ensure it isn't hitting the bottom
-            portion as well.
-
+            If you run this multiple times you'll get values ranging between 40 and 200.
           %p
-            It's a bit complicated. Try to imagine each interaction (e.g. the square
-            moving to the right and running into a top wall) and figuring out how you would
-            know that the right side of the square has connected with the left side of
-            the wall while the square is above the bottom of the wall (for the top part
-            of the wall).
+            Use something similar to
+            %span.highlight position walls between 100 and 200 pixels apart.
           %p
-            Yea, it's complicated.
+            You also need to keep track of where you position the walls so that they don't
+            move around randomly as you draw each frame. Make sure that your wall collision
+            detection works properly with their new random positions.
           %p
-            Take it slowly and try to work it out.
+            This is harder than it sounds when you're dealing with a moving background.
+            You'll need to position enough walls so that as the background moves the walls
+            keep coming, indefinitely.
+          %p
+            There are many ways to do this, but I'd suggest you position walls until at least
+            one wall is outside the bounds of the canvas. Once that wall is within the bounds
+            of the canvas then you position the next wall off the canvas. If you continue doing
+            this then you'll always have one wall outside of the bounds of the game ready to
+            come in to view.
+          %p
+            Let's also widen the hole in each wall so that we can easily fly through them
+            and observe the random spacing between our walls more easily. Make
+            the
+            %span.highlight height of the walls 75 instead of 100.
 
           %p
             In the end your flappy square should behave like the example provided at
@@ -859,9 +682,9 @@
           = render 'lessons/code_preview', stage: 3, challenge: 1, editor_id: 'flappy_square_stage3_challenge1_editor'
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage2_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage3_challenge2_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage2_challenge3');
+            var canvas = document.getElementById('flappy_square_stage3_challenge2');
             var context = canvas.getContext('2d');
 
             var interval;
@@ -894,7 +717,9 @@
             }
 
             function drawWalls() {
-              // Remember to track their positions in wall.positions as well.
+              // USE Math.random() TO POSITION
+              // THE WALLS RANDOMLY. BE SURE TO
+              // TRACK THE POSITION OF EACH WALL!
             }
 
             function drawSquare() {
@@ -910,17 +735,12 @@
             }
 
             function checkWalls() {
-              // CODE TO CHECK FOR WALL COLLISIONS HERE
             }
 
             function endGame() {
-              // EXTRACT CODE FROM checkBoundary()
-              // TO CREATE A COMMON endGame() method
             }
 
             function runProgram() {
-              // Remember to run checkBoundary()
-              // and checkWalls() from there.
             }
 
             function startAnimation() {
@@ -940,5 +760,130 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage2_challenge2
+            %canvas#flappy_square_stage3_challenge2
+          .alert
+
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+
+          %figure.float-xs-right.pl-2
+            = image_tag('lessons/flappy_square/stage3/challenge3Example.gif', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+          %p
+            Ok, now that we have a better understanding of randomization let's apply it to the
+            position and size of the hole in each wall.
+          %p
+            Rather than having each portion of the wall be the same height (75 pixels) let's
+            vary them by randomizing the height of the top and bottom portion of the wall,
+            creating varying hole positions and sizes.
+          %p
+            You can play around with varying sizes, but I'd suggest varying the top portion
+            %span.highlight between 25 and 150 pixels.
+            Then you'll want to create a varying height for the bottom portion that
+            is within the same parameters but you need to be careful. If you
+            randomly create two walls that are 150 pixels then you won't have any room
+            for the hole and you probably want the hole to be at least
+            %span.highlight 75 pixels.
+            Similarly if you both the top and bottom portions of the wall are 25 pixels then
+            your hole will be 225 pixels (300 - 25 - 50), which is very big. So you may
+            want to make your hole no more than 150 pixels as well...
+
+          %p
+            You'll need to store this information as well so that you can draw the same hole
+            in each frame. You may want to store a hash in the "positions" attribute of your "walls"
+            variable that contains the position, the height of the top wall, and the size of the
+            hole.
+          %p
+            You'll need to update your wall collision detection to take this information into
+            account as well.
+          %p
+            In the end your flappy square should behave like the example to the right.
+          = render 'lessons/code_preview', stage: 3, challenge: 2, editor_id: 'flappy_square_stage3_challenge2_editor'
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage3_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage3_challenge3');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var gravity = 0.5;
+            var distance = 0;
+
+            var square = {
+              size: 20,
+              x: ,
+              y: ,
+              jump: ,
+              yVelocity:
+            };
+
+            var boundary = {
+              minX: ,
+              minY: ,
+              maxX: ,
+              maxY:
+            };
+
+            var walls = {
+              spacing:
+              width:
+              height:
+              positions: []
+            };
+
+            function drawBoundary() {
+            }
+
+            function drawWalls() {
+              // USE Math.random() TO POSITION
+              // THE WALLS RANDOMLY. BE SURE TO
+              // TRACK THE POSITION OF EACH WALL!
+            }
+
+            function drawSquare() {
+            }
+
+            function flap(e) {
+            }
+
+            function adjustPosition() {
+            }
+
+            function checkBoundary() {
+            }
+
+            function checkWalls() {
+            }
+
+            function endGame() {
+            }
+
+            function runProgram() {
+            }
+
+            function startAnimation() {
+              interval =
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.addEventListener('keydown', flap);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#flappy_square_stage3_challenge3
           .alert
