@@ -1,0 +1,517 @@
+#dng_line_to.lesson
+  %h1
+    context.lineTo()
+  .description.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_line_to/overviewVisual1.png', class: 'img-fluid canvas-example')
+          %p
+            The
+            %code
+              context.lineTo()
+            method adds a line segment to the current path by passing it two values:
+          %pre
+            %code
+              :preserve
+                context.lineTo(x, y);
+          %p
+            This programs the context to add a straight line from the last point in the current path to the point
+            %span
+              (
+              %code><
+                x
+              ,
+            %span
+              %code>
+                y
+              ),
+            but it does not draw the line on the canvas until we tell the context to stroke or fill the path.
+          .source
+            = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineTo', target: '_blank')
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw a Straight Line
+          %p
+            Most shapes are drawn on the canvas by creating a path first, and then stroking
+            or filling the path later.
+          %p
+            In this example, we use the
+            %code
+              context.beginPath()
+            method to create a new path and the
+            %code
+              context.moveTo()
+            method to set the path's starting point at (300, 50):
+          %pre
+            %code
+              :preserve
+                context.beginPath();
+                context.moveTo(300, 50);
+          %p
+            Then, we add a line segment to the end of the path using the
+            %code
+              context.lineTo()
+            method:
+          %pre
+            %code
+              :preserve
+                context.lineTo(50, 200);
+          %p
+            This creates a straight line from (300, 50) to (50, 200), but doesn't draw the line
+            yet. To actually draw the line, we use the
+            %code
+              context.stroke()
+            method to stroke the line using the color currently stored in the
+            %code
+              context.strokeStyle
+            property.
+          %pre
+            %code
+              :preserve
+                context.stroke();
+          %p
+            Change the coordinates passed into the
+            %code
+              context.moveTo()
+            and
+            %code
+              context.lineTo()
+            methods to see what happens. To learn more about the context's coordinate system, visit the
+            = link_to_lesson('coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_line_to_example1');
+                var context = canvas.getContext('2d');
+
+                context.beginPath();
+                context.moveTo(300, 50);
+                context.lineTo(50, 200);
+                context.stroke();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_line_to_example1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_line_to/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a black line from (40, 20) to (240, 280).
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_line_to_challenge1');
+            var context = canvas.getContext('2d');
+
+            context.beginPath();
+            
+            // SET THE PATH'S STARTING POINT HERE
+            // SET THE LINE'S END POINT HERE
+            
+            context.stroke();
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_line_to/challenge1.png')
+            %canvas#dng_line_to_challenge1
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Set a Line's Appearance
+          %p
+            Besides drawing a 1-pixel-wide black line, we can change the appearance of
+            our lines by setting the
+            %span
+              %code>
+                context.strokeStyle
+              ,
+            %span
+              %code>
+                context.lineWidth
+              ,
+            and
+            %code
+              context.lineCap
+            properties. The
+            %code
+              context.strokeStyle
+            property stores the current color, gradient, or pattern used for lines, the
+            %code
+              context.lineWidth
+            property sets the thickness of lines, and the
+            %code
+              context.lineCap
+            property determines how the end points of a line are drawn. To learn more about colors,
+            gradients, and patterns, visit the
+            = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
+            lesson.
+          %p
+            In this example, we draw a line from (40, 220) to (360, 80) that is 8-pixels thick and
+            %span
+              %code>
+                'DarkMagenta'
+              ,
+            and has
+            %code
+              'round'
+            ends.
+          %p
+            Change the color, thickness, and shape of the end points to see how it affects the
+            line's appearance. Possible values for the
+            %code
+              context.lineCap
+            property are
+            %span
+              %code>
+                'butt'
+              ,
+            %span
+              %code>
+                'round'
+              ,
+            and
+            %span
+              %code>
+                'square'
+              \.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_line_to_example2');
+                var context = canvas.getContext('2d');
+                
+                context.lineWidth = 8; // Set the line width
+                context.lineCap = 'round'; // Set the shape of the end points
+                context.strokeStyle = 'DarkMagenta'; // Set the line color
+                
+                context.beginPath();
+                context.moveTo(40, 220);
+                context.lineTo(360, 80);
+                context.stroke();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_line_to_example2
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_line_to/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a line from (40, 120) to (340, 240) that is 4-pixels thick and the color
+            %code
+              'SlateBlue'
+            with
+            %code
+              'square'
+            \end points.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_line_to_challenge2');
+            var context = canvas.getContext('2d');
+            
+            // SET THE LINE WIDTH TO 4 HERE
+            // SET THE SHAPE OF THE END POINTS TO SQUARE HERE
+            // SET THE LINE COLOR TO SLATEBLUE HERE
+            
+            // DRAW THE LINE FROM (40, 120) TO (340, 240) HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_line_to/challenge2.png')
+            %canvas#dng_line_to_challenge2
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw a Path of Connected Lines
+          %p
+            We don't just use the
+            %code
+              context.lineTo()
+            method to draw individual lines. We also use it to draw paths made by
+            connecting multiple lines.
+          %p
+            In this example, we draw a path made by connecting the points (140, 20), (60, 180),
+            (260, 300), and (340, 220) with straight lines that are the color
+            %code
+              'RebeccaPurple'
+            and 2-pixels thick.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_line_to_example3');
+                var context = canvas.getContext('2d');
+
+                context.lineWidth = 2;
+                context.strokeStyle = 'RebeccaPurple';
+                
+                context.beginPath();
+                context.moveTo(140, 20);
+                context.lineTo(60, 180);
+                context.lineTo(260, 300);
+                context.lineTo(340, 220);
+                context.stroke();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_line_to_example3
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_line_to/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a path made by connecting the points (200, 160), (280, 120), (380, 240),
+            (140, 280), and (60, 40) with straight lines that are the color
+            %code
+              'OrangeRed'
+            and 3-pixels thick.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_line_to_challenge3');
+            var context = canvas.getContext('2d');
+
+            // SET THE LINE WIDTH TO 3 HERE
+            // SET THE LINE COLOR TO ORANGERED HERE
+            
+            // DRAW THE CONNECTED LINES HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_line_to/challenge3.png')
+            %canvas#dng_line_to_challenge3
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw the Outline of a Polygon
+          %p
+            In this example, we draw the outline of a polygon by connecting the points
+            (40, 40), (320, 160), (40, 280), and (140, 160) with straight lines that are the color
+            %code
+              'ForestGreen'
+            and 6-pixels thick. To close the polygon, we use the
+            %code
+              context.closePath()
+            method to automatically connect the last point in the path to the first point.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_line_to_example4');
+                var context = canvas.getContext('2d');
+
+                context.lineWidth = 6;
+                context.strokeStyle = 'ForestGreen';
+                
+                context.beginPath();
+                context.moveTo(40, 40);
+                context.lineTo(320, 160);
+                context.lineTo(40, 280);
+                context.lineTo(140, 160);
+                context.closePath();
+                context.stroke();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_line_to_example4
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_line_to/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a green square at (140, 80) with a width and height of 120.
+          %p
+            Then draw four smaller green squares with widths and heights of 60 touching
+            the four corners of the larger square.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_line_to_challenge4');
+            var context = canvas.getContext('2d');
+
+            context.fillStyle = 'Green';
+            
+            // DRAW THE LARGE GREEN SQUARE HERE
+
+            // DRAW THE FOUR SMALLER GREEN SQUARES HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#dng_line_to_challenge4
+          .alert
+
+
+  #challenge5.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 5
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_line_to/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a sky blue rectangle on top of a saddle brown rectangle.
+          %p
+            The top left corner of the sky blue rectangle is positioned at (100, 80),
+            and its width is 200 and its height is 160.
+          %p
+            The saddle brown rectangle is positioned and sized so it forms a 40-pixel-wide
+            border around the sky blue rectangle, like a picture frame.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_challenge5_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_line_to_challenge5');
+            var context = canvas.getContext('2d');
+
+            context.fillStyle = 'SkyBlue';
+            context.fillStyle = 'SaddleBrown';
+            
+            // USE THE FILL COLORS TO DRAW THE RECTANGLES HERE
+            
+            // NOTE: YOU MAY NEED TO CHANGE WHERE YOU SET THE FILL COLORS
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#dng_line_to_challenge5
+          .alert
+
+
+  #challenge6.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 6
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_line_to/challenge6Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw the image to the right.
+          %p
+            The two plum and two lemon chiffon rectangles inside of the midnight blue border
+            each have a width of 120 and a height of 60.
+          %p
+            The midnight blue border is 60-pixels-wide and the top left corner of the border
+            is positioned at (20, 20).
+          %p
+            Note: It is possible to draw this image with only four rectangles. Can you figure out how?
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_challenge6_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_line_to_challenge6');
+            var context = canvas.getContext('2d');
+
+            context.fillStyle = 'Plum';
+            context.fillStyle = 'LemonChiffon';
+            context.fillStyle = 'MidnightBlue';
+            
+            // USE THE FILL COLORS TO DRAW THE RECTANGLES HERE
+            
+            // NOTE: YOU MAY NEED TO CHANGE WHERE YOU SET THE FILL COLORS
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#dng_line_to_challenge6
+          .alert

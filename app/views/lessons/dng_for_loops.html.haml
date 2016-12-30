@@ -944,7 +944,7 @@
                   // Draw row of squares
                   
                   context.restore(); // Restore the origin back to the start of the row
-                  context.translate(0, 40); // Move the origin down 40 pixels to start of the next row
+                  context.translate(0, 40); // Move the origin down 40 pixels to the start of the next row
                 }
           %p
             The first thing we do in the code block for the outer for loop is save the drawing
@@ -989,7 +989,7 @@
                   }
                   
                   context.restore(); // Restore the origin back to the start of the row
-                  context.translate(0, 40); // Move the origin down 40 pixels to start of the next row
+                  context.translate(0, 40); // Move the origin down 40 pixels to the start of the next row
                 }
           %p
             Because the inner for loop is inside of the outer for loop, we have to use different
@@ -1037,7 +1037,7 @@
                   }
                   
                   context.restore(); // Restore the origin back to the start of the row
-                  context.translate(0, 40); // Move the origin down 40 pixels to start of the next row
+                  context.translate(0, 40); // Move the origin down 40 pixels to the start of the next row
                 }
 
             .visual.col-xs-6
@@ -1258,7 +1258,7 @@
             We decrement the counter by subtracting 1 from it at the end of each loop until the
             condition
             %code
-              i <= 0
+              i >= 0
             returns false.
           %p
             Inside of the for loop, we use an if statement to check if the color is
