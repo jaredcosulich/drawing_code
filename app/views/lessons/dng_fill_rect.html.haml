@@ -10,20 +10,25 @@
           %figure.float-xs-right.px-2
             = image_tag('lessons/dng_fill_rect/overviewVisual1.png', class: 'img-fluid canvas-example')
           %p
-            We program the context to draw a filled rectangle on the canvas using the
+            The
             %code
               context.fillRect()
-            method.
-          %p
-            To draw a rectangle, we pass the method four values:
+            method draws a filled rectangle on the canvas by passing it four values:
           %pre
             %code
               :preserve
                 context.fillRect(x, y, width, height);
           %p
             This programs the context to draw a rectangle at
-            %code
-              (x, y)
+            %span
+              (
+              %code><
+                x
+              ,
+            %span
+              %code>
+                y
+              )
             with the given
             %code
               width
