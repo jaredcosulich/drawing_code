@@ -130,8 +130,8 @@
 
             context.beginPath();
             
-            // SET THE PATH'S STARTING POINT HERE
-            // SET THE LINE'S END POINT HERE
+            // SET THE PATH'S STARTING POINT AT (40, 20) HERE
+            // SET THE LINE'S END POINT AT (240, 280) HERE
             
             context.stroke();
 
@@ -179,12 +179,10 @@
             = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
             lesson.
           %p
-            In this example, we draw a line from (40, 220) to (360, 80) that is 8-pixels thick and
-            %span
-              %code>
-                'DarkMagenta'
-              ,
-            and has
+            In this example, we draw a line from (40, 220) to (360, 80) that is
+            %code>
+              'DarkMagenta'
+            and 8-pixels thick with
             %code
               'round'
             ends.
@@ -243,13 +241,13 @@
             = image_tag('lessons/dng_line_to/challenge2Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Draw a line from (40, 120) to (340, 240) that is 4-pixels thick and the color
+            Draw a line from (40, 120) to (340, 240) that is the color
             %code
               'SlateBlue'
-            with
+            and 4-pixels thick with
             %code
               'square'
-            \end points.
+            ends.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_challenge2_editor'} do
@@ -343,7 +341,7 @@
             // SET THE LINE WIDTH TO 3 HERE
             // SET THE LINE COLOR TO ORANGERED HERE
             
-            // DRAW THE CONNECTED LINES HERE
+            // DRAW THE LINES CONNECTING THE POINTS (200, 160), (280, 120), (380, 240), (140, 280), AND (60, 40) HERE
 
         .visual.col-xs-6
           %h5
@@ -408,10 +406,11 @@
             = image_tag('lessons/dng_line_to/challenge4Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Draw a green square at (140, 80) with a width and height of 120.
-          %p
-            Then draw four smaller green squares with widths and heights of 60 touching
-            the four corners of the larger square.
+            Draw the outline of a polygon by connecting the points (360, 110), (360, 180), (20, 180),
+            (20, 100), (80, 95), (110, 40), (220, 40), and (270, 95) with straight lines that are the color
+            %code
+              'SaddleBrown'
+            and 5-pixels thick.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_challenge4_editor'} do
@@ -419,19 +418,69 @@
             var canvas = document.getElementById('dng_line_to_challenge4');
             var context = canvas.getContext('2d');
 
-            context.fillStyle = 'Green';
+            // SET THE LINE WIDTH TO 5 HERE
+            // SET THE LINE COLOR TO SADDLEBROWN HERE
             
-            // DRAW THE LARGE GREEN SQUARE HERE
-
-            // DRAW THE FOUR SMALLER GREEN SQUARES HERE
+            // DRAW THE LINES CONNECTING THE POINTS (360, 110), (360, 180), (20, 180), (20, 100), (80, 95), (110, 40), (220, 40), AND (270, 95) HERE
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_line_to/challenge4.png')
             %canvas#dng_line_to_challenge4
           .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw a Filled Polygon
+          %p
+            In this example, we draw a filled polygon by connecting the points (160, 60),
+            (280, 60), (340, 260), and (100, 260) with straight lines.
+          %p
+            To fill the polygon instead of outlining it, we use the
+            %code
+              context.fill()
+            method instead of the
+            %code
+              context.stroke()
+            method. This fills the polygon with the color currently stored in the
+            %code
+              context.fillStyle
+            property. When a path is filled, it is closed automatically even if the
+            %code
+              context.closePath()
+            method has not been called.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_example5_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_line_to_example5');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = 'DodgerBlue';
+                
+                context.beginPath();
+                context.moveTo(160, 60);
+                context.lineTo(280, 60);
+                context.lineTo(340, 260);
+                context.lineTo(100, 260);
+                context.closePath();
+                context.fill();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_line_to_example5
 
 
   #challenge5.challenge.row.py-3
@@ -444,13 +493,13 @@
             = image_tag('lessons/dng_line_to/challenge5Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Draw a sky blue rectangle on top of a saddle brown rectangle.
-          %p
-            The top left corner of the sky blue rectangle is positioned at (100, 80),
-            and its width is 200 and its height is 160.
-          %p
-            The saddle brown rectangle is positioned and sized so it forms a 40-pixel-wide
-            border around the sky blue rectangle, like a picture frame.
+            Draw a filled polygon by connecting the points (20, 90), (60, 20), (210, 20),
+            (270, 90), (360, 110), (360, 200), and (20, 200) with straight lines and filling
+            the path with the color
+            %span
+              %code>
+                'MediumPurple'
+              \.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_challenge5_editor'} do
@@ -458,20 +507,72 @@
             var canvas = document.getElementById('dng_line_to_challenge5');
             var context = canvas.getContext('2d');
 
-            context.fillStyle = 'SkyBlue';
-            context.fillStyle = 'SaddleBrown';
+            // SET THE FILL COLOR TO MEDIUMPURPLE HERE
             
-            // USE THE FILL COLORS TO DRAW THE RECTANGLES HERE
-            
-            // NOTE: YOU MAY NEED TO CHANGE WHERE YOU SET THE FILL COLORS
+            // DRAW THE LINES CONNECTING THE POINTS (20, 90), (60, 20), (210, 20), (270, 90), (360, 110), (360, 200), AND (20, 200) HERE
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_line_to/challenge5.png')
             %canvas#dng_line_to_challenge5
           .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Fill and Outline a Polygon
+          %p
+            We use the
+            %code
+              context.fill()
+            method to fill a path and the
+            %code
+              context.stroke()
+            method to outline it. After filling or stroking a path, the path remains
+            the current path until we create a new one, so we can fill and stroke a path
+            without creating the path twice.
+          %p
+            In this example, we create a polygon by connecting the points (200, 40),
+            (340, 240), and (60, 200). Then, we fill the polygon with the color
+            %code
+              'DeepPink'
+            and outline it with a
+            %code
+              'DarkRed'
+            line that is 4-pixels thick.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_example6_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_line_to_example6');
+                var context = canvas.getContext('2d');
+
+                context.lineWidth = 4;
+                context.strokeStyle = 'DarkRed';
+                context.fillStyle = 'DeepPink';
+                
+                context.beginPath();
+                context.moveTo(200, 40);
+                context.lineTo(340, 240);
+                context.lineTo(60, 200);
+                context.closePath();
+                context.fill();
+                context.stroke();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_line_to_example6
 
 
   #challenge6.challenge.row.py-3
@@ -484,15 +585,16 @@
             = image_tag('lessons/dng_line_to/challenge6Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Draw the image to the right.
-          %p
-            The two plum and two lemon chiffon rectangles inside of the midnight blue border
-            each have a width of 120 and a height of 60.
-          %p
-            The midnight blue border is 60-pixels-wide and the top left corner of the border
-            is positioned at (20, 20).
-          %p
-            Note: It is possible to draw this image with only four rectangles. Can you figure out how?
+            Create a polygon by connecting the points (200, 20), (320, 220), (160, 280),
+            and (90, 140) with straight lines. Then, fill the polygon with the color
+            %span
+              %code>
+                'MediumSeaGreen'
+              ,
+            and outline it with a
+            %code
+              'DarkGreen'
+            line that is 6-pixels thick.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_line_to_challenge6_editor'} do
@@ -500,18 +602,19 @@
             var canvas = document.getElementById('dng_line_to_challenge6');
             var context = canvas.getContext('2d');
 
-            context.fillStyle = 'Plum';
-            context.fillStyle = 'LemonChiffon';
-            context.fillStyle = 'MidnightBlue';
+            // SET THE LINE WIDTH TO 6 HERE
+            // SET THE STROKE COLOR TO DARKGREEN HERE
+            // SET THE FILL COLOR TO MEDIUMSEAGREEN HERE
             
-            // USE THE FILL COLORS TO DRAW THE RECTANGLES HERE
-            
-            // NOTE: YOU MAY NEED TO CHANGE WHERE YOU SET THE FILL COLORS
+            // DRAW THE LINES CONNECTING THE POINTS (200, 20), (320, 220), (160, 280), AND (90, 140) HERE
+            // FILL THE POLYGON HERE
+            // STROKE THE POLYGON HERE
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_line_to/challenge6.png')
             %canvas#dng_line_to_challenge6
           .alert
