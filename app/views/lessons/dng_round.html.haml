@@ -1,0 +1,625 @@
+#dng_round.lesson
+  %h1
+    Math.round() / Math.floor() / Math.ceil()
+  .description.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_round/overviewVisual1.png', class: 'img-fluid canvas-example')
+          %p
+            The
+            %code
+              Math.round()
+            function accepts a number and returns its value rounded to the nearest integer:
+          %pre
+            %code
+              :preserve
+                Math.round(x);
+          %p
+            The
+            %code
+              Math.floor()
+            and
+            %code
+              Math.ceil()
+            functions return the value of a number rounded down to the nearest integer and rounded up, respectively:
+          %pre
+            %code
+              :preserve
+                Math.floor(x);
+                Math.ceil(x);
+          %p
+            The
+            %span
+              %code>
+                Math.round()
+              ,
+            %span
+              %code>
+                Math.floor()
+              ,
+            and
+            %code
+              Math.ceil()
+            functions are methods of the
+            %code
+              Math
+            object, which has a set of functions that other programmers have defined for us to
+            use. Here is a full list of available
+            %span
+              %span><
+                = link_to('math functions', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math', target: '_blank')
+              \.
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Round a Number
+          %p
+            In this example, we use the
+            %span
+              %code>
+                Math.round()
+              ,
+            %span
+              %code>
+                Math.floor()
+              ,
+            and
+            %code
+              Math.ceil()
+            functions to round a number assigned to the variable
+            %span
+              %code>
+                x
+              \.
+          %pre
+            %code
+              :preserve
+                var x = 8.3962; // Assign the number to round
+                
+                var a = Math.round(x);
+                var b = Math.floor(x);
+                var c = Math.ceil(x);
+          %p
+            Change the value assigned to the variable
+            %code
+              x
+            to see how the
+            %span
+              %code>
+                Math.round()
+              ,
+            %span
+              %code>
+                Math.floor()
+              ,
+            and
+            %code
+              Math.ceil()
+            functions work. You can also assign the variable an arithmetic expression, such as
+            %span
+              %code
+                17 / 3
+              \.
+          = render 'lessons/relevant', relevant: [:dng_variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_round_example1');
+                var context = canvas.getContext('2d');
+
+                var x = 8.3962; // Assign the number to round
+                
+                var a = Math.round(x);
+                var b = Math.floor(x);
+                var c = Math.ceil(x);
+                
+                context.fillStyle = 'Black';
+                context.font = '16px Arial';
+                
+                context.fillText(a + ' is ' + x + ' rounded to the nearest integer.', 20, 32);
+                context.fillText(b + ' is ' + x + ' rounded down to the nearest integer.', 20, 64);
+                context.fillText(c + ' is ' + x + ' rounded up to the nearest integer.', 20, 96);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_round_example1
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Round the Dimensions of a Rectangle
+          %p
+            In this example, we use the
+            %code
+              Math.floor()
+            and
+            %code
+              Math.ceil()
+            functions to round the dimensions of a rectangle.
+          %p
+            We start by assigning two decimal numbers to the variables
+            %code
+              a
+            and
+            %span
+              %code>
+                b
+              \.
+          %pre
+            %code
+              :preserve
+                var a = 183.67;
+                var b = 107.44;
+          %p
+            Then, we use the
+            %code
+              Math.floor()
+            function to round
+            %code
+              a
+            down to the nearest integer for the width of the rectangle and the
+            %code
+              Math.ceil()
+            function to round
+            %code
+              b
+            up to the nearest integer for the height.
+          %pre
+            %code
+              :preserve
+                var w = Math.floor(a);
+                var h = Math.ceil(b);
+          %p
+            When we draw the rectangle using the
+            %code
+              context.fillRect()
+            function, the rectangle has a width of 183 and a height of 108. Change the values
+            assigned to the variables
+            %code
+              a
+            and
+            %code
+              b
+            to see how the dimensions of the rectangle change.
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_fill_rect]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_round_example2');
+                var context = canvas.getContext('2d');
+
+                var a = 183.67;
+                var b = 107.44;
+                var w = Math.floor(a);
+                var h = Math.ceil(b);
+                
+                context.fillStyle = 'MediumSeaGreen';
+                context.fillRect(100, 100, w, h);
+                
+                context.fillStyle = 'Black';
+                context.font = '16px Arial';
+                context.textAlign = 'center';
+                context.textBaseline = 'middle';
+                context.fillText(w + ' x ' + h, 100 + w / 2, 100 + h / 2);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_round_example2
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_round/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Calculate the width of the rectangle by rounding the value of the variable
+            %code
+              a
+            up to the nearest integer and calculate the height by rounding the value of the variable
+            %code
+              b
+            also up to the nearest integer.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_round_challenge1');
+            var context = canvas.getContext('2d');
+            
+            var a = 90 * Math.PI;
+            var b = 1.6 * Math.exp(5);
+            var w; // Round the value of a up to the nearest integer
+            var h; // Round the value of b up to the nearest integer
+            
+            context.fillStyle = 'Orchid';
+            context.fillRect(40, 40, w, h);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_round/challenge1.png')
+            %canvas#dng_round_challenge1
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Calculate a Color
+          %p
+            When describing a color, RGB values must be whole numbers between 0 and 255.
+          %p
+            In this example, we describe one color using RGB values assigned to the variables
+            %span
+              %code>
+                r1
+              ,
+            %span
+              %code>
+                g1
+              ,
+            and
+            %code
+              b1
+            and a second color using RGB values assigned to the variables
+            %span
+              %code>
+                r2
+              ,
+            %span
+              %code>
+                g2
+              ,
+            and
+            %span
+              %code>
+                b2
+              \.
+          %pre
+            %code
+              :preserve
+                var r1 = 255; // RGB values for color 1
+                var g1 = 0;
+                var b1 = 0;
+                
+                var r2 = 0; // RGB values for color 2
+                var g2 = 102;
+                var b2 = 255;
+          %p
+            We then mix the two colors to create three in-between colors. To create a color that is
+            75% color 1 and 25% color 2, we multiply the RGB values of color 1 by 0.75 and the RGB values
+            of color 2 by 0.25 and add them together. In case some of the calculated RGB values for the
+            new colors are decimals and not whole numbers, we use the
+            %code
+              Math.round()
+            function to round them.
+          %p
+            The expression to calculate the red component of a color that is 75% color 1 and 25% color 2
+            looks like this:
+          %pre
+            %code
+              :preserve
+                Math.round(0.75 * r1 + 0.25 * r2) // Red component of the mixed color
+          %p
+            Finally, we draw five rectangles. The rectangle on the left is filled with color 1.
+            The rectangle on the right is filled with color 2. The three rectangles in the middle
+            are filled with the three in-between colors. Change the RGB values for color 1 and
+            color 2 to see what happens.
+          = render 'lessons/relevant', relevant: [:dng_fill_style, :dng_fill_rect, :dng_variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_round_example3');
+                var context = canvas.getContext('2d');
+                
+                var r1 = 255; // RGB values for color 1
+                var g1 = 0;
+                var b1 = 0;
+                
+                var r2 = 0; // RGB values for color 2
+                var g2 = 102;
+                var b2 = 255;
+                
+                context.fillStyle = 'rgb(' + r1 + ', ' + g1 + ', ' + b1 + ')'; // Color 1
+                context.fillRect(10, 10, 70, 280);
+                
+                context.fillStyle = 'rgb(' + Math.round(0.75 * r1 + 0.25 * r2) + ', ' + Math.round(0.75 * g1 + 0.25 * g2) + ', ' + Math.round(0.75 * b1 + 0.25 * b2) + ')'; // 75% color 1, 25% color 2
+                context.fillRect(80, 10, 70, 280);
+                
+                context.fillStyle = 'rgb(' + Math.round(0.5 * r1 + 0.5 * r2) + ', ' + Math.round(0.5 * g1 + 0.5 * g2) + ', ' + Math.round(0.5 * b1 + 0.5 * b2) + ')'; // 50% color 1, 50% color 2
+                context.fillRect(150, 10, 70, 280);
+                
+                context.fillStyle = 'rgb(' + Math.round(0.25 * r1 + 0.75 * r2) + ', ' + Math.round(0.25 * g1 + 0.75 * g2) + ', ' + Math.round(0.25 * b1 + 0.75 * b2) + ')'; // 25% color 1, 75% color 2
+                context.fillRect(220, 10, 70, 280);
+                
+                context.fillStyle = 'rgb(' + r2 + ', ' + g2 + ', ' + b2 + ')'; // Color 2
+                context.fillRect(290, 10, 70, 280);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_round_example3
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_round/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            The program below draws four rectangles and fills them with the color from
+            the RGB values assigned to the variables
+            %span
+              %code>
+                r
+              ,
+            %span
+              %code>
+                g
+              ,
+            and
+            %span
+              %code>
+                b
+              \.
+          %p
+            Update the program so the second rectangle is filled with a color created
+            by multiplying the RGB values in the variables
+            %span
+              %code>
+                r
+              ,
+            %span
+              %code>
+                g
+              ,
+            and
+            %code>
+              b
+            by 0.75; the third rectangle is filled with a color created by multiplying
+            the RGB values by 0.5; and the fourth rectangle is filled with a color created
+            by multiplying the RGB values by 0.25. Make sure to round the calculated RGB
+            values for the new colors so they are whole numbers.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_round_challenge2');
+            var context = canvas.getContext('2d');
+
+            var r = 255; // RGB values for the color
+            var g = 165;
+            var b = 0;
+            
+            context.fillStyle = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+            context.fillRect(10, 10, 90, 280);
+            context.fillRect(100, 10, 90, 280);
+            context.fillRect(190, 10, 90, 280);
+            context.fillRect(280, 10, 90, 280);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_round/challenge2.png')
+            %canvas#dng_round_challenge2
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Snap a Rectangle to a Grid
+          %p
+            In this example, we use the
+            %code
+              Math.round()
+            function to snap a rectangle to a grid.
+          %p
+            We are registering an anonymous function to listen for
+            %code
+              mousemove
+            events on the canvas. If the mouse is moved over the canvas, a
+            %code
+              mousemove
+            event is generated and passed into the anonymous function, where it is then
+            stored in the parameter
+            %span
+              %code>
+                e
+              \.
+          %pre
+            %code
+              :preserve
+                canvas.addEventListener('mousemove', function(e) {
+                  
+                  // Code block
+                  
+                });
+          %p
+            As the mouse moves over the canvas, we can access the mouse's coordinates on
+            the canvas through the
+            %code
+              mousemove
+            event's
+            %code
+              layerX
+            and
+            %code
+              layerY
+            properties. By setting the width of the rectangle to the value of
+            %code
+              layerX
+            and the height to the value of
+            %span
+              %code>
+                layerY
+              ,
+            we can resize the rectangle so it's bottom left corner moves with the mouse.
+            However, we don't want the size of the rectangle to change freely as the mouse
+            moves. We want the rectangle to snap to the grid below.
+          %p
+            The lines on the grid are 40 pixels apart. So, to keep the rectangle aligned
+            to the grid, the dimensions of the rectangle must be multiples of 40. We are
+            using the
+            %code
+              Math.round()
+            function to round the width and height of the rectangle to the nearest multiple of 40:
+          %pre
+            %code
+              :preserve
+                canvas.addEventListener('mousemove', function(e) {
+                  var w = 40 * Math.round(e.layerX / 40);
+                  var h = 40 * Math.round(e.layerY / 40);
+                });
+          %p
+            Let's say the mouse's coordinates on the canvas are (190, 85). If we divide 190 by 40
+            and round the answer, we get 5. This means 40 goes into 190 about 5 times. Multiplying 40
+            by 5 then gives us 200, a multiple of 40, for the width of the rectangle. If we divide 85
+            by 40 and round the answer, we get 2. This means 40 goes into 85 about 2 times. Multiplying
+            40 by 2 then gives us 80, another multiple of 40, for the height of the rectangle. Because
+            the dimensions of the rectangle are multiples of 40, it snaps to the grid below.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_round_example4');
+                var context = canvas.getContext('2d');
+
+                canvas.addEventListener('mousemove', function(e) {
+                  var w = 40 * Math.round(e.layerX / 40);
+                  var h = 40 * Math.round(e.layerY / 40);
+                  
+                  context.save();
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  drawGrid();
+                  context.fillStyle = 'rgba(30, 144, 255, 0.6)';
+                  context.fillRect(0, 0, w, h);
+                  context.restore();
+                });
+                
+                drawGrid();
+                
+                function drawGrid() {
+                  var w = 40 * Math.ceil(canvas.width / 40);
+                  var h = 40 * Math.ceil(canvas.height / 40);
+                  
+                  context.save();
+                  context.strokeStyle = '#999999';
+                  
+                  for (var i = 0; i <= w; i += 40) {
+                    context.beginPath();
+                    context.moveTo(i, 0);
+                    context.lineTo(i, h);
+                    context.stroke();
+                  }
+                  
+                  for (var j = 0; j <= h; j += 40) {
+                    context.beginPath();
+                    context.moveTo(0, j);
+                    context.lineTo(w, j);
+                    context.stroke();
+                  }
+                  
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_round_example4
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_round/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Calculate the width of the rectangle by rounding the value of the variable
+            %code
+              a
+            to the nearest multiple of 50 and calculate the height by rounding the value of the variable
+            %code
+              b
+            to the nearest multiple of 30.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_round_challenge3');
+            var context = canvas.getContext('2d');
+
+            var a = 90 * Math.PI;
+            var b = 1.6 * Math.exp(5);
+            var w; // Round the value of a to the nearest multiple of 50
+            var h; // Round the value of b to the nearest multiple of 30
+            
+            context.fillStyle = 'OrangeRed';
+            context.fillRect(50, 30, w, h);
+            
+            if (w > 0 && w % 50 == 0 && h > 0 && h % 30 == 0) {
+              context.fillStyle = 'Black';
+              context.font = '16px Arial';
+              context.textAlign = 'center';
+              context.textBaseline = 'middle';
+              context.fillText(w + ' x ' + h, 50 + w / 2, 30 + h / 2);
+            }
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_round/challenge3.png')
+            %canvas#dng_round_challenge3
+          .alert
