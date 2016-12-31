@@ -32,7 +32,7 @@
   };
 
   initSavedDrawing = function() {
-    var drawingInfo, page, slug;
+    var drawingInfo, editor, page, slug;
     if ((page = $('#saved_drawing')).length > 0) {
       slug = page.data('slug');
       drawingInfo = App.currentProgress.getDrawing(slug);
@@ -40,7 +40,11 @@
       page.find('.drawing-description').html(drawingInfo['description']);
       page.find('.my_drawing_title').val(drawingInfo['title']);
       page.find('.my_drawing_description').val(drawingInfo['description']);
-      page.find('.editor').data('editor').setStartCode(drawingInfo['code']);
+      editor = page.find('.editor').data('editor');
+      editor.setStartCode(drawingInfo['code']);
+      if ((App.currentProgress.getEditorValue(editor.editorElement.id)) == null) {
+        editor.setCode(drawingInfo['code']);
+      }
       page.find('.run').click();
       $("#drawings #navigation-drawing-" + slug).addClass('active');
       page.find('.save .submit').click(function() {

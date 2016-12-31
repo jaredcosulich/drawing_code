@@ -16,6 +16,7 @@
         this.canvas.css('background-image', 'url(' + backgroundImage.attr('src') + ')');
       }
       this.context = this.canvasElement.getContext('2d');
+      this.canvas.width(this.container.width()).height(this.container.height());
       this.canvas.attr({
         tabIndex: 0,
         width: this.canvas.width(),

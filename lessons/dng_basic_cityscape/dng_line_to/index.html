@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<title>Drawing Code</title>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="HyqI0OpUqNhelRIEDYO4klrvgAslXNvMtNg0EG7uyNLjtCEWJp3WLEv6T2Xu3LeLWrPUVIPmJrITncyp9ypt9w==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-ca95cacfb3bf8d9fafc29614581f65c94a379e6263a31f3b1cad9ef2e515949c-body=1.css" data-turbolinks-track="reload" />
+<script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/ace/ace.self-0acb0427eef086a17859bfe56ecfaf24bc47c928ad7db87d5ec5bf235e40cb40.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/code_preview.self-b37269bda74e81e3e6e832ad40469072b79b5b1d3a48a2e91986fd44549f82c0.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/drawings.self-1119b89f5468a45fd5e064d9ba68962f14b5248b9ff1a6b33b2307875e470686.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/init.self-43d6c8cc3eddc96cf342b1181a27bbd7917e61d477b467cca3707f7244bee6d8.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lesson.self-9ae12ddb887cfd3654ed80dbce5b80b03d03656193fb663542161e096d1c6260.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage1.self-10cf9217bb0b81dbf6ae74730c568edb8a016b8a309fc143fec209db5bd84b64.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage2.self-bb5cfbde44b97f0b9658159d2058b56e0869a3d9f04a2ce4f7ae00204dabc8bf.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage3.self-a41a7d634d148382004655b74ded22f4946978b35e379222275f7a7a3384fddf.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage4.self-4957bde1f87185b2af8f89378f34a48bcf35b3f490b647b26fe8e9fc2c6c28bd.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/clearRect.self-9e82ca8aa93793f04e73caa7f25eaf5e8c815cbe718ac5f4747de25ef19efce9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/coordinates.self-e8ed0e1bacf18d0af11e6602fdfbc3026535cadd0a5464c80884b3e7b545cc69.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_basic_cityscape/stage1.self-fb216fc7a0e96119914ef76a23589e19eca30e2413cb1c0e878eb1da97486100.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_basic_cityscape/stage2.self-3ee390b27953fcef5e545541c9dfd7a214dd29bd827551c0b090b91dd88ef2b4.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_basic_cityscape/stage3.self-c6dc74a559b9b250267dcf5076720b5f5700db38d9fa134c781c54d6d19c35c3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_basic_cityscape/stage4.self-9be2c13bb66b8d0c8f19df06d7de6e7fe81edd0f6ca613f5af3fc90375d681ed.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_coordinates.self-423afc95388d05ea994122acce89935d778bd9d070f553d3561ae2dee6df0d17.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_fill_rect.self-076d63c8d73048e0d6f132484e13c1c7e2576aa91bb4e8822a11539c8c95362c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_fill_style.self-0780a395ceafcb392fecb963760a24a14f3943e7b2b8a52584025658d066d884.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_for_loops.self-f4404f232185be341367712b9e508aaf857fbbb1d6365795cd20f087beb96471.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_functions.self-52f75fd54306997eb7a8ab5349977423382fb23425570fc6f95d2821663e73e8.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_line_to.self-4bae8d80e5fc7581402d7ef414e686cb7b940bdb591e1d11b110fab8175aa2de.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_save.self-88cd2ba2cc3f476aef9fa23521f2125ec54497d639b20bd4f33209e946968334.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_switch_statements.self-9efda014511673e941b77b315a660c3476c95b853d637fab1b249d447d3851d7.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_translate.self-5017cb6e2c8d0866cf87b5367266df6d9f1e73522217270cf7eb017ef9d0459b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/dng_variables.self-408df4937c1e6a9cd8aebb5ca22558d421cedc2b8b11b77ffa38f37dd8f6773e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/fillRect.self-9e0e0969e446a2f464878a94809b7b44591a6ae159472a8744b33622cbec1b46.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/fillStyle.self-ee4e83b95686dac1cd630c036eb0353cfaeaa2b9701b0c7a6565ba0dc6091ec7.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage1.self-b0357b06d17eb2337d688e8fd5be0fef7e762c85bcdd0cb7798605e0195c9947.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage2.self-8eb29add53aabb7af941f9c84c2abd840c7dbf61669906cae52b8a4c84bcd409.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage3.self-cb39fe3b38a5ae28456afbcbe4c17c1b40b1fdeb13b925d136a43609a02907d3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage4.self-04ba749edff7ecdab08bed81d3e4ee313eea20cf989253b8e0140e554effc369.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/for_loops.self-9dce154b577b9344744a8e7d16f6ca874805d4a157a4c326af1e9fd1e30627d5.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/functions.self-492d38bff26f435c0469d8a38da45ce7857e334d3bc3a41d8d4b97d5571abd02.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage1.self-9a6bb1b4e3de5f46da1e072c0fa52d0391b4f64454b97d5b34b6ec01e46dfb32.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage2.self-274b9a3782e74ccca603cacdcfdc7de6a30a0a3ab57f9a6f1d25b7781e711f99.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage3.self-e2064f6932bc938d199b51dc1ba885fc1f3b2913935b7bdb8203011970326dbf.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage4.self-611052ea22dac28d9a24fc6ecb7c680cd07e073d394dc8a34237a2b674d846ad.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/lineTo.self-4487acd17954cf1c89680bde8f16459c34279c0e0b10276e2dc4e1b1ae185d1c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/save.self-40009da7858c56166ef5dbae9087a3b9cdc7b0c7bbf2c49751dc35678f068df5.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/translate.self-12f5a51ccf4b3f0f72e2079f0069bab57fd3af696731c66057284b4338745fba.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/variables.self-c87145ec3cf2327e7b3eb2ef815bed8ee4b3a42f7408ff8faa7e3353fb824132.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/canvas.self-429f6c3eb7215ea53ffe08598331778858aa202b6c9cdf18775ee1623316198a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/editor.self-1a44e68b80f3af38b2840a4f2e3b5b469dfb43ddcf72a616eea328100e566607.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/files.self-16fff0bc3c9a315d22413e3b6a090fb8ef8f5f1257b42dade438f57a0de1f134.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/progress.self-df819cacc21fdae026057e6db599fcba5baf17b174f7fe4094037e1211928b6a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/code.self-186d38d443a8bc51bbeec7159887e3781eaad676a86b9d159eca7ec40e21f7ba.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/image_comparison.self-83be79c1bfdac13ff2c69e6916a326f2698035d7381c28f12e44637de7618bac.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/point.self-e1435fcb5c66e2107d91d34c16e06e6c0dd8d06286396d3d5b3b05c22989d9b2.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/navigation.self-3abb68970f3392649f6ee452427597fc92e324a7be21f97b6501e5a2ec47609e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/referenceModal.self-4ba25626378a146e8d2a7ae7edd72600ddef60371b98f42b0c3555b56cd02ff9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
+</head>
+<body>
+<nav class='navbar navbar-dark navbar-fixed-top bg-inverse'>
+<button aria-controls='navbar' aria-expanded='false' aria-label='Toggle navigation' class='navbar-toggler hidden-sm-up' data-target='#navbar' data-toggle='collapse' type='button'></button>
+<a class='navbar-brand' href='../../../index.html'>
+Drawing In Code:
+<small>An exploration of artistic observation and computational thinking</small>
+</a>
+</nav>
+
+<div class='container-fluid'>
+<div class='row'>
+<div class='col-md-3 col-lg-2 sidebar'>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class="section_link" href="../../../index.html">Home</a>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='drawings' href='#'>
+Your Drawings
+</a>
+<ul class='collapse nav nav-sidebar' id='drawings'>
+<li>
+<a href="../../../drawings/index.html">Create A Drawing</a>
+</li>
+<li class='section drawings-list small mt-1 hidden-xs-up'>
+<strong>My Drawings</strong>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='reference' href='#'>
+Reference
+</a>
+<ul class='collapse nav nav-sidebar' id='reference'>
+<li class='section mt-1'>
+<strong>Context2D</strong>
+</li>
+<li>
+<a href="../../reference/clear_rect/index.html">clearRect()</a>
+<span class='tag tag-default'>
+<small class='clear_rect'>0 / 2</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-clear_rect'>
+<div class='title'>context.clearRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.clearRect(x, y, width, height) will clear a rectangle starting
+at (x, y) and clearing to the right width and down height.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = '#FF0000';&#x000A;context.fillRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.clearRect(40, 20, 20, 100);&#x000A;context.clearRect(60, 60, 20, 20);&#x000A;context.clearRect(80, 20, 20, 100);&#x000A;&#x000A;context.clearRect(120, 20, 60, 20);&#x000A;context.clearRect(140, 40, 20, 60);&#x000A;context.clearRect(120, 100, 60, 20);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/clear_rect/reference-70cf88df0b9a8db2c33a8048af8493be9efdca18dd8ed4b2756cb0de8d8993af.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/fill_rect/index.html">fillRect()</a>
+<span class='tag tag-default'>
+<small class='fill_rect'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_rect'>
+<div class='title'>context.fillRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillRect(x, y, width, height) will draw a rectangle starting
+at (x, y) and filling the area "width" to the right and "height" down.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillRect(50, 50, 300, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/fill_rect/reference-ec68654dd34b051ccadd579a7b7b065ab4fa1eff1991e3d8df56cf72be3dee37.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/fill_style/index.html">fillStyle</a>
+<span class='tag tag-default'>
+<small class='fill_style'>0 / 2</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_style'>
+<div class='title'>context.fillStyle</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillStyle will set the color for all future fills such as
+context.fillRect(). It's important to note theat context.fillStyle
+is not a method, it is an attribute. You set it like so:
+</p>
+<pre class='mb-2'><code>context.fillStyle = 'red';&#x000A;</code></pre>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = 'rgb(0,255,0)';&#x000A;context.fillRect(50, 50, 100, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/fill_style/reference-8b359c7e565a86e657117d488129208cb37d2b93ac988ee482ddaf063385e12e.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/line_to/index.html">lineTo()</a>
+<span class='tag tag-default'>
+<small class='line_to'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-line_to'>
+<div class='title'>context.lineTo()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.lineTo(x, y) creates a path from the current point - default (0,0) -
+to the point (x, y). In order to see the line you must call context.stroke().
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.beginPath();&#x000A;context.moveTo(50, 50);&#x000A;context.lineTo(100,100);&#x000A;context.lineTo(150, 50);&#x000A;context.lineTo(200, 100);&#x000A;context.stroke();&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/line_to/reference-2c3b4d87c54a374ee06ac132f850d07869ed961fac25769a9e1309faf9709371.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/save/index.html">save()</a>
+<span class='tag tag-default'>
+<small class='save'>0 / 1</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-save'>
+<div class='title'>context.save()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.save() saves all of the properties of the context. Then, when you call
+context.restore() it will reset all changes to the context you've made.
+</p>
+<p>
+This code will produce the image below (note how the second rectangle is black
+and closer to the original origin despite calling translate and setting the
+fillStyle earlier):
+</p>
+<pre class='mb-2'><code>context.save();&#x000A;context.translate(100,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;context.restore();&#x000A;&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/save/reference-cfdb7b48454c0b82fb5105cf7a1228776bbee579585d77bf2b7cdeab9f8eb32a.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/scale/index.html">scale()</a>
+<div class='reference-modal-content' id='reference-modal-scale'>
+<div class='title'>context.scale()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.scale(percentX, percentY) scales the x and y coordinates of the context, making drawings
+larger or smaller.
+</p>
+<p>
+This code will produce the image below (note that all rectangles are defined to be the same size
+in the code are drawn in different sizes due to the scale of the context):
+</p>
+<pre class='mb-2'><code>context.fillRect(25,25,25,25);&#x000A;context.scale(2, 1);&#x000A;context.fillRect(75,25,25,25);&#x000A;context.scale(0.5, 1);&#x000A;context.fillRect(150,25,25,25);&#x000A;context.scale(2, 2);&#x000A;context.fillRect(300,25,25,25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/scale/reference-0569c769850c52c53953d385626946099b407d1037f93af347311149e3a2fec6.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/translate/index.html">translate()</a>
+<span class='tag tag-default'>
+<small class='translate'>0 / 1</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-translate'>
+<div class='title'>context.translate()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.translate(x, y) shifts the origin of the context (where the (0,0) point is)
+right by x and down by y. This allows you to draw execute multiple commands in a specific
+area of the context more easily.
+</p>
+<p>
+This code will produce the image below (note how the fillRect commands are
+relative to the translation point (100,100)):
+</p>
+<pre class='mb-2'><code>context.translate(50,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(0, 0, 100, 100);&#x000A;context.fillStyle = 'green';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/translate/reference-19fc53169ce0da0d057fb00b05eecfb3fc88513d1fa46cf4aceaa8fa19f51c26.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li class='section mt-1'>
+<strong>Math</strong>
+</li>
+<li>
+<a href="../../reference/floor/index.html">floor() / ceil()</a>
+<div class='reference-modal-content' id='reference-modal-floor'>
+<div class='title'>Math.floor() & Math.ceil()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.floor() and Math.ceil() will round a number to the closest integer.
+Math.floor() will always round down while Math.ceil() will always round up.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/floor/visual1-9edc722b188f28c702178c13d60cbec037d2e4159d2b7b5f7782a0be2dd5f653.png" alt="Visual1" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/random/index.html">random()</a>
+<div class='reference-modal-content' id='reference-modal-random'>
+<div class='title'>Math.random()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.random() will produce a random decimal betweek 0 and 1. Calling it many
+times will produce a different random number each time.
+</p>
+<p>
+Often you will multiple Math.random() by another number to get a random
+integer larger than 1. You may also call Math.floor() or Math.ceil() on the result
+to get an rounded integer.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/random/reference-d1ee7adb1a0544e928f64c175595c9f081740954db0ae3f889f0627b4034c642.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='concepts' href='#'>
+Concepts
+</a>
+<ul class='collapse nav nav-sidebar' id='concepts'>
+<li>
+<a href="../../concepts/variables/index.html">Variables</a>
+<span class='tag tag-default'>
+<small class='variables'>0 / 2</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-variables'>
+<div class='title'>Variables</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+A variable allows you to store information to use or change later.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/variables/visual1-b8e07ae4cdc5e13b2ee681381d7fa203f8442ff2e8abeb1cf4012cfb427439db.png" alt="Visual1" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/for_loops/index.html">For Loops</a>
+<span class='tag tag-default'>
+<small class='for_loops'>0 / 1</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-for_loops'>
+<div class='title'>For Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+For-loops allow you to repeat code over and over again, potentially
+adjusting the code a little bit each time.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>for (var i=1; i<10; ++i) {&#x000A;  context.fillRect(10 * i, 75 - (5 * i), 10 * i, 10 * i);&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/for_loops/reference-ab4edc41708c315c5bc65d0ca07c1d49061a8185eb1420dbb6a056fa1be194bd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/while_loops/index.html">While Loops</a>
+<div class='reference-modal-content' id='reference-modal-while_loops'>
+<div class='title'>While Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+While-loops allow you to repeat code over and over again until a condition is met.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>var i = 10;&#x000A;while (i < 200) {&#x000A;  context.fillRect(5, 5, i, 50);&#x000A;  i += 10;&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/while_loops/reference-b71bb24ae903b89143b68f3a561a455d71ca8c08674b34a2d9ffbde1753fc005.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/coordinates/index.html">Coordinates</a>
+<span class='tag tag-default'>
+<small class='coordinates'>0 / 2</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-coordinates'>
+<div class='title'>The Coordinate System</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+The coordinate system consists of X and Y values starting at (0, 0) in the upper left corner.
+</p>
+<p>
+As you move down the canvas Y gets larger. As you move right on the canvas X gets larger.
+</p>
+<p>
+So the point (100, 50) means you move right 100 and down 50.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid" src="../../../assets/lessons/coordinates/visual1-1875ea0cb51a1c7ed92a016a2256ba53d9b3f7820a9feaa679521c14af4e7acd.png" alt="Visual1" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/functions/index.html">Functions</a>
+<span class='tag tag-default'>
+<small class='functions'>0 / 1</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-functions'>
+<div class='title'>Functions</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Functions allow you to create chunks of code that can be called with
+different parameters.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>function fillColorRect(x, y, w, h, color) {&#x000A;  context.save();&#x000A;  context.fillStyle = color;&#x000A;  context.fillRect(x, y, w, h);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;fillColorRect(50, 50, 50, 50, 'red');&#x000A;fillColorRect(150, 50, 50, 50, 'blue');&#x000A;fillColorRect(250, 50, 50, 50, 'green');&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/functions/reference-2d2a07b0286e84d953685386201fe7e0bc20198460907e83c7895681f6b37a45.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/switch_statements/index.html">Switch Statements</a>
+<div class='reference-modal-content' id='reference-modal-switch_statements'>
+<div class='title'>Switch Statements</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Switch statements allow you to perform different code depending on
+the value of a variable.
+</p>
+<p>
+The following code will produce the picture below (the switch statement
+only performs the code inside of case 2 because "i" is set to 2):
+</p>
+<pre class='mb-2'><code>var i = 2;&#x000A;switch (i) {&#x000A;  case 1:&#x000A;    context.fillStyle = 'red';&#x000A;    break;&#x000A;  case 2:&#x000A;    context.fillStyle = 'yellow';&#x000A;    break;&#x000A;  case 3:&#x000A;    context.fillStyle = 'blue';&#x000A;    break;&#x000A;}&#x000A;context.fillRect(50, 50, 100, 50);&#x000A;&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/switch_statements/reference-3ab4709f6beedfca8a197ba64c75c9604abf7ccdb78c9adc16cf035c60914e8b.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/set_interval/index.html">setInterval()</a>
+<div class='reference-modal-content' id='reference-modal-set_interval'>
+<div class='title'>setInterval()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+setInterval() allows you to execute code at specified intervals. It
+is frequently used to create animations.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>var index = 0;&#x000A;function count() {&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText(index, canvas.width / 2, canvas.height / 2);&#x000A;}&#x000A;setInterval(count, 1000)&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/set_interval/reference-a47ff17199d8182591ccb0d45fa57147ee1136677cff7955671c6a01337479fa.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/event_listeners/index.html">Event Listeners</a>
+<div class='reference-modal-content' id='reference-modal-event_listeners'>
+<div class='title'>Event Listeners</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Event listeners allow you to "listen" for an event, such as a click, on an element
+in your html.
+</p>
+<p>
+A full list of events can be found here:
+<a target="_blank" href="https://www.tutorialspoint.com/html5/html5_events.htm">HTML5 Events</a>
+</p>
+<p>This code will produce the image below (if you were to click and draw the letters on the canvas):</p>
+<pre class='mb-2'><code>canvas.addEventListener('mousemove', function(e) {&#x000A;  if (e.buttons === 0) return;&#x000A;  context.fillRect(e.layerX - 3, e.layerY - 3, 7, 7);&#x000A;});&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/event_listeners/reference-e166d58e874cfbbeb51fb29e622c9bf89d5c7a4aec6319d3953c94db43af1b0c.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section my-1'>
+<a class='section_link' data-section='dng_basic_cityscape' href='#'>DNG Basic Cityscape</a>
+<ul class='collapse in nav nav-sidebar' id='dng_basic_cityscape'>
+<li>
+<a href="../stage1/index.html">Stage 1</a>
+<span class='tag tag-default'>
+<small class='dng_basic_cityscape_stage1'>0 / 4</small>
+</span>
+</li>
+<li>
+<a href="../stage2/index.html">Stage 2</a>
+<span class='tag tag-default'>
+<small class='dng_basic_cityscape_stage2'>0 / 3</small>
+</span>
+</li>
+<li>
+<a href="../stage3/index.html">Stage 3</a>
+<span class='tag tag-default'>
+<small class='dng_basic_cityscape_stage3'>0 / 4</small>
+</span>
+</li>
+<li>
+<a href="../stage4/index.html">Stage 4</a>
+<span class='tag tag-default'>
+<small class='dng_basic_cityscape_stage4'>0 / 4</small>
+</span>
+</li>
+<li class='section small mt-2'>
+<strong>Relevant Reference</strong>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="dng_fill_rect" href="../dng_fill_rect/index.html">DNG fillRect()</a>
+<span class='tag tag-default'>
+<small class='dng_fill_rect'>0 / 6</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="dng_fill_style" href="../dng_fill_style/index.html">DNG fillStyle</a>
+<span class='tag tag-default'>
+<small class='dng_fill_style'>0 / 3</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="dng_save" href="../dng_save/index.html">DNG save()/restore()</a>
+<span class='tag tag-default'>
+<small class='dng_save'>0 / 5</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="dng_translate" href="../dng_translate/index.html">DNG translate()</a>
+<span class='tag tag-default'>
+<small class='dng_translate'>0 / 6</small>
+</span>
+</li>
+<li class='small active'>
+<a class="reference-link" data-slug="dng_line_to" href="index.html">DNG lineTo()</a>
+<span class='tag tag-default'>
+<small class='dng_line_to'>0 / 6</small>
+</span>
+</li>
+<li class='section small mt-1'>
+<strong>Relevant Concepts</strong>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="dng_coordinates" href="../dng_coordinates/index.html">DNG Coordinates</a>
+<span class='tag tag-default'>
+<small class='dng_coordinates'>0 / 3</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="dng_variables" href="../dng_variables/index.html">DNG Variables</a>
+<span class='tag tag-default'>
+<small class='dng_variables'>0 / 5</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="dng_functions" href="../dng_functions/index.html">DNG Functions</a>
+<span class='tag tag-default'>
+<small class='dng_functions'>0 / 5</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="dng_for_loops" href="../dng_for_loops/index.html">DNG For Loops</a>
+<span class='tag tag-default'>
+<small class='dng_for_loops'>0 / 6</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="dng_switch_statements" href="../dng_switch_statements/index.html">DNG Switch Statements</a>
+<span class='tag tag-default'>
+<small class='dng_switch_statements'>0 / 4</small>
+</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar hidden-xs-up'>
+<li class='section'>
+<a class='section_link' data-section='experimental' href='#'>
+All
+</a>
+</li>
+<ul class='nav nav-sidebar'>
+<li class='section small'>
+<strong>Active</strong>
+<li class='small '>
+<a href="../../granular_basic_cityscape/stage1/index.html">Basic Cityscape</a>
+</li>
+</li>
+<li class='section small mt-2'>
+<strong>Experimental</strong>
+<li class='small '>
+<a href="../../basic_cityscape/stage1/index.html">Original Basic Cityscape</a>
+</li>
+<li class='small '>
+<a href="../../snake_game/stage1/index.html">Snake Game</a>
+</li>
+<li class='small '>
+<a href="../../flappy_square/stage1/index.html">Flappy Square</a>
+</li>
+<li class='small '>
+<a href="../../flappy_birds/stage1/index.html">Flappy Birds</a>
+</li>
+<li class='small '>
+<a href="../stage1/index.html">DNG Basic Cityscape</a>
+</li>
+</li>
+</ul>
+</ul>
+
+</div>
+<div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
+<div class='lesson' id='dng_line_to'>
+<h1>
+context.lineTo()
+</h1>
+<div class='description row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Overview
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/dng_line_to/overviewVisual1-bd84c889dca825341455e2b0a084877e5a9a523ea524a13a2a9932b2ca55e8bb.png" alt="Overviewvisual1" />
+</figure>
+<p>
+The
+<code>context.lineTo()</code>
+method adds a line segment to the current path by passing it two values:
+</p>
+<pre><code>context.lineTo(x, y);</code></pre>
+<p>
+This programs the context to add a straight line from the last point in the current path to the point
+<span>
+(<code>x</code>,
+</span>
+<span><code>y</code>),
+</span>
+but it does not draw the line on the canvas until we tell the context to stroke or fill the path.
+</p>
+<div class='source'>
+<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineTo">Mozilla Developer&#39;s Network</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Draw a Straight Line
+</h2>
+<p>
+Most shapes are drawn on the canvas by creating a path first, and then stroking
+or filling the path later.
+</p>
+<p>
+In this example, we use the
+<code>context.beginPath()</code>
+method to create a new path and the
+<code>context.moveTo()</code>
+method to set the path's starting point at (300, 50):
+</p>
+<pre><code>context.beginPath();&#x000A;context.moveTo(300, 50);</code></pre>
+<p>
+Then, we add a line segment to the end of the path using the
+<code>context.lineTo()</code>
+method:
+</p>
+<pre><code>context.lineTo(50, 200);</code></pre>
+<p>
+This creates a straight line from (300, 50) to (50, 200), but doesn't draw the line
+yet. To actually draw the line, we use the
+<code>context.stroke()</code>
+method to stroke the line using the color currently stored in the
+<code>context.strokeStyle</code>
+property.
+</p>
+<pre><code>context.stroke();</code></pre>
+<p>
+Change the coordinates passed into the
+<code>context.moveTo()</code>
+and
+<code>context.lineTo()</code>
+methods to see what happens. To learn more about the context's coordinate system, visit the
+<a class="reference-link" data-slug="dng_coordinates" href="../dng_coordinates/index.html">coordinates</a>
+lesson.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link" data-slug="dng_coordinates" href="../dng_coordinates/index.html">DNG Coordinates</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_example1_editor'>var canvas = document.getElementById('dng_line_to_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(300, 50);&#x000A;context.lineTo(50, 200);&#x000A;context.stroke();&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='dng_line_to_example1'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge1'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 1
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/dng_line_to/challenge1Visual1-57b603b9594b212fecb8928b24d3ca8e7f68058e99f4d3a89a1bc70ff21541c5.png" alt="Challenge1visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Draw a black line from (40, 20) to (240, 280).
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_challenge1_editor'>var canvas = document.getElementById('dng_line_to_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.beginPath();&#x000A;&#x000A;// SET THE PATH'S STARTING POINT AT (40, 20) HERE&#x000A;// SET THE LINE'S END POINT AT (240, 280) HERE&#x000A;&#x000A;context.stroke();&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/dng_line_to/challenge1-dd6abeaca72752d75754d791eb86964675fd24a2c972ecd1d8a5d97eb02cee00.png" alt="Challenge1" /></div>
+<canvas id='dng_line_to_challenge1'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Set a Line's Appearance
+</h2>
+<p>
+Besides drawing a 1-pixel-wide black line, we can change the appearance of
+our lines by setting the
+<span><code>context.strokeStyle</code>,
+</span>
+<span><code>context.lineWidth</code>,
+</span>
+and
+<code>context.lineCap</code>
+properties. The
+<code>context.strokeStyle</code>
+property stores the current color, gradient, or pattern used for lines, the
+<code>context.lineWidth</code>
+property sets the thickness of lines, and the
+<code>context.lineCap</code>
+property determines how the end points of a line are drawn. To learn more about colors,
+gradients, and patterns, visit the
+<a class="reference-link" data-slug="dng_fill_style" href="../dng_fill_style/index.html">fillStyle</a>
+lesson.
+</p>
+<p>
+In this example, we draw a line from (40, 220) to (360, 80) that is<code>'DarkMagenta'</code>and 8-pixels thick with
+<code>'round'</code>
+ends.
+</p>
+<p>
+Change the color, thickness, and shape of the end points to see how it affects the
+line's appearance. Possible values for the
+<code>context.lineCap</code>
+property are
+<span><code>'butt'</code>,
+</span>
+<span><code>'round'</code>,
+</span>
+and
+<span><code>'square'</code>.
+</span>
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link" data-slug="dng_coordinates" href="../dng_coordinates/index.html">DNG Coordinates</a>, <a class="reference-link" data-slug="dng_fill_style" href="../dng_fill_style/index.html">DNG fillStyle</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_example2_editor'>var canvas = document.getElementById('dng_line_to_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.lineWidth = 8; // Set the line width&#x000A;context.lineCap = 'round'; // Set the shape of the end points&#x000A;context.strokeStyle = 'DarkMagenta'; // Set the line color&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(40, 220);&#x000A;context.lineTo(360, 80);&#x000A;context.stroke();&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='dng_line_to_example2'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge2'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 2
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/dng_line_to/challenge2Visual1-9938e5be30bc8c46478e79e9d2bf376420eede1fcd9d8d890a5a1de880e89a6e.png" alt="Challenge2visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Draw a line from (40, 120) to (340, 240) that is the color
+<code>'SlateBlue'</code>
+and 4-pixels thick with
+<code>'square'</code>
+ends.
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_challenge2_editor'>var canvas = document.getElementById('dng_line_to_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// SET THE LINE WIDTH TO 4 HERE&#x000A;// SET THE SHAPE OF THE END POINTS TO SQUARE HERE&#x000A;// SET THE LINE COLOR TO SLATEBLUE HERE&#x000A;&#x000A;// DRAW THE LINE FROM (40, 120) TO (340, 240) HERE&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/dng_line_to/challenge2-9878c88d3001f6dfffdc1ca54e019465809e7067f97aa2b53ffb421e10104002.png" alt="Challenge2" /></div>
+<canvas id='dng_line_to_challenge2'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Draw a Path of Connected Lines
+</h2>
+<p>
+We don't just use the
+<code>context.lineTo()</code>
+method to draw individual lines. We also use it to draw paths made by
+connecting multiple lines.
+</p>
+<p>
+In this example, we draw a path made by connecting the points (140, 20), (60, 180),
+(260, 300), and (340, 220) with straight lines that are the color
+<code>'RebeccaPurple'</code>
+and 2-pixels thick.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link" data-slug="dng_coordinates" href="../dng_coordinates/index.html">DNG Coordinates</a>, <a class="reference-link" data-slug="dng_fill_style" href="../dng_fill_style/index.html">DNG fillStyle</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_example3_editor'>var canvas = document.getElementById('dng_line_to_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.lineWidth = 2;&#x000A;context.strokeStyle = 'RebeccaPurple';&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(140, 20);&#x000A;context.lineTo(60, 180);&#x000A;context.lineTo(260, 300);&#x000A;context.lineTo(340, 220);&#x000A;context.stroke();&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='dng_line_to_example3'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 3
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/dng_line_to/challenge3Visual1-59d074b78755b4a7fa8b7af2ab652dbaa531c4e1316722236fda808f6bba417b.png" alt="Challenge3visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Draw a path made by connecting the points (200, 160), (280, 120), (380, 240),
+(140, 280), and (60, 40) with straight lines that are the color
+<code>'OrangeRed'</code>
+and 3-pixels thick.
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_challenge3_editor'>var canvas = document.getElementById('dng_line_to_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// SET THE LINE WIDTH TO 3 HERE&#x000A;// SET THE LINE COLOR TO ORANGERED HERE&#x000A;&#x000A;// DRAW THE LINES CONNECTING THE POINTS (200, 160), (280, 120), (380, 240), (140, 280), AND (60, 40) HERE&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/dng_line_to/challenge3-175ca2f56ef42bd7e32cee3bb25ef8644aa14dcb0a7e89dcd6535453bdd0992b.png" alt="Challenge3" /></div>
+<canvas id='dng_line_to_challenge3'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Draw the Outline of a Polygon
+</h2>
+<p>
+In this example, we draw the outline of a polygon by connecting the points
+(40, 40), (320, 160), (40, 280), and (140, 160) with straight lines that are the color
+<code>'ForestGreen'</code>
+and 6-pixels thick. To close the polygon, we use the
+<code>context.closePath()</code>
+method to automatically connect the last point in the path to the first point.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link" data-slug="dng_coordinates" href="../dng_coordinates/index.html">DNG Coordinates</a>, <a class="reference-link" data-slug="dng_fill_style" href="../dng_fill_style/index.html">DNG fillStyle</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_example4_editor'>var canvas = document.getElementById('dng_line_to_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.lineWidth = 6;&#x000A;context.strokeStyle = 'ForestGreen';&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(40, 40);&#x000A;context.lineTo(320, 160);&#x000A;context.lineTo(40, 280);&#x000A;context.lineTo(140, 160);&#x000A;context.closePath();&#x000A;context.stroke();&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='dng_line_to_example4'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge4'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 4
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/dng_line_to/challenge4Visual1-371709334774aece5ca9eb2f26e628d89b56b4875866a3b66e2bf548b8ee58fd.png" alt="Challenge4visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Draw the outline of a polygon by connecting the points (360, 110), (360, 180), (20, 180),
+(20, 100), (80, 95), (110, 40), (220, 40), and (270, 95) with straight lines that are the color
+<code>'SaddleBrown'</code>
+and 5-pixels thick.
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_challenge4_editor'>var canvas = document.getElementById('dng_line_to_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// SET THE LINE WIDTH TO 5 HERE&#x000A;// SET THE LINE COLOR TO SADDLEBROWN HERE&#x000A;&#x000A;// DRAW THE LINES CONNECTING THE POINTS (360, 110), (360, 180), (20, 180), (20, 100), (80, 95), (110, 40), (220, 40), AND (270, 95) HERE&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/dng_line_to/challenge4-1f9eb264de6ec43b7d08887c3a1d728c9c2ff4eb526e3f3b4057d232f5efe3a8.png" alt="Challenge4" /></div>
+<canvas id='dng_line_to_challenge4'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Draw a Filled Polygon
+</h2>
+<p>
+In this example, we draw a filled polygon by connecting the points (160, 60),
+(280, 60), (340, 260), and (100, 260) with straight lines.
+</p>
+<p>
+To fill the polygon instead of outlining it, we use the
+<code>context.fill()</code>
+method instead of the
+<code>context.stroke()</code>
+method. This fills the polygon with the color currently stored in the
+<code>context.fillStyle</code>
+property. When a path is filled, it is closed automatically even if the
+<code>context.closePath()</code>
+method has not been called.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link" data-slug="dng_coordinates" href="../dng_coordinates/index.html">DNG Coordinates</a>, <a class="reference-link" data-slug="dng_fill_style" href="../dng_fill_style/index.html">DNG fillStyle</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_example5_editor'>var canvas = document.getElementById('dng_line_to_example5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.fillStyle = 'DodgerBlue';&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(160, 60);&#x000A;context.lineTo(280, 60);&#x000A;context.lineTo(340, 260);&#x000A;context.lineTo(100, 260);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='dng_line_to_example5'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge5'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 5
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/dng_line_to/challenge5Visual1-731191e5015601238fc6b59bec96544da4bf1ce7851edf1407d132c49a52c559.png" alt="Challenge5visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Draw a filled polygon by connecting the points (20, 90), (60, 20), (210, 20),
+(270, 90), (360, 110), (360, 200), and (20, 200) with straight lines and filling
+the path with the color
+<span><code>'MediumPurple'</code>.
+</span>
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_challenge5_editor'>var canvas = document.getElementById('dng_line_to_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// SET THE FILL COLOR TO MEDIUMPURPLE HERE&#x000A;&#x000A;// DRAW THE LINES CONNECTING THE POINTS (20, 90), (60, 20), (210, 20), (270, 90), (360, 110), (360, 200), AND (20, 200) HERE&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/dng_line_to/challenge5-c5582ab4915b6726516fc061a427556a083e0592342d7e568824902f41cf5ed2.png" alt="Challenge5" /></div>
+<canvas id='dng_line_to_challenge5'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Fill and Outline a Polygon
+</h2>
+<p>
+We use the
+<code>context.fill()</code>
+method to fill a path and the
+<code>context.stroke()</code>
+method to outline it. After filling or stroking a path, the path remains
+the current path until we create a new one, so we can fill and stroke a path
+without creating the path twice.
+</p>
+<p>
+In this example, we create a polygon by connecting the points (200, 40),
+(340, 240), and (60, 200). Then, we fill the polygon with the color
+<code>'DeepPink'</code>
+and outline it with a
+<code>'DarkRed'</code>
+line that is 4-pixels thick.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link" data-slug="dng_coordinates" href="../dng_coordinates/index.html">DNG Coordinates</a>, <a class="reference-link" data-slug="dng_fill_style" href="../dng_fill_style/index.html">DNG fillStyle</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_example6_editor'>var canvas = document.getElementById('dng_line_to_example6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.lineWidth = 4;&#x000A;context.strokeStyle = 'DarkRed';&#x000A;context.fillStyle = 'DeepPink';&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(200, 40);&#x000A;context.lineTo(340, 240);&#x000A;context.lineTo(60, 200);&#x000A;context.closePath();&#x000A;context.fill();&#x000A;context.stroke();&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='dng_line_to_example6'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge6'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 6
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/dng_line_to/challenge6Visual1-2bc521e5a0850fcd42a822838aa4fe2d1b9702ae11bc52ff557cfcd3cc4b729c.png" alt="Challenge6visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Create a polygon by connecting the points (200, 20), (320, 220), (160, 280),
+and (90, 140) with straight lines. Then, fill the polygon with the color
+<span><code>'MediumSeaGreen'</code>,
+</span>
+and outline it with a
+<code>'DarkGreen'</code>
+line that is 6-pixels thick.
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='dng_line_to_challenge6_editor'>var canvas = document.getElementById('dng_line_to_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// SET THE LINE WIDTH TO 6 HERE&#x000A;// SET THE STROKE COLOR TO DARKGREEN HERE&#x000A;// SET THE FILL COLOR TO MEDIUMSEAGREEN HERE&#x000A;&#x000A;// DRAW THE LINES CONNECTING THE POINTS (200, 20), (320, 220), (160, 280), AND (90, 140) HERE&#x000A;// FILL THE POLYGON HERE&#x000A;// STROKE THE POLYGON HERE&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger float-xs-right'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/dng_line_to/challenge6-dd74af86f56408f9bccfcfd9cb774095ac23ec5b4caacdb4832ea7f1be30c54e.png" alt="Challenge6" /></div>
+<canvas id='dng_line_to_challenge6'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div aria-hidden='true' aria-labelledby='referenceModalLabel' class='modal fade' id='reference-modal' role='dialog' tabindex='-1'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<h4 class='modal-title' id='referenceModalLabel'></h4>
+</div>
+<div class='modal-body'></div>
+<div class='modal-footer'>
+<div class='float-xs-right'>
+<button class='btn btn-secondary' data-dismiss='modal' type='button'>Close</button>
+</div>
+<div class='text-xs-left'>
+<button class='btn btn-primary text-white lesson-link'>View Full Lesson</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+<!-- Localized -->

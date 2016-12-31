@@ -241,12 +241,16 @@
     };
 
     Editor.prototype.log = function() {
-      var message, messageText;
+      var message, messageText, messages;
       messageText = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+      messages = this.logElement.find('.messages');
       message = $(document.createElement('DIV'));
       message.addClass('message');
       message.html(messageText.join(', '));
-      this.logElement.find('.messages').append(message);
+      if (messages.find('.message').length >= 3) {
+        messages.find('.message').first().remove();
+      }
+      messages.append(message);
       return this.logElement.slideDown();
     };
 
