@@ -1,0 +1,196 @@
+#flappy_square_stage4.lesson
+  %h1 Stage 4
+
+  .description.row.py-3
+    .col-xs-6
+      %h2.py-2
+        Stage 4 Overview
+      %p
+        Now for the finishing touches.
+
+      %p
+        We need to give our game a name and display the player's score.
+
+      %p
+        We also might want to play around with the various variables involved
+        such as the rate of gravity, the frame rate, the size of the holes,
+        etc.
+
+
+
+    .col-xs-6
+      = image_tag('lessons/flappy_square/stage4/challenge2Example.gif', class: 'img-fluid canvas-example')
+
+
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Text In The Game
+          %p
+            We've used text in the past to show the "Game Over" message.
+          %p
+            We'll also want to use text to display the name of the game and
+            a score counter.
+          %p
+            The canvas provides a number of methods and attributes that can
+            affect the text. You can change the font, color, size, boldness, italics,
+            etc. You can align it left, center, or right, or any number of
+            = link_to('vertical alignments.', 'http://www.w3schools.com/tags/canvas_textbaseline.asp', target: '_blank')
+          %p
+            You can also rotate text by rotating the canvase underneath,
+            which is what we are doing in this example, creating a shell-like
+            pattern from the text. We're also using context.measureText() to
+            determine the width of the text and figure out where to start
+            the next text.
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage4_lesson1_editor'} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage4_lesson1');
+                var context = canvas.getContext('2d');
+
+                function spiralText(size) {
+                  var text = 'spiraling around';
+                  context.font = size + 'px serif';
+                  context.textBaseline = 'middle';
+                  context.fillText(text, 0, 0);
+                  return context.measureText(text);
+                }
+
+                var size = 42;
+                var textArea;
+
+                context.translate(size/2, size/2);
+                textArea = spiralText(size);
+
+                while (size > 0) {
+                  context.translate(textArea.width, size/2);
+                  context.rotate(90 * (Math.PI/180));
+                  size -= 2;
+                  textArea = spiralText(size);
+                }
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#flappy_square_stage4_lesson1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+
+          %figure.float-xs-right.pl-2
+            = image_tag('lessons/flappy_square/stage4/challenge1Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 1 Sample Solution
+
+          %p
+            Let's give our game a name. We've used "Flappy Square"
+            in the example solution, but you can name it however you want.
+          %p
+            You can use any font style or size that you want. The example
+            provided shows the "serif" font at 15px.
+          %p
+            Play around with the different alignments until your happy with the placement.
+            Here is the reference for horizontal alignment (context.textAlign) and Vertical
+            alignment (context.textBaseline).
+
+          %ul
+            %li= link_to('Horizontal Alignment (context.textAlign)', 'http://www.w3schools.com/tags/canvas_textalign.asp', target: '_blank')
+            %li= link_to('Vertical Alignment (context.textBaseline)', 'http://www.w3schools.com/tags/canvas_textbaseline.asp', target: '_blank')
+          %p
+            Remember you'll need to draw the title in each frame and you need to draw it
+            after you clear the area outside of the game area.
+          %p
+            In the end your flappy square should look like the example provided at
+            the right.
+          = render 'lessons/code_preview', stage: 3, challenge: 3, editor_id: 'flappy_square_stage3_challenge3_editor'
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage4_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage4_challenge1');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var gravity = 0.5;
+            var distance = 0;
+
+            var square = {
+              size: 20,
+              x: ,
+              y: ,
+              jump: ,
+              yVelocity:
+            };
+
+            var boundary = {
+              minX: ,
+              minY: ,
+              maxX: ,
+              maxY:
+            };
+
+            var walls = {
+              spacing:
+              width:
+              height:
+              positions: []
+            };
+
+            function drawBoundary() {
+            }
+
+            function drawWalls() {
+            }
+
+            function drawSquare() {
+            }
+
+            function flap(e) {
+            }
+
+            function adjustPosition() {
+            }
+
+            function checkBoundary() {
+            }
+
+            function checkWalls() {
+            }
+
+            function endGame() {
+            }
+
+            function runProgram() {
+            }
+
+            function startAnimation() {
+              interval =
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.addEventListener('keydown', flap);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#flappy_square_stage4_challenge1
+          .alert
