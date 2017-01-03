@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
       dng_variables: {count: 5, method: 'DNG Variables'},
       dng_functions: {count: 5, method: 'DNG Functions'},
       dng_for_loops: {count: 6, method: 'DNG For Loops'},
+      dng_while_loops: {count: 6, method: 'DNG While Loops'},
       dng_switch_statements: {count: 4, method: 'DNG Switch Statements'}
     }
 
@@ -165,7 +166,8 @@ class ApplicationController < ActionController::Base
           :dng_variables,
           :dng_functions,
           :dng_for_loops,
-          :dng_switch_statements
+          :dng_switch_statements,
+          :dng_while_loops
         ]
       }
     ]

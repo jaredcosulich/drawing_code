@@ -1,0 +1,1268 @@
+#dng_while_loops.lesson
+  %h1
+    While Loops
+  .description.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_while_loops/overviewVisual1.png', class: 'img-fluid canvas-example')
+          %p
+            A while loop runs a block of code repeatedly until a condition evaluates to false.
+          %p
+            Technically, while loops have two parts:
+          %pre
+            %code
+              :preserve
+                while (condition) {
+                  
+                  // the code to do something
+                  
+                }
+          %p
+            The
+            %code
+              condition
+            is the expression evaluated at the start of each loop.
+          %p
+            If the
+            %code
+              condition
+            evaluates to true, the code block between the curly braces {&hellip;} is run
+            and the loop starts again. If the
+            %code
+              condition
+            evaluates to false, the while loop ends and the program continues.
+          %p
+            Even though while loops technically only have two parts, some code inside
+            the code block must eventually make the
+            %code
+              condition
+            false, otherwise the loop will never end and your browser will hang or crash.
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use a While Loop to Fit Text in a Box
+          %p
+            In this example, we use a while loop to fit as many lines of text as possible in a box.
+          %p
+            We start by declaring the variable
+            %code
+              boxHeight
+            for storing the height of the box and initializing it with the value 200:
+          %pre
+            %code
+              :preserve
+                var boxHeight = 200; // Assign the height of the box
+          %p
+            Then, we use the
+            %code
+              context.fillRect()
+            function to draw a rectangle, using the value stored in the variable
+            %code
+              boxHeight
+            for its height and filling it with the color
+            %span
+              %code>
+                'Orchid'
+              ,
+            and set the
+            %span
+              %code>
+                context.fillStyle
+              ,
+            %span
+              %code>
+                context.font
+              ,
+            and
+            %code
+              context.textBaseline
+            properties for our lines of text:
+          %pre
+            %code
+              :preserve
+                context.fillStyle = 'Orchid';
+                context.fillRect(0, 0, 300, boxHeight);
+                
+                context.fillStyle = 'Black';
+                context.font = '16px Arial';
+                context.textBaseline = 'bottom';
+          %p
+            We use a while loop to draw lines of text as long the y-coordinate
+            of the next line is less than or equal to the height of the rectangle.
+            Before setting up the while loop, we declare the variable
+            %code
+              y
+            and initialize it with the y-coordinate for the first line of text:
+          %pre
+            %code
+              :preserve
+                var y = 20; // Initialize the y-coordinate of the first line of text
+          %p
+            The while loop continues running as long as the condition,
+            %span
+              %code>
+                y <= boxHeight
+              ,
+            is true. Each time through the loop, we draw a line of text at the coordinates (10,
+            %span
+              %code>
+                y
+              )
+            and update the value stored in the variable
+            %code
+              y
+            for the next line of text.
+          %pre
+            %code
+              :preserve
+                while (y <= boxHeight) {
+                  context.fillText('this line of text is at y = ' + y, 10, y);
+                  y = y + 20; // Update the y-coordinate for the next line of text
+                }
+          %p
+            Updating the value stored in the variable
+            %code
+              y
+            inside of the while loop is important. If we don't do that, the while
+            loop's condition will never evaluate to false and the loop will never end.
+          %p
+            Change the value assigned to the variable
+            %code
+              boxHeight
+            to see what happens. The while loop should draw just enough lines of text to
+            fill the box. Count the lines of text to find the number of times the program
+            ran through the loop.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_while_loops_example1');
+                var context = canvas.getContext('2d');
+                
+                var boxHeight = 200; // Assign the height of the box
+                
+                context.fillStyle = 'Orchid';
+                context.fillRect(0, 0, 300, boxHeight);
+                
+                context.fillStyle = 'Black';
+                context.font = '16px Arial';
+                context.textBaseline = 'bottom';
+                
+                var y = 20; // Initialize the y-coordinate of the first line of text
+                
+                while (y <= boxHeight) {
+                  context.fillText('this line of text is at y = ' + y, 10, y);
+                  y = y + 20; // Update the y-coordinate for the next line of text
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_while_loops_example1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_while_loops/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Update the while loop to draw trees from the start of the ground to the end, with
+            trees 40 pixels apart. The ground starts at the x-coordinate stored in the variable
+            %code
+              x1
+            and ends at the x-coordinate stored in the variable
+            %span
+              %code>
+                x2
+              \.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_while_loops_challenge1');
+            var context = canvas.getContext('2d');
+
+            var x1 = 20; // x-coordinate where the ground starts
+            var x2 = 380; // x-coordinate where the ground ends
+            
+            drawGround();
+            
+            var x = 0; // x-coordinate of the tree
+            
+            while (x < 0) {
+              drawTree(x);
+              x = x + 1;
+            }
+            
+            function drawTree(x) {
+              context.save();
+              context.translate(x, 150);
+              context.fillStyle = 'Sienna';
+              context.fillRect(-5, 0, 10, 50);
+              context.fillStyle = 'ForestGreen';
+              context.beginPath();
+              context.arc(0, 0, 15, 0, 2 * Math.PI, false);
+              context.fill();
+              context.restore();
+            }
+            
+            function drawGround() {
+              context.save();
+              context.translate(x1 - 5, 200);
+              context.fillStyle = '#666666';
+              context.fillRect(0, 0, x2 - x1 + 10, 10);
+              context.restore();
+            }
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_while_loops/challenge1.png')
+            %canvas#dng_while_loops_challenge1
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Convert a For Loop into a While Loop
+          %p
+            In this example, we convert a for loop into a while loop.
+            To learn
+            more about for loops, visit the
+            = link_to_lesson('For Loops', :dng_for_loops, nil, class: 'reference-link', data: {slug: :dng_for_loops})
+            lesson.
+          %p
+            Most for loops and while loops have the same parts, just located in different places.
+            In a for loop, we initialize, evaluate, and update the loop's condition all in the for
+            statement.
+          %pre
+            %code
+              :preserve
+                for (var i = 0; i < 8; i = i + 1) {
+                  context.fillRect(40 * i, 50, 36, 36);
+                }
+          %p
+            This for loop draws eight squares in a row.
+          %p
+            We can also set up a while loop to draw eight squares in a row. In a while loop, we
+            still evaluate the loop's condition in the while statement, but we initialize the condition
+            before the while statement and we update the condition inside the while loop's code block.
+          %pre
+            %code
+              :preserve
+                var j = 0; // initialize the variable in the condition
+                while (j < 8) {
+                  context.fillRect(40 * i, 150, 36, 36);
+                  j = j + 1; // update the condition by incrementing the variable
+                }
+          %p
+            To help us compare the two loops, the squares in the for loop are filled with the color
+            %code
+              'FireBrick'
+            and drawn at y = 50, and the squares in the while loop are filled with the color
+            %code
+              'DarkSlateBlue'
+            and drawn at y = 150.
+          %p
+            While loops and for loops both run a block of code repeatedly until a condition
+            evaluates to false. We often choose which kind of loop to use based on clarity and
+            readability. Which kind of loop makes our code easier to follow and understand?
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_for_loops, :dng_variables, :dng_coordinates]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_while_loops_example2');
+                var context = canvas.getContext('2d');
+                
+                context.fillStyle = 'FireBrick';
+                
+                for (var i = 0; i < 8; i = i + 1) {
+                  context.fillRect(40 * i, 50, 36, 36);
+                }
+                
+                context.fillStyle = 'DarkSlateBlue';
+                
+                var j = 0;
+                while (j < 8) {
+                  context.fillRect(40 * j, 150, 36, 36);
+                  j = j + 1;
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_while_loops_example2
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_while_loops/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            The for loop below draws six squares in a diagonal line. Create a while
+            loop to draw the same six squares, just shifted 100 pixels to right and
+            filled with the color
+            %code
+              'DarkOrange'
+            instead of
+            %span
+              %code>
+                'HotPink'
+              \.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_while_loops_challenge2');
+            var context = canvas.getContext('2d');
+            
+            context.fillStyle = 'HotPink';
+            
+            for (var i = 0; i < 6; i = i + 1) {
+              context.fillRect(40 * i, 50 * i, 45, 45);
+            }
+            
+            context.fillStyle = 'DarkOrange';
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_while_loops/challenge2.png')
+            %canvas#dng_while_loops_challenge2
+          .alert
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_while_loops/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Create a for loop that will run through the loop twelve times. Each loop draws a
+            square with a width and height of 20. The first square is positioned
+            at (100, 20), and the top left corner of the next square touches the bottom right
+            corner of the previous square. Fill all of the squares with the color
+            %span
+              %code>
+                'SaddleBrown'
+              \.
+            Use the
+            %code
+              context.translate()
+            method to position the squares.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_while_loops_challenge3');
+            var context = canvas.getContext('2d');
+
+            // TRANSLATE TO THE TOP LEFT CORNER OF THE DRAWING HERE
+            
+            // SET THE CONTEXT'S FILLSTYLE HERE
+            
+            // CREATE A FOR LOOP TO DRAW 12 SQUARES HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_while_loops/challenge3.png')
+            %canvas#dng_while_loops_challenge3
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Shortcuts for Incrementing the Loop
+          %p
+            So far, we have been using the statement
+            %code
+              i = i + 1
+            to increment our counter by 1 each time through the loop. Because incrementing
+            variables is so common in programming, there are a number of shortcuts for writing the
+            same statement.
+          %p
+            Writing
+            %code
+              i += 10
+            is a shorter way to write
+            %code
+              i = i + 10
+            and
+            %code
+              i -= 5
+            is a shorter way to write
+            %span
+              %code>
+                i = i - 5
+              \.
+            We can even write
+            %code
+              i++
+            for
+            %code
+              i = i + 1
+            and
+            %code
+              i--
+            for
+            %span
+              %code>
+                i = i - 1
+              \.
+            While shortcuts mean less typing, code should also be easy to read and understand.
+          %p
+            In this example, we change how we implement the counters in our for loops and make
+            our program more flexible.
+          %p
+            We start by declaring three variables:
+          %pre
+            %code
+              :preserve
+                var gridWidth = 320;
+                var gridHeight = 240;
+                var gridSpace = 20;
+          %p
+            Next, we update the condition and increment statement in the first for loop:
+          %pre
+            %code
+              :preserve
+                for (var i = 0; i <= gridWidth; i += gridSpace) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(0, gridHeight);
+                  context.stroke();
+                  context.translate(gridSpace, 0);
+                }
+          %p
+            Instead of hardcoding the number of vertical lines drawn by the for loop, we
+            simply intialize the counter
+            %code
+              i = 0
+            and increment it by the amount of space between grid lines. This means the value of
+            %code
+              i
+            is the x-coordinate of the next line. We continue drawing lines as long as
+            %span
+              %code>
+                i <= gridWidth
+              \.
+          %p
+            Inside of the for loop, we draw the vertical grid lines so they are as long as
+            the height of the grid, and we shift the coordinate system to the right based on
+            the amount of space between grid lines.
+          %p
+            Finally, we make similar changes to the second for loop:
+          %pre
+            %code
+              :preserve
+                for (var j = 0; j <= gridHeight; j += gridSpace) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(gridWidth, 0);
+                  context.stroke();
+                  context.translate(0, gridSpace);
+                }
+          %p
+            Now we can adjust the size and spacing in the grid simply by assigning new
+            values to the
+            %span
+              %code>
+                gridWidth
+              ,
+            %span
+              %code>
+                gridHeight
+              ,
+            and
+            %code
+              gridSpace
+            variables, and we will have a nice grid as long as the
+            %code
+              gridWidth
+            and
+            %code
+              gridHeight
+            are evenly divisible by the
+            %span
+              %code>
+                gridSpace
+              \.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.lineTo()
+              ,
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.translate()
+              ,
+            variables, and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:line_to, :dng_save, :dng_translate, :dng_variables, :dng_coordinates]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_while_loops_example3');
+                var context = canvas.getContext('2d');
+                
+                var gridWidth = 320;
+                var gridHeight = 240;
+                var gridSpace = 20;
+                
+                context.translate(10, 10);
+                context.strokeStyle = 'Crimson';
+                context.save(); // The origin of the coordinate system is at the top left corner of the grid
+                
+                for (var i = 0; i <= gridWidth; i += gridSpace) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(0, gridHeight);
+                  context.stroke();
+                  context.translate(gridSpace, 0);
+                }
+                
+                context.restore(); // Restores the origin of the coordinate system back to the top left corner of the grid
+                
+                for (var j = 0; j <= gridHeight; j += gridSpace) {
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(gridWidth, 0);
+                  context.stroke();
+                  context.translate(0, gridSpace);
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_while_loops_example3
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_while_loops/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Create a for loop that assigns the counter
+            %code
+              i
+            an intial value of 0, increments
+            %code
+              i
+            by 15 each time through the loop, and continues running as long as the value of
+            %code
+              i
+            is less than or equal to 255.
+          %p
+            Inside the for loop's code block, use the counter
+            %code
+              i
+            to set the
+            %code
+              context.fillStyle
+            property to a shade of blue:
+          %pre
+            %code
+              :preserve
+                context.fillStyle = 'rgb(0, 0, ' + i + ')';
+          %p
+            Then, draw a filled rectangle with a width of 20 and height of 200. The first
+            rectangle is positioned at (10, 10), and the next rectangle is positioned just to the
+            right of the previous one. Use the
+            %code
+              context.translate()
+            method to position the rectangles.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_while_loops_challenge4');
+            var context = canvas.getContext('2d');
+
+            // CREATE THE FOR LOOP HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#dng_while_loops_challenge4
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Iterate Over an Array
+          %p
+            For loops are often used to iterate over arrays, which are lists of values.
+          %p
+            In this example, we start by declaring a variable named
+            %code
+              colors
+            and assign it an array of HTML5 color names:
+          %pre
+            %code
+              :preserve
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+          %p
+            To iterate over the array
+            %code
+              colors
+            using a for loop, we assign the counter an intial value of 0, increment the counter
+            by 1, and use
+            %code
+              i < colors.length
+            as the condition:
+          %pre
+            %code
+              :preserve
+                for (var i = 0; i < colors.length; i += 1) {
+                  
+                  // code block
+                  
+                }
+          %p
+            Because there are seven elements in the array,
+            %code
+              colors.length
+            is 7. By using
+            %code
+              i < colors.length
+            as our condition, we will run through the loop seven times, once per element.
+          %p
+            Inside the for loop's code block, we set the
+            %code
+              context.fillStyle
+            property to
+            %span
+              %code>
+                colors[i]
+              \.
+            In the first loop,
+            %span
+              %code>
+                i = 0
+              ,
+            and
+            %code
+              colors[0]
+            accesses the first element in the array, which is the color
+            %span
+              %code>
+                'Red'
+              \.
+            In the second loop,
+            %span
+              %code>
+                i = 1
+              ,
+            and
+            %code
+              colors[1]
+            accesses the second element in the array, which is the color
+            %span
+              %code>
+                'Orange'
+              \.
+            The elements in an array are indexed starting at the number zero.
+          %pre
+            %code
+              :preserve
+                for (var i = 0; i < colors.length; i += 1) {
+                  
+                  context.fillStyle = colors[i];
+                  
+                }
+          %p
+            Finally, we draw a rectangle with the fill color and translate the origin of the
+            coordinate system to draw the rectangle in the next loop.
+          %pre
+            %code
+              :preserve
+                for (var i = 0; i < colors.length; i += 1) {
+                  context.fillStyle = colors[i];
+                  context.fillRect(0, 0, 40, 240);
+                  context.translate(40, 0);
+                }
+          %p
+            You can change the drawing simply by changing the colors listed in the array. Here is a full list of
+            %span
+              %span><
+                = link_to('HTML5 color names', 'http://www.rapidtables.com/web/color/html-color-codes.htm', target: '_blank')
+              \.
+            If you add or remove colors, the for loop will run through the correct number of loops
+            because it is using
+            %code
+              i < colors.length
+            as its condition, and the value of the
+            %code
+              colors.length
+            property is automatically updated.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            %span
+              %code>
+                context.translate()
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_coordinates]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_while_loops_example4');
+                var context = canvas.getContext('2d');
+                
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                context.translate(20, 20);
+                
+                for (var i = 0; i < colors.length; i += 1) {
+                  context.fillStyle = colors[i];
+                  context.fillRect(0, 0, 40, 240);
+                  context.translate(40, 0);
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_while_loops_example4
+
+
+  #challenge5.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 5
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_while_loops/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Create a for loop to iterate over the array
+            %code
+              data
+            provided below. The for loop will use the list of values stored in the array
+            %code
+              data
+            to draw a bar graph.
+          %p
+            The top left corner of the bar graph is at (10, 10). Each bar is positioned at
+            x = 10 with a height of 20. The width of the first bar is the value accessed by
+            %span
+              %code>
+                data[0]
+              ,
+            the width of the second bar is the value accessed by
+            %span
+              %code>
+                data[1]
+              ,
+            etc. The vertical space between bars is 5-pixels tall, and all of the bars
+            are filled with the color
+            %span
+              %code>
+                'MediumSeaGreen'
+              \.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_challenge5_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_while_loops_challenge5');
+            var context = canvas.getContext('2d');
+
+            var data = [120, 280, 150, 90, 300, 400, 220, 250];
+            
+            // POSITION THE BAR GRAPH AND SET THE BAR COLOR HERE
+            
+            // CREATE THE FOR LOOP TO DRAW THE BARS HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_while_loops/challenge5.png')
+            %canvas#dng_while_loops_challenge5
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Nested For Loops
+          %p
+            To draw a grid of squares, we are going to use a for loop inside of another
+            for loop. The inner for loop will draw a row of squares. The outer for loop
+            will draw a column of rows.
+          %p
+            The number of rows in our grid will be determined by the number of colors in the array
+            %code
+              colors.
+            At the moment, there are seven colors in the array, so there will be seven rows.
+            All of the squares in a row will have the same color.
+          %p
+            We start by setting up the outer for loop first:
+          %pre
+            %code
+              :preserve
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                for (var i = 0; i < colors.length; i += 1) {
+                  context.save(); // Save the drawing state with the origin at the start of the row
+                  context.fillStyle = colors[i];
+                  
+                  // Draw row of squares
+                  
+                  context.restore(); // Restore the origin back to the start of the row
+                  context.translate(0, 40); // Move the origin down 40 pixels to the start of the next row
+                }
+          %p
+            The first thing we do in the code block for the outer for loop is save the drawing
+            state. When drawing a row of squares, we use the
+            %code
+              context.translate()
+            method to move the origin of the coordinate system down the row. We need some way to
+            return to the start of the row so we can be ready to draw the next row. That's why we
+            call the
+            %code
+              context.restore()
+            method after drawing the row of squares. Then, we use the
+            %code
+              context.translate()
+            method to move the origin down to the start of the next row. Before drawing the row
+            of squares, we set the
+            %code
+              context.fillStyle
+            property to the color accessed from the array at index
+            %span
+              %code>
+                i
+              \.
+          %p
+            With the outer for loop set up, the inner for loop is fairly simple. We run
+            through the inner loop ten times, drawing a square filled with the color stored in the
+            %code
+              context.fillStyle
+            property and then moving the origin of the coordinate system over each time.
+          %pre
+            %code
+              :preserve
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                for (var i = 0; i < colors.length; i += 1) {
+                  context.save(); // Save the drawing state with the origin at the start of the row
+                  context.fillStyle = colors[i];
+                  
+                  for (var j = 0; j < 10; j += 1) {
+                    context.fillRect(0, 0, 30, 30);
+                    context.translate(40, 0); // Move the origin over 40 pixels to draw the next square
+                  }
+                  
+                  context.restore(); // Restore the origin back to the start of the row
+                  context.translate(0, 40); // Move the origin down 40 pixels to the start of the next row
+                }
+          %p
+            Because the inner for loop is inside of the outer for loop, we have to use different
+            counters for both loops. Also, indenting the code blocks makes the code much easier to read
+            once there are code blocks inside of other code blocks.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.translate()
+              ,
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_save, :dng_translate, :dng_fill_rect, :dng_fill_style, :dng_coordinates]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_example5_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_while_loops_example5');
+                var context = canvas.getContext('2d');
+                
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                context.translate(10, 10);
+                
+                for (var i = 0; i < colors.length; i += 1) {
+                  context.save(); // Save the drawing state with the origin at the start of the row
+                  context.fillStyle = colors[i];
+                  
+                  for (var j = 0; j < 10; j += 1) {
+                    context.fillRect(0, 0, 30, 30);
+                    context.translate(40, 0); // Move the origin over 40 pixels to draw the next square
+                  }
+                  
+                  context.restore(); // Restore the origin back to the start of the row
+                  context.translate(0, 40); // Move the origin down 40 pixels to the start of the next row
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_while_loops_example5
+
+
+  #challenge6.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 6
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_while_loops/challenge6Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Use nested for loops to create a grid of rectangles filled with the color
+            %span
+              %code>
+                'SlateBlue'
+              \.
+          %p
+            Each rectangle has a width of 30 and a height of 20. There are ten rectangles
+            in a row and eight rows in the column. The rectangle in the top left corner is
+            positioned at (10, 10). The spacing between rows, both horizontally and
+            vertically, is 10 pixels.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_challenge6_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_while_loops_challenge6');
+            var context = canvas.getContext('2d');
+            
+            // POSITION THE TOP LEFT CORNER OF THE GRID HERE
+            
+            // SET THE FILLSTYLE FOR THE RECTANGLES HERE
+            
+            // CREATE THE NESTED FOR LOOPS TO DRAW THE RECTANGLES HERE
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_while_loops/challenge6.png')
+            %canvas#dng_while_loops_challenge6
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Break out of a For Loop
+          %p
+            There are times when we want to break out of a for loop before its
+            condition returns false.
+          %p
+            In this example, we use a for loop to iterate over the array
+            %span
+              %code>
+                colors
+              \.
+            Just like we did before, we draw a rectangle with each color in the array,
+            except this time we break out of the loop, ending it early, if we find the color
+            %span
+              %code>
+                'Blue'
+              \.
+          %pre
+            %code
+              :preserve
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                context.translate(20, 20);
+                
+                for (var i = 0; i < colors.length; i += 1) {
+                  if (colors[i] == 'Blue') {
+                    break;
+                  }
+                  
+                  context.fillStyle = colors[i];
+                  context.fillRect(0, 0, 40, 240);
+                  context.translate(40, 0);
+                }
+          %p
+            Inside of the for loop, we have added an if statement to check if
+            %span
+              %code>
+                colors[i] == 'Blue'
+              \.
+            If the condition inside the if statement returns true, then we use a break
+            statement to break out of the loop. Note that our for loop only draws the first
+            four rectangles even though there are seven colors in the array.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            %span
+              %code>
+                context.translate()
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_coordinates]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_example6_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_while_loops_example6');
+                var context = canvas.getContext('2d');
+                
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                context.translate(20, 20);
+                
+                for (var i = 0; i < colors.length; i += 1) {
+                  if (colors[i] == 'Blue') {
+                    break;
+                  }
+                  
+                  context.fillStyle = colors[i];
+                  context.fillRect(0, 0, 40, 240);
+                  context.translate(40, 0);
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_while_loops_example6
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use a For Loop to Delete Elements in an Array
+          %p
+            There are also times when we want to use a for loop to iterate over an array
+            in order to find elements that meet a certain condition and delete them.
+          %p
+            In this example, we use a for loop to iterate over the array
+            %span
+              %code>
+                colors
+              \.
+            If we find the color
+            %code
+              'Yellow'
+            in the array, we delete the color from the array. While this process is fairly
+            straightforward, there is one complication. If we start from the beginning of the
+            array, find the color
+            %code
+              'Yellow'
+            in the array at index 2, and delete it&mdash;the index of the color
+            %code
+              'Green'
+            suddenly becomes 2 and the index of the color
+            %code
+              'Blue'
+            suddenly becomes 3.
+          %p
+            Then, when the for loop repeats and goes to check the color at index 3, it skips
+            the color
+            %code
+              'Green'
+            entirely and finds the color
+            %code
+              'Blue'
+            instead. If the color
+            %code
+              'Yellow'
+            only appears in the array once, this is not a problem. But it is a problem if the
+            color
+            %code
+              'Yellow'
+            is in the array at two consecutive indices or if we are doing more than deleting
+            elements from the array.
+          %p
+            The best way to loop through an array and delete elements is to start at the end of 
+            the array and work backwards.
+          %pre
+            %code
+              :preserve
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                for (var i = colors.length - 1; i >= 0; i -= 1) {
+                  if (colors[i] == 'Yellow') {
+                    colors.splice(i, 1);
+                  } else {
+                    context.fillStyle = colors[i];
+                    context.fillRect(0, 0, 40, 240);
+                    context.translate(40, 0);
+                  }
+                }
+          %p
+            We initialize the counter using
+            %code
+              var i = colors.length - 1
+            because
+            %code
+              colors.length - 1
+            is the index of the last element. Remember, the index of an array starts at zero.
+            We decrement the counter by subtracting 1 from it at the end of each loop until the
+            condition
+            %code
+              i >= 0
+            returns false.
+          %p
+            Inside of the for loop, we use an if statement to check if the color is
+            %span
+              %code>
+                'Yellow'
+              \.
+            If the condition inside of the if statement returns true, we use the array's
+            %code
+              splice()
+            method to delete the element at index
+            %span
+              %code>
+                i
+              \.
+            But if the statement returns false, we draw a rectangle filled with the color.
+          %p
+            Note that the colors in the array are drawn in reverse order and the color
+            %code
+              'Yellow'
+            is not included. We have successfully deleted it from the array.
+          %p
+            Visit the relevant lessons to learn more about
+            %span
+              %code>
+                context.fillRect()
+              ,
+            %span
+              %code>
+                context.fillStyle
+              ,
+            %span
+              %code>
+                context.translate()
+              ,
+            and the context's coordinate system.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_coordinates]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_example7_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_while_loops_example7');
+                var context = canvas.getContext('2d');
+                
+                var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+                
+                context.translate(20, 20);
+                
+                for (var i = colors.length - 1; i >= 0; i -= 1) {
+                  if (colors[i] == 'Yellow') {
+                    colors.splice(i, 1);
+                  } else {
+                    context.fillStyle = colors[i];
+                    context.fillRect(0, 0, 40, 240);
+                    context.translate(40, 0);
+                  }
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_while_loops_example7
