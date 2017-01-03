@@ -194,3 +194,111 @@
           .canvas
             %canvas#flappy_square_stage4_challenge1
           .alert
+
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+
+          %figure.float-xs-right.pl-2
+            = image_tag('lessons/flappy_square/stage4/challenge2Example.gif', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 2 Sample Solution
+
+          %p
+            Ok, so now that we've got some practice work with text under our belts
+            let's try something a bit more tricky: displaying the score.
+          %p
+            We'll dislay our score counter, something like "Score: 30" in the top
+            right corner. With each frame we'll update the score.
+          %p
+            The score itself is arbitrary, but since the goal of the game is simply
+            to stay alive as long as possible then the score should reflect that.
+          %p
+            In the example to the right we're using a score that increments every 10
+            frames or roughly once per second (every 800 miliseconds). In the next lesson
+            we can tweak all of these variable to get the game play just right.
+
+          = render 'lessons/code_preview', stage: 4, challenge: 1, editor_id: 'flappy_square_stage4_challenge1_editor'
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage4_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage4_challenge2');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var gravity = 0.5;
+            var distance = 0;
+
+            var square = {
+              size: 20,
+              x: ,
+              y: ,
+              jump: ,
+              yVelocity:
+            };
+
+            var boundary = {
+              minX: ,
+              minY: ,
+              maxX: ,
+              maxY:
+            };
+
+            var walls = {
+              spacing:
+              width:
+              height:
+              positions: []
+            };
+
+            function drawBoundary() {
+            }
+
+            function drawWalls() {
+            }
+
+            function drawSquare() {
+            }
+
+            function flap(e) {
+            }
+
+            function adjustPosition() {
+            }
+
+            function checkBoundary() {
+            }
+
+            function checkWalls() {
+            }
+
+            function endGame() {
+            }
+
+            function runProgram() {
+            }
+
+            function startAnimation() {
+              interval =
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.addEventListener('keydown', flap);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#flappy_square_stage4_challenge2
+          .alert
