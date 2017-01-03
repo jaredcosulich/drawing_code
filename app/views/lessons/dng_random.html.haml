@@ -1,0 +1,553 @@
+#dng_random.lesson
+  %h1
+    Math.random()
+  .description.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_random/overviewVisual1.png', class: 'img-fluid canvas-example')
+          %p
+            The
+            %code
+              Math.random()
+            function returns a random number between 0 and 1, including 0 but not including 1:
+          %pre
+            %code
+              :preserve
+                Math.random();
+          %p
+            The
+            %code
+              Math.random()
+            function is a method of the
+            %code
+              Math
+            object, which has a set of functions that other programmers have defined for us to
+            use. Here is a full list of available
+            %span
+              %span><
+                = link_to('math functions', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math', target: '_blank')
+              \.
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Generate a Random Number
+          %p
+            In this example, we use the
+            %code
+              Math.random()
+            function to generate a random number between 0 and 1 and assign it to the variable
+            %span
+              %code>
+                x
+              \.
+            A new random number is generated each time the program is run.
+          %pre
+            %code
+              :preserve
+                var x = Math.random();
+          = render 'lessons/relevant', relevant: [:dng_variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_random_example1');
+                var context = canvas.getContext('2d');
+
+                var x = Math.random();
+                
+                context.fillStyle = 'Black';
+                context.font = '16px Arial';
+                context.fillText('x = ' + x, 20, 32);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_random_example1
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Scale a Random Number
+          %p
+            The
+            %code
+              Math.random()
+            function only generates random numbers between 0 and 1, but sometimes we
+            need larger random numbers. We can create larger random numbers by multiplying
+            values returned by the
+            %code
+              Math.random()
+            function by a scale factor.
+          %p
+            In this example, we generate random numbers between 0 and 50 by multiplying
+            values returned by the
+            %code
+              Math.random()
+            function by a scale factor of 50.
+          %pre
+            %code
+              :preserve
+                var x = 50 * Math.random();
+          = render 'lessons/relevant', relevant: [:dng_variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_random_example2');
+                var context = canvas.getContext('2d');
+
+                var x = 50 * Math.random();
+                
+                context.fillStyle = 'Black';
+                context.font = '16px Arial';
+                context.fillText('x = ' + x, 20, 32);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_random_example2
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_random/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Draw this square at a random position
+          %p
+            Draw a square at a randomly generated position. Use the
+            %code
+              Math.random()
+            function to generate a random value for the square's x-coordinate between
+            0 and 180 and a random value for the square's y-coordinate between 0 and 120.
+          %p
+            Run your program a few times to make sure the square's position is randomly generated.
+            If your program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_coordinates, :dng_fill_rect]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_random_challenge1');
+            var context = canvas.getContext('2d');
+            
+            var x; // Assign this variable a random number between 0 and 180
+            var y; // Assign this variable a random number between 0 and 120
+            
+            context.fillStyle = 'RebeccaPurple';
+            context.fillRect(x, y, 180, 180);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#dng_random_challenge1
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Generate a Random Number Within a Range
+          %p
+            In this example, we generate random numbers between 40 and 120.
+          %p
+            We multiply the values returned by the
+            %code
+              Math.random()
+            function by a scale factor of 80, which is the difference between 120 and 40.
+            This gives us random numbers between 0 and 80. Then, we add 40 to get random
+            numbers between 40 and 120.
+          %pre
+            %code
+              :preserve
+                var x = 40 + 80 * Math.random();
+          = render 'lessons/relevant', relevant: [:dng_variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_random_example3');
+                var context = canvas.getContext('2d');
+                
+                var x = 40 + 80 * Math.random();
+                
+                context.fillStyle = 'Black';
+                context.font = '16px Arial';
+                context.fillText('x = ' + x, 20, 32);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_random_example3
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_random/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Draw a rectangle with random dimensions at a random position
+          %p
+            Draw a rectangle at a randomly generated position with randomly generated
+            dimensions. Use the
+            %code
+              Math.random()
+            function to generate a random value for the rectangle's x-coordinate between
+            20 and 160, a random value for the rectangle's y-coordinate between 20 and 60,
+            and random values for the rectangle's width and height between 80 and 240.
+          %p
+            Run your program a few times to make sure the rectangle's position and dimensions are randomly generated.
+            Then, if your program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_coordinates, :dng_fill_rect]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_random_challenge2');
+            var context = canvas.getContext('2d');
+
+            var x; // Assign this variable a random number between 20 and 160
+            var y; // Assign this variable a random number between 20 and 60
+            var w; // Assign this variable a random number between 80 and 240
+            var h; // Assign this variable a random number between 80 and 240
+            
+            context.fillStyle = 'DarkOrange';
+            context.fillRect(x, y, w, h);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#dng_random_challenge2
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Generate a Random Integer
+          %p
+            There are a few ways to generate a random integer.
+          %p
+            To generate a random integer between 0 and 9, we can generate
+            a random number between 0 and 9, and then round the result using the
+            %code
+              Math.round()
+            function. But, if we do that, we will generate only half as many 0's and 9's
+            compared to the other numbers. This is because numbers between 0 and 0.5 will
+            round to 0, but numbers between 0.5 and 1.5 (twice the range) will round to 1.
+          %p
+            A better way to generate a random integer between 0 and 9 is to generate
+            a random number between 0 and 10, and then round the result down using the
+            %code
+              Math.floor()
+            function. This creates an even distribution of random integers, and we will
+            not generate any 10's because
+            %code
+              10 * Math.random()
+            is always less than 10 (remember, the
+            %code
+              Math.random()
+            function returns values between 0 and 1, but not including 1).
+          %pre
+            %code
+              :preserve
+                var x = Math.floor(10 * Math.random());
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_round]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_random_example4');
+                var context = canvas.getContext('2d');
+
+                var x = Math.floor(10 * Math.random());
+                
+                context.fillStyle = 'Black';
+                context.font = '16px Arial';
+                context.fillText('x = ' + x, 20, 32);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_random_example4
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_random/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Fill this rectangle with a random color
+          %p
+            Fill a rectangle with a randomly generated color. Use the
+            %code
+              Math.random()
+            and
+            %code
+              Math.floor()
+            functions to generate random RGB values (integers between 0 and 255) and assign them to three variables,
+            %span
+              %code>
+                r
+              ,
+            %span
+              %code>
+                g
+              ,
+            and
+            %span
+              %code>
+                b
+              \.
+            Those variables are used describe a color assigned to the
+            %code
+              context.fillStyle
+            property.
+          %p
+            Run your program a few times to make sure the rectangle's color is randomly generated.
+            If your program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_round, :dng_fill_style]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_random_challenge3');
+            var context = canvas.getContext('2d');
+
+            var r; // Generate a random integer between 0 and 255
+            var g; // Generate a random integer between 0 and 255
+            var b; // Generate a random integer between 0 and 255
+            
+            var color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+            
+            context.fillStyle = color;
+            context.fillRect(60, 40, 300, 240);
+            
+            context.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            context.fillRect(130, 145, 160, 30);
+            context.fillStyle = 'Black';
+            context.font = '16px Arial';
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(color, 210, 160);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#dng_random_challenge3
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Access a Random Element in an Array
+          %p
+            In this example, we use the
+            %code
+              Math.random()
+            function to access a random element in an array of New England state names.
+          %pre
+            %code
+              :preserve
+                var states = ['Connecticut', 'Maine', 'Massachusetts', 'New Hampshire', 'Rhode Island', 'Vermont'];
+          %p
+            The elements in an array can be accessed by index. The first element in an
+            array is at index 0 and the second element is at index 1. Since there are six
+            elements in this array, we could generate a random index using
+            %span
+              %code>
+                Math.floor(6 * Math.random())
+              ,
+            which generates a random integer between 0 and 5. The last index of an array
+            with six elements is index 5 because the first index is 0.
+          %p
+            However, it is generally not a good idea to assume that an array will always have
+            six elements. Instead of hardcoding the number 6 in our random index generator, we
+            can use the array's
+            %code
+              length
+            property instead. Because the
+            %code
+              states
+            array currently has six elements,
+            %span
+              %code>
+                states.length == 6
+              \.
+            But if we add or remove elements later, the
+            %code
+              length
+            property is automatically updated to reflect the new number. This makes using the array's
+            %code
+              length
+            property to generate a random index much more robust than hardcoding a fixed number.
+          %pre
+            %code
+              :preserve
+                var i = Math.floor(states.length * Math.random()); // Generate a random index
+                var randomStateName = states[i]; // Use the random index to access a random element in the array
+          %p
+            Try adding or removing names from the
+            %code
+              states
+            array. The expression for generating a random index always selects an index in the appropriate range.
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_round]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_example5_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_random_example5');
+                var context = canvas.getContext('2d');
+
+                var states = ['Connecticut', 'Maine', 'Massachusetts', 'New Hampshire', 'Rhode Island', 'Vermont'];
+                
+                var i = Math.floor(states.length * Math.random()); // Generate a random index
+                var randomStateName = states[i]; // Use the random index to access a random element in the array
+                
+                context.fillStyle = 'Black';
+                context.font = '16px Arial';
+                context.fillText(randomStateName + ' is at index ' + i, 20, 32);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_random_example5
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_random/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Your drawing should look something like this
+          %p
+            Use a for loop to generate a random number of rectangles with randomly generated
+            dimensions at randomly generated positions filled with a color randomly accessed
+            from an array.
+          %p
+            Assign a randomly generated integer between 4 and 10 to the variable
+            %span
+              %code>
+                n
+              ,
+            which is the number of times the for loop will run.
+          %p
+            Assign a randomly generated integer based on the
+            %code
+              colors.length
+            property to the variable
+            %span
+              %code>
+                i
+              ,
+            which is the index of the element in the
+            %code
+              colors
+            array we will assign to the
+            %code
+              context.fillStyle
+            property.
+          %p
+            Inside the for loop, assign randomly generated numbers between 0 and 200
+            to the variables
+            %code
+              x
+            and
+            %code
+              y
+            for the position of the rectangle, and randomly generated numbers
+            between 40 and 100 to the variables
+            %code
+              w
+            and
+            %code
+              h
+            for the dimensions of the rectangle.
+          %p
+            Run your program a few times to make sure the number of rectangles, the color
+            used to fill the rectangles, and each of the rectangle's dimensions and positions
+            are randomly generated. Then, if your program seems to be working, mark the challenge
+            as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_round, :dng_fill_style]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_random_challenge4');
+            var context = canvas.getContext('2d');
+
+            var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+            
+            var n; // Generate a random integer between 4 and 10
+            var i; // Generate a random index to access a random element in the colors array
+            
+            context.globalAlpha = 0.4;
+            context.fillStyle = colors[i];
+            
+            for (var k = 0; k < n; k += 1) {
+              var x; // Generate a random number between 0 and 200
+              var y; // Generate a random number between 0 and 200
+              var w; // Generate a random number between 40 and 100
+              var h; // Generate a random number between 40 and 100
+              
+              context.fillRect(x, y, w, h);
+            }
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#dng_random_challenge4
+          .alert

@@ -28,10 +28,13 @@ class ApplicationController < ActionController::Base
       dng_fill_style: {count: 3, method: 'DNG fillStyle'},
       dng_save: {count: 5, method: 'DNG save()/restore()'},
       dng_translate: {count: 6, method: 'DNG translate()'},
+      dng_random: {count: 4, method: 'DNG random()'},
+      dng_round: {count: 3, method: 'DNG round()/floor()/ceil()'},
       dng_coordinates: {count: 3, method: 'DNG Coordinates'},
       dng_variables: {count: 5, method: 'DNG Variables'},
       dng_functions: {count: 5, method: 'DNG Functions'},
       dng_for_loops: {count: 6, method: 'DNG For Loops'},
+      dng_while_loops: {count: 6, method: 'DNG While Loops'},
       dng_switch_statements: {count: 4, method: 'DNG Switch Statements'}
     }
 
@@ -154,14 +157,17 @@ class ApplicationController < ActionController::Base
           :dng_fill_style,
           :dng_save,
           :dng_translate,
-          :dng_line_to
+          :dng_line_to,
+          :dng_random,
+          :dng_round
         ],
         concepts: [
           :dng_coordinates,
           :dng_variables,
           :dng_functions,
           :dng_for_loops,
-          :dng_switch_statements
+          :dng_switch_statements,
+          :dng_while_loops
         ]
       }
     ]

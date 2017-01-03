@@ -666,25 +666,32 @@
           %h2.py-2
             Handle keydown Events
           %p
-            In this example, we use a switch statement to handle keydown events. Select
-            the canvas below by clicking on it. Then, use the arrow or WASD keys to move
-            the square on the canvas.
+            In this example, we use a switch statement to handle
+            %code
+              keydown
+            events. Select the canvas below by clicking on it. Then, use the arrow
+            or WASD keys to move the square on the canvas.
           %p
-            There is a lot going on in this example, but the part of the program we want
+            There is a lot happening in this example, but the part of the program we want
             to focus on is the
             %code
               moveSquare()
-            function, which is registered to listen for keydown events on the canvas.
+            function, which is registered to listen for
+            %code
+              keydown
+            events on the canvas.
           %pre
             %code
               :preserve
                 canvas.addEventListener('keydown', moveSquare);
           %p
-            If a key is pressed down while the canvas is selected, a keydown event is
-            generated and passed into the
+            If a key is pressed down while the canvas is selected, a
+            %code
+              keydown
+            event is generated and passed into the
             %code
               moveSquare()
-            function, where it is stored in the parameter
+            function, where it is then stored in the parameter
             %span
               %code>
                 e
@@ -722,7 +729,10 @@
             Inside the
             %code
               moveSquare()
-            function, we can identify the key that was pressed by accessing the keydown event's
+            function, we can identify the key that was pressed by accessing the
+            %code
+              keydown
+            event's
             %code
               keyCode
             property. We use a switch statement to move the square to the left by subtracting 10
@@ -758,7 +768,7 @@
             the code block for
             %code
               e.keyCode === 65
-            runs because there is no break statement between them. Then, we simply redraw the square at its new position using the
+            runs because there is no break statement between them. Finally, we redraw the square at its new position using the
             %code
               drawSquare()
             function. Here is a list of
