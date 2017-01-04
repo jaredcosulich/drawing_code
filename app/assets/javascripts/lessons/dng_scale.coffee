@@ -1,159 +1,160 @@
-initDngTranslateChallenges = ->
-  if (page = $('#dng_translate')).length > 0
-    initDngTranslateChallenge1(page)
-    initDngTranslateChallenge2(page)
-    initDngTranslateChallenge3(page)
-    initDngTranslateChallenge4(page)
-    initDngTranslateChallenge5(page)
-    initDngTranslateChallenge6(page)
+initDngScaleChallenges = ->
+  if (page = $('#dng_scale')).length > 0
+    initDngScaleChallenge1(page)
+    initDngScaleChallenge2(page)
+    initDngScaleChallenge3(page)
+    initDngScaleChallenge4(page)
+    initDngScaleChallenge5(page)
+    initDngScaleChallenge6(page)
 
 
-initDngTranslateChallenge1 = (page) ->
+initDngScaleChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
   
   solution = (canvas, context) ->
-    context.translate(120, 40)
+    context.scale(2.5, 2.5)
     context.fillStyle = '#0055A4'
-    context.fillRect(0, 0, 80, 160)
+    context.fillRect(20, 20, 40, 80)
     context.fillStyle = '#FFFFFF'
-    context.fillRect(80, 0, 80, 160)
+    context.fillRect(60, 20, 40, 80)
     context.fillStyle = '#EF4135'
-    context.fillRect(160, 0, 80, 160)
+    context.fillRect(100, 20, 40, 80)
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You moved the origin of the coordinate system to draw the French flag at the correct position!'
-        App.currentProgress.challengeComplete('dng_translate', 'challenge1')
+        message = '<strong>Success!</strong> You scaled the French flag so it is 2.5 times wider and 2.5 times taller!'
+        App.currentProgress.challengeComplete('dng_scale', 'challenge1')
       else
-        message = 'Nice try, but you need to move the origin of the coordinate system to draw the French flag at the correct position.'
+        message = 'Nice try, but you need to scale the French flag so it is 2.5 times wider and 2.5 times taller.'
 
       canvas.alert(message, success)
 
 
-initDngTranslateChallenge2 = (page) ->
+initDngScaleChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
   
   solution = (canvas, context) ->
-    drawFrenchFlag = ->
+    drawFrenchFlag = (x, y) ->
       context.fillStyle = '#0055A4'
-      context.fillRect(0, 0, 60, 120)
+      context.fillRect(x, y, 40, 80)
       context.fillStyle = '#FFFFFF'
-      context.fillRect(60, 0, 60, 120)
+      context.fillRect(x + 40, y, 40, 80)
       context.fillStyle = '#EF4135'
-      context.fillRect(120, 0, 60, 120)
+      context.fillRect(x + 80, y, 40, 80)
       return
     
-    context.translate(20, 40)
-    drawFrenchFlag()
-    context.translate(200, 0)
-    drawFrenchFlag()
-    context.translate(-80, 140)
-    drawFrenchFlag()
+    context.scale(1.0, 1.4)
+    drawFrenchFlag(40, 20)
+    drawFrenchFlag(240, 20)
+    drawFrenchFlag(60, 120)
+    drawFrenchFlag(260, 120)
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You positioned the three French flags correctly!'
-        App.currentProgress.challengeComplete('dng_translate', 'challenge2')
+        message = '<strong>Success!</strong> You scaled and positioned the four French flags correctly!'
+        App.currentProgress.challengeComplete('dng_scale', 'challenge2')
       else
-        message = 'Nice try, but you need to position the three French flags correctly.'
+        message = 'Nice try, but you need to scale and position the four French flags correctly.'
 
       canvas.alert(message, success)
 
 
-initDngTranslateChallenge3 = (page) ->
+initDngScaleChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    drawFrenchFlag = ->
-      context.fillStyle = '#0055A4'
-      context.fillRect(0, 0, 60, 120)
-      context.fillStyle = '#FFFFFF'
-      context.fillRect(60, 0, 60, 120)
-      context.fillStyle = '#EF4135'
-      context.fillRect(120, 0, 60, 120)
-      return
+    context.fillStyle = 'HotPink'
+    context.fillRect(20, 20, 80, 80)
     
-    context.save()
-    context.translate(10, 50)
-    drawFrenchFlag()
-    context.restore()
-    context.translate(220, 100)
-    drawFrenchFlag()
-
+    context.scale(2, 3);
+    context.fillStyle = 'MediumVioletRed'
+    context.fillRect(110, 15, 80, 80)
+    
+    context.scale(2, 0.5);
+    context.fillStyle = 'RebeccaPurple'
+    context.fillRect(5, 90, 80, 80)
+  
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You positioned the two French flags correctly!'
-        App.currentProgress.challengeComplete('dng_translate', 'challenge3')
+        message = '<strong>Success!</strong> You scaled the three rectangles correctly!'
+        App.currentProgress.challengeComplete('dng_scale', 'challenge3')
       else
-        message = 'Nice try, but you need to position the two French flags correctly.'
+        message = 'Nice try, but you need to scale the three rectangles by combining scale factors correctly.'
 
       canvas.alert(message, success)
 
 
-initDngTranslateChallenge4 = (page) ->
+initDngScaleChallenge4 = (page) ->
   challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    drawPineTree = (x, y) ->
-      context.save()
-      context.translate(x, y)
-      context.fillStyle = 'ForestGreen'
-      context.fillRect(40, 0, 20, 40)
-      context.fillRect(30, 40, 40, 40)
-      context.fillRect(20, 80, 60, 40)
-      context.fillRect(10, 120, 80, 40)
-      context.fillRect(0, 160, 100, 40)
+    drawTree = (x, y) ->
       context.fillStyle = 'Sienna'
-      context.fillRect(40, 200, 20, 40)
-      context.restore()
+      context.fillRect(x - 10, y, 20, 100)
+      context.fillStyle = 'ForestGreen'
+      context.beginPath()
+      context.arc(x, y, 30, 0, 2 * Math.PI, false)
+      context.fill()
       return
     
-    drawPineTree(5, 40)
-    drawPineTree(105, 10)
-    drawPineTree(205, 60)
-    drawPineTree(305, 30)
+    drawTree(40, 80)
+    
+    context.save()
+    context.scale(1, 1.3)
+    drawTree(140, 80)
+    context.restore()
+    
+    context.save()
+    context.scale(1, 0.8)
+    drawTree(240, 80)
+    context.restore()
+    
+    context.save()
+    context.scale(1, 1.2)
+    drawTree(340, 80)
+    context.restore()
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You updated the function and positioned the four pine trees correctly!'
-        App.currentProgress.challengeComplete('dng_translate', 'challenge4')
+        message = '<strong>Success!</strong> You scaled the four trees correctly by saving and restoring the drawing state!'
+        App.currentProgress.challengeComplete('dng_scale', 'challenge4')
       else
-        message = 'Nice try, but you need to update the function and position the four pine trees correctly.'
+        message = 'Nice try, but you need to scale the four trees correctly by saving and restoring the drawing state.'
 
       canvas.alert(message, success)
 
 
-initDngTranslateChallenge5 = (page) ->
+initDngScaleChallenge5 = (page) ->
   challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_translate', 'challenge5')
+      App.currentProgress.challengeComplete('dng_scale', 'challenge5')
 
 
-initDngTranslateChallenge6 = (page) ->
+initDngScaleChallenge6 = (page) ->
   challenge = page.find('#challenge6')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -193,11 +194,11 @@ initDngTranslateChallenge6 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You updated the function to position a pine tree by its anchor point correctly!'
-        App.currentProgress.challengeComplete('dng_translate', 'challenge6')
+        App.currentProgress.challengeComplete('dng_scale', 'challenge6')
       else
         message = 'Nice try, but you need to update the function to position a pine tree by its anchor point and then draw a pine tree on the ground.'
 
       canvas.alert(message, success)
 
 
-$(document).on('initialization:complete', initDngTranslateChallenges)
+$(document).on('initialization:complete', initDngScaleChallenges)

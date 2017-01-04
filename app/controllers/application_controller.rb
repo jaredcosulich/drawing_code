@@ -28,13 +28,14 @@ class ApplicationController < ActionController::Base
       dng_fill_style: {count: 3, method: 'DNG fillStyle'},
       dng_save: {count: 5, method: 'DNG save()/restore()'},
       dng_translate: {count: 6, method: 'DNG translate()'},
+      dng_scale: {count: 6, method: 'DNG scale()'},
       dng_random: {count: 4, method: 'DNG random()'},
       dng_round: {count: 3, method: 'DNG round()/floor()/ceil()'},
       dng_coordinates: {count: 3, method: 'DNG Coordinates'},
       dng_variables: {count: 5, method: 'DNG Variables'},
       dng_functions: {count: 5, method: 'DNG Functions'},
       dng_for_loops: {count: 6, method: 'DNG For Loops'},
-      dng_while_loops: {count: 6, method: 'DNG While Loops'},
+      dng_while_loops: {count: 3, method: 'DNG While Loops'},
       dng_switch_statements: {count: 4, method: 'DNG Switch Statements'}
     }
 
@@ -104,7 +105,7 @@ class ApplicationController < ActionController::Base
         experimental: true,
         name: 'Flappy Square',
         slug: 'flappy_square',
-        stages: [5, 4, 3, 1],
+        stages: [5, 4, 3],
         reference: [
           :clear_rect,
           :fill_rect,
@@ -159,7 +160,8 @@ class ApplicationController < ActionController::Base
           :dng_translate,
           :dng_line_to,
           :dng_random,
-          :dng_round
+          :dng_round,
+          :dng_scale
         ],
         concepts: [
           :dng_coordinates,
