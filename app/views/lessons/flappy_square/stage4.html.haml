@@ -302,3 +302,120 @@
           .canvas
             %canvas#flappy_square_stage4_challenge2
           .alert
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+
+          %figure.float-xs-right.pl-2
+            = image_tag('lessons/flappy_square/stage4/challenge3Example.gif', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+
+          %p
+            Well our game is basically done. All we have left to do is
+            tweak the game play to make the experience easier or harder.
+          %p
+            There's no right or wrong answer to this but you can play around a
+            number of variables to adjust the difficulty of the game.
+          %ul
+            %li How strong gravity is.
+            %li How many frames are drawn per second.
+            %li The size of the flappy square.
+            %li The size of the holes in each wall.
+            %li The width of each wall.
+            %li The possible distance between walls.
+            %li The rate at which the score goes up.
+          %p
+            Try playing around with each of these factors until the game
+            feels appropriately challenging.
+          %p
+            In the example solution we've provided we've increased the frame rate
+            to redraw every 50 miliseconds, we've shrunk the flappy bird down to
+            15x15 pixels, we've increased gravity to 1.0 and the jump velocity to 10.
+            Lastly  we've shrunk the holes down so that the smallest hole is 70 pixels
+            and the largest hole is 120 pixels.
+
+          = render 'lessons/code_preview', stage: 4, challenge: 2, editor_id: 'flappy_square_stage4_challenge2_editor'
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage4_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage4_challenge3');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var gravity = 0.5;
+            var distance = 0;
+
+            var square = {
+              size: 20,
+              x: ,
+              y: ,
+              jump: ,
+              yVelocity:
+            };
+
+            var boundary = {
+              minX: ,
+              minY: ,
+              maxX: ,
+              maxY:
+            };
+
+            var walls = {
+              spacing:
+              width:
+              height:
+              positions: []
+            };
+
+            function drawBoundary() {
+            }
+
+            function drawWalls() {
+            }
+
+            function drawSquare() {
+            }
+
+            function flap(e) {
+            }
+
+            function adjustPosition() {
+            }
+
+            function checkBoundary() {
+            }
+
+            function checkWalls() {
+            }
+
+            function endGame() {
+            }
+
+            function runProgram() {
+            }
+
+            function startAnimation() {
+              interval =
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.addEventListener('keydown', flap);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#flappy_square_stage4_challenge3
+          .alert
