@@ -1,6 +1,8 @@
+- lesson_index = 0
+- challenge_index = 0
+
 #flappy_square_stage1.lesson
   %h1 Stage 1
-
 
   .description.row.py-3
     .col-xs-6
@@ -27,9 +29,107 @@
         on drawing our little flappy square and giving it a realistic
         falling animation (i.e. simulating gravity).
     .col-xs-6
-      = image_tag('lessons/flappy_square/stage1/challenge5Example.gif', class: 'img-fluid canvas-example')
+      = image_tag('lessons/flappy_square/stage1/challenge6Example.gif', class: 'img-fluid canvas-example')
 
 
+  - lesson_index += 1
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: The Coordinate System
+
+          .float-xs-right.mx-2
+            = image_tag('lessons/coordinates/visual1.png', class: 'img-fluid')
+
+          %p
+            Before we get started with our game it is important to understand
+            the coordinate system we'll be drawing in.
+          %p
+            When drawing in the
+            = link_to_lesson('coordinate system', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+            on a canvas element (as seen to the right) the
+            %span.highlight "y" values go down.
+          %p
+            Unlike with a normal graph, where the positive "y" values go up starting from the bottom, in the canvas
+            positive "y" values go down starting from the top.
+          %p
+            So the point (50, 100) is 50 pixels from the right of the top left corner of the canvas and
+            100 pixels down from the top left corner.
+          %p
+            In the example below, the black square is at (0, 0) so it's top left corner
+            is in the top left corner of the canvas. The blue square is at (50, 100)
+            so it's top left corner is 50 pixels to the right and 100 pixels down.
+          %p
+            Try adjusting the coordinates of the two squares and see how they move around
+            the coordinate system.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_lesson#{lesson_index}_editor"} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage1_lesson#{lesson_index}');
+                var context = canvas.getContext('2d');
+
+                context.fillRect(0, 0, 50, 50);
+
+                context.fillStyle = 'blue';
+                context.fillRect(50, 100, 50, 50);
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas{id: "flappy_square_stage1_lesson#{lesson_index}"}
+
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}Example.png", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            Draw a rectangle using the code
+            %code fillRect(x, y, width, height)
+            where you replace x with the top left x coordinate, y with the top left y coordinate,
+            width with the width of the rectangle and height with the height of the rectangle.
+          %p
+            Draw the rectangle so that it's top left corner is 60px to the right of the top
+            left corner of the canvas and 90px down. The rectangle should be 45px wide (width) and
+            45px tall (height).
+
+          %p In the end your drawing should look like the example provided to the right.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            // YOUR CODE HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}.png")
+            %canvas{id: "flappy_square_stage1_challenge#{challenge_index}"}
+          .alert
+
+  - lesson_index += 1
   .lesson.row.py-3
     .col-xs-12
       .row
@@ -54,9 +154,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_lesson#{lesson_index}_editor"} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage1_lesson1');
+                var canvas = document.getElementById('flappy_square_stage1_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
                 context.fillRect(100, 50, 50, 50);
@@ -66,19 +166,19 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage1_lesson1
+                %canvas{id: "flappy_square_stage1_lesson#{lesson_index}"}
 
-
-  #challenge1.challenge.row.py-3
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
     .col-xs-12
       .row.pb-2
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 1
+            = "Challenge #{challenge_index}"
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage1/challenge1Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 1 Sample Solution
+            = image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}Example.png", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
             Draw a flappy square that is
@@ -90,9 +190,9 @@
           = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge1_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage1_challenge1');
+            var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
             // YOUR CODE HERE
@@ -102,10 +202,11 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/flappy_square/stage1/challenge1.png')
-            %canvas#flappy_square_stage1_challenge1
+            .background.hidden-xl-down= image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}.png")
+            %canvas{id: "flappy_square_stage1_challenge#{challenge_index}"}
           .alert
 
+  - lesson_index += 1
   .lesson.row.py-3
     .col-xs-12
       .row
@@ -128,9 +229,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_lesson#{lesson_index}_editor"} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage1_lesson2');
+                var canvas = document.getElementById('flappy_square_stage1_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
                 var size = 20;
@@ -144,18 +245,19 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage1_lesson2
+                %canvas{id: "flappy_square_stage1_lesson#{lesson_index}"}
 
-  #challenge2.challenge.row.py-3
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
     .col-xs-12
       .row.pb-2
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 2
+            = "Challenge #{challenge_index}"
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage1/challenge2Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+            = image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}Example.png", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
             We can
@@ -183,12 +285,12 @@
           %p In the end your flappy square should look like the example provided to the right.
 
           = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_rect]
-          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'flappy_square_stage1_challenge1_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index - 1}_editor"
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage1_challenge2');
+            var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
             // SET THE VARIABLES PROPERLY
@@ -203,12 +305,12 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/flappy_square/stage1/challenge2.png')
-            %canvas#flappy_square_stage1_challenge2
+            .background.hidden-xl-down= image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}.png")
+            %canvas{id: "flappy_square_stage1_challenge#{challenge_index}"}
           .alert
 
 
-
+  - lesson_index += 1
   .lesson.row.py-3
     .col-xs-12
       .row
@@ -235,9 +337,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson3_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_lesson#{lesson_index}_editor"} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage1_lesson3');
+                var canvas = document.getElementById('flappy_square_stage1_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
                 function drawFrenchFlag(x, y) {
@@ -260,23 +362,25 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage1_lesson3
+                %canvas{id: "flappy_square_stage1_lesson#{lesson_index}"}
 
 
-  #challenge3.challenge.row.py-3
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
     .col-xs-12
       .row
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 3
+            = "Challenge #{challenge_index}"
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage1/challenge3Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+            = image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}Example.png", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
             %span.highlight
-              Write a function to draw the flappy bird from Challenge 2.
+              Write a function to draw the flappy bird from
+              = "Challenge #{challenge_index - 1}."
           %p
             The function will be called drawSquare() accept three values x, y, and size (called parameters) that
             will be used to position our flappy square.
@@ -285,12 +389,12 @@
             %span.highlight
               coordinates (50, 100) and size 20.
           = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :variables, :functions]
-          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'flappy_square_stage1_challenge2_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index - 1}_editor"
 
       .row.pt-2
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage1_challenge5');
+            var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
             function drawSquare(x, y, size) {
@@ -306,8 +410,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/flappy_square/stage1/challenge3.png')
-            %canvas#flappy_square_stage1_challenge3
+            .background.hidden-xl-down= image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}.png")
+            %canvas{id: "flappy_square_stage1_challenge#{challenge_index}"}
           .alert
 
   -#
@@ -316,7 +420,7 @@
       Break out a lesson for event listeners and the focus/blur strategy using a static drawing.
 
 
-
+  - lesson_index += 1
   .lesson.row.py-3
     .col-xs-12
       .row
@@ -325,7 +429,7 @@
             Lesson: Basic Animation
 
           .float-xs-right.pl-2.pb-2
-            = image_tag('lessons/flappy_square/stage1/lesson4Visual.png')
+            = image_tag("lessons/flappy_square/stage1/lesson#{lesson_index}Visual.png")
 
           %p
             Ok, this lesson is a little long. To start, if the animation below
@@ -377,9 +481,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson4_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_lesson#{lesson_index}_editor"} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage1_lesson4');
+                var canvas = document.getElementById('flappy_square_stage1_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
                 var direction = 'up';
@@ -434,19 +538,19 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage1_lesson4
+                %canvas{id: "flappy_square_stage1_lesson#{lesson_index}"}
 
-
-  #challenge4.challenge.row.py-3
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
     .col-xs-12
       .row
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 4
+            = "Challenge #{challenge_index}"
 
           %figure.float-xs-right.px-2
-            = image_tag('lessons/flappy_square/stage1/challenge4Example.gif', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 4 Sample Solution
+            = image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
             There's a lot of new stuff in this challenge, so make sure to
@@ -464,12 +568,12 @@
             Your animation should look like the example to the right.
 
           = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
-          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'flappy_square_stage1_challenge3_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index - 1}_editor"
 
       .row.pt-2
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge4_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage1_challenge4');
+            var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
             var interval;
@@ -519,10 +623,11 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage1_challenge4
+            %canvas{id: "flappy_square_stage1_challenge#{challenge_index}"}
           .alert
 
 
+  - lesson_index += 1
   .lesson.row.py-3
     .col-xs-12
       .row
@@ -552,9 +657,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_lesson5_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_lesson#{lesson_index}_editor"} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage1_lesson5');
+                var canvas = document.getElementById('flappy_square_stage1_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
                 var gravity = 0.4;
@@ -616,19 +721,19 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage1_lesson5
+                %canvas{id: "flappy_square_stage1_lesson#{lesson_index}"}
 
-
-  #challenge5.challenge.row.py-3
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
     .col-xs-12
       .row
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 5
+            = "Challenge #{challenge_index}"
 
           %figure.float-xs-right.px-2
-            = image_tag('lessons/flappy_square/stage1/challenge5Example.gif', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 5 Sample Solution
+            = image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
             Let's give our flappy square animation a more realistic simulation
@@ -653,12 +758,12 @@
             Your animation should look like the example to the right.
 
           = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
-          = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'flappy_square_stage1_challenge4_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index}_editor"
 
       .row.pt-2
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage1_challenge5_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage1_challenge5');
+            var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
             var interval;
@@ -691,5 +796,5 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage1_challenge5
+            %canvas{id: "flappy_square_stage1_challenge#{challenge_index}"}
           .alert

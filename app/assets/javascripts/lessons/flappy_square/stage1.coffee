@@ -5,10 +5,33 @@ initFlappySquareStage1Challenges = ->
     initFlappySquareStage1Challenge3(page)
     initFlappySquareStage1Challenge4(page)
     initFlappySquareStage1Challenge5(page)
-
+    initFlappySquareStage1Challenge6(page)
 
 initFlappySquareStage1Challenge1 = (page) ->
-  challenge = page.find('#challenge1')
+  index = 1
+  challenge = page.find("#challenge#{index}")
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  solution = (canvas, context) ->
+    context.fillRect(60, 90, 45, 45)
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> Your rectangle is in the correct position and is the correct size!'
+        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', "challenge#{index}")
+      else
+        message = 'Nice try, but you need to draw a rectangle in the correct position that is the correct size.'
+
+      canvas.alert(message, success)
+
+
+initFlappySquareStage1Challenge2 = (page) ->
+  index = 2
+  challenge = page.find("#challenge#{index}")
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
@@ -21,15 +44,16 @@ initFlappySquareStage1Challenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You\'ve drawn a flappy square!'
-        App.currentProgress.challengeComplete('flappy_square_stage1', 'challenge1')
+        App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
       else
         message = 'Nice try, but your square needs to be the correct width and height and in the position described.'
 
       canvas.alert(message, success)
 
 
-initFlappySquareStage1Challenge2 = (page) ->
-  challenge = page.find('#challenge2')
+initFlappySquareStage1Challenge3 = (page) ->
+  index = 3
+  challenge = page.find("#challenge#{index}")
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
@@ -42,14 +66,16 @@ initFlappySquareStage1Challenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You\'ve drawn a flappy square using variables!'
-        App.currentProgress.challengeComplete('flappy_square_stage1', 'challenge2')
+        App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
       else
         message = 'Nice try, but you need to set your variables properly.'
 
       canvas.alert(message, success)
 
-initFlappySquareStage1Challenge3 = (page) ->
-  challenge = page.find('#challenge3')
+
+initFlappySquareStage1Challenge4 = (page) ->
+  index = 4
+  challenge = page.find("#challenge#{index}")
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
@@ -62,14 +88,16 @@ initFlappySquareStage1Challenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You\'ve drawn a flappy square using a function!'
-        App.currentProgress.challengeComplete('flappy_square_stage1', 'challenge3')
+        App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
       else
         message = 'Nice try, but you need to write code in the function to draw the flappy square.'
 
       canvas.alert(message, success)
 
-initFlappySquareStage1Challenge4 = (page) ->
-  challenge = page.find('#challenge4')
+
+initFlappySquareStage1Challenge5 = (page) ->
+  index = 5
+  challenge = page.find("#challenge#{index}")
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
@@ -85,7 +113,7 @@ initFlappySquareStage1Challenge4 = (page) ->
           testSolution(index + 1)
         else
           message = '<strong>Success!</strong> You\'re successfull animated a flappy square moving down at the correct pace!'
-          App.currentProgress.challengeComplete('flappy_square_stage1', 'challenge4')
+          App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
           canvas.alert(message, success)
       else
         message = 'Nice try, but you need to animate a flappy square moving down at the correct pace.'
@@ -95,8 +123,9 @@ initFlappySquareStage1Challenge4 = (page) ->
     testSolution(1)
 
 
-initFlappySquareStage1Challenge5 = (page) ->
-  challenge = page.find('#challenge5')
+initFlappySquareStage1Challenge6 = (page) ->
+  index = 6
+  challenge = page.find("#challenge#{index}")
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
@@ -119,7 +148,7 @@ initFlappySquareStage1Challenge5 = (page) ->
           testSolution(index + 1)
         else
           message = '<strong>Success!</strong> You\'re successfull animated a flappy square affected by gravity!'
-          App.currentProgress.challengeComplete('flappy_square_stage1', 'challenge5')
+          App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
           canvas.alert(message, success)
       else
         message = 'Nice try, but you need to animate a flappy square being affected by gravity.'
