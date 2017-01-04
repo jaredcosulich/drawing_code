@@ -12,25 +12,30 @@
           %p
             The
             %code
-              context.translate()
-            method moves the origin of the context's coordinate system by passing it two values:
+              context.scale()
+            method applies scale factors to the context's coordinate system, making the
+            size of drawings larger or smaller. The coordinate system can be scaled in the
+            x- and y-directions independently by passing it two values:
           %pre
             %code
               :preserve
-                context.translate(x, y);
+                context.scale(x, y);
           %p
             The
             %code
               x
-            value moves the origin of the coordinate system horizontally and the
+            value scales the coordinate system in the x-direction and the
             %code
               y
-            value moves it vertically. For example,
+            value scales it in the y-direction. For example,
             %code
-              context.translate(90, 60)
-            moves the origin 90 pixels to the right and 60 pixels down.
+              context.scale(2.0, 0.5)
+            scales the coordinate system so new shapes are drawn twice as wide and half as tall.
+            This only applies to shapes drawn after the coordinate system has been scaled.
+            Any shapes drawn on the canvas before the coordinate system is scaled are
+            unaffected.
           .source
-            = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/translate', target: '_blank')
+            = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scale', target: '_blank')
 
 
   .example.row.py-3
@@ -38,70 +43,47 @@
       .row
         .col-xs-12
           %h2.py-2
-            Translate the Origin to Move the Drawing Paper
+            Scale a Drawing
           %p
-            While transforming the context's coordinate system may sound highly mathematical, it
-            actually simplifies any math we might need to do when drawing.
+            In this example, we scale the context's coordinate system and then draw a tree.
           %p
-            Think of moving the origin of the coordinate system like moving a sheet of drawing paper.
-            If we were drawing a house on a sheet of paper, we would move the paper so the house's
-            position is directly under our pencil, and then we would draw the house. Once the house is
-            directly under our pencil, we can draw the house without thinking about its position.
-          %p
-            On the canvas, the origin of the coordinate system (0, 0) is the point directly under our
-            pencil. In this example, we draw a house at the origin and use the
-            %code
-              context.translate()
-            method to position it wherever we want.
-          %p
-            We start by translating the origin to (0, 0). This doesn't move the origin at all, for
-            now, which is what we want. We'll move the origin later.
+            We start by scaling the coordinate system by scale factors of 1 in both the x-
+            and y-directions. This does nothing for now, which is what we want. We'll scale
+            the coordinate system later.
           %pre
             %code
               :preserve
-                context.translate(0, 0); // Position house here
+                context.scale(1, 1); // Apply scale factors to the coordinate system here
           %p
-            Then, we draw our house at the origin.
+            Then, we draw a tree:
           %pre
             %code
               :preserve
-                context.fillStyle = '#FFFF00';
-                context.fillRect(0, 0, 120, 100); // Yellow house
-                context.fillStyle = '#99CCFF';
-                context.fillRect(15, 20, 20, 40); // Left window
-                context.fillRect(85, 20, 20, 40); // Right window
-                context.fillStyle = '#FF0000';
-                context.fillRect(45, 40, 30, 60); // Red door
-          %p
-            Finally, we have defined a function that will draw a set of axes at the origin of
-            the coordinate system. This will help us see the position of the origin any time we want.
-            Call it after drawing the house.
-          %pre
-            %code
-              :preserve
-                drawAxes();
+                context.fillStyle = 'Sienna';
+                context.fillRect(110, 40, 20, 100); // Draw tree trunk
+                context.fillStyle = 'ForestGreen';
+                context.beginPath();
+                context.arc(120, 40, 30, 0, 2 * Math.PI, false);
+                context.fill(); // Draw leaves
           %p
             At this point, we have drawn a yellow house with two windows and a red door at
             the origin of the coordinate system, which is in the top left corner of the canvas.
           %p
-            Go back up to the top of the program where we translate the origin of the coordinate
-            system to (0, 0). Change the line of code to move the origin to (100, 50). Then, try
-            drawing the house at different positions.
+            Now, go back up to the top of the program where we set scale factors for the
+            coordinate system and change the
+            %code
+              x
+            scale factor to 3.0 and the
+            %code
+              y
+            scale factor to 1.5. When we draw the tree in this new coordinate system, it will
+            be three times as wide and 1.5 times as tall on the canvas.
           %pre
             %code
               :preserve
-                context.translate(100, 50);  // Position house here
+                context.scale(3.0, 1.5);
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            and the context's coordinate system.
+            Try changing the scale factors for the coordinate system to other values to see what happens.
           = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
 
         .col-xs-12
@@ -111,61 +93,14 @@
                 var canvas = document.getElementById('dng_scale_example1');
                 var context = canvas.getContext('2d');
                 
-                context.translate(0, 0); // Position house here
+                context.scale(1, 1); // Apply scale factors to the coordinate system here
                 
-                context.fillStyle = '#FFFF00';
-                context.fillRect(0, 0, 120, 100); // Yellow house
-                context.fillStyle = '#99CCFF';
-                context.fillRect(15, 20, 20, 40); // Left window
-                context.fillRect(85, 20, 20, 40); // Right window
-                context.fillStyle = '#FF0000';
-                context.fillRect(45, 40, 30, 60); // Red door
-                
-                drawAxes();
-                
-                function drawAxes() {
-                  context.save();
-                  context.fillStyle = 'Red';
-                  context.strokeStyle = 'Red';
-                  context.font = '16px Arial';
-                  context.textAlign = 'center';
-                  context.textBaseline = 'middle';
-                  drawPoint(0, 0);
-                  drawLine(0, 0, 50, 0);
-                  drawArrow(50, 0, 0);
-                  context.fillText('x', 60, 0);
-                  drawLine(0, 0, 0, 50);
-                  drawArrow(0, 50, 0.5 * Math.PI);
-                  context.fillText('y', 0, 60);
-                  context.restore();
-                }
-                
-                function drawPoint(x, y) {
-                  context.beginPath();
-                  context.arc(x, y, 3, 0, 2 * Math.PI, false);
-                  context.closePath();
-                  context.fill();
-                }
-                
-                function drawLine(x1, y1, x2, y2) {
-                  context.beginPath();
-                  context.moveTo(x1, y1);
-                  context.lineTo(x2, y2);
-                  context.stroke();
-                }
-                
-                function drawArrow(x, y, angle) {
-                  context.save();
-                  context.translate(x, y);
-                  context.rotate(angle);
-                  context.beginPath();
-                  context.moveTo(0, 0);
-                  context.lineTo(-10, 5);
-                  context.lineTo(-10, -5);
-                  context.closePath();
-                  context.fill();
-                  context.restore();
-                }
+                context.fillStyle = 'Sienna';
+                context.fillRect(110, 40, 20, 100); // Draw tree trunk
+                context.fillStyle = 'ForestGreen';
+                context.beginPath();
+                context.arc(120, 40, 30, 0, 2 * Math.PI, false);
+                context.fill(); // Draw leaves
 
             .visual.col-xs-6
               %h5
@@ -185,12 +120,11 @@
             = image_tag('lessons/dng_scale/challenge1Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Right now, this program draws a French flag at the position (0, 0).
-          %p
             Use the
             %code
-              context.translate()
-            method to draw the French flag at the position (120, 40).
+              context.scale()
+            method to apply scale factors to the context's coordinate system so the
+            French flag is 2.5 times as wide and 2.5 times as tall.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_scale_challenge1_editor'} do
@@ -199,11 +133,11 @@
             var context = canvas.getContext('2d');
             
             context.fillStyle = '#0055A4';
-            context.fillRect(0, 0, 80, 160); // Blue bar
+            context.fillRect(20, 20, 40, 80); // Blue bar
             context.fillStyle = '#FFFFFF';
-            context.fillRect(80, 0, 80, 160); // White bar
+            context.fillRect(60, 20, 40, 80); // White bar
             context.fillStyle = '#EF4135';
-            context.fillRect(160, 0, 80, 160); // Red bar
+            context.fillRect(100, 20, 40, 80); // Red bar
 
         .visual.col-xs-6
           %h5
@@ -220,62 +154,48 @@
       .row
         .col-xs-12
           %h2.py-2
-            Combine Multiple Translations
+            Scale Multiple Drawings
           %p
             When we use the
             %code
-              context.translate()
-            method to position a drawing, it is important to remember that we are moving
-            the entire coordinate system and not just a single drawing.
+              context.scale()
+            method to scale a drawing, it is important to remember that we are scaling
+            the entire coordinate system, not just a single drawing.
           %p
-            In this example, we translate the origin of the coordinate system to position
-            (100, 50) and draw a house and a set of axes.
+            In this example, we scale a row of trees.
+          %p
+            Since we are drawing more than one tree, we start by defining the
+            %code
+              drawTree()
+            function, which has parameters for the x- and y-coordinates of the tree.
           %pre
             %code
               :preserve
-                context.translate(50, 100); // Position of the first house
-                context.fillStyle = '#FFFF00';
-                context.fillRect(0, 0, 120, 100); // Yellow house
-                context.fillStyle = '#99CCFF';
-                context.fillRect(15, 20, 20, 40); // Left window
-                context.fillRect(85, 20, 20, 40); // Right window
-                context.fillStyle = '#FF0000';
-                context.fillRect(45, 40, 30, 60); // Red door
-                drawAxes();
+                function drawTree(x, y) {
+                  context.fillStyle = 'Sienna';
+                  context.fillRect(x - 10, y, 20, 100);
+                  context.fillStyle = 'ForestGreen';
+                  context.beginPath();
+                  context.arc(x, y, 30, 0, 2 * Math.PI, false);
+                  context.fill();
+                }
           %p
-            Then, we translate the origin of the coordinate system to position (200, 0)
-            and draw second house and a second set of axes.
+            Then, we set the scale factors for the coordinate system and draw four
+            trees each 80 pixels apart:
           %pre
             %code
               :preserve
-                context.translate(200, 0); // Position of the second house
-                context.fillStyle = '#FFFF00';
-                context.fillRect(0, 0, 120, 100); // Yellow house
-                context.fillStyle = '#99CCFF';
-                context.fillRect(15, 20, 20, 40); // Left window
-                context.fillRect(85, 20, 20, 40); // Right window
-                context.fillStyle = '#FF0000';
-                context.fillRect(45, 40, 30, 60); // Red door
-                drawAxes();
+                context.scale(1, 1);
+                
+                drawTree(20, 40);
+                drawTree(100, 40);
+                drawTree(180, 40);
+                drawTree(260, 40);
           %p
-            The second house is not drawn at (200, 0) in absolute coordinates on the canvas.
-            It is drawn at (250, 100) because, when we apply the second translation, we are
-            doing it in a coordinate system that has already been moved. The second house is
-            drawn 200 pixels to the right of the origin for the first house. And if we did
-            another translation and drew a third house, it would be positioned relative to the
-            origin for the second house.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
+            Change the scale factors of the coordinate system to other values to see
+            what happens. Not only are the trees scaled, but the distance between the
+            trees are scaled as well.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_variables, :dng_functions, :dng_coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -284,68 +204,20 @@
                 var canvas = document.getElementById('dng_scale_example2');
                 var context = canvas.getContext('2d');
                 
-                context.translate(50, 100); // Position of the first house
-                context.fillStyle = '#FFFF00';
-                context.fillRect(0, 0, 120, 100); // Yellow house
-                context.fillStyle = '#99CCFF';
-                context.fillRect(15, 20, 20, 40); // Left window
-                context.fillRect(85, 20, 20, 40); // Right window
-                context.fillStyle = '#FF0000';
-                context.fillRect(45, 40, 30, 60); // Red door
-                drawAxes();
+                context.scale(1, 1);
                 
-                context.translate(200, 0); // Position of the second house
-                context.fillStyle = '#FFFF00';
-                context.fillRect(0, 0, 120, 100); // Yellow house
-                context.fillStyle = '#99CCFF';
-                context.fillRect(15, 20, 20, 40); // Left window
-                context.fillRect(85, 20, 20, 40); // Right window
-                context.fillStyle = '#FF0000';
-                context.fillRect(45, 40, 30, 60); // Red door
-                drawAxes();
-
-                function drawAxes() {
-                  context.save();
-                  context.fillStyle = 'Red';
-                  context.strokeStyle = 'Red';
-                  context.font = '16px Arial';
-                  context.textAlign = 'center';
-                  context.textBaseline = 'middle';
-                  drawPoint(0, 0);
-                  drawLine(0, 0, 50, 0);
-                  drawArrow(50, 0, 0);
-                  context.fillText('x', 60, 0);
-                  drawLine(0, 0, 0, 50);
-                  drawArrow(0, 50, 0.5 * Math.PI);
-                  context.fillText('y', 0, 60);
-                  context.restore();
-                }
+                drawTree(20, 40);
+                drawTree(100, 40);
+                drawTree(180, 40);
+                drawTree(260, 40);
                 
-                function drawPoint(x, y) {
+                function drawTree(x, y) {
+                  context.fillStyle = 'Sienna';
+                  context.fillRect(x - 10, y, 20, 100);
+                  context.fillStyle = 'ForestGreen';
                   context.beginPath();
-                  context.arc(x, y, 3, 0, 2 * Math.PI, false);
-                  context.closePath();
+                  context.arc(x, y, 30, 0, 2 * Math.PI, false);
                   context.fill();
-                }
-                
-                function drawLine(x1, y1, x2, y2) {
-                  context.beginPath();
-                  context.moveTo(x1, y1);
-                  context.lineTo(x2, y2);
-                  context.stroke();
-                }
-                
-                function drawArrow(x, y, angle) {
-                  context.save();
-                  context.translate(x, y);
-                  context.rotate(angle);
-                  context.beginPath();
-                  context.moveTo(0, 0);
-                  context.lineTo(-10, 5);
-                  context.lineTo(-10, -5);
-                  context.closePath();
-                  context.fill();
-                  context.restore();
                 }
 
             .visual.col-xs-6
@@ -366,15 +238,25 @@
             = image_tag('lessons/dng_scale/challenge2Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Right now, this program draws a French flag at the position (0, 0).
-          %p
-            Copy the code to draw two more French flags. Use the
+            Use the
             %code
-              context.translate()
-            method to position the first French flag at (20, 40). Then, position the
-            second French flag 200 pixels to the right of the origin for the first French
-            flag, and position the third French flag 140 pixels down and 80 pixels to the
-            left of the origin for the second French flag.
+              context.scale()
+            method to apply scale factors to the coordinate system so each French
+            flag is drawn 1.4 times as tall.
+          %p
+            Then, use the
+            %code
+              drawFrenchFlag()
+            function to draw four French flags at the coordinates (40, 20), (240, 20),
+            (60, 120), and (260, 120).
+          %p
+            What value can be used for the
+            %code
+              x
+            scale factor in the
+            %code
+              context.scale()
+            method so the width of the French flags are not scaled?
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_scale_challenge2_editor'} do
@@ -382,12 +264,16 @@
             var canvas = document.getElementById('dng_scale_challenge2');
             var context = canvas.getContext('2d');
             
-            context.fillStyle = '#0055A4';
-            context.fillRect(0, 0, 60, 120); // Blue bar
-            context.fillStyle = '#FFFFFF';
-            context.fillRect(60, 0, 60, 120); // White bar
-            context.fillStyle = '#EF4135';
-            context.fillRect(120, 0, 60, 120); // Red bar
+            // DRAW FOUR FRENCH FLAGS AT (40, 20), (240, 20), (60, 120), AND (260, 120) HERE
+            
+            function drawFrenchFlag(x, y) {
+              context.fillStyle = '#0055A4';
+              context.fillRect(x, y, 40, 80);
+              context.fillStyle = '#FFFFFF';
+              context.fillRect(x + 40, y, 40, 80);
+              context.fillStyle = '#EF4135';
+              context.fillRect(x + 80, y, 40, 80);
+            }
             
         .visual.col-xs-6
           %h5
@@ -404,76 +290,46 @@
       .row
         .col-xs-12
           %h2.py-2
-            Restore the Coordinate System After a Translation
+            Combine Multiple Scale Factors
           %p
-            Sometimes we want to combine our translations, like when we are drawing a row of
-            houses. But usually, we want to restore the coordinate system immediately after drawing
-            a house so we can position and draw something else. Because the transformation matrix
-            for the coordinate system is stored in the canvas's drawing state, we can use the
-            %code
-              context.save()
-            and
-            %code
-              context.restore()
-            methods to save the coordinate system and restore it back to its original state.
+            In this example, we draw three trees.
           %p
-            In this example, we start by saving the drawing state when the origin of the
-            coordinate system is in the top left corner of the canvas:
+            We draw the first tree at normal scale:
           %pre
             %code
               :preserve
-                context.save(); // Save original drawing state
+                drawTree(140, 40);
           %p
-            Then, we translate the origin of the coordinate system to (200, 50) and draw a house:
+            We use the
+            %code
+              context.scale()
+            method to scale the coordinate system by a scale factor of 1.5 in both the
+            x- and y-directions and draw a second tree:
           %pre
             %code
               :preserve
-                context.translate(200, 50); // Position of the first house
-                context.fillStyle = '#FFFF00';
-                context.fillRect(0, 0, 120, 100); // Yellow house
-                context.fillStyle = '#99CCFF';
-                context.fillRect(15, 20, 20, 40); // Left window
-                context.fillRect(85, 20, 20, 40); // Right window
-                context.fillStyle = '#FF0000';
-                context.fillRect(45, 40, 30, 60); // Red door
+                context.scale(1.5, 1.5);
+                drawTree(140, 40);
           %p
-            Before translating the origin again and drawing a second house, we restore the
-            drawing state we saved earlier:
+            Finally, we use the
+            %code
+              context.scale()
+            method to scale the coordinate system again by another scale factor of 1.5
+            in both the x- and y-directions and draw a third tree:
           %pre
             %code
               :preserve
-                context.restore(); // Restore original drawing state
+                context.scale(1.5, 1.5);
+                drawTree(140, 40);
           %p
-            This returns the origin back to the top left corner of the canvas. So, when we translate
-            the origin to (50, 150) and draw a second house, the second house is positioned at (50, 150)
-            in absolute coordinates on the canvas.
-          %pre
+            Note that the third tree isn't 1.5 times as large as the original tree. It is
+            1.5 times as large as the second tree and 2.25 times as large as the original
+            tree. Because the
             %code
-              :preserve
-                context.translate(50, 150); // Position of the second house
-                context.fillStyle = '#FFFF00';
-                context.fillRect(0, 0, 120, 100); // Yellow house
-                context.fillStyle = '#99CCFF';
-                context.fillRect(15, 20, 20, 40); // Left window
-                context.fillRect(85, 20, 20, 40); // Right window
-                context.fillStyle = '#FF0000';
-                context.fillRect(45, 40, 30, 60); // Red door
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.save()
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_coordinates]
+              context.scale()
+            method scales the entire coordinate system, the scale factors multiply when
+            more than one is applied (1.5 x 1.5 = 2.25).
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_variables, :dng_functions, :dng_coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -482,27 +338,22 @@
                 var canvas = document.getElementById('dng_scale_example3');
                 var context = canvas.getContext('2d');
                 
-                context.save(); // Save original drawing state
+                drawTree(140, 40); // First tree
                 
-                context.translate(200, 50); // Position of the first house
-                context.fillStyle = '#FFFF00';
-                context.fillRect(0, 0, 120, 100); // Yellow house
-                context.fillStyle = '#99CCFF';
-                context.fillRect(15, 20, 20, 40); // Left window
-                context.fillRect(85, 20, 20, 40); // Right window
-                context.fillStyle = '#FF0000';
-                context.fillRect(45, 40, 30, 60); // Red door
+                context.scale(1.5, 1.5);
+                drawTree(140, 40); // Second tree
                 
-                context.restore(); // Restore original drawing state
+                context.scale(1.5, 1.5);
+                drawTree(140, 40); // Third tree
                 
-                context.translate(50, 150); // Position of the second house
-                context.fillStyle = '#FFFF00';
-                context.fillRect(0, 0, 120, 100); // Yellow house
-                context.fillStyle = '#99CCFF';
-                context.fillRect(15, 20, 20, 40); // Left window
-                context.fillRect(85, 20, 20, 40); // Right window
-                context.fillStyle = '#FF0000';
-                context.fillRect(45, 40, 30, 60); // Red door
+                function drawTree(x, y) {
+                  context.fillStyle = 'Sienna';
+                  context.fillRect(x - 10, y, 20, 100);
+                  context.fillStyle = 'ForestGreen';
+                  context.beginPath();
+                  context.arc(x, y, 30, 0, 2 * Math.PI, false);
+                  context.fill();
+                }
 
             .visual.col-xs-6
               %h5
@@ -522,20 +373,22 @@
             = image_tag('lessons/dng_scale/challenge3Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
+            The program below draws three rectangles that are all the same size.
+          %p
             Use the
-            %span
-              %code>
-                context.save()
-              ,
-            %span
-              %code>
-                context.restore()
-              ,
-            and
             %code
-              context.translate()
-            methods to draw the first French flag at position (10, 50). Then, restore the coordinate
-            system to its original state and draw the second French flag at position (220, 100);
+              context.scale()
+            method to scale the coordinate system to draw the second rectangle twice
+            as wide and three times as tall as the first rectangle.
+          %p
+            Then, use the
+            %code
+              context.scale()
+            method again to scale the coordinate system to draw the third rectangle four
+            times as wide and 1.5 times as tall as the first rectangle.
+          %p
+            Note the third rectangle is four times as wide and 1.5 times as tall as
+            the first rectangle, not the second rectangle.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_scale_challenge3_editor'} do
@@ -543,19 +396,16 @@
             var canvas = document.getElementById('dng_scale_challenge3');
             var context = canvas.getContext('2d');
 
-            context.fillStyle = '#0055A4';
-            context.fillRect(0, 0, 60, 120); // Blue bar
-            context.fillStyle = '#FFFFFF';
-            context.fillRect(60, 0, 60, 120); // White bar
-            context.fillStyle = '#EF4135';
-            context.fillRect(120, 0, 60, 120); // Red bar
+            context.fillStyle = 'HotPink';
+            context.fillRect(20, 20, 80, 80); // First square
             
-            context.fillStyle = '#0055A4';
-            context.fillRect(0, 0, 60, 120); // Blue bar
-            context.fillStyle = '#FFFFFF';
-            context.fillRect(60, 0, 60, 120); // White bar
-            context.fillStyle = '#EF4135';
-            context.fillRect(120, 0, 60, 120); // Red bar
+            context.scale(2, 3);
+            context.fillStyle = 'MediumVioletRed';
+            context.fillRect(110, 15, 80, 80); // Second square
+            
+            context.scale(2, 0.5);
+            context.fillStyle = 'RebeccaPurple';
+            context.fillRect(5, 90, 80, 80); // Third square
             
         .visual.col-xs-6
           %h5
@@ -572,78 +422,56 @@
       .row
         .col-xs-12
           %h2.py-2
-            Use a Function to Translate a Drawing
+            Restore the Coordinate System After Scaling
           %p
-            It doesn't make sense to keep copying the same code over and over again every
-            time we want to draw a yellow house or French flag. To re-use a drawing, we should
-            draw it in a function.
-          %p
-            In this example, we define a
-            %code
-              drawYellowHouse()
-            function to draw a yellow house.
-          %pre
-            %code
-              :preserve
-                function drawYellowHouse(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = '#FFFF00';
-                  context.fillRect(0, 0, 120, 100); // Yellow house
-                  context.fillStyle = '#99CCFF';
-                  context.fillRect(15, 20, 20, 40); // Left window
-                  context.fillRect(85, 20, 20, 40); // Right window
-                  context.fillStyle = '#FF0000';
-                  context.fillRect(45, 40, 30, 60); // Red door
-                  context.restore();
-                }
-          %p
-            The
-            %code
-              drawYellowHouse()
-            function has two parameters:
-            %code
-              x
-            is the x-coordinate of the house's origin and
-            %code
-              y
-            is the y-coordinate. We save and restore the drawing state by calling the
+            Sometimes we want to combine our scale factors, like when we are drawing a row of
+            trees getting closer and closer. But usually, we want to restore the coordinate
+            system after we scale it. Because the transformation matrix for the coordinate system
+            is stored in the canvas's drawing state, we can use the
             %code
               context.save()
-            method at the start of the function and the
+            and
             %code
               context.restore()
-            method at the end. This restores both the coordinate system and the
-            %code
-              context.fillStyle
-            property to the way they were before the function made any changes.
+            methods to save the coordinate system and restore it back to its original state.
           %p
-            Now we can draw as many yellow houses as we want simply by calling the
-            %code
-              drawYellowHouse()
-            function and passing it the coordinates for the house.
+            In this example, we start by saving the drawing state when the scale of the
+            coordinate system is normal:
           %pre
             %code
               :preserve
-                drawYellowHouse(40, 40);
-                drawYellowHouse(120, 200);
-                drawYellowHouse(280, 100);
+                context.save(); // Save the drawing state when the scale is normal
           %p
-            Visit the relevant lessons to learn more about
+            Then, we change the scale of the coordinate system, set the
+            %code
+              context.fillStyle
+            property to the color
             %span
               %code>
-                context.fillRect()
+                'OrangeRed'
               ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.save()
-              ,
-            functions, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_functions, :dng_coordinates]
+            and draw a line of text:
+          %pre
+            %code
+              :preserve
+                context.save(); // Save the drawing state when the scale is normal
+                context.scale(2, 2);
+                context.fillStyle = 'OrangeRed';
+                context.fillText('scale(2, 2)', 10, 10);
+                context.restore(); // Restore the drawing state back to when the scale is normal
+          %p
+            Before changing the scale of the coordinate system again and drawing a second line
+            of text, we restore the drawing state we saved earlier. This restores the scale of
+            the coordinate system back to normal. Now when we scale the coordinate system two more
+            times to draw the second and third lines of text, the scale factors aren't multiplied
+            together because we restore the coordinate system between transformations.
+          %p
+            It's important to note that we need to save the drawing state again immediately after
+            restoring it if we want to return to the same drawing state again later. To learn more
+            about saving and restoring the drawing state, visit the
+            = link_to_lesson('save()/restore()', :dng_save, nil, class: 'reference-link', data: {slug: :dng_save})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_fill_style, :dng_save, :dng_coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -652,22 +480,26 @@
                 var canvas = document.getElementById('dng_scale_example4');
                 var context = canvas.getContext('2d');
                 
-                function drawYellowHouse(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = '#FFFF00';
-                  context.fillRect(0, 0, 120, 100); // Yellow house
-                  context.fillStyle = '#99CCFF';
-                  context.fillRect(15, 20, 20, 40); // Left window
-                  context.fillRect(85, 20, 20, 40); // Right window
-                  context.fillStyle = '#FF0000';
-                  context.fillRect(45, 40, 30, 60); // Red door
-                  context.restore();
-                }
+                context.font = '16px Arial';
+                context.textBaseline = 'top';
                 
-                drawYellowHouse(40, 40);
-                drawYellowHouse(120, 200);
-                drawYellowHouse(280, 100);
+                context.save(); // Save the drawing state when the scale is normal
+                context.scale(2, 2);
+                context.fillStyle = 'OrangeRed';
+                context.fillText('scale(2, 2)', 10, 10);
+                context.restore(); // Restore the drawing state back to when the scale is normal
+                
+                context.save(); // Save the drawing state when the scale is normal
+                context.scale(4, 4);
+                context.fillStyle = 'MediumSeaGreen';
+                context.fillText('scale(4, 4)', 25, 20);
+                context.restore(); // Restore the drawing state back to when the scale is normal
+                
+                context.save(); // Save the drawing state when the scale is normal
+                context.scale(4, 6);
+                context.fillStyle = 'SlateBlue';
+                context.fillText('scale(4, 6)', 10, 30);
+                context.restore(); // Restore the drawing state back to when the scale is normal
 
             .visual.col-xs-6
               %h5
@@ -689,11 +521,21 @@
           %p
             The
             %code
-              drawPineTree()
-            function draws a pine tree at the origin. Re-define the function so it draws the
-            pine tree at coordinates passed into the function.
+              drawTree()
+            function is used to draw four trees in the program below.
           %p
-            Then, use the function to draw pine trees at the positions (5, 40), (105, 10), (205, 60), and (305, 30).
+            Update the program so the first tree is drawn at normal scale, the second
+            tree is drawn 1.4 times as tall as the first tree, the third tree is drawn
+            0.8 times as tall as the first tree, and the fourth tree is drawn 1.2 times
+            as tall as the first tree.
+          %p
+            Between transformations, use the
+            %code
+              context.save()
+            and
+            %code
+              context.restore()
+            methods to save and restore the drawing state.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_scale_challenge4_editor'} do
@@ -701,15 +543,18 @@
             var canvas = document.getElementById('dng_scale_challenge4');
             var context = canvas.getContext('2d');
             
-            function drawPineTree() {
-              context.fillStyle = 'ForestGreen';
-              context.fillRect(40, 0, 20, 40);
-              context.fillRect(30, 40, 40, 40);
-              context.fillRect(20, 80, 60, 40);
-              context.fillRect(10, 120, 80, 40);
-              context.fillRect(0, 160, 100, 40);
+            drawTree(40, 80); // Draw this tree at normal scale
+            drawTree(140, 80); // Scale the coordinate system so this tree is drawn 1.3 times taller than the first tree
+            drawTree(240, 80); // Scale the coordinate system so this tree is drawn 0.8 times taller than the first tree
+            drawTree(340, 80); // Scale the coordinate system so this tree is drawn 1.2 times taller than the first tree
+            
+            function drawTree(x, y) {
               context.fillStyle = 'Sienna';
-              context.fillRect(40, 200, 20, 40);
+              context.fillRect(x - 10, y, 20, 100);
+              context.fillStyle = 'ForestGreen';
+              context.beginPath();
+              context.arc(x, y, 30, 0, 2 * Math.PI, false);
+              context.fill();
             }
             
         .visual.col-xs-6
@@ -727,130 +572,91 @@
       .row
         .col-xs-12
           %h2.py-2
-            Nested Frames of Reference
+            Use Translation to Anchor a Scaled Drawing
           %p
-            When we are in a city and someone asks us for directions to another part of
-            the city, we usually don't direct them using latitude and longitude as though
-            they were coming from a different part of the globe, never mind coordinates
-            to find the Earth in the solar system in the Milky Way Galaxy in the universe.
-            Same thing when we are in a mall or even in a single room.
-          %p
-            It is usually much more convenient and less confusing to direct someone using
-            a local frame of reference rather than an absolute frame of reference.
-          %p
-            In this example, we add details to the windows and the red door in the yellow
-            house, and we make drawing those details simpler by translating to a local frame
-            of reference.
-          %p
-            We start by defining a
+            When scaling the trees in the previous challenge, the tops and bottoms of the
+            trees were no longer lined up even though all four trees were positioned at the
+            same y-coordinate. This is because the
             %code
-              drawWindow()
-            function. In the yellow house, the first window is a rectangle positioned at
-            (15, 20) in the local coordinates of the house with a width of 20 and a height
-            of 40. As long as a window was just a rectangle, it made sense to use the
-            %code
-              context.fillRect()
-            method to position the window. But now that a window is going to be a little drawing on
-            its own, with lots of rectangles inside of it, we are going to turn it into a
-            function and position it using the
+              context.scale()
+            method applies its scale factors to the coordinate system, not individual drawings.
+          %p
+            When the coordinate system is scaled, every point in the coordinate system moves
+            either closer to or farther away from the origin, except the origin itself. Since
+            the origin doesn't move, it acts as a kind of anchor point.
+          %p
+            In this example, we draw two trees. One tree is drawn while the origin of the
+            coordinate system is in the top left corner of the canvas. This is the origin's default
+            position. Before drawing the other tree, we move the origin to the base of the tree
+            using the
             %code
               context.translate()
-            method.
+            method. Because the origin of the coordinate system is positioned at the base of the
+            tree, the base of the tree does not move when the coordinate system is scaled.
+          %p
+            We start by modifying the
+            %code
+              drawTree()
+            function so the bottom center point of the tree is now drawn at the
+            %code
+              x
+            and
+            %code
+              y
+            values passed into the function.
           %pre
             %code
               :preserve
-                function drawWindow(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = 'White';
-                  context.fillRect(0, 0, 20, 40); // White border
-                  context.fillStyle = '#99CCFF';
-                  context.fillRect(2, 2, 7, 7); // Pane of glass
-                  context.fillRect(11, 2, 7, 7);
-                  context.fillRect(2, 11, 7, 7);
-                  context.fillRect(11, 11, 7, 7);
-                  context.fillRect(2, 20, 16, 18);
-                  context.restore();
+                function drawTree(x, y) {
+                  context.fillStyle = 'Sienna';
+                  context.fillRect(x - 10, y - 100, 20, 100);
+                  context.fillStyle = 'ForestGreen';
+                  context.beginPath();
+                  context.arc(x, y - 100, 30, 0, 2 * Math.PI, false);
+                  context.fill();
                 }
           %p
-            Note that the white rectangle we draw to create a white border for the window
-            is positioned at (0, 0) and the first pane of glass is positioned at (2, 2). Those
-            coordinates are in the local frame of reference of the window. We don't care where
-            the window is positioned in the house or where the house is positioned on the canvas.
-          %p
-            Next, we define a
-            %code
-              drawRedDoor()
-            function and draw the red door using local coordinates also:
+            We position the first tree normally. The origin of the coordinate system
+            is in the top left corner of the canvas and the bottom center point of the
+            tree is positioned at (60, 150), which is the point 60 pixels to the right
+            of the origin and 150 pixels down.
           %pre
             %code
               :preserve
-                function drawRedDoor(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = '#FF0000';
-                  context.fillRect(0, 0, 30, 60); // Red door
-                  context.fillStyle = '#99CCFF';
-                  context.fillRect(6, 6, 18, 12); // Pane of glass
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(22, 28, 5, 5); // Door knob
-                  context.fillRect(10, 45, 10, 5); // Mail slot
-                  context.restore();
-                }
+                context.save();
+                context.scale(1, 1); // Scale the coordinate system to draw the first tree
+                drawTree(60, 150); // Draw the first tree so its bottom center point is at (60, 150)
+                context.restore();
           %p
-            Again, note that the window in the door is positioned at (6, 6) in the
-            local coordinates of the door. If we were going to give the window a stained
-            glass design instead of making it a simple rectangle, we would draw the
-            stained glass design by translating into the local coordinates of the door's
-            window. It makes our drawing simpler and less confusing.
+            Try changing the scale of the coordinate system before the first tree is drawn.
+            Increasing the scale moves the tree farther from the origin. Decreasing the scale
+            moves it closer.
           %p
-            Now that we are using functions to draw our windows and red door, we update the
+            Instead of positioning the second tree by passing in
             %code
-              drawYellowHouse()
-            function:
+              x
+            and
+            %code
+              y
+            values, we use the
+            %code
+              context.translate()
+            method to move the origin of the coordinate system to where we want to draw the tree.
+            By moving the origin, we can actually position the bottom center point of the tree at
+            the origin (0, 0).
           %pre
             %code
               :preserve
-                function drawYellowHouse(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = '#FFFF00';
-                  context.fillRect(0, 0, 120, 100);
-                  drawWindow(15, 20);
-                  drawWindow(85, 20);
-                  drawRedDoor(45, 40);
-                  context.restore();
-                }
+                context.save();
+                context.translate(320, 280); // Move the origin of the coordinate system to (320, 280)
+                context.scale(1, 1); // Scale the coordinate system to draw the second tree
+                drawTree(0, 0); // Draw the second tree so its bottom center point is at the origin (0, 0)
+                context.restore();
           %p
-            Finally, we draw two yellow houses, one at (100, 50) and the other at (200, 50).
-          %pre
-            %code
-              :preserve
-                drawYellowHouse(50, 100);
-                drawYellowHouse(200, 100);
-          %p
-            Change the coordinates of one of the yellow houses to see the entire house move
-            relative to the canvas. Change the coordinates of one of the windows inside the
-            %code
-              drawYellowHouse()
-            function to see an entire window move relative to the yellow house. Drawing nested
-            objects in local coordinates is much easier than drawing them in absolute coordinates.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.save()
-              ,
-            functions, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_functions, :dng_coordinates]
+            Try changing the scale of the coordinate system before the second tree is drawn.
+            Because the bottom center point of the tree is at the origin, the bottom center point
+            of the tree is anchored and does not move.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_translate, :dng_functions, :dng_variables, :dng_coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -859,45 +665,35 @@
                 var canvas = document.getElementById('dng_scale_example5');
                 var context = canvas.getContext('2d');
                 
-                drawYellowHouse(50, 100);
-                drawYellowHouse(200, 100);
+                drawGround(150);
+                drawGround(280);
                 
-                function drawWindow(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = 'White';
-                  context.fillRect(0, 0, 20, 40); // White border
-                  context.fillStyle = '#99CCFF';
-                  context.fillRect(2, 2, 7, 7); // Pane of glass
-                  context.fillRect(11, 2, 7, 7);
-                  context.fillRect(2, 11, 7, 7);
-                  context.fillRect(11, 11, 7, 7);
-                  context.fillRect(2, 20, 16, 18);
-                  context.restore();
+                context.save();
+                context.scale(1, 1); // Scale the coordinate system to draw the first tree
+                drawTree(60, 150); // Draw the first tree so its bottom center point is at (60, 150)
+                context.restore();
+                
+                context.save();
+                context.translate(320, 280); // Move the origin of the coordinate system to (320, 280)
+                context.scale(1, 1); // Scale the coordinate system to draw the second tree
+                drawTree(0, 0); // Draw the second tree so its bottom center point is at the origin (0, 0)
+                context.restore();
+                
+                function drawTree(x, y) {
+                  context.fillStyle = 'Sienna';
+                  context.fillRect(x - 10, y - 100, 20, 100);
+                  context.fillStyle = 'ForestGreen';
+                  context.beginPath();
+                  context.arc(x, y - 100, 30, 0, 2 * Math.PI, false);
+                  context.fill();
                 }
                 
-                function drawRedDoor(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = '#FF0000';
-                  context.fillRect(0, 0, 30, 60); // Red door
-                  context.fillStyle = '#99CCFF';
-                  context.fillRect(6, 6, 18, 12); // Pane of glass
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(22, 28, 5, 5); // Door knob
-                  context.fillRect(10, 45, 10, 5); // Mail slot
-                  context.restore();
-                }
-                
-                function drawYellowHouse(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = '#FFFF00';
-                  context.fillRect(0, 0, 120, 100);
-                  drawWindow(15, 20);
-                  drawWindow(85, 20);
-                  drawRedDoor(45, 40);
-                  context.restore();
+                function drawGround(y) {
+                  context.strokeStyle = 'Black';
+                  context.beginPath();
+                  context.moveTo(0, y);
+                  context.lineTo(canvas.width, y);
+                  context.stroke();
                 }
 
             .visual.col-xs-6
