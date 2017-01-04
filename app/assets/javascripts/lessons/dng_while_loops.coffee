@@ -3,9 +3,6 @@ initDngWhileLoopsChallenges = ->
     initDngWhileLoopsChallenge1(page)
     initDngWhileLoopsChallenge2(page)
     initDngWhileLoopsChallenge3(page)
-    initDngWhileLoopsChallenge4(page)
-    initDngWhileLoopsChallenge5(page)
-    initDngWhileLoopsChallenge6(page)
 
 
 initDngWhileLoopsChallenge1 = (page) ->
@@ -93,118 +90,9 @@ initDngWhileLoopsChallenge3 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  solution = (canvas, context) ->
-    drawSquare = ->
-      context.fillRect(0, 0, 20, 20)
-      context.translate(20, 20)
-      return
-    
-    context.fillStyle = 'SaddleBrown'
-    context.translate(100, 20)
-    drawSquare() for i in [0..11]
-
-  testCode = new Test.Code(code: solution, canvas: canvas)
-
   challenge.find('.run').click ->
-    testCode.test (success) ->
-      if success
-        message = '<strong>Success!</strong> Your for loop is drawing the squares using transformations correctly!'
-        App.currentProgress.challengeComplete('dng_while_loops', 'challenge3')
-      else
-        message = 'Nice try, but you need to create a for loop to draw the squares using transformations correctly.'
-
-      canvas.alert(message, success)
-
-
-initDngWhileLoopsChallenge4 = (page) ->
-  challenge = page.find('#challenge4')
-  canvas = new App.Canvas(challenge.find('canvas'))
-  editor = new App.Editor(challenge.find('.editor'), canvas)
-
-  solution = (canvas, context) ->
-    drawRectangle = (b) ->
-      context.fillStyle = 'rgb(0, 0, ' + b + ')'
-      context.fillRect(0, 0, 20, 200)
-      context.translate(20, 0)
-      return
-    
-    context.translate(10, 10)
-    drawRectangle(i) for i in [0..255] by 15
-
-  testCode = new Test.Code(code: solution, canvas: canvas)
-
-  challenge.find('.run').click ->
-    testCode.test (success) ->
-      if success
-        message = '<strong>Success!</strong> Your for loop is drawing rectangles and filling them with shades of blue correctly!'
-        App.currentProgress.challengeComplete('dng_while_loops', 'challenge4')
-      else
-        message = 'Nice try, but you need to create a for loop to draw rectangles and fill them with shades of blue correctly.'
-
-      canvas.alert(message, success)
-
-
-initDngWhileLoopsChallenge5 = (page) ->
-  challenge = page.find('#challenge5')
-  canvas = new App.Canvas(challenge.find('canvas'))
-  editor = new App.Editor(challenge.find('.editor'), canvas)
-
-  solution = (canvas, context) ->
-    drawRectangle = (w) ->
-      context.fillRect(0, 0, w, 20)
-      context.translate(0, 25)
-      return
-    
-    context.translate(10, 10)
-    context.fillStyle = 'MediumSeaGreen'
-    drawRectangle(i) for i in [120, 280, 150, 90, 300, 400, 220, 250]
-
-  testCode = new Test.Code(code: solution, canvas: canvas)
-
-  challenge.find('.run').click ->
-    testCode.test (success) ->
-      if success
-        message = '<strong>Success!</strong> Your for loop is iterating over the array and drawing the bar graph correctly!'
-        App.currentProgress.challengeComplete('dng_while_loops', 'challenge5')
-      else
-        message = 'Nice try, but you need to create a for loop to iterate over the array and draw the bar graph correctly.'
-
-      canvas.alert(message, success)
-
-
-initDngWhileLoopsChallenge6 = (page) ->
-  challenge = page.find('#challenge6')
-  canvas = new App.Canvas(challenge.find('canvas'))
-  editor = new App.Editor(challenge.find('.editor'), canvas)
-
-  solution = (canvas, context) ->
-    drawRectangle = ->
-      context.fillRect(0, 0, 30, 20)
-      context.translate(40, 0)
-      return
-    
-    drawRow = ->
-      context.save()
-      drawRectangle() for j in [0..9]
-      context.restore()
-      context.translate(0, 30)
-      return
-    
-    context.translate(10, 10)
-    context.fillStyle = 'SlateBlue'
-    drawRow() for i in [0..7]
-
-  testCode = new Test.Code(code: solution, canvas: canvas)
-
-  challenge.find('.run').click ->
-    testCode.test (success) ->
-      if success
-        message = '<strong>Success!</strong> Your nested for loops are drawing the grid of rectangles correctly!'
-        App.currentProgress.challengeComplete('dng_while_loops', 'challenge6')
-      else
-        message = 'Nice try, but you need to create nested for loops to draw the grid of rectangles correctly.'
-
-      canvas.alert(message, success)
+    canvas.selfAssess ->
+      App.currentProgress.challengeComplete('dng_while_loops', 'challenge3')
 
 
 $(document).on('initialization:complete', initDngWhileLoopsChallenges)
