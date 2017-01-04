@@ -149,9 +149,44 @@ initDngScaleChallenge5 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
+  solution = (canvas, context) ->
+    drawFrame = (x, y, color) ->
+      context.fillStyle = color
+      context.fillRect(x, y, 60, 4)
+      context.fillRect(x, y, 4, 60)
+      context.fillRect(x + 56, y, 4, 60)
+      context.fillRect(x, y + 56, 60, 4)
+      return
+    
+    context.save()
+    context.translate(20, 20)
+    context.scale(4, 3)
+    drawFrame(0, 0, 'MediumBlue')
+    context.restore()
+    
+    context.save()
+    context.translate(180, 80)
+    context.scale(3, 3.5)
+    drawFrame(0, 0, 'DodgerBlue')
+    context.restore()
+    
+    context.save()
+    context.translate(60, 140)
+    context.scale(4, 2)
+    drawFrame(0, 0, 'LightSkyBlue')
+    context.restore()
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
+
   challenge.find('.run').click ->
-    canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_scale', 'challenge5')
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You positioned and scaled the three frames correctly by anchoring their top left corners!'
+        App.currentProgress.challengeComplete('dng_scale', 'challenge5')
+      else
+        message = 'Nice try, but you need to position and scale the three frames correctly by anchoring their top left corners.'
+
+      canvas.alert(message, success)
 
 
 initDngScaleChallenge6 = (page) ->
@@ -160,43 +195,60 @@ initDngScaleChallenge6 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    drawTheGround = (groundY) ->
+    drawTree = (x, y) ->
+      context.fillStyle = 'Sienna'
+      context.fillRect(x - 5, y - 50, 10, 50)
+      context.fillStyle = 'ForestGreen'
+      context.beginPath()
+      context.arc(x, y - 50, 15, 0, 2 * Math.PI, false)
+      context.fill()
+      return
+    
+    drawHorizon = ->
       context.save()
       context.strokeStyle = 'Black'
       context.beginPath()
-      context.moveTo(0, groundY)
-      context.lineTo(canvas.width, groundY)
+      context.moveTo(-x, 0)
+      context.lineTo(Math.abs(x) + canvas.width, 0)
       context.stroke()
       context.restore()
       return
     
-    drawPineTree = (centerX, groundY) ->
+    drawVanishingPoint = ->
       context.save()
-      context.translate(centerX, groundY)
-      context.translate(-50, -240)
-      context.fillStyle = 'ForestGreen'
-      context.fillRect(40, 0, 20, 40)
-      context.fillRect(30, 40, 40, 40)
-      context.fillRect(20, 80, 60, 40)
-      context.fillRect(10, 120, 80, 40)
-      context.fillRect(0, 160, 100, 40)
-      context.fillStyle = 'Sienna'
-      context.fillRect(40, 200, 20, 40)
+      context.fillStyle = 'Black'
+      context.beginPath()
+      context.arc(0, 0, 3, 0, 2 * Math.PI, false)
+      context.fill()
       context.restore()
       return
     
-    drawTheGround(280)
-    drawPineTree(150, 280)
-
+    x = -80
+    y = 140
+    
+    context.save()
+    context.translate(x, y)
+    
+    drawHorizon()
+    drawVanishingPoint()
+    
+    i = 0
+    while i < 6
+      context.scale(1.2, 1.2)
+      drawTree(120, 45)
+      i += 1
+    
+    context.restore()
+  
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You updated the function to position a pine tree by its anchor point correctly!'
+        message = '<strong>Success!</strong> You created a vanishing point and drew the six trees so they appear to be moving closer!'
         App.currentProgress.challengeComplete('dng_scale', 'challenge6')
       else
-        message = 'Nice try, but you need to update the function to position a pine tree by its anchor point and then draw a pine tree on the ground.'
+        message = 'Nice try, but you need to create a vanishing point and draw the six trees so they appear to be moving closer.'
 
       canvas.alert(message, success)
 

@@ -8,7 +8,7 @@
           %h2.py-2
             Overview
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_scale/overviewVisual1.png', class: 'img-fluid')
+            = image_tag('lessons/dng_scale/overviewVisual1.png', class: 'img-fluid canvas-example')
           %p
             The
             %code
@@ -66,8 +66,7 @@
                 context.arc(120, 40, 30, 0, 2 * Math.PI, false);
                 context.fill(); // Draw leaves
           %p
-            At this point, we have drawn a yellow house with two windows and a red door at
-            the origin of the coordinate system, which is in the top left corner of the canvas.
+            At this point, we have drawn the tree with the coordinate system at normal scale.
           %p
             Now, go back up to the top of the program where we set scale factors for the
             coordinate system and change the
@@ -256,7 +255,7 @@
             scale factor in the
             %code
               context.scale()
-            method so the width of the French flags are not scaled?
+            method so the widths of the French flags are not scaled?
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_scale_challenge2_editor'} do
@@ -388,7 +387,8 @@
             times as wide and 1.5 times as tall as the first rectangle.
           %p
             Note the third rectangle is four times as wide and 1.5 times as tall as
-            the first rectangle, not the second rectangle.
+            the first rectangle, not the second rectangle. Figure out scale factors
+            to make this work.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_scale_challenge3_editor'} do
@@ -399,11 +399,9 @@
             context.fillStyle = 'HotPink';
             context.fillRect(20, 20, 80, 80); // First square
             
-            context.scale(2, 3);
             context.fillStyle = 'MediumVioletRed';
             context.fillRect(110, 15, 80, 80); // Second square
             
-            context.scale(2, 0.5);
             context.fillStyle = 'RebeccaPurple';
             context.fillRect(5, 90, 80, 80); // Third square
             
@@ -524,10 +522,9 @@
               drawTree()
             function is used to draw four trees in the program below.
           %p
-            Update the program so the first tree is drawn at normal scale, the second
-            tree is drawn 1.4 times as tall as the first tree, the third tree is drawn
-            0.8 times as tall as the first tree, and the fourth tree is drawn 1.2 times
-            as tall as the first tree.
+            Update the program so the first tree is drawn at normal scale, but the second,
+            third, and fourth trees are drawn 1.3, 0.8, and 1.2 times as tall as the first
+            tree, respectively.
           %p
             Between transformations, use the
             %code
@@ -712,73 +709,38 @@
             Challenge 5
           %figure.float-xs-right.px-2
             = image_tag('lessons/dng_scale/challenge5Visual1.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Your drawing should look similar to, but not exactly, like this
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Define the
+            The program below draws three blue frames that are all the same size. The
+            first frame is positioned at the coordinates (20, 20), the second at (180, 80),
+            and the third at (60, 140).
+          %p
+            Use the
             %code
-              drawOrnament()
-            function with three parameters so it positions the ornament at
-            %span
-              (
-              %code><
-                x
-              ,
+              context.scale()
+            method to scale each frame so the first frame is 4 times wider and 3 times
+            taller, the second frame is 3 times wider and 3.5 times taller, and the third
+            frame is 4 times wider and 2 times taller.
+          %p
+            However, before scaling the frames, use the
+            %code
+              context.translate()
+            method to anchor the top left corner of each frame at the origin of the
+            coordinate system so the top left corner of the frame doesn't move when the coordinate system is
+            scaled. This means that, instead of using
+            %code
+              drawFrame(20, 20, 'MediumBlue')
+            to position the first frame, position the frame at (20, 20) using the
+            %code
+              context.translate()
+            method and then draw the frame using
             %span
               %code>
-                y
-              )
-            and fills it with the color
-            %span
-              %code>
-                color
+                drawFrame(0, 0, 'MediumBlue')
               \.
-          %pre
-            %code
-              :preserve
-                function drawOrnament(x, y, color) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = color;
-                  
-                  // DRAW ORNAMENT IN LOCAL COORDINATES HERE
-                  
-                  context.restore();
-                }
           %p
-            The ornament is drawn by drawing three rectangles on top of one another
-            so the centers of the three rectangles are lined up. Use the dimensions
-            in the diagram below to draw the three rectangles.
-          = image_tag('lessons/dng_scale/challenge5Visual2.png')
-          %p
-            Then, copy the
-            %code
-              drawPineTree()
-            function you defined in Challenge 4 and draw some ornaments on the tree inside
-            the function definition using local coordinates for the tree. Choose your own ornament
-            positions and colors to create an aesthetic drawing. Your drawing will look similar to,
-            but not exactly like the image above. Call the
-            %code
-              drawPineTree()
-            function in your program to draw the tree at (100, 40):
-          %pre
-            %code
-              :preserve
-                drawPineTree(100, 40);
-          %p
-            When you re-position the tree, the ornaments should move along with the tree. If your
-            program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
-          %p
-            If you need help drawing the ornament, visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
+            Remember to save and restore the drawing state before and after translating
+            and scaling the coordinate system and drawing each frame.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_scale_challenge5_editor'} do
@@ -786,23 +748,16 @@
             var canvas = document.getElementById('dng_scale_challenge5');
             var context = canvas.getContext('2d');
 
-            // DRAW A PINE TREE AT (100, 40)
+            drawFrame(20, 20, 'MediumBlue'); // Scale the frame so it is 4 times wider and 3 times taller
+            drawFrame(180, 80, 'DodgerBlue'); // Scale the frame so it is 3 times wider and 3.5 times taller
+            drawFrame(60, 140, 'LightSkyBlue'); // Scale the frame so it is 4 times wider and 2 times taller
             
-            function drawOrnament(x, y, color) {
-              context.save();
-              context.translate(x, y);
+            function drawFrame(x, y, color) {
               context.fillStyle = color;
-              
-              // DRAW ORNAMENT IN LOCAL COORDINATES HERE
-              
-              context.restore();
-            }
-            
-            function drawPineTree(x, y) {
-              
-              // DRAW A PINE TREE IN LOCAL COORDINATES HERE
-              
-              // DRAW ORNAMENTS ON THE TREE USING LOCAL COORDINATES
+              context.fillRect(x, y, 60, 4);
+              context.fillRect(x, y, 4, 60);
+              context.fillRect(x + 56, y, 4, 60);
+              context.fillRect(x, y + 56, 60, 4);
             }
             
         .visual.col-xs-6
@@ -810,6 +765,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_scale/challenge5.png')
             %canvas#dng_scale_challenge5
           .alert
 
@@ -819,133 +775,88 @@
       .row
         .col-xs-12
           %h2.py-2
-            Anchor Points
+            Create a Vanishing Point
           %p
-            Right now, we are positioning the yellow house by its top left corner. That's
-            the origin we are using for the house's local coordinate system.
-          %p
-            When drawing a house, it makes sense to use its top left corner as the origin for
-            the local coordinate system. But when positioning a house on the canvas, it makes
-            more sense to position the house according to where it is sitting on the ground, not
-            hanging in the air.
-          %p
-            In this example, we re-define the
-            %code
-              drawYellowHouse()
-            function so we are passing it the coordinates for its bottom center point, not
-            its top left point.
-          %p
-            We start by changing its parameters from
-            %code
-              x
-            and
-            %code
-              y
-            to
-            %code
-              centerX
-            and
-            %span
-              %code>
-                groundY
-              \.
-            Then, we save the drawing state as usual and translate the origin of the coordinate
-            system to
-            %span
-              (
-              %code><
-                centerX
-              ,
-            %span
-              %code>
-                groundY
-              ),
-            which is the anchor point for the house.
-          %pre
-            %code
-              :preserve
-                function drawYellowHouse(centerX, groundY) {
-                  context.save();
-                  context.translate(centerX, groundY); // The house's anchor point
-                  
-                  // Code to draw the house
-                  
-                  context.restore();
-                }
-          %p
-            Now, we could use the anchor point as the origin of the local coordinate
-            system to draw the house, but that would be a pain. It is easier
-            to draw the house when the origin is at the top left corner of the house, not
-            at the bottom center point. So, we are going to use the
+            In this example, we use the
             %code
               context.translate()
-            method again to move the origin before drawing. This gives us the best of
-            both worlds: a good anchor point for positioning the house on the canvas and a good origin
-            point for drawing the house itself.
+            and
+            %code
+              context.scale()
+            methods to create a vanishing point on the horizon to give our drawing a 3D effect.
+          %p
+            If we use the
+            %code
+              context.scale()
+            method to scale the coordinate system down, shapes will be drawn smaller and
+            closer to the origin. If we keep scaling the coordinate system down, those shapes
+            will eventually vanish into the origin.
+          %p
+            We start by using the
+            %code
+              context.translate()
+            method to position the origin of the coordinate system. The position of the
+            origin will be the position of our vanishing point.
           %pre
             %code
               :preserve
-                function drawYellowHouse(centerX, groundY) {
-                  context.save();
-                  context.translate(centerX, groundY); // The house's anchor point
-                  context.translate(-60, -100); // The origin for drawing the house
-                  
-                  // Code to draw the house
-                  
-                  context.restore();
-                }
+                var x = 240;
+                var y = 280; // Coordinates of the vanishing point
+                
+                context.save() // Save the original drawing state
+                context.translate(x, y); // Move the origin to the vanishing point on the canvas
           %p
-            Since we know the house is 120 pixels wide and 100 pixels tall, we can move the
-            origin from the bottom center point to the top left corner by moving it left
-            60 pixels (half the width) and up 100 pixels. Now that the origin of the coordinate
-            system back in the top left corner, we can draw the house just like we did before.
+            To make the vanishing point and horizon easier to see, we draw a line at the
+            horizon and a dot at the vanishing point:
           %pre
             %code
               :preserve
-                function drawYellowHouse(centerX, groundY) {
-                  context.save();
-                  context.translate(centerX, groundY); // The house's anchor point
-                  context.translate(-60, -100); // The origin for drawing the house
-                  context.fillStyle = '#FFFF00';
-                  context.fillRect(0, 0, 120, 100);
-                  drawWindow(15, 20);
-                  drawWindow(85, 20);
-                  drawRedDoor(45, 40);
-                  context.restore();
+                drawHorizon();
+                drawVanishingPoint();
+          %p
+            Then, we set up a for loop to repeatedly scale the coordinate system and draw
+            two squares. The for loop runs through the loop eight times.
+          %pre
+            %code
+              :preserve
+                for (var i = 0; i < 8; i = i + 1) {
+                  context.scale(1.26, 1.26);
+                  drawSquare(5, -40); // The square to the right of the vanishing point
+                  drawSquare(-40, -30); // The square to the left of the vanishing point
                 }
           %p
-            Change the value assigned to the variable
-            %code
-              groundY
-            at the top of the program to change the y-coordinate of the ground. We have also
-            made minor changes to the
-            %code
-              drawYellowHouse()
-            function so you can see the anchor point of the house and the origin point for
-            drawing the house. To show the origin point of the house, uncomment out the first
-            call to
-            %code
-              drawAxes()
-            inside the
-            %code
-              drawYellowHouse()
-            function.
+            Each time through the for loop, we scale the coordinate system using a scale
+            factor of 1.26 in both the x- and y-directions. Because we are not saving and
+            restoring the drawing state between transformations, our scale factors are
+            combining, which is what we want in this situation. We want to keep scaling the
+            coordinate system so the drawings get larnger and larger.
           %p
-            Visit the relevant lessons to learn more about
+            Finally, we use the
+            %code
+              drawSquare()
+            function to draw two squares, both with a width and height of 20, filled
+            with the color
             %span
               %code>
-                context.fillRect()
+                'DarkOrange'
               ,
+            and outlined in the color
             %span
               %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.save()
-              ,
-            functions, variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_functions, :dng_variables, :dng_coordinates]
+                'DarkRed'
+              \.
+            The first square is positioned at (-40, -30) and the second square is positioned
+            at (5, -40).
+          %p
+            Note that the two squares are drawn at the same positions for each loop. Because
+            we are scaling the coordinate systems, the squares appear to be moving toward us
+            from the vanishing point. Change the positions of the vanishing point and the two
+            squares in the for loop to see what happens.
+          %p
+            To learn more about for loops, visit the
+            = link_to_lesson('For Loops', :dng_for_loops, nil, class: 'reference-link', data: {slug: :dng_for_loops})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_translate, :dng_for_loops, :dng_functions, :dng_variables, :dng_coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -953,104 +864,48 @@
               :preserve
                 var canvas = document.getElementById('dng_scale_example6');
                 var context = canvas.getContext('2d');
-                var groundY = 240; // Assign the y-coordinate of the ground
                 
-                drawTheGround(groundY);
-                drawYellowHouse(150, groundY);
+                var x = 240;
+                var y = 280; // Coordinates of the vanishing point
                 
-                function drawYellowHouse(centerX, groundY) {
+                context.save(); // Save the original drawing state
+                context.translate(x, y); // Move the origin to the vanishing point on the canvas
+                
+                drawHorizon();
+                drawVanishingPoint();
+                
+                for (var i = 0; i < 8; i = i + 1) {
+                  context.scale(1.26, 1.26);
+                  drawSquare(5, -40); // The square to the right of the vanishing point
+                  drawSquare(-40, -30); // The square to the left of the vanishing point
+                }
+                
+                context.restore(); // Restore the original drawing state
+                
+                function drawSquare(x, y) {
                   context.save();
-                  context.translate(centerX, groundY); // The house's anchor point
-                  context.save();
-                  context.translate(-60, -100); // The origin for drawing the house
-                  context.fillStyle = '#FFFF00';
-                  context.fillRect(0, 0, 120, 100);
-                  drawWindow(15, 20);
-                  drawWindow(85, 20);
-                  drawRedDoor(45, 40);
-                  //drawAxes(); // Draw axes at the origin point
-                  context.restore();
-                  drawAxes(); // Draw axes at the anchor point
+                  context.fillStyle = 'DarkOrange';
+                  context.fillRect(x, y, 20, 20);
+                  context.strokeStyle = 'DarkRed';
+                  context.strokeRect(x, y, 20, 20);
                   context.restore();
                 }
                 
-                function drawWindow(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = 'White';
-                  context.fillRect(0, 0, 20, 40); // White border
-                  context.fillStyle = '#99CCFF';
-                  context.fillRect(2, 2, 7, 7); // Pane of glass
-                  context.fillRect(11, 2, 7, 7);
-                  context.fillRect(2, 11, 7, 7);
-                  context.fillRect(11, 11, 7, 7);
-                  context.fillRect(2, 20, 16, 18);
-                  context.restore();
-                }
-                
-                function drawRedDoor(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = '#FF0000';
-                  context.fillRect(0, 0, 30, 60); // Red door
-                  context.fillStyle = '#99CCFF';
-                  context.fillRect(6, 6, 18, 12); // Pane of glass
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(22, 28, 5, 5); // Door knob
-                  context.fillRect(10, 45, 10, 5); // Mail slot
-                  context.restore();
-                }
-                
-                function drawTheGround(groundY) {
+                function drawHorizon() {
                   context.save();
                   context.strokeStyle = 'Black';
                   context.beginPath();
-                  context.moveTo(0, groundY);
-                  context.lineTo(canvas.width, groundY);
+                  context.moveTo(-x, 0);
+                  context.lineTo(Math.abs(x) + canvas.width, 0);
                   context.stroke();
                   context.restore();
                 }
                 
-                function drawAxes() {
+                function drawVanishingPoint() {
                   context.save();
-                  context.fillStyle = 'Red';
-                  context.strokeStyle = 'Red';
-                  context.font = '16px Arial';
-                  context.textAlign = 'center';
-                  context.textBaseline = 'middle';
-                  drawPoint(0, 0);
-                  drawLine(0, 0, 50, 0);
-                  drawArrow(50, 0, 0);
-                  context.fillText('x', 60, 0);
-                  drawLine(0, 0, 0, 50);
-                  drawArrow(0, 50, 0.5 * Math.PI);
-                  context.fillText('y', 0, 60);
-                  context.restore();
-                }
-                
-                function drawPoint(x, y) {
+                  context.fillStyle = 'Black';
                   context.beginPath();
-                  context.arc(x, y, 3, 0, 2 * Math.PI, false);
-                  context.closePath();
-                  context.fill();
-                }
-                
-                function drawLine(x1, y1, x2, y2) {
-                  context.beginPath();
-                  context.moveTo(x1, y1);
-                  context.lineTo(x2, y2);
-                  context.stroke();
-                }
-                
-                function drawArrow(x, y, angle) {
-                  context.save();
-                  context.translate(x, y);
-                  context.rotate(angle);
-                  context.beginPath();
-                  context.moveTo(0, 0);
-                  context.lineTo(-10, 5);
-                  context.lineTo(-10, -5);
-                  context.closePath();
+                  context.arc(0, 0, 3, 0, 2 * Math.PI, false);
                   context.fill();
                   context.restore();
                 }
@@ -1068,62 +923,71 @@
       .row
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 6
+            Challenge 5
           %figure.float-xs-right.px-2
             = image_tag('lessons/dng_scale/challenge6Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Copy the
-            %code
-              drawPineTree()
-            function you defined in Challenge 4 (the one without the ornaments), and
-            re-define it so you can position a tree on the canvas using the bottom center
-            point of the tree as its anchor point.
+            Update the program below to draw six trees so they appear to moving toward
+            us from a vanishing point.
           %p
-            Hint: A pine tree is 100 pixels wide and 240 pixels tall.
+            Position the vanishing point at the coordinates (-80, 140). Note that this
+            point is outside the left edge of the canvas, so we want actually see it on the canvas.
           %p
-            Then, draw a pine tree positioned on the ground at (150,
-            %span
-              %code>
-                groundY
-              ),
-            where
+            Use the
             %code
-              groundY
-            is the local variable storing the y-coordinate of the ground.
-          %pre
-            %code
-              :preserve
-                drawPineTree(150, groundY);
+              drawTree()
+            function to draw the trees at position (120, 45). Before drawing a
+            tree, scale the coordinate system by a scale factor of 1.2 in both the x-
+            and y-directions. Allow the scale factors to multiply.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_scale_challenge6_editor'} do
           :preserve
             var canvas = document.getElementById('dng_scale_challenge6');
             var context = canvas.getContext('2d');
-            var groundY = 280; // Assign the y-coordinate of the ground
-            
-            drawTheGround(groundY);
 
-            // DRAW A PINE TREE AT (150, groundY)
+            var x = 0;
+            var y = 0; // Coordinates of the vanishing point
             
-            function drawPineTree(centerX, groundY) {
-              
-              // MOVE THE ORIGIN TO THE ANCHOR POINT HERE
-              
-              // MOVE THE ORIGN TO THE TOP LEFT CORNER OF THE PINE TREE HERE
-              
-              // DRAW A PINE TREE IN LOCAL COORDINATES HERE
-              
+            context.save(); // Save the original drawing state
+            context.translate(x, y); // Move the origin to the vanishing point on the canvas
+            
+            drawHorizon();
+            drawVanishingPoint();
+            
+            for (var i = 0; i < 1; i = i + 1) {
+              // SCALE THE COORDINATE SYSTEM HERE
+              // DRAW THE TREE HERE
             }
             
-            function drawTheGround(groundY) {
+            context.restore(); // Restore the original drawing state
+            
+            function drawTree(x, y) {
+              context.fillStyle = 'Sienna';
+              context.fillRect(x - 5, y - 50, 10, 50);
+              context.fillStyle = 'ForestGreen';
+              context.beginPath();
+              context.arc(x, y - 50, 15, 0, 2 * Math.PI, false);
+              context.fill();
+            }
+            
+            function drawHorizon() {
               context.save();
               context.strokeStyle = 'Black';
               context.beginPath();
-              context.moveTo(0, groundY);
-              context.lineTo(canvas.width, groundY);
+              context.moveTo(-x, 0);
+              context.lineTo(Math.abs(x) + canvas.width, 0);
               context.stroke();
+              context.restore();
+            }
+            
+            function drawVanishingPoint() {
+              context.save();
+              context.fillStyle = 'Black';
+              context.beginPath();
+              context.arc(0, 0, 3, 0, 2 * Math.PI, false);
+              context.fill();
               context.restore();
             }
             
@@ -1135,181 +999,3 @@
             .background.hidden-xl-down= image_tag('lessons/dng_scale/challenge6.png')
             %canvas#dng_scale_challenge6
           .alert
-
-
-  .example.row.py-3
-    .col-xs-12
-      .row
-        .col-xs-12
-          %h2.py-2
-            Use Translation with Other Transformations
-          %p
-            While good anchor points are helpful in positioning drawings on the canvas,
-            they are necessary when scaling or rotating drawings.
-          %p
-            In this example, we draw two houses. The anchor point of the green house is
-            its top left corner. The anchor point of the yellow house is its bottom center
-            point. We can scale both houses by setting a scale factor.
-          %p
-            Right now, both houses are sitting on the ground with a scale factor of 1.
-            Assign the local variable
-            %code
-              scaleFactor
-            at the top of the program a value of 1.2 to see what happens.
-          %pre
-            %code
-              :preserve
-                var scaleFactor = 1.2;
-          %p
-            While both houses scale, only the yellow house remains anchored on the ground.
-            Note that the anchor point does not move when a house is scaled.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.save()
-              ,
-            %span
-              %code>
-                context.scale()
-              ,
-            functions, variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :scale, :dng_functions, :dng_variables, :dng_coordinates]
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_scale_example7_editor'} do
-              :preserve
-                var canvas = document.getElementById('dng_scale_example7');
-                var context = canvas.getContext('2d');
-                var groundY = 220; // Assign the y-coordinate of the ground
-                var scaleFactor = 1; // Assign the scale factor of the houses
-                
-                drawTheGround(groundY);
-                drawGreenHouse(10, groundY - 100);
-                drawYellowHouse(290, groundY);
-                
-                function drawYellowHouse(centerX, groundY) {
-                  context.save();
-                  context.translate(centerX, groundY); // The house's anchor point
-                  context.scale(scaleFactor, scaleFactor);
-                  context.save();
-                  context.translate(-60, -100); // The origin for drawing the house
-                  context.fillStyle = '#FFFF00';
-                  context.fillRect(0, 0, 120, 100);
-                  drawWindow(15, 20);
-                  drawWindow(85, 20);
-                  drawRedDoor(45, 40);
-                  context.restore();
-                  drawAxes(); // Draw axes at the anchor point
-                  context.restore();
-                }
-                
-                function drawGreenHouse(x, y) {
-                  context.save();
-                  context.translate(x, y); // The house's anchor point and origin for drawing the house
-                  context.scale(scaleFactor, scaleFactor);
-                  context.fillStyle = '#00FF00';
-                  context.fillRect(0, 0, 120, 100);
-                  drawWindow(15, 20);
-                  drawWindow(85, 20);
-                  drawRedDoor(45, 40);
-                  drawAxes(); // Draw axes at the anchor point
-                  context.restore();
-                }
-                
-                function drawWindow(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = 'White';
-                  context.fillRect(0, 0, 20, 40); // White border
-                  context.fillStyle = '#99CCFF';
-                  context.fillRect(2, 2, 7, 7); // Pane of glass
-                  context.fillRect(11, 2, 7, 7);
-                  context.fillRect(2, 11, 7, 7);
-                  context.fillRect(11, 11, 7, 7);
-                  context.fillRect(2, 20, 16, 18);
-                  context.restore();
-                }
-                
-                function drawRedDoor(x, y) {
-                  context.save();
-                  context.translate(x, y);
-                  context.fillStyle = '#FF0000';
-                  context.fillRect(0, 0, 30, 60); // Red door
-                  context.fillStyle = '#99CCFF';
-                  context.fillRect(6, 6, 18, 12); // Pane of glass
-                  context.fillStyle = '#FFD700';
-                  context.fillRect(22, 28, 5, 5); // Door knob
-                  context.fillRect(10, 45, 10, 5); // Mail slot
-                  context.restore();
-                }
-                
-                function drawTheGround(groundY) {
-                  context.save();
-                  context.strokeStyle = 'Black';
-                  context.beginPath();
-                  context.moveTo(0, groundY);
-                  context.lineTo(canvas.width, groundY);
-                  context.stroke();
-                  context.restore();
-                }
-                
-                function drawAxes() {
-                  context.save();
-                  context.fillStyle = 'Red';
-                  context.strokeStyle = 'Red';
-                  context.font = '16px Arial';
-                  context.textAlign = 'center';
-                  context.textBaseline = 'middle';
-                  drawPoint(0, 0);
-                  drawLine(0, 0, 50, 0);
-                  drawArrow(50, 0, 0);
-                  context.fillText('x', 60, 0);
-                  drawLine(0, 0, 0, 50);
-                  drawArrow(0, 50, 0.5 * Math.PI);
-                  context.fillText('y', 0, 60);
-                  context.restore();
-                }
-                
-                function drawPoint(x, y) {
-                  context.beginPath();
-                  context.arc(x, y, 3, 0, 2 * Math.PI, false);
-                  context.closePath();
-                  context.fill();
-                }
-                
-                function drawLine(x1, y1, x2, y2) {
-                  context.beginPath();
-                  context.moveTo(x1, y1);
-                  context.lineTo(x2, y2);
-                  context.stroke();
-                }
-                
-                function drawArrow(x, y, angle) {
-                  context.save();
-                  context.translate(x, y);
-                  context.rotate(angle);
-                  context.beginPath();
-                  context.moveTo(0, 0);
-                  context.lineTo(-10, 5);
-                  context.lineTo(-10, -5);
-                  context.closePath();
-                  context.fill();
-                  context.restore();
-                }
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#dng_scale_example7
