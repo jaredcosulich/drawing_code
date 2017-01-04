@@ -3,6 +3,7 @@ initFlappySquareStage4Challenges = ->
     initFlappySquareStage4Challenge1(page)
     initFlappySquareStage4Challenge2(page)
     initFlappySquareStage4Challenge3(page)
+    initFlappySquareStage4Challenge4(page)
 
 
 initFlappySquareStage4Challenge1 = (page) ->
@@ -40,6 +41,19 @@ initFlappySquareStage4Challenge3 = (page) ->
     setTimeout(( ->
       canvas.selfAssess ->
         App.currentProgress.challengeComplete('flappy_square_stage4', 'challenge3')
+    ), 2000)
+
+
+
+initFlappySquareStage4Challenge4 = (page) ->
+  challenge = page.find('#challenge4')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  challenge.find('.run').click ->
+    setTimeout(( ->
+      canvas.selfAssess ->
+        App.currentProgress.challengeComplete('flappy_square_stage4', 'challenge4')
     ), 2000)
 
 
