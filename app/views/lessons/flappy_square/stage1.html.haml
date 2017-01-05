@@ -639,18 +639,29 @@
             This essentially requires
             %span.highlight simulating gravity.
           %p
-            For our purposes gravity is a force that affects the velocity
-            of our flappy square. This force will cause the flappy square
-            to accelerate downward.
+            Gravity causes objects on earth to move toward the center of the Earth
+            at an accelerating rate, which means that they move faster and faster
+            toward the ground.
+          %p
+            The speed of the object toward the ground is called its "velocity".
+            Gravity causes the object's velocity to increase over time.
           %p
             In this examples when you click "Run" a ball will shoot out at
-            a constant velocity moving right while gravity pulls it toward
-            the ground (first it will stop the ball's upward momentum).
+            a constant velocity moving right and up while gravity pulls it toward
+            the ground, causing its upward velocity to decrease until it is negative
+            (falling).
           %p
-            Gravity is set to 0.4. This is an arbitrary value that simply makes
-            the simulation look good as we're not actually trying to simulate
-            gravity accurately. With each frame we subtract gravity from the yVelocity,
-            causing the ball to accelerate downward.
+            In this example gravity is set to 0.4. This means that the upward speed (yVelocity)
+            of our ball will decrease by 0.4 each frame. So in each frame the ball will move up
+            by 0.4 pixels less than the last frame until it is no longer moving at which point
+            it will move down by 0.4 pixels more each frame.
+          %p
+            This is an arbitrary value that simply makes the simulation look good as we're not
+            actually trying to simulate gravity accurately.
+          %p
+            Also remember that in the canvas the "y" coordinates go up as you move down.
+            This means that subtracting a negative "yVelocity" from our "y" position actually
+            makes our "y" value large, drawing the ball farther down on the canvas.
 
           = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
 
@@ -697,6 +708,7 @@
 
                 function startAnimation() {
                   interval = setInterval(runProgram, 20);
+                  resetAnimation();
                 }
 
                 function pauseAnimation() {
@@ -755,9 +767,18 @@
             %span.highlight draw a frame every 25 miliseconds.
           %p
             Your animation should look like the example to the right.
+          %p
+            Important note: In Challenge
+            = challenge_index - 1
+            we added 10 to the "y" variable in each frame causing the square
+            to move down. Here we need to
+            %span.highlight subtract "yVelocity"
+            as "yVelocity" will be negative and subtracting a negative is the same
+            as adding a positive (I know this can get confusing with the y-coordinate
+            of the canvas moving in the wrong direction).
 
           = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
-          = render 'lessons/code_preview', stage: 1, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index}_editor"
+          = render 'lessons/code_preview', stage: 1, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index - 1}_editor"
 
       .row.pt-2
         = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
@@ -766,12 +787,20 @@
             var context = canvas.getContext('2d');
 
             var interval;
+            var gravity = ;
             var size = 20;
+            var x = ;
+            var y = ;
+            var yVelocity = ;
 
             function drawSquare() {
             }
 
             function adjustPosition() {
+              // Instead of simply subtracting
+              // 10 from the "y" variable you'll
+              // need to both adjust the "yVelocity"
+              // and then use it to adjust "y"
             }
 
             function runProgram() {

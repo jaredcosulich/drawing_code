@@ -139,13 +139,13 @@ initFlappySquareStage1Challenge6 = (page) ->
       y -= yVelocity
     context.fillRect(50, y, 20, 20)
 
-  testSolution = (index) ->
+  testSolution = (i) ->
     testCode = new Test.Code(code: solution, canvas: canvas)
 
     testCode.test (success) ->
       if success
-        if index < 3
-          testSolution(index + 1)
+        if i < 3
+          testSolution(i + 1)
         else
           message = '<strong>Success!</strong> You\'re successfull animated a flappy square affected by gravity!'
           App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
