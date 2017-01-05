@@ -923,7 +923,7 @@
       .row
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 5
+            Challenge 6
           %figure.float-xs-right.px-2
             = image_tag('lessons/dng_scale/challenge6Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
@@ -998,4 +998,201 @@
           .canvas
             .background.hidden-xl-down= image_tag('lessons/dng_scale/challenge6.png')
             %canvas#dng_scale_challenge6
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Create a Mirror Image
+          %p
+            In this example, we use the
+            %code
+              context.scale()
+            method to create a mirror image of a line of text by reflecting it over
+            the coordinate system's x-axis.
+          %p
+            We start by using the
+            %code
+              context.translate()
+            method to move the origin of the coordinate system to (100, 150). The
+            position of the origin is important because, when we reflect the line of
+            text, it will be reflected over the x-axis. This means the x-axis will
+            be our line of symmetry.
+          %pre
+            %code
+              :preserve
+                var x = 100;
+                var y = 150; // Coordinates of the origin
+                
+                context.save(); // Save the original drawing state
+                context.translate(x, y); // Move the origin
+          %p
+            To make the line of symmetry easier to see, we draw lines on the x- and y-axes:
+          %pre
+            %code
+              :preserve
+                drawAxes();
+          %p
+            After setting the
+            %span
+              %code>
+                context.fillStyle
+              ,
+            %span
+              %code>
+                context.font
+              ,
+            and
+            %code
+              context.textBaseline
+            properties, we draw the original line of text at (20, -180):
+          %pre
+            %code
+              :preserve
+                context.fillStyle = 'Crimson';
+                context.font = '48px Arial';
+                context.textBaseline = 'top';
+                
+                context.fillText('Mirror Image', 20, -80); // Original line of text
+          %p
+            Because the origin of the coordinate system is at (100, 150) on the canvas,
+            positioning the line of text at (20, -80) on the coordinate system actually
+            puts the top left corner of the text at (120, 70) on the canvas.
+          %p
+            To create a mirror image of the line of text, we use the
+            %code
+              context.scale()
+            method to reflect the entire coordinate system over the x-axis by using a
+            scale factor of -1 in the y-direction. This reverses the direction of the y-axis,
+            so up is down and down is up. To reflect a drawing horizontally over the y-axis,
+            we would use a scale factor of -1 in the x-direction. Then, we draw the same line
+            of text at the exact same position on the coordinate system.
+          %pre
+            %code
+              :preserve
+                context.scale(1, -1);
+                context.fillText('Mirror Image', 20, -80); // Reflected line of text
+          %p
+            Because the origin of the coordinate system is at (100, 150) on the canvas
+            and we reflected the coordinate system over the x-axis, positioning the line
+            of text at (20, -80) on the coordinate system actually puts the bottom left
+            corner of the text at (120, 230) on the canvas.
+          %p
+            Try changing the scale factor in the x-direction to -1 to see what happens.
+            We can also reflect and scale drawings by using negative values greater or less
+            than -1.
+          = render 'lessons/relevant', relevant: [:dng_translate, :dng_variables, :dng_coordinates]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_scale_example7_editor'} do
+              :preserve
+                var canvas = document.getElementById('dng_scale_example7');
+                var context = canvas.getContext('2d');
+                
+                var x = 100;
+                var y = 150; // Coordinates of the origin
+                
+                context.save(); // Save the original drawing state
+                context.translate(x, y); // Move the origin
+                
+                drawAxes();
+                
+                context.fillStyle = 'Crimson';
+                context.font = '48px Arial';
+                context.textBaseline = 'top';
+                
+                context.fillText('Mirror Image', 20, -80); // Original line of text
+                
+                context.scale(1, -1);
+                context.fillText('Mirror Image', 20, -80); // Reflected line of text
+                
+                context.restore(); // Restore the original drawing state
+                
+                function drawAxes() {
+                  context.save();
+                  context.strokeStyle = 'Black';
+                  context.beginPath();
+                  context.moveTo(-x, 0);
+                  context.lineTo(Math.abs(x) + canvas.width, 0);
+                  context.moveTo(0, -y);
+                  context.lineTo(0, Math.abs(y) + canvas.height);
+                  context.stroke();
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#dng_scale_example7
+
+
+  #challenge7.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 7
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_scale/challenge7Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw two French flags using the
+            %code
+              drawFrenchFlag()
+            function, which accepts
+            %code
+              x
+            and
+            %code
+              y
+            values for its coordinates. Position the original French flag so its top left
+            corner is at (230, 60) on the canvas. Then, reflect the second French flag over
+            the y-axis and position it so its top right corner is at (170, 60).
+          %p
+            To position the two French flags correctly, move the origin of the coordinate
+            system so the y-axis is the line of symmetry between the two flags. The y-coordinate
+            of the origin isn't important, but the x-coordinate is.
+          
+            Make sure to adjust the coordinates of the flags to account for the new position
+            of the origin.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_scale_challenge7_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_scale_challenge7');
+            var context = canvas.getContext('2d');
+
+            var x = 0;
+            var y = 0; // Coordinates of the origin
+            
+            context.save(); // Save the original drawing state
+            context.translate(x, y); // Move the origin
+            
+            // DRAW THE ORIGINAL FRENCH FLAG HERE
+            // DRAW THE FRENCH FLAG REFLECTED OVER THE Y-AXIS HERE
+            
+            context.restore(); // Restore the original drawing state
+            
+            function drawFrenchFlag(x, y) {
+              context.fillStyle = '#0055A4';
+              context.fillRect(x, y, 50, 100);
+              context.fillStyle = '#FFFFFF';
+              context.fillRect(x + 50, y, 50, 100);
+              context.fillStyle = '#EF4135';
+              context.fillRect(x + 100, y, 50, 100);
+            }
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_scale/challenge7.png')
+            %canvas#dng_scale_challenge7
           .alert

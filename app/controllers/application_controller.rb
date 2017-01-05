@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
       dng_fill_style: {count: 3, method: 'DNG fillStyle'},
       dng_save: {count: 5, method: 'DNG save()/restore()'},
       dng_translate: {count: 6, method: 'DNG translate()'},
-      dng_scale: {count: 6, method: 'DNG scale()'},
+      dng_scale: {count: 7, method: 'DNG scale()'},
       dng_random: {count: 4, method: 'DNG random()'},
       dng_round: {count: 3, method: 'DNG round()/floor()/ceil()'},
       dng_coordinates: {count: 3, method: 'DNG Coordinates'},
