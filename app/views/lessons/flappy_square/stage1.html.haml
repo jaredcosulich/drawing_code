@@ -294,9 +294,9 @@
             var context = canvas.getContext('2d');
 
             // SET THE VARIABLES PROPERLY
-            // var size =
-            // var x =
-            // var y =
+            var size =
+            var x =
+            var y =
 
             context.fillRect(x, y, size, size);
 
@@ -382,7 +382,7 @@
               Write a function to draw the flappy bird from
               = "Challenge #{challenge_index - 1}."
           %p
-            The function will be called drawSquare() accept three values x, y, and size (called parameters) that
+            The function will be called drawSquare() and will accept three values x, y, and size (called parameters) that
             will be used to position our flappy square.
           %p
             Then use the function to draw our flappy square at the
@@ -432,13 +432,11 @@
             = image_tag("lessons/flappy_square/stage1/lesson#{lesson_index}Visual.png")
 
           %p
-            Ok, this lesson is a little long. To start, if the animation below
-            isn't playing you
-            %span.highlight can click on the canvas to restart it.
+            Ok, this lesson is a little long. I hope you can make your way through it.
           %p
-            There are a few aspects of basic animation we need to cover. To start, there are
+            There are
             %span.highlight three required aspects to basic animation
-            in canvas.
+            in canvas we need to cover:
           %ul
             %li Drawing frames in rapid sequence.
             %li Clearing the canvas in between frames.
@@ -454,7 +452,7 @@
             will stop those regular intervals.
           %p
             %span.highlight Important:
-            we'll have to call setInterval from an
+            In "Drawing In Code" we always call setInterval from an
             = link_to_lesson('event listener', :event_listeners, nil, class: 'reference-link', data: {slug: :event_listeners})
             An event listener allows our code
             to "listen" to an event. In this case we'll be listening for the canvas to gain focus.
@@ -462,10 +460,11 @@
             when we run the code (this happens behind the scenes). We will also call clearInterval
             from the "blur" event on the canvas. This means that when we click away from the canvas
             the animation will stop. It also ensures that if we run the code multiple times our
-            setInterval doesn't continue to run.
+            setInterval doesn't continue to run, doubling up on itself.
           %p
-            Our setInterval() allows us to draw frames in rapid sequence. Before each frame is drawn
-            we need to erase the canvas so that the drawings do not overlap. We use
+            Our
+            %span.highlight setInterval() allows us to draw frames in rapid sequence.
+            Before each frame is drawn we need to erase the canvas so that the drawings do not overlap. We use
             = link_to_lesson('clearRect()', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
             like this:
             %code context.clearRect(0, 0, canvas.width, canvas.height)
@@ -477,7 +476,7 @@
             slow it down, it looks jumpy.
 
 
-          = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
+          = render 'lessons/relevant', relevant: [:fill_rect, :set_interval, :event_listeners, :clear_rect, :functions]
 
         .col-xs-12
           .interactive.row.py-1
@@ -559,7 +558,7 @@
           %p
             Use
             %span.highlight setInterval(),
-            called from the canvas "focus" event", to
+            called from the canvas "focus" event, to
             %span.highlight animate the flappy square falling.
           %p
             Have your flappy square
@@ -567,7 +566,7 @@
           %p
             Your animation should look like the example to the right.
 
-          = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
+          = render 'lessons/relevant', relevant: [:fill_rect, :set_interval, :event_listeners, :clear_rect, :functions]
           = render 'lessons/code_preview', stage: 1, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index - 1}_editor"
 
       .row.pt-2
@@ -580,8 +579,8 @@
             var size = 20;
 
             // SET YOUR POSITION VARIABLES HERE
-            // var x =
-            // var y =
+            var x =
+            var y =
 
             function drawSquare() {
 
