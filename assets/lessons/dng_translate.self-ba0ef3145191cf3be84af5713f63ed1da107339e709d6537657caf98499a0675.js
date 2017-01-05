@@ -38,7 +38,7 @@
           message = '<strong>Success!</strong> You moved the origin of the coordinate system to draw the French flag at the correct position!';
           App.currentProgress.challengeComplete('dng_translate', 'challenge1');
         } else {
-          message = 'Nice try, but you need move the origin of the coordinate system to draw the French flag at the correct position.';
+          message = 'Nice try, but you need to move the origin of the coordinate system to draw the French flag at the correct position.';
         }
         return canvas.alert(message, success);
       });
