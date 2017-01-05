@@ -98,3 +98,8 @@ class App.Progress
       description: localStorage.getItem("drawing-description-#{slug}"),
       code: localStorage.getItem("drawing-code-#{slug}")
     }
+
+  resetPage: (page) ->
+    return unless @storageAvailable
+    localStorage.removeItem(page)
+    location.reload()

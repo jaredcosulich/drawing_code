@@ -22,7 +22,7 @@ initFlappySquareStage1Challenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your rectangle is in the correct position and is the correct size!'
-        App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', "challenge#{index}")
+        App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
       else
         message = 'Nice try, but you need to draw a rectangle in the correct position that is the correct size.'
 

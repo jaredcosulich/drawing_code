@@ -17,6 +17,7 @@ init = ->
   initInteractives()
   initFreeform()
   initOutput()
+  initCheats()
   $(document).trigger('initialization:complete')
 
 initInteractives = ->
@@ -38,6 +39,19 @@ initOutput = ->
     canvas = document.getElementById(canvasId)
     img    = canvas.toDataURL("image/png")
     document.write('<img src="'+img+'"/>')
+
+initCheats = ->
+  mousedown = false
+  $('.page').mousedown (e) ->
+    page = $(e.currentTarget)
+    mousedown = true
+    setTimeout(( ->
+      if mousedown
+        if (confirm('Are you sure you want to reset this page?'))
+          $(editor).data('editor').reset() for editor in page.find('.editor')
+          App.currentProgress.resetPage(page.attr('id'))
+    ), 2000)
+    page.mouseup -> mousedown = false
 
 initProgress = ->
   App.currentProgress = new App.Progress()
