@@ -42,8 +42,8 @@ initOutput = ->
 
 initCheats = ->
   mousedown = false
-  $('.page').mousedown (e) ->
-    page = $(e.currentTarget)
+  page = $('.page')
+  page.find('h1').mousedown (e) ->
     mousedown = true
     setTimeout(( ->
       if mousedown

@@ -110,7 +110,7 @@
             45px tall (height).
 
           %p In the end your drawing should look like the example provided to the right.
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
@@ -146,7 +146,7 @@
             We'll position it so that its
             %span.highlight top left corner is at x = 100, y = 50: (100, 50).
           %p
-            Note: In the context's
+            Remember: In the context's
             = link_to_lesson('coordinate system', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
             the origin (0, 0) is at the top left corner of the canvas.
           = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
@@ -187,7 +187,7 @@
             %span.highlight (50, 100).
 
           %p In the end your flappy square should look like the example provided to the right.
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
