@@ -1,6 +1,6 @@
 initChallenges = ->
-  lessonId = $('.lesson').attr('id')
-  challengesCompleted = App.currentProgress.challengesCompleted(lessonId)
+  pageId = $('.page').attr('id')
+  challengesCompleted = App.currentProgress.challengesCompleted(pageId)
   initChallengeCounts(challengesCompleted)
   App.currentProgress.markChallengeComplete(challengeId) for challengeId in challengesCompleted
 
