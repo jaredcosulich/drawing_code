@@ -1,5 +1,5 @@
 (function() {
-  var init, initFreeform, initInteractives, initOutput, initProgress,
+  var init, initCheats, initFreeform, initInteractives, initOutput, initProgress,
     slice = [].slice;
 
   window.App || (window.App = {});
@@ -22,6 +22,7 @@
     initInteractives();
     initFreeform();
     initOutput();
+    initCheats();
     return $(document).trigger('initialization:complete');
   };
 
@@ -60,6 +61,31 @@
       img = canvas.toDataURL("image/png");
       return document.write('<img src="' + img + '"/>');
     };
+  };
+
+  initCheats = function() {
+    var mousedown, page;
+    mousedown = false;
+    page = $('.page');
+    return page.find('h1').mousedown(function(e) {
+      mousedown = true;
+      setTimeout((function() {
+        var editor, i, len, ref;
+        if (mousedown) {
+          if (confirm('Are you sure you want to reset this page?')) {
+            ref = page.find('.editor');
+            for (i = 0, len = ref.length; i < len; i++) {
+              editor = ref[i];
+              $(editor).data('editor').reset();
+            }
+            return App.currentProgress.resetPage(page.attr('id'));
+          }
+        }
+      }), 2000);
+      return page.mouseup(function() {
+        return mousedown = false;
+      });
+    });
   };
 
   initProgress = function() {

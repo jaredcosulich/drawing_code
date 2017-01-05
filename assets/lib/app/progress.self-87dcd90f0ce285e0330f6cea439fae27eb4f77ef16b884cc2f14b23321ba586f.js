@@ -194,6 +194,14 @@
       };
     };
 
+    Progress.prototype.resetPage = function(page) {
+      if (!this.storageAvailable) {
+        return;
+      }
+      localStorage.removeItem(page);
+      return location.reload();
+    };
+
     return Progress;
 
   })();

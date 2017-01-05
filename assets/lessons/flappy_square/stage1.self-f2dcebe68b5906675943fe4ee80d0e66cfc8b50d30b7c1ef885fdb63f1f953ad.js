@@ -31,7 +31,7 @@
         var message;
         if (success) {
           message = '<strong>Success!</strong> Your rectangle is in the correct position and is the correct size!';
-          App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', "challenge" + index);
+          App.currentProgress.challengeComplete('flappy_square_stage1', "challenge" + index);
         } else {
           message = 'Nice try, but you need to draw a rectangle in the correct position that is the correct size.';
         }
@@ -175,7 +175,7 @@
       }
       return context.fillRect(50, y, 20, 20);
     };
-    testSolution = function(index) {
+    testSolution = function(i) {
       var testCode;
       testCode = new Test.Code({
         code: solution,
@@ -184,8 +184,8 @@
       return testCode.test(function(success) {
         var message;
         if (success) {
-          if (index < 3) {
-            return testSolution(index + 1);
+          if (i < 3) {
+            return testSolution(i + 1);
           } else {
             message = '<strong>Success!</strong> You\'re successfull animated a flappy square affected by gravity!';
             App.currentProgress.challengeComplete('flappy_square_stage1', "challenge" + index);
