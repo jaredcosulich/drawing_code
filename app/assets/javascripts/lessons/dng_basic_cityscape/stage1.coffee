@@ -4,6 +4,7 @@ initDngBasicCityscapeStage1Challenges = ->
     initDngBasicCityscapeStage1Challenge2(page)
     initDngBasicCityscapeStage1Challenge3(page)
     initDngBasicCityscapeStage1Challenge4(page)
+    initDngBasicCityscapeStage1Challenge5(page)
 
 
 initDngBasicCityscapeStage1Challenge1 = (page) ->
@@ -128,49 +129,86 @@ initDngBasicCityscapeStage1Challenge4 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  points = [
-    new Test.Point(x: 40, y: 300, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 240, y: 196, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 280, y: 300, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 448, y: 52, colors: [153, 153, 153], canvas: canvas)
-  ]
+  solution = (canvas, context) ->
+    drawBuilding = (leftX, groundY, units, floors) ->
+      w = 8 + 16 * units
+      h = 8 + 16 * floors
+      x = leftX
+      y = groundY - h
+      context.fillStyle = '#999999'
+      context.fillRect(x, y, w, h)
+      return
+    
+    drawGround = (y) ->
+      context.save()
+      context.strokeStyle = 'Black'
+      context.beginPath()
+      context.moveTo(0, y)
+      context.lineTo(canvas.width, y)
+      context.stroke()
+      context.restore()
+      return
+    
+    drawBuilding(20, 280, 12, 8)
+    drawBuilding(230, 280, 9, 15)
+    drawGround(280)
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
-    setTimeout(( ->
-      success = true
-      for point in points
-        if point.test() < 1
-          success = false
-          break
-
+    testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> Your gray building is covering on the x\'s!'
+        message = '<strong>Success!</strong> You defined and used a function to draw both buildings anchored to the ground at the correct position!'
         App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge4')
       else
-        message = 'Nice try, but you need to draw a gray building covering the x\'s.'
+        message = 'Nice try, but you need to define and then use a function to draw two buildings anchored to the ground at the correct position.'
 
       canvas.alert(message, success)
-    ), 200)
+
+
+initDngBasicCityscapeStage1Challenge5 = (page) ->
+  challenge = page.find('#challenge5')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  solution = (canvas, context) ->
+    drawBuilding = (leftX, groundY, units, floors) ->
+      w = 8 + 16 * units
+      h = 8 + 16 * floors
+      x = leftX
+      y = groundY - h
+      context.save()
+      context.translate(x, y)
+      context.fillStyle = '#999999'
+      context.fillRect(0, 0, w, h)
+      context.restore()
+      return
+    
+    drawGround = (y) ->
+      context.save()
+      context.strokeStyle = 'Black'
+      context.beginPath()
+      context.moveTo(0, y)
+      context.lineTo(canvas.width, y)
+      context.stroke()
+      context.restore()
+      return
+    
+    drawBuilding(20, 290, 10, 16)
+    drawBuilding(200, 290, 12, 10)
+    drawGround(290)
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You positioned both buildings by translating the origin of the coordinate system!'
+        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge5')
+      else
+        message = 'Nice try, but you need to position the two buildings by translating the origin of the coordinate system.'
+
+      canvas.alert(message, success)
 
 
 $(document).on('initialization:complete', initDngBasicCityscapeStage1Challenges)
-
-
-
-#
-# context.moveTo(52, 223);
-# context.lineTo(58, 229);
-# context.moveTo(58, 223);
-# context.lineTo(52, 229);
-
-
-
-
-# context.fillStyle = '#0F278F';
-# context.fillRect(50, 50, 100, 200);
-#
-# context.fillStyle = 'white';
-# context.fillRect(150, 50, 100, 200);
-#
-# context.fillStyle = '#DB5443';
-# context.fillRect(250, 50, 100, 200);
