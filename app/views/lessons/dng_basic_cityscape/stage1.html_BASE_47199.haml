@@ -1,4 +1,4 @@
-#basic_cityscape_stage1.page
+#dng_basic_cityscape_stage1.lesson
   %h1 Stage 1
 
 
@@ -13,7 +13,7 @@
         we will automate the process using functions and variables.
 
     .col-xs-6
-      = image_tag('lessons/basic_cityscape/stage1/overviewVisual1.png', class: 'img-fluid')
+      = image_tag('lessons/dng_basic_cityscape/stage1/overviewVisual1.png', class: 'img-fluid')
 
 
   .example.row.py-3
@@ -41,9 +41,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_example1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_example1_editor'} do
               :preserve
-                var canvas = document.getElementById('basic_cityscape_stage1_example1');
+                var canvas = document.getElementById('dng_basic_cityscape_stage1_example1');
                 var context = canvas.getContext('2d');
 
                 context.fillStyle = '#1E90FF';
@@ -54,15 +54,20 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#basic_cityscape_stage1_example1
+                %canvas#dng_basic_cityscape_stage1_example1
 
 
   #challenge1.challenge.row.py-3
     .col-xs-12
-      .row
+      .row.pb-2
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 1
+
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_basic_cityscape/stage1/challenge1Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 1 Sample Solution
+
           %p
             %span.highlight
               Draw a building (a rectangle) that is 320 pixels wide and 160
@@ -76,12 +81,14 @@
             We are positioning the building's bottom left corner so the building
             is sitting on the ground. You will have to do some math to find the coordinates
             of the building's top left corner.
+
+          %p In the end your building should look like the example provided to the right.
           = render 'lessons/relevant', relevant: [:coordinates, :fill_style, :fill_rect]
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge1_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge1_editor'} do
           :preserve
-            var canvas = document.getElementById('basic_cityscape_stage1_challenge1');
+            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge1');
             var context = canvas.getContext('2d');
 
             // YOUR CODE HERE
@@ -91,8 +98,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/basic_cityscape/stage1/challenge1.png')
-            %canvas#basic_cityscape_stage1_challenge1
+            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge1.png')
+            %canvas#dng_basic_cityscape_stage1_challenge1
           .alert
 
 
@@ -118,9 +125,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_example2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_example2_editor'} do
               :preserve
-                var canvas = document.getElementById('basic_cityscape_stage1_example2');
+                var canvas = document.getElementById('dng_basic_cityscape_stage1_example2');
                 var context = canvas.getContext('2d');
 
                 var w = 80;
@@ -135,15 +142,22 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#basic_cityscape_stage1_example2
+                %canvas#dng_basic_cityscape_stage1_example2
 
 
   #challenge2.challenge.row.py-3
     .col-xs-12
       .row
-        .col-xs-6
+        .col-xs-12
           %h2.challenge-title.py-2
             Challenge 2
+
+          %figure.float-xs-right.px-2
+            .pb-1= image_tag('lessons/dng_basic_cityscape/stage1/challenge2Visual1.png', class: 'img-fluid')
+
+            = image_tag('lessons/dng_basic_cityscape/stage1/challenge2Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 2 Sample Solution
+
           %p
             For our cityscape, we don't want think about buildings in terms of pixels.
             We want to size buildings based on the number of floors they have and the
@@ -152,10 +166,6 @@
           %p
             Each office unit is 16 pixels wide and 16 pixels tall. The outer walls,
             roof, and floor of the building are each 4 pixels thick.
-        .col-xs-6
-          = image_tag('lessons/basic_cityscape/stage1/challenge2Visual1.png')
-      .row
-        .col-xs-12
           %p
             Write a program to calculate the size and position of the building for you.
             The variable <i>units</i> stores the number of office units on each floor.
@@ -165,16 +175,33 @@
               Then draw a gray (color #999999) building with 10 floors and 8 office units
               on each floor sitting on the ground at (120, 280).
           %p
-            To see the office units in your building, add the line "drawOffices(x, y, w, h);"
-            to the end of your program, where (x, y) are the coordinates of the top left
+            The function, drawOffices(x, y, w, h) will draw the offices of the building
+            if you define w, h, x, and y correctly, where (x, y) are the coordinates of the top left
             corner of your building, and w and h are the width and height of your building.
+          %p
+            In the end your drawing should look like the example on the right.
+
           = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_style, :fill_rect]
-          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'basic_cityscape_stage1_challenge1_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'dng_basic_cityscape_stage1_challenge1_editor'
 
 
       .row.pt-2
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge2_editor'} do
           :preserve
+            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge2');
+            var context = canvas.getContext('2d');
+
+            var units = 8;
+            var floors = 10;
+
+            // YOUR CODE TO CALCULATE THE WIDTH, HEIGHT, X, AND Y OF THE BUILDING HERE
+
+            // YOUR CODE TO SET THE COLOR OF THE BUILDING (#999999)
+
+            // context.fillRect(x, y, w, h);
+
+            drawOffices(x, y, w, h);
+
             function drawOffices(x, y, w, h) {
               var u = Math.floor((w - 4) / 16);
               var f = Math.floor((h - 4) / 16);
@@ -190,26 +217,13 @@
 
               context.restore();
             }
-
-            var canvas = document.getElementById('basic_cityscape_stage1_challenge2');
-            var context = canvas.getContext('2d');
-
-            var units = 8;
-            var floors = 10;
-
-            // YOUR CODE TO CALCULATE THE WIDTH AND HEIGHT OF THE BUILDING HERE
-
-            // YOUR CODE TO DRAW THE GRAY (COLOR #999999) BUILDING HERE
-
-            // drawOffices(x, y, w, h);
-
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/basic_cityscape/stage1/challenge2.png')
-            %canvas#basic_cityscape_stage1_challenge2
+            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge2.png')
+            %canvas#dng_basic_cityscape_stage1_challenge2
           .alert
 
 
@@ -243,9 +257,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_example3_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_example3_editor'} do
               :preserve
-                var canvas = document.getElementById('basic_cityscape_stage1_example3');
+                var canvas = document.getElementById('dng_basic_cityscape_stage1_example3');
                 var context = canvas.getContext('2d');
 
                 function drawFrenchFlag(x, y) {
@@ -268,7 +282,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#basic_cityscape_stage1_example3
+                %canvas#dng_basic_cityscape_stage1_example3
 
 
   #challenge3.challenge.row.py-3
@@ -277,6 +291,11 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 3
+
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_basic_cityscape/stage1/challenge3Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+
           %p
             %span.highlight
               Write a function to draw the building from Challenge 2.
@@ -296,12 +315,12 @@
             Just like with Challenge 2, both buildings should be gray (color #999999) and each
             office should be 16 x 16 width 4 pixels of padding around the whole building.
           = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :variables, :functions]
-          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'basic_cityscape_stage1_challenge2_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'dng_basic_cityscape_stage1_challenge2_editor'
 
       .row.pt-2
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge3_editor'} do
           :preserve
-            var canvas = document.getElementById('basic_cityscape_stage1_challenge3');
+            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge3');
             var context = canvas.getContext('2d');
 
             function drawBuilding(leftX, groundY, units, floors) {
@@ -317,8 +336,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/basic_cityscape/stage1/challenge3.png')
-            %canvas#basic_cityscape_stage1_challenge3
+            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge3.png')
+            %canvas#dng_basic_cityscape_stage1_challenge3
           .alert
 
 
@@ -365,9 +384,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_example4_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_example4_editor'} do
               :preserve
-                var canvas = document.getElementById('basic_cityscape_stage1_example4');
+                var canvas = document.getElementById('dng_basic_cityscape_stage1_example4');
                 var context = canvas.getContext('2d');
 
                 function drawFrenchFlag(x, y) {
@@ -395,7 +414,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#basic_cityscape_stage1_example4
+                %canvas#dng_basic_cityscape_stage1_example4
 
 
   #challenge4.challenge.row.py-3
@@ -404,6 +423,11 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 4
+
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_basic_cityscape/stage1/challenge4Example.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 4 Sample Solution
+
           %p
             %span.highlight
               Tidy up the drawBuilding() function from Challenge 3 in the same way.
@@ -419,12 +443,12 @@
             Just like with Challenges 2 & 3, both buildings should be gray (color #999999) and each office
             should be 16 x 16 width 4 pixels of padding around the whole building.
           = render 'lessons/relevant', relevant: [:fill_style, :fill_rect, :coordinates, :functions, :save, :translate]
-          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'basic_cityscape_stage1_challenge3_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'dng_basic_cityscape_stage1_challenge3_editor'
 
       .row.py-2
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage1_challenge4_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge4_editor'} do
           :preserve
-            var canvas = document.getElementById('basic_cityscape_stage1_challenge4');
+            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge4');
             var context = canvas.getContext('2d');
 
             function drawBuilding(leftX, groundY, units, floors) {
@@ -440,6 +464,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/basic_cityscape/stage1/challenge4.png')
-            %canvas#basic_cityscape_stage1_challenge4
+            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge4.png')
+            %canvas#dng_basic_cityscape_stage1_challenge4
           .alert
