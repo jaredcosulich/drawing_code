@@ -30,7 +30,8 @@
       this.editor.on('keyup', (function(_this) {
         return function() {
           _this.ensureValidCanvasReference();
-          return App.currentProgress.storeEditorValue(_this.editorElement.id, _this.getCode());
+          App.currentProgress.storeEditorValue(_this.editorElement.id, _this.getCode());
+          return _this.codeEditor.find('.edit-text-message').html("You've changed the code. To see the results:");
         };
       })(this));
       this.startCode = this.aceEditor.getValue();
@@ -40,6 +41,7 @@
         this.setCode(previousCode);
       }
       this.ensureValidCanvasReference();
+      this.initLesson();
     }
 
     Editor.prototype.resize = function() {
@@ -114,6 +116,26 @@
           return _this.setCode(code);
         };
       })(this));
+    };
+
+    Editor.prototype.initLesson = function() {
+      var lesson;
+      if ((lesson = this.editor.closest('.lesson')).length > 0) {
+        lesson.css({
+          backgroundColor: '#fcfcfc'
+        });
+        this.codeEditor.find('.buttons').hide();
+        this.codeEditor.find('.edit-text').show();
+        return this.codeEditor.find('.edit-text button').click((function(_this) {
+          return function() {
+            _this.codeEditor.find('.buttons').show();
+            return _this.codeEditor.find('.edit-text').hide();
+          };
+        })(this));
+      } else {
+        this.codeEditor.find('.buttons').show();
+        return this.codeEditor.find('.edit-text').hide();
+      }
     };
 
     Editor.prototype.reset = function() {

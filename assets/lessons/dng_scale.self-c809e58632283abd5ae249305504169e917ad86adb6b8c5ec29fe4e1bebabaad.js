@@ -1,5 +1,5 @@
 (function() {
-  var initDngScaleChallenge1, initDngScaleChallenge2, initDngScaleChallenge3, initDngScaleChallenge4, initDngScaleChallenge5, initDngScaleChallenge6, initDngScaleChallenges;
+  var initDngScaleChallenge1, initDngScaleChallenge2, initDngScaleChallenge3, initDngScaleChallenge4, initDngScaleChallenge5, initDngScaleChallenge6, initDngScaleChallenge7, initDngScaleChallenges;
 
   initDngScaleChallenges = function() {
     var page;
@@ -9,7 +9,8 @@
       initDngScaleChallenge3(page);
       initDngScaleChallenge4(page);
       initDngScaleChallenge5(page);
-      return initDngScaleChallenge6(page);
+      initDngScaleChallenge6(page);
+      return initDngScaleChallenge7(page);
     }
   };
 
@@ -270,6 +271,48 @@
           App.currentProgress.challengeComplete('dng_scale', 'challenge6');
         } else {
           message = 'Nice try, but you need to create a vanishing point and draw the six trees so they appear to be moving closer.';
+        }
+        return canvas.alert(message, success);
+      });
+    });
+  };
+
+  initDngScaleChallenge7 = function(page) {
+    var canvas, challenge, editor, solution, testCode;
+    challenge = page.find('#challenge7');
+    canvas = new App.Canvas(challenge.find('canvas'));
+    editor = new App.Editor(challenge.find('.editor'), canvas);
+    solution = function(canvas, context) {
+      var drawFrenchFlag, x, y;
+      drawFrenchFlag = function(x, y) {
+        context.fillStyle = '#0055A4';
+        context.fillRect(x, y, 50, 100);
+        context.fillStyle = '#FFFFFF';
+        context.fillRect(x + 50, y, 50, 100);
+        context.fillStyle = '#EF4135';
+        context.fillRect(x + 100, y, 50, 100);
+      };
+      x = 200;
+      y = 0;
+      context.save();
+      context.translate(x, y);
+      drawFrenchFlag(30, 60);
+      context.scale(-1, 1);
+      drawFrenchFlag(30, 60);
+      return context.restore();
+    };
+    testCode = new Test.Code({
+      code: solution,
+      canvas: canvas
+    });
+    return challenge.find('.run').click(function() {
+      return testCode.test(function(success) {
+        var message;
+        if (success) {
+          message = '<strong>Success!</strong> You created a mirror image of a French flag and positioned both flags correctly!';
+          App.currentProgress.challengeComplete('dng_scale', 'challenge7');
+        } else {
+          message = 'Nice try, but you need to create a mirror image of a French flag and position both flags correctly.';
         }
         return canvas.alert(message, success);
       });

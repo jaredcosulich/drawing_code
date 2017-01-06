@@ -2,9 +2,9 @@
   var initChallengeCounts, initChallenges;
 
   initChallenges = function() {
-    var challengeId, challengesCompleted, i, len, lessonId, results;
-    lessonId = $('.lesson').attr('id');
-    challengesCompleted = App.currentProgress.challengesCompleted(lessonId);
+    var challengeId, challengesCompleted, i, len, pageId, results;
+    pageId = $('.page').attr('id');
+    challengesCompleted = App.currentProgress.challengesCompleted(pageId);
     initChallengeCounts(challengesCompleted);
     results = [];
     for (i = 0, len = challengesCompleted.length; i < len; i++) {
