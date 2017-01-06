@@ -11,31 +11,32 @@ initDngBasicCityscapeStage1Challenge1 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  points = [
-    new Test.Point(x: 40, y: 240, canvas: canvas),
-    new Test.Point(x: 360, y: 80, canvas: canvas),
-    new Test.Point(x: 20, y: 240, badPoint: true, canvas: canvas)
-    new Test.Point(x: 40, y: 260, badPoint: true, canvas: canvas)
-    new Test.Point(x: 360, y: 60, badPoint: true, canvas: canvas)
-    new Test.Point(x: 380, y: 80, badPoint: true, canvas: canvas)
-  ]
+  solution = (canvas, context) ->
+    drawGround = (y) ->
+      context.save()
+      context.strokeStyle = 'Black'
+      context.beginPath()
+      context.moveTo(0, y)
+      context.lineTo(canvas.width, y)
+      context.stroke()
+      context.restore()
+      return
+    
+    context.fillStyle = 'Black'
+    context.fillRect(40, 80, 320, 160)
+    drawGround(240)
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
-    setTimeout(( ->
-      success = true
-      for point in points
-        if point.test() < 1
-          success = false
-          break
-
+    testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> Your building is sitting on the x!'
+        message = '<strong>Success!</strong> You drew the building and positioned the ground correctly!'
         App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge1')
       else
-        message = 'Nice try, but you need to draw a building sitting on the lower left x and covering the top right x.'
+        message = 'Nice try, but you need to draw the building and then figure out where to draw the ground correctly.'
 
       canvas.alert(message, success)
-    ), 200)
 
 
 initDngBasicCityscapeStage1Challenge2 = (page) ->
@@ -43,27 +44,54 @@ initDngBasicCityscapeStage1Challenge2 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  points = [
-    new Test.Point(x: 120, y: 280, colors: [153,153,153], canvas: canvas),
-    new Test.Point(x: 256, y: 112, colors: [153,153,153], canvas: canvas)
-  ]
+  solution = (canvas, context) ->
+    drawOffices = (x, y, units, floors) ->
+      context.save()
+      context.translate(x, y)
+      context.strokeStyle = 'Black'
+      i = 0
+      while i < floors
+        j = 0
+        while j < units
+          context.strokeRect(4 + 16 * j, 4 + 16 * i, 16, 16)
+          j += 1
+        i += 1
+      context.restore()
+      return
+    
+    drawGround = (y) ->
+      context.save()
+      context.strokeStyle = 'Black'
+      context.beginPath()
+      context.moveTo(0, y)
+      context.lineTo(canvas.width, y)
+      context.stroke()
+      context.restore()
+      return
+    
+    x = 120
+    y = 80
+    units = 8
+    floors = 10
+    w = 8 + 16 * units
+    h = 8 + 16 * floors
+    
+    context.fillStyle = '#999999'
+    context.fillRect(x, y, w, h)
+    drawOffices(x, y, units, floors)
+    drawGround(y + h)
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
-    setTimeout(( ->
-      success = true
-      for point in points
-        if point.test() < 1
-          success = false
-          break
-
+    testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> Your gray building is sitting on the x!'
+        message = '<strong>Success!</strong> You drew the gray building with the correct size and position, and positioned the ground beneath it!'
         App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge2')
       else
-        message = 'Nice try, but you need to draw a gray (#999999) building sitting on the x.'
+        message = 'Nice try, but you need to draw the gray building with the correct size and position, and position the ground beneath it.'
 
       canvas.alert(message, success)
-    ), 200)
 
 
 initDngBasicCityscapeStage1Challenge3 = (page) ->
@@ -71,29 +99,28 @@ initDngBasicCityscapeStage1Challenge3 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  points = [
-    new Test.Point(x: 50, y: 300, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 186, y: 100, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 200, y: 300, colors: [153, 153, 153], canvas: canvas),
-    new Test.Point(x: 304, y: 4, colors: [153, 153, 153], canvas: canvas)
-  ]
+  solution = (canvas, context) ->
+    drawBuilding = (x, y, units, floors) ->
+      w = 8 + 16 * units
+      h = 8 + 16 * floors
+      context.fillStyle = '#999999'
+      context.fillRect(x, y, w, h)
+      return
+    
+    drawBuilding(60, 20, 8, 10)
+    drawBuilding(210, 20, 6, 16)
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
-    setTimeout(( ->
-      success = true
-      for point in points
-        if point.test() < 1
-          success = false
-          break
-
+    testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> Your gray building is covering on the x\'s!'
+        message = '<strong>Success!</strong> You defined and used a function to draw both buildings with the correct size and position!'
         App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge3')
       else
-        message = 'Nice try, but you need to draw a gray building covering the x\'s.'
+        message = 'Nice try, but you need to define and then use a function to draw two buildings with the correct size and position.'
 
       canvas.alert(message, success)
-    ), 200)
 
 
 initDngBasicCityscapeStage1Challenge4 = (page) ->

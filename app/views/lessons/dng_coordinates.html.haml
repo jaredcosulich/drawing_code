@@ -71,40 +71,41 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_coordinates/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Use the
             %code
               drawPoint()
-            function to draw three points. The first point at (50, 150),
-            the second point at (200, 100), and the third point at (250, 200).
+            function to draw three points.
           %p
-            For example, to draw a point at (80, 120), you would type:
+            For example, to draw a point at (80, 120), type:
           %pre
             %code
               :preserve
                 drawPoint(80, 120);
+          %p
+            Draw the first point at (50, 150), the second point at (200, 100),
+            and the third point at (250, 200).
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinates_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('dng_coordinates_challenge1');
             var context = canvas.getContext('2d');
-
-            context.font= '16px Arial';
-            context.textBaseline = 'middle';
-            context.fillStyle = '#0000FF';
-
-
-            // YOUR CODE HERE
-
-
+            
+            // DRAW THE FIRST POINT AT (50, 150) HERE
+            // DRAW THE SECOND POINT AT (200, 100) HERE
+            // DRAW THE THIRD POINT AT (250, 200) HERE
+            
             function drawPoint(x, y) {
+              context.save();
+              context.fillStyle = '#0000FF';
               context.beginPath();
               context.arc(x, y, 3, 0, 2 * Math.PI, false);
-              context.closePath();
               context.fill();
-              var text = '(' + x + ', ' + y + ')';
-              context.fillText(text, x + 5, y);
+              context.restore();
             }
 
         .visual.col-xs-6
@@ -123,17 +124,21 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_coordinates/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Use the
             %code drawPoint()
             function to draw points at the four corners of the rectangle.
           %p
-            The top left corner of the rectangle is at (80, 40). The width of the rectangle
-            is 200 and the height is 120.
+            The top left corner of the rectangle is at (80, 40). The width of the
+            rectangle is 200 and the height is 120.
           %p
-            Hint: The bottom right corner of the rectangle is 200 to the right and 120 down from
-            the top left corner of the rectangle. The top left corner is 80 to the right and 40 down
-            from the origin. Where is the bottom right corner relative to the origin?
+            Hint: The top left corner is 80 to the right and 40 down from the origin
+            and the bottom right corner of the rectangle is 200 to the right and 120 down
+            from the top left corner of the rectangle. Where is the bottom right corner
+            relative to the origin?
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinates_challenge2_editor'} do
@@ -141,21 +146,15 @@
             var canvas = document.getElementById('dng_coordinates_challenge2');
             var context = canvas.getContext('2d');
             
-            context.font= '16px Arial';
-            context.textBaseline = 'middle';
-            context.fillStyle = '#0000FF';
-
-
-            // YOUR CODE HERE
-
-
+            // DRAW THE FOUR POINTS HERE
+            
             function drawPoint(x, y) {
+              context.save();
+              context.fillStyle = '#0000FF';
               context.beginPath();
               context.arc(x, y, 3, 0, 2 * Math.PI, false);
-              context.closePath();
               context.fill();
-              var text = '(' + x + ', ' + y + ')';
-              context.fillText(text, x + 5, y);
+              context.restore();
             }
 
         .visual.col-xs-6
@@ -174,17 +173,20 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_coordinates/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Use the
             %code drawPoint()
             function to draw points at the bottom left corner of the green rectangle and the
-            top right corner of the yellow rectangle.
+            top right corner of the blue rectangle.
           %p
-            The top left corner of the green rectangle is at (50, 200), and its width is 140 and
-            its height is 60. The width of the yellow rectangle is 220 and its height is 180.
+            The top left corner of the green rectangle is at (40, 180), and its width is 120 and
+            height is 60. The width of the blue rectangle is 220 and its height is 180.
           %p
-            Hint: If you are unsure how to figure out the coordinates of the two points, start
-            by drawing in the points you know. It's okay to draw extra points.
+            Hint: It's okay to draw extra points to figure out the coordinates of the bottom
+            left corner of the green rectangle and the top right corner of the blue rectangle.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_coordinates_challenge3_editor'} do
@@ -192,21 +194,15 @@
             var canvas = document.getElementById('dng_coordinates_challenge3');
             var context = canvas.getContext('2d');
             
-            context.font= '16px Arial';
-            context.textBaseline = 'middle';
-            context.fillStyle = '#0000FF';
-
-
-            // YOUR CODE HERE
-
-
+            // DRAW YOUR POINTS HERE
+            
             function drawPoint(x, y) {
+              context.save();
+              context.fillStyle = '#0000FF';
               context.beginPath();
               context.arc(x, y, 3, 0, 2 * Math.PI, false);
-              context.closePath();
               context.fill();
-              var text = '(' + x + ', ' + y + ')';
-              context.fillText(text, x + 5, y);
+              context.restore();
             }
 
         .visual.col-xs-6

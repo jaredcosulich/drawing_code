@@ -84,8 +84,8 @@ initDngCoordinatesChallenge3 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   points = [
-    new Test.Point(x: 50, y: 260, canvas: canvas),
-    new Test.Point(x: 410, y: 80, canvas: canvas)
+    new Test.Point(x: 40, y: 240, canvas: canvas),
+    new Test.Point(x: 380, y: 60, canvas: canvas)
   ]
 
   challenge.find('.run').click ->

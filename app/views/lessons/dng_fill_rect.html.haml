@@ -64,10 +64,11 @@
           %p
             Change the x-coordinate, y-coordinate, width, and height of the rectangle to see what happens.
           %p
-            Visit the relevant lessons to learn more about the context's coordinate system and the
-            %code
-              context.fillStyle
-            property.
+            To learn more about the coordinate system and defining fill colors, visit the
+            = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+            and
+            = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
+            lessons.
           = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_style]
 
         .col-xs-12
@@ -94,18 +95,21 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_fill_rect/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Draw a red rectangle at (80, 40) with a width of 300 and a height of 200.
-          %p
-            The red rectangle should sit directly on top of the rectangle pre-drawn on the canvas.
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_fill_rect_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('dng_fill_rect_challenge1');
             var context = canvas.getContext('2d');
-
-            // YOUR CODE HERE
+            
+            context.fillStyle = 'Red';
+            
+            // DRAW THE RED RECTANGLE HERE
 
         .visual.col-xs-6
           %h5
@@ -142,11 +146,6 @@
             And since the red rectangle is 100 pixels tall, the coordinates of the green
             rectangle are (160, 140). This positions the green rectangle 100 pixels below the
             red rectangle.
-          %p
-            Visit the relevant lessons to learn more about the context's coordinate system and the
-            %code
-              context.fillStyle
-            property.
           = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_style]
 
         .col-xs-12
@@ -211,6 +210,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_fill_rect/challenge2.png')
             %canvas#dng_fill_rect_challenge2
           .alert
 
@@ -252,6 +252,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_fill_rect/challenge3.png')
             %canvas#dng_fill_rect_challenge3
           .alert
 
@@ -288,6 +289,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_fill_rect/challenge4.png')
             %canvas#dng_fill_rect_challenge4
           .alert
 
@@ -306,11 +308,6 @@
           %p
             If we changed the order and drew the white rectangle first, then the white
             rectangle would be on the bottom and the orange rectangle on top.
-          %p
-            Visit the relevant lessons to learn more about the context's coordinate system and the
-            %code
-              context.fillStyle
-            property.
           = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_style]
 
         .col-xs-12
@@ -370,6 +367,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_fill_rect/challenge5.png')
             %canvas#dng_fill_rect_challenge5
           .alert
 
@@ -413,5 +411,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_fill_rect/challenge6.png')
             %canvas#dng_fill_rect_challenge6
           .alert

@@ -136,10 +136,11 @@
             happens. Change the coordinates of the fourth rectangle to see what happens when it covers
             one of the other rectangles.
           %p
-            Visit the relevant lessons to learn more about the context's coordinate system and the
-            %code
-              context.fillRect()
-            method.
+            To learn more about the coordinate system and drawing rectangles, visit the
+            = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+            and
+            = link_to_lesson('fillRect()', :dng_fill_rect, nil, class: 'reference-link', data: {slug: :dng_fill_rect})
+            lessons.
           = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_rect]
 
         .col-xs-12
@@ -175,6 +176,9 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_fill_style/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Fill the rectangle at (100, 50) with a width of 200 and a height of 150
             using the color named OrangeRed.
@@ -194,6 +198,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_fill_style/challenge1.png')
             %canvas#dng_fill_style_challenge1
           .alert
 
@@ -204,6 +209,9 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_fill_style/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Fill the rectangle at (20, 160) with a width of 260 and a height of 140
             using the color with hex values 7B, 68, and EE.
@@ -230,6 +238,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_fill_style/challenge2.png')
             %canvas#dng_fill_style_challenge2
           .alert
 
@@ -264,11 +273,6 @@
             %code
               context.fillStyle
             property three times. Can you think of a way to draw the flag using only eight rectangles?
-          %p
-            Visit the relevant lessons to learn more about the context's coordinate system and the
-            %code
-              context.fillRect()
-            method.
           = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_rect]
 
         .col-xs-12
@@ -342,6 +346,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_fill_style/challenge3.png')
             %canvas#dng_fill_style_challenge3
           .alert
 
@@ -411,11 +416,19 @@
             context's coordinate system. A rectangle positioned to the right of (350, 0) and filled
             with the gradient will be solid black.
           %p
-            Visit the relevant lessons to learn more about variables, the context's coordinate system, and the
-            %code
-              context.fillRect()
-            method.
-          = render 'lessons/relevant', relevant: [:dng_variables, :dng_coordinates, :dng_fill_rect]
+            To learn more about the coordinate system, variables, and linear gradients, visit the
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+              ,
+            %span
+              %span><
+                = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+              ,
+            and
+            createLinearGradient()
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables]
 
         .col-xs-12
           .interactive.row.py-1
@@ -462,14 +475,24 @@
           %p
             To make the text stand out, we add a red outline around it using the
             %code
-              context.strokeStyle
-            property.
-          %p
-            Visit the relevant lessons to learn more about variables, the context's coordinate system, and the
-            %code
-              context.fillRect()
+              context.strokeText()
             method.
-          = render 'lessons/relevant', relevant: [:dng_variables, :dng_coordinates, :dng_fill_rect]
+          %p
+            To learn more about the coordinate system, variables, drawing text, and linear gradients, visit the
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+              ,
+            %span
+              %span><
+                = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+              ,
+            fillText(),
+            strokeText(),
+            and
+            createLinearGradient()
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables]
 
         .col-xs-12
           .interactive.row.py-1
@@ -575,11 +598,19 @@
             from the context's origin, not the top left corner of the rectangle. As you can see,
             the edge of the pattern does not necessarily line up with the edges of the rectangles.
           %p
-            Visit the relevant lessons to learn more about variables, the context's coordinate system, and the
-            %code
-              context.fillRect()
-            method.
-          = render 'lessons/relevant', relevant: [:dng_variables, :dng_coordinates, :dng_fill_rect]
+            To learn more about the coordinate system, variables, and patterns, visit the
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+              ,
+            %span
+              %span><
+                = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+              ,
+            and
+            createPattern()
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables]
 
         .col-xs-12
           .interactive.row.py-1
@@ -630,19 +661,20 @@
             Now, when two rectangles overlap, their patterns don't necessarily overlap because
             those patterns were drawn using two different coordinate systems.
           %p
-            Visit the relevant lessons to learn more about
+            To learn more about the coordinate system, saving and restoring the drawing state,
+            and translating the coordinate system, visit the
             %span
-              %code>
-                context.save()
+              %span><
+                = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
               ,
             %span
-              %code>
-                context.translate()
+              %span><
+                = link_to_lesson('save() / restore()', :dng_save, nil, class: 'reference-link', data: {slug: :dng_save})
               ,
-            %code
-              context.fillRect()
-            and, the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_translate, :dng_fill_rect, :dng_coordinates]
+            and
+            = link_to_lesson('translate()', :dng_translate, nil, class: 'reference-link', data: {slug: :dng_translate})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_save, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1
