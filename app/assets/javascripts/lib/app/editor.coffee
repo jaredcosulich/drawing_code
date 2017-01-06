@@ -29,6 +29,7 @@ class App.Editor
     @editor.on 'keyup', =>
       @ensureValidCanvasReference()
       App.currentProgress.storeEditorValue(@editorElement.id, @getCode())
+      @codeEditor.find('.edit-text-message').html("You've changed the code. To see the results:")
 
     @startCode = @aceEditor.getValue()
 
@@ -39,6 +40,7 @@ class App.Editor
       @setCode(previousCode)
 
     @ensureValidCanvasReference()
+    @initLesson()
 
   resize: ->
     @currentEditorHeight = @editor.height()
@@ -91,6 +93,19 @@ class App.Editor
       () => @aceEditor.getValue(),
       (code) => @setCode(code)
     )
+
+  initLesson: ->
+    if (lesson = @editor.closest('.lesson')).length > 0
+      lesson.css(backgroundColor: '#fcfcfc')
+      @codeEditor.find('.buttons').hide()
+      @codeEditor.find('.edit-text').show()
+      @codeEditor.find('.edit-text button').click =>
+        @codeEditor.find('.buttons').show()
+        @codeEditor.find('.edit-text').hide()
+    else
+      @codeEditor.find('.buttons').show()
+      @codeEditor.find('.edit-text').hide()
+
 
   reset: ->
     @hideLog()

@@ -1,3 +1,5 @@
 %p
   %strong Relevant Lessons:
-  = relevant.map { |lesson_id| link_to_lesson(@lessons[lesson_id][:method], lesson_id, nil, class: 'reference-link', data: {slug: lesson_id}) }.join(', ').html_safe
+  - relevant.each do |lesson_id|
+    - method = @lessons[lesson_id][:method]
+    = link_to_lesson(method, lesson_id, nil, class: 'reference-link btn btn-primary btn-sm', data: {slug: lesson_id}) 
