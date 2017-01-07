@@ -45,7 +45,7 @@
             make sure we're listening for the right key. We do this by checking the
             keyCode on the event object that is passed to the event listener.
 
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+          = render 'lessons/relevant', relevant: [:event_listeners, :fill_rect, :coordinates]
 
 
         .col-xs-12
@@ -219,6 +219,27 @@
             In this example we demonstrate a drawn area that, when you
             move your mouse over if will say "In Game" and when you move
             out of it will say "Out Of Game".
+          %p
+            In order to draw the game area we'll need to use the
+            = link_to_lesson('context.lineTo()', :line_to, nil, class: 'reference-link', data: {slug: :line_to})
+            method. It's a bit more compicated than the
+            %code context.fillRect()
+            method, though. When drawing a line you first trace the
+            path using
+            %code context.fillRect()
+            and then paint the path using
+            %code context.stroke()
+          %p
+            Look at this example to see how
+            %code context.beginPath()
+            %code context.moveTo()
+            %code context.lineTo()
+            and
+            %code context.stroke()
+            are used to draw the square. You can also click on the
+            "lineTo()" button below in the "Relevant Lessons" section to see more details.
+          = render 'lessons/relevant', relevant: [:line_to, :event_listeners]
+
 
         .col-xs-12
           .interactive.row.py-1
@@ -291,7 +312,14 @@
           %p
             The boundary should
             %span.highlight start at (25, 25) and extend to (450, 300),
-            forming a rectangle.
+            forming a rectangle. Use
+            %code context.lineTo()
+            to draw the boundary. Be sure to use
+            %code context.beginPath()
+            %code context.moveTo()
+            and
+            %code context.stroke()
+            as described in the lesson above.
           %p
             Then let's track whether our flappy square has fallen outside of our
             boundary. When it goes above the maximum y value for the boundary
