@@ -123,12 +123,12 @@
     editor = new App.Editor(challenge.find('.editor'), canvas);
     points = [
       new Test.Point({
-        x: 50,
-        y: 260,
+        x: 40,
+        y: 240,
         canvas: canvas
       }), new Test.Point({
-        x: 410,
-        y: 80,
+        x: 380,
+        y: 60,
         canvas: canvas
       })
     ];
