@@ -152,7 +152,7 @@ class ApplicationController < ActionController::Base
         experimental: true,
         name: 'Basic Cityscape',
         slug: 'dng_basic_cityscape',
-        stages: [5, 3, 4, 4],
+        stages: [6, 3, 4, 4],
         reference: [
           :dng_fill_rect,
           :dng_fill_style,

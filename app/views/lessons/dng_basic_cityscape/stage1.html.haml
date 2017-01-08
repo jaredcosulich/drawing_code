@@ -113,11 +113,9 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 1
-
           %figure.float-xs-right.px-2
             = image_tag('lessons/dng_basic_cityscape/stage1/challenge1Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
-
           %p
             Use the
             %code
@@ -158,11 +156,8 @@
             
             function drawGround(y) {
               context.save();
-              context.strokeStyle = 'Black';
-              context.beginPath();
-              context.moveTo(0, y);
-              context.lineTo(canvas.width, y);
-              context.stroke();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
               context.restore();
             }
 
@@ -190,7 +185,7 @@
               %code>
                 '#228B22'
               )
-            that is twice as tall as it is wide, and sitting on the ground at (60, 40).
+            that is twice as tall as it is wide, and positioned at (60, 40).
           %p
             To change the size of the building, all we do is assign a different value to the variable
             %span
@@ -251,9 +246,89 @@
           %h2.challenge-title.py-2
             Challenge 2
           %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_basic_cityscape/stage1/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+
+          %p
+            Assign values to the variables
+            %span
+              %code>
+                x
+              ,
+            %span
+              %code>
+                y
+              ,
+            %span
+              %code>
+                w
+              ,
+            and
+            %code
+              h
+            in the program below to draw a gray (color
+            %span
+              %code>
+                '#999999'
+              )
+            building with its top left corner positioned at (100, 40) and a width of 150 and height of 240.
+          %p
+            Then, figure out the y-coordinate of the bottom of the building. Use the
+            %code
+              drawGround()
+            function to draw a line representing the ground. Draw the ground after drawing the building.
+            Can you calculate the ground's y-coordinate using the variables in the program?
+          %p
+            If you need help using variables, visit the
+            = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style]
+          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'dng_basic_cityscape_stage1_challenge1_editor'
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge2');
+            var context = canvas.getContext('2d');
+            
+            var x = 0;
+            var y = 0; // The building's top left corner is at (100, 40)
+            var w = 100;
+            var h = 100; // The building is 150 pixels wide and 240 pixels tall
+
+            // SET THE COLOR OF THE BUILDING TO #999999 HERE
+
+            // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
+            
+            drawGround(100); // Position and draw the ground here
+            
+            function drawGround(y) {
+              context.save();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
+              context.restore();
+            }
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge2.png')
+            %canvas#dng_basic_cityscape_stage1_challenge2
+          .alert
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
             .pb-1
-              = image_tag('lessons/dng_basic_cityscape/stage1/challenge2Visual1.png', class: 'img-fluid')
-            = image_tag('lessons/dng_basic_cityscape/stage1/challenge2Visual2.png', class: 'img-fluid canvas-example')
+              = image_tag('lessons/dng_basic_cityscape/stage1/challenge3Visual1.png', class: 'img-fluid')
+            = image_tag('lessons/dng_basic_cityscape/stage1/challenge3Visual2.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
 
           %p
@@ -314,12 +389,12 @@
             = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
             lesson.
           = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style]
-          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'dng_basic_cityscape_stage1_challenge1_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'dng_basic_cityscape_stage1_challenge2_editor'
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge3_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge2');
+            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge3');
             var context = canvas.getContext('2d');
             
             var x = 120;
@@ -336,7 +411,7 @@
 
             drawOffices(x, y, w, h); // Draw the offices
             
-            drawGround(0); // Position and draw the ground here
+            drawGround(100); // Position and draw the ground here
 
             function drawOffices(x, y, w, h) {
               var u = Math.floor((w - 4) / 16);
@@ -356,11 +431,8 @@
             
             function drawGround(y) {
               context.save();
-              context.strokeStyle = 'Black';
-              context.beginPath();
-              context.moveTo(0, y);
-              context.lineTo(canvas.width, y);
-              context.stroke();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
               context.restore();
             }
             
@@ -369,8 +441,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge2.png')
-            %canvas#dng_basic_cityscape_stage1_challenge2
+            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge3.png')
+            %canvas#dng_basic_cityscape_stage1_challenge3
           .alert
 
 
@@ -442,36 +514,34 @@
                 %canvas#dng_basic_cityscape_stage1_example3
 
 
-  #challenge3.challenge.row.py-3
+  #challenge4.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 3
+            Challenge 4
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_basic_cityscape/stage1/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/dng_basic_cityscape/stage1/challenge4Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
             Create a
             %code
               drawBuilding()
-            function to draw buildings like the one from Challenge 2. The function is passed
-            four values that it will assign to the following four parameters. The first parameter,
-            %span
-              %code>
-                x
-              ,
-            is the x-coordinate of the left side of the building. The second parameter,
+            function to draw buildings like the one from Challenge 3. The function is passed
+            four values that it will assign to the following four parameters. The first two parameters,
+            %code>
+              x
+            and
             %span
               %code>
                 y
               ,
-            is the y-coordinate of the top of the building. The third parameter,
+            are the coordinates of the top left corner of the building; the third parameter,
             %span
               %code>
                 units
               ,
-            is the number of office units on a floor. The fourth parameter,
+            is the number of office units per floor; and the fourth parameter,
             %span
               %code>
                 floors
@@ -506,12 +576,12 @@
             = link_to_lesson('Functions', :dng_functions, nil, class: 'reference-link', data: {slug: :dng_functions})
             lesson.
           = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style]
-          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'dng_basic_cityscape_stage1_challenge2_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'dng_basic_cityscape_stage1_challenge3_editor'
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge4_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge3');
+            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge4');
             var context = canvas.getContext('2d');
 
             function drawBuilding(x, y, units, floors) {
@@ -531,8 +601,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge3.png')
-            %canvas#dng_basic_cityscape_stage1_challenge3
+            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge4.png')
+            %canvas#dng_basic_cityscape_stage1_challenge4
           .alert
 
 
@@ -626,17 +696,27 @@
                 var canvas = document.getElementById('dng_basic_cityscape_stage1_example4');
                 var context = canvas.getContext('2d');
                 
-                context.fillStyle = 'DeepPink';
+                var centerX = 180; // The x-coordinate of the center of the rectangles
                 
-                fillCenteredRectangle(180, 20, 200, 80); // Centered at x = 180
-                fillCenteredRectangle(180, 120, 320, 100); // Centered at x = 180
-                fillCenteredRectangle(180, 240, 240, 60); // Centered at x = 180
+                drawCenterLine();
+                
+                context.fillStyle = 'DeepPink';
+                fillCenteredRectangle(centerX, 20, 200, 80); // Centered at centerX
+                fillCenteredRectangle(centerX, 120, 320, 100); // Centered at centerX
+                fillCenteredRectangle(centerX, 240, 240, 60); // Centered at centerX
                 
                 function fillCenteredRectangle(centerX, topY, w, h) {
                   var x = centerX - w / 2;
                   var y = topY;
                   
                   context.fillRect(x, y, w, h);
+                }
+                
+                function drawCenterLine() {
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.fillRect(centerX - 1, 0, 2, canvas.height);
+                  context.restore();
                 }
 
             .visual.col-xs-6
@@ -647,20 +727,20 @@
                 %canvas#dng_basic_cityscape_stage1_example4
 
 
-  #challenge4.challenge.row.py-3
+  #challenge5.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 4
+            Challenge 5
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_basic_cityscape/stage1/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/dng_basic_cityscape/stage1/challenge5Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
             Update the
             %code
               drawBuilding()
-            function from Challenge 3 so its parameters are now:
+            function from Challenge 4 so its parameters are now:
             %span
               %code>
                 leftX
@@ -718,12 +798,12 @@
             = link_to_lesson('fillRect()', :dng_fill_rect, nil, class: 'reference-link', data: {slug: :dng_fill_rect})
             lessons.
           = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect]
-          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'dng_basic_cityscape_stage1_challenge3_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'dng_basic_cityscape_stage1_challenge4_editor'
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge4_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge5_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge4');
+            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge5');
             var context = canvas.getContext('2d');
             
             function drawBuilding(leftX, groundY, units, floors) {
@@ -744,11 +824,8 @@
             
             function drawGround(y) {
               context.save();
-              context.strokeStyle = 'Black';
-              context.beginPath();
-              context.moveTo(0, y);
-              context.lineTo(canvas.width, y);
-              context.stroke();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
               context.restore();
             }
 
@@ -757,8 +834,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge4.png')
-            %canvas#dng_basic_cityscape_stage1_challenge4
+            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge5.png')
+            %canvas#dng_basic_cityscape_stage1_challenge5
           .alert
 
 
@@ -875,19 +952,18 @@
                 %canvas#dng_basic_cityscape_stage1_example5
 
 
-  #challenge5.challenge.row.py-3
+  #challenge6.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 5
-
+            Challenge 6
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_basic_cityscape/stage1/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/dng_basic_cityscape/stage1/challenge6Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
 
           %p
-            Tidy up the drawBuilding() function from Challenge 3 in the same way by
+            Tidy up the drawBuilding() function from Challenge 5 in the same way by
             calling the
             %code
               context.save()
@@ -904,7 +980,7 @@
               drawBuilding()
             function is tidy, draw one building with 10 office units per floor and 16
             floors sitting on the ground at (20, 290) and another building with 12 office
-            units per floor and 10 floors at (200, 290).
+            units per floor and 10 floors sitting on the ground at (200, 290).
           %p
             The
             %code
@@ -919,12 +995,12 @@
             = link_to_lesson('translate()', :dng_translate, nil, class: 'reference-link', data: {slug: :dng_translate})
             lessons.
           = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_functions, :dng_fill_rect, :dng_save, :dng_translate]
-          = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'dng_basic_cityscape_stage1_challenge4_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 5, editor_id: 'dng_basic_cityscape_stage1_challenge5_editor'
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge5_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage1_challenge6_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge5');
+            var canvas = document.getElementById('dng_basic_cityscape_stage1_challenge6');
             var context = canvas.getContext('2d');
 
             function drawBuilding(leftX, groundY, units, floors) {
@@ -947,11 +1023,8 @@
             
             function drawGround(y) {
               context.save();
-              context.strokeStyle = 'Black';
-              context.beginPath();
-              context.moveTo(0, y);
-              context.lineTo(canvas.width, y);
-              context.stroke();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
               context.restore();
             }
 
@@ -960,6 +1033,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge5.png')
-            %canvas#dng_basic_cityscape_stage1_challenge5
+            .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage1/challenge6.png')
+            %canvas#dng_basic_cityscape_stage1_challenge6
           .alert

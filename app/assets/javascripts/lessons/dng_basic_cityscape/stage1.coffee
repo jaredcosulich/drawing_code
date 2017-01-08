@@ -5,6 +5,7 @@ initDngBasicCityscapeStage1Challenges = ->
     initDngBasicCityscapeStage1Challenge3(page)
     initDngBasicCityscapeStage1Challenge4(page)
     initDngBasicCityscapeStage1Challenge5(page)
+    initDngBasicCityscapeStage1Challenge6(page)
 
 
 initDngBasicCityscapeStage1Challenge1 = (page) ->
@@ -15,11 +16,8 @@ initDngBasicCityscapeStage1Challenge1 = (page) ->
   solution = (canvas, context) ->
     drawGround = (y) ->
       context.save()
-      context.strokeStyle = 'Black'
-      context.beginPath()
-      context.moveTo(0, y)
-      context.lineTo(canvas.width, y)
-      context.stroke()
+      context.fillStyle = 'Black'
+      context.fillRect(0, y, canvas.width, 2)
       context.restore()
       return
     
@@ -46,40 +44,20 @@ initDngBasicCityscapeStage1Challenge2 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    drawOffices = (x, y, units, floors) ->
-      context.save()
-      context.translate(x, y)
-      context.strokeStyle = 'Black'
-      i = 0
-      while i < floors
-        j = 0
-        while j < units
-          context.strokeRect(4 + 16 * j, 4 + 16 * i, 16, 16)
-          j += 1
-        i += 1
-      context.restore()
-      return
-    
     drawGround = (y) ->
       context.save()
-      context.strokeStyle = 'Black'
-      context.beginPath()
-      context.moveTo(0, y)
-      context.lineTo(canvas.width, y)
-      context.stroke()
+      context.fillStyle = 'Black'
+      context.fillRect(0, y, canvas.width, 2)
       context.restore()
       return
     
-    x = 120
-    y = 80
-    units = 8
-    floors = 10
-    w = 8 + 16 * units
-    h = 8 + 16 * floors
+    x = 100
+    y = 40
+    w = 150
+    h = 240
     
     context.fillStyle = '#999999'
     context.fillRect(x, y, w, h)
-    drawOffices(x, y, units, floors)
     drawGround(y + h)
 
   testCode = new Test.Code(code: solution, canvas: canvas)
@@ -101,6 +79,58 @@ initDngBasicCityscapeStage1Challenge3 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
+    drawOffices = (x, y, units, floors) ->
+      context.save()
+      context.translate(x, y)
+      context.strokeStyle = 'Black'
+      i = 0
+      while i < floors
+        j = 0
+        while j < units
+          context.strokeRect(4 + 16 * j, 4 + 16 * i, 16, 16)
+          j += 1
+        i += 1
+      context.restore()
+      return
+    
+    drawGround = (y) ->
+      context.save()
+      context.fillStyle = 'Black'
+      context.fillRect(0, y, canvas.width, 2)
+      context.restore()
+      return
+    
+    x = 120
+    y = 80
+    units = 8
+    floors = 10
+    w = 8 + 16 * units
+    h = 8 + 16 * floors
+    
+    context.fillStyle = '#999999'
+    context.fillRect(x, y, w, h)
+    drawOffices(x, y, units, floors)
+    drawGround(y + h)
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You drew the gray building with the correct size and position, and positioned the ground beneath it!'
+        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge3')
+      else
+        message = 'Nice try, but you need to draw the gray building with the correct size and position, and position the ground beneath it.'
+
+      canvas.alert(message, success)
+
+
+initDngBasicCityscapeStage1Challenge4 = (page) ->
+  challenge = page.find('#challenge4')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  solution = (canvas, context) ->
     drawBuilding = (x, y, units, floors) ->
       w = 8 + 16 * units
       h = 8 + 16 * floors
@@ -117,15 +147,15 @@ initDngBasicCityscapeStage1Challenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You defined and used a function to draw both buildings with the correct size and position!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge3')
+        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge4')
       else
         message = 'Nice try, but you need to define and then use a function to draw two buildings with the correct size and position.'
 
       canvas.alert(message, success)
 
 
-initDngBasicCityscapeStage1Challenge4 = (page) ->
-  challenge = page.find('#challenge4')
+initDngBasicCityscapeStage1Challenge5 = (page) ->
+  challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
@@ -141,11 +171,8 @@ initDngBasicCityscapeStage1Challenge4 = (page) ->
     
     drawGround = (y) ->
       context.save()
-      context.strokeStyle = 'Black'
-      context.beginPath()
-      context.moveTo(0, y)
-      context.lineTo(canvas.width, y)
-      context.stroke()
+      context.fillStyle = 'Black'
+      context.fillRect(0, y, canvas.width, 2)
       context.restore()
       return
     
@@ -159,15 +186,15 @@ initDngBasicCityscapeStage1Challenge4 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You defined and used a function to draw both buildings anchored to the ground at the correct position!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge4')
+        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge5')
       else
         message = 'Nice try, but you need to define and then use a function to draw two buildings anchored to the ground at the correct position.'
 
       canvas.alert(message, success)
 
 
-initDngBasicCityscapeStage1Challenge5 = (page) ->
-  challenge = page.find('#challenge5')
+initDngBasicCityscapeStage1Challenge6 = (page) ->
+  challenge = page.find('#challenge6')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
@@ -186,11 +213,8 @@ initDngBasicCityscapeStage1Challenge5 = (page) ->
     
     drawGround = (y) ->
       context.save()
-      context.strokeStyle = 'Black'
-      context.beginPath()
-      context.moveTo(0, y)
-      context.lineTo(canvas.width, y)
-      context.stroke()
+      context.fillStyle = 'Black'
+      context.fillRect(0, y, canvas.width, 2)
       context.restore()
       return
     
@@ -204,7 +228,7 @@ initDngBasicCityscapeStage1Challenge5 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You positioned both buildings by translating the origin of the coordinate system!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge5')
+        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge6')
       else
         message = 'Nice try, but you need to position the two buildings by translating the origin of the coordinate system.'
 

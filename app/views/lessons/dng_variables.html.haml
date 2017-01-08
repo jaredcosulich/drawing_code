@@ -191,17 +191,12 @@
               w
             to see what happens.
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
+            To learn more about the coordinate system and drawing rectangles, visit the
+            = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+            and
+            = link_to_lesson('fillRect()', :dng_fill_rect, nil, class: 'reference-link', data: {slug: :dng_fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -491,18 +486,7 @@
               %code>
                 h / 2
               \.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -646,10 +630,10 @@
           %p
             Use variable expressions to draw a rectangle filled with the color
             %code
-              'Khaki'
+              'Indigo'
             at position (20, 40) with width 360 and height 200, and four squares filled with the color
             %code
-              'White'
+              'Orchid'
             with side length 25 inside each corner of the rectangle.
 
       .row.py-1
