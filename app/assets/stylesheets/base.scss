@@ -119,17 +119,17 @@ img {
     display: none;
   }
 
-  .buttons {
-    .reset {
-      float: right;
-    }
-
-    .lesson-text-message {
-      display: none;
-    }
-  }
 }
 
+.buttons {
+  .reset {
+    float: right;
+  }
+
+  .lesson-text-message {
+    display: none;
+  }
+}
 
 .lesson {
   background-color: #fcfcfc;
@@ -139,6 +139,14 @@ img {
 
     .btn {
       margin: 0 12px;
+    }
+
+    .reset {
+      float: none;
+    }
+
+    .lesson-text-message {
+      display: block;
     }
   }
 }
