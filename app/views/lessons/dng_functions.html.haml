@@ -298,21 +298,12 @@
                 y
               \.
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.save()
-              ,
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+            To learn more about the coordinate system and variables, visit the
+            = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+            and
+            = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1
@@ -556,7 +547,9 @@
             function to see what happens. The function should automatically re-calculate
             the area drawn on the canvas.
           %p
-            Visit the relevant lessons to learn more about variables.
+            To learn more about variables, visit the
+            = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            lesson.
           = render 'lessons/relevant', relevant: [:dng_variables]
 
         .col-xs-12
@@ -641,6 +634,13 @@
               context.fillText()
             method. Every time you run the program, a new random integer from 0 to 255 should be drawn.
             If your program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
+          %p
+            To learn more about rounding and generating random numbers, visit the
+            = link_to_lesson('round() / floor() / ceil()', :dng_round, nil, class: 'reference-link', data: {slug: :dng_round})
+            and
+            = link_to_lesson('random()', :dng_random, nil, class: 'reference-link', data: {slug: :dng_random})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_random, :dng_round]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge4_editor'} do
@@ -886,7 +886,7 @@
                 context.fillStyle
               ,
             variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1014,6 +1014,7 @@
             function to draw one or more random rectangles on the canvas. Every time you run the
             program, the dimensions and color of the rectangles should change. If your program seems
             to be working, mark the challenge as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_save, :dng_random, :dng_round]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_functions_challenge5_editor'} do
@@ -1104,22 +1105,7 @@
             The function is much easier to read and understand, and it is also much easier
             to maintain. For example, if we want to update our cheese slices, we can do it in one place
             in the program, instead of in multiple places scattered throughout the program.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.save()
-              ,
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1348,22 +1334,7 @@
             %code
               drawPlate()
             function.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.save()
-              ,
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1491,22 +1462,7 @@
             When a function is declared with a name, it is automatically stored in a variable
             with the same name. But in JavaScript, functions are actually objects, so we can store
             them and pass them like any other object.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.save()
-              ,
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1
