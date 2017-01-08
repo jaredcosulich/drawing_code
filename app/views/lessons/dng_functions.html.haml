@@ -117,22 +117,7 @@
           %p
             In functions that use the context, it's generally a good idea to save and restore the
             context at the start and end of the function, respectively.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.save()
-              ,
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1
