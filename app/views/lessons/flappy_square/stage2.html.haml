@@ -448,12 +448,21 @@
             adjusts 'distance' by 2 pixels, causing each tree to be drawn 2 pixels
             to the left.
           %p
+            Then we can draw a tree every time distance is divisible by treeSpacing:
+          %pre
+            %code
+              :preserve
+                if (distance % treeSpacing == 0) {
+                  var treeY = canvas.height - roadHeight;
+                  drawTree(i - distance, treeY);
+                }
+          %p
             When this is done fast enough it creates the illusion of the trees
             moving slowly, which in turn creates the illusion of the ball moving
             because in real life backgrounds don't move.
 
 
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -465,6 +474,7 @@
                 var interval;
                 var roadHeight = 30;
                 var distance = 0;
+                var treeSpacing = 100;
 
                 function drawRoad() {
                   context.save();
@@ -488,17 +498,16 @@
                   var startX = distance - space;
                   var maxX = canvas.width + distance + space;
                   for (var i=startX; i < maxX; ++i) {
-                    if (i % space !== 0) continue;
-                    context.save();
-                    var treeY = canvas.height - roadHeight;
-                    context.translate(i - distance, treeY);
-                    drawTree();
-                    context.restore();
+                    if (i % treeSpacing == 0) {
+                      var treeY = canvas.height - roadHeight;
+                      drawTree(i - distance, treeY);
+                    }
                   }
                 }
 
-                function drawTree() {
+                function drawTree(centerX, bottomY) {
                   context.save();
+                  context.translate(centerX, bottomY);
                   context.fillStyle = '#a5681c';
                   context.fillRect(0, -60, 12, 60);
 
@@ -575,11 +584,33 @@
             Let's start by a series of rectangles on the roof of the game
             area with matching rectangles on the floor of the game area.
           %p
-            We'll have to track the position of each rectangle and draw
-            them at different points along the x axis as time goes on
-            and our flappy square flies through them.
+            While this may sound easy, it's one of the more complicated parts
+            of the game:
+          %ul
+            %li We'll have to draw a wall at a regular interval.
+            %li
+              In each frame we'll have to draw each wall a little closer to the left,
+              creating the illusion that the flappy square is flying through them,
+              while maintaining the distance between them.
+            %li
+              As they move across the canvas and eventually outside of the game
+              area to the left we'll need to position and draw new walls coming
+              from the right.
           %p
-            Draw two rectangles, one attached to the
+            There are may ways to approach this algorithm. In the lesson above we
+            have a variable
+            %code distance
+            and we
+            %span.highlight add 2 to it
+            with each frame. Then we draw a tree any time the variable
+            %code distance
+            is divisible by
+            %code treeSpacing
+            \-
+            %code walls.spacing
+            in this challenge.
+          %p
+            So try to draw two rectangles (a wall), one attached to the
             %span.highlight roof (y = 50)
             and one to the
             %span.highlight floor (y = 300)
@@ -587,16 +618,10 @@
             %span.highlight 100 pixels tall and 50 pixels wide.
             and each wall should be space
             %span.highlight 125 pixels apart.
-          %p
-            You'll need to track a
-            %code distance
-            variable and adjust the position of each wall (two rectangles)
-            as the distance changes.
-            %span.highlight Change the distance by 2 every frame.
 
           %p In the end your flappy square should behave like the example provided to the right.
 
-          = render 'lessons/relevant', relevant: [:fill_rect]
+          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates]
           = render 'lessons/code_preview', stage: 2, challenge: challenge_index - 1, editor_id: "flappy_square_stage2_challenge#{challenge_index - 1}_editor"
 
       .row
