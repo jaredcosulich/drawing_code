@@ -49,7 +49,6 @@ img {
       }
     }
   }
-
 }
 
 .visual {
@@ -119,7 +118,31 @@ img {
   .test-image {
     display: none;
   }
+
+  .buttons {
+    .reset {
+      float: right;
+    }
+
+    .lesson-text-message {
+      display: none;
+    }
+  }
 }
+
+
+.lesson {
+  background-color: #fcfcfc;
+
+  .buttons {
+    text-align: center;
+
+    .btn {
+      margin: 0 12px;
+    }
+  }
+}
+
 
 .highlight {
   background-color: #FDF2B1;

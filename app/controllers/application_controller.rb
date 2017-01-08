@@ -23,20 +23,20 @@ class ApplicationController < ActionController::Base
       variables: {count: 2, method: 'Variables'},
       while_loops: {count: 0, method: 'While Loops'},
 
-      dng_fill_rect: {count: 6, method: 'DNG fillRect()'},
-      dng_line_to: {count: 6, method: 'DNG lineTo()'},
-      dng_fill_style: {count: 3, method: 'DNG fillStyle'},
-      dng_save: {count: 5, method: 'DNG save() / restore()'},
-      dng_translate: {count: 6, method: 'DNG translate()'},
-      dng_scale: {count: 7, method: 'DNG scale()'},
-      dng_random: {count: 4, method: 'DNG random()'},
-      dng_round: {count: 3, method: 'DNG round() / floor() / ceil()'},
-      dng_coordinates: {count: 3, method: 'DNG Coordinates'},
-      dng_variables: {count: 5, method: 'DNG Variables'},
-      dng_functions: {count: 5, method: 'DNG Functions'},
-      dng_for_loops: {count: 6, method: 'DNG For Loops'},
-      dng_while_loops: {count: 3, method: 'DNG While Loops'},
-      dng_switch_statements: {count: 4, method: 'DNG Switch Statements'}
+      dng_fill_rect: {count: 6, method: 'fillRect()'},
+      dng_line_to: {count: 6, method: 'lineTo()'},
+      dng_fill_style: {count: 3, method: 'fillStyle'},
+      dng_save: {count: 5, method: 'save() / restore()'},
+      dng_translate: {count: 6, method: 'translate()'},
+      dng_scale: {count: 7, method: 'scale()'},
+      dng_random: {count: 4, method: 'random()'},
+      dng_round: {count: 3, method: 'round() / floor() / ceil()'},
+      dng_coordinates: {count: 3, method: 'Coordinates'},
+      dng_variables: {count: 5, method: 'Variables'},
+      dng_functions: {count: 5, method: 'Functions'},
+      dng_for_loops: {count: 6, method: 'For Loops'},
+      dng_while_loops: {count: 3, method: 'While Loops'},
+      dng_switch_statements: {count: 4, method: 'Switch Statements'}
     }
 
     @reference = {
@@ -150,7 +150,7 @@ class ApplicationController < ActionController::Base
       },
       {
         experimental: true,
-        name: 'DNG Basic Cityscape',
+        name: 'Basic Cityscape',
         slug: 'dng_basic_cityscape',
         stages: [5, 3, 4, 4],
         reference: [
