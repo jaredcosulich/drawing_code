@@ -82,8 +82,11 @@
               :preserve
                 context.scale(3.0, 1.5);
           %p
-            Try changing the scale factors for the coordinate system to other values to see what happens.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
+            Change the values of the scale factors for the coordinate system to see what happens.
+            To learn more about the coordinate system, visit the
+            = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -194,7 +197,11 @@
             Change the scale factors of the coordinate system to other values to see
             what happens. Not only are the trees scaled, but the distance between the
             trees are scaled as well.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_variables, :dng_functions, :dng_coordinates]
+          %p
+            To learn more about functions, visit the
+            = link_to_lesson('Functions', :dng_functions, nil, class: 'reference-link', data: {slug: :dng_functions})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -328,7 +335,7 @@
               context.scale()
             method scales the entire coordinate system, the scale factors multiply when
             more than one is applied (1.5 x 1.5 = 2.25).
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_variables, :dng_functions, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -469,7 +476,7 @@
             about saving and restoring the drawing state, visit the
             = link_to_lesson('save()/restore()', :dng_save, nil, class: 'reference-link', data: {slug: :dng_save})
             lesson.
-          = render 'lessons/relevant', relevant: [:dng_fill_style, :dng_save, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1
@@ -653,7 +660,11 @@
             Try changing the scale of the coordinate system before the second tree is drawn.
             Because the bottom center point of the tree is at the origin, the bottom center point
             of the tree is anchored and does not move.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_translate, :dng_functions, :dng_variables, :dng_coordinates]
+          %p
+            To learn more about translating the coordinate system, visit the
+            = link_to_lesson('translate()', :dng_translate, nil, class: 'reference-link', data: {slug: :dng_translate})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_save, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -856,7 +867,7 @@
             To learn more about for loops, visit the
             = link_to_lesson('For Loops', :dng_for_loops, nil, class: 'reference-link', data: {slug: :dng_for_loops})
             lesson.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_translate, :dng_for_loops, :dng_functions, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_for_loops, :dng_fill_rect, :dng_fill_style, :dng_save, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1084,7 +1095,7 @@
             Try changing the scale factor in the x-direction to -1 to see what happens.
             We can also reflect and scale drawings by using negative values greater or less
             than -1.
-          = render 'lessons/relevant', relevant: [:dng_translate, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_save, :dng_translate, :dng_line_to]
 
         .col-xs-12
           .interactive.row.py-1

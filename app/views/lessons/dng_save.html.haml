@@ -163,17 +163,12 @@
               ,
             so the third rectangle is the same color as the first.
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
+            To learn more about setting fill colors and drawing rectangles, visit the
+            = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
+            and
+            = link_to_lesson('fillRect()', :dng_fill_rect, nil, class: 'reference-link', data: {slug: :dng_fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -355,17 +350,10 @@
               ,
             which is what we would expect.
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            the context's coordinate system, and functions.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates, :dng_functions]
+            To learn more about functions, visit the
+            = link_to_lesson('Functions', :dng_functions, nil, class: 'reference-link', data: {slug: :dng_functions})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_functions, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -498,6 +486,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_save/challenge2.png')
             %canvas#dng_save_challenge2
           .alert
 
@@ -547,18 +536,7 @@
             %code>
               context.restore()
             as long as they are paired.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -671,6 +649,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_save/challenge3.png')
             %canvas#dng_save_challenge3
           .alert
 
@@ -787,21 +766,12 @@
               drawBlackDotAtOrigin()
             function to draw a black dot at the origin.
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.translate()
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_coordinates]
+            To learn more about translating the coordinate system, visit the
+            = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+            and
+            = link_to_lesson('translate()', :dng_translate, nil, class: 'reference-link', data: {slug: :dng_translate})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1024,22 +994,7 @@
             %code
               drawBlackDotAtOrigin()
             function to draw a black dot at the origin.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.translate()
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1

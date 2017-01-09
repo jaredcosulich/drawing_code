@@ -108,6 +108,10 @@
               %code
                 17 / 3
               \.
+          %p
+            To learn more about variables, visit the
+            = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            lesson.
           = render 'lessons/relevant', relevant: [:dng_variables]
 
         .col-xs-12
@@ -197,7 +201,13 @@
             %code
               b
             to see how the dimensions of the rectangle change.
-          = render 'lessons/relevant', relevant: [:dng_variables, :dng_fill_rect]
+          %p
+            To learn more about drawing rectangles, visit the
+            = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+            and
+            = link_to_lesson('fillRect()', :dng_fill_rect, nil, class: 'reference-link', data: {slug: :dng_fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -335,7 +345,11 @@
             The rectangle on the right is filled with color 2. The three rectangles in the middle
             are filled with the three in-between colors. Change the RGB values for color 1 and
             color 2 to see what happens.
-          = render 'lessons/relevant', relevant: [:dng_fill_style, :dng_fill_rect, :dng_variables]
+          %p
+            To learn more about defining fill colors, visit the
+            = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -520,7 +534,11 @@
             by 40 and round the answer, we get 2. This means 40 goes into 85 about 2 times. Multiplying
             40 by 2 then gives us 80, another multiple of 40, for the height of the rectangle. Because
             the dimensions of the rectangle are multiples of 40, it snaps to the grid below.
-          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect]
+          %p
+            To learn more about handling events, visit the
+            addEventListener()
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_save, :dng_line_to]
 
         .col-xs-12
           .interactive.row.py-1

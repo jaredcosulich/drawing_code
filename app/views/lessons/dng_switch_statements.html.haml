@@ -80,7 +80,11 @@
             %code
               option
             to a different number between 0-4 to see what the code in those other cases does.
-          = render 'lessons/relevant', relevant: [:dng_fill_style, :dng_variables, :dng_coordinates]
+          %p
+            To learn more about variables, visit the
+            = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -209,7 +213,13 @@
             to draw each of the four rectangles. The switch statement should only draw one
             rectangle at a time. If your program seems to be working, mark the challenge as
             complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+          %p
+            If you need help setting fill colors and drawing rectangles, visit the
+            = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
+            and
+            = link_to_lesson('fillRect()', :dng_fill_rect, nil, class: 'reference-link', data: {slug: :dng_fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_switch_statements_challenge1_editor'} do
@@ -277,7 +287,13 @@
                 expression
               ,
             we get Rectangle Man's default expression.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates, :dng_variables, :dng_functions]
+          %p
+            To learn more about functions and variables, visit the
+            = link_to_lesson('Function', :dng_functions, nil, class: 'reference-link', data: {slug: :dng_functions})
+            and
+            = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_save, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -502,7 +518,7 @@
             %code
               bling
             parameter a value of 4.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates, :dng_variables, :dng_functions]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_save, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -776,7 +792,11 @@
               %span><
                 = link_to('keyCode values', 'https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode', target: '_blank')
               \.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
+          %p
+            To learn more about handling events, visit the
+            addEventListener()
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1

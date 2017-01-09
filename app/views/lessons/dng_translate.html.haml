@@ -92,17 +92,19 @@
               :preserve
                 context.translate(100, 50);  // Position house here
           %p
-            Visit the relevant lessons to learn more about
+            To learn more about the coordinate system, setting fill colors, and drawing rectangles, visit the
             %span
-              %code>
-                context.fillRect()
+              %span><
+                = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
               ,
             %span
-              %code>
-                context.fillStyle
+              %span><
+                = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
               ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
+            and
+            = link_to_lesson('fillRect()', :dng_fill_rect, nil, class: 'reference-link', data: {slug: :dng_fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_functions, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -143,7 +145,6 @@
                 function drawPoint(x, y) {
                   context.beginPath();
                   context.arc(x, y, 3, 0, 2 * Math.PI, false);
-                  context.closePath();
                   context.fill();
                 }
                 
@@ -264,18 +265,7 @@
             drawn 200 pixels to the right of the origin for the first house. And if we did
             another translation and drew a third house, it would be positioned relative to the
             origin for the second house.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_functions, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -324,7 +314,6 @@
                 function drawPoint(x, y) {
                   context.beginPath();
                   context.arc(x, y, 3, 0, 2 * Math.PI, false);
-                  context.closePath();
                   context.fill();
                 }
                 
@@ -459,21 +448,10 @@
                 context.fillStyle = '#FF0000';
                 context.fillRect(45, 40, 30, 60); // Red door
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.save()
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_coordinates]
+            To learn more about saving and restoring the drawing state, visit the
+            = link_to_lesson('save() / restore()', :dng_save, nil, class: 'reference-link', data: {slug: :dng_save})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_fill_rect, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1
@@ -629,21 +607,12 @@
                 drawYellowHouse(120, 200);
                 drawYellowHouse(280, 100);
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.save()
-              ,
-            functions, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_functions, :dng_coordinates]
+            To learn more about functions and saving and restoring the drawing state, visit the
+            = link_to_lesson('Functions', :dng_functions, nil, class: 'reference-link', data: {slug: :dng_functions})
+            and
+            = link_to_lesson('save() / restore()', :dng_save, nil, class: 'reference-link', data: {slug: :dng_save})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1
@@ -835,22 +804,7 @@
               drawYellowHouse()
             function to see an entire window move relative to the yellow house. Drawing nested
             objects in local coordinates is much easier than drawing them in absolute coordinates.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.save()
-              ,
-            functions, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_functions, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1
@@ -972,17 +926,19 @@
             When you re-position the tree, the ornaments should move along with the tree. If your
             program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
           %p
-            If you need help drawing the ornament, visit the relevant lessons to learn more about
+            If you need help drawing the ornament, visit the
             %span
-              %code>
-                context.fillRect()
+              %span><
+                = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
               ,
             %span
-              %code>
-                context.fillStyle
+              %span><
+                = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
               ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_coordinates]
+            and
+            = link_to_lesson('fillRect()', :dng_fill_rect, nil, class: 'reference-link', data: {slug: :dng_fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_save]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_translate_challenge5_editor'} do
@@ -1134,22 +1090,7 @@
             %code
               drawYellowHouse()
             function.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.save()
-              ,
-            functions, variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :dng_functions, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_save]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1207,11 +1148,8 @@
                 
                 function drawTheGround(groundY) {
                   context.save();
-                  context.strokeStyle = 'Black';
-                  context.beginPath();
-                  context.moveTo(0, groundY);
-                  context.lineTo(canvas.width, groundY);
-                  context.stroke();
+                  context.fillStyle = 'Black';
+                  context.fillRect(0, groundY, canvas.width, 2);
                   context.restore();
                 }
                 
@@ -1235,7 +1173,6 @@
                 function drawPoint(x, y) {
                   context.beginPath();
                   context.arc(x, y, 3, 0, 2 * Math.PI, false);
-                  context.closePath();
                   context.fill();
                 }
                 
@@ -1323,11 +1260,8 @@
             
             function drawTheGround(groundY) {
               context.save();
-              context.strokeStyle = 'Black';
-              context.beginPath();
-              context.moveTo(0, groundY);
-              context.lineTo(canvas.width, groundY);
-              context.stroke();
+              context.fillStyle = 'Black';
+              context.fillRect(0, groundY, canvas.width, 2);
               context.restore();
             }
             
@@ -1368,25 +1302,10 @@
             While both houses scale, only the yellow house remains anchored on the ground.
             Note that the anchor point does not move when a house is scaled.
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.save()
-              ,
-            %span
-              %code>
-                context.scale()
-              ,
-            functions, variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_save, :scale, :dng_functions, :dng_variables, :dng_coordinates]
+            To learn more about scaling the coordinate system, visit the
+            = link_to_lesson('scale()', :dng_scale, nil, class: 'reference-link', data: {slug: :dng_scale})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_save, :dng_scale]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1459,11 +1378,8 @@
                 
                 function drawTheGround(groundY) {
                   context.save();
-                  context.strokeStyle = 'Black';
-                  context.beginPath();
-                  context.moveTo(0, groundY);
-                  context.lineTo(canvas.width, groundY);
-                  context.stroke();
+                  context.fillStyle = 'Black';
+                  context.fillRect(0, groundY, canvas.width, 2);
                   context.restore();
                 }
                 
@@ -1487,7 +1403,6 @@
                 function drawPoint(x, y) {
                   context.beginPath();
                   context.arc(x, y, 3, 0, 2 * Math.PI, false);
-                  context.closePath();
                   context.fill();
                 }
                 

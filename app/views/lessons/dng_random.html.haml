@@ -53,6 +53,10 @@
             %code
               :preserve
                 var x = Math.random();
+          %p
+            To learn more about variables, visit the
+            = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            lesson.
           = render 'lessons/relevant', relevant: [:dng_variables]
 
         .col-xs-12
@@ -143,7 +147,7 @@
           %p
             Run your program a few times to make sure the square's position is randomly generated.
             If your program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:dng_variables, :dng_coordinates, :dng_fill_rect]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_challenge1_editor'} do
@@ -228,7 +232,7 @@
           %p
             Run your program a few times to make sure the rectangle's position and dimensions are randomly generated.
             Then, if your program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:dng_variables, :dng_coordinates, :dng_fill_rect]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_challenge2_editor'} do
@@ -286,6 +290,10 @@
             %code
               :preserve
                 var x = Math.floor(10 * Math.random());
+          %p
+            To learn more about rounding numbers, visit the
+            = link_to_lesson('round() / floor() / ceil()', :dng_round, nil, class: 'reference-link', data: {slug: :dng_round})
+            lesson.
           = render 'lessons/relevant', relevant: [:dng_variables, :dng_round]
 
         .col-xs-12
@@ -346,7 +354,11 @@
           %p
             Run your program a few times to make sure the rectangle's color is randomly generated.
             If your program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:dng_variables, :dng_round, :dng_fill_style]
+          %p
+            If you need help defining fill colors, visit the
+            = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_round]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_challenge3_editor'} do
@@ -436,6 +448,12 @@
             %code
               states
             array. The expression for generating a random index always selects an index in the appropriate range.
+          %p
+            To learn more about variables and arrays, visit the
+            = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            and
+            Arrays
+            lessons.
           = render 'lessons/relevant', relevant: [:dng_variables, :dng_round]
 
         .col-xs-12
@@ -519,7 +537,7 @@
             used to fill the rectangles, and each of the rectangle's dimensions and positions
             are randomly generated. Then, if your program seems to be working, mark the challenge
             as complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:dng_variables, :dng_round, :dng_fill_style]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_round]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_random_challenge4_editor'} do
