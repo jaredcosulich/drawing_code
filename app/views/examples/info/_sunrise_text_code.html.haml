@@ -1,0 +1,20 @@
+:preserve
+  var canvas = document.getElementById('dng_fill_style_example4');
+  var context = canvas.getContext('2d');
+
+  var gradient = context.createLinearGradient(0, 200, 0, 300);
+  gradient.addColorStop(0, 'Yellow');
+  gradient.addColorStop(1, 'Red');
+
+  context.fillStyle = gradient;
+
+  context.beginPath();
+  context.arc(220, 160, 140, 0, 2 * Math.PI, false); // Draws a circle
+  context.closePath();
+  context.fill(); // Fills the circle
+
+  context.font = 'bold 96px Arial'; // Sets the context's font
+  context.textAlign = 'center'; // Sets the context's text alignment
+  context.fillText('SUNRISE', 220, 250); // Fills a text string
+  context.strokeStyle = 'Red'; // Sets the context's strokeStyle
+  context.strokeText('SUNRISE', 220, 250); // Strokes the same text string
