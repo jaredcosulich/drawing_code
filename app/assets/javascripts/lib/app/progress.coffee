@@ -65,6 +65,10 @@ class App.Progress
     return unless @storageAvailable
     localStorage.getItem(editorId)
 
+  clearEditorValue: (editorId) ->
+    return unless @storageAvailable
+    localStorage.removeItem(editorId)
+
   saveDrawing: (slug, title, description, code) ->
     return unless @storageAvailable
 

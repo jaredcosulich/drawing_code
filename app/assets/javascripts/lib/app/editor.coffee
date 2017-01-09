@@ -98,6 +98,7 @@ class App.Editor
     @clearLog()
     @canvas.reset()
     @setCode(@startCode)
+    App.currentProgress?.clearEditorValue(@editorElement.id)
 
   run: (callback) ->
     @hideLog()
