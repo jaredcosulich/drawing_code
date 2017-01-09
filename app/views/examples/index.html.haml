@@ -1,0 +1,15 @@
+#examples
+  %h1 The Gallery
+
+  %p Explore the gallery of drawings, animations and games below.
+  %p Each example contains the code used to create it. Tweak it, play with it, learn from it.
+
+  .row.my-3
+    - @examples.each do |example|
+      .col-xs-12.col-md-6.col-lg-4
+        %a.card.example{href: example_path(example)}
+          = image_tag("examples/#{example}.png", class: 'card-img-top img-fluid', alt: example, title: example)
+          .card-block
+            .card-text
+              = render partial: "examples/info/#{example}_details"
+            .card-footer

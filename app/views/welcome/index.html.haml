@@ -22,21 +22,22 @@
         = image_tag('basic_cityscape.png', class: 'img-fluid')
 
 
-    -# %hr.my-3
-    -#
-    -# .row
-    -#   .col-xs-6
-    -#     %h3 Flappy Square
-    -#     %p.my-1
-    -#       Create a simplified version of the popular "Flappy Bird" mobile game.
-    -#     %p
-    -#       Learn about animation and user interactions on your way to building
-    -#       a simple HTML5 game.
-    -#     %p
-    -#       = link_to_lesson('Get Started', :stage1, :flappy_square, class: 'btn btn-primary')
-    -#
-    -#   .col-xs-6.text-xs-center
-    -#     = image_tag('flappy_square.gif', class: 'img-fluid')
+    %hr.my-3
+
+    .row
+      .col-xs-6
+        %h3 Flappy Square
+        %p.my-1
+          Create a simplified version of the popular "Flappy Bird" mobile game.
+          A "flappy square" that you "fly" through a series of walls.
+        %p
+          Learn about animation and user interactions on your way to building
+          a simple HTML5 game.
+        %p
+          = link_to_lesson('Get Started', :stage1, :flappy_square, class: 'btn btn-primary')
+
+      .col-xs-6.text-xs-center
+        = image_tag('flappy_square.gif', class: 'img-fluid')
 
     %hr.my-3
 
@@ -96,6 +97,22 @@
           to create something completely new!
         %p
           = link_to('Draw Something', drawings_path, class: 'btn btn-primary')
+
+      .col-xs-6.text-xs-center
+        = image_tag('questionmark.png', class: 'img-fluid')
+
+    %hr.my-3
+
+    .row
+      .col-xs-6
+        %h3 The Gallery
+        %p.mt-1
+          A gallery of drawings, animations, and games.
+        %p.mb-1
+          Create your own work and let us know about it so we can add
+          it to the gallery!
+        %p
+          = link_to('View The Gallery', examples_path, class: 'btn btn-primary')
 
       .col-xs-6.text-xs-center
         = image_tag('questionmark.png', class: 'img-fluid')

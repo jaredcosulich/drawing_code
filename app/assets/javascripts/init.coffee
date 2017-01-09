@@ -33,12 +33,18 @@ initFreeform = ->
     freeform = $(freeformElement)
     canvas = new App.Canvas(freeform.find('canvas'))
     editor = new App.Editor(freeform.find('.editor'), canvas)
+    editor.run()
+    setTimeout(( -> canvas.canvas.focus()), 10)
+
 
 initOutput = ->
   App.output = (canvasId) ->
     canvas = document.getElementById(canvasId)
     img    = canvas.toDataURL("image/png")
     document.write('<img src="'+img+'"/>')
+
+  App.outputCode = ->
+    console.log($('.editor').data('editor').getCode())
 
 initCheats = ->
   mousedown = false

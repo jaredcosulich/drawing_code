@@ -1,0 +1,18 @@
+#example-drawing
+  = render partial: "examples/info/#{@example}_details"
+
+  .simple.row.pb-3.pt-2
+    .col-xs-12
+      .freeform
+        .row.pb-3
+          .visual.col-xs-12
+            %h5
+              Canvas
+              %small (your drawing will display here)
+            .canvas
+              %canvas{id: "example_drawings_#{@example}_canvas"}
+
+        .row.py-1
+          = render :layout => '/lessons/editor', :locals => {:editor_id => "my_drawings#{params[:id]}_editor", cols: 12, files: true} do
+            = render partial: "examples/info/#{@example}_code"
+ 

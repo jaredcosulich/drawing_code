@@ -1,0 +1,120 @@
+:preserve
+  Base@!~var canvas = document.getElementById('my_drawings_rolling-ball_canvas');
+  var context = canvas.getContext('2d');
+
+  var interval;
+  var distance = 0;
+  var rate = 2;
+
+  var road = new Road(context, 40);
+  var trees = new Trees(context, road.height, 100);
+  var grass = new Grass(context, road.height, 6);
+  var ball = new Ball(context, 50, (road.height / 2) + 15, 15);
+
+  function adjustPosition() {
+    distance += 2;
+  }
+
+  function runProgram() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    adjustPosition();
+    road.draw();
+    trees.draw(distance);
+    grass.draw();
+    ball.draw();
+  }
+
+  function startAnimation() {
+    interval = setInterval(runProgram, 50);
+  }
+
+  function pauseAnimation() {
+    clearInterval(interval);
+
+    context.font = "20px serif";
+    context.textAlign = 'center';
+    context.fillText('Click on the canvas to start the animation.', canvas.width / 2, 50);
+  }
+
+  canvas.addEventListener('focus', startAnimation);
+  canvas.addEventListener('blur', pauseAnimation);
+  pauseAnimation();~!@road@!~class Road {
+    constructor(context, height) {
+      this.context = context;
+      this.height = height;
+    }
+
+    draw() {
+      this.context.save();
+      this.context.fillStyle = '#cccccc';
+      var roadY = this.context.canvas.height - this.height;
+      this.context.fillRect(0, roadY, this.context.canvas.width, this.height);
+      this.context.restore();
+    }
+  }~!@trees@!~class Trees {
+    constructor(context, bottomY, spacing) {
+      this.context = context;
+      this.bottomY = bottomY;
+      this.spacing = spacing;
+    }
+
+    draw(distance) {
+      var startX = distance - this.spacing;
+      var maxX = this.context.canvas.width + distance + this.spacing;
+      for (var i=startX; i < maxX; ++i) {
+        if (i % this.spacing === 0) {
+          var treeY = this.context.canvas.height - this.bottomY;
+          Tree.draw(context, i - distance, treeY);
+        }
+      }
+    }
+  }
+
+  class Tree {
+    static draw(context, centerX, bottomY) {
+        context.save();
+        context.translate(centerX, bottomY);
+        context.fillStyle = '#a5681c';
+        context.fillRect(0, -60, 12, 60);
+
+        context.beginPath();
+        context.arc(8, -60, 32, 0, Math.PI*2, true);
+        context.closePath();
+        context.fillStyle = '#238d23';
+        context.fill();
+
+        context.restore();
+    }
+  }~!@grass@!~class Grass {
+    constructor(context, bottomY, height) {
+      this.context = context;
+      this.bottomY = bottomY;
+      this.height = height;
+    }
+
+    draw() {
+      this.context.save();
+      this.context.fillStyle = '#238d23';
+      var grassY = this.context.canvas.height - this.bottomY - this.height;
+      this.context.fillRect(0, grassY, this.context.canvas.width, this.height);
+      this.context.restore();
+    }
+  }~!@ball@!~class Ball {
+    constructor(context, centerX, centerY, radius) {
+      this.context = context;
+      this.centerX = centerX;
+      this.centerY = centerY;
+      this.radius = radius;
+    }
+
+    draw() {
+      this.context.save();
+      this.context.translate(this.centerX, this.context.canvas.height - this.centerY);
+      this.context.beginPath();
+      this.context.arc(0, 0, this.radius, 0, Math.PI*2, true);
+      this.context.closePath();
+      this.context.fillStyle = 'red';
+      this.context.fill();
+      this.context.restore();
+    }
+  }

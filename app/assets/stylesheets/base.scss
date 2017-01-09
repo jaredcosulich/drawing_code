@@ -202,3 +202,54 @@ pre {
     z-index: auto;
   }
 }
+
+
+#examples {
+  a.example, a.example:hover, a.example:visited {
+    cursor: pointer;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+
+    .card-block {
+      padding-bottom: 1em;
+      position: relative;
+      text-align: left;
+
+      .card-footer {
+        border: none;
+        height: 3em;
+        position: absolute;
+        bottom: 1em;
+        left: 0;
+        width: 100%;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#207cca+0,ffffff+85,ffffff+100&0+0,0+85,1+100 */
+        background: -moz-linear-gradient(top, rgba(255,255,255,0) 20%, rgba(255,255,255,1) 90%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(255,255,255,0) 20%, rgba(255,255,255,1) 90%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 20%, rgba(255,255,255,1) 90%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+      }
+
+      .card-text {
+        height: 4em;
+        overflow: hidden;
+
+        .title {
+          font-weight: bold;
+        }
+
+        .description {
+          font-size: smaller;
+        }
+      }
+    }
+  }
+}
+
+#example-drawing {
+  .title {
+    font-size: xx-large;
+    font-weight: bold;
+    margin-bottom: 24px;
+  }
+}
