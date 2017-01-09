@@ -89,27 +89,27 @@
             This loop will run six times. In the first loop,
             %span
               %code>
-                i = 0
+                i == 0
               ;
             in the second loop
             %span
               %code>
-                i = 1
+                i == 1
               ;
             in the third loop
             %span
               %code>
-                i = 2
+                i == 2
               ;
             and so on, until
             %span
               %code>
-                i = 5
+                i == 5
               \.
             When
             %span
               %code>
-                i = 6
+                i == 6
               ,
             the condition is false, so the loop ends.
           %p
@@ -134,7 +134,7 @@
                   context.fillStyle = 'Orange';
                   context.fillRect(30 * i, 50 * i, 100, 40);
                   context.fillStyle = 'Black';
-                  context.fillText('i = ' + i, 30 * i + 10, 50 * i + 20);
+                  context.fillText('i == ' + i, 30 * i + 10, 50 * i + 20);
                 }
           %p
             Here, we use the variable
@@ -159,17 +159,12 @@
           %p
             The best way to understand a for loop is to step through the code one loop at a time.
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+            To learn more about variables and the coordinate system, visit the
+            = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            and
+            = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -185,7 +180,7 @@
                   context.fillStyle = 'Orange';
                   context.fillRect(30 * i, 50 * i, 100, 40);
                   context.fillStyle = 'Black';
-                  context.fillText('i = ' + i, 30 * i + 10, 50 * i + 20);
+                  context.fillText('i == ' + i, 30 * i + 10, 50 * i + 20);
                 }
 
             .visual.col-xs-6
@@ -292,12 +287,7 @@
             and
             %code
               context.translate()
-            methods to understand this example and complete the following challenge. To learn
-            more, visit the
-            = link_to_lesson('save()', :dng_save, nil, class: 'reference-link', data: {slug: :dng_save})
-            and
-            = link_to_lesson('translate()', :dng_translate, nil, class: 'reference-link', data: {slug: :dng_translate})
-            lessons.
+            methods to understand this example and complete the following challenge.
           %p
             In this example, we draw a grid of lines using two separate for loops. We start
             by translating to the top left corner of the grid, which is at coordinates (0, 0),
@@ -374,17 +364,24 @@
             in the second loop, we would still initialize it by assigning it the value of
             0, but we would not declare it again.
           %p
-            Visit the relevant lessons to learn more about
+            To learn more about saving and restoring the drawing state, translating
+            the coordinate system, and drawing lines, visit the
             %span
-              %code>
-                context.save()
+              %span><
+                = link_to_lesson('save() / restore()', :dng_save, nil, class: 'reference-link', data: {slug: :dng_save})
               ,
             %span
-              %code>
-                context.translate()
+              %span><
+                = link_to_lesson('translate()', :dng_translate, nil, class: 'reference-link', data: {slug: :dng_translate})
               ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_translate, :dng_variables, :dng_coordinates]
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+              ,
+            and
+            = link_to_lesson('lineTo()', :dng_line_to, nil, class: 'reference-link', data: {slug: :dng_line_to})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_save, :dng_translate, :dng_line_to]
 
         .col-xs-12
           .interactive.row.py-1
@@ -588,22 +585,7 @@
               %code>
                 gridSpace
               \.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.lineTo()
-              ,
-            %span
-              %code>
-                context.save()
-              ,
-            %span
-              %code>
-                context.translate()
-              ,
-            variables, and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:line_to, :dng_save, :dng_translate, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_save, :dng_translate, :dng_line_to]
 
         .col-xs-12
           .interactive.row.py-1
@@ -699,6 +681,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/dng_for_loops/challenge4.png')
             %canvas#dng_for_loops_challenge4
           .alert
 
@@ -757,7 +740,7 @@
             In the first loop,
             %span
               %code>
-                i = 0
+                i == 0
               ,
             and
             %code
@@ -770,7 +753,7 @@
             In the second loop,
             %span
               %code>
-                i = 1
+                i == 1
               ,
             and
             %code
@@ -815,21 +798,12 @@
               colors.length
             property is automatically updated.
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.translate()
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_coordinates]
+            To learn more about arrays and fill colors, visit the
+            Arrays
+            and
+            = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -995,26 +969,7 @@
             Because the inner for loop is inside of the outer for loop, we have to use different
             counters for both loops. Also, indenting the code blocks makes the code much easier to read
             once there are code blocks inside of other code blocks.
-          %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.save()
-              ,
-            %span
-              %code>
-                context.translate()
-              ,
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_save, :dng_translate, :dng_fill_rect, :dng_fill_style, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1138,21 +1093,10 @@
             statement to break out of the loop. Note that our for loop only draws the first
             four rectangles even though there are seven colors in the array.
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.translate()
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_coordinates]
+            To learn more about if statements, visit the
+            If Statements
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1281,21 +1225,10 @@
               'Yellow'
             is not included. We have successfully deleted it from the array.
           %p
-            Visit the relevant lessons to learn more about
-            %span
-              %code>
-                context.fillRect()
-              ,
-            %span
-              %code>
-                context.fillStyle
-              ,
-            %span
-              %code>
-                context.translate()
-              ,
-            and the context's coordinate system.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_coordinates]
+            To learn more about arrays, visit the
+            Arrays
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1

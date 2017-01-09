@@ -144,7 +144,11 @@
             to see what happens. The while loop should draw just enough lines of text to
             fill the box. Count the lines of text to find the number of times the program
             ran through the loop.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_variables, :dng_coordinates]
+          %p
+            To learn more about drawing text, visit the
+            fillText()
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -196,6 +200,7 @@
               %code>
                 x2
               \.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_translate]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_while_loops_challenge1_editor'} do
@@ -289,7 +294,7 @@
             %code
               'DarkSlateBlue'
             and drawn at y = 150.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_for_loops, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_for_loops, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -457,7 +462,7 @@
             %code
               sideLength
             comes from. Doing the calculation inside the code block is clearer.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_for_loops, :dng_random, :dng_variables, :dng_coordinates]
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style, :dng_random]
 
         .col-xs-12
           .interactive.row.py-1
@@ -625,7 +630,13 @@
             equations in order to plot the trajectory of the cannonball ahead of time.
             We just keep drawing cannonballs as long as the position of the cannonball is still
             above the ground.
-          = render 'lessons/relevant', relevant: [:dng_fill_rect, :dng_fill_style, :dng_translate, :dng_variables, :dng_functions, :dng_coordinates]
+          %p
+            To learn more about math functions, visit this list of available
+            %span
+              %span><
+                = link_to('math functions', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math', target: '_blank')
+              \.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_save, :dng_translate]
 
         .col-xs-12
           .interactive.row.py-1
