@@ -1,11 +1,11 @@
-initDngRoundChallenges = ->
+initRoundChallenges = ->
   if (page = $('#round')).length > 0
-    initDngRoundChallenge1(page)
-    initDngRoundChallenge2(page)
-    initDngRoundChallenge3(page)
+    initRoundChallenge1(page)
+    initRoundChallenge2(page)
+    initRoundChallenge3(page)
 
 
-initDngRoundChallenge1 = (page) ->
+initRoundChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -31,7 +31,7 @@ initDngRoundChallenge1 = (page) ->
       canvas.alert(message, success)
 
 
-initDngRoundChallenge2 = (page) ->
+initRoundChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -63,7 +63,7 @@ initDngRoundChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngRoundChallenge3 = (page) ->
+initRoundChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -96,4 +96,4 @@ initDngRoundChallenge3 = (page) ->
       canvas.alert(message, success)
 
 
-$(document).on('initialization:complete', initDngRoundChallenges)
+$(document).on('initialization:complete', initRoundChallenges)

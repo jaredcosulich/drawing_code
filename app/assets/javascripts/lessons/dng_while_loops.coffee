@@ -1,11 +1,11 @@
-initDngWhileLoopsChallenges = ->
+initWhileLoopsChallenges = ->
   if (page = $('#while_loops')).length > 0
-    initDngWhileLoopsChallenge1(page)
-    initDngWhileLoopsChallenge2(page)
-    initDngWhileLoopsChallenge3(page)
+    initWhileLoopsChallenge1(page)
+    initWhileLoopsChallenge2(page)
+    initWhileLoopsChallenge3(page)
 
 
-initDngWhileLoopsChallenge1 = (page) ->
+initWhileLoopsChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -54,7 +54,7 @@ initDngWhileLoopsChallenge1 = (page) ->
       canvas.alert(message, success)
 
 
-initDngWhileLoopsChallenge2 = (page) ->
+initWhileLoopsChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -85,7 +85,7 @@ initDngWhileLoopsChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngWhileLoopsChallenge3 = (page) ->
+initWhileLoopsChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -95,4 +95,4 @@ initDngWhileLoopsChallenge3 = (page) ->
       App.currentProgress.challengeComplete('while_loops', 'challenge3')
 
 
-$(document).on('initialization:complete', initDngWhileLoopsChallenges)
+$(document).on('initialization:complete', initWhileLoopsChallenges)

@@ -1,13 +1,13 @@
-initDngSaveChallenges = ->
+initSaveChallenges = ->
   if (page = $('#save')).length > 0
-    initDngSaveChallenge1(page)
-    initDngSaveChallenge2(page)
-    initDngSaveChallenge3(page)
-    initDngSaveChallenge4(page)
-    initDngSaveChallenge5(page)
+    initSaveChallenge1(page)
+    initSaveChallenge2(page)
+    initSaveChallenge3(page)
+    initSaveChallenge4(page)
+    initSaveChallenge5(page)
 
 
-initDngSaveChallenge1 = (page) ->
+initSaveChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -37,7 +37,7 @@ initDngSaveChallenge1 = (page) ->
       canvas.alert(message, success)
 
 
-initDngSaveChallenge2 = (page) ->
+initSaveChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -93,7 +93,7 @@ initDngSaveChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngSaveChallenge3 = (page) ->
+initSaveChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -133,7 +133,7 @@ initDngSaveChallenge3 = (page) ->
       canvas.alert(message, success)
 
 
-initDngSaveChallenge4 = (page) ->
+initSaveChallenge4 = (page) ->
   challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -182,7 +182,7 @@ initDngSaveChallenge4 = (page) ->
       canvas.alert(message, success)
 
 
-initDngSaveChallenge5 = (page) ->
+initSaveChallenge5 = (page) ->
   challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -227,4 +227,4 @@ initDngSaveChallenge5 = (page) ->
       canvas.alert(message, success)
 
 
-$(document).on('initialization:complete', initDngSaveChallenges)
+$(document).on('initialization:complete', initSaveChallenges)

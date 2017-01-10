@@ -1,14 +1,14 @@
-initDngForLoopsChallenges = ->
+initForLoopsChallenges = ->
   if (page = $('#for_loops')).length > 0
-    initDngForLoopsChallenge1(page)
-    initDngForLoopsChallenge2(page)
-    initDngForLoopsChallenge3(page)
-    initDngForLoopsChallenge4(page)
-    initDngForLoopsChallenge5(page)
-    initDngForLoopsChallenge6(page)
+    initForLoopsChallenge1(page)
+    initForLoopsChallenge2(page)
+    initForLoopsChallenge3(page)
+    initForLoopsChallenge4(page)
+    initForLoopsChallenge5(page)
+    initForLoopsChallenge6(page)
 
 
-initDngForLoopsChallenge1 = (page) ->
+initForLoopsChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -30,7 +30,7 @@ initDngForLoopsChallenge1 = (page) ->
       canvas.alert(message, success)
 
 
-initDngForLoopsChallenge2 = (page) ->
+initForLoopsChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -52,7 +52,7 @@ initDngForLoopsChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngForLoopsChallenge3 = (page) ->
+initForLoopsChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -80,7 +80,7 @@ initDngForLoopsChallenge3 = (page) ->
       canvas.alert(message, success)
 
 
-initDngForLoopsChallenge4 = (page) ->
+initForLoopsChallenge4 = (page) ->
   challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -108,7 +108,7 @@ initDngForLoopsChallenge4 = (page) ->
       canvas.alert(message, success)
 
 
-initDngForLoopsChallenge5 = (page) ->
+initForLoopsChallenge5 = (page) ->
   challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -136,7 +136,7 @@ initDngForLoopsChallenge5 = (page) ->
       canvas.alert(message, success)
 
 
-initDngForLoopsChallenge6 = (page) ->
+initForLoopsChallenge6 = (page) ->
   challenge = page.find('#challenge6')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -171,4 +171,4 @@ initDngForLoopsChallenge6 = (page) ->
       canvas.alert(message, success)
 
 
-$(document).on('initialization:complete', initDngForLoopsChallenges)
+$(document).on('initialization:complete', initForLoopsChallenges)

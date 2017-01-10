@@ -1,11 +1,11 @@
-initDngFillStyleChallenges = ->
+initFillStyleChallenges = ->
   if (page = $('#fill_style')).length > 0
-    initDngFillStyleChallenge1(page)
-    initDngFillStyleChallenge2(page)
-    initDngFillStyleChallenge3(page)
+    initFillStyleChallenge1(page)
+    initFillStyleChallenge2(page)
+    initFillStyleChallenge3(page)
 
 
-initDngFillStyleChallenge1 = (page) ->
+initFillStyleChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -27,7 +27,7 @@ initDngFillStyleChallenge1 = (page) ->
       canvas.alert(message, success)
 
 
-initDngFillStyleChallenge2 = (page) ->
+initFillStyleChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -51,7 +51,7 @@ initDngFillStyleChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngFillStyleChallenge3 = (page) ->
+initFillStyleChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -82,4 +82,4 @@ initDngFillStyleChallenge3 = (page) ->
       canvas.alert(message, success)
 
 
-$(document).on('initialization:complete', initDngFillStyleChallenges)
+$(document).on('initialization:complete', initFillStyleChallenges)

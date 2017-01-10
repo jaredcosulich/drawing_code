@@ -1,13 +1,13 @@
-initDngFunctionsChallenges = ->
+initFunctionsChallenges = ->
   if (page = $('#functions')).length > 0
-    initDngFunctionsChallenge1(page)
-    initDngFunctionsChallenge2(page)
-    initDngFunctionsChallenge3(page)
-    initDngFunctionsChallenge4(page)
-    initDngFunctionsChallenge5(page)
+    initFunctionsChallenge1(page)
+    initFunctionsChallenge2(page)
+    initFunctionsChallenge3(page)
+    initFunctionsChallenge4(page)
+    initFunctionsChallenge5(page)
 
 
-initDngFunctionsChallenge1 = (page) ->
+initFunctionsChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -29,7 +29,7 @@ initDngFunctionsChallenge1 = (page) ->
       canvas.alert(message, success)
 
 
-initDngFunctionsChallenge2 = (page) ->
+initFunctionsChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -53,7 +53,7 @@ initDngFunctionsChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngFunctionsChallenge3 = (page) ->
+initFunctionsChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -80,7 +80,7 @@ initDngFunctionsChallenge3 = (page) ->
       canvas.alert(message, success)
 
 
-initDngFunctionsChallenge4 = (page) ->
+initFunctionsChallenge4 = (page) ->
   challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -90,7 +90,7 @@ initDngFunctionsChallenge4 = (page) ->
       App.currentProgress.challengeComplete('functions', 'challenge4')
 
 
-initDngFunctionsChallenge5 = (page) ->
+initFunctionsChallenge5 = (page) ->
   challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -100,4 +100,4 @@ initDngFunctionsChallenge5 = (page) ->
       App.currentProgress.challengeComplete('functions', 'challenge5')
 
 
-$(document).on('initialization:complete', initDngFunctionsChallenges)
+$(document).on('initialization:complete', initFunctionsChallenges)

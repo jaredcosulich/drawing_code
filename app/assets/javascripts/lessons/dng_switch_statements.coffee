@@ -1,12 +1,12 @@
-initDngSwitchStatementsChallenges = ->
+initSwitchStatementsChallenges = ->
   if (page = $('#switch_statements')).length > 0
-    initDngSwitchStatementsChallenge1(page)
-    initDngSwitchStatementsChallenge2(page)
-    initDngSwitchStatementsChallenge3(page)
-    initDngSwitchStatementsChallenge4(page)
+    initSwitchStatementsChallenge1(page)
+    initSwitchStatementsChallenge2(page)
+    initSwitchStatementsChallenge3(page)
+    initSwitchStatementsChallenge4(page)
 
 
-initDngSwitchStatementsChallenge1 = (page) ->
+initSwitchStatementsChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -16,7 +16,7 @@ initDngSwitchStatementsChallenge1 = (page) ->
       App.currentProgress.challengeComplete('switch_statements', 'challenge1')
 
 
-initDngSwitchStatementsChallenge2 = (page) ->
+initSwitchStatementsChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -61,7 +61,7 @@ initDngSwitchStatementsChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngSwitchStatementsChallenge3 = (page) ->
+initSwitchStatementsChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -109,7 +109,7 @@ initDngSwitchStatementsChallenge3 = (page) ->
       canvas.alert(message, success)
 
 
-initDngSwitchStatementsChallenge4 = (page) ->
+initSwitchStatementsChallenge4 = (page) ->
   challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -119,4 +119,4 @@ initDngSwitchStatementsChallenge4 = (page) ->
       App.currentProgress.challengeComplete('switch_statements', 'challenge4')
 
 
-$(document).on('initialization:complete', initDngSwitchStatementsChallenges)
+$(document).on('initialization:complete', initSwitchStatementsChallenges)

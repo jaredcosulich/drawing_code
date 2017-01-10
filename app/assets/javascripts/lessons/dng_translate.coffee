@@ -1,14 +1,14 @@
-initDngTranslateChallenges = ->
+initTranslateChallenges = ->
   if (page = $('#translate')).length > 0
-    initDngTranslateChallenge1(page)
-    initDngTranslateChallenge2(page)
-    initDngTranslateChallenge3(page)
-    initDngTranslateChallenge4(page)
-    initDngTranslateChallenge5(page)
-    initDngTranslateChallenge6(page)
+    initTranslateChallenge1(page)
+    initTranslateChallenge2(page)
+    initTranslateChallenge3(page)
+    initTranslateChallenge4(page)
+    initTranslateChallenge5(page)
+    initTranslateChallenge6(page)
 
 
-initDngTranslateChallenge1 = (page) ->
+initTranslateChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -35,7 +35,7 @@ initDngTranslateChallenge1 = (page) ->
       canvas.alert(message, success)
 
 
-initDngTranslateChallenge2 = (page) ->
+initTranslateChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -70,7 +70,7 @@ initDngTranslateChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngTranslateChallenge3 = (page) ->
+initTranslateChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -105,7 +105,7 @@ initDngTranslateChallenge3 = (page) ->
       canvas.alert(message, success)
 
 
-initDngTranslateChallenge4 = (page) ->
+initTranslateChallenge4 = (page) ->
   challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -143,7 +143,7 @@ initDngTranslateChallenge4 = (page) ->
       canvas.alert(message, success)
 
 
-initDngTranslateChallenge5 = (page) ->
+initTranslateChallenge5 = (page) ->
   challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -153,7 +153,7 @@ initDngTranslateChallenge5 = (page) ->
       App.currentProgress.challengeComplete('translate', 'challenge5')
 
 
-initDngTranslateChallenge6 = (page) ->
+initTranslateChallenge6 = (page) ->
   challenge = page.find('#challenge6')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -197,4 +197,4 @@ initDngTranslateChallenge6 = (page) ->
       canvas.alert(message, success)
 
 
-$(document).on('initialization:complete', initDngTranslateChallenges)
+$(document).on('initialization:complete', initTranslateChallenges)

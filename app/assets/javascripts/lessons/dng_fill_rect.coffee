@@ -1,14 +1,14 @@
-initDngFillRectChallenges = ->
+initFillRectChallenges = ->
   if (page = $('#fill_rect')).length > 0
-    initDngFillRectChallenge1(page)
-    initDngFillRectChallenge2(page)
-    initDngFillRectChallenge3(page)
-    initDngFillRectChallenge4(page)
-    initDngFillRectChallenge5(page)
-    initDngFillRectChallenge6(page)
+    initFillRectChallenge1(page)
+    initFillRectChallenge2(page)
+    initFillRectChallenge3(page)
+    initFillRectChallenge4(page)
+    initFillRectChallenge5(page)
+    initFillRectChallenge6(page)
 
 
-initDngFillRectChallenge1 = (page) ->
+initFillRectChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -30,7 +30,7 @@ initDngFillRectChallenge1 = (page) ->
       canvas.alert(message, success)
 
 
-initDngFillRectChallenge2 = (page) ->
+initFillRectChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -56,7 +56,7 @@ initDngFillRectChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngFillRectChallenge3 = (page) ->
+initFillRectChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -80,7 +80,7 @@ initDngFillRectChallenge3 = (page) ->
       canvas.alert(message, success)
 
 
-initDngFillRectChallenge4 = (page) ->
+initFillRectChallenge4 = (page) ->
   challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -106,7 +106,7 @@ initDngFillRectChallenge4 = (page) ->
       canvas.alert(message, success)
 
 
-initDngFillRectChallenge5 = (page) ->
+initFillRectChallenge5 = (page) ->
   challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -130,7 +130,7 @@ initDngFillRectChallenge5 = (page) ->
       canvas.alert(message, success)
 
 
-initDngFillRectChallenge6 = (page) ->
+initFillRectChallenge6 = (page) ->
   challenge = page.find('#challenge6')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -157,4 +157,4 @@ initDngFillRectChallenge6 = (page) ->
       canvas.alert(message, success)
 
 
-$(document).on('initialization:complete', initDngFillRectChallenges)
+$(document).on('initialization:complete', initFillRectChallenges)

@@ -1,11 +1,11 @@
-initDngCoordinatesChallenges = ->
+initCoordinatesChallenges = ->
   if (page = $('#coordinates')).length > 0
-    initDngCoordinatesChallenge1(page)
-    initDngCoordinatesChallenge2(page)
-    initDngCoordinatesChallenge3(page)
+    initCoordinatesChallenge1(page)
+    initCoordinatesChallenge2(page)
+    initCoordinatesChallenge3(page)
 
 
-initDngCoordinatesChallenge1 = (page) ->
+initCoordinatesChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -40,7 +40,7 @@ initDngCoordinatesChallenge1 = (page) ->
     ), 200)
 
 
-initDngCoordinatesChallenge2 = (page) ->
+initCoordinatesChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -78,7 +78,7 @@ initDngCoordinatesChallenge2 = (page) ->
     ), 200)
 
 
-initDngCoordinatesChallenge3 = (page) ->
+initCoordinatesChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -110,4 +110,4 @@ initDngCoordinatesChallenge3 = (page) ->
     ), 200)
 
 
-$(document).on('initialization:complete', initDngCoordinatesChallenges)
+$(document).on('initialization:complete', initCoordinatesChallenges)

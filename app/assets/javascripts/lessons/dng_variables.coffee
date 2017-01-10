@@ -1,13 +1,13 @@
-initDngVariablesChallenges = ->
+initVariablesChallenges = ->
   if (page = $('#variables')).length > 0
-    initDngVariablesChallenge1(page)
-    initDngVariablesChallenge2(page)
-    initDngVariablesChallenge3(page)
-    initDngVariablesChallenge4(page)
-    initDngVariablesChallenge5(page)
+    initVariablesChallenge1(page)
+    initVariablesChallenge2(page)
+    initVariablesChallenge3(page)
+    initVariablesChallenge4(page)
+    initVariablesChallenge5(page)
 
 
-initDngVariablesChallenge1 = (page) ->
+initVariablesChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -29,7 +29,7 @@ initDngVariablesChallenge1 = (page) ->
       canvas.alert(message, success)
 
 
-initDngVariablesChallenge2 = (page) ->
+initVariablesChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -52,7 +52,7 @@ initDngVariablesChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngVariablesChallenge3 = (page) ->
+initVariablesChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -76,7 +76,7 @@ initDngVariablesChallenge3 = (page) ->
       canvas.alert(message, success)
 
 
-initDngVariablesChallenge4 = (page) ->
+initVariablesChallenge4 = (page) ->
   challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -101,7 +101,7 @@ initDngVariablesChallenge4 = (page) ->
       canvas.alert(message, success)
 
 
-initDngVariablesChallenge5 = (page) ->
+initVariablesChallenge5 = (page) ->
   challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -128,4 +128,4 @@ initDngVariablesChallenge5 = (page) ->
       canvas.alert(message, success)
 
 
-$(document).on('initialization:complete', initDngVariablesChallenges)
+$(document).on('initialization:complete', initVariablesChallenges)

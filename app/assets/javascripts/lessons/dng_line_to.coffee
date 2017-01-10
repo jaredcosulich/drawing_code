@@ -1,14 +1,14 @@
-initDngLineToChallenges = ->
+initLineToChallenges = ->
   if (page = $('#line_to')).length > 0
-    initDngLineToChallenge1(page)
-    initDngLineToChallenge2(page)
-    initDngLineToChallenge3(page)
-    initDngLineToChallenge4(page)
-    initDngLineToChallenge5(page)
-    initDngLineToChallenge6(page)
+    initLineToChallenge1(page)
+    initLineToChallenge2(page)
+    initLineToChallenge3(page)
+    initLineToChallenge4(page)
+    initLineToChallenge5(page)
+    initLineToChallenge6(page)
 
 
-initDngLineToChallenge1 = (page) ->
+initLineToChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -32,7 +32,7 @@ initDngLineToChallenge1 = (page) ->
       canvas.alert(message, success)
 
 
-initDngLineToChallenge2 = (page) ->
+initLineToChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -59,7 +59,7 @@ initDngLineToChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngLineToChallenge3 = (page) ->
+initLineToChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -88,7 +88,7 @@ initDngLineToChallenge3 = (page) ->
       canvas.alert(message, success)
 
 
-initDngLineToChallenge4 = (page) ->
+initLineToChallenge4 = (page) ->
   challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -121,7 +121,7 @@ initDngLineToChallenge4 = (page) ->
       canvas.alert(message, success)
 
 
-initDngLineToChallenge5 = (page) ->
+initLineToChallenge5 = (page) ->
   challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -151,7 +151,7 @@ initDngLineToChallenge5 = (page) ->
       canvas.alert(message, success)
 
 
-initDngLineToChallenge6 = (page) ->
+initLineToChallenge6 = (page) ->
   challenge = page.find('#challenge6')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -182,4 +182,4 @@ initDngLineToChallenge6 = (page) ->
       canvas.alert(message, success)
 
 
-$(document).on('initialization:complete', initDngLineToChallenges)
+$(document).on('initialization:complete', initLineToChallenges)

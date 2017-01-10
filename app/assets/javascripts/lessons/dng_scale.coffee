@@ -1,15 +1,15 @@
-initDngScaleChallenges = ->
+initScaleChallenges = ->
   if (page = $('#scale')).length > 0
-    initDngScaleChallenge1(page)
-    initDngScaleChallenge2(page)
-    initDngScaleChallenge3(page)
-    initDngScaleChallenge4(page)
-    initDngScaleChallenge5(page)
-    initDngScaleChallenge6(page)
-    initDngScaleChallenge7(page)
+    initScaleChallenge1(page)
+    initScaleChallenge2(page)
+    initScaleChallenge3(page)
+    initScaleChallenge4(page)
+    initScaleChallenge5(page)
+    initScaleChallenge6(page)
+    initScaleChallenge7(page)
 
 
-initDngScaleChallenge1 = (page) ->
+initScaleChallenge1 = (page) ->
   challenge = page.find('#challenge1')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -36,7 +36,7 @@ initDngScaleChallenge1 = (page) ->
       canvas.alert(message, success)
 
 
-initDngScaleChallenge2 = (page) ->
+initScaleChallenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -70,7 +70,7 @@ initDngScaleChallenge2 = (page) ->
       canvas.alert(message, success)
 
 
-initDngScaleChallenge3 = (page) ->
+initScaleChallenge3 = (page) ->
   challenge = page.find('#challenge3')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -100,7 +100,7 @@ initDngScaleChallenge3 = (page) ->
       canvas.alert(message, success)
 
 
-initDngScaleChallenge4 = (page) ->
+initScaleChallenge4 = (page) ->
   challenge = page.find('#challenge4')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -145,7 +145,7 @@ initDngScaleChallenge4 = (page) ->
       canvas.alert(message, success)
 
 
-initDngScaleChallenge5 = (page) ->
+initScaleChallenge5 = (page) ->
   challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -190,7 +190,7 @@ initDngScaleChallenge5 = (page) ->
       canvas.alert(message, success)
 
 
-initDngScaleChallenge6 = (page) ->
+initScaleChallenge6 = (page) ->
   challenge = page.find('#challenge6')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -254,7 +254,7 @@ initDngScaleChallenge6 = (page) ->
       canvas.alert(message, success)
 
 
-initDngScaleChallenge7 = (page) ->
+initScaleChallenge7 = (page) ->
   challenge = page.find('#challenge7')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -294,4 +294,4 @@ initDngScaleChallenge7 = (page) ->
       canvas.alert(message, success)
 
 
-$(document).on('initialization:complete', initDngScaleChallenges)
+$(document).on('initialization:complete', initScaleChallenges)
