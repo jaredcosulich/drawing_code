@@ -9,6 +9,7 @@ class ExamplesController < ApplicationController
 
     @examples = {
       'Drawings' => [
+        :flowers,
         :sunrise_text
       ],
       'Animations' => [
@@ -16,7 +17,8 @@ class ExamplesController < ApplicationController
         :simple_cannonball
       ],
       'Games' => [
-        :flappy_square
+        :flappy_square,
+        :snake_game
       ]
     }
   end

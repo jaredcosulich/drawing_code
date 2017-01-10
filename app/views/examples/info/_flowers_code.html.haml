@@ -1,0 +1,195 @@
+:preserve
+  var canvas = document.getElementById('my_drawings_canvas');
+  var context = canvas.getContext('2d');
+
+  function drawYellowFlower() {
+  	var i;
+
+  	for (i = 0; i < 16; i++) {
+  		context.rotate(0.125 * Math.PI);
+  		context.save();
+  		context.scale(1, 3);
+  		context.fillStyle = "rgba(255, 255, 102, 1)";
+  		context.beginPath();
+  		context.arc(0, 4, 3, 0, 2 * Math.PI, false);
+  		context.fill();
+  		context.fillStyle = "rgba(204, 204, 51, 1)";
+  		context.beginPath();
+  		context.arc(0, 2, 2, 0, 2 * Math.PI, false);
+  		context.fill();
+  		context.restore();
+  	}
+
+  	context.fillStyle = "rgba(153, 102, 0, 1)";
+  	context.beginPath();
+  	context.arc(0, 0, 4, 0, 2 * Math.PI, false);
+  	context.fill();
+  }
+
+  function drawOrangeFlower() {
+  	var i;
+
+  	for (i = 0; i < 16; i++) {
+  		context.rotate(0.125 * Math.PI);
+  		context.save();
+  		context.scale(1, 4);
+  		context.fillStyle = "rgba(255, 153, 51, 1)";
+  		context.beginPath();
+  		context.arc(0, 4, 3, 0, 2 * Math.PI, false);
+  		context.fill();
+  		context.fillStyle = "rgba(255, 204, 102, 1)";
+  		context.beginPath();
+  		context.arc(0, 3, 2, 0, 2 * Math.PI, false);
+  		context.fill();
+  		context.restore();
+  	}
+
+  	context.fillStyle = "rgba(153, 153, 0, 1)";
+  	context.beginPath();
+  	context.arc(0, 0, 5, 0, 2 * Math.PI, false);
+  	context.fill();
+  }
+
+  function drawRedFlower() {
+  	var i;
+
+  	for (i = 0; i < 16; i++) {
+  		context.rotate(0.125 * Math.PI);
+  		context.save();
+  		context.scale(1, 3);
+  		context.fillStyle = "rgba(255, 153, 204, 1)";
+  		context.beginPath();
+  		context.arc(0, 4, 3, 0, 2 * Math.PI, false);
+  		context.fill();
+  		context.fillStyle = "rgba(255, 102, 153, 1)";
+  		context.beginPath();
+  		context.arc(0, 3, 2, 0, 2 * Math.PI, false);
+  		context.fill();
+  		context.restore();
+  	}
+
+  	context.fillStyle = "rgba(153, 0, 51, 1)";
+  	context.beginPath();
+  	context.arc(0, 0, 4, 0, 2 * Math.PI, false);
+  	context.fill();
+  }
+
+  function drawWhiteBuds() {
+  	var i;
+
+  	context.lineWidth = 1;
+  	context.strokeStyle = "rgba(153, 204, 153, 1)";
+  	context.fillStyle = "rgba(255, 255, 255, 1)";
+
+  	for (i = 0; i < 10; i++) {
+  		context.beginPath();
+  		context.arc(Math.pow(-1, i) * Math.floor(4 * Math.random()), -100 + 5 * i, 3, 0, 2 * Math.PI, false);
+  		context.fill();
+  		context.stroke();
+  	}
+  }
+
+  function drawStems() {
+  	context.save();
+  	context.lineWidth = 2;
+  	context.strokeStyle = "rgba(0, 153, 0, 1)";
+
+  	context.save();
+  	context.translate(-6, 0);
+  	context.rotate(-0.09 * Math.PI);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, -100);
+  	context.stroke();
+  	drawWhiteBuds();
+  	context.restore();
+
+  	context.save();
+  	context.translate(0, 0);
+  	context.rotate(0 * Math.PI);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, -100);
+  	context.stroke();
+  	drawWhiteBuds();
+  	context.restore();
+
+  	context.save();
+  	context.translate(6, 0);
+  	context.rotate(0.09 * Math.PI);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, -100);
+  	context.stroke();
+  	drawWhiteBuds();
+  	context.restore();
+
+  	context.save();
+  	context.translate(-2, 0);
+  	context.rotate(-0.04 * Math.PI);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, -60);
+  	context.stroke();
+  	context.translate(0, -60);
+  	drawRedFlower();
+  	context.restore();
+
+  	context.save();
+  	context.translate(-4, 0);
+  	context.rotate(-0.06 * Math.PI);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, -20);
+  	context.bezierCurveTo(0, -30, -10, -40, -20, -40);
+  	context.stroke();
+  	context.translate(-20, -40);
+  	drawOrangeFlower();
+  	context.restore();
+
+  	context.save();
+  	context.translate(4, 0);
+  	context.rotate(0.06 * Math.PI);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, -20);
+  	context.bezierCurveTo(0, -30, 10, -40, 20, -40);
+  	context.stroke();
+  	context.translate(20, -40);
+  	drawOrangeFlower();
+  	context.restore();
+
+  	context.save();
+  	context.translate(2, 0);
+  	context.rotate(0.04 * Math.PI);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, -30);
+  	context.stroke();
+  	context.translate(0, -30);
+  	drawYellowFlower();
+  	context.restore();
+
+  	context.restore();
+  }
+
+  function drawVase() {
+  	context.fillStyle = "rgba(102, 102, 102, 1)";
+  	context.beginPath();
+  	context.moveTo(-15, 0);
+  	context.bezierCurveTo(-20, -5, -25, -10, -25, -20);
+  	context.bezierCurveTo(-25, -40, -15, -85, -10, -100);
+  	context.lineTo(10, -100);
+  	context.bezierCurveTo(15, -85, 25, -40, 25, -20);
+  	context.bezierCurveTo(25, -10, 20, -5, 15, 0);
+  	context.closePath();
+  	context.fill();
+  }
+
+  context.translate(100, 250);
+  context.save();
+  drawVase();
+
+  context.translate(0, -100);
+  drawStems();
+  context.restore();
