@@ -1,19 +1,18 @@
 #dng_basic_cityscape_stage3.page
-  %h1 Stage 3
-
-
-
+  %h1
+    Stage 3
   .description.row.py-3
-    .col-xs-6
-      %h2.py-2
-        Overview
-      %p
-        In the third stage of the Cityscape Challenge, we will add some variety to the
-        buildings by varying the types of windows in the offices and the types of roofs
-        on the buildings. Then, we will create and draw a random building.
-
-    .col-xs-6
-      = image_tag('lessons/dng_basic_cityscape/stage3/overviewVisual1.png', class: 'img-fluid')
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_basic_cityscape/stage3/overviewVisual1.png', class: 'img-fluid')
+          %p
+            In the third stage of the Cityscape Challenge, we add variety to the
+            buildings by varying the types of windows in the offices and the types of roofs
+            on the buildings. Then, we create and draw a random building.
 
 
   .example.row.py-3
@@ -23,17 +22,38 @@
           %h2.py-2
             Draw Buildings with Four Types of Windows
           %p
-            %span.highlight
-              In this example, we modify the drawFrenchFlag() function to draw the flags
-              of France, Colombia, and Thailand.
+            In this example, we modify the
+            %code
+              drawFrenchFlag()
+            function to draw the flags of France, Colombia, and Thailand.
           %p
-            We tell the drawFlag() function which flag to draw by passing it a value that
-            is stored in the country parameter. Then, in the switch statement, we
-            draw a French flag if country = 'France', a Colombian flag if country = 'Colombia',
-            and a Thai flag if country = 'Thailand'.
+            We tell the
+            %code
+              drawFlag()
+            function which flag to draw by passing it a value that is stored in the
+            %code
+              country
+            parameter. Then, in the switch statement, we draw a French flag if
+            %span
+              %code>
+                country == 'France'
+              ,
+            a Colombian flag if
+            %span
+              %code>
+                country == 'Colombia'
+              ,
+            and a Thai flag if
+            %span
+              %code>
+                country == 'Thailand'
+              \.
           %p
             Try drawing a Thai flag instead of a Colombian flag to see what it looks like.
-          = render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect, :switch_statements]
+            To learn more about switch statements, visit the
+            = link_to_lesson('Switch Statements', :dng_switch_statements, nil, class: 'reference-link', data: {slug: :dng_switch_statements})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_functions, :dng_switch_statements, :dng_fill_rect, :dng_fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -41,7 +61,12 @@
               :preserve
                 var canvas = document.getElementById('dng_basic_cityscape_stage3_example1');
                 var context = canvas.getContext('2d');
-
+                
+                context.save();
+                context.translate(20, 40);
+                drawFlag('Colombia');
+                context.restore();
+                
                 function drawFlag(country) {
                   context.save();
 
@@ -83,11 +108,6 @@
                   context.restore();
                 }
 
-                context.save();
-                context.translate(20, 40);
-                drawFlag('Colombia');
-                context.restore();
-
             .visual.col-xs-6
               %h5
                 Canvas
@@ -103,54 +123,106 @@
           %h2.challenge-title.py-2
             Challenge 1
           %p
-            %span.highlight
-              Update the drawBuilding() function that you wrote in Stage 2 Challenge 3
-              to draw four types of windows.
+            Update the
+            %code
+              drawBuilding()
+            function that you wrote in Stage 2 Challenge 3 to draw four types of windows.
           %p
-            Start by adding a windowType parameter to the drawBuilding() function:
-            drawBuilding(x, y, units, floors, windowType).
+            Start by adding a
+            %code
+              windowType
+            parameter to the
+            %code
+              drawBuilding()
+            function:
+          %pre
+            %code
+              :preserve
+                function drawBuilding(x, y, units, floors, windowType) {
+                  
+                  // code block
+                  
+                }
           %p
-            Inside the drawBuilding() function, remove the code you wrote to draw a rectangle
-            for each window, and replace it with "drawWindow(windowType);".
+            Inside the
+            %code
+              drawBuilding()
+            function, remove the code you wrote to draw a rectangle for each window, and replace it with:
+          %pre
+            %code
+              :preserve
+                drawWindow(windowType);
           %p
-            Then find the code where we define the function drawWindow().
-            %span.highlight
-              Inside the drawWindow() function, add a switch statement with four cases. We
-              will draw four different types of windows depending if windowType = 0, 1, 2, or 3.
+            This passes the value passed into the
+            %code
+              drawBuilding()
+            function's
+            %code
+              windowType
+            parameter into the
+            %code
+              drawWindow()
+            function's
+            %code
+              windowType
+            parameter. Both parameters happen to share the same name, but that isn't necessary.
+          %p
+            Since all four window types use the same dark gray color (
+            %code>
+              '#666666'
+            ), set the
+            %code
+              context.fillStyle
+            property in the
+            %code
+              drawBuilding()
+            function before calling the
+            %code
+              drawWindow()
+            function.
+          %p
+            Then, find the definition for the
+            %code
+              drawWindow()
+            function in the program below:
+          %pre
+            %code
+              :preserve
+                function drawWindow(windowType) {
+                  
+                  // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
+                  
+                }
+          %p
+            Inside the
+            %code
+              drawWindow()
+            function, add a switch statement with four cases. We will draw four different
+            types of windows depending if
+            %code
+              windowType
+            is 0, 1, 2, or 3.
           %p
             The dimensions of the four window types are given below:
           = image_tag('lessons/dng_basic_cityscape/stage3/challenge1Visual1.png')
-          %p
-            Note: Since all four window types use the same dark gray color (
-            %span.highlight>
-              \#666666
-            ), set the context.fillStyle in the drawBuilding() function before calling drawWindow().
-
-          .float-xs-right
-            = image_tag('lessons/dng_basic_cityscape/stage3/challenge1Visual2.png', class: 'canvas-example mx-3')
-
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_basic_cityscape/stage3/challenge1Visual2.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
             Draw three buildings with different sizes and window types.
           %p
-            %span.highlight
-              Draw one building sitting on the ground at (20, 320)
-              with 6 office units across, 10 floors, and type 1 windows.
+            The first building sits on the ground at (20, 320)
+            with 6 office units per floor, 10 floors, and type 1 windows.
           %p
-            %span.highlight
-              Draw a second building at (136, 320) with 10 office units across,
-              6 floors, and type 2 windows.
+            The second building sits on the ground at (136, 320)
+            with 10 office units per floor, 6 floors, and type 2 windows.
           %p
-            %span.highlight
-              Draw a third building at (316, 320) with 5 office units across,
-              14 floors, and type 3 windows.
-          %p
-            If your drawing looks like the image to the right, mark the challenge
-            as complete by selecting "Yes, it looks good".
-
-          = render 'lessons/relevant', relevant: [:functions, :fill_style, :fill_rect, :switch_statements]
+            The third building sits on the ground at (316, 320)
+            with 5 office units per floor, 14 floors, and type 3 windows.
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_functions, :dng_switch_statements, :dng_fill_rect, :dng_fill_style]
           = render 'lessons/code_preview', stage: 2, challenge: 3, editor_id: 'dng_basic_cityscape_stage2_challenge3_editor'
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage3_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('dng_basic_cityscape_stage3_challenge1');
@@ -167,13 +239,16 @@
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
 
             }
+            
+            // DRAW A BUILDING AT (20, 320) WITH 6 OFFICE UNITS, 10 FLOORS, AND TYPE 1 WINDOWS
+            // DRAW A BUILDING AT (136, 320) WITH 10 OFFICE UNITS, 6 FLOORS, AND TYPE 2 WINDOWS
+            // DRAW A BUILDING AT (316, 320) WITH 5 OFFICE UNITS, 14 FLOORS, AND TYPE 3 WINDOWS
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
-            = image_tag('lessons/dng_basic_cityscape/stage3/challenge1Visual2.png', class: 'test-image')
             .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage3/challenge1.png')
             %canvas#dng_basic_cityscape_stage3_challenge1
           .alert
@@ -186,27 +261,72 @@
           %h2.py-2
             Draw Buildings with Four Types of Roofs
           %p
-            %span.highlight
-              In this example, we add a triangle to the top of the building's roof.
+            In this example, we add a triangle to the top of the building's roof.
           %p
-            To draw the roof, we create a function called drawRoof() and pass it the
-            width of the building. We pass it the width of the building because we want
-            to center the roof and scale the roof to fit the building.
+            To draw the roof, we create a function called
+            %code
+              drawRoof()
+            and pass it the width of the building. We pass it the width of the building
+            because we want to center the roof and scale the roof to fit the building.
+          %pre
+            %code
+              :preserve
+                function drawRoof(w) {
+                  
+                  // code block
+                  
+                }
           %p
-            To make the roof a little easier to draw, we use context.translate() to
-            move to the center of the roof and the top of the triangle.
+            Inside the
+            %code
+              drawRoof()
+            function, to make the roof a little easier to draw, we use the
+            %code
+              context.translate()
+            method to move to the center of the roof and the top of the triangle.
+          %pre
+            %code
+              :preserve
+                context.translate(w / 2, -96); // Move to the center of the roof and top of the triangle
           %p
-            To draw a filled triangle, we use context.lineTo() to draw a polygon and
-            context.fill() to fill it. We don't have to set the context.fillStyle because
-            the roof is the same color as the building.
+            Then, we use the
+            %code
+              context.lineTo()
+            method to create a triangular path and the
+            %code
+              context.fill()
+            method to fill it. Because the roof is the same color as the building, we don't have to set the
+            %code
+              context.fillStyle
+            property.
+          %pre
+            %code
+              :preserve
+                context.beginPath(); // Start a new path
+                context.moveTo(0, 0); // Move to the top of the triangle
+                context.lineTo(16, 64); // Create a line to the bottom right vertex of the triangle
+                context.lineTo(-16, 64); // Create a line to the bottom left vertex of the triangle
+                context.closePath(); // Close the triangle
+                context.fill(); // Fill the triangle with the current fill color
           %p
-            %span.highlight
-              Change the number of office units on a floor of the building to a number between 4 and 8.
+            After creating and filling the triangle, we draw two rectangles beneath it.
+            The width of the second rectangle varies depending on the width of the building.
+          %pre
+            %code
+              :preserve
+                context.fillRect(-24, 64, 48, 16);
+                context.fillRect(-(w - 16) / 2, 80, w - 16, 16);
+          %p
+            Change the number of office units on a floor of the building to a number between 4 and 8.
             Note how the roof adjusts to fit the size of the building.
           %p
             The roof doesn't work when the number of office units is smaller than 4 and
             it doesn't look good when it's greater than 8. We will fix those issues later.
-          = render 'lessons/relevant', relevant: [:functions, :variables, :line_to, :switch_statements]
+          %p
+            To learn more about drawing triangles, visit the
+            = link_to_lesson('lineTo()', :dng_line_to, nil, class: 'reference-link', data: {slug: :dng_line_to})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_switch_statements, :dng_fill_style, :dng_translate, :dng_line_to]
 
         .col-xs-12
           .interactive.row.py-1
@@ -214,7 +334,21 @@
               :preserve
                 var canvas = document.getElementById('dng_basic_cityscape_stage3_example2');
                 var context = canvas.getContext('2d');
-
+                
+                function drawRoof(w) {
+                  context.save();
+                  context.translate(w / 2, -96); // Move to the center of the roof and top of the triangle
+                  context.beginPath(); // Start a new path
+                  context.moveTo(0, 0); // Move to the top of the triangle
+                  context.lineTo(16, 64); // Create a line to the bottom right vertex of the triangle
+                  context.lineTo(-16, 64); // Create a line to the bottom left vertex of the triangle
+                  context.closePath(); // Close the triangle
+                  context.fill(); // Fill the triangle with the current fill color
+                  context.fillRect(-24, 64, 48, 16);
+                  context.fillRect(-(w - 16) / 2, 80, w - 16, 16);
+                  context.restore();
+                }
+                
                 function drawBuilding(leftX, groundY, units, floors) {
                   var w = 16 * units + 8;
                   var h = 16 * floors + 8;
@@ -228,20 +362,6 @@
 
                   drawRoof(w);
 
-                  context.restore();
-                }
-
-                function drawRoof(w) {
-                  context.save();
-                  context.translate(w / 2, -96);
-                  context.beginPath();
-                  context.moveTo(0, 0);
-                  context.lineTo(16, 64);
-                  context.lineTo(-16, 64);
-                  context.closePath();
-                  context.fill();
-                  context.fillRect(-24, 64, 48, 16);
-                  context.fillRect(-(w - 16) / 2, 80, w - 16, 16);
                   context.restore();
                 }
 
@@ -262,51 +382,70 @@
           %h2.challenge-title.py-2
             Challenge 2
           %p
-            %span.highlight
-              Update the drawBuilding() function to draw four types of roofs.
+            Update the
+            %code
+              drawBuilding()
+            function to draw four types of roofs.
           %p
-            Start by adding a roofType parameter to the drawBuilding() function. Then,
-            inside the drawBuilding() function, add a call to drawRoof(w, roofType) after
-            drawing the building's gray rectangle and before changing the context.fillStyle
-            to draw the windows.
+            Start by adding a
+            %code
+              roofType
+            parameter to the
+            %code
+              drawBuilding()
+            function definition. Then, inside the
+            %code
+              drawBuilding()
+            function, draw the roof after drawing the building's gray rectangle and
+            before translating the coordinate system or changing the
+            %code
+              context.fillStyle
+            property to draw the windows.
+          %pre
+            %code
+              :preserve
+                drawRoof(w, roofType);
           %p
-            %span.highlight
-              Inside the drawRoof() function, add a switch statement with four cases.
+            Inside the
+            %code
+              drawRoof()
+            function, add a switch statement with four cases.
           %p
-            The dimensions of the four window types are given below, where w is the width of the building:
+            The dimensions of the four window types are given below, where
+            %code
+              w
+            is the width of the building:
           = image_tag('lessons/dng_basic_cityscape/stage3/challenge2Visual1.png')
           %p
-            Note: Since all four roof types use the same gray color as the building (
-            %span.highlight>
-              \#666666
-            ), we don't have to change the context.fillStyle in the drawBuilding() function before calling
-            drawRoof(). Also, for a case that does nothing, either leave the case out or include the case with
+            Since all four roof types use the same gray color as the building (
+            %code>
+              '#999999'
+            ), we don't have to change the
+            %code
+              context.fillStyle
+            property in the
+            %code
+              drawBuilding()
+            function before drawing the roof. Also, for a case that does nothing, either leave the case out or include the case with
             a comment explaining what it is supposed to do (make sure to include the break statement).
-
-          .float-xs-right
-            = image_tag('lessons/dng_basic_cityscape/stage3/challenge2Visual2.png', class: 'canvas-example mx-3')
-
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/dng_basic_cityscape/stage3/challenge2Visual2.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Draw three buildings with different sizes, window, and roof types.
+            Draw three buildings with different sizes and window and roof types.
           %p
-            %span.highlight
-              Draw one building sitting on the ground at (20, 320) with 6 office units
-              across, 10 floors, type 1 windows, and a type 2 roof.
+            The first building sits on the ground at (20, 320) with 6 office units
+            per floor, 10 floors, type 1 windows, and a type 2 roof.
           %p
-            %span.highlight
-              Draw a second building at (136, 320) with 10 office units across, 6 floors,
-              type 2 windows, and a type 1 roof.
+            The second building sits on the ground at (136, 320) with 10 office units
+            per floor, 6 floors, type 2 windows, and a type 1 roof.
           %p
-            %span.highlight
-              Draw a third building at (316, 320) with 5 office units across, 14 floors,
-              type 3 windows, and a type 3 roof.
-          %p
-            If your drawing looks like the image to the right, mark the challenge
-            as complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:functions, :variables, :line_to, :switch_statements]
+            The third building sits on the ground at (316, 320) with 5 office units
+            per floor, 14 floors, type 3 windows, and a type 3 roof.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_switch_statements, :dng_translate, :dng_line_to]
           = render 'lessons/code_preview', stage: 3, challenge: 1, editor_id: 'dng_basic_cityscape_stage3_challenge1_editor'
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage3_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('dng_basic_cityscape_stage3_challenge2');
@@ -329,6 +468,10 @@
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE
 
             }
+            
+            // DRAW A BUILDING AT (20, 320) WITH 6 OFFICE UNITS, 10 FLOORS, TYPE 1 WINDOWS, TYPE 2 ROOF
+            // DRAW A BUILDING AT (136, 320) WITH 10 OFFICE UNITS, 6 FLOORS, TYPE 2 WINDOWS, TYPE 1 ROOF
+            // DRAW A BUILDING AT (316, 320) WITH 5 OFFICE UNITS, 14 FLOORS, TYPE 3 WINDOWS, TYPE 3 ROOF
 
         .visual.col-xs-6
           %h5
@@ -336,7 +479,6 @@
             %small (your drawing will display here)
           .canvas
             .background.hidden-xl-down= image_tag('lessons/dng_basic_cityscape/stage3/challenge2.png')
-            = image_tag('lessons/dng_basic_cityscape/stage3/challenge2Visual2.png', class: 'test-image')
             %canvas#dng_basic_cityscape_stage3_challenge2
           .alert
 
@@ -348,36 +490,85 @@
           %h2.py-2
             Draw Buildings with a Random Number of Floors
           %p
-            Right now, you have a drawBuilding() function that will draw a building for
-            you if you tell it how many office units across it is, how many floors it has,
-            the type of windows in its office units, and the type of roof it has.
-          %p
+            Right now, we have a
+            %code
+              drawBuilding()
+            function that draws a building if we tell it how many office units per
+            floor, how many floors, the type of windows, and the type of roof the building has.
             The next step is generating a building randomly, starting with the number of floors.
           %p
-            %span.highlight
-              In this example, we draw a random number of flags and select the type of flag randomly.
+            In this example, we draw a random number of flags and select the type of flag randomly.
           %p
-            To generate a random number, we use the function Math.random(). Math.random() returns
-            a random number between 0 and 1, including 0 but not including 1.
+            We start by assigning a random integer between 0 and 2 to the
+            %code
+              country
+            variable. We have modified the switch statement inside the
+            %code
+              drawFlag()
+            function so
+            %code
+              country == 0
+            is France,
+            %code
+              country == 1
+            is Colombia, and
+            %code
+              country == 2
+            is Thailand.
+          %pre
+            %code
+              :preserve
+                var country = Math.floor(3 * Math.random()) // Generates a random integer between 0 and 2
           %p
-            By multiplying Math.random() by 6, we get a random number between 0 and 6. However,
-            the random number will be a decimal. To convert it to an integer, we use the function
-            Math.floor(), which rounds a decimal down. This will give us a random integer between
-            0 and 5, so either 0, 1, 2, 3, 4, or 5.
+            We generate a random number using the
+            %code
+              Math.random()
+            function, which returns a random number greater than or equal to 0 and less than 1.
           %p
-            To get an integer between 3 and 8, we use 3 + Math.floor(6 * Math.random()).
+            By multiplying
+            %code
+              Math.random()
+            by 3, we get a random number between 0 and 3. However, the random number will be a decimal,
+            something like 1.748. To convert it to an integer, we use the
+            %code
+              Math.floor()
+            function to round the number down. This will give us a random integer between 0
+            and 2, so either 0, 1, or 2. The reason we will never get a 3 is because
+            %code
+              3 * Math.random()
+            is always less than 3 and we are rounding down.
           %p
-            %span.highlight
-              In the code for this example, we are drawing 2-5 flags. To randomize the type of flag,
-              we changed country to a number.
-            If country = 0, we will draw a French flag; if country = 1, we will draw a Colombian
-            flag; and if country = 2, we will draw a Thai flag.
+            We are using a for loop to draw multiple flags. The number of flags it draws is
+            a random integer between 2 and 5 assigned to the
+            %code
+              flagCount
+            variable:
+          %pre
+            %code
+              :preserve
+                var flagCount = 2 + Math.floor(4 * Math.random()); // Generates a random integer between 2 and 5
           %p
-            %span.highlight
-              Press "Run" to change the number and type of flag drawn.
+            To get a random integer between 2 and 5, we start by getting a random integer between 0 and 3.
+            Since there are four integers between 0 and 3, we use
+            %span
+              %code>
+                Math.floor(4 * Math.random())
+              \.
+            Note that we are multiplying
+            %code
+              Math.random()
+            by 4, not 3. Then, to increase the random integer to between 2 and 5, we simply add 2.
+          %p
+            Press "Run" to change the number and type of flag drawn.
             Can you figure out how you would edit the code to randomize the type of each individual
             flag in the drawing?
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor, :for_loops]
+          %p
+            To learn more about rounding and generating random numbers, visit the
+            = link_to_lesson('round() / floor() / ceil()', :dng_round, nil, class: 'reference-link', data: {slug: :dng_round})
+            and
+            = link_to_lesson('random()', :dng_random, nil, class: 'reference-link', data: {slug: :dng_random})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_for_loops, :dng_switch_statements, :dng_random, :dng_round]
 
         .col-xs-12
           .interactive.row.py-1
@@ -385,7 +576,19 @@
               :preserve
                 var canvas = document.getElementById('dng_basic_cityscape_stage3_example3');
                 var context = canvas.getContext('2d');
+                
+                var country = Math.floor(3 * Math.random()) // Generates a random integer between 0 and 2
+                var flagCount = 2 + Math.floor(4 * Math.random()); // Generates a random integer between 2 and 5
 
+                context.save();
+
+                for (var i = 0; i < flagCount; i = i + 1) {
+                  drawFlag(country);
+                  context.translate(100, 60);
+                }
+
+                context.restore();
+                
                 function drawFlag(country) {
                   context.save();
 
@@ -427,18 +630,6 @@
                   context.restore();
                 }
 
-                var flagType = Math.floor(3 * Math.random());
-                var flagCount = 2 + Math.floor(4 * Math.random());
-
-                context.save();
-
-                for (var i = 0; i < flagCount; i = i + 1) {
-                  drawFlag(flagType);
-                  context.translate(100, 60);
-                }
-
-                context.restore();
-
             .visual.col-xs-6
               %h5
                 Canvas
@@ -454,20 +645,29 @@
           %h2.challenge-title.py-2
             Challenge 3
           %p
-            %span.highlight
-              Instead of passing a number into your drawBuilding() function for the
-              number of office units on a floor, pass a variable with a random integer
-              between 6 and 20 (including 6 and 20).
+            Instead of passing a number into your
+            %code
+              drawBuilding()
+            function for the number of office units per floor, pass it a variable that's
+            been assigned a random integer between 6 and 20. Since there are 15 integers
+            between 6 and 20, make sure to multiply
+            %code
+              Math.random()
+            by 15, not 14.
           %p
-            Press "Run" multiple times to make sure the drawBuilding() function is drawing
-            a building with a random number of floors.
-            %span.highlight
-              Then, once you feel satisfied with your drawings, mark the challenge as complete by
-              selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
+            Draw a building sitting on the ground at (50, 320) with 12 office units on a floor,
+            a random number of floors, type 0 windows, and a type 1 roof.
+          %p
+            Press "Run" multiple times to make sure the
+            %code
+              drawBuilding()
+            function is drawing a building with a random number of floors between 6 and 20
+            Then, once you feel satisfied with your drawings, mark the challenge as complete by
+            selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_functions, :dng_random, :dng_round]
           = render 'lessons/code_preview', stage: 3, challenge: 2, editor_id: 'dng_basic_cityscape_stage3_challenge2_editor'
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage3_challenge3_editor'} do
           :preserve
             var canvas = document.getElementById('dng_basic_cityscape_stage3_challenge3');
@@ -491,9 +691,9 @@
 
             }
 
-            // GENERATE A RANDOM NUMBER BETWEEN 6 AND 20 (INCLUDING 6 AND 20) AND STORE IT IN A VARIABLE HERE
+            // GENERATE A RANDOM INTEGER BETWEEN 6 AND 20 AND STORE IT IN A VARIABLE HERE
 
-            // USE THE VARIABLE TO DRAW A BUILDING WITH A RANDOM NUMBER OF FLOORS HERE
+            // DRAW A BUILDING AT (50, 320) WITH 12 OFFICE UNITS, RANDOM FLOORS, TYPE 0 WINDOWS, TYPE 1 ROOF
 
         .visual.col-xs-6
           %h5
@@ -515,21 +715,53 @@
             are going to randomize the number of office units, the type of windows, and
             the type of roof, too.
           %p
-            %span.highlight
-              But before you do that, we are going to create a function for generating random integers.
+            But before you do that, we are going to create a function for generating random integers.
           %p
-            Math.random() is great for generating random decimals, but generating random
+            The
+            %code
+              Math.random()
+            function is great for generating random decimals, but generating random
             integers is more complicated. It takes more steps and it's easy to make a mistake.
           %p
-            %span.highlight
-              In this example, the randomInteger() function takes a whole number, and returns a
-              random integer between 0 and that whole number (including 0 and the whole number).
-            For example, randomInteger(10) returns integers between 0 and 10, including 0 and 10.
+            In this example, we create the
+            %code
+              randomInteger()
+            function, which takes an integer assigned to the parameter
+            %code
+              max
+            and returns a random integer between 0 and
+            %span
+              %code>
+                max
+              \.
+            For example,
+            %code
+              randomInteger(10)
+            returns a random integer between 0 and 10, including 0 and 10.
           %p
-            We use the randomInteger() function to draw a rectangle with a random size and position.
-            %span.highlight
-              Press "Run" to see the rectangle's size and position change.
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor, :fill_rect]
+            Because the number of integers between 0 and
+            %code
+              max
+            is actually
+            %span
+              %code>
+                max + 1
+              ,
+            we use
+            %code
+              Math.floor((max + 1) * Math.random())
+            to generate the random integer and a return statement to return it.
+          %p
+            We use the
+            %code
+              randomInteger()
+            function to draw a rectangle with a random size and position.
+            Press "Run" to see the rectangle's size and position change.
+          %p
+            To learn more about returning values from functions, visit the
+            = link_to_lesson('Functions', :dng_functions, nil, class: 'reference-link', data: {slug: :dng_functions})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_functions, :dng_fill_rect, :dng_random, :dng_round]
 
         .col-xs-12
           .interactive.row.py-1
@@ -544,10 +776,10 @@
                   return i;
                 }
 
-                var x = randomInteger(200);
-                var y = randomInteger(100);
-                var w = randomInteger(400);
-                var h = randomInteger(200);
+                var x = randomInteger(200); // A random integer between 0 and 200
+                var y = randomInteger(100); // A random integer between 0 and 100
+                var w = randomInteger(400); // A random integer between 0 and 400
+                var h = randomInteger(200); // A random integer between 0 and 200
 
                 context.save();
                 context.fillStyle = '#8A2BE2';
@@ -569,35 +801,103 @@
           %h2.challenge-title.py-2
             Challenge 4
           %p
-            Before we can use the randomInteger() function to draw random buildings,
-            we need to make a change to it.
+            Before we can use the
+            %code
+              randomInteger()
+            function to draw random buildings, we need to make a change to it.
           %p
-            Right now, randomInteger() returns an integer between 0 and max. Since we
-            don't want to draw buildings with 0 floors or 0 office units on a floor, we
-            need it to return an integer between min and max, including min and max.
+            Right now,
+            %code
+              randomInteger()
+            returns an integer between 0 and
+            %span
+              %code>
+                max
+              \.
+            Since we don't want to draw buildings with 0 floors or 0 office units per
+            floor, we need it to return an integer between
+            %code
+              min
+            and
+            %span
+              %code>
+                max
+              ,
+            including
+            %code
+              min
+            and
+            %span
+              %code>
+                max
+              \.
           %p
-            %span.highlight
-              Change the randomInteger() function so it returns an integer between a
-              min value and a max value, including those two values.
+            Change the
+            %code
+              randomInteger()
+            function so it returns an integer between a
+            %code
+              min
+            value and a
+            %code
+              max
+            value, including those two values. Remember that to get a random integer
+            between 0 and 14, we multiply
+            %code
+              Math.random()
+            by 15, not 14, because there are 15 integers between 0 and 14.
           %p
-            %span.highlight
-              Then use the randomInteger() function to draw a random building with 6-20
-              floors, 4-10 office units on a floor, and random window and roof types.
+            Then, use the
+            %code
+              randomInteger()
+            function to draw a random building sitting on the ground at (50, 320) with 4-10
+            office units per floor, 6-20 floors, and random window and roof types.
           %p
-            Note: If you want to restrict the type of roof depending on the width of the
-            building, you can do that with an if statement. For our cityscape, we randomly
-            choose a roofType between 0-1 if units > 8, a roofType between 0-2 else if
-            units > 6, and a roofType between 0-3 for any other number of office units.
+            Note: If you want to restrict the type of roof depending on the number of office
+            units per floor, we can do that with an if statement. While we aren't going to introduce
+            if statements in this challenge, this is the code we used to generate a random roof type:
+          %pre
+            %code
+              :preserve
+                var roofType;
+                
+                if (units > 8) {
+                  roofType = randomInteger(0, 1);
+                } else if (units > 6) {
+                  roofType = randomInteger(0, 2);
+                } else {
+                  roofType = randomInteger(0, 3);
+                }
           %p
-            Press "Run" multiple times to make sure the drawBuilding() function is really
-            drawing a random building.
-            %span.highlight
-              Then, once you feel satisfied with your drawings, mark the challenge as complete by
-              selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor]
+            Because we are using the number of office units per floor, assigned to the
+            variable
+            %span
+              %code>
+                units
+              ,
+            make sure to generate a random value for
+            %code
+              units
+            first.
+          %p
+            Press "Run" multiple times to see if the
+            %code
+              drawBuilding()
+            function is actually drawing a random building. Make sure you see buildings
+            with type 3 windows and roofs. A building with no windows, means the program
+            is generating a random
+            %code
+              windowType
+            not covered by the cases in the
+            %code
+              drawWindow()
+            function's switch statement.
+            Once you feel satisfied with your drawings, mark the challenge as complete by
+            selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_functions, :dng_random, :dng_round]
           = render 'lessons/code_preview', stage: 3, challenge: 3, editor_id: 'dng_basic_cityscape_stage3_challenge3_editor'
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_basic_cityscape_stage3_challenge4_editor'} do
           :preserve
             var canvas = document.getElementById('dng_basic_cityscape_stage3_challenge4');
@@ -627,9 +927,12 @@
 
             }
 
-            // GENERATE RANDOM NUMBERS FOR UNITS, FLOORS, WINDOWTYPE, AND ROOFTYPE HERE
+            // GENERATE A RANDOM INTEGER BETWEEN 4 AND 10 FOR THE NUMBER OF OFFICE UNITS PER FLOOR
+            // GENERATE A RANDOM INTEGER BETWEEN 6 AND 20 FOR THE NUMBER OF FLOORS
+            // GENERATE A RANDOM INTEGER BETWEEN 0 AND 3 FOR THE TYPE OF WINDOWS
+            // GENERATE A RANDOM INTEGER BETWEEN 0 AND 3 FOR THE TYPE OF ROOF
 
-            // USE THOSE RANDOM NUMBERS TO DRAW A RANDOM BUILDING HERE
+            // DRAW A RANDOM BUILDING AT (50, 320)
 
         .visual.col-xs-6
           %h5
