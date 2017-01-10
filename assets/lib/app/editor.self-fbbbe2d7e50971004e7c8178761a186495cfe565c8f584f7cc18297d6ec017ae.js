@@ -118,10 +118,12 @@
     };
 
     Editor.prototype.reset = function() {
+      var ref;
       this.hideLog();
       this.clearLog();
       this.canvas.reset();
-      return this.setCode(this.startCode);
+      this.setCode(this.startCode);
+      return (ref = App.currentProgress) != null ? ref.clearEditorValue(this.editorElement.id) : void 0;
     };
 
     Editor.prototype.run = function(callback) {

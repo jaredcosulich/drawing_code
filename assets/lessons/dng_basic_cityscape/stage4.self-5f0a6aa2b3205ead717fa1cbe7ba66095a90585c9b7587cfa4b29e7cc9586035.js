@@ -12,11 +12,10 @@
   };
 
   initDngBasicCityscapeStage4Challenge1 = function(page) {
-    var canvas, challenge, editor, points;
+    var canvas, challenge, editor;
     challenge = page.find('#challenge1');
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
-    points = [];
     return challenge.find('.run').click(function() {
       return canvas.selfAssess(function() {
         return App.currentProgress.challengeComplete('dng_basic_cityscape_stage4', 'challenge1');
@@ -25,11 +24,10 @@
   };
 
   initDngBasicCityscapeStage4Challenge2 = function(page) {
-    var canvas, challenge, editor, points;
+    var canvas, challenge, editor;
     challenge = page.find('#challenge2');
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
-    points = [];
     return challenge.find('.run').click(function() {
       return canvas.selfAssess(function() {
         return App.currentProgress.challengeComplete('dng_basic_cityscape_stage4', 'challenge2');
@@ -38,11 +36,10 @@
   };
 
   initDngBasicCityscapeStage4Challenge3 = function(page) {
-    var canvas, challenge, editor, points;
+    var canvas, challenge, editor;
     challenge = page.find('#challenge3');
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
-    points = [];
     return challenge.find('.run').click(function() {
       return canvas.selfAssess(function() {
         return App.currentProgress.challengeComplete('dng_basic_cityscape_stage4', 'challenge3');
@@ -51,11 +48,10 @@
   };
 
   initDngBasicCityscapeStage4Challenge4 = function(page) {
-    var canvas, challenge, editor, points;
+    var canvas, challenge, editor;
     challenge = page.find('#challenge4');
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
-    points = [];
     return challenge.find('.run').click(function() {
       return canvas.selfAssess(function() {
         return App.currentProgress.challengeComplete('dng_basic_cityscape_stage4', 'challenge4');

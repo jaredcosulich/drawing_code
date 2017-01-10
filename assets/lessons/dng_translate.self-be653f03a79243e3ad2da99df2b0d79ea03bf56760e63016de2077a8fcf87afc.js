@@ -189,11 +189,8 @@
       var drawPineTree, drawTheGround;
       drawTheGround = function(groundY) {
         context.save();
-        context.strokeStyle = 'Black';
-        context.beginPath();
-        context.moveTo(0, groundY);
-        context.lineTo(canvas.width, groundY);
-        context.stroke();
+        context.fillStyle = 'Black';
+        context.fillRect(0, groundY, canvas.width, 2);
         context.restore();
       };
       drawPineTree = function(centerX, groundY) {

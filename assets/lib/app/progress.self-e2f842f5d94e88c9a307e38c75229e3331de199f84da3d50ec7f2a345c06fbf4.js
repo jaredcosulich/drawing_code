@@ -127,6 +127,13 @@
       return localStorage.getItem(editorId);
     };
 
+    Progress.prototype.clearEditorValue = function(editorId) {
+      if (!this.storageAvailable) {
+        return;
+      }
+      return localStorage.removeItem(editorId);
+    };
+
     Progress.prototype.saveDrawing = function(slug, title, description, code) {
       var drawings, i, len, ref, t;
       if (!this.storageAvailable) {

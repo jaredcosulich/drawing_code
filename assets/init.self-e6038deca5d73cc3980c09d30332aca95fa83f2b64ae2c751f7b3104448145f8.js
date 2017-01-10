@@ -49,17 +49,24 @@
       freeformElement = ref[i];
       freeform = $(freeformElement);
       canvas = new App.Canvas(freeform.find('canvas'));
-      results.push(editor = new App.Editor(freeform.find('.editor'), canvas));
+      editor = new App.Editor(freeform.find('.editor'), canvas);
+      editor.run();
+      results.push(setTimeout((function() {
+        return canvas.canvas.focus();
+      }), 10));
     }
     return results;
   };
 
   initOutput = function() {
-    return App.output = function(canvasId) {
+    App.output = function(canvasId) {
       var canvas, img;
       canvas = document.getElementById(canvasId);
       img = canvas.toDataURL("image/png");
       return document.write('<img src="' + img + '"/>');
+    };
+    return App.outputCode = function() {
+      return console.log($('.editor').data('editor').getCode());
     };
   };
 
