@@ -18,7 +18,7 @@
                   .card-text
                     = render partial: "examples/info/#{example}_details"
                   .card-footer
-          - if @examples[section].length > (index * 3)
-            .row
+          - if @examples[section].length > ((index + 1) * 3)
+            .row.more
               .col-xs-12.text-xs-center.pt-1
                 %button.btn.btn-primary View More
