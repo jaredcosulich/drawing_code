@@ -1,0 +1,55 @@
+:preserve
+  var canvas = document.getElementById('flappy_square_stage1_lesson6');
+  var context = canvas.getContext('2d');
+
+  var gravity = 0.4;
+  var size = 10;
+  var interval;
+  var x = 0;
+  var y = 0;
+  var xVelocity = 0;
+  var yVelocity = 0;
+
+  function drawBall() {
+    context.beginPath();
+    context.arc(x, y, size, 0, Math.PI*2, true);
+    context.closePath();
+    context.fill();
+  }
+
+  function adjustPosition() {
+    yVelocity -= gravity;
+    x += xVelocity;
+    y -= yVelocity;
+  }
+
+  function runProgram() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    adjustPosition();
+    drawBall();
+  }
+
+  function resetAnimation() {
+    x = 0;
+    y = canvas.height - 60;
+    xVelocity = 8;
+    yVelocity = 12;
+  }
+
+  function startAnimation() {
+    interval = setInterval(runProgram, 20);
+    resetAnimation();
+  }
+
+  function pauseAnimation() {
+    clearInterval(interval);
+
+    context.font = "20px serif";
+    context.textAlign = 'center';
+    context.fillText('Click anywhere on the canvas to start the animation.', canvas.width / 2, 50);
+  }
+
+  canvas.addEventListener('click', resetAnimation);
+  canvas.addEventListener('focus', startAnimation);
+  canvas.addEventListener('blur', pauseAnimation);
+  pauseAnimation();

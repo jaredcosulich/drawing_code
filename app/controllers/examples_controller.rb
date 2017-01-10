@@ -6,32 +6,17 @@ class ExamplesController < ApplicationController
       'Animations',
       'Games'
     ]
-    
+
     @examples = {
       'Drawings' => [
-        :sunrise_text,
-        :sunrise_text,
-        :sunrise_text,
-        :sunrise_text,
-        :sunrise_text,
-        :sunrise_text,
+        :sunrise_text
       ],
       'Animations' => [
         :rolling_ball,
-        :rolling_ball,
-        :rolling_ball,
-        :rolling_ball,
-        :rolling_ball,
-        :rolling_ball,
-        :rolling_ball,
+        :simple_cannonball
       ],
       'Games' => [
-        :flappy_square,
-        :flappy_square,
-        :flappy_square,
-        :flappy_square,
-        :flappy_square,
-        :flappy_square,
+        :flappy_square
       ]
     }
   end
