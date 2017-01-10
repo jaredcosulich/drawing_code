@@ -1,5 +1,5 @@
 initDngFillRectChallenges = ->
-  if (page = $('#dng_fill_rect')).length > 0
+  if (page = $('#fill_rect')).length > 0
     initDngFillRectChallenge1(page)
     initDngFillRectChallenge2(page)
     initDngFillRectChallenge3(page)
@@ -23,7 +23,7 @@ initDngFillRectChallenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your red rectangle is at the correct coordinates and it has the correct width and height!'
-        App.currentProgress.challengeComplete('dng_fill_rect', 'challenge1')
+        App.currentProgress.challengeComplete('fill_rect', 'challenge1')
       else
         message = 'Nice try, but you need to draw a red rectangle at (80, 40) with a width of 300 and a height of 200.'
 
@@ -49,7 +49,7 @@ initDngFillRectChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your white, red, and green rectangles are positioned correctly!'
-        App.currentProgress.challengeComplete('dng_fill_rect', 'challenge2')
+        App.currentProgress.challengeComplete('fill_rect', 'challenge2')
       else
         message = 'Nice try, but you need to position and size the white, red, and green rectangles correctly.'
 
@@ -73,7 +73,7 @@ initDngFillRectChallenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your dark blue rectangle is directly above the dark violet rectangle!'
-        App.currentProgress.challengeComplete('dng_fill_rect', 'challenge3')
+        App.currentProgress.challengeComplete('fill_rect', 'challenge3')
       else
         message = 'Nice try, but you need to draw the dark blue rectangle directly above the dark violet rectangle with the correct dimensions.'
 
@@ -99,7 +99,7 @@ initDngFillRectChallenge4 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> All five of your green squares are positioned and drawn correctly!'
-        App.currentProgress.challengeComplete('dng_fill_rect', 'challenge4')
+        App.currentProgress.challengeComplete('fill_rect', 'challenge4')
       else
         message = 'Nice try, but not all of your five green squares are positioned and drawn correctly.'
 
@@ -123,7 +123,7 @@ initDngFillRectChallenge5 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> The sky blue and saddle brown rectangles are layered, positioned, and drawn correctly!'
-        App.currentProgress.challengeComplete('dng_fill_rect', 'challenge5')
+        App.currentProgress.challengeComplete('fill_rect', 'challenge5')
       else
         message = 'Nice try, but the sky blue and saddle brown rectangles are not layered, positioned, and drawn correctly.'
 
@@ -150,7 +150,7 @@ initDngFillRectChallenge6 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your drawing matches the image precisely!'
-        App.currentProgress.challengeComplete('dng_fill_rect', 'challenge6')
+        App.currentProgress.challengeComplete('fill_rect', 'challenge6')
       else
         message = 'Nice try, but your drawing does not match the image precisely.'
 

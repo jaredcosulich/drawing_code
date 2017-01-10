@@ -1,5 +1,5 @@
 initDngForLoopsChallenges = ->
-  if (page = $('#dng_for_loops')).length > 0
+  if (page = $('#for_loops')).length > 0
     initDngForLoopsChallenge1(page)
     initDngForLoopsChallenge2(page)
     initDngForLoopsChallenge3(page)
@@ -23,7 +23,7 @@ initDngForLoopsChallenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your for loop is drawing the rectangles correctly!'
-        App.currentProgress.challengeComplete('dng_for_loops', 'challenge1')
+        App.currentProgress.challengeComplete('for_loops', 'challenge1')
       else
         message = 'Nice try, but you need to change the for loop to draw the rectangles correctly.'
 
@@ -45,7 +45,7 @@ initDngForLoopsChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your for loop is drawing the rectangles correctly!'
-        App.currentProgress.challengeComplete('dng_for_loops', 'challenge2')
+        App.currentProgress.challengeComplete('for_loops', 'challenge2')
       else
         message = 'Nice try, but you need to create a for loop to draw the rectangles correctly.'
 
@@ -73,7 +73,7 @@ initDngForLoopsChallenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your for loop is drawing the squares using transformations correctly!'
-        App.currentProgress.challengeComplete('dng_for_loops', 'challenge3')
+        App.currentProgress.challengeComplete('for_loops', 'challenge3')
       else
         message = 'Nice try, but you need to create a for loop to draw the squares using transformations correctly.'
 
@@ -101,7 +101,7 @@ initDngForLoopsChallenge4 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your for loop is drawing rectangles and filling them with shades of blue correctly!'
-        App.currentProgress.challengeComplete('dng_for_loops', 'challenge4')
+        App.currentProgress.challengeComplete('for_loops', 'challenge4')
       else
         message = 'Nice try, but you need to create a for loop to draw rectangles and fill them with shades of blue correctly.'
 
@@ -129,7 +129,7 @@ initDngForLoopsChallenge5 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your for loop is iterating over the array and drawing the bar graph correctly!'
-        App.currentProgress.challengeComplete('dng_for_loops', 'challenge5')
+        App.currentProgress.challengeComplete('for_loops', 'challenge5')
       else
         message = 'Nice try, but you need to create a for loop to iterate over the array and draw the bar graph correctly.'
 
@@ -164,7 +164,7 @@ initDngForLoopsChallenge6 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your nested for loops are drawing the grid of rectangles correctly!'
-        App.currentProgress.challengeComplete('dng_for_loops', 'challenge6')
+        App.currentProgress.challengeComplete('for_loops', 'challenge6')
       else
         message = 'Nice try, but you need to create nested for loops to draw the grid of rectangles correctly.'
 

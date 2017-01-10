@@ -1,5 +1,5 @@
 initDngFillStyleChallenges = ->
-  if (page = $('#dng_fill_style')).length > 0
+  if (page = $('#fill_style')).length > 0
     initDngFillStyleChallenge1(page)
     initDngFillStyleChallenge2(page)
     initDngFillStyleChallenge3(page)
@@ -20,7 +20,7 @@ initDngFillStyleChallenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your rectangle is the correct color!'
-        App.currentProgress.challengeComplete('dng_fill_style', 'challenge1')
+        App.currentProgress.challengeComplete('fill_style', 'challenge1')
       else
         message = 'Nice try, but the rectangle is not the correct color.'
 
@@ -44,7 +44,7 @@ initDngFillStyleChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your rectangles are the correct color!'
-        App.currentProgress.challengeComplete('dng_fill_style', 'challenge2')
+        App.currentProgress.challengeComplete('fill_style', 'challenge2')
       else
         message = 'Nice try, but the rectangles are not the correct color.'
 
@@ -75,7 +75,7 @@ initDngFillStyleChallenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> The lines of code are all in the correct order!'
-        App.currentProgress.challengeComplete('dng_fill_style', 'challenge3')
+        App.currentProgress.challengeComplete('fill_style', 'challenge3')
       else
         message = 'Nice try, but you need to rearrange the lines of code to draw the image to the right.'
 

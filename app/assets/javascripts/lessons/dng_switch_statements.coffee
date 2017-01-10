@@ -1,5 +1,5 @@
 initDngSwitchStatementsChallenges = ->
-  if (page = $('#dng_switch_statements')).length > 0
+  if (page = $('#switch_statements')).length > 0
     initDngSwitchStatementsChallenge1(page)
     initDngSwitchStatementsChallenge2(page)
     initDngSwitchStatementsChallenge3(page)
@@ -13,7 +13,7 @@ initDngSwitchStatementsChallenge1 = (page) ->
   
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_switch_statements', 'challenge1')
+      App.currentProgress.challengeComplete('switch_statements', 'challenge1')
 
 
 initDngSwitchStatementsChallenge2 = (page) ->
@@ -54,7 +54,7 @@ initDngSwitchStatementsChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You used a switch statement to draw three different flags!'
-        App.currentProgress.challengeComplete('dng_switch_statements', 'challenge2')
+        App.currentProgress.challengeComplete('switch_statements', 'challenge2')
       else
         message = 'Nice try, but you need to create a switch statement to draw three different flags.'
 
@@ -102,7 +102,7 @@ initDngSwitchStatementsChallenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You used a switch statement to draw three red doors with increasing levels of detail!'
-        App.currentProgress.challengeComplete('dng_switch_statements', 'challenge3')
+        App.currentProgress.challengeComplete('switch_statements', 'challenge3')
       else
         message = 'Nice try, but you need to create a switch statement to draw three red doors with increasing levels of detail.'
 
@@ -116,7 +116,7 @@ initDngSwitchStatementsChallenge4 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_switch_statements', 'challenge4')
+      App.currentProgress.challengeComplete('switch_statements', 'challenge4')
 
 
 $(document).on('initialization:complete', initDngSwitchStatementsChallenges)

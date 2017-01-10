@@ -1,5 +1,5 @@
 initDngWhileLoopsChallenges = ->
-  if (page = $('#dng_while_loops')).length > 0
+  if (page = $('#while_loops')).length > 0
     initDngWhileLoopsChallenge1(page)
     initDngWhileLoopsChallenge2(page)
     initDngWhileLoopsChallenge3(page)
@@ -47,7 +47,7 @@ initDngWhileLoopsChallenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your while loop is drawing the trees on the ground correctly!'
-        App.currentProgress.challengeComplete('dng_while_loops', 'challenge1')
+        App.currentProgress.challengeComplete('while_loops', 'challenge1')
       else
         message = 'Nice try, but you need to update the while loop to draw the trees on the ground correctly.'
 
@@ -78,7 +78,7 @@ initDngWhileLoopsChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You created a while loop that draws the same six squares as the for loop, just shifted to the right!'
-        App.currentProgress.challengeComplete('dng_while_loops', 'challenge2')
+        App.currentProgress.challengeComplete('while_loops', 'challenge2')
       else
         message = 'Nice try, but you need to create a while loop that will draw the same six squares as the for loop, just shifted to the right.'
 
@@ -92,7 +92,7 @@ initDngWhileLoopsChallenge3 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_while_loops', 'challenge3')
+      App.currentProgress.challengeComplete('while_loops', 'challenge3')
 
 
 $(document).on('initialization:complete', initDngWhileLoopsChallenges)

@@ -1,5 +1,5 @@
 initDngTranslateChallenges = ->
-  if (page = $('#dng_translate')).length > 0
+  if (page = $('#translate')).length > 0
     initDngTranslateChallenge1(page)
     initDngTranslateChallenge2(page)
     initDngTranslateChallenge3(page)
@@ -28,7 +28,7 @@ initDngTranslateChallenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You moved the origin of the coordinate system to draw the French flag at the correct position!'
-        App.currentProgress.challengeComplete('dng_translate', 'challenge1')
+        App.currentProgress.challengeComplete('translate', 'challenge1')
       else
         message = 'Nice try, but you need to move the origin of the coordinate system to draw the French flag at the correct position.'
 
@@ -63,7 +63,7 @@ initDngTranslateChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You positioned the three French flags correctly!'
-        App.currentProgress.challengeComplete('dng_translate', 'challenge2')
+        App.currentProgress.challengeComplete('translate', 'challenge2')
       else
         message = 'Nice try, but you need to position the three French flags correctly.'
 
@@ -98,7 +98,7 @@ initDngTranslateChallenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You positioned the two French flags correctly!'
-        App.currentProgress.challengeComplete('dng_translate', 'challenge3')
+        App.currentProgress.challengeComplete('translate', 'challenge3')
       else
         message = 'Nice try, but you need to position the two French flags correctly.'
 
@@ -136,7 +136,7 @@ initDngTranslateChallenge4 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You updated the function and positioned the four pine trees correctly!'
-        App.currentProgress.challengeComplete('dng_translate', 'challenge4')
+        App.currentProgress.challengeComplete('translate', 'challenge4')
       else
         message = 'Nice try, but you need to update the function and position the four pine trees correctly.'
 
@@ -150,7 +150,7 @@ initDngTranslateChallenge5 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_translate', 'challenge5')
+      App.currentProgress.challengeComplete('translate', 'challenge5')
 
 
 initDngTranslateChallenge6 = (page) ->
@@ -190,7 +190,7 @@ initDngTranslateChallenge6 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You updated the function to position a pine tree by its anchor point correctly!'
-        App.currentProgress.challengeComplete('dng_translate', 'challenge6')
+        App.currentProgress.challengeComplete('translate', 'challenge6')
       else
         message = 'Nice try, but you need to update the function to position a pine tree by its anchor point and then draw a pine tree on the ground.'
 

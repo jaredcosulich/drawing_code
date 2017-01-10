@@ -1,5 +1,5 @@
 initDngBasicCityscapeStage2Challenges = ->
-  if (page = $('#dng_basic_cityscape_stage2')).length > 0
+  if (page = $('#basic_cityscape_stage2')).length > 0
     initDngBasicCityscapeStage2Challenge1(page)
     initDngBasicCityscapeStage2Challenge2(page)
     initDngBasicCityscapeStage2Challenge3(page)
@@ -42,7 +42,7 @@ initDngBasicCityscapeStage2Challenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You moved the coordinate system to draw a window in the top left office of the building!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage2', 'challenge1')
+        App.currentProgress.challengeComplete('basic_cityscape_stage2', 'challenge1')
       else
         message = 'Nice try, but you need to move the coordinate system to draw a window in the top left office of the building.'
 
@@ -90,7 +90,7 @@ initDngBasicCityscapeStage2Challenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You used a for loop to draw a window in each office unit on the top floor of the building!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage2', 'challenge2')
+        App.currentProgress.challengeComplete('basic_cityscape_stage2', 'challenge2')
       else
         message = 'Nice try, but you need to use a for loop to draw a window in each office unit on the top floor of the building.'
 
@@ -144,7 +144,7 @@ initDngBasicCityscapeStage2Challenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You used two for loops to draw a window in every office unit on every floor of the building!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage2', 'challenge3')
+        App.currentProgress.challengeComplete('basic_cityscape_stage2', 'challenge3')
       else
         message = 'Nice try, but you need to use two for loops to draw a window in every office unit on every floor of the building.'
 

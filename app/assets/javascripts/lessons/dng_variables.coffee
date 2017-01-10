@@ -1,5 +1,5 @@
 initDngVariablesChallenges = ->
-  if (page = $('#dng_variables')).length > 0
+  if (page = $('#variables')).length > 0
     initDngVariablesChallenge1(page)
     initDngVariablesChallenge2(page)
     initDngVariablesChallenge3(page)
@@ -22,7 +22,7 @@ initDngVariablesChallenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your variables contain the correct values!'
-        App.currentProgress.challengeComplete('dng_variables', 'challenge1')
+        App.currentProgress.challengeComplete('variables', 'challenge1')
       else
         message = 'Nice try, but your variables do not contain the correct values.'
 
@@ -45,7 +45,7 @@ initDngVariablesChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your variables contain the correct values!'
-        App.currentProgress.challengeComplete('dng_variables', 'challenge2')
+        App.currentProgress.challengeComplete('variables', 'challenge2')
       else
         message = 'Nice try, but your variables do not contain the correct values.'
 
@@ -69,7 +69,7 @@ initDngVariablesChallenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your variable expressions are correct!'
-        App.currentProgress.challengeComplete('dng_variables', 'challenge3')
+        App.currentProgress.challengeComplete('variables', 'challenge3')
       else
         message = 'Nice try, but your variable expressions are incorrect.'
 
@@ -94,7 +94,7 @@ initDngVariablesChallenge4 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your variable expressions are correct!'
-        App.currentProgress.challengeComplete('dng_variables', 'challenge4')
+        App.currentProgress.challengeComplete('variables', 'challenge4')
       else
         message = 'Nice try, but your variable expressions are incorrect.'
 
@@ -121,7 +121,7 @@ initDngVariablesChallenge5 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your variable expressions are correct!'
-        App.currentProgress.challengeComplete('dng_variables', 'challenge5')
+        App.currentProgress.challengeComplete('variables', 'challenge5')
       else
         message = 'Nice try, but your variable expressions are incorrect.'
 

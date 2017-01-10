@@ -1,5 +1,5 @@
 initDngSaveChallenges = ->
-  if (page = $('#dng_save')).length > 0
+  if (page = $('#save')).length > 0
     initDngSaveChallenge1(page)
     initDngSaveChallenge2(page)
     initDngSaveChallenge3(page)
@@ -30,7 +30,7 @@ initDngSaveChallenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You rearranged the lines of code and saved and restored the drawing state correctly!'
-        App.currentProgress.challengeComplete('dng_save', 'challenge1')
+        App.currentProgress.challengeComplete('save', 'challenge1')
       else
         message = 'Nice try, but you need rearrange the lines of code to save and restore the drawing state correctly.'
 
@@ -86,7 +86,7 @@ initDngSaveChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You defined the fillWhiteCircle() function correctly and made it self-contained!'
-        App.currentProgress.challengeComplete('dng_save', 'challenge2')
+        App.currentProgress.challengeComplete('save', 'challenge2')
       else
         message = 'Nice try, but you need to define the fillWhiteCircle() function correctly and make it self-contained.'
 
@@ -126,7 +126,7 @@ initDngSaveChallenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You drew the image by saving and restoring multiple drawing states to the stack in the correct order!'
-        App.currentProgress.challengeComplete('dng_save', 'challenge3')
+        App.currentProgress.challengeComplete('save', 'challenge3')
       else
         message = 'Nice try, but you need to draw the image by saving and restoring multiple drawing states to the stack in the correct order.'
 
@@ -175,7 +175,7 @@ initDngSaveChallenge4 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You drew the letter H by saving and restoring the position of the coordinate system in the correct order!'
-        App.currentProgress.challengeComplete('dng_save', 'challenge4')
+        App.currentProgress.challengeComplete('save', 'challenge4')
       else
         message = 'Nice try, but you need to draw the letter H by saving and restoring the position of the coordinate system in the correct order.'
 
@@ -220,7 +220,7 @@ initDngSaveChallenge5 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You drew the letter X by saving and restoring the position of the coordinate system in the correct order!'
-        App.currentProgress.challengeComplete('dng_save', 'challenge5')
+        App.currentProgress.challengeComplete('save', 'challenge5')
       else
         message = 'Nice try, but you need to draw the letter X by saving and restoring the position of the coordinate system in the correct order.'
 

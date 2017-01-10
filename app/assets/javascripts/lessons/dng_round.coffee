@@ -1,5 +1,5 @@
 initDngRoundChallenges = ->
-  if (page = $('#dng_round')).length > 0
+  if (page = $('#round')).length > 0
     initDngRoundChallenge1(page)
     initDngRoundChallenge2(page)
     initDngRoundChallenge3(page)
@@ -24,7 +24,7 @@ initDngRoundChallenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You rounded the dimensions of the rectangle correctly!'
-        App.currentProgress.challengeComplete('dng_round', 'challenge1')
+        App.currentProgress.challengeComplete('round', 'challenge1')
       else
         message = 'Nice try, but you need to round the values of a and b up to get the dimensions of the rectangle.'
 
@@ -56,7 +56,7 @@ initDngRoundChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You have calculated and rounded the RGB values correctly!'
-        App.currentProgress.challengeComplete('dng_round', 'challenge2')
+        App.currentProgress.challengeComplete('round', 'challenge2')
       else
         message = 'Nice try, but you need to calculate and round the RGB values, and use them to fill the rectangles.'
 
@@ -89,7 +89,7 @@ initDngRoundChallenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You rounded the dimensions of the rectangle correctly!'
-        App.currentProgress.challengeComplete('dng_round', 'challenge3')
+        App.currentProgress.challengeComplete('round', 'challenge3')
       else
         message = 'Nice try, but you need round the width of the rectangle to the nearest multiple of 50 and the height to the nearest multiple of 30.'
 

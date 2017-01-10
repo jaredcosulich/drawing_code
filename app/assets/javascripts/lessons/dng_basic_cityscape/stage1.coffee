@@ -1,5 +1,5 @@
 initDngBasicCityscapeStage1Challenges = ->
-  if (page = $('#dng_basic_cityscape_stage1')).length > 0
+  if (page = $('#basic_cityscape_stage1')).length > 0
     initDngBasicCityscapeStage1Challenge1(page)
     initDngBasicCityscapeStage1Challenge2(page)
     initDngBasicCityscapeStage1Challenge3(page)
@@ -31,7 +31,7 @@ initDngBasicCityscapeStage1Challenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You drew the building and positioned the ground correctly!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge1')
+        App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge1')
       else
         message = 'Nice try, but you need to draw the building and then figure out where to draw the ground correctly.'
 
@@ -66,7 +66,7 @@ initDngBasicCityscapeStage1Challenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You drew the gray building with the correct size and position, and positioned the ground beneath it!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge2')
+        App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge2')
       else
         message = 'Nice try, but you need to draw the gray building with the correct size and position, and position the ground beneath it.'
 
@@ -118,7 +118,7 @@ initDngBasicCityscapeStage1Challenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You drew the gray building with the correct size and position, and positioned the ground beneath it!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge3')
+        App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge3')
       else
         message = 'Nice try, but you need to draw the gray building with the correct size and position, and position the ground beneath it.'
 
@@ -147,7 +147,7 @@ initDngBasicCityscapeStage1Challenge4 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You defined and used a function to draw both buildings with the correct size and position!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge4')
+        App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge4')
       else
         message = 'Nice try, but you need to define and then use a function to draw two buildings with the correct size and position.'
 
@@ -186,7 +186,7 @@ initDngBasicCityscapeStage1Challenge5 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You defined and used a function to draw both buildings anchored to the ground at the correct position!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge5')
+        App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge5')
       else
         message = 'Nice try, but you need to define and then use a function to draw two buildings anchored to the ground at the correct position.'
 
@@ -228,7 +228,7 @@ initDngBasicCityscapeStage1Challenge6 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You positioned both buildings by translating the origin of the coordinate system!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage1', 'challenge6')
+        App.currentProgress.challengeComplete('basic_cityscape_stage1', 'challenge6')
       else
         message = 'Nice try, but you need to position the two buildings by translating the origin of the coordinate system.'
 

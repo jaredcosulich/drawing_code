@@ -1,5 +1,5 @@
 initDngRandomChallenges = ->
-  if (page = $('#dng_random')).length > 0
+  if (page = $('#random')).length > 0
     initDngRandomChallenge1(page)
     initDngRandomChallenge2(page)
     initDngRandomChallenge3(page)
@@ -13,7 +13,7 @@ initDngRandomChallenge1 = (page) ->
   
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_random', 'challenge1')
+      App.currentProgress.challengeComplete('random', 'challenge1')
 
 
 initDngRandomChallenge2 = (page) ->
@@ -23,7 +23,7 @@ initDngRandomChallenge2 = (page) ->
   
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_random', 'challenge2')
+      App.currentProgress.challengeComplete('random', 'challenge2')
 
 
 initDngRandomChallenge3 = (page) ->
@@ -33,7 +33,7 @@ initDngRandomChallenge3 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_random', 'challenge3')
+      App.currentProgress.challengeComplete('random', 'challenge3')
 
 
 initDngRandomChallenge4 = (page) ->
@@ -43,7 +43,7 @@ initDngRandomChallenge4 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_random', 'challenge4')
+      App.currentProgress.challengeComplete('random', 'challenge4')
 
 
 $(document).on('initialization:complete', initDngRandomChallenges)

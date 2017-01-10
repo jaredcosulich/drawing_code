@@ -1,83 +1,147 @@
 #fill_style.page
-  %h1 CanvasRenderingContext2D.fillStyle
-
-
-
-  .official.row.py-3
-    .col-xs-6
-      %h2 The Official Description
-      %p.py-2
-        The CanvasRenderingContext2D.fillStyle property of the Canvas 2D API specifies
-        the color or style to use inside shapes. The default is #000 (black).
-      .source.text-xs-right
-        = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle', target: '_blank')
-
-    .col-xs-6
-      = image_tag('lessons/fill_style/visual1.png', class: 'img-fluid')
-
-
-  .simple.row.py-3
+  %h1
+    context.fillStyle
+  .description.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2
-            Different ways to describe colors.
-          %p.pt-2
-            context.fillStyle allows you to set the color or gradient for a rectangle
-            drawn with context.fillRect(). You can set the color in different ways:
-          %ul.pb-2
-            %li.py-1
-              %strong Named Colors
-              %br
-              fillStyle will accept named colors (e.g. 'red'). Here is a full
-              = link_to('list of HTML5 color names', 'https://www.tutorialspoint.com/html5/html5_color_names.htm', target: '_blank')
-            %li.py-1
-              %strong Hex Values
-              %br
-              Colors can also be described with a hex value (e.g. #00FF00 is red).
-              You can find hex values for different colors at
-              = link_to('color-hex.com', 'http://www.color-hex.com/', target: '_blank')
-            %li.py-1
-              %strong RGB Values
-              %br
-              Colors can also be described by an rgb value (e.g. rgb(255,0,0) is red).
-              The three numbers in the "rgb()" method describe how much red, green, and blue are present
-              in the color with 0 = none and 255 = 100%. You can find RGB values for different colors
-              using this tool:
-              = link_to('RGB Colors', 'http://www.rapidtables.com/web/color/RGB_Color.htm', target: '_blank')
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_interactive1_editor'} do
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_style/overviewVisual1.png', class: 'img-fluid canvas-example')
+          %p
+            To draw on a canvas, we program the canvas's context to draw lines and
+            shapes on the canvas for us. The color, gradient, or pattern the context
+            will use to fill in a shape is stored in the
+            %code
+              context.fillStyle
+            property.
+          %p
+            We set the context's fillStyle by assigning it a color, gradient, or pattern:
+          %pre
+            %code
               :preserve
-                var canvas = document.getElementById('fill_style_interactive1');
-                var context = canvas.getContext('2d');
-
-                context.fillStyle = 'lime';
-                context.fillRect(50,50,100,150);
-
-                context.fillStyle = '#9417D2';
-                context.fillRect(200,50,100,150);
-
-                context.fillStyle = 'rgb(251,255,111)';
-                context.fillRect(350,50,100,150);
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#fill_style_interactive1
+                context.fillStyle = color;
+                context.fillStyle = gradient;
+                context.fillStyle = pattern;
+          %p
+            Any new shape the context fills will be filled using that color, gradient,
+            or pattern. However, assigning a new fillStyle does not affect anything already
+            drawn on the canvas.
+          .source
+            = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle', target: '_blank')
 
 
   .example.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2
-            Example
-          %p.pt-2
-            You can also create gradients using fillStyle.
+          %h2.py-2
+            Set the Context's FillStyle Property to a Color
+          %p
+            It's important to note that
+            %code
+              context.fillStyle
+            is a property and not a method. A method is a function we use to program
+            the context to do something. For example, we program the context to draw
+            a filled rectangle using the
+            %code
+              context.fillRect()
+            method.
+          %p
+            When assigning a new color to the
+            %code
+              context.fillStyle
+            property, we assign the color manually ourselves. We are not programming
+            the context to set the color for us.
+          %p
+            The context defines colors using CSS color values, which are stored as text strings.
+            In CSS, there are several different ways to describe a color:
+          %ul.pb-1
+            %li.py-1
+              %strong Color Names
+              %br
+              Certain specific colors have names that all web browsers can identify. For
+              example, the context knows that
+              %code
+                context.fillStyle = 'DarkOrchid'
+              really means
+              %span
+                %code>
+                  context.fillStyle = '#9932CC'
+                \.
+              Here is a full list of
+              %span
+                %span><
+                  = link_to('HTML5 color names', 'http://www.rapidtables.com/web/color/html-color-codes.htm', target: '_blank')
+                \.
+            %li.py-1
+              %strong Hex Triplets
+              %br
+              Colors can also be described using a hex triplet. The color
+              %code
+                '#9932CC'
+              is actually three separate numbers written in base-16. The first number (99) is
+              the amount of red in the color; the second number (32) is the amount of green;
+              and the third number (CC) is the amount of blue. The value for each color component
+              (red, green, and blue) can range from 00 (none) to FF (maximum). For example, the
+              color red is
+              %span
+                %code>
+                  '#FF0000'
+                ,
+              which is maximum red, no green, and no blue. Here is a list of
+              %span
+                %span><
+                  = link_to('common hex triplets', 'http://www.rapidtables.com/web/color/Web_Safe.htm', target: '_blank')
+                \.
+            %li.py-1
+              %strong RGB Values
+              %br
+              Instead of describing colors in base-16, colors can also be described using RGB
+              values, which are in base-10. To describe a color using RGB values, we use a text string
+              in the format:
+              %span
+                %code>
+                  'rgb(red, green, blue)'
+                \.
+              Since the numbers 99, 32, and CC in base-16 are equal to 153, 50, and 204 in base-10,
+              %code
+                '#9932CC'
+              and
+              %code
+                'rgb(153, 50, 204)'
+              both describe the same color. RGB values must be whole numbers, and they range from 0-255.
+              To find RGB values for different colors, you can use this tool:
+              %span
+                %span><
+                  = link_to('RGB Colors', 'http://www.rapidtables.com/web/color/RGB_Color.htm', target: '_blank')
+                \.
+            %li.py-1
+              %strong RGBA Format
+              %br
+              Describing a color using the RGBA format is a way to set the color's alpha value,
+              which is its degree of transparency. Alpha values range from 0-1, where 0 is fully
+              transparent and 1 is fully opaque. To set the context's fillStyle to a dark orchid
+              color that is 50% transparent, we would use the text string
+              %span
+                %code>
+                  'rgba(153, 50, 204, 0.5)'
+                ,
+              where the first three numbers are RGB values and the fourth number is the alpha value.
+          %p
+            In this example, we draw four filled rectangles using four different colors.
+          %p
+            Change the names, hex values, RGB values, and alpha values of the colors to see what
+            happens. Change the coordinates of the fourth rectangle to see what happens when it covers
+            one of the other rectangles.
+          %p
+            To learn more about the coordinate system and drawing rectangles, visit the
+            = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+            and
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -86,12 +150,17 @@
                 var canvas = document.getElementById('fill_style_example1');
                 var context = canvas.getContext('2d');
 
-                var gradient = context.createLinearGradient(0,0,200,0);
-                gradient.addColorStop(0,"green");
-                gradient.addColorStop(0.5,"white");
-                gradient.addColorStop(1,"blue");
-                context.fillStyle = gradient;
-                context.fillRect(10,10,200,100);
+                context.fillStyle = 'CornflowerBlue';
+                context.fillRect(20, 20, 200, 100); // First rectangle
+                
+                context.fillStyle = '#9932CC';
+                context.fillRect(80, 80, 200, 100); // Second rectangle
+                
+                context.fillStyle = 'rgb(255, 0, 0)';
+                context.fillRect(140, 140, 200, 100); // Third rectangle
+                
+                context.fillStyle = 'rgba(153, 50, 204, 0.5)';
+                context.fillRect(200, 200, 200, 100); // Fourth rectangle
 
             .visual.col-xs-6
               %h5
@@ -101,22 +170,28 @@
                 %canvas#fill_style_example1
 
 
-
-
   #challenge1.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 1
-          %p.py-2 Draw a rectangle over the x at (100,100) using a color other than black.
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_style/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Fill the rectangle at (100, 50) with a width of 200 and a height of 150
+            using the color named OrangeRed.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('fill_style_challenge1');
             var context = canvas.getContext('2d');
 
-            // YOUR CODE HERE
+            // ASSIGN THE FILLSTYLE COLOR HERE
+            
+            context.fillRect(100, 50, 200, 150);
 
         .visual.col-xs-6
           %h5
@@ -127,22 +202,36 @@
             %canvas#fill_style_challenge1
           .alert
 
+
   #challenge2.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 2
-          %p.py-2
-            Draw three rectangles using the colors rgb(128,0,128), #800080, and 'purple' over the x's
-            at (50,100), (100,100), and (150,100).
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_style/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Fill the rectangle at (20, 160) with a width of 260 and a height of 140
+            using the color with hex values 7B, 68, and EE.
+          %p
+            Fill the rectangle at (140, 40) with a width of 200 and a height of 200
+            using the color with RGB values 46, 139, and 87, and alpha value 0.4.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('fill_style_challenge2');
             var context = canvas.getContext('2d');
+            
+            // ASSIGN THE FILLSTYLE COLOR FOR THE FIRST RECTANGLE HERE
+            
+            context.fillRect(20, 160, 260, 140);
 
-            // YOUR CODE HERE
+            // ASSIGN THE FILLSTYLE COLOR FOR THE SECOND RECTANGLE HERE
+            
+            context.fillRect(140, 40, 200, 200);
 
         .visual.col-xs-6
           %h5
@@ -152,3 +241,474 @@
             .background.hidden-xl-down= image_tag('lessons/fill_style/challenge2.png')
             %canvas#fill_style_challenge2
           .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Fill Multiple Shapes with the Same Color
+          %p
+            Assigning a color to
+            %code
+              context.fillStyle
+            sets the color for the context, not a single shape. Any shapes the context
+            fills will be filled with that color until we assign a new fillStyle.
+          %p
+            In this example, we draw the flag of the United States of America. We start
+            by setting the fillStyle to
+            %code
+              'White'
+            and draw one large white rectangle. Then, we set the fillStyle to
+            %code
+              '#B22234'
+            and draw seven red stripes on top of the white rectangle. Note that we are
+            only setting the fillStyle once. Finally, we set the fillStyle to
+            %code
+              '3C3B6E'
+            and draw the blue rectangle in the corner of the flag.
+          %p
+            By planning ahead, we only have to draw nine rectangles and set the
+            %code
+              context.fillStyle
+            property three times. Can you think of a way to draw the flag using only eight rectangles?
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('fill_style_example2');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = 'White';
+                context.fillRect(40, 40, 370, 195); // The white rectangle
+
+                context.fillStyle = '#B22234';
+                context.fillRect(40, 40, 370, 15); // The red stripes
+                context.fillRect(40, 70, 370, 15);
+                context.fillRect(40, 100, 370, 15);
+                context.fillRect(40, 130, 370, 15);
+                context.fillRect(40, 160, 370, 15);
+                context.fillRect(40, 190, 370, 15);
+                context.fillRect(40, 220, 370, 15);
+
+                context.fillStyle = '#3C3B6E';
+                context.fillRect(40, 40, 148, 105); // The blue rectangle
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#fill_style_example2
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_style/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Rearrange the lines of code below to draw the image to the right.
+          %p
+            As long as the code is placed in the correct order, you should not have to
+            type any code yourself. Try to group the rectangles by fillStyle color.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('fill_style_challenge3');
+            var context = canvas.getContext('2d');
+
+            // REARRANGE THE LINES OF CODE BELOW TO DRAW THE IMAGE TO THE RIGHT
+            
+            context.fillStyle = 'Gold';
+            context.fillStyle = 'DarkOrange';
+            context.fillStyle = 'FireBrick';
+            
+            context.fillRect(200, 40, 80, 40);
+            context.fillRect(80, 120, 40, 40);
+            context.fillRect(320, 200, 40, 40);
+            context.fillRect(40, 40, 40, 200);
+            context.fillRect(320, 40, 40, 140);
+            context.fillRect(200, 200, 80, 40);
+            context.fillRect(120, 40, 40, 200);
+            context.fillRect(220, 80, 40, 120);
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/fill_style/challenge3.png')
+            %canvas#fill_style_challenge3
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Set the Context's FillStyle Property to a Gradient
+          %p
+            Besides colors, we can also assign a gradient to the
+            %code
+              context.fillStyle
+            property using either the
+            %code
+              context.createLinearGradient()
+            method or the
+            %code
+              context.createRadialGradient()
+            method.
+          %p
+            In this example, we create a horizontal linear gradient and assign it to the variable
+            %code
+              gradient
+            using:
+          %pre
+            %code
+              :preserve
+                var gradient = context.createLinearGradient(50, 0, 350, 0);
+          %p
+            This creates a linear gradient between (50, 0) and (350, 0). If we draw a straight line
+            between (50, 0) and (350, 0), we get a horizontal line. To create a vertical linear gradient,
+            use two points that form a vertical line. We can also create linear gradients at an angle.
+          %p
+            We then add two color stops. The first color stop sets the color at position 0 (50, 0) to
+            MediumPurple. The second color stop sets the color at position 1 (350, 0) to Black. Any
+            points between (50, 0) and (350, 0) will be filled with a mixture of MediumPurple and Black.
+          %pre
+            %code
+              :preserve
+                gradient.addColorStop(0, 'MediumPurple');
+                gradient.addColorStop(1, 'Black');
+          %p
+            We can define a linear gradient with more than two color stops by adding additional color
+            stops at positions between 0-1.
+          %p
+            Finally, we assign
+            %code
+              gradient
+            to
+            %code
+              context.fillStyle
+            and use the
+            %code
+              context.fillRect()
+            method to draw three filled rectangles.
+          %pre
+            %code
+              :preserve
+                context.fillStyle = gradient;
+                context.fillRect(20, 20, 300, 80);
+                context.fillRect(200, 120, 200, 80);
+                context.fillRect(80, 220, 200, 80);
+          %p
+            It is important to note that the gradient is defined for the context and within the
+            context's coordinate system. A rectangle positioned to the right of (350, 0) and filled
+            with the gradient will be solid black.
+          %p
+            To learn more about the coordinate system, variables, and linear gradients, visit the
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+              ,
+            %span
+              %span><
+                = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+              ,
+            and
+            createLinearGradient()
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('fill_style_example3');
+                var context = canvas.getContext('2d');
+
+                var gradient = context.createLinearGradient(50, 0, 350, 0);
+                gradient.addColorStop(0, 'MediumPurple');
+                gradient.addColorStop(1, 'Black');
+                
+                context.fillStyle = gradient;
+                context.fillRect(20, 20, 300, 80);
+                context.fillRect(200, 120, 200, 80);
+                context.fillRect(80, 220, 200, 80);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#fill_style_example3
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Fill Multiple Shapes with the Same Gradient
+          %p
+            We can use the fact that a gradient is defined for the context and within the
+            context's coordinate system to create cool effects.
+          %p
+            In this example, we create a vertical linear gradient between (0, 200) and (0, 300),
+            with the color
+            %code
+              'Yellow'
+            at position 0 and the color
+            %code
+              'Red'
+            at position 1. Then we fill a circle and some text with the same gradient.
+          %p
+            To make the text stand out, we add a red outline around it using the
+            %code
+              context.strokeText()
+            method.
+          %p
+            To learn more about the coordinate system, variables, drawing text, and linear gradients, visit the
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+              ,
+            %span
+              %span><
+                = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+              ,
+            fillText(),
+            strokeText(),
+            and
+            createLinearGradient()
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('fill_style_example4');
+                var context = canvas.getContext('2d');
+
+                var gradient = context.createLinearGradient(0, 200, 0, 300);
+                gradient.addColorStop(0, 'Yellow');
+                gradient.addColorStop(1, 'Red');
+                
+                context.fillStyle = gradient;
+                
+                context.beginPath();
+                context.arc(220, 160, 140, 0, 2 * Math.PI, false); // Draws a circle
+                context.closePath();
+                context.fill(); // Fills the circle
+                
+                context.font = 'bold 96px Arial'; // Sets the context's font
+                context.textAlign = 'center'; // Sets the context's text alignment
+                context.fillText('SUNRISE', 220, 250); // Fills a text string
+                context.strokeStyle = 'Red'; // Sets the context's strokeStyle
+                context.strokeText('SUNRISE', 220, 250); // Strokes the same text string
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#fill_style_example4
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Set the Context's FillStyle Property to a Pattern
+          %p
+            Besides colors and gradients, we can also assign a pattern to the
+            %code
+              context.fillStyle
+            property using the
+            %code
+              context.createPattern()
+            method.
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_style/example5Visual1.png', class: 'img-fluid canvas-example')
+          %p
+            In this example, we fill rectangles using a pattern created from the image to the right.
+          %p
+            The code for this example is a little complicated because we have to create the image we
+            use for the pattern, and then we have to wait for the image to load before we can use it.
+            Normally, we would load the image before running our program, which would make the code much simpler.
+          %p
+            We start by creating our image, assigning it to the variable
+            %span
+              %code>
+                img
+              ,
+            and supplying the URL where the actual image file is located on the web server.
+          %pre
+            %code
+              :preserve
+                var img = document.createElement('img');
+                img.src = '/resources/lessons/fill_style/images/example5Pattern1.png';
+          %p
+            Once the image loads from the web server, we create a pattern from
+            %code
+              img
+            and assign the pattern to the variable
+            %code
+              pattern
+            using:
+          %pre
+            %code
+              :preserve
+                var pattern = context.createPattern(img, 'repeat');
+          %p
+            This creates a repeating pattern that will tile to fill any shape.
+          %p
+            Then, we assign
+            %code
+              pattern
+            to
+            %code
+              context.fillStyle
+            and use the
+            %code
+              context.fillRect()
+            method to draw three filled rectangles.
+          %pre
+            %code
+              :preserve
+                context.fillStyle = pattern;
+                context.fillRect(20, 20, 300, 80);
+                context.fillRect(200, 120, 200, 80);
+                context.fillRect(80, 220, 200, 80);
+          %p
+            Once again, it is important to note that the pattern is defined for the context and
+            within the context's coordinate system. This means the pattern image starts tiling
+            from the context's origin, not the top left corner of the rectangle. As you can see,
+            the edge of the pattern does not necessarily line up with the edges of the rectangles.
+          %p
+            To learn more about the coordinate system, variables, and patterns, visit the
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+              ,
+            %span
+              %span><
+                = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+              ,
+            and
+            createPattern()
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_example5_editor'} do
+              :preserve
+                var canvas = document.getElementById('fill_style_example5');
+                var context = canvas.getContext('2d');
+
+                var img = document.createElement('img');
+                img.src = '/resources/lessons/fill_style/images/example5Pattern1.png';
+                
+                img.onload = function() {
+                  var pattern = context.createPattern(img, 'repeat');
+                  context.fillStyle = pattern;
+                  context.fillRect(10, 20, 300, 80);
+                  context.fillRect(155, 115, 100, 190);
+                  context.fillRect(80, 160, 240, 80);
+                };
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#fill_style_example5
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Align Patterns to Rectangles
+          %p
+            We can align patterns with rectangles if we position the rectangles using the
+            %code
+              context.translate()
+            method. By moving the origin of the context, each rectangle can be drawn at (0, 0),
+            so the pattern image starts tiling from the rectangle's top left corner.
+          %pre
+            %code
+              :preserve
+                context.save();
+                context.translate(10, 20);
+                context.fillRect(0, 0, 300, 80);
+                context.restore();
+          %p
+            Now, when two rectangles overlap, their patterns don't necessarily overlap because
+            those patterns were drawn using two different coordinate systems.
+          %p
+            To learn more about the coordinate system, saving and restoring the drawing state,
+            and translating the coordinate system, visit the
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+              ,
+            %span
+              %span><
+                = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
+              ,
+            and
+            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :save, :translate]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_style_example6_editor'} do
+              :preserve
+                var canvas = document.getElementById('fill_style_example6');
+                var context = canvas.getContext('2d');
+
+                var img = document.createElement('img');
+                img.src = '/resources/lessons/fill_style/images/example5Pattern1.png';
+                
+                img.onload = function() {
+                  var pattern = context.createPattern(img, 'repeat');
+                  context.fillStyle = pattern;
+                  
+                  context.save();
+                  context.translate(10, 20);
+                  context.fillRect(0, 0, 300, 80);
+                  context.restore();
+                  
+                  context.save();
+                  context.translate(155, 115);
+                  context.fillRect(0, 0, 100, 190);
+                  context.restore();
+                  
+                  context.save();
+                  context.translate(80, 160);
+                  context.fillRect(0, 0, 240, 80);
+                  context.restore();
+                };
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#fill_style_example6

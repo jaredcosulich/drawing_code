@@ -1,5 +1,5 @@
 initDngFunctionsChallenges = ->
-  if (page = $('#dng_functions')).length > 0
+  if (page = $('#functions')).length > 0
     initDngFunctionsChallenge1(page)
     initDngFunctionsChallenge2(page)
     initDngFunctionsChallenge3(page)
@@ -22,7 +22,7 @@ initDngFunctionsChallenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You defined and called the drawRedSquare() function!'
-        App.currentProgress.challengeComplete('dng_functions', 'challenge1')
+        App.currentProgress.challengeComplete('functions', 'challenge1')
       else
         message = 'Nice try, but you need to define and call the drawRedSquare() function.'
 
@@ -46,7 +46,7 @@ initDngFunctionsChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You re-defined the drawRedSquare() function and used it to draw the three squares!'
-        App.currentProgress.challengeComplete('dng_functions', 'challenge2')
+        App.currentProgress.challengeComplete('functions', 'challenge2')
       else
         message = 'Nice try, but you need to re-define the drawRedSquare() function and use it to draw the squares.'
 
@@ -73,7 +73,7 @@ initDngFunctionsChallenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You re-defined the drawTheLetterL() function and used it to draw three letter L\'s!'
-        App.currentProgress.challengeComplete('dng_functions', 'challenge3')
+        App.currentProgress.challengeComplete('functions', 'challenge3')
       else
         message = 'Nice try, but you need to re-define the drawTheLetterL() function and use it to draw three letter L\'s.'
 
@@ -87,7 +87,7 @@ initDngFunctionsChallenge4 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_functions', 'challenge4')
+      App.currentProgress.challengeComplete('functions', 'challenge4')
 
 
 initDngFunctionsChallenge5 = (page) ->
@@ -97,7 +97,7 @@ initDngFunctionsChallenge5 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_functions', 'challenge5')
+      App.currentProgress.challengeComplete('functions', 'challenge5')
 
 
 $(document).on('initialization:complete', initDngFunctionsChallenges)

@@ -1,5 +1,5 @@
 initDngBasicCityscapeStage3Challenges = ->
-  if (page = $('#dng_basic_cityscape_stage3')).length > 0
+  if (page = $('#basic_cityscape_stage3')).length > 0
     initDngBasicCityscapeStage3Challenge1(page)
     initDngBasicCityscapeStage3Challenge2(page)
     initDngBasicCityscapeStage3Challenge3(page)
@@ -17,7 +17,7 @@ initDngBasicCityscapeStage3Challenge1 = (page) ->
     testImage.test (success) ->
       if success
         message = '<strong>Success!</strong> You\'ve create three buildings with three different window types!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage3', 'challenge1')
+        App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge1')
       else
         message = 'Nice try, but your drawing doesn\'t yet match the image of three buildings with three different window types shown in the challenge.'
 
@@ -35,7 +35,7 @@ initDngBasicCityscapeStage3Challenge2 = (page) ->
     testImage.test (success) ->
       if success
         message = '<strong>Success!</strong> You\'ve create three buildings with three different window types and roof types!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage3', 'challenge2')
+        App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge2')
       else
         message = 'Nice try, but your drawing doesn\'t yet match the image of three buildings with different window and roof types shown in the challenge.'
 
@@ -51,7 +51,7 @@ initDngBasicCityscapeStage3Challenge3 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_basic_cityscape_stage3', 'challenge3')
+      App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge3')
 
 
 initDngBasicCityscapeStage3Challenge4 = (page) ->
@@ -63,7 +63,7 @@ initDngBasicCityscapeStage3Challenge4 = (page) ->
 
   challenge.find('.run').click ->
     canvas.selfAssess ->
-      App.currentProgress.challengeComplete('dng_basic_cityscape_stage3', 'challenge4')
+      App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge4')
 
 
 $(document).on('initialization:complete', initDngBasicCityscapeStage3Challenges)

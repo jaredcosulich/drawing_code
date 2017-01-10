@@ -1,5 +1,5 @@
 initDngScaleChallenges = ->
-  if (page = $('#dng_scale')).length > 0
+  if (page = $('#scale')).length > 0
     initDngScaleChallenge1(page)
     initDngScaleChallenge2(page)
     initDngScaleChallenge3(page)
@@ -29,7 +29,7 @@ initDngScaleChallenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You scaled the French flag so it is 2.5 times wider and 2.5 times taller!'
-        App.currentProgress.challengeComplete('dng_scale', 'challenge1')
+        App.currentProgress.challengeComplete('scale', 'challenge1')
       else
         message = 'Nice try, but you need to scale the French flag so it is 2.5 times wider and 2.5 times taller.'
 
@@ -63,7 +63,7 @@ initDngScaleChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You scaled and positioned the four French flags correctly!'
-        App.currentProgress.challengeComplete('dng_scale', 'challenge2')
+        App.currentProgress.challengeComplete('scale', 'challenge2')
       else
         message = 'Nice try, but you need to scale and position the four French flags correctly.'
 
@@ -93,7 +93,7 @@ initDngScaleChallenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You scaled the three rectangles correctly!'
-        App.currentProgress.challengeComplete('dng_scale', 'challenge3')
+        App.currentProgress.challengeComplete('scale', 'challenge3')
       else
         message = 'Nice try, but you need to scale the three rectangles by combining scale factors correctly.'
 
@@ -138,7 +138,7 @@ initDngScaleChallenge4 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You scaled the four trees correctly by saving and restoring the drawing state!'
-        App.currentProgress.challengeComplete('dng_scale', 'challenge4')
+        App.currentProgress.challengeComplete('scale', 'challenge4')
       else
         message = 'Nice try, but you need to scale the four trees correctly by saving and restoring the drawing state.'
 
@@ -183,7 +183,7 @@ initDngScaleChallenge5 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You positioned and scaled the three frames correctly by anchoring their top left corners!'
-        App.currentProgress.challengeComplete('dng_scale', 'challenge5')
+        App.currentProgress.challengeComplete('scale', 'challenge5')
       else
         message = 'Nice try, but you need to position and scale the three frames correctly by anchoring their top left corners.'
 
@@ -247,7 +247,7 @@ initDngScaleChallenge6 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You created a vanishing point and drew the six trees so they appear to be moving closer!'
-        App.currentProgress.challengeComplete('dng_scale', 'challenge6')
+        App.currentProgress.challengeComplete('scale', 'challenge6')
       else
         message = 'Nice try, but you need to create a vanishing point and draw the six trees so they appear to be moving closer.'
 
@@ -287,7 +287,7 @@ initDngScaleChallenge7 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You created a mirror image of a French flag and positioned both flags correctly!'
-        App.currentProgress.challengeComplete('dng_scale', 'challenge7')
+        App.currentProgress.challengeComplete('scale', 'challenge7')
       else
         message = 'Nice try, but you need to create a mirror image of a French flag and position both flags correctly.'
 

@@ -1,49 +1,60 @@
 #coordinates.page
-  %h1 Coordinates within 2D Context
-
-
-
-  .official.row.py-3
-    .col-xs-6
-      %h2 The Coordinate System
-      %p.pt-2
-        The 2D context provided by the canvas has a coordinate system consisting of X and Y values.
-      %p
-        Starting at the top, left of the canvas is the point (0, 0).
-      %p
-        As you move down the canvas Y gets larger.
-      %p
-        As you move right on the canvas X gets larger.
-      %p
-        So the point (100, 50) means you move right 100 and down 50.
-
-
-    .col-xs-6
-      = image_tag('lessons/coordinates/visual1.png', class: 'img-fluid')
-
-
-  .simple.row.py-3
+  %h1
+    The Coordinate System
+  .description.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2
-            Explore The Coordinate System.
-          %p.pt-2
-            Mouse over the grey area to the right to see where your mouse is in
-            the coordinate system.
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/coordinates/overviewVisual1.png', class: 'img-fluid')
+          %p
+            When drawing on a canvas, the canvas's context uses a coordinate system to
+            position lines, rectangles, and other shapes on the canvas.
+          %p
+            By default, the origin (0, 0) of the context's coordinate system is the top
+            left corner of the canvas. The x-coordinate is the distance of a point from the
+            origin moving to the right and the y-coordinate is the distance from the origin
+            moving down.
+          %p
+            For example, the point (80, 50) is 80 pixels to the right of the origin and 50
+            pixels down.
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Explore the Coordinate System
+          %p
+            To see the coordinates of a point on the canvas, mouse over the grey area in
+            the canvas to the right.
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'coordinates_interactive1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'coordinates_example1_editor'} do
               :preserve
-                var canvas = document.getElementById('coordinates_interactive1');
+                var canvas = document.getElementById('coordinates_example1');
                 var context = canvas.getContext('2d');
 
-                context.font= '30px Arial';
+                context.font= '16px Arial';
+                context.textBaseline = 'middle';
+                context.fillStyle = '#000000';
+
+                canvas.addEventListener('mouseout', function(e) {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                });
+
                 canvas.addEventListener('mousemove', function(e) {
                   context.clearRect(0, 0, canvas.width, canvas.height);
-                  text = 'Your mouse is at (' + e.layerX + ', ' + e.layerY + ')';
-                  context.fillText(text, 50, 100);
+                  context.beginPath();
+                  context.arc(e.layerX, e.layerY, 3, 0, 2 * Math.PI, false);
+                  context.closePath();
+                  context.fill();
+                  var text = '(' + e.layerX + ', ' + e.layerY + ')';
+                  context.fillText(text, e.layerX + 5, e.layerY);
                 });
 
             .visual.col-xs-6
@@ -51,53 +62,154 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#coordinates_interactive1
-
+                %canvas#coordinates_example1
 
 
   #challenge1.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 1
-          %p.py-2 Draw a square that starts in the top left corner of the canvas and is 100px tall and 100px wide.
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/coordinates/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Use the
+            %code
+              drawPoint()
+            function to draw three points.
+          %p
+            For example, to draw a point at (80, 120), type:
+          %pre
+            %code
+              :preserve
+                drawPoint(80, 120);
+          %p
+            Draw the first point at (50, 150), the second point at (200, 100),
+            and the third point at (250, 200).
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'coordinates_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('coordinates_challenge1');
             var context = canvas.getContext('2d');
 
-            // YOUR CODE HERE
+            // DRAW THE FIRST POINT AT (50, 150) HERE
+            // DRAW THE SECOND POINT AT (200, 100) HERE
+            // DRAW THE THIRD POINT AT (250, 200) HERE
+
+            function drawPoint(x, y) {
+              context.save();
+              context.fillStyle = '#0000FF';
+              context.beginPath();
+              context.arc(x, y, 3, 0, 2 * Math.PI, false);
+              context.fill();
+              context.restore();
+            }
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/coordinates/challenge1.png')
             %canvas#coordinates_challenge1
           .alert
+
 
   #challenge2.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 2
-          %p.py-2
-            The canvas is 360px tall and 600px wide. Draw a rectangle that covers the whole canvas.
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/coordinates/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Use the
+            %code drawPoint()
+            function to draw points at the four corners of the rectangle.
+          %p
+            The top left corner of the rectangle is at (80, 40). The width of the
+            rectangle is 200 and the height is 120.
+          %p
+            Hint: The top left corner is 80 to the right and 40 down from the origin
+            and the bottom right corner of the rectangle is 200 to the right and 120 down
+            from the top left corner of the rectangle. Where is the bottom right corner
+            relative to the origin?
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'coordinates_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('coordinates_challenge2');
             var context = canvas.getContext('2d');
 
-            // YOUR CODE HERE
+            // DRAW THE FOUR POINTS HERE
+
+            function drawPoint(x, y) {
+              context.save();
+              context.fillStyle = '#0000FF';
+              context.beginPath();
+              context.arc(x, y, 3, 0, 2 * Math.PI, false);
+              context.fill();
+              context.restore();
+            }
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
+            .background.hidden-xl-down= image_tag('lessons/coordinates/challenge2.png')
             %canvas#coordinates_challenge2
+          .alert
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/coordinates/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Use the
+            %code drawPoint()
+            function to draw points at the bottom left corner of the green rectangle and the
+            top right corner of the blue rectangle.
+          %p
+            The top left corner of the green rectangle is at (40, 180), and its width is 120 and
+            height is 60. The width of the blue rectangle is 220 and its height is 180.
+          %p
+            Hint: It's okay to draw extra points to figure out the coordinates of the bottom
+            left corner of the green rectangle and the top right corner of the blue rectangle.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'coordinates_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('coordinates_challenge3');
+            var context = canvas.getContext('2d');
+
+            // DRAW YOUR POINTS HERE
+
+            function drawPoint(x, y) {
+              context.save();
+              context.fillStyle = '#0000FF';
+              context.beginPath();
+              context.arc(x, y, 3, 0, 2 * Math.PI, false);
+              context.fill();
+              context.restore();
+            }
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/coordinates/challenge3.png')
+            %canvas#coordinates_challenge3
           .alert

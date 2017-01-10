@@ -1,19 +1,18 @@
 #basic_cityscape_stage2.page
-  %h1 Stage 2
-
-
-
+  %h1
+    Stage 2
   .description.row.py-3
-    .col-xs-6
-      %h2.py-2
-        Overview
-      %p
-        In the second stage of the Cityscape Challenge, we will draw rows of windows
-        in our buildings. Because we will be drawing lots of windows and rows, we will
-        automate the process using for loops.
-
-    .col-xs-6
-      = image_tag('lessons/basic_cityscape/stage2/overviewVisual1.png', class: 'img-fluid')
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/basic_cityscape/stage1/overviewVisual1.png', class: 'img-fluid')
+          %p
+            In the second stage of the Cityscape Challenge, we draw rows of windows
+            in our buildings. Because we will be drawing lots of windows and rows, we will
+            automate the process using for loops.
 
 
   .example.row.py-3
@@ -23,13 +22,12 @@
           %h2.py-2
             Draw a Window in an Office in a Building
           %p
-            When drawing an object inside of another object, it makes sense to use
-            context.translate() to make the drawing easier by moving the coordinate
-            system of the context.
+            When drawing an object inside of another object, it makes sense to use the
+            %code
+              context.translate()
+            method to make the drawing easier by moving the origin of the context's coordinate system.
           %p
-            %span.highlight
-              In this example, we draw a blue building with a yellow door with a red
-              door knob.
+            In this example, we draw a blue building with a yellow door with a red door knob.
           %p
             We know that the top left corner of the building is positioned at (100, 50)
             on the <b>canvas</b>.
@@ -41,14 +39,21 @@
             in the <b>door</b>.
           %p
             Do we know or care what the coordinates of the door knob are on the canvas
-            or in the building? No. By translating the coordinate system to the appropriate
+            or in the building? No. By translating the origin of the coordinate system to the appropriate
             frame of reference, we can focus on drawing and not worry about the math. And
             if we move the door, the door knob moves along with it.
           %p
-            Notice how we restore the context so the origin of the coordinate system is
+            Notice how we restore the drawing state so the origin of the coordinate system is
             back at the top left corner of the canvas? Remember, it is important to tidy up
             after moving things around.
-          = render 'lessons/relevant', relevant: [:save, :translate, :fill_style, :fill_rect]
+          %p
+            To learn more about saving and restoring the
+            drawing state and translating the origin of the coordinate system, visit the
+            = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
+            and
+            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
+            lessons.
+          = render 'lessons/relevant', relevant: [:fill_rect, :fill_style, :save, :translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -86,42 +91,47 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 1
-
           %figure.float-xs-right.px-2
-            = image_tag('lessons/basic_cityscape/stage1/challenge2Visual1.png')
-            %br
-            = image_tag('lessons/basic_cityscape/stage2/challenge1Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 1 Sample Solution
-
+            = image_tag('lessons/basic_cityscape/stage2/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Copy the drawBuilding() function that you wrote in Stage 1 Challenge 4.
+            Copy the
+            %code
+              drawBuilding()
+            function that you wrote in Stage 1 Challenge 6 and edit it to draw one window
+            in the top left corner office.
           %p
-            %span.highlight
-              Next, we will edit the drawBuilding() function to draw a window in the
-              top left corner office.
+            Inside the function, after moving the coordinate system to the building's top left
+            corner and drawing the building's gray rectangle, move the coordinate system to (4, 4)
+            inside the building. This is the top left corner of the top left office. Remember, the
+            building has outer walls 4 pixels thick around it.
           %p
-            Inside the function, after moving the coordinate system to the top left
-            corner of the building and drawing a gray rectangle for the building, move
-            the coordinate system to (4, 4) in the building. This is the top left
-            corner of the top left office. Remember, the building has 4 pixels of padding
-            around it.
-          %p
-            %span.highlight
-              Draw a window positioned in the office at (4, 2). The window is a dark
-              gray rectangle (color #666666) that is 8 pixels wide and 10 pixels tall.
+            Draw a window positioned in the office at (4, 2). The window is a dark gray rectangle (color
+            %span
+              %code>
+                '#666666'
+              )
+            that is 8 pixels wide and 10 pixels tall.
           %p
             At this point, your function will draw a gray building with one window in
             the top left corner office.
           %p
-            %span.highlight
-              Go ahead and draw a building that is 6 office units across and 12 floors
-              tall sitting on the ground at (100, 300).
-            The corners of the building should cover the black x's and the window should
-            cover the red x.
-          = render 'lessons/relevant', relevant: [:functions, :save, :translate, :fill_style, :fill_rect]
-          = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'basic_cityscape_stage1_challenge4_editor'
+            Use the
+            %code
+              drawBuilding()
+            function to draw a building that is 6 office units across and 12 floors
+            tall sitting on the ground at (100, 300).
+          %p
+            If you need help saving and restoring the drawing state and translating the origin
+            of the coordinate system, visit the
+            = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
+            and
+            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
+            lessons.
+          = render 'lessons/relevant', relevant: [:functions, :fill_rect, :fill_style, :save, :translate]
+          = render 'lessons/code_preview', stage: 1, challenge: 6, editor_id: 'basic_cityscape_stage1_challenge6_editor'
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage2_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage2_challenge1');
@@ -129,11 +139,26 @@
 
             function drawBuilding(leftX, groundY, units, floors) {
 
-              // YOUR CODE FOR DRAWING A BUILDING HERE
-
+              // PUT YOUR CODE FOR DRAWING A BUILDING HERE
+              
+              // AFTER TRANSLATING TO THE BUILDING'S TOP LEFT CORNER
+              // AND DRAWING THE BUILDING'S RECTANGLE...
+              // MOVE THE COORDINATE SYSTEM TO (4, 4) INSIDE THE BUILDING
+              // CHANGE THE FILLSTYLE TO THE COLOR #666666
+              // DRAW A RECTANGLE AT (4, 2) THAT IS 8 PIXELS WIDE AND 10 PIXELS TALL
+              
             }
 
-            // YOUR CODE FOR DRAWING THE BUILDING AT (100, 300) HERE
+            // DRAW A BUILDING AT (100, 300) WITH 6 UNITS AND 12 FLOORS HERE
+            
+            drawGround(300); // Draws the ground at y = 300
+            
+            function drawGround(y) {
+              context.save();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
+              context.restore();
+            }
 
         .visual.col-xs-6
           %h5
@@ -155,25 +180,92 @@
             To draw a row of windows, we are going to use a for loop. A for loop allows
             us to perform a set of actions over and over again.
           %p
-            %span.highlight
-              In this example, we draw a row of French flags.
+            In this example, we draw a line of French flags.
           %p
-            We start by saving the context and moving the coordinate system to (20, 120).
+            We start by saving the original drawing state and moving the coordinate system to (140, 20).
             This is where we will draw the first French flag.
+          %pre
+            %code
+              :preserve
+                context.save(); // Save the original drawing state
+                context.translate(140, 20); // Move the coordinate system to the top left corner of the first flag
           %p
-            We then start our loop by assigning i = 0. Everytime the loop runs, we will
-            add 1 to i. So, the first time through the loop, i = 0. The second time, i = 1.
-            The third time, i = 2. The loop keeps running as long as i < 6. This means
-            the loop will run six times and end once i = 5.
+            Then, we start the for loop by assigning
+            %span
+              %code>
+                var i = 0
+              \.
+            Everytime through the loop, we increase
+            %code
+              i
+            by one using the statement
+            %span
+              %code>
+                i = i + 1
+              \.
+          %pre
+            %code
+              :preserve
+                for (i = 0; i < 6; i = i + 1) {
+                  
+                  // code block
+                  
+                }
+          %p
+            So, the first time through the loop,
+            %span
+              %code>
+                i == 0
+              \.
+            The second time,
+            %span
+              %code>
+                i == 1
+              \.
+            The third time,
+            %span
+              %code>
+                i == 2
+              \.
+            The loop keeps running as long as
+            %span
+              %code>
+                i < 6
+              \.
+            This means the loop will run six times and end after
+            %span
+              %code>
+                i == 5
+              \.
           %p
             Inside of the loop, we draw a French flag at the origin of the current
-            coordinate system, and then move the origin of the coordinate system 80 pixels
-            to the right using context.translate(80, 0).
+            coordinate system, and then move the origin of the coordinate system 50 pixels
+            down using the
+            %code
+              context.translate()
+            method.
+          %pre
+            %code
+              :preserve
+                for (i = 0; i < 6; i = i + 1) { // Repeat the code in the code block six times
+                  drawFrenchFlag();
+                  context.translate(0, 50); // Move the coordinate system to the top left corner of the next flag
+                }
           %p
-            Finally, we restore the context so the origin of the coordinate system is back at the top left corner of the canvas.
+            Finally, we restore the drawing state so the origin of the coordinate system is back at the top left corner of the canvas.
+          %pre
+            %code
+              :preserve
+                context.restore(); // Restore the original drawing state
           %p
-            What would happen if, instead of using context.translate(80, 0) inside of the for loop, we used context.translate(80, 30)?
-          = render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
+            What would happen if, instead of using context.translate(30, 50) inside of the for loop, we used context.translate(0, 50)?
+          %p
+            To learn more about for loops and translating the origin of the coordinate system, visit the
+            = link_to_lesson('For Loops', :for_loops, nil, class: 'reference-link', data: {slug: :for_loops})
+            and
+            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
+            lessons.
+          = render 'lessons/relevant', relevant: [:for_loops, :save, :translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -181,7 +273,17 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage2_example2');
                 var context = canvas.getContext('2d');
+                
+                context.save(); // Save the original drawing state
+                context.translate(140, 20); // Move the coordinate system to the top left corner of the first flag
 
+                for (i = 0; i < 6; i = i + 1) { // Repeat the code in the code block six times
+                  drawFrenchFlag();
+                  context.translate(0, 50); // Move the coordinate system to the top left corner of the next flag
+                }
+                
+                context.restore(); // Restore the original drawing state
+                
                 function drawFrenchFlag() {
                   context.save();
 
@@ -197,16 +299,6 @@
                   context.restore();
                 }
 
-                context.save();
-                context.translate(20, 120);
-
-                for (i = 0; i < 6; i = i + 1) {
-                  drawFrenchFlag();
-                  context.translate(80, 0);
-                }
-
-                context.restore();
-
             .visual.col-xs-6
               %h5
                 Canvas
@@ -221,38 +313,46 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 2
-
           %figure.float-xs-right.px-2
-            = image_tag('lessons/basic_cityscape/stage1/challenge2Visual1.png')
-            %br
-            = image_tag('lessons/basic_cityscape/stage2/challenge2Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 2 Sample Solution
-
+            = image_tag('lessons/basic_cityscape/stage2/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Replace the code for drawing one window in your drawBuilding() function
-            from Challenge 1 with a for loop that will draw windows in all of the offices on
+            Replace the code for drawing one window in your
+            %code
+              drawBuilding()
+            function
+            from Challenge 1 with a for loop to draw windows in all of the offices on
             a building's top floor.
           %p
-            Remember, the building has 4 pixels of padding all around it, so the first
+            Remember, the building has 4-pixel thick walls all around it, so the first
             top floor office is at (4, 4), and each office is 16 pixels wide.
           %p
-            %span.highlight
-              Draw the same dark gray window (color #666666) that is 8 pixels wide and 10 pixels
-              tall at (4, 2) in each office on the top floor.
+            Draw the same dark gray window (color
+            %span
+              %code>
+                '#666666'
+              )
+            that is 8 pixels wide and 10 pixels tall at (4, 2) in each office on the top floor.
           %p
-            Hint: The number of times you will run through the for loop will depend on
-            the number of office units per floor in the building. Inside of the function,
-            that number is stored in a variable (or parameter). We can use variables
-            when setting up a for loop.
+            The number of times you run through the for loop will depend on the
+            number of office units per floor in the building. Inside of the function, that
+            number is stored in a parameter. We can use variables and parameters when
+            setting up a for loop.
           %p
-            %span.highlight
-              Then use the drawBuilding() function to draw a building that is 12 office
-              units across and 8 floors tall sitting on the ground at (50, 300).
-            The corners of the building should cover the black x's and the windows should cover the red x's.
-          = render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
+            Use the
+            %code
+              drawBuilding()
+            function to draw a building that is 12 office units across and 8 floors tall sitting on the ground at (50, 300).
+          %p
+            If you need help using for loops and translating the origin of the coordinate system, visit the
+            = link_to_lesson('For Loops', :for_loops, nil, class: 'reference-link', data: {slug: :for_loops})
+            and
+            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
+            lessons.
+          = render 'lessons/relevant', relevant: [:variables, :functions, :for_loops, :save, :translate]
           = render 'lessons/code_preview', stage: 2, challenge: 1, editor_id: 'basic_cityscape_stage2_challenge1_editor'
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'basic_cityscape_stage2_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage2_challenge2');
@@ -260,11 +360,26 @@
 
             function drawBuilding(leftX, groundY, units, floors) {
 
-              // YOUR CODE FOR DRAWING A BUILDING WITH TOP FLOOR WINDOWS HERE
-
+              // PUT YOUR CODE FOR DRAWING A BUILDING HERE
+              
+              // AFTER MOVING THE COORDINATE SYSTEM TO (4, 4) INSIDE THE BUILDING
+              // AND CHANGING THE FILLSTYLE TO #666666...
+              // SET UP A FOR LOOP TO DRAW A WINDOW IN EACH OFFICE UNIT ON THE TOP FLOOR
+              // INSIDE EACH OFFICE, DRAW A RECTANGLE AT (4, 2) THAT IS 8 PIXELS WIDE AND 10 PIXELS TALL
+              // THEN MOVE THE COORDINATE SYSTEM TO THE NEXT OFFICE
+              
             }
 
-            // YOUR CODE FOR DRAWING THE BUILDING AT (50, 300) HERE
+            // DRAW A BUILDING AT (50, 300) WITH 12 UNITS AND 8 FLOORS HERE
+            
+            drawGround(300); // Draws the ground at y = 300
+            
+            function drawGround(y) {
+              context.save();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
+              context.restore();
+            }
 
         .visual.col-xs-6
           %h5
@@ -287,29 +402,61 @@
             two for loops: one inside the other. The inner for loop draws a window in
             each office of a single floor. The outer for loop draws one floor at a time.
           %p
-            %span.highlight
-              In this example, we draw a grid of French flags. Just like in the previous
-              example, there are 6 French flags in a row. But this time, there are four rows.
+            In this example, we draw a grid of French flags with 5 French flags in a row and four rows.
           %p
-            The inner for loop is using the variable <i>i</i> as its counter: the loop
-            starts at i = 0 and ends when i = 5. Each time through the loop, it draws a
-            French flag at the origin of the coordinate system and then moves the origin
-            over to the right by 80 pixels using context.translate(80, 0).
+            The inner for loop is using the variable
+            %code
+              i
+            as its counter. Each time through the loop, it draws a French flag at the origin
+            of the coordinate system and then moves the origin over to the right by 80 pixels using the
+            %code
+              context.translate()
+            method.
+          %pre
+            %code
+              :preserve
+                for (i = 0; i < 5; i = i + 1) {
+                  drawFrenchFlag();
+                  context.translate(80, 0); // Move the coordinate system to the right to draw the next flag
+                }
           %p
-            The outer for loop is using the variable <i>j</i> as its counter. While the name
-            of the variable isn't important, the two for loops can't use the same variable
-            since one for loop is inside the other. The outer for loop starts at j = 0 and
-            ends when j = 3. Each time through the loop, it saves the context, draws a row
-            of flags using the inner loop, restores the context back to where it was before
-            drawing the row of flags, and then moves the origin of the coordinate system
-            down 90 pixels using context.translate(0, 90).
+            The outer for loop is using the variable
+            %code
+              j
+            as its counter. While the name of the variable isn't important, the two for loops
+            can't use the same variable since one for loop is inside the other. Each time through
+            the outer loop, it saves the drawing state, draws a row of flags using the inner loop,
+            restores the drawing state back to its state at the start of the row, and then moves
+            the coordinate system down 80 pixels using the
+            %code
+              context.translate()
+            method.
+          %pre
+            %code
+              :preserve
+                for (j = 0; j < 4; j = j + 1) {
+                  context.save(); // Save the drawing state at the start of the row
+
+                  for (i = 0; i < 5; i = i + 1) {
+                    drawFrenchFlag();
+                    context.translate(80, 0); // Move the coordinate system to the right to draw the next flag
+                  }
+
+                  context.restore(); // Restore the drawing state back to the start of the row
+                  context.translate(0, 80); // Move the coordinate system down to draw the next row
+                }
           %p
-            Saving and restoring the context in the outer for loop is important. Think about
+            Saving and restoring the drawing state in the outer for loop is important. Think about
             what would happen if we didn't do that. The next row of flags would start after
             the last flag in the previous row, not below the first flag. Each row would keep
-            getting shifted over to the right. (Comment out the context.save() and context.restore()
-            in the outer for loop if you want to see what would happen.)
-          = render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
+            getting shifted over to the right. You can see what would happen, by commenting out the
+            %code
+              context.save()
+            and
+            %code
+              context.restore()
+            method calls in the outer for loop.
+          = render 'lessons/relevant', relevant: [:for_loops, :save, :translate]
 
         .col-xs-12
           .interactive.row.py-1
@@ -318,6 +465,23 @@
                 var canvas = document.getElementById('basic_cityscape_stage2_example3');
                 var context = canvas.getContext('2d');
 
+                context.save(); // Save the original drawing state
+                context.translate(10, 10); // Move the coordinate system to the first flag
+
+                for (j = 0; j < 4; j = j + 1) {
+                  context.save(); // Saves the drawing state at the start of the row
+
+                  for (i = 0; i < 5; i = i + 1) {
+                    drawFrenchFlag();
+                    context.translate(80, 0); // Move the coordinate system to the right to draw the next flag
+                  }
+
+                  context.restore(); // Restore the drawing state back to the start of the row
+                  context.translate(0, 80); // Move the coordinate system down to draw the next row
+                }
+
+                context.restore(); // Restores the original drawing state
+                
                 function drawFrenchFlag() {
                   context.save();
 
@@ -333,23 +497,6 @@
                   context.restore();
                 }
 
-                context.save(); // saves the context at the start of the drawing
-                context.translate(30, 10);
-
-                for (j = 0; j < 4; j = j + 1) {
-                  context.save(); // saves the context at the start of the row
-
-                  for (i = 0; i < 6; i = i + 1) {
-                    drawFrenchFlag();
-                    context.translate(80, 0);
-                  }
-
-                  context.restore(); // restores the context back to the start of the row
-                  context.translate(0, 90);
-                }
-
-                context.restore(); // restores the context back to the start of the drawing
-
             .visual.col-xs-6
               %h5
                 Canvas
@@ -364,31 +511,40 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 3
-
           %figure.float-xs-right.px-2
-            = image_tag('lessons/basic_cityscape/stage2/challenge3Example.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 3 Sample Solution
-
+            = image_tag('lessons/basic_cityscape/stage2/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Replace the code for drawing a top row of windows in your drawBuilding()
-            function from Challenge 2 with two for loops (one inside the other) that
-            will draw windows in all of the offices on all of the floors of a building.
+            Replace the code for drawing a top row of windows in your
+            %code
+              drawBuilding()
+            function from Challenge 2 with two for loops (one inside the other) to
+            draw windows in all of the offices on all of the floors of a building.
           %p
-            Remember, the building has 4 pixels of padding all around it, so the first
+            Remember, the building has 4-pixel thick walls all around it, so the first
             top floor office is at (4, 4), and each office is 16 pixels wide and 16 pixels tall.
           %p
-            %span.highlight
-              Draw the same dark gray window (color #666666) that is 8 pixels wide and 10
-              pixels tall at (4, 2) in each office on every floor.
+            Draw the same dark gray window (color
+            %span
+              %code>
+                '#666666'
+              )
+            that is 8 pixels wide and 10 pixels tall at (4, 2) in each office on every floor.
           %p
-            %span.highlight
-              Then use the drawBuilding() function to draw a building that is 7 office
-              units across and 10 floors tall sitting on the ground at (80, 300).
-            The corners of the building should cover the black x's and the windows should cover the red x's.
-          = render 'lessons/relevant', relevant: [:functions, :save, :translate, :for_loops]
+            Use the
+            %code
+              drawBuilding()
+            function to draw a building that is 7 office units across and 10 floors tall sitting on the ground at (80, 300).
+          %p
+            If you need help using for loops and translating the origin of the coordinate system, visit the
+            = link_to_lesson('For Loops', :for_loops, nil, class: 'reference-link', data: {slug: :for_loops})
+            and
+            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
+            lessons.
+          = render 'lessons/relevant', relevant: [:variables, :functions, :for_loops, :save, :translate]
           = render 'lessons/code_preview', stage: 2, challenge: 2, editor_id: 'basic_cityscape_stage2_challenge2_editor'
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {editor_id: 'basic_cityscape_stage2_challenge3_editor'} do
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage2_challenge3');
@@ -396,11 +552,26 @@
 
             function drawBuilding(leftX, groundY, units, floors) {
 
-              // YOUR CODE FOR DRAWING A BUILDING WITH WINDOWS HERE
-
+              // PUT YOUR CODE FOR DRAWING A BUILDING HERE
+              
+              // AFTER MOVING THE COORDINATE SYSTEM TO (4, 4) INSIDE THE BUILDING
+              // AND CHANGING THE FILLSTYLE TO #666666...
+              // SET UP TWO FOR LOOPS TO DRAW A WINDOW IN EACH OFFICE UNIT
+              // INSIDE EACH OFFICE, DRAW A RECTANGLE AT (4, 2) THAT IS 8 PIXELS WIDE AND 10 PIXELS TALL
+              // MAKE SURE TO SAVE AND RESTORE THE DRAWING STATE BEFORE AND AFTER DRAWING A ROW OF WINDOWS
+              
             }
 
-            // YOUR CODE FOR DRAWING THE BUILDING AT (80, 300) HERE
+            // DRAW A BUILDING AT (80, 300) WITH 7 UNITS AND 10 FLOORS HERE
+            
+            drawGround(300); // Draws the ground at y = 300
+            
+            function drawGround(y) {
+              context.save();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
+              context.restore();
+            }
 
         .visual.col-xs-6
           %h5

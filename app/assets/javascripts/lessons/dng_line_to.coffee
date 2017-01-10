@@ -1,5 +1,5 @@
 initDngLineToChallenges = ->
-  if (page = $('#dng_line_to')).length > 0
+  if (page = $('#line_to')).length > 0
     initDngLineToChallenge1(page)
     initDngLineToChallenge2(page)
     initDngLineToChallenge3(page)
@@ -25,7 +25,7 @@ initDngLineToChallenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your black line has the correct end points!'
-        App.currentProgress.challengeComplete('dng_line_to', 'challenge1')
+        App.currentProgress.challengeComplete('line_to', 'challenge1')
       else
         message = 'Nice try, but you need to draw the black line so it has the correct end points.'
 
@@ -52,7 +52,7 @@ initDngLineToChallenge2 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your line has the correct end points and the correct appearance!'
-        App.currentProgress.challengeComplete('dng_line_to', 'challenge2')
+        App.currentProgress.challengeComplete('line_to', 'challenge2')
       else
         message = 'Nice try, but you need to draw the line with the correct end points and the correct appearance.'
 
@@ -81,7 +81,7 @@ initDngLineToChallenge3 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> Your connected straight lines are drawn correctly!'
-        App.currentProgress.challengeComplete('dng_line_to', 'challenge3')
+        App.currentProgress.challengeComplete('line_to', 'challenge3')
       else
         message = 'Nice try, but you need to draw a line that connects the five points correctly.'
 
@@ -114,7 +114,7 @@ initDngLineToChallenge4 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You drew the outline of the polygon correctly!'
-        App.currentProgress.challengeComplete('dng_line_to', 'challenge4')
+        App.currentProgress.challengeComplete('line_to', 'challenge4')
       else
         message = 'Nice try, but you need to draw a polygon by connecting all of the points correctly.'
 
@@ -144,7 +144,7 @@ initDngLineToChallenge5 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You connected the points and filled the polygon correctly!'
-        App.currentProgress.challengeComplete('dng_line_to', 'challenge5')
+        App.currentProgress.challengeComplete('line_to', 'challenge5')
       else
         message = 'Nice try, but you need to connect the points and fill the polygon correctly.'
 
@@ -175,7 +175,7 @@ initDngLineToChallenge6 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You connected the points and filled and outlined the polygon correctly!'
-        App.currentProgress.challengeComplete('dng_line_to', 'challenge6')
+        App.currentProgress.challengeComplete('line_to', 'challenge6')
       else
         message = 'Nice try, but you need to connect the points and fill and outline the polygon correctly.'
 

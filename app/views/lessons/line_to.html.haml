@@ -1,62 +1,94 @@
 #line_to.page
-  %h1 CanvasRenderingContext2D.lineTo()
-
-
-
-  .official.row.py-3
-    .col-xs-6
-      %h2 The Official Description
-      %p.py-2
-        The CanvasRenderingContext2D.lineTo() method of the Canvas 2D API connects the last point in the sub-path
-        to the x, y coordinates with a straight line (but does not actually draw it).
-      .source.text-xs-right
-        = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineTo', target: '_blank')
-
-    .col-xs-6
-      = image_tag('lessons/line_to/visual1.png', class: 'img-fluid')
-
-
-  .simple.row.py-3
+  %h1
+    context.lineTo()
+  .description.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2
-            Draw A Line
-            %small (but not actually draw it?)
-          %p.pt-2
-            context.lineTo() creates the path for a line, but won't draw anything.
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/line_to/overviewVisual1.png', class: 'img-fluid canvas-example')
           %p
-            You'll need to call context.stroke() to actually draw the line.
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_interactive1_editor'} do
+            The
+            %code
+              context.lineTo()
+            method adds a line segment to the current path by passing it two values:
+          %pre
+            %code
               :preserve
-                var canvas = document.getElementById('line_to_interactive1');
-                var context = canvas.getContext('2d');
-
-                context.beginPath();
-                context.moveTo(100, 250);
-                context.lineTo(400, 50);
-                context.stroke();
-
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#line_to_interactive1
+                context.lineTo(x, y);
+          %p
+            This programs the context to add a straight line from the last point in the current path to the point
+            %span
+              (
+              %code><
+                x
+              ,
+            %span
+              %code>
+                y
+              ),
+            but it does not draw the line on the canvas until we tell the context to stroke or fill the path.
+          .source
+            = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineTo', target: '_blank')
 
 
   .example.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2
-            Example
-          %p.pt-2
-            Using lineTo to draw a basic house.
+          %h2.py-2
+            Draw a Straight Line
+          %p
+            Most shapes are drawn on the canvas by creating a path first, and then stroking
+            or filling the path later.
+          %p
+            In this example, we use the
+            %code
+              context.beginPath()
+            method to create a new path and the
+            %code
+              context.moveTo()
+            method to set the path's starting point at (300, 50):
+          %pre
+            %code
+              :preserve
+                context.beginPath();
+                context.moveTo(300, 50);
+          %p
+            Then, we add a line segment to the end of the path using the
+            %code
+              context.lineTo()
+            method:
+          %pre
+            %code
+              :preserve
+                context.lineTo(50, 200);
+          %p
+            This creates a straight line from (300, 50) to (50, 200), but doesn't draw the line
+            yet. To actually draw the line, we use the
+            %code
+              context.stroke()
+            method to stroke the line using the color currently stored in the
+            %code
+              context.strokeStyle
+            property.
+          %pre
+            %code
+              :preserve
+                context.stroke();
+          %p
+            Change the coordinates passed into the
+            %code
+              context.moveTo()
+            and
+            %code
+              context.lineTo()
+            methods to see what happens. To learn more about the context's coordinate system, visit the
+            = link_to_lesson('coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates]
 
         .col-xs-12
           .interactive.row.py-1
@@ -66,25 +98,8 @@
                 var context = canvas.getContext('2d');
 
                 context.beginPath();
-                context.moveTo(50, 125);
-                context.lineTo(200, 125);
-                context.lineTo(200, 275);
-                context.lineTo(50, 275);
-                context.lineTo(50, 125);
-                context.lineTo(125, 50);
-                context.lineTo(200, 125);
-
-                context.moveTo(75, 150);
-                context.lineTo(100, 150);
-                context.lineTo(100, 175);
-                context.lineTo(75, 175);
-                context.lineTo(75, 150);
-
-                context.moveTo(110, 275);
-                context.lineTo(110, 215);
-                context.lineTo(140, 215);
-                context.lineTo(140, 275);
-
+                context.moveTo(300, 50);
+                context.lineTo(50, 200);
                 context.stroke();
 
             .visual.col-xs-6
@@ -95,25 +110,29 @@
                 %canvas#line_to_example1
 
 
-
-
   #challenge1.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 1
-          %p.py-2 Draw a line from the point (55, 226) to the point (155, 80), passing through the X's shown.
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/line_to/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a black line from (40, 20) to (240, 280).
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('line_to_challenge1');
             var context = canvas.getContext('2d');
 
             context.beginPath();
-
-            // YOUR CODE HERE
-
+            
+            // SET THE PATH'S STARTING POINT AT (40, 20) HERE
+            // SET THE LINE'S END POINT AT (240, 280) HERE
+            
             context.stroke();
 
         .visual.col-xs-6
@@ -125,24 +144,122 @@
             %canvas#line_to_challenge1
           .alert
 
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Set a Line's Appearance
+          %p
+            Besides drawing a 1-pixel-wide black line, we can change the appearance of
+            our lines by setting the
+            %span
+              %code>
+                context.strokeStyle
+              ,
+            %span
+              %code>
+                context.lineWidth
+              ,
+            and
+            %code
+              context.lineCap
+            properties. The
+            %code
+              context.strokeStyle
+            property stores the current color, gradient, or pattern used for lines, the
+            %code
+              context.lineWidth
+            property sets the thickness of lines, and the
+            %code
+              context.lineCap
+            property determines how the end points of a line are drawn. To learn more about colors,
+            gradients, and patterns, visit the
+            = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
+            lesson.
+          %p
+            In this example, we draw a line from (40, 220) to (360, 80) that is
+            %code>
+              'DarkMagenta'
+            and 8-pixels thick with
+            %code
+              'round'
+            ends.
+          %p
+            Change the color, thickness, and shape of the end points to see how it affects the
+            line's appearance. Possible values for the
+            %code
+              context.lineCap
+            property are
+            %span
+              %code>
+                'butt'
+              ,
+            %span
+              %code>
+                'round'
+              ,
+            and
+            %span
+              %code>
+                'square'
+              \.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('line_to_example2');
+                var context = canvas.getContext('2d');
+                
+                context.lineWidth = 8; // Set the line width
+                context.lineCap = 'round'; // Set the shape of the end points
+                context.strokeStyle = 'DarkMagenta'; // Set the line color
+                
+                context.beginPath();
+                context.moveTo(40, 220);
+                context.lineTo(360, 80);
+                context.stroke();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#line_to_example2
+
+
   #challenge2.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 2
-          %p.py-2 Draw an L shape passing through the X's at (100, 50), (100, 250), and (200, 250).
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/line_to/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a line from (40, 120) to (340, 240) that is the color
+            %code
+              'SlateBlue'
+            and 4-pixels thick with
+            %code
+              'square'
+            ends.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('line_to_challenge2');
             var context = canvas.getContext('2d');
-
-            context.beginPath();
-
-            // YOUR CODE HERE
-
-            context.stroke();
+            
+            // SET THE LINE WIDTH TO 4 HERE
+            // SET THE SHAPE OF THE END POINTS TO SQUARE HERE
+            // SET THE LINE COLOR TO SLATEBLUE HERE
+            
+            // DRAW THE LINE FROM (40, 120) TO (340, 240) HERE
 
         .visual.col-xs-6
           %h5
@@ -154,27 +271,77 @@
           .alert
 
 
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw a Path of Connected Lines
+          %p
+            We don't just use the
+            %code
+              context.lineTo()
+            method to draw individual lines. We also use it to draw paths made by
+            connecting multiple lines.
+          %p
+            In this example, we draw a path made by connecting the points (140, 20), (60, 180),
+            (260, 300), and (340, 220) with straight lines that are the color
+            %code
+              'RebeccaPurple'
+            and 2-pixels thick.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('line_to_example3');
+                var context = canvas.getContext('2d');
+
+                context.lineWidth = 2;
+                context.strokeStyle = 'RebeccaPurple';
+                
+                context.beginPath();
+                context.moveTo(140, 20);
+                context.lineTo(60, 180);
+                context.lineTo(260, 300);
+                context.lineTo(340, 220);
+                context.stroke();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#line_to_example3
+
 
   #challenge3.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 3
-          %p.py-2
-            Draw two lines moving throught the x's at (100, 100), (100,200) and (200,100), (200,200),
-            but not through any of the red x's
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/line_to/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a path made by connecting the points (200, 160), (280, 120), (380, 240),
+            (140, 280), and (60, 40) with straight lines that are the color
+            %code
+              'OrangeRed'
+            and 3-pixels thick.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_challenge3_editor'} do
           :preserve
             var canvas = document.getElementById('line_to_challenge3');
             var context = canvas.getContext('2d');
 
-            context.beginPath();
-
-            // YOUR CODE HERE
-
-            context.stroke();
+            // SET THE LINE WIDTH TO 3 HERE
+            // SET THE LINE COLOR TO ORANGERED HERE
+            
+            // DRAW THE LINES CONNECTING THE POINTS (200, 160), (280, 120), (380, 240), (140, 280), AND (60, 40) HERE
 
         .visual.col-xs-6
           %h5
@@ -183,4 +350,271 @@
           .canvas
             .background.hidden-xl-down= image_tag('lessons/line_to/challenge3.png')
             %canvas#line_to_challenge3
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw the Outline of a Polygon
+          %p
+            In this example, we draw the outline of a polygon by connecting the points
+            (40, 40), (320, 160), (40, 280), and (140, 160) with straight lines that are the color
+            %code
+              'ForestGreen'
+            and 6-pixels thick. To close the polygon, we use the
+            %code
+              context.closePath()
+            method to automatically connect the last point in the path to the first point.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('line_to_example4');
+                var context = canvas.getContext('2d');
+
+                context.lineWidth = 6;
+                context.strokeStyle = 'ForestGreen';
+                
+                context.beginPath();
+                context.moveTo(40, 40);
+                context.lineTo(320, 160);
+                context.lineTo(40, 280);
+                context.lineTo(140, 160);
+                context.closePath();
+                context.stroke();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#line_to_example4
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/line_to/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw the outline of a polygon by connecting the points (360, 110), (360, 180), (20, 180),
+            (20, 100), (80, 95), (110, 40), (220, 40), and (270, 95) with straight lines that are the color
+            %code
+              'SaddleBrown'
+            and 5-pixels thick.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('line_to_challenge4');
+            var context = canvas.getContext('2d');
+
+            // SET THE LINE WIDTH TO 5 HERE
+            // SET THE LINE COLOR TO SADDLEBROWN HERE
+            
+            // DRAW THE LINES CONNECTING THE POINTS (360, 110), (360, 180), (20, 180), (20, 100), (80, 95), (110, 40), (220, 40), AND (270, 95) HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/line_to/challenge4.png')
+            %canvas#line_to_challenge4
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw a Filled Polygon
+          %p
+            In this example, we draw a filled polygon by connecting the points (160, 60),
+            (280, 60), (340, 260), and (100, 260) with straight lines.
+          %p
+            To fill the polygon instead of outlining it, we use the
+            %code
+              context.fill()
+            method instead of the
+            %code
+              context.stroke()
+            method. This fills the polygon with the color currently stored in the
+            %code
+              context.fillStyle
+            property. When a path is filled, it is closed automatically even if the
+            %code
+              context.closePath()
+            method has not been called.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_example5_editor'} do
+              :preserve
+                var canvas = document.getElementById('line_to_example5');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = 'DodgerBlue';
+                
+                context.beginPath();
+                context.moveTo(160, 60);
+                context.lineTo(280, 60);
+                context.lineTo(340, 260);
+                context.lineTo(100, 260);
+                context.closePath();
+                context.fill();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#line_to_example5
+
+
+  #challenge5.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 5
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/line_to/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a filled polygon by connecting the points (20, 90), (60, 20), (210, 20),
+            (270, 90), (360, 110), (360, 200), and (20, 200) with straight lines and filling
+            the path with the color
+            %span
+              %code>
+                'MediumPurple'
+              \.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_challenge5_editor'} do
+          :preserve
+            var canvas = document.getElementById('line_to_challenge5');
+            var context = canvas.getContext('2d');
+
+            // SET THE FILL COLOR TO MEDIUMPURPLE HERE
+            
+            // DRAW THE LINES CONNECTING THE POINTS (20, 90), (60, 20), (210, 20), (270, 90), (360, 110), (360, 200), AND (20, 200) HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/line_to/challenge5.png')
+            %canvas#line_to_challenge5
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Fill and Outline a Polygon
+          %p
+            We use the
+            %code
+              context.fill()
+            method to fill a path and the
+            %code
+              context.stroke()
+            method to outline it. After filling or stroking a path, the path remains
+            the current path until we create a new one, so we can fill and stroke a path
+            without creating the path twice.
+          %p
+            In this example, we create a polygon by connecting the points (200, 40),
+            (340, 240), and (60, 200). Then, we fill the polygon with the color
+            %code
+              'DeepPink'
+            and outline it with a
+            %code
+              'DarkRed'
+            line that is 4-pixels thick.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_example6_editor'} do
+              :preserve
+                var canvas = document.getElementById('line_to_example6');
+                var context = canvas.getContext('2d');
+
+                context.lineWidth = 4;
+                context.strokeStyle = 'DarkRed';
+                context.fillStyle = 'DeepPink';
+                
+                context.beginPath();
+                context.moveTo(200, 40);
+                context.lineTo(340, 240);
+                context.lineTo(60, 200);
+                context.closePath();
+                context.fill();
+                context.stroke();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#line_to_example6
+
+
+  #challenge6.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 6
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/line_to/challenge6Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Create a polygon by connecting the points (200, 20), (320, 220), (160, 280),
+            and (90, 140) with straight lines. Then, fill the polygon with the color
+            %span
+              %code>
+                'MediumSeaGreen'
+              ,
+            and outline it with a
+            %code
+              'DarkGreen'
+            line that is 6-pixels thick.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'line_to_challenge6_editor'} do
+          :preserve
+            var canvas = document.getElementById('line_to_challenge6');
+            var context = canvas.getContext('2d');
+
+            // SET THE LINE WIDTH TO 6 HERE
+            // SET THE STROKE COLOR TO DARKGREEN HERE
+            // SET THE FILL COLOR TO MEDIUMSEAGREEN HERE
+            
+            // DRAW THE LINES CONNECTING THE POINTS (200, 20), (320, 220), (160, 280), AND (90, 140) HERE
+            // FILL THE POLYGON HERE
+            // STROKE THE POLYGON HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/line_to/challenge6.png')
+            %canvas#line_to_challenge6
           .alert

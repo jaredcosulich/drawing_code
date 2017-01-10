@@ -1,5 +1,5 @@
 initDngCoordinatesChallenges = ->
-  if (page = $('#dng_coordinates')).length > 0
+  if (page = $('#coordinates')).length > 0
     initDngCoordinatesChallenge1(page)
     initDngCoordinatesChallenge2(page)
     initDngCoordinatesChallenge3(page)
@@ -36,7 +36,7 @@ initDngCoordinatesChallenge1 = (page) ->
         message = 'Almost there. Two points are correct. Only one more to go.'
 
       canvas.alert(message, success)
-      App.currentProgress.challengeComplete('dng_coordinates', 'challenge1') if success
+      App.currentProgress.challengeComplete('coordinates', 'challenge1') if success
     ), 200)
 
 
@@ -74,7 +74,7 @@ initDngCoordinatesChallenge2 = (page) ->
         message = 'Almost there. Three points are correct. Only one more to go.'
 
       canvas.alert(message, success)
-      App.currentProgress.challengeComplete('dng_coordinates', 'challenge2') if success
+      App.currentProgress.challengeComplete('coordinates', 'challenge2') if success
     ), 200)
 
 
@@ -106,7 +106,7 @@ initDngCoordinatesChallenge3 = (page) ->
         message = 'Good start. One point is correct. Only one more to go.'
 
       canvas.alert(message, success)
-      App.currentProgress.challengeComplete('dng_coordinates', 'challenge3') if success
+      App.currentProgress.challengeComplete('coordinates', 'challenge3') if success
     ), 200)
 
 

@@ -1,4 +1,4 @@
-#dng_round.page
+#round.page
   %h1
     Math.round() / Math.floor() / Math.ceil()
   .description.row.py-3
@@ -8,7 +8,7 @@
           %h2.py-2
             Overview
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_round/overviewVisual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/round/overviewVisual1.png', class: 'img-fluid canvas-example')
           %p
             The
             %code
@@ -110,15 +110,15 @@
               \.
           %p
             To learn more about variables, visit the
-            = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
             lesson.
-          = render 'lessons/relevant', relevant: [:dng_variables]
+          = render 'lessons/relevant', relevant: [:variables]
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_example1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'round_example1_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_round_example1');
+                var canvas = document.getElementById('round_example1');
                 var context = canvas.getContext('2d');
 
                 var x = 8.3962; // Assign the number to round
@@ -139,7 +139,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_round_example1
+                %canvas#round_example1
 
 
   .example.row.py-3
@@ -203,17 +203,17 @@
             to see how the dimensions of the rectangle change.
           %p
             To learn more about drawing rectangles, visit the
-            = link_to_lesson('Coordinates', :dng_coordinates, nil, class: 'reference-link', data: {slug: :dng_coordinates})
+            = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
             and
-            = link_to_lesson('fillRect()', :dng_fill_rect, nil, class: 'reference-link', data: {slug: :dng_fill_rect})
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
             lessons.
-          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style]
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_example2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'round_example2_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_round_example2');
+                var canvas = document.getElementById('round_example2');
                 var context = canvas.getContext('2d');
 
                 var a = 183.67;
@@ -235,7 +235,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_round_example2
+                %canvas#round_example2
 
 
   #challenge1.challenge.row.py-3
@@ -245,7 +245,7 @@
           %h2.challenge-title.py-2
             Challenge 1
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_round/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/round/challenge1Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
             Calculate the width of the rectangle by rounding the value of the variable
@@ -257,9 +257,9 @@
             also up to the nearest integer.
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_challenge1_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'round_challenge1_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_round_challenge1');
+            var canvas = document.getElementById('round_challenge1');
             var context = canvas.getContext('2d');
             
             var a = 90 * Math.PI;
@@ -275,8 +275,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_round/challenge1.png')
-            %canvas#dng_round_challenge1
+            .background.hidden-xl-down= image_tag('lessons/round/challenge1.png')
+            %canvas#round_challenge1
           .alert
 
 
@@ -347,15 +347,15 @@
             color 2 to see what happens.
           %p
             To learn more about defining fill colors, visit the
-            = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
+            = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
             lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :dng_variables, :dng_fill_rect, :dng_fill_style]
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_example3_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'round_example3_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_round_example3');
+                var canvas = document.getElementById('round_example3');
                 var context = canvas.getContext('2d');
                 
                 var r1 = 255; // RGB values for color 1
@@ -386,7 +386,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_round_example3
+                %canvas#round_example3
 
 
   #challenge2.challenge.row.py-3
@@ -396,7 +396,7 @@
           %h2.challenge-title.py-2
             Challenge 2
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_round/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/round/challenge2Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
             The program below draws four rectangles and fills them with the color from
@@ -434,9 +434,9 @@
             values for the new colors so they are whole numbers.
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'round_challenge2_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_round_challenge2');
+            var canvas = document.getElementById('round_challenge2');
             var context = canvas.getContext('2d');
 
             var r = 255; // RGB values for the color
@@ -454,8 +454,8 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_round/challenge2.png')
-            %canvas#dng_round_challenge2
+            .background.hidden-xl-down= image_tag('lessons/round/challenge2.png')
+            %canvas#round_challenge2
           .alert
 
 
@@ -538,13 +538,13 @@
             To learn more about handling events, visit the
             addEventListener()
             lesson.
-          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_save, :dng_line_to]
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :save, :line_to]
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_example4_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'round_example4_editor'} do
               :preserve
-                var canvas = document.getElementById('dng_round_example4');
+                var canvas = document.getElementById('round_example4');
                 var context = canvas.getContext('2d');
 
                 canvas.addEventListener('mousemove', function(e) {
@@ -590,7 +590,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#dng_round_example4
+                %canvas#round_example4
 
 
   #challenge3.challenge.row.py-3
@@ -600,7 +600,7 @@
           %h2.challenge-title.py-2
             Challenge 3
           %figure.float-xs-right.px-2
-            = image_tag('lessons/dng_round/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/round/challenge3Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
             Calculate the width of the rectangle by rounding the value of the variable
@@ -612,9 +612,9 @@
             to the nearest multiple of 30.
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'dng_round_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'round_challenge3_editor'} do
           :preserve
-            var canvas = document.getElementById('dng_round_challenge3');
+            var canvas = document.getElementById('round_challenge3');
             var context = canvas.getContext('2d');
 
             var a = 90 * Math.PI;
@@ -638,6 +638,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/dng_round/challenge3.png')
-            %canvas#dng_round_challenge3
+            .background.hidden-xl-down= image_tag('lessons/round/challenge3.png')
+            %canvas#round_challenge3
           .alert
