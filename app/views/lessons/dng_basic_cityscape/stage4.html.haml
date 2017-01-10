@@ -317,21 +317,46 @@
           %p
             To create a 3D effect, we are going to draw two more rows of buildings behind
             the first row. Because objects get smaller in the distance, we will draw the other
-            rows of buildings slightly smaller using the context.scale() function.
+            rows of buildings slightly smaller using the
+            %code
+              context.scale()
+            method.
           %p
-            %span.highlight
-              In this example, we use the context.scale() function to change the size of four
-              random flags.
+            In this example, we use the
+            %code
+              context.scale()
+            method to change the size of four random flags.
           %p
-            By using context.scale(0.6, 0.6), we are drawing everything at 60% scale. If we use
-            context.scale(1, 1), then we are drawing everything at normal size.
+            By using
+            %span
+              %code>
+                context.scale(0.6, 0.6)
+              ,
+            we draw everything at 60% scale. If we use
+            %span
+              %code>
+                context.scale(1, 1)
+              ,
+            then we draw everything at normal size.
           %p
-            Try context.scale(1.5, 1.5) and see what happens. The first value changes the scale
-            in the x-direction. The second value changes it in the y-direction. The two values do
-            not have to be the same.
+            Try
+            %code
+              context.scale(1.5, 1.5)
+            to see what happens. The first value changes the scale in the x-direction.
+            The second value changes it in the y-direction. The two values do not have to be the same.
           %p
-            Note: The scale of the context gets saved and restored with context.save() and context.restore().
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :while_loops, :scale]
+            Note: The scale of the context gets saved and restored with the
+            %code
+              context.save()
+            and
+            %code
+              context.restore()
+            methods.
+          %p
+            To learn more about scaling the coordinate system, visit the
+            = link_to_lesson('scale()', :dng_scale, nil, class: 'reference-link', data: {slug: :dng_scale})
+            lesson.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_for_loops, :dng_switch_statements, :dng_save, :dng_translate, :dng_random, :dng_scale]
 
         .col-xs-12
           .interactive.row.py-1
@@ -339,12 +364,18 @@
               :preserve
                 var canvas = document.getElementById('dng_basic_cityscape_stage4_example2');
                 var context = canvas.getContext('2d');
+                
+                context.save();
+                context.translate(20, 20);
+                context.scale(0.6, 0.6); // Changes the scale of the coordinate system
 
-                function randomInteger(min, max) {
-                  var i = min + Math.floor((max - min + 1) * Math.random());
-
-                  return i;
+                for (var i = 0; i < 4; i = i + 1) {
+                  var flagType = randomInteger(0, 2);
+                  drawFlag(flagType);
+                  context.translate(100, 30);
                 }
+
+                context.restore();
 
                 function drawFlag(country) {
                   context.save();
@@ -386,18 +417,12 @@
 
                   context.restore();
                 }
+                
+                function randomInteger(min, max) {
+                  var i = min + Math.floor((max - min + 1) * Math.random());
 
-                context.save();
-                context.scale(0.6, 0.6);
-                context.translate(20, 20);
-
-                for (var i = 0; i < 4; i = i + 1) {
-                  var flagType = randomInteger(0, 2);
-                  drawFlag(flagType);
-                  context.translate(100, 30);
+                  return i;
                 }
-
-                context.restore();
 
             .visual.col-xs-6
               %h5
@@ -414,39 +439,93 @@
           %h2.challenge-title.py-2
             Challenge 2
           %p
-            %span.highlight
-              Update the drawBuildingRow() function so we can draw rows with different scales.
+            Update the
+            %code
+              drawBuildingRow()
+            function so we can draw rows with different scales.
           %p
-            In the definition of the drawBuildingRow() function, add a parameter called scale:
-            drawBuildingRow(scale).
+            In the definition of the drawBuildingRow() function, add a new parameter named
+            %span
+              %code>
+                scale
+              \:
+          %pre
+            %code
+              :preserve
+                function drawBuildingRow(rowX, groundY, scale) {
+                  context.save();
+                  context.translate(rowX, groundY);
+                  
+                  // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE
+                  
+                  context.restore();
+                }
           %p
-            Then, inside the drawBuildingRow() function, after saving the context for the first
-            time, change the scale of the context using context.scale(scale, scale).
+            Then, inside the
+            %code
+              drawBuildingRow()
+            function,
+            after saving the drawing state and translating the coordinate system to
+            the start of the row, change the scale of the coordinate system in both the x-
+            and y-directions to the value stored in the
+            %code
+              scale
+            parameter using the
+            %code
+              context.scale()
+            method. We want to scale the coordinate system after translating it because the coordinates
+            %span
+              (
+              %code><
+                rowX
+              ,
+            %span
+              %code>
+                groundY
+              )
+            are at normal scale.
           %p
             If you try to draw a row of buildings at 0.6 (or 60%) scale now, you will see something
-            interesting. The buildings are smaller, but the row of buildings is not at least 800 pixels
-            long on the canvas. In fact, the row of buildings is 800 pixels long in the context, but
-            only 480 pixels long on the canvas. That's because 60% of 800 is 480.
+            interesting. The buildings are smaller, but the row of buildings is not 800 pixels
+            long on the canvas. While the row of buildings is 800 pixels long in the coordinate system,
+            it's only 480 pixels long on the canvas because 60% of 800 is 480.
           %p
             To draw a row of buildings at 0.6 scale that is at least 800 pixels long on the canvas,
-            we need to adjust the condition inside our while loop. Instead of x < 800, we should keep
-            drawing buildings as long as x < 800 / scale. For 0.6 scale, that works out to x < 1333.
+            we need to adjust the condition inside our while loop. Instead of using
+            %span
+              %code>
+                x < 800
+              ,
+            we should keep drawing buildings as long as
+            %span
+              %code>
+                x < 800 / scale
+              \.
+            At 0.6 scale, that means drawing buildings as long as
+            %span
+              %code>
+                x < 1333
+              \.
       .row.py-1
         .col-xs-12
           = image_tag('lessons/dng_basic_cityscape/stage4/challenge2Visual1.png', style: 'background-color: #EEEEEE;')
       .row
         .col-xs-12
           %p
-            %span.highlight
-              Draw a row of buildings at 0.6 scale where the first building is sitting on the
-              ground at (0, 280) and the row of buildings is at least 800 pixels long on the canvas.
+            Draw a row of buildings at 0.6 scale where the first building is sitting on the
+            ground at (0, 280) and the row is at least 800 pixels long on the canvas.
+            The row of buildings should cover the length of the red line on the canvas and look
+            similar to the image above. Obviously, the buildings will be random. If your
+            %code
+              drawBuildingRow()
+            function seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
           %p
             %span.highlight
-              The row of buildings should cover the length of the red line on the canvas and look
-              similar to the image above.
-            Obviously, the buildings will be random. If your drawBuildingRow() function seems to be
-            working, mark the challenge as complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :while_loops, :scale]
+              If you press "Run" and your program seems stuck, you may have forgotten
+              to update the x-coordinate for the next building at the
+              end of the while loop. To end the while loop, you will need to close this entire
+              page in your browser and then re-open it again.
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_while_loops, :dng_save, :dng_translate, :dng_scale]
           = render 'lessons/code_preview', stage: 4, challenge: 1, editor_id: 'dng_basic_cityscape_stage4_challenge1_editor'
 
       .row.py-1
@@ -455,7 +534,7 @@
             var canvas = document.getElementById('dng_basic_cityscape_stage4_challenge2');
             var context = canvas.getContext('2d');
 
-            function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
+            function drawBuilding(leftX, groundY, w, h, units, floors, windowType, roofType) {
 
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
@@ -479,7 +558,7 @@
 
             }
 
-            function drawBuildingRow() {
+            function drawBuildingRow(rowX, groundY) {
 
               // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE
 
@@ -507,26 +586,80 @@
           %p
             In addition to making the rows in the back smaller, we will also make them darker.
           %p
-            There are several ways to define colors when using context.fillStyle. So far, we
-            have been using the color #999999 to draw our buildings. Another way to write #999999
-            is rgb(153, 153, 153). The number 153 in base 10 is actually 99 in base 16.
+            There are several ways to define colors when using the
+            %code
+              context.fillStyle
+            property. So far, we have used the color
+            %code
+              '#999999'
+            to draw our buildings. Another way to describe the color
+            %code
+              '#999999'
+            is
+            %span
+              %code>
+                'rgb(153, 153, 153)'
+              \.
+            The number 153 in base 10 is actually 99 in base 16.
           %p
-            When using rgb() to define a color, we are describing the amount of red (r), green (g),
-            and blue (b) in the color, where 0 is none and 255 is the maximum value. For example, black
-            is rgb(0, 0, 0), which is no red, no green, and no blue. White is rgb(255, 255, 255), which
-            is maximum red, maximum green, and maximum blue.
+            When using RGB values to define a color, we are describing the amount of red (r), green (g),
+            and blue (b) in the color, where 0 is none and the maximum value is 255. For example, the color
+            %code
+              black
+            is
+            %span
+              %code>
+                'rgb(0, 0, 0)'
+              ,
+            which is no red, no green, and no blue; and the color
+            %code
+              white
+            is
+            %span
+              %code>
+                'rgb(255, 255, 255)'
+              ,
+            which is maximum red, maximum green, and maximum blue.
           %p
-            %span.highlight
-              In this example, we draw a rectangle with a random color by selecting and combining
-              random amounts of red, green, and blue.
+            In this example, we draw a rectangle with a random color by selecting and combining
+            random amounts of red, green, and blue.
           %p
-            There are a few things to keep in mind when using rgb() to define a color. First, the red,
+            There are a few things to keep in mind when using RGB values to define a color. First, the red,
             green, and blue values have to be integers between 0 and 255. No decimals. Second, the
-            rgb() definition is a string of text. So, we add pieces of text together to get what we need.
+            %code
+              'rgb()'
+            format is a string of text. It may look like a function call, but it isn't. To build a string of
+            text from the three random integers stored in variables
+            %span
+              %code>
+                r
+              ,
+            %span
+              %code>
+                g
+              ,
+            and
+            %span
+              %code>
+                b
+              ,
+            we use the
+            %code
+              +
+            operator to combine bits of text:
+          %pre
+            %code
+              :preserve
+                var color = 'rgb(' + r + ', ' + g + ', ' + b + ')'; // Combine the red, green, and blue in a text string
           %p
-            %span.highlight
-              Press "Run" to change the color of the rectangle.
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :fill_style, :while_loops, :scale]
+            Press "Run" to change the color of the rectangle.
+          %p
+            To learn more about describing fill colors and loose-typing of variables, visit the
+            = link_to_lesson('fillStyle', :dng_fill_style, nil, class: 'reference-link', data: {slug: :dng_fill_style})
+            and
+            = link_to_lesson('Variables', :dng_variables, nil, class: 'reference-link', data: {slug: :dng_variables})
+            lessons.
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_fill_rect, :dng_fill_style, :dng_random, :dng_round]
 
         .col-xs-12
           .interactive.row.py-1
@@ -534,7 +667,20 @@
               :preserve
                 var canvas = document.getElementById('dng_basic_cityscape_stage4_example3');
                 var context = canvas.getContext('2d');
+                
+                var r = randomInteger(0, 255) // Choose a random amount of red
+                var g = randomInteger(0, 255) // Choose a random amount of green
+                var b = randomInteger(0, 255) // Choose a random amount of blue
+                var color = 'rgb(' + r + ', ' + g + ', ' + b + ')'; // Combine the red, green, and blue in a text string
 
+                context.save();
+                context.fillStyle = color; // Use the color as the context's fillStyle
+                context.fillRect(40, 40, 360, 240);
+
+                drawText(color, 220, 300); // Print the text string stored in the variable color
+
+                context.restore();
+                
                 function drawText(text, x, y) {
                   context.save();
                   context.fillStyle = 'rgb(0, 0, 0)';
@@ -549,19 +695,6 @@
 
                   return i;
                 }
-
-                var r = randomInteger(0, 255) // Choose a random amount of red
-                var g = randomInteger(0, 255) // Choose a random amount of green
-                var b = randomInteger(0, 255) // Choose a random amount of blue
-                var color = 'rgb(' + r + ', ' + g + ', ' + b + ')'; // Combine the red, green, and blue in a text string
-
-                context.save();
-                context.fillStyle = color; // Use the color as the context's fillStyle
-                context.fillRect(40, 40, 360, 240);
-
-                drawText(color, 220, 300); // Print the text string stored in the variable color
-
-                context.restore();
 
             .visual.col-xs-6
               %h5
@@ -578,44 +711,94 @@
           %h2.challenge-title.py-2
             Challenge 3
           %p
-            %span.highlight
-              Update the drawBuildingRow() and drawBuilding() functions to draw darker
-              buildings as the scale gets smaller.
+            Update the
+            %code
+              drawBuildingRow()
+            and
+            %code
+              drawBuilding()
+            functions to draw darker buildings as the scale gets smaller.
           %p
-            %span.highlight
-              Inside the drawBuildingRow() function, use Math.round(153 * scale) to calculate
-              the amount of red, green, and blue in the building's color.
+            Inside the
+            %code
+              drawBuildingRow()
+            function, use the expression
+            %code
+              Math.round(153 * scale)
+            to calculate the amount of red, green, and blue in the building's color.
             (For the building's color, the amount of red, green, and blue are all the same.)
             This will make the color darker as the scale gets smaller.
           %p
             Create a text string from the red, green, and blue values. Store the text string
-            in a variable called buildingColor. Store the text string 'rgb(102, 102, 102)' and
-            store it in a variable called windowColor. The window color for all three rows is
-            the same.
+            in a variable named
+            %span
+              %code>
+                buildingColor
+              \.
+            Store the text string
+            %code
+              'rgb(102, 102, 102)'
+            in another variable named
+            %span
+              %code>
+                windowColor
+              \.
+            The window color for all three rows is the same.
           %p
-            Pass the variables buildingColor and windowColor into the drawBuilding() function.
-            Make sure you update the drawBuilding() function definition to include buildingColor
-            and windowColor as parameters.
+            Pass the variables
+            %code
+              buildingColor
+            and
+            %code
+              windowColor
+            into the
+            %code
+              drawBuilding()
+            function. Make sure the
+            %code
+              drawBuilding()
+            function definition is updated to include
+            %code
+              buildingColor
+            and
+            %code
+              windowColor
+            as parameters.
           %p
-            Inside the drawBuilding() function, set the context.fillStyle to buildingColor
-            when drawing the building and roof, and to windowColor when drawing the windows.
+            Inside the
+            %code
+              drawBuilding()
+            function, set the
+            %code
+              context.fillStyle
+            property to
+            %code
+              buildingColor
+            \when drawing the building and roof and to
+            %code
+              windowColor
+            \when drawing the windows.
       .row.py-1
         .col-xs-12
           = image_tag('lessons/dng_basic_cityscape/stage4/challenge3Visual1.png', style: 'background-color: #EEEEEE;')
       .row
         .col-xs-12
           %p
-            %span.highlight
-              Then, draw a row of buildings at 0.6 scale where the first building is sitting on
-              the ground at (0, 280). The buildings should be smaller and darker than the row of
-              buildings in Challenge 1.
+            Draw a row of buildings at 0.6 scale where the first building is sitting on
+            the ground at (0, 280). The buildings should be both smaller and darker than the
+            buildings in Challenge 1, and the row should cover the length of the red line on
+            the canvas and look similar to the image above. Obviously, the buildings will be
+            random. If your
+            %code
+              drawBuildingRow()
+            function seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
           %p
             %span.highlight
-              The row of buildings should cover the length of the red line on the canvas and look
-              similar to the image above, especially the building color.
-            Obviously, the buildings will be random. If your drawBuildingRow() function seems to be
-            working, mark the challenge as complete by selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:functions, :variables, :fill_style, :while_loops, :scale]
+              If you press "Run" and your program seems stuck, you may have forgotten
+              to update the x-coordinate for the next building at the
+              end of the while loop. To end the while loop, you will need to close this entire
+              page in your browser and then re-open it again.
+          = render 'lessons/relevant', relevant: [:dng_variables, :dng_functions, :dng_while_loops, :dng_fill_style, :dng_save, :dng_translate, :dng_scale]
           = render 'lessons/code_preview', stage: 4, challenge: 2, editor_id: 'dng_basic_cityscape_stage4_challenge2_editor'
 
       .row.py-1
@@ -624,7 +807,7 @@
             var canvas = document.getElementById('dng_basic_cityscape_stage4_challenge3');
             var context = canvas.getContext('2d');
 
-            function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
+            function drawBuilding(leftX, groundY, w, h, units, floors, windowType, roofType) {
 
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
@@ -648,7 +831,7 @@
 
             }
 
-            function drawBuildingRow() {
+            function drawBuildingRow(rowX, groundY, scale) {
 
               // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE
 
@@ -676,9 +859,8 @@
           %p
             We are almost done. The last step is to assemble your final drawing.
           %p
-            %span.highlight
-              In this example, we draw a cake for celebrating! Press "Run" to find your favorite cake.
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor, :fill_style, :fill_rect]
+            In this example, we draw a cake for celebrating! Press "Run" to find your favorite cake.
+          = render 'lessons/relevant', relevant: [:dng_functions, :dng_for_loops, :dng_switch_statements, :dng_fill_rect, :dng_fill_style, :dng_random]
 
         .col-xs-12
           .interactive.row.py-1
@@ -824,40 +1006,57 @@
           %h2.challenge-title.py-2
             Challenge 4
           %p
-            %span.highlight
-              In the drawBuildingRow() function, change the while loop to run as long as
-              x < canvas.width.
-            This will ensure each row of buildings will cover the entire width of the canvas.
+            In the
+            %code
+              drawBuildingRow()
+            function, change the while loop to run as long as
+            %span
+              %code>
+                x < canvas.width
+              \.
+            We have stored a reference to the canvas in the
+            %code
+              canvas
+            variable, and the width of the canvas is stored in the
+            %code
+              canvas.width
+            property. This will ensure each row of buildings covers the entire width of the canvas.
       .row.py-1
         .col-xs-12
           = image_tag('lessons/dng_basic_cityscape/stage4/challenge4Visual1.png', style: 'background-color: #EEEEEE;')
       .row
         .col-xs-12
           %p
-            %span.highlight
-              Draw a gray rectangle (color #CCCCCC) at (0, 220) with a width equal to
-              canvas.width and a height of 100.
-            This rectangle is the ground.
+            Draw a gray rectangle (color
+            %span
+              %code>
+                '#CCCCCC'
+              )
+            at (0, 220) with a width equal to
+            %code
+              canvas.width
+            and a height of
+            %span
+              %code>
+                canvas.height - 220
+              \.
+            The
+            %code
+              canvas.height
+            property stores the height of the canvas. This will draw a rectangle for
+            the ground from y = 220 down to the bottom of the canvas.
           %p
-            %span.highlight
-              Draw a row of buildings with a scale of 0.6 at (0, 280).
-            This is the back row of buildings.
+            Draw a row of buildings with a scale of 0.6 at (0, 280). This is the back row of buildings.
           %p
-            %span.highlight
-              Draw a row of buildings with a scale of 0.8 at (0, 300).
-            This is the middle row of buildings.
+            Draw a row of buildings with a scale of 0.8 at (0, 300). This is the middle row of buildings.
           %p
-            %span.highlight
-              Draw a row of buildings with a scale of 1.0 at (0, 320).
-            This is the front row of buildings.
+            Draw a row of buildings with a scale of 1.0 at (0, 320). This is the front row of buildings.
           %p
             Press "Run" multiple times to make sure you are drawing a random cityscape with
             three rows buildings. Each row should cover the width of the canvas, and as the
-            rows get farther away, the buildings should get smaller and darker.
-            %span.highlight
-              Once you feel satisfied with your drawings, mark the challenge as complete by
-              selecting "Yes, it looks good".
-          = render 'lessons/relevant', relevant: [:functions, :variables, :random, :floor, :fill_style, :fill_rect]
+            rows get farther away, the buildings should get smaller and darker. Once you feel
+            satisfied with your drawings, mark the challenge as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:dng_coordinates, :dng_variables, :dng_functions, :dng_fill_rect, :dng_fill_style, :dng_scale]
           = render 'lessons/code_preview', stage: 4, challenge: 3, editor_id: 'dng_basic_cityscape_stage4_challenge3_editor'
 
       .row.py-1
@@ -866,7 +1065,7 @@
             var canvas = document.getElementById('dng_basic_cityscape_stage4_challenge4');
             var context = canvas.getContext('2d');
 
-            function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
+            function drawBuilding(leftX, groundY, w, h, units, floors, windowType, roofType, buildingColor, windowColor) {
 
               // YOUR CODE FOR DRAWING A BUILDING HERE
 
@@ -890,13 +1089,16 @@
 
             }
 
-            function drawBuildingRow() {
+            function drawBuildingRow(rowX, groundY, scale) {
 
               // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE
 
             }
 
-            // DRAW THE GROUND AND THREE ROWS OF BUILDINGS HERE
+            // DRAW A RECTANGLE WITH THE COLOR #CCCCCC FROM (0, 220) TO THE BOTTOM RIGHT CORNER OF THE CANVAS
+            // DRAW A ROW OF RANDOM BUILDINGS AT 0.6 SCALE SITTING ON THE GROUND STARTING AT (0, 280) HERE
+            // DRAW A ROW OF RANDOM BUILDINGS AT 0.8 SCALE SITTING ON THE GROUND STARTING AT (0, 300) HERE
+            // DRAW A ROW OF RANDOM BUILDINGS AT 1.0 SCALE SITTING ON THE GROUND STARTING AT (0, 320) HERE
 
       .row.py-1
         .visual.col-xs-12
