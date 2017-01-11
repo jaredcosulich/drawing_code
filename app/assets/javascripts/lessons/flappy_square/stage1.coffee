@@ -142,11 +142,11 @@ initFlappySquareStage1Challenge6 = (page) ->
         if index < 5
           testSolution(index + 1)
         else
-          message = '<strong>Success!</strong> You\'re successfull animated a flappy square moving down at the correct pace!'
+          message = '<strong>Success!</strong> You\'re successfull cleared the canvas to complete the animation cycle!'
           App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
           canvas.alert(message, success)
       else
-        message = 'Nice try, but you need to animate a flappy square moving down at the correct pace.'
+        message = 'Nice try, but you need to clear the whole canvas in between each frame.'
         canvas.alert(message, success)
 
   challenge.find('.run').click ->

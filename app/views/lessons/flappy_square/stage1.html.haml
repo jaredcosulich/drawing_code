@@ -752,19 +752,45 @@
             %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
-            There's a lot of new stuff in this challenge, so make sure to
-            %span.highlight look at the lesson above.
-            It provides explanations for the different components of this challenge.
+            As mentioned in the previous lesson, there are
+            %span.highlight three required aspects to basic animation:
+          %ul
+            %li Drawing frames in rapid sequence.
+            %li Clearing the canvas in between frames.
+            %li Making small changes to the scene in each frame.
           %p
-            Use
-            %span.highlight setInterval(),
-            called from the canvas "focus" event, to
-            %span.highlight animate the flappy square falling.
+            In this lesson we're going to complete the cycle by clearing the canvas
+            in between frames.
           %p
-            Have your flappy square
-            %span.highlight start at (50, 100) and move down 10 pixels every 300 milliseconds.
+            The method
+            = link_to_lesson('context.clearRect(x, y, width, height)', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
+            allows us to clear an area of the canvas. As the lesson above demonstrates,
+            we want to use it to clear the entire canvas.
           %p
-            Your animation should look like the example to the right.
+            So once again, we'll start the flappy square
+            at (50, 100) and move down 10 pixels every 300 milliseconds.
+          %p
+            This time, though,
+            %span.highlight use context.clearRect()
+            to clear the canvas in between frames.
+          %p
+            Use the method to clear a rectangle starting at
+            %span.highlight (0, 0)
+            with a width of
+            %span.highlight canvas.width
+            and a height of
+            %span.highlight canvas.height.
+          %p
+            You'll need to call it from within
+          %pre
+            %code
+              :preserve
+                function programSteps() {
+                  ...
+                }
+          %p so that it gets called with each frame.
+          %p
+            Your animation should look like the example at the beginning of this explanation.
 
           = render 'lessons/relevant', relevant: [:fill_rect, :set_interval, :event_listeners, :clear_rect, :functions]
           = render 'lessons/code_preview', stage: 1, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index - 1}_editor"
@@ -778,34 +804,36 @@
             var interval;
             var size = 20;
 
-            // SET YOUR POSITION VARIABLES HERE
-            var x =
-            var y =
+            var x = 50;
+            var y = 100;
 
             function drawSquare() {
-
-              // YOUR CODE FOR DRAWING A SQUARE HERE
-
+              context.fillRect(x, y, size, size);
             }
 
             function adjustPosition() {
-
-              // YOUR CODE FOR CHANGING THE POSITION OF THE SQUARE HERE
-
+              y += 10;
             }
 
-            function runProgram() {
-              // YOUR CODE TO CLEAR THE CANVAS BEFORE DRAWING THE NEXT FRAME HERE
-
+            function programSteps() {
               adjustPosition();
               drawSquare();
             }
 
+            function runProgram() {
+              interval = setInterval(programSteps, 300);
+            }
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
             function startAnimation() {
-
-              // FILL IN THE CORRECT setInterval PARAMETERS HERE
-              interval = setInterval();
-
+              runProgram();
             }
 
             function pauseAnimation() {
@@ -814,6 +842,7 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
+            pauseAnimation();
 
 
 
