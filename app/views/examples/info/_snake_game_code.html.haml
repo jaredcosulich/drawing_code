@@ -1,0 +1,168 @@
+:preserve
+  var canvas = document.getElementById('my_drawings_snake-game_canvas');
+  var context = canvas.getContext('2d');
+
+  var dimension = 20;
+  var game = {
+    x: 20,
+    y: 20,
+    width: 360,
+    height: 360
+  };
+  var snake = {
+    direction: 'up',
+    length: 1,
+    path: [{x: 160, y: 360}]
+  };
+  var food = null;
+  var active = false;
+
+  function initGame() {
+    document.onkeydown = function (e) {
+      switch(e.keyCode) {
+        case(37):
+          snake.direction = 'left';
+          break;
+        case(38):
+          snake.direction = 'up';
+          return false;
+        case(39):
+          snake.direction = 'right';
+          break;
+        case(40):
+          snake.direction = 'down';
+          return false;
+      }
+    };
+
+    active = true;
+    setTimeout(runGame, 1000);
+  }
+
+  function drawBoard() {
+    context.beginPath();
+    context.moveTo(game.x, game.y);
+    context.lineTo(game.x + game.width, game.y);
+    context.lineTo(game.x + game.width, game.y + game.height);
+    context.lineTo(game.x, game.y + game.height);
+    context.closePath();
+    context.stroke();
+    drawTitle();
+    drawScore();
+  }
+
+  function drawTitle() {
+    context.save();
+    context.font = "16px serif";
+    context.textBaseline = 'bottom';
+    context.fillText('Javascript Snake Game', game.x, game.y);
+    context.restore();
+  }
+
+  function drawScore() {
+    context.save();
+    context.font = "16px serif";
+    context.textAlign = 'right';
+    context.textBaseline = 'bottom';
+    context.fillText('Score: ' + (snake.length - 1) * 10, game.x + game.width, game.y);
+    context.restore();
+  }
+
+  function runGame() {
+    if (!active) return;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawBoard();
+    drawFood();
+    moveSnake();
+    drawSnake();
+    checkSnake();
+    checkBoundaries();
+    checkFood();
+
+    setTimeout(runGame, 125);
+  }
+
+  function moveSnake() {
+    var newPosition = {x: snake.path[0].x, y: snake.path[0].y};
+    switch(snake.direction) {
+      case 'up':
+        newPosition.y -= dimension;
+        break;
+
+      case 'down':
+        newPosition.y += dimension;
+        break;
+
+      case 'left':
+        newPosition.x -= dimension;
+        break;
+
+      case 'right':
+        newPosition.x += dimension;
+        break;
+    }
+    snake.path.unshift(newPosition);
+    while (snake.path.length > snake.length) {
+      snake.path.pop();
+    }
+  }
+
+  function placeFood() {
+    if (!food) {
+      food = {};
+      food.x = game.x + Math.floor(Math.random() * (game.width - dimension) / dimension) * dimension;
+      food.y = game.y + Math.floor(Math.random() * (game.height - dimension) / dimension) * dimension;
+    }
+  }
+
+  function drawFood() {
+    if (!food) {
+      placeFood();
+    }
+    context.fillRect(food.x, food.y, dimension, dimension);
+  }
+
+  function drawSnake() {
+    for (var i=0; i < snake.length; ++i) {
+      context.fillRect(snake.path[i].x, snake.path[i].y, dimension, dimension);
+    }
+  }
+
+  function checkSnake() {
+    var snakeX = snake.path[0].x;
+    var snakeY = snake.path[0].y;
+    for (var i=1; i < snake.length; ++i) {
+      if (snakeX == snake.path[i].x && snakeY == snake.path[i].y) {
+        message('You ate yourself! Game Over!');
+        active = false;
+      }
+    }
+  }
+
+  function checkBoundaries() {
+    if (snake.path[0].x + dimension <= game.x ||
+        snake.path[0].x >= (game.x + game.width) ||
+        snake.path[0].y + dimension <= game.y ||
+        snake.path[0].y >= (game.y + game.height)) {
+      message('Wall Collision! Game Over!');
+      active = false;
+    }
+  }
+
+  function checkFood() {
+    if (snake.path[0].x == food.x && snake.path[0].y == food.y) {
+      food = null;
+      snake.length += 1;
+    }
+  }
+
+  function message(text) {
+    context.save();
+    context.font = "24px serif";
+    context.textAlign = 'center';
+    context.fillText(text, game.x + (game.width / 2), game.y + (game.height / 3));
+    context.restore();
+  }
+
+  initGame();
