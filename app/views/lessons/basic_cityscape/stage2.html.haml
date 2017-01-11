@@ -8,7 +8,7 @@
           %h2.py-2
             Overview
           %figure.float-xs-right.px-2
-            = image_tag('lessons/basic_cityscape/stage1/overviewVisual1.png', class: 'img-fluid')
+            = image_tag('lessons/basic_cityscape/stage2/overviewVisual1.png', class: 'img-fluid')
           %p
             In the second stage of the Cityscape Challenge, we draw rows of windows
             in our buildings. Because we will be drawing lots of windows and rows, we will
@@ -140,19 +140,19 @@
             function drawBuilding(leftX, groundY, units, floors) {
 
               // PUT YOUR CODE FOR DRAWING A BUILDING HERE
-              
+
               // AFTER TRANSLATING TO THE BUILDING'S TOP LEFT CORNER
               // AND DRAWING THE BUILDING'S RECTANGLE...
               // MOVE THE COORDINATE SYSTEM TO (4, 4) INSIDE THE BUILDING
               // CHANGE THE FILLSTYLE TO THE COLOR #666666
               // DRAW A RECTANGLE AT (4, 2) THAT IS 8 PIXELS WIDE AND 10 PIXELS TALL
-              
+
             }
 
             // DRAW A BUILDING AT (100, 300) WITH 6 UNITS AND 12 FLOORS HERE
-            
+
             drawGround(300); // Draws the ground at y = 300
-            
+
             function drawGround(y) {
               context.save();
               context.fillStyle = 'Black';
@@ -207,9 +207,9 @@
             %code
               :preserve
                 for (i = 0; i < 6; i = i + 1) {
-                  
+
                   // code block
-                  
+
                 }
           %p
             So, the first time through the loop,
@@ -273,7 +273,7 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage2_example2');
                 var context = canvas.getContext('2d');
-                
+
                 context.save(); // Save the original drawing state
                 context.translate(140, 20); // Move the coordinate system to the top left corner of the first flag
 
@@ -281,9 +281,9 @@
                   drawFrenchFlag();
                   context.translate(0, 50); // Move the coordinate system to the top left corner of the next flag
                 }
-                
+
                 context.restore(); // Restore the original drawing state
-                
+
                 function drawFrenchFlag() {
                   context.save();
 
@@ -361,19 +361,19 @@
             function drawBuilding(leftX, groundY, units, floors) {
 
               // PUT YOUR CODE FOR DRAWING A BUILDING HERE
-              
+
               // AFTER MOVING THE COORDINATE SYSTEM TO (4, 4) INSIDE THE BUILDING
               // AND CHANGING THE FILLSTYLE TO #666666...
               // SET UP A FOR LOOP TO DRAW A WINDOW IN EACH OFFICE UNIT ON THE TOP FLOOR
               // INSIDE EACH OFFICE, DRAW A RECTANGLE AT (4, 2) THAT IS 8 PIXELS WIDE AND 10 PIXELS TALL
               // THEN MOVE THE COORDINATE SYSTEM TO THE NEXT OFFICE
-              
+
             }
 
             // DRAW A BUILDING AT (50, 300) WITH 12 UNITS AND 8 FLOORS HERE
-            
+
             drawGround(300); // Draws the ground at y = 300
-            
+
             function drawGround(y) {
               context.save();
               context.fillStyle = 'Black';
@@ -481,7 +481,7 @@
                 }
 
                 context.restore(); // Restores the original drawing state
-                
+
                 function drawFrenchFlag() {
                   context.save();
 
@@ -553,19 +553,19 @@
             function drawBuilding(leftX, groundY, units, floors) {
 
               // PUT YOUR CODE FOR DRAWING A BUILDING HERE
-              
+
               // AFTER MOVING THE COORDINATE SYSTEM TO (4, 4) INSIDE THE BUILDING
               // AND CHANGING THE FILLSTYLE TO #666666...
               // SET UP TWO FOR LOOPS TO DRAW A WINDOW IN EACH OFFICE UNIT
               // INSIDE EACH OFFICE, DRAW A RECTANGLE AT (4, 2) THAT IS 8 PIXELS WIDE AND 10 PIXELS TALL
               // MAKE SURE TO SAVE AND RESTORE THE DRAWING STATE BEFORE AND AFTER DRAWING A ROW OF WINDOWS
-              
+
             }
 
             // DRAW A BUILDING AT (80, 300) WITH 7 UNITS AND 10 FLOORS HERE
-            
+
             drawGround(300); // Draws the ground at y = 300
-            
+
             function drawGround(y) {
               context.save();
               context.fillStyle = 'Black';

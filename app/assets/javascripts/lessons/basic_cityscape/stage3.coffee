@@ -59,13 +59,8 @@ initBasicCityscapeStage3Challenge1 = (page) ->
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-<<<<<<< HEAD
-        message = '<strong>Success!</strong> You\'ve create three buildings with three different window types!'
-        App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge1')
-=======
         message = '<strong>Success!</strong> You used a switch statement to draw three different types of windows on the three buildings!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage3', 'challenge1')
->>>>>>> 98bf60f5d35300cdfe63fdd56f2f5022fa1c1ee7
+        App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge1')
       else
         message = 'Nice try, but you need to use a switch statement to draw three different types of windows on the three buildings.'
 
@@ -149,13 +144,8 @@ initBasicCityscapeStage3Challenge2 = (page) ->
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-<<<<<<< HEAD
-        message = '<strong>Success!</strong> You\'ve create three buildings with three different window types and roof types!'
-        App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge2')
-=======
         message = '<strong>Success!</strong> You used switch statements to draw different types of windows and roofs on the three buildings!'
-        App.currentProgress.challengeComplete('dng_basic_cityscape_stage3', 'challenge2')
->>>>>>> 98bf60f5d35300cdfe63fdd56f2f5022fa1c1ee7
+        App.currentProgress.challengeComplete('basic_cityscape_stage3', 'challenge2')
       else
         message = 'Nice try, but you need to use switch statements to draw different types of windows and roofs on the three buildings.'
 
