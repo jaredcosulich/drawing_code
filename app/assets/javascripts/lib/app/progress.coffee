@@ -57,6 +57,17 @@ class App.Progress
     tag.addClass('tag').addClass('tag-success').html('Completed!')
     challengeTitle.append(tag)
 
+  toggleChallenge: (page, challengeId) ->
+    successTag = $("##{challengeId}").find('.challenge-title .tag-success')
+    if successTag.length > 0
+      challenges = {}
+      challenges[c] = true for c in localStorage.getItem(page).split(/,/) when c != challengeId
+      localStorage.setItem(page, (c for c of challenges).join(','))
+      successTag.remove()
+    else
+      @challengeComplete(page, challengeId)
+    @updateNavigation()
+
   storeEditorValue: (editorId, code) ->
     return unless @storageAvailable
     localStorage.setItem(editorId, code)

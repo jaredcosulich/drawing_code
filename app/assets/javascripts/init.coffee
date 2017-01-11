@@ -59,6 +59,18 @@ initCheats = ->
     ), 2000)
     page.mouseup -> mousedown = false
 
+  page.find('.challenge h2').mousedown (e) ->
+    mousedown = true
+    setTimeout(( ->
+      if mousedown
+        if (confirm('Are you sure you want to toggle the complete state for this challenge?'))
+          challenge = $(e.currentTarget).closest('.challenge')
+          challenge.find('.editor').data('editor').reset()
+          App.currentProgress.toggleChallenge(page.attr('id'), challenge.attr('id'))
+    ), 2000)
+    page.mouseup -> mousedown = false
+
+
 initProgress = ->
   App.currentProgress = new App.Progress()
   App.currentProgress.updateNavigation()
