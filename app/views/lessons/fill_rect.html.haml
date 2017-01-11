@@ -1,58 +1,75 @@
 #fill_rect.page
-  %h1 CanvasRenderingContext2D.fillRect()
-
-
-
-  .official.row.py-3
-    .col-xs-6
-      %h2 The Official Description
-      %p.py-2
-        The CanvasRenderingContext2D.fillRect() method of the Canvas 2D API draws a
-        filled rectangle at (x, y) position whose size is determined by width and
-        height and whose style is determined by the fillStyle attribute.
-      .source.text-xs-right
-        = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect', target: '_blank')
-
-    .col-xs-6
-      = image_tag('lessons/fill_rect/visual1.png', class: 'img-fluid')
-
-
-  .simple.row.py-3
+  %h1
+    context.fillRect()
+  .description.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2
-            Draw A Rectangle and Fill It In
-          %p.pt-2
-            context.fillRect() draws a rectangle and fills it in with the color
-            defined by context.fillStyle.
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_interactive1_editor'} do
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_rect/overviewVisual1.png', class: 'img-fluid canvas-example')
+          %p
+            The
+            %code
+              context.fillRect()
+            method draws a filled rectangle on the canvas by passing it four values:
+          %pre
+            %code
               :preserve
-                var canvas = document.getElementById('fill_rect_interactive1');
-                var context = canvas.getContext('2d');
-
-                context.fillStyle = 'red';
-                context.fillRect(100,100,100,50);
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#fill_rect_interactive1
+                context.fillRect(x, y, width, height);
+          %p
+            This programs the context to draw a rectangle at
+            %span
+              (
+              %code><
+                x
+              ,
+            %span
+              %code>
+                y
+              )
+            with the given
+            %code
+              width
+            and 
+            %code
+              height
+            values. The rectangle is filled with the color, gradient, or pattern currently
+            stored on the context's
+            %code
+              fillStyle
+            property.
+          .source
+            = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect', target: '_blank')
 
 
   .example.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2
-            Example
-          %p.pt-2
-            Using fillRect() to draw the flag of Madagascar.
+          %h2.py-2
+            Draw a Filled Rectangle
+          %p
+            In this example, we set the context's
+            %code
+              fillStyle
+            to red and then use
+            %code
+              context.fillRect()
+            to draw a filled rectangle at (100, 60) with a width of 240 and a height
+            of 180. The coordinates (100, 60) apply to the rectangle's top left corner,
+            which is 100 pixels to the right and 60 pixels down from the origin of the
+            context.
+          %p
+            Change the x-coordinate, y-coordinate, width, and height of the rectangle to see what happens.
+          %p
+            To learn more about the coordinate system and defining fill colors, visit the
+            = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+            and
+            = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -61,14 +78,8 @@
                 var canvas = document.getElementById('fill_rect_example1');
                 var context = canvas.getContext('2d');
 
-                context.fillStyle = 'white';
-                context.fillRect(50, 50, 100, 200);
-
-                context.fillStyle = '#EB4D37';
-                context.fillRect(150, 50, 200, 100);
-
-                context.fillStyle = '#337D3F';
-                context.fillRect(150, 150, 200, 100);
+                context.fillStyle = 'Red';
+                context.fillRect(100, 60, 240, 180);
 
             .visual.col-xs-6
               %h5
@@ -78,22 +89,27 @@
                 %canvas#fill_rect_example1
 
 
-
-
   #challenge1.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 1
-          %p.py-2 Draw a red rectangle covering the x at (100,100).
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_rect/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a red rectangle at (80, 40) with a width of 300 and a height of 200.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('fill_rect_challenge1');
             var context = canvas.getContext('2d');
-
-            // YOUR CODE HERE
+            
+            context.fillStyle = 'Red';
+            
+            // DRAW THE RED RECTANGLE HERE
 
         .visual.col-xs-6
           %h5
@@ -104,20 +120,90 @@
             %canvas#fill_rect_challenge1
           .alert
 
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Position Rectangles Within a Shape
+          %p
+            Positioning a rectangle is straightforward if we know the coordinates of
+            its top left corner. But sometimes, if we have to position a rectangle relative
+            to another rectangle, we aren't given its coordinates.
+          %p
+            In this example, we draw the flag of Madagascar. We know the coordinates of
+            the top left corner of the flag are supposed to be (60, 40), but what are the
+            coordinates of the white, red, and green rectangles?
+          %p
+            Since the top left corner of the white rectangle is the same as the top left
+            corner of the flag, its coordinates are (60, 40).
+          %p
+            Since the white rectangle is 100 pixels wide, the coordinates of the red rectangle
+            are (160, 40). This positions the red rectangle 100 pixels to the right of the white
+            rectangle.
+          %p
+            And since the red rectangle is 100 pixels tall, the coordinates of the green
+            rectangle are (160, 140). This positions the green rectangle 100 pixels below the
+            red rectangle.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('fill_rect_example2');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = 'White';
+                context.fillRect(60, 40, 100, 200); // The white rectangle
+
+                context.fillStyle = '#FC3D32';
+                context.fillRect(160, 40, 200, 100); // The red rectangle
+
+                context.fillStyle = '#007E3A';
+                context.fillRect(160, 140, 200, 100); // The green rectangle
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#fill_rect_example2
+
+
   #challenge2.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 2
-          %p.py-2 Draw a rectangle that covers the two x's at (100,100), and (100,200).
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_rect/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a larger version of the flag of Madagascar at (30, 40).
+          %p
+            Draw the white rectangle so its width is 120 and its height is 240. Draw the
+            red and green rectangles so their widths are 240 and their heights are 120.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_challenge2_editor'} do
           :preserve
             var canvas = document.getElementById('fill_rect_challenge2');
             var context = canvas.getContext('2d');
+            
+            context.fillStyle = 'White';
+            
+            // DRAW THE WHITE RECTANGLE HERE
 
-            // YOUR CODE HERE
+            context.fillStyle = '#FC3D32';
+            
+            // DRAW THE RED RECTANGLE HERE
+
+            context.fillStyle = '#007E3A';
+            
+            // DRAW THE GREEN RECTANGLE HERE
 
         .visual.col-xs-6
           %h5
@@ -129,23 +215,37 @@
           .alert
 
 
-
   #challenge3.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 3
-          %p.py-2
-            Draw the flag of France by drawing rectangles covering the x's at
-            (100,150) with #0F278F, (200,150) with white, and (300,150) with #DB5443.
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_rect/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a dark blue rectangle directly above a dark violet rectangle.
+          %p
+            The top left corner of the dark violet rectangle is positioned at (50, 200),
+            and it has a width of 320 and a height of 80.
+          %p
+            Draw the dark blue rectangle so it has the same width as the dark violet rectangle
+            and twice the height.
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_challenge3_editor'} do
           :preserve
             var canvas = document.getElementById('fill_rect_challenge3');
             var context = canvas.getContext('2d');
 
-            // YOUR CODE HERE
+            context.fillStyle = 'DarkViolet';
+            
+            // DRAW THE DARK VIOLET RECTANGLE HERE
+            
+            context.fillStyle = 'DarkBlue';
+
+            // DRAW THE DARK BLUE RECTANGLE HERE
 
         .visual.col-xs-6
           %h5
@@ -154,4 +254,163 @@
           .canvas
             .background.hidden-xl-down= image_tag('lessons/fill_rect/challenge3.png')
             %canvas#fill_rect_challenge3
+          .alert
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_rect/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a green square at (140, 80) with a width and height of 120.
+          %p
+            Then draw four smaller green squares with widths and heights of 60 touching
+            the four corners of the larger square.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('fill_rect_challenge4');
+            var context = canvas.getContext('2d');
+
+            context.fillStyle = 'Green';
+            
+            // DRAW THE LARGE GREEN SQUARE HERE
+
+            // DRAW THE FOUR SMALLER GREEN SQUARES HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/fill_rect/challenge4.png')
+            %canvas#fill_rect_challenge4
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use Draw Order to Layer Rectangles
+          %p
+            If we program the context to draw two rectangles that overlap, the context
+            will draw the second rectangle on top of the first rectangle.
+          %p
+            In this example, we draw a white rectangle on top of an orange rectangle.
+          %p
+            If we changed the order and drew the white rectangle first, then the white
+            rectangle would be on the bottom and the orange rectangle on top.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('fill_rect_example3');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = 'Orange';
+                context.fillRect(60, 20, 240, 180); // The orange rectangle
+
+                context.fillStyle = 'White';
+                context.fillRect(90, 50, 150, 100); // The white rectangle
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#fill_rect_example3
+
+
+  #challenge5.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 5
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_rect/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw a sky blue rectangle on top of a saddle brown rectangle.
+          %p
+            The top left corner of the sky blue rectangle is positioned at (100, 80),
+            and its width is 200 and its height is 160.
+          %p
+            The saddle brown rectangle is positioned and sized so it forms a 40-pixel-wide
+            border around the sky blue rectangle, like a picture frame.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_challenge5_editor'} do
+          :preserve
+            var canvas = document.getElementById('fill_rect_challenge5');
+            var context = canvas.getContext('2d');
+
+            context.fillStyle = 'SkyBlue';
+            context.fillStyle = 'SaddleBrown';
+            
+            // USE THE FILL COLORS TO DRAW THE RECTANGLES HERE
+            
+            // NOTE: YOU MAY NEED TO CHANGE WHERE YOU SET THE FILL COLORS
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/fill_rect/challenge5.png')
+            %canvas#fill_rect_challenge5
+          .alert
+
+
+  #challenge6.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 6
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/fill_rect/challenge6Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw the image to the right.
+          %p
+            The two plum and two lemon chiffon rectangles inside of the midnight blue border
+            each have a width of 120 and a height of 60.
+          %p
+            The midnight blue border is 60-pixels-wide and the top left corner of the border
+            is positioned at (20, 20).
+          %p
+            Note: It is possible to draw this image with only four rectangles. Can you figure out how?
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'fill_rect_challenge6_editor'} do
+          :preserve
+            var canvas = document.getElementById('fill_rect_challenge6');
+            var context = canvas.getContext('2d');
+
+            context.fillStyle = 'Plum';
+            context.fillStyle = 'LemonChiffon';
+            context.fillStyle = 'MidnightBlue';
+            
+            // USE THE FILL COLORS TO DRAW THE RECTANGLES HERE
+            
+            // NOTE: YOU MAY NEED TO CHANGE WHERE YOU SET THE FILL COLORS
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/fill_rect/challenge6.png')
+            %canvas#fill_rect_challenge6
           .alert

@@ -1,85 +1,110 @@
 #translate.page
-  %h1 CanvasRenderingContext2D.translate()
-
-
-
-  .official.row.py-3
-    .col-xs-6
-      %h2 Unofficial Description
-      %p.py-2
-        The CanvasRenderingContext2D.translate() method of the Canvas 2D API shifts
-        the coordinate axis of the canvas by the X and Y values provided.
-
-    .col-xs-6
-      = image_tag('lessons/translate/visual1.png', class: 'img-fluid')
-
-
-  .simple.row.py-3
+  %h1
+    context.translate()
+  .description.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2
-            Why Would I Use This?
-          %p.pt-2
-            translate() allows you to shift the entire coordinate grid of the canvas context.
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/translate/overviewVisual1.png', class: 'img-fluid')
           %p
-            So, instead of changing the x and y coordinates of many commands you can just
-            shift the coordinate grid and the drawing will appear in a different location.
-            Here's an example of copying a drawing of a house:
-
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_interactive1_editor'} do
+            The
+            %code
+              context.translate()
+            method moves the origin of the context's coordinate system by passing it two values:
+          %pre
+            %code
               :preserve
-                var canvas = document.getElementById('translate_interactive1');
-                var context = canvas.getContext('2d');
-
-                for (var i=0; i<3; ++i) {
-                  context.save();
-                  context.translate(160*i, 25*i);
-
-                  context.beginPath();
-                  context.moveTo(25, 100);
-                  context.lineTo(175, 100);
-                  context.lineTo(175, 250);
-                  context.lineTo(25, 250);
-                  context.lineTo(25, 100);
-                  context.lineTo(100, 25);
-                  context.lineTo(175, 100);
-
-                  context.moveTo(50, 125);
-                  context.lineTo(75, 125);
-                  context.lineTo(75, 150);
-                  context.lineTo(50, 150);
-                  context.lineTo(50, 125);
-
-                  context.moveTo(85, 250);
-                  context.lineTo(85, 190);
-                  context.lineTo(115, 190);
-                  context.lineTo(115, 250);
-
-                  context.stroke();
-                  context.restore();
-                }
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#translate_interactive1
+                context.translate(x, y);
+          %p
+            The
+            %code
+              x
+            value moves the origin of the coordinate system horizontally and the
+            %code
+              y
+            value moves it vertically. For example,
+            %code
+              context.translate(90, 60)
+            moves the origin 90 pixels to the right and 60 pixels down.
+          .source
+            = link_to('Mozilla Developer\'s Network', 'https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/translate', target: '_blank')
 
 
   .example.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2
-            Example
-          %p.pt-2
-            Here's a basic example where the same fillRect() command draws in different
-            areas due to translate()
+          %h2.py-2
+            Translate the Origin to Move the Drawing Paper
+          %p
+            While transforming the context's coordinate system may sound highly mathematical, it
+            actually simplifies any math we might need to do when drawing.
+          %p
+            Think of moving the origin of the coordinate system like moving a sheet of drawing paper.
+            If we were drawing a house on a sheet of paper, we would move the paper so the house's
+            position is directly under our pencil, and then we would draw the house. Once the house is
+            directly under our pencil, we can draw the house without thinking about its position.
+          %p
+            On the canvas, the origin of the coordinate system (0, 0) is the point directly under our
+            pencil. In this example, we draw a house at the origin and use the
+            %code
+              context.translate()
+            method to position it wherever we want.
+          %p
+            We start by translating the origin to (0, 0). This doesn't move the origin at all, for
+            now, which is what we want. We'll move the origin later.
+          %pre
+            %code
+              :preserve
+                context.translate(0, 0); // Position house here
+          %p
+            Then, we draw our house at the origin.
+          %pre
+            %code
+              :preserve
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+          %p
+            Finally, we have defined a function that will draw a set of axes at the origin of
+            the coordinate system. This will help us see the position of the origin any time we want.
+            Call it after drawing the house.
+          %pre
+            %code
+              :preserve
+                drawAxes();
+          %p
+            At this point, we have drawn a yellow house with two windows and a red door at
+            the origin of the coordinate system, which is in the top left corner of the canvas.
+          %p
+            Go back up to the top of the program where we translate the origin of the coordinate
+            system to (0, 0). Change the line of code to move the origin to (100, 50). Then, try
+            drawing the house at different positions.
+          %pre
+            %code
+              :preserve
+                context.translate(100, 50);  // Position house here
+          %p
+            To learn more about the coordinate system, setting fill colors, and drawing rectangles, visit the
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+              ,
+            %span
+              %span><
+                = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
+              ,
+            and
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :functions, :fill_rect, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -87,15 +112,61 @@
               :preserve
                 var canvas = document.getElementById('translate_example1');
                 var context = canvas.getContext('2d');
-                context.save();
-
-                context.fillRect(50,175,100,100);
-
-                context.translate(125,-125);
-
-                context.fillRect(50,175,100,100);
-
-                context.restore();
+                
+                context.translate(0, 0); // Position house here
+                
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                
+                drawAxes();
+                
+                function drawAxes() {
+                  context.save();
+                  context.fillStyle = 'Red';
+                  context.strokeStyle = 'Red';
+                  context.font = '16px Arial';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'middle';
+                  drawPoint(0, 0);
+                  drawLine(0, 0, 50, 0);
+                  drawArrow(50, 0, 0);
+                  context.fillText('x', 60, 0);
+                  drawLine(0, 0, 0, 50);
+                  drawArrow(0, 50, 0.5 * Math.PI);
+                  context.fillText('y', 0, 60);
+                  context.restore();
+                }
+                
+                function drawPoint(x, y) {
+                  context.beginPath();
+                  context.arc(x, y, 3, 0, 2 * Math.PI, false);
+                  context.fill();
+                }
+                
+                function drawLine(x1, y1, x2, y2) {
+                  context.beginPath();
+                  context.moveTo(x1, y1);
+                  context.lineTo(x2, y2);
+                  context.stroke();
+                }
+                
+                function drawArrow(x, y, angle) {
+                  context.save();
+                  context.translate(x, y);
+                  context.rotate(angle);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(-10, 5);
+                  context.lineTo(-10, -5);
+                  context.closePath();
+                  context.fill();
+                  context.restore();
+                }
 
             .visual.col-xs-6
               %h5
@@ -105,29 +176,35 @@
                 %canvas#translate_example1
 
 
-
-
   #challenge1.challenge.row.py-3
     .col-xs-12
       .row
         .col-xs-12
-          %h2.challenge-title Challenge 1
-          %p.py-2
-            Use translate() to draw the blue rectangle centered at (50,50)
-            over the x's at (125,125) and (200,200)
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/translate/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Right now, this program draws a French flag at the position (0, 0).
+          %p
+            Use the
+            %code
+              context.translate()
+            method to draw the French flag at the position (120, 40).
 
-      .row
+      .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_challenge1_editor'} do
           :preserve
             var canvas = document.getElementById('translate_challenge1');
             var context = canvas.getContext('2d');
-            context.save();
-
-            context.fillStyle = '#2A32A3';
-            context.fillRect(25, 25, 50, 50);
-
-            context.restore();
-
+            
+            context.fillStyle = '#0055A4';
+            context.fillRect(0, 0, 80, 160); // Blue bar
+            context.fillStyle = '#FFFFFF';
+            context.fillRect(80, 0, 80, 160); // White bar
+            context.fillStyle = '#EF4135';
+            context.fillRect(160, 0, 80, 160); // Red bar
 
         .visual.col-xs-6
           %h5
@@ -137,3 +214,1221 @@
             .background.hidden-xl-down= image_tag('lessons/translate/challenge1.png')
             %canvas#translate_challenge1
           .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Combine Multiple Translations
+          %p
+            When we use the
+            %code
+              context.translate()
+            method to position a drawing, it is important to remember that we are moving
+            the entire coordinate system and not just a single drawing.
+          %p
+            In this example, we translate the origin of the coordinate system to position
+            (100, 50) and draw a house and a set of axes.
+          %pre
+            %code
+              :preserve
+                context.translate(50, 100); // Position of the first house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                drawAxes();
+          %p
+            Then, we translate the origin of the coordinate system to position (200, 0)
+            and draw second house and a second set of axes.
+          %pre
+            %code
+              :preserve
+                context.translate(200, 0); // Position of the second house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                drawAxes();
+          %p
+            The second house is not drawn at (200, 0) in absolute coordinates on the canvas.
+            It is drawn at (250, 100) because, when we apply the second translation, we are
+            doing it in a coordinate system that has already been moved. The second house is
+            drawn 200 pixels to the right of the origin for the first house. And if we did
+            another translation and drew a third house, it would be positioned relative to the
+            origin for the second house.
+          = render 'lessons/relevant', relevant: [:coordinates, :functions, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('translate_example2');
+                var context = canvas.getContext('2d');
+                
+                context.translate(50, 100); // Position of the first house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                drawAxes();
+                
+                context.translate(200, 0); // Position of the second house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                drawAxes();
+
+                function drawAxes() {
+                  context.save();
+                  context.fillStyle = 'Red';
+                  context.strokeStyle = 'Red';
+                  context.font = '16px Arial';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'middle';
+                  drawPoint(0, 0);
+                  drawLine(0, 0, 50, 0);
+                  drawArrow(50, 0, 0);
+                  context.fillText('x', 60, 0);
+                  drawLine(0, 0, 0, 50);
+                  drawArrow(0, 50, 0.5 * Math.PI);
+                  context.fillText('y', 0, 60);
+                  context.restore();
+                }
+                
+                function drawPoint(x, y) {
+                  context.beginPath();
+                  context.arc(x, y, 3, 0, 2 * Math.PI, false);
+                  context.fill();
+                }
+                
+                function drawLine(x1, y1, x2, y2) {
+                  context.beginPath();
+                  context.moveTo(x1, y1);
+                  context.lineTo(x2, y2);
+                  context.stroke();
+                }
+                
+                function drawArrow(x, y, angle) {
+                  context.save();
+                  context.translate(x, y);
+                  context.rotate(angle);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(-10, 5);
+                  context.lineTo(-10, -5);
+                  context.closePath();
+                  context.fill();
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#translate_example2
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/translate/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Right now, this program draws a French flag at the position (0, 0).
+          %p
+            Copy the code to draw two more French flags. Use the
+            %code
+              context.translate()
+            method to position the first French flag at (20, 40). Then, position the
+            second French flag 200 pixels to the right of the origin for the first French
+            flag, and position the third French flag 140 pixels down and 80 pixels to the
+            left of the origin for the second French flag.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('translate_challenge2');
+            var context = canvas.getContext('2d');
+            
+            context.fillStyle = '#0055A4';
+            context.fillRect(0, 0, 60, 120); // Blue bar
+            context.fillStyle = '#FFFFFF';
+            context.fillRect(60, 0, 60, 120); // White bar
+            context.fillStyle = '#EF4135';
+            context.fillRect(120, 0, 60, 120); // Red bar
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/translate/challenge2.png')
+            %canvas#translate_challenge2
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Restore the Coordinate System After a Translation
+          %p
+            Sometimes we want to combine our translations, like when we are drawing a row of
+            houses. But usually, we want to restore the coordinate system immediately after drawing
+            a house so we can position and draw something else. Because the transformation matrix
+            for the coordinate system is stored in the canvas's drawing state, we can use the
+            %code
+              context.save()
+            and
+            %code
+              context.restore()
+            methods to save the coordinate system and restore it back to its original state.
+          %p
+            In this example, we start by saving the drawing state when the origin of the
+            coordinate system is in the top left corner of the canvas:
+          %pre
+            %code
+              :preserve
+                context.save(); // Save original drawing state
+          %p
+            Then, we translate the origin of the coordinate system to (200, 50) and draw a house:
+          %pre
+            %code
+              :preserve
+                context.translate(200, 50); // Position of the first house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+          %p
+            Before translating the origin again and drawing a second house, we restore the
+            drawing state we saved earlier:
+          %pre
+            %code
+              :preserve
+                context.restore(); // Restore original drawing state
+          %p
+            This returns the origin back to the top left corner of the canvas. So, when we translate
+            the origin to (50, 150) and draw a second house, the second house is positioned at (50, 150)
+            in absolute coordinates on the canvas.
+          %pre
+            %code
+              :preserve
+                context.translate(50, 150); // Position of the second house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+          %p
+            To learn more about saving and restoring the drawing state, visit the
+            = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style, :save]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('translate_example3');
+                var context = canvas.getContext('2d');
+                
+                context.save(); // Save original drawing state
+                
+                context.translate(200, 50); // Position of the first house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+                
+                context.restore(); // Restore original drawing state
+                
+                context.translate(50, 150); // Position of the second house
+                context.fillStyle = '#FFFF00';
+                context.fillRect(0, 0, 120, 100); // Yellow house
+                context.fillStyle = '#99CCFF';
+                context.fillRect(15, 20, 20, 40); // Left window
+                context.fillRect(85, 20, 20, 40); // Right window
+                context.fillStyle = '#FF0000';
+                context.fillRect(45, 40, 30, 60); // Red door
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#translate_example3
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/translate/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Use the
+            %span
+              %code>
+                context.save()
+              ,
+            %span
+              %code>
+                context.restore()
+              ,
+            and
+            %code
+              context.translate()
+            methods to draw the first French flag at position (10, 50). Then, restore the coordinate
+            system to its original state and draw the second French flag at position (220, 100);
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('translate_challenge3');
+            var context = canvas.getContext('2d');
+
+            context.fillStyle = '#0055A4';
+            context.fillRect(0, 0, 60, 120); // Blue bar
+            context.fillStyle = '#FFFFFF';
+            context.fillRect(60, 0, 60, 120); // White bar
+            context.fillStyle = '#EF4135';
+            context.fillRect(120, 0, 60, 120); // Red bar
+            
+            context.fillStyle = '#0055A4';
+            context.fillRect(0, 0, 60, 120); // Blue bar
+            context.fillStyle = '#FFFFFF';
+            context.fillRect(60, 0, 60, 120); // White bar
+            context.fillStyle = '#EF4135';
+            context.fillRect(120, 0, 60, 120); // Red bar
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/translate/challenge3.png')
+            %canvas#translate_challenge3
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use a Function to Translate a Drawing
+          %p
+            It doesn't make sense to keep copying the same code over and over again every
+            time we want to draw a yellow house or French flag. To re-use a drawing, we should
+            draw it in a function.
+          %p
+            In this example, we define a
+            %code
+              drawYellowHouse()
+            function to draw a yellow house.
+          %pre
+            %code
+              :preserve
+                function drawYellowHouse(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 120, 100); // Yellow house
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(15, 20, 20, 40); // Left window
+                  context.fillRect(85, 20, 20, 40); // Right window
+                  context.fillStyle = '#FF0000';
+                  context.fillRect(45, 40, 30, 60); // Red door
+                  context.restore();
+                }
+          %p
+            The
+            %code
+              drawYellowHouse()
+            function has two parameters:
+            %code
+              x
+            is the x-coordinate of the house's origin and
+            %code
+              y
+            is the y-coordinate. We save and restore the drawing state by calling the
+            %code
+              context.save()
+            method at the start of the function and the
+            %code
+              context.restore()
+            method at the end. This restores both the coordinate system and the
+            %code
+              context.fillStyle
+            property to the way they were before the function made any changes.
+          %p
+            Now we can draw as many yellow houses as we want simply by calling the
+            %code
+              drawYellowHouse()
+            function and passing it the coordinates for the house.
+          %pre
+            %code
+              :preserve
+                drawYellowHouse(40, 40);
+                drawYellowHouse(120, 200);
+                drawYellowHouse(280, 100);
+          %p
+            To learn more about functions and saving and restoring the drawing state, visit the
+            = link_to_lesson('Functions', :functions, nil, class: 'reference-link', data: {slug: :functions})
+            and
+            = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('translate_example4');
+                var context = canvas.getContext('2d');
+                
+                function drawYellowHouse(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 120, 100); // Yellow house
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(15, 20, 20, 40); // Left window
+                  context.fillRect(85, 20, 20, 40); // Right window
+                  context.fillStyle = '#FF0000';
+                  context.fillRect(45, 40, 30, 60); // Red door
+                  context.restore();
+                }
+                
+                drawYellowHouse(40, 40);
+                drawYellowHouse(120, 200);
+                drawYellowHouse(280, 100);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#translate_example4
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/translate/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            The
+            %code
+              drawPineTree()
+            function draws a pine tree at the origin. Re-define the function so it draws the
+            pine tree at coordinates passed into the function.
+          %p
+            Then, use the function to draw pine trees at the positions (5, 40), (105, 10), (205, 60), and (305, 30).
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('translate_challenge4');
+            var context = canvas.getContext('2d');
+            
+            function drawPineTree() {
+              context.fillStyle = 'ForestGreen';
+              context.fillRect(40, 0, 20, 40);
+              context.fillRect(30, 40, 40, 40);
+              context.fillRect(20, 80, 60, 40);
+              context.fillRect(10, 120, 80, 40);
+              context.fillRect(0, 160, 100, 40);
+              context.fillStyle = 'Sienna';
+              context.fillRect(40, 200, 20, 40);
+            }
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/translate/challenge4.png')
+            %canvas#translate_challenge4
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Nested Frames of Reference
+          %p
+            When we are in a city and someone asks us for directions to another part of
+            the city, we usually don't direct them using latitude and longitude as though
+            they were coming from a different part of the globe, never mind coordinates
+            to find the Earth in the solar system in the Milky Way Galaxy in the universe.
+            Same thing when we are in a mall or even in a single room.
+          %p
+            It is usually much more convenient and less confusing to direct someone using
+            a local frame of reference rather than an absolute frame of reference.
+          %p
+            In this example, we add details to the windows and the red door in the yellow
+            house, and we make drawing those details simpler by translating to a local frame
+            of reference.
+          %p
+            We start by defining a
+            %code
+              drawWindow()
+            function. In the yellow house, the first window is a rectangle positioned at
+            (15, 20) in the local coordinates of the house with a width of 20 and a height
+            of 40. As long as a window was just a rectangle, it made sense to use the
+            %code
+              context.fillRect()
+            method to position the window. But now that a window is going to be a little drawing on
+            its own, with lots of rectangles inside of it, we are going to turn it into a
+            function and position it using the
+            %code
+              context.translate()
+            method.
+          %pre
+            %code
+              :preserve
+                function drawWindow(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = 'White';
+                  context.fillRect(0, 0, 20, 40); // White border
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(2, 2, 7, 7); // Pane of glass
+                  context.fillRect(11, 2, 7, 7);
+                  context.fillRect(2, 11, 7, 7);
+                  context.fillRect(11, 11, 7, 7);
+                  context.fillRect(2, 20, 16, 18);
+                  context.restore();
+                }
+          %p
+            Note that the white rectangle we draw to create a white border for the window
+            is positioned at (0, 0) and the first pane of glass is positioned at (2, 2). Those
+            coordinates are in the local frame of reference of the window. We don't care where
+            the window is positioned in the house or where the house is positioned on the canvas.
+          %p
+            Next, we define a
+            %code
+              drawRedDoor()
+            function and draw the red door using local coordinates also:
+          %pre
+            %code
+              :preserve
+                function drawRedDoor(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = '#FF0000';
+                  context.fillRect(0, 0, 30, 60); // Red door
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(6, 6, 18, 12); // Pane of glass
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(22, 28, 5, 5); // Door knob
+                  context.fillRect(10, 45, 10, 5); // Mail slot
+                  context.restore();
+                }
+          %p
+            Again, note that the window in the door is positioned at (6, 6) in the
+            local coordinates of the door. If we were going to give the window a stained
+            glass design instead of making it a simple rectangle, we would draw the
+            stained glass design by translating into the local coordinates of the door's
+            window. It makes our drawing simpler and less confusing.
+          %p
+            Now that we are using functions to draw our windows and red door, we update the
+            %code
+              drawYellowHouse()
+            function:
+          %pre
+            %code
+              :preserve
+                function drawYellowHouse(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 120, 100);
+                  drawWindow(15, 20);
+                  drawWindow(85, 20);
+                  drawRedDoor(45, 40);
+                  context.restore();
+                }
+          %p
+            Finally, we draw two yellow houses, one at (100, 50) and the other at (200, 50).
+          %pre
+            %code
+              :preserve
+                drawYellowHouse(50, 100);
+                drawYellowHouse(200, 100);
+          %p
+            Change the coordinates of one of the yellow houses to see the entire house move
+            relative to the canvas. Change the coordinates of one of the windows inside the
+            %code
+              drawYellowHouse()
+            function to see an entire window move relative to the yellow house. Drawing nested
+            objects in local coordinates is much easier than drawing them in absolute coordinates.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_example5_editor'} do
+              :preserve
+                var canvas = document.getElementById('translate_example5');
+                var context = canvas.getContext('2d');
+                
+                drawYellowHouse(50, 100);
+                drawYellowHouse(200, 100);
+                
+                function drawWindow(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = 'White';
+                  context.fillRect(0, 0, 20, 40); // White border
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(2, 2, 7, 7); // Pane of glass
+                  context.fillRect(11, 2, 7, 7);
+                  context.fillRect(2, 11, 7, 7);
+                  context.fillRect(11, 11, 7, 7);
+                  context.fillRect(2, 20, 16, 18);
+                  context.restore();
+                }
+                
+                function drawRedDoor(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = '#FF0000';
+                  context.fillRect(0, 0, 30, 60); // Red door
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(6, 6, 18, 12); // Pane of glass
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(22, 28, 5, 5); // Door knob
+                  context.fillRect(10, 45, 10, 5); // Mail slot
+                  context.restore();
+                }
+                
+                function drawYellowHouse(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 120, 100);
+                  drawWindow(15, 20);
+                  drawWindow(85, 20);
+                  drawRedDoor(45, 40);
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#translate_example5
+
+
+  #challenge5.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 5
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/translate/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Your drawing should look similar to, but not exactly, like this
+          %p
+            Define the
+            %code
+              drawOrnament()
+            function with three parameters so it positions the ornament at
+            %span
+              (
+              %code><
+                x
+              ,
+            %span
+              %code>
+                y
+              )
+            and fills it with the color
+            %span
+              %code>
+                color
+              \.
+          %pre
+            %code
+              :preserve
+                function drawOrnament(x, y, color) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = color;
+                  
+                  // DRAW ORNAMENT IN LOCAL COORDINATES HERE
+                  
+                  context.restore();
+                }
+          %p
+            The ornament is drawn by drawing three rectangles on top of one another
+            so the centers of the three rectangles are lined up. Use the dimensions
+            in the diagram below to draw the three rectangles.
+          = image_tag('lessons/translate/challenge5Visual2.png')
+          %p
+            Then, copy the
+            %code
+              drawPineTree()
+            function you defined in Challenge 4 and draw some ornaments on the tree inside
+            the function definition using local coordinates for the tree. Choose your own ornament
+            positions and colors to create an aesthetic drawing. Your drawing will look similar to,
+            but not exactly like the image above. Call the
+            %code
+              drawPineTree()
+            function in your program to draw the tree at (100, 40):
+          %pre
+            %code
+              :preserve
+                drawPineTree(100, 40);
+          %p
+            When you re-position the tree, the ornaments should move along with the tree. If your
+            program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
+          %p
+            If you need help drawing the ornament, visit the
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+              ,
+            %span
+              %span><
+                = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
+              ,
+            and
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_challenge5_editor'} do
+          :preserve
+            var canvas = document.getElementById('translate_challenge5');
+            var context = canvas.getContext('2d');
+
+            // DRAW A PINE TREE AT (100, 40)
+            
+            function drawOrnament(x, y, color) {
+              context.save();
+              context.translate(x, y);
+              context.fillStyle = color;
+              
+              // DRAW ORNAMENT IN LOCAL COORDINATES HERE
+              
+              context.restore();
+            }
+            
+            function drawPineTree(x, y) {
+              
+              // DRAW A PINE TREE IN LOCAL COORDINATES HERE
+              
+              // DRAW ORNAMENTS ON THE TREE USING LOCAL COORDINATES
+            }
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#translate_challenge5
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Anchor Points
+          %p
+            Right now, we are positioning the yellow house by its top left corner. That's
+            the origin we are using for the house's local coordinate system.
+          %p
+            When drawing a house, it makes sense to use its top left corner as the origin for
+            the local coordinate system. But when positioning a house on the canvas, it makes
+            more sense to position the house according to where it is sitting on the ground, not
+            hanging in the air.
+          %p
+            In this example, we re-define the
+            %code
+              drawYellowHouse()
+            function so we are passing it the coordinates for its bottom center point, not
+            its top left point.
+          %p
+            We start by changing its parameters from
+            %code
+              x
+            and
+            %code
+              y
+            to
+            %code
+              centerX
+            and
+            %span
+              %code>
+                groundY
+              \.
+            Then, we save the drawing state as usual and translate the origin of the coordinate
+            system to
+            %span
+              (
+              %code><
+                centerX
+              ,
+            %span
+              %code>
+                groundY
+              ),
+            which is the anchor point for the house.
+          %pre
+            %code
+              :preserve
+                function drawYellowHouse(centerX, groundY) {
+                  context.save();
+                  context.translate(centerX, groundY); // The house's anchor point
+                  
+                  // Code to draw the house
+                  
+                  context.restore();
+                }
+          %p
+            Now, we could use the anchor point as the origin of the local coordinate
+            system to draw the house, but that would be a pain. It is easier
+            to draw the house when the origin is at the top left corner of the house, not
+            at the bottom center point. So, we are going to use the
+            %code
+              context.translate()
+            method again to move the origin before drawing. This gives us the best of
+            both worlds: a good anchor point for positioning the house on the canvas and a good origin
+            point for drawing the house itself.
+          %pre
+            %code
+              :preserve
+                function drawYellowHouse(centerX, groundY) {
+                  context.save();
+                  context.translate(centerX, groundY); // The house's anchor point
+                  context.translate(-60, -100); // The origin for drawing the house
+                  
+                  // Code to draw the house
+                  
+                  context.restore();
+                }
+          %p
+            Since we know the house is 120 pixels wide and 100 pixels tall, we can move the
+            origin from the bottom center point to the top left corner by moving it left
+            60 pixels (half the width) and up 100 pixels. Now that the origin of the coordinate
+            system back in the top left corner, we can draw the house just like we did before.
+          %pre
+            %code
+              :preserve
+                function drawYellowHouse(centerX, groundY) {
+                  context.save();
+                  context.translate(centerX, groundY); // The house's anchor point
+                  context.translate(-60, -100); // The origin for drawing the house
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 120, 100);
+                  drawWindow(15, 20);
+                  drawWindow(85, 20);
+                  drawRedDoor(45, 40);
+                  context.restore();
+                }
+          %p
+            Change the value assigned to the variable
+            %code
+              groundY
+            at the top of the program to change the y-coordinate of the ground. We have also
+            made minor changes to the
+            %code
+              drawYellowHouse()
+            function so you can see the anchor point of the house and the origin point for
+            drawing the house. To show the origin point of the house, uncomment out the first
+            call to
+            %code
+              drawAxes()
+            inside the
+            %code
+              drawYellowHouse()
+            function.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_example6_editor'} do
+              :preserve
+                var canvas = document.getElementById('translate_example6');
+                var context = canvas.getContext('2d');
+                var groundY = 240; // Assign the y-coordinate of the ground
+                
+                drawTheGround(groundY);
+                drawYellowHouse(150, groundY);
+                
+                function drawYellowHouse(centerX, groundY) {
+                  context.save();
+                  context.translate(centerX, groundY); // The house's anchor point
+                  context.save();
+                  context.translate(-60, -100); // The origin for drawing the house
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 120, 100);
+                  drawWindow(15, 20);
+                  drawWindow(85, 20);
+                  drawRedDoor(45, 40);
+                  //drawAxes(); // Draw axes at the origin point
+                  context.restore();
+                  drawAxes(); // Draw axes at the anchor point
+                  context.restore();
+                }
+                
+                function drawWindow(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = 'White';
+                  context.fillRect(0, 0, 20, 40); // White border
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(2, 2, 7, 7); // Pane of glass
+                  context.fillRect(11, 2, 7, 7);
+                  context.fillRect(2, 11, 7, 7);
+                  context.fillRect(11, 11, 7, 7);
+                  context.fillRect(2, 20, 16, 18);
+                  context.restore();
+                }
+                
+                function drawRedDoor(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = '#FF0000';
+                  context.fillRect(0, 0, 30, 60); // Red door
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(6, 6, 18, 12); // Pane of glass
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(22, 28, 5, 5); // Door knob
+                  context.fillRect(10, 45, 10, 5); // Mail slot
+                  context.restore();
+                }
+                
+                function drawTheGround(groundY) {
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.fillRect(0, groundY, canvas.width, 2);
+                  context.restore();
+                }
+                
+                function drawAxes() {
+                  context.save();
+                  context.fillStyle = 'Red';
+                  context.strokeStyle = 'Red';
+                  context.font = '16px Arial';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'middle';
+                  drawPoint(0, 0);
+                  drawLine(0, 0, 50, 0);
+                  drawArrow(50, 0, 0);
+                  context.fillText('x', 60, 0);
+                  drawLine(0, 0, 0, 50);
+                  drawArrow(0, 50, 0.5 * Math.PI);
+                  context.fillText('y', 0, 60);
+                  context.restore();
+                }
+                
+                function drawPoint(x, y) {
+                  context.beginPath();
+                  context.arc(x, y, 3, 0, 2 * Math.PI, false);
+                  context.fill();
+                }
+                
+                function drawLine(x1, y1, x2, y2) {
+                  context.beginPath();
+                  context.moveTo(x1, y1);
+                  context.lineTo(x2, y2);
+                  context.stroke();
+                }
+                
+                function drawArrow(x, y, angle) {
+                  context.save();
+                  context.translate(x, y);
+                  context.rotate(angle);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(-10, 5);
+                  context.lineTo(-10, -5);
+                  context.closePath();
+                  context.fill();
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#translate_example6
+
+
+  #challenge6.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 6
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/translate/challenge6Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Copy the
+            %code
+              drawPineTree()
+            function you defined in Challenge 4 (the one without the ornaments), and
+            re-define it so you can position a tree on the canvas using the bottom center
+            point of the tree as its anchor point.
+          %p
+            Hint: A pine tree is 100 pixels wide and 240 pixels tall.
+          %p
+            Then, draw a pine tree positioned on the ground at (150,
+            %span
+              %code>
+                groundY
+              ),
+            where
+            %code
+              groundY
+            is the local variable storing the y-coordinate of the ground.
+          %pre
+            %code
+              :preserve
+                drawPineTree(150, groundY);
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_challenge6_editor'} do
+          :preserve
+            var canvas = document.getElementById('translate_challenge6');
+            var context = canvas.getContext('2d');
+            var groundY = 280; // Assign the y-coordinate of the ground
+            
+            drawTheGround(groundY);
+
+            // DRAW A PINE TREE AT (150, groundY)
+            
+            function drawPineTree(centerX, groundY) {
+              
+              // MOVE THE ORIGIN TO THE ANCHOR POINT HERE
+              
+              // MOVE THE ORIGN TO THE TOP LEFT CORNER OF THE PINE TREE HERE
+              
+              // DRAW A PINE TREE IN LOCAL COORDINATES HERE
+              
+            }
+            
+            function drawTheGround(groundY) {
+              context.save();
+              context.fillStyle = 'Black';
+              context.fillRect(0, groundY, canvas.width, 2);
+              context.restore();
+            }
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/translate/challenge6.png')
+            %canvas#translate_challenge6
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use Translation with Other Transformations
+          %p
+            While good anchor points are helpful in positioning drawings on the canvas,
+            they are necessary when scaling or rotating drawings.
+          %p
+            In this example, we draw two houses. The anchor point of the green house is
+            its top left corner. The anchor point of the yellow house is its bottom center
+            point. We can scale both houses by setting a scale factor.
+          %p
+            Right now, both houses are sitting on the ground with a scale factor of 1.
+            Assign the local variable
+            %code
+              scaleFactor
+            at the top of the program a value of 1.2 to see what happens.
+          %pre
+            %code
+              :preserve
+                var scaleFactor = 1.2;
+          %p
+            While both houses scale, only the yellow house remains anchored on the ground.
+            Note that the anchor point does not move when a house is scaled.
+          %p
+            To learn more about scaling the coordinate system, visit the
+            = link_to_lesson('scale()', :scale, nil, class: 'reference-link', data: {slug: :scale})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save, :scale]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'translate_example7_editor'} do
+              :preserve
+                var canvas = document.getElementById('translate_example7');
+                var context = canvas.getContext('2d');
+                var groundY = 220; // Assign the y-coordinate of the ground
+                var scaleFactor = 1; // Assign the scale factor of the houses
+                
+                drawTheGround(groundY);
+                drawGreenHouse(10, groundY - 100);
+                drawYellowHouse(290, groundY);
+                
+                function drawYellowHouse(centerX, groundY) {
+                  context.save();
+                  context.translate(centerX, groundY); // The house's anchor point
+                  context.scale(scaleFactor, scaleFactor);
+                  context.save();
+                  context.translate(-60, -100); // The origin for drawing the house
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 120, 100);
+                  drawWindow(15, 20);
+                  drawWindow(85, 20);
+                  drawRedDoor(45, 40);
+                  context.restore();
+                  drawAxes(); // Draw axes at the anchor point
+                  context.restore();
+                }
+                
+                function drawGreenHouse(x, y) {
+                  context.save();
+                  context.translate(x, y); // The house's anchor point and origin for drawing the house
+                  context.scale(scaleFactor, scaleFactor);
+                  context.fillStyle = '#00FF00';
+                  context.fillRect(0, 0, 120, 100);
+                  drawWindow(15, 20);
+                  drawWindow(85, 20);
+                  drawRedDoor(45, 40);
+                  drawAxes(); // Draw axes at the anchor point
+                  context.restore();
+                }
+                
+                function drawWindow(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = 'White';
+                  context.fillRect(0, 0, 20, 40); // White border
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(2, 2, 7, 7); // Pane of glass
+                  context.fillRect(11, 2, 7, 7);
+                  context.fillRect(2, 11, 7, 7);
+                  context.fillRect(11, 11, 7, 7);
+                  context.fillRect(2, 20, 16, 18);
+                  context.restore();
+                }
+                
+                function drawRedDoor(x, y) {
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = '#FF0000';
+                  context.fillRect(0, 0, 30, 60); // Red door
+                  context.fillStyle = '#99CCFF';
+                  context.fillRect(6, 6, 18, 12); // Pane of glass
+                  context.fillStyle = '#FFD700';
+                  context.fillRect(22, 28, 5, 5); // Door knob
+                  context.fillRect(10, 45, 10, 5); // Mail slot
+                  context.restore();
+                }
+                
+                function drawTheGround(groundY) {
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.fillRect(0, groundY, canvas.width, 2);
+                  context.restore();
+                }
+                
+                function drawAxes() {
+                  context.save();
+                  context.fillStyle = 'Red';
+                  context.strokeStyle = 'Red';
+                  context.font = '16px Arial';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'middle';
+                  drawPoint(0, 0);
+                  drawLine(0, 0, 50, 0);
+                  drawArrow(50, 0, 0);
+                  context.fillText('x', 60, 0);
+                  drawLine(0, 0, 0, 50);
+                  drawArrow(0, 50, 0.5 * Math.PI);
+                  context.fillText('y', 0, 60);
+                  context.restore();
+                }
+                
+                function drawPoint(x, y) {
+                  context.beginPath();
+                  context.arc(x, y, 3, 0, 2 * Math.PI, false);
+                  context.fill();
+                }
+                
+                function drawLine(x1, y1, x2, y2) {
+                  context.beginPath();
+                  context.moveTo(x1, y1);
+                  context.lineTo(x2, y2);
+                  context.stroke();
+                }
+                
+                function drawArrow(x, y, angle) {
+                  context.save();
+                  context.translate(x, y);
+                  context.rotate(angle);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(-10, 5);
+                  context.lineTo(-10, -5);
+                  context.closePath();
+                  context.fill();
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#translate_example7
