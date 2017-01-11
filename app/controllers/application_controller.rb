@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
       clear_rect: {count: 2, method: 'clearRect()'},
       fill_rect: {count: 6, method: 'fillRect()'},
       fill_style: {count: 3, method: 'fillStyle'},
-      floor: {count: 0, method: 'floor() / ceil()'},
       line_to: {count: 6, method: 'lineTo()'},
       translate: {count: 6, method: 'translate()'},
       random: {count: 4, method: 'random()'},
@@ -36,7 +35,7 @@ class ApplicationController < ActionController::Base
         :translate,
       ],
       Math: [
-        :floor,
+        :round,
         :random
       ]
     }
@@ -95,7 +94,7 @@ class ApplicationController < ActionController::Base
         reference: [
           :fill_rect,
           :fill_style,
-          :floor,
+          :round,
           :line_to,
           :random,
           :translate,
