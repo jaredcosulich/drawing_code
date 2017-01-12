@@ -13,9 +13,10 @@
         of the popular mobile game,
         = "#{link_to('Flappy Birds', 'https://www.flappybird.com/', target: '_blank')}.".html_safe
       %p
-        For our game we won't be creating any fancy graphics, we'll simply use
-        a basic squre that flies when you click the 'up' key and falls when you
-        don't. You'll have to navigate through randomly generated holes in the course.
+        For our game we won't be creating any fancy graphics, we'll simply have
+        a square that flies when you click on the canvas with the mouse and falls when you
+        don't. You'll have to navigate through randomly generated walls in the course
+        by flying to the correct height to pass through the hole.
 
     .col-xs-6
       = image_tag('flappy_square.gif', class: 'img-fluid')
@@ -29,7 +30,7 @@
         on drawing our little flappy square and giving it a realistic
         falling animation (i.e. simulating gravity).
     .col-xs-6
-      = image_tag('lessons/flappy_square/stage1/challenge6Example.gif', class: 'img-fluid canvas-example')
+      = image_tag('lessons/flappy_square/stage1/overview.gif', class: 'img-fluid canvas-example')
 
 
   - lesson_index += 1
@@ -58,8 +59,14 @@
             So the point (50, 100) is 50 pixels from the right of the top left corner of the canvas and
             100 pixels down from the top left corner.
           %p
-            In the example below, the black square is at (0, 0) so it's top left corner
-            is in the top left corner of the canvas. The blue square is at (50, 100)
+            In the example below, we are drawing two squares that are
+            %span.highlight 25 pixels wide and 25 pixels high
+            using the
+            = link_to_lesson('context.fillRect(x, y, width, height)', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            method. The
+            %span.highlight black square is at (0, 0)
+            so it's top left corner is in the top left corner of the canvas. The
+            %span.highlight blue square is at (50, 100)
             so it's top left corner is 50 pixels to the right and 100 pixels down.
           %p
             Try adjusting the coordinates of the two squares and see how they move around
@@ -74,10 +81,10 @@
                 var canvas = document.getElementById('flappy_square_stage1_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
-                context.fillRect(0, 0, 50, 50);
+                context.fillRect(0, 0, 25, 25);
 
                 context.fillStyle = 'blue';
-                context.fillRect(50, 100, 50, 50);
+                context.fillRect(50, 100, 25, 25);
 
 
             .visual.col-xs-6
@@ -100,14 +107,14 @@
             %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
-            Draw a rectangle using the code
-            %code fillRect(x, y, width, height)
-            where you replace x with the top left x coordinate, y with the top left y coordinate,
+            Draw a rectangle using the
+            = link_to_lesson('context.fillRect(x, y, width, height)', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            method where you replace x with the top left x coordinate, y with the top left y coordinate,
             width with the width of the rectangle and height with the height of the rectangle.
           %p
-            Draw the rectangle so that it's top left corner is 60px to the right of the top
-            left corner of the canvas and 90px down. The rectangle should be 45px wide (width) and
-            45px tall (height).
+            Draw the rectangle so that it's top left corner is 90px down from the top of the canvas
+            and 60px over from the left of the canvas. The rectangle should be 60px tall (height) and
+            45px wide (width).
 
           %p In the end your drawing should look like the example provided to the right.
           = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
