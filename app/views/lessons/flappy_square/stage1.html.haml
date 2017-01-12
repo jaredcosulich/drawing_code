@@ -803,7 +803,7 @@
           %p
             Your animation should look like the example at the beginning of this explanation.
 
-          = render 'lessons/relevant', relevant: [:fill_rect, :set_interval, :event_listeners, :clear_rect, :functions]
+          = render 'lessons/relevant', relevant: [:clear_rect, :fill_rect, :set_interval, :functions]
           = render 'lessons/code_preview', stage: 1, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index - 1}_editor"
 
       .row.pt-2
@@ -904,7 +904,7 @@
             This means that subtracting a negative "yVelocity" from our "y" position actually
             makes our "y" value large, drawing the ball farther down on the canvas.
 
-          = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
+          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect, :fill_rect, :set_interval, :functions]
 
         .col-xs-12
           .interactive.row.py-1
@@ -916,10 +916,10 @@
                 var gravity = 0.4;
                 var size = 10;
                 var interval;
-                var x = 0;
-                var y = 0;
-                var xVelocity = 0;
-                var yVelocity = 0;
+                x = 0;
+                y = canvas.height - 60;
+                xVelocity = 8;
+                yVelocity = 12;
 
                 function drawBall() {
                   context.beginPath();
@@ -934,22 +934,24 @@
                   y -= yVelocity;
                 }
 
-                function runProgram() {
+                function programSteps() {
                   context.clearRect(0, 0, canvas.width, canvas.height);
                   adjustPosition();
                   drawBall();
                 }
 
-                function resetAnimation() {
-                  x = 0;
-                  y = canvas.height - 60;
-                  xVelocity = 8;
-                  yVelocity = 12;
+                function runProgram() {
+                  interval = setInterval(programSteps, 25);
                 }
 
+                // The following code is provided for you.
+                // It creates an eventListener that listens
+                // for the canvas to come into "focus", which
+                // happens when you click on it.
+                // This allows us to stop and start each individual
+                // animation on this whole page separately.
                 function startAnimation() {
-                  interval = setInterval(runProgram, 20);
-                  resetAnimation();
+                  runProgram();
                 }
 
                 function pauseAnimation() {
@@ -957,14 +959,13 @@
 
                   context.font = "20px serif";
                   context.textAlign = 'center';
-                  context.fillText('Click anywhere on the canvas to start the animation.', canvas.width / 2, 50);
+                  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);
+                  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);
                 }
 
-                canvas.addEventListener('click', resetAnimation);
                 canvas.addEventListener('focus', startAnimation);
                 canvas.addEventListener('blur', pauseAnimation);
                 pauseAnimation();
-
 
 
 
@@ -1000,8 +1001,9 @@
               Our flappy square should start at (50, 100) with a yVelocity of 0. Gravity
               should be set to 0.5.
             So in each frame you'll subtract gravity from yVelocity and then
-            you'll subtract yVelocity to the y variable. This will cause the y variable to go down
-            at an increasing rate.
+            you'll subtract yVelocity to the y variable. This will cause the y variable to
+            increase at an increasing rate (making the flappy square go down
+            at an increasing rate).
           %p
             Let's also speed up our animation and instead of running a frame every 300
             miliseconds, let's
@@ -1018,7 +1020,7 @@
             as adding a positive (I know this can get confusing with the y-coordinate
             of the canvas moving in the wrong direction).
 
-          = render 'lessons/relevant', relevant: [:set_interval, :event_listeners, :clear_rect, :functions]
+          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect, :set_interval, :fill_rect, :functions]
           = render 'lessons/code_preview', stage: 1, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index - 1}_editor"
 
       .row.pt-2
@@ -1044,11 +1046,23 @@
               // and then use it to adjust "y"
             }
 
-            function runProgram() {
+            function programSteps() {
             }
 
-            function startAnimation() {
+            function runProgram() {
               interval =
+            }
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
             }
 
             function pauseAnimation() {
@@ -1057,6 +1071,7 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
+            pauseAnimation();
 
 
 
