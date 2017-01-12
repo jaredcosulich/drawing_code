@@ -74,7 +74,7 @@
     var mousedown, page;
     mousedown = false;
     page = $('.page');
-    return page.find('h1').mousedown(function(e) {
+    page.find('h1').mousedown(function(e) {
       mousedown = true;
       setTimeout((function() {
         var editor, i, len, ref;
@@ -86,6 +86,22 @@
               $(editor).data('editor').reset();
             }
             return App.currentProgress.resetPage(page.attr('id'));
+          }
+        }
+      }), 2000);
+      return page.mouseup(function() {
+        return mousedown = false;
+      });
+    });
+    return page.find('.challenge h2').mousedown(function(e) {
+      mousedown = true;
+      setTimeout((function() {
+        var challenge;
+        if (mousedown) {
+          if (confirm('Are you sure you want to toggle the complete state for this challenge?')) {
+            challenge = $(e.currentTarget).closest('.challenge');
+            challenge.find('.editor').data('editor').reset();
+            return App.currentProgress.toggleChallenge(page.attr('id'), challenge.attr('id'));
           }
         }
       }), 2000);

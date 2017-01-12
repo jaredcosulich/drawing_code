@@ -113,6 +113,33 @@
       return challengeTitle.append(tag);
     };
 
+    Progress.prototype.toggleChallenge = function(page, challengeId) {
+      var c, challenges, i, len, ref, successTag;
+      successTag = $("#" + challengeId).find('.challenge-title .tag-success');
+      if (successTag.length > 0) {
+        challenges = {};
+        ref = localStorage.getItem(page).split(/,/);
+        for (i = 0, len = ref.length; i < len; i++) {
+          c = ref[i];
+          if (c !== challengeId) {
+            challenges[c] = true;
+          }
+        }
+        localStorage.setItem(page, ((function() {
+          var results;
+          results = [];
+          for (c in challenges) {
+            results.push(c);
+          }
+          return results;
+        })()).join(','));
+        successTag.remove();
+      } else {
+        this.challengeComplete(page, challengeId);
+      }
+      return this.updateNavigation();
+    };
+
     Progress.prototype.storeEditorValue = function(editorId, code) {
       if (!this.storageAvailable) {
         return;
