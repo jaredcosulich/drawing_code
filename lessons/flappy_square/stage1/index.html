@@ -1,0 +1,2226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<title>Drawing Code</title>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="ijg0DI0CNROOkBbDS0z0wTwvnAesmVGTCQz4tTmRyOF2pp3KQctL55v/S6KoE/vYPHPIWAojrO2uSQAMoFVtxA==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-6693732d946f61761af2eeafcf9c870441f1af9f77c9d2a5db4509578dd265e0-body=1.css" data-turbolinks-track="reload" />
+<script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/ace/ace.self-0acb0427eef086a17859bfe56ecfaf24bc47c928ad7db87d5ec5bf235e40cb40.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/code_preview.self-b37269bda74e81e3e6e832ad40469072b79b5b1d3a48a2e91986fd44549f82c0.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/drawings.self-1119b89f5468a45fd5e064d9ba68962f14b5248b9ff1a6b33b2307875e470686.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/examples.self-62f6af2ec5a00cd81eb1292963de6ac7a2146c48d0d3cba6abe1adc998cae145.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/init.self-fef4ca73cdd5fc98231ba13aa0c4b3f7a626e61c3afedb604da73204cdfb80bc.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lesson.self-4c007310fc5244946716688a8afc18ef0b6e54f4cfc18f8aff6b18ab0e203889.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage1.self-af3dd34f4f344c2e4c6fd02ae6fcf3a3ab4cd43a8d72b9e10ac7e857ec7e3321.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage2.self-225920e2665631ee62b7fbe95291c6ac9e1c62142a2bc469a623623a6c18a705.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage3.self-d849334bedcf13dec8fb3da9f57078b783809e1a25dfc733da271108516fb213.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage4.self-566ff4fe09aeeee06c9bfca2d5a81fc52bad7f964d150d6025e854e6a9a8c2de.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/clearRect.self-9e82ca8aa93793f04e73caa7f25eaf5e8c815cbe718ac5f4747de25ef19efce9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/coordinates.self-4821f9b9bad6785349895eef0fd2998882879f8d57aff2f232eb8b4d961203f1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/fill_rect.self-4bb525e22a290e2ae4aa8446082bdcd7168ea5c515f27a3b3b8b6d439760ea8a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/fill_style.self-6d153ccc75d0aa54db66acd06e950248f8cabe7184d1789400272825d0648764.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage1.self-6f21d5babc2da36a46ebff04ecd42d9634765d962b64463934205e743a61eacb.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage2.self-8eb29add53aabb7af941f9c84c2abd840c7dbf61669906cae52b8a4c84bcd409.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage3.self-cb39fe3b38a5ae28456afbcbe4c17c1b40b1fdeb13b925d136a43609a02907d3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage4.self-17d7302a880ad6257214c9cb8ead56582ece4727ecde96454c320b23f138d16e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/for_loops.self-6ea947c621baba5fe10d587860ab777038544953934ba8d15ccea3fff8128ea2.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/functions.self-d002fbef8abc3e970526900bc8987e0e6b43e4caedda60e4ea2318eae2cc0330.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage1.self-9a6bb1b4e3de5f46da1e072c0fa52d0391b4f64454b97d5b34b6ec01e46dfb32.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage2.self-274b9a3782e74ccca603cacdcfdc7de6a30a0a3ab57f9a6f1d25b7781e711f99.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage3.self-e2064f6932bc938d199b51dc1ba885fc1f3b2913935b7bdb8203011970326dbf.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage4.self-611052ea22dac28d9a24fc6ecb7c680cd07e073d394dc8a34237a2b674d846ad.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/line_to.self-65410ae951aab7cdda49956ec4aa794d97db0360507ea427d9e41ef840d88d93.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/random.self-e3526158091bc0c29fb3eaecbfa5bd813ee77bf67b2449758af5a4608bd8397b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/round.self-8f4f7fa74c9157dc1707d118675f7e35d4621225571a950953278131b01a5022.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/save.self-ba90c232d56f796645e264833860b2cbcb639bb0e37772b06ea84198141d8bec.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/scale.self-8bedfd1625ced565d0fd9cdc69c9693cd07a039860dbee59df8fc4eb524b0d70.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/switch_statements.self-9fdab32aed464bc617220d4c4fbce43b07887fe98eca5de2828efb6e05c74d5c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/translate.self-16962e3a7636c88e58d6a2bf9f63a8e5c65302badec269e70a30a97bfbc4c8ad.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/variables.self-4562a8743966906ee7fb58792fd51e5aac5203a5f64b393175caa98ba33ddedc.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/while_loops.self-d6177003c6f9f97f79cb8c63956ace41e225e85175095da98c102ebd5432f7e3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/canvas.self-429f6c3eb7215ea53ffe08598331778858aa202b6c9cdf18775ee1623316198a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/editor.self-fbbbe2d7e50971004e7c8178761a186495cfe565c8f584f7cc18297d6ec017ae.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/files.self-16fff0bc3c9a315d22413e3b6a090fb8ef8f5f1257b42dade438f57a0de1f134.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/progress.self-85855a4b2ffe2ff58692f669b689c7ad8db3cee30eb947e32791e81148164b36.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/code.self-186d38d443a8bc51bbeec7159887e3781eaad676a86b9d159eca7ec40e21f7ba.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/image_comparison.self-83be79c1bfdac13ff2c69e6916a326f2698035d7381c28f12e44637de7618bac.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/point.self-e1435fcb5c66e2107d91d34c16e06e6c0dd8d06286396d3d5b3b05c22989d9b2.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/navigation.self-3abb68970f3392649f6ee452427597fc92e324a7be21f97b6501e5a2ec47609e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/referenceModal.self-4ba25626378a146e8d2a7ae7edd72600ddef60371b98f42b0c3555b56cd02ff9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
+</head>
+<body>
+<nav class='navbar navbar-dark navbar-fixed-top bg-inverse'>
+<button aria-controls='navbar' aria-expanded='false' aria-label='Toggle navigation' class='navbar-toggler hidden-sm-up' data-target='#navbar' data-toggle='collapse' type='button'></button>
+<a class='navbar-brand' href='../../../index.html'>
+Drawing In Code:
+<small>An exploration of artistic observation and computational thinking</small>
+</a>
+</nav>
+
+<div class='container-fluid'>
+<div class='row'>
+<div class='col-md-3 col-lg-2 sidebar'>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class="section_link" href="../../../index.html">Home</a>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='drawings' href='#'>
+Your Drawings
+</a>
+<ul class='collapse nav nav-sidebar' id='drawings'>
+<li>
+<a href="../../../drawings/index.html">Create A Drawing</a>
+</li>
+<li class='section drawings-list small mt-1 hidden-xs-up'>
+<strong>My Drawings</strong>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='reference' href='#'>
+Reference
+</a>
+<ul class='collapse nav nav-sidebar' id='reference'>
+<li class='section mt-1'>
+<strong>Context2D</strong>
+</li>
+<li>
+<a href="../../reference/clear_rect/index.html">clearRect()</a>
+<span class='tag tag-default'>
+<small class='clear_rect'>0 / 2</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-clear_rect'>
+<div class='title'>context.clearRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.clearRect(x, y, width, height) will clear a rectangle starting
+at (x, y) and clearing to the right width and down height.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = '#FF0000';&#x000A;context.fillRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.clearRect(40, 20, 20, 100);&#x000A;context.clearRect(60, 60, 20, 20);&#x000A;context.clearRect(80, 20, 20, 100);&#x000A;&#x000A;context.clearRect(120, 20, 60, 20);&#x000A;context.clearRect(140, 40, 20, 60);&#x000A;context.clearRect(120, 100, 60, 20);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/clear_rect/reference-70cf88df0b9a8db2c33a8048af8493be9efdca18dd8ed4b2756cb0de8d8993af.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/fill_rect/index.html">fillRect()</a>
+<span class='tag tag-default'>
+<small class='fill_rect'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_rect'>
+<div class='title'>context.fillRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillRect(x, y, width, height) will draw a rectangle starting
+at (x, y) and filling the area "width" to the right and "height" down.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillRect(50, 50, 300, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/fill_rect/reference-ec68654dd34b051ccadd579a7b7b065ab4fa1eff1991e3d8df56cf72be3dee37.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/fill_style/index.html">fillStyle</a>
+<span class='tag tag-default'>
+<small class='fill_style'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_style'>
+<div class='title'>context.fillStyle</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillStyle will set the color for all future fills such as
+context.fillRect(). It's important to note theat context.fillStyle
+is not a method, it is an attribute. You set it like so:
+</p>
+<pre class='mb-2'><code>context.fillStyle = 'red';&#x000A;</code></pre>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = 'rgb(0,255,0)';&#x000A;context.fillRect(50, 50, 100, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/fill_style/reference-8b359c7e565a86e657117d488129208cb37d2b93ac988ee482ddaf063385e12e.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/line_to/index.html">lineTo()</a>
+<span class='tag tag-default'>
+<small class='line_to'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-line_to'>
+<div class='title'>context.lineTo()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.lineTo(x, y) creates a path from the current point - default (0,0) -
+to the point (x, y). In order to see the line you must call context.stroke().
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.beginPath();&#x000A;context.moveTo(50, 50);&#x000A;context.lineTo(100,100);&#x000A;context.lineTo(150, 50);&#x000A;context.lineTo(200, 100);&#x000A;context.stroke();&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/line_to/reference-2c3b4d87c54a374ee06ac132f850d07869ed961fac25769a9e1309faf9709371.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/save/index.html">save() / restore()</a>
+<span class='tag tag-default'>
+<small class='save'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-save'>
+<div class='title'>context.save()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.save() saves all of the properties of the context. Then, when you call
+context.restore() it will reset all changes to the context you've made.
+</p>
+<p>
+This code will produce the image below (note how the second rectangle is black
+and closer to the original origin despite calling translate and setting the
+fillStyle earlier):
+</p>
+<pre class='mb-2'><code>context.save();&#x000A;context.translate(100,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;context.restore();&#x000A;&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/save/reference-cfdb7b48454c0b82fb5105cf7a1228776bbee579585d77bf2b7cdeab9f8eb32a.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/scale/index.html">scale()</a>
+<span class='tag tag-default'>
+<small class='scale'>0 / 7</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-scale'>
+<div class='title'>context.scale()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.scale(percentX, percentY) scales the x and y coordinates of the context, making drawings
+larger or smaller.
+</p>
+<p>
+This code will produce the image below (note that all rectangles are defined to be the same size
+in the code are drawn in different sizes due to the scale of the context):
+</p>
+<pre class='mb-2'><code>context.fillRect(25,25,25,25);&#x000A;context.scale(2, 1);&#x000A;context.fillRect(75,25,25,25);&#x000A;context.scale(0.5, 1);&#x000A;context.fillRect(150,25,25,25);&#x000A;context.scale(2, 2);&#x000A;context.fillRect(300,25,25,25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/scale/reference-0569c769850c52c53953d385626946099b407d1037f93af347311149e3a2fec6.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/translate/index.html">translate()</a>
+<span class='tag tag-default'>
+<small class='translate'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-translate'>
+<div class='title'>context.translate()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.translate(x, y) shifts the origin of the context (where the (0,0) point is)
+right by x and down by y. This allows you to draw execute multiple commands in a specific
+area of the context more easily.
+</p>
+<p>
+This code will produce the image below (note how the fillRect commands are
+relative to the translation point (100,100)):
+</p>
+<pre class='mb-2'><code>context.translate(50,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(0, 0, 100, 100);&#x000A;context.fillStyle = 'green';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/translate/reference-19fc53169ce0da0d057fb00b05eecfb3fc88513d1fa46cf4aceaa8fa19f51c26.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li class='section mt-1'>
+<strong>Math</strong>
+</li>
+<li>
+<a href="../../reference/round/index.html">round() / floor() / ceil()</a>
+<span class='tag tag-default'>
+<small class='round'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-round'>
+<div class='title'>Math.round() / Math.floor() / Math.ceil()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.round(), Math.floor() and Math.ceil() will round a number to an integer.
+Math.floor() will always round down while Math.ceil() will always round up.
+Math.round() will round to the closest integer, either up or down.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/floor/visual1-9edc722b188f28c702178c13d60cbec037d2e4159d2b7b5f7782a0be2dd5f653.png" alt="Visual1" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/random/index.html">random()</a>
+<span class='tag tag-default'>
+<small class='random'>0 / 4</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-random'>
+<div class='title'>Math.random()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.random() will produce a random decimal betweek 0 and 1. Calling it many
+times will produce a different random number each time.
+</p>
+<p>
+Often you will multiple Math.random() by another number to get a random
+integer larger than 1. You may also call Math.floor() or Math.ceil() on the result
+to get an rounded integer.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/random/reference-d1ee7adb1a0544e928f64c175595c9f081740954db0ae3f889f0627b4034c642.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='concepts' href='#'>
+Concepts
+</a>
+<ul class='collapse nav nav-sidebar' id='concepts'>
+<li>
+<a href="../../concepts/variables/index.html">Variables</a>
+<span class='tag tag-default'>
+<small class='variables'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-variables'>
+<div class='title'>Variables</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+A variable allows you to store information to use or change later.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/variables/reference-b8e07ae4cdc5e13b2ee681381d7fa203f8442ff2e8abeb1cf4012cfb427439db.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/for_loops/index.html">For Loops</a>
+<span class='tag tag-default'>
+<small class='for_loops'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-for_loops'>
+<div class='title'>For Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+For-loops allow you to repeat code over and over again, potentially
+adjusting the code a little bit each time.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>for (var i=1; i<10; ++i) {&#x000A;  context.fillRect(10 * i, 75 - (5 * i), 10 * i, 10 * i);&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/for_loops/reference-ab4edc41708c315c5bc65d0ca07c1d49061a8185eb1420dbb6a056fa1be194bd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/while_loops/index.html">While Loops</a>
+<span class='tag tag-default'>
+<small class='while_loops'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-while_loops'>
+<div class='title'>While Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+While-loops allow you to repeat code over and over again until a condition is met.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>var i = 10;&#x000A;while (i < 200) {&#x000A;  context.fillRect(5, 5, i, 50);&#x000A;  i += 10;&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/while_loops/reference-b71bb24ae903b89143b68f3a561a455d71ca8c08674b34a2d9ffbde1753fc005.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/coordinates/index.html">Coordinates</a>
+<span class='tag tag-default'>
+<small class='coordinates'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-coordinates'>
+<div class='title'>The Coordinate System</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+The coordinate system consists of X and Y values starting at (0, 0) in the upper left corner.
+</p>
+<p>
+As you move down the canvas Y gets larger. As you move right on the canvas X gets larger.
+</p>
+<p>
+So the point (100, 50) means you move right 100 and down 50.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid" src="../../../assets/lessons/coordinates/reference-1875ea0cb51a1c7ed92a016a2256ba53d9b3f7820a9feaa679521c14af4e7acd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/functions/index.html">Functions</a>
+<span class='tag tag-default'>
+<small class='functions'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-functions'>
+<div class='title'>Functions</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Functions allow you to create chunks of code that can be called with
+different parameters.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>function fillColorRect(x, y, w, h, color) {&#x000A;  context.save();&#x000A;  context.fillStyle = color;&#x000A;  context.fillRect(x, y, w, h);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;fillColorRect(50, 50, 50, 50, 'red');&#x000A;fillColorRect(150, 50, 50, 50, 'blue');&#x000A;fillColorRect(250, 50, 50, 50, 'green');&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/functions/reference-2d2a07b0286e84d953685386201fe7e0bc20198460907e83c7895681f6b37a45.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/switch_statements/index.html">Switch Statements</a>
+<span class='tag tag-default'>
+<small class='switch_statements'>0 / 4</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-switch_statements'>
+<div class='title'>Switch Statements</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Switch statements allow you to perform different code depending on
+the value of a variable.
+</p>
+<p>
+The following code will produce the picture below (the switch statement
+only performs the code inside of case 2 because "i" is set to 2):
+</p>
+<pre class='mb-2'><code>var i = 2;&#x000A;switch (i) {&#x000A;  case 1:&#x000A;    context.fillStyle = 'red';&#x000A;    break;&#x000A;  case 2:&#x000A;    context.fillStyle = 'yellow';&#x000A;    break;&#x000A;  case 3:&#x000A;    context.fillStyle = 'blue';&#x000A;    break;&#x000A;}&#x000A;context.fillRect(50, 50, 100, 50);&#x000A;&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/switch_statements/reference-3ab4709f6beedfca8a197ba64c75c9604abf7ccdb78c9adc16cf035c60914e8b.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/set_interval/index.html">setInterval()</a>
+<div class='reference-modal-content' id='reference-modal-set_interval'>
+<div class='title'>setInterval()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+setInterval() allows you to execute code at specified intervals. It
+is frequently used to create animations.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>var index = 0;&#x000A;function count() {&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText(index, canvas.width / 2, canvas.height / 2);&#x000A;}&#x000A;setInterval(count, 1000)&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/set_interval/reference-a47ff17199d8182591ccb0d45fa57147ee1136677cff7955671c6a01337479fa.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/event_listeners/index.html">Event Listeners</a>
+<div class='reference-modal-content' id='reference-modal-event_listeners'>
+<div class='title'>Event Listeners</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Event listeners allow you to "listen" for an event, such as a click, on an element
+in your html.
+</p>
+<p>
+A full list of events can be found here:
+<a target="_blank" href="https://www.tutorialspoint.com/html5/html5_events.htm">HTML5 Events</a>
+</p>
+<p>This code will produce the image below (if you were to click and draw the letters on the canvas):</p>
+<pre class='mb-2'><code>canvas.addEventListener('mousemove', function(e) {&#x000A;  if (e.buttons === 0) return;&#x000A;  context.fillRect(e.layerX - 3, e.layerY - 3, 7, 7);&#x000A;});&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/event_listeners/reference-e166d58e874cfbbeb51fb29e622c9bf89d5c7a4aec6319d3953c94db43af1b0c.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section my-1'>
+<a class='section_link' data-section='flappy_square' href='#'>Flappy Square</a>
+<ul class='collapse in nav nav-sidebar' id='flappy_square'>
+<li class='active'>
+<a href="index.html">Stage 1</a>
+<span class='tag tag-default'>
+<small class='flappy_square_stage1'>0 / 7</small>
+</span>
+</li>
+<li>
+<a href="../stage2/index.html">Stage 2</a>
+<span class='tag tag-default'>
+<small class='flappy_square_stage2'>0 / 4</small>
+</span>
+</li>
+<li>
+<a href="../stage3/index.html">Stage 3</a>
+<span class='tag tag-default'>
+<small class='flappy_square_stage3'>0 / 3</small>
+</span>
+</li>
+<li>
+<a href="../stage4/index.html">Stage 4</a>
+<span class='tag tag-default'>
+<small class='flappy_square_stage4'>0 / 4</small>
+</span>
+</li>
+<li class='section small mt-2'>
+<strong>Relevant Reference</strong>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="clear_rect" href="../clear_rect/index.html">clearRect()</a>
+<span class='tag tag-default'>
+<small class='clear_rect'>0 / 2</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<span class='tag tag-default'>
+<small class='fill_rect'>0 / 6</small>
+</span>
+</li>
+<li class='section small mt-1'>
+<strong>Relevant Concepts</strong>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar hidden-xs-up'>
+<li class='section'>
+<a class='section_link' data-section='experimental' href='#'>
+All
+</a>
+</li>
+<ul class='nav nav-sidebar'>
+<li class='section small'>
+<strong>Active</strong>
+<li class='small '>
+<a href="../../basic_cityscape/stage1/index.html">Basic Cityscape</a>
+</li>
+</li>
+<li class='section small mt-2'>
+<strong>Experimental</strong>
+<li class='small '>
+<a href="../../snake_game/stage1/index.html">Snake Game</a>
+</li>
+<li class='small '>
+<a href="index.html">Flappy Square</a>
+</li>
+<li class='small '>
+<a href="../../flappy_birds/stage1/index.html">Flappy Birds</a>
+</li>
+<li class='small '>
+<a href="../../granular_basic_cityscape/stage1/index.html">Basic Cityscape</a>
+</li>
+</li>
+</ul>
+</ul>
+
+</div>
+<div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
+<div class='page' id='flappy_square_stage1'>
+<h1>Stage 1</h1>
+<div class='description row py-3'>
+<div class='col-xs-6'>
+<h2 class='py-2'>
+Flappy Square Overview
+</h2>
+<p>
+In the Flappy Square challenge we'll create a simplified version
+of the popular mobile game,
+<a target="_blank" href="https://www.flappybird.com/">Flappy Birds</a>.
+</p>
+<p>
+For our game we won't be creating any fancy graphics, we'll simply have
+a square that flies when you click on the canvas with the mouse and falls when you
+don't. You'll have to navigate through randomly generated walls in the course
+by flying to the correct height to pass through the hole.
+</p>
+</div>
+<div class='col-xs-6'>
+<img class="img-fluid" src="../../../assets/flappy_square-285403f751f1f78a49417071187c6ed3ab72f045f5f34daa139cdacb4c299498.gif" alt="Flappy square" />
+</div>
+</div>
+<div class='description row py-3'>
+<div class='col-xs-6'>
+<h2 class='py-2'>
+Stage 1 Overview
+</h2>
+<p>
+In the first stage of the Flappy Square challenge we'll focus
+on drawing our little flappy square and giving it a realistic
+falling animation (i.e. simulating gravity).
+</p>
+</div>
+<div class='col-xs-6'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage1/overview-23975248a434bf7bdfb7a2d09d865a8856da075744581f3819e329528d4f4dfd.gif" alt="Overview" />
+</div>
+</div>
+<div class='lesson row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Lesson: The Coordinate System
+</h2>
+<div class='float-xs-right mx-2'>
+<img class="img-fluid" src="../../../assets/lessons/coordinates/reference-1875ea0cb51a1c7ed92a016a2256ba53d9b3f7820a9feaa679521c14af4e7acd.png" alt="Reference" />
+</div>
+<p>
+Before we get started with our game it is important to understand
+the coordinate system we'll be drawing in.
+</p>
+<p>
+When drawing in the
+<a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">coordinate system</a>
+on a canvas element (as seen to the right) the
+<span class='highlight'>"y" values go down.</span>
+</p>
+<p>
+Unlike with a normal graph, where the positive "y" values go up starting from the bottom, in the canvas
+positive "y" values go down starting from the top.
+</p>
+<p>
+So the point (50, 100) is 50 pixels from the right of the top left corner of the canvas and
+100 pixels down from the top left corner.
+</p>
+<p>
+In the example below, we are drawing two squares that are
+<span class='highlight'>25 pixels wide and 25 pixels high</span>
+using the
+<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">context.fillRect(x, y, width, height)</a>
+method. The
+<span class='highlight'>black square is at (0, 0)</span>
+so it's top left corner is in the top left corner of the canvas. The
+<span class='highlight'>blue square is at (50, 100)</span>
+so it's top left corner is 50 pixels to the right and 100 pixels down.
+</p>
+<p>
+Try adjusting the coordinates of the two squares and see how they move around
+the coordinate system.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_lesson1_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.fillRect(0, 0, 25, 25);&#x000A;&#x000A;context.fillStyle = 'blue';&#x000A;context.fillRect(50, 100, 25, 25);&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage1_lesson1'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge1'>
+<div class='col-xs-12'>
+<div class='row pb-2'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 1
+</h2>
+<figure class='float-xs-right pl-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage1/challenge1Example-870434bf4c74c9a3913d40f0a5123a37b11fb758747389e5c34126a7f4b76780.png" alt="Challenge1example" />
+<figcaption class='text-xs-center small'>Challenge 1 Sample Solution</figcaption>
+</figure>
+<p>
+Draw a rectangle using the
+<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">context.fillRect(x, y, width, height)</a>
+method where you replace x with the top left x coordinate, y with the top left y coordinate,
+width with the width of the rectangle and height with the height of the rectangle.
+</p>
+<p>
+Draw the rectangle so that it's top left corner is 90px down from the top of the canvas
+and 60px over from the left of the canvas. The rectangle should be 60px tall (height) and
+45px wide (width).
+</p>
+<p>In the end your drawing should look like the example provided to the right.</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+</p>
+
+</div>
+</div>
+<div class='row'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_challenge1_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// YOUR CODE HERE&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/flappy_square/stage1/challenge1-69482449f8652cbb38d5f981a4fdd1ca9b6bf6f83f6e5afe7a8f2250ce1a06fc.png" alt="Challenge1" /></div>
+<canvas id='flappy_square_stage1_challenge1'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='lesson row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Lesson: Draw The Flappy Square
+</h2>
+<p>
+In our game our flying square will be just that, a simple square.
+</p>
+<p>
+In this example, we'll draw a simple square using
+<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">context.fillRect(x, y, width, height)</a>
+that is
+<span class='highlight'>50 pixels wide and 50 pixels tall.</span>
+We'll position it so that its
+<span class='highlight'>top left corner is at x = 100, y = 50: (100, 50).</span>
+</p>
+<p>
+Remember: In the context's
+<a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">coordinate system</a>
+the origin (0, 0) is at the top left corner of the canvas.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_lesson2_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.fillRect(100, 50, 50, 50);&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage1_lesson2'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge2'>
+<div class='col-xs-12'>
+<div class='row pb-2'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 2
+</h2>
+<figure class='float-xs-right pl-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage1/challenge2Example-fc4c3bd8b511b16c5a8ad1ce75568f96ce380bd9dd5e1d6bde9c0bf73911dc1b.png" alt="Challenge2example" />
+<figcaption class='text-xs-center small'>Challenge 2 Sample Solution</figcaption>
+</figure>
+<p>
+Draw a flappy square that is
+<span class='highlight'>20 pixels wide and 20 pixels tall</span>
+and position it at
+<span class='highlight'>(50, 100).</span>
+</p>
+<p>In the end your flappy square should look like the example provided to the right.</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+</p>
+
+</div>
+</div>
+<div class='row'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_challenge2_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// YOUR CODE HERE&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/flappy_square/stage1/challenge2-e2c8aed31b800be1f5979a5b9ae59d6fb8e3e1f734550911647a96371724e99b.png" alt="Challenge2" /></div>
+<canvas id='flappy_square_stage1_challenge2'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='lesson row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Lesson: Use Variables to Size and Position Our Flappy Square
+</h2>
+<p>
+Variables allow us to control the size and position of the
+flappy square more easily.
+</p>
+<p>
+As the flappy squares flies it will move up and down.
+<span class='highlight'>Variables will allow us to store where it is and position it effectively.</span>
+</p>
+<p>
+In this example we position the flappy bird at the position
+<span class='highlight'>(50,150)</span>
+by setting the assigned variables.
+</p>
+<p>
+In order to demonstrate how we can change a variable we initially set the "y" variable
+to 200 and then subtract 50 to position the flappy square at (50, 150)
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_lesson3_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var size = 20;&#x000A;var x = 50;&#x000A;var y = 200;&#x000A;&#x000A;context.fillRect(x, y, size, size);&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage1_lesson3'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge3'>
+<div class='col-xs-12'>
+<div class='row pb-2'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 3
+</h2>
+<figure class='float-xs-right pl-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage1/challenge3Example-ffa8740b199373db20a6a4a3fa7fe382c5ce207fb478e767f8cda7f83d2e9826.png" alt="Challenge3example" />
+<figcaption class='text-xs-center small'>Challenge 3 Sample Solution</figcaption>
+</figure>
+<p>
+Use
+<span class='highlight'>
+<a class="reference-link" data-slug="variables" href="../variables/index.html">variables</a>
+to automatically size and position
+</span>
+the flappy square.
+</p>
+<p>
+Setting a variable looks like this:
+</p>
+<pre><code>var x = 9;&#x000A;</code></pre>
+<p>
+Our flappy square won't change in size during the game, but it will move up
+and down as we make it fly.
+</p>
+<p>
+Set the variables below appropriates so that the flappy bird is positioned
+at
+<span class='highlight'>(50, 150).</span>
+</p>
+<p>In the end your flappy square should look like the example provided to the right.</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+</p>
+
+<div class='code-preview mb-2'>
+<p>
+<strong>Previous Challenge:</strong>
+View your
+<span class='code-preview-link' data-editorid='flappy_square_stage1_challenge2_editor'>
+code from
+Stage
+1
+Challenge
+2
+</span>
+to use on this challenge.
+</p>
+<div class='code-preview-missing'>
+<strong>Code Missing:</strong>
+You have not yet entered any code in to the previous challenge:
+Stage
+1
+Challenge
+2
+</div>
+<div class='code-preview-view'>
+<strong>
+Stage
+1
+Challenge
+2
+</strong>
+<div class='code-preview-code'></div>
+</div>
+</div>
+
+</div>
+</div>
+<div class='row'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_challenge3_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var size = 20;&#x000A;&#x000A;// SET THE X VARIABLE PROPERLY&#x000A;var x =&#x000A;&#x000A;// CREATE AND SET THE Y VARIABLE&#x000A;&#x000A;context.fillRect(x, y, size, size);&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/flappy_square/stage1/challenge3-3cfad2c4daed560439c2f911915f94b7db2922bbe5175c50d9dbbfeffa9d3417.png" alt="Challenge3" /></div>
+<canvas id='flappy_square_stage1_challenge3'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='lesson row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Lesson: Use a Function to Draw the Flappy Square
+</h2>
+<p>
+Once we start animating out flappy square we'll want to
+draw it using a function so that we can draw it very fast in different
+locations.
+</p>
+<p>
+If there is a chunk of code that you are going to use over and over again,
+putting that code into a function can make your life much easier. Then,
+to run the code, all you have to do is call the function by typing one line.
+</p>
+<p>
+<span class='highlight'>
+In this example, we create a function that will draw a French flag. Because
+we might want to draw a French flag in lots of different places, we make the
+x- and y-coordinates of the flag variables.
+</span>
+When we call drawFrenchFlag(30, 100), the 30 is assigned to the variable <i>x</i>
+and the 100 is assigned to the variable <i>y</i> inside of the function. Now we can
+easily draw as many French flags as we want!
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_lesson4_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function drawFrenchFlag(x, y) {&#x000A;  context.fillStyle = '#0055A4';&#x000A;  context.fillRect(x, y, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(x + 20, y, 20, 40);&#x000A;&#x000A;  context.fillStyle = '#EF4135';&#x000A;  context.fillRect(x + 40, y, 20, 40);&#x000A;}&#x000A;&#x000A;drawFrenchFlag(30, 100);&#x000A;drawFrenchFlag(150, 50);&#x000A;drawFrenchFlag(300, 180);&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage1_lesson4'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge4'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 4
+</h2>
+<figure class='float-xs-right pl-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage1/challenge4Example-3a3568b7b0d2150012d21b02b760ff143282adb47eb4a08e7460a23aee9252fe.png" alt="Challenge4example" />
+<figcaption class='text-xs-center small'>Challenge 4 Sample Solution</figcaption>
+</figure>
+<p>
+<span class='highlight'>
+Write a function to draw the flappy bird from
+Challenge 3.
+</span>
+</p>
+<p>
+The function will be called drawSquare() and will accept three values x, y, and size (called parameters) that
+will be used to position our flappy square.
+</p>
+<p>
+Then use the function to draw our flappy square at the
+<span class='highlight'>
+coordinates (50, 100) and size 20.
+</span>
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+</p>
+
+<div class='code-preview mb-2'>
+<p>
+<strong>Previous Challenge:</strong>
+View your
+<span class='code-preview-link' data-editorid='flappy_square_stage1_challenge3_editor'>
+code from
+Stage
+1
+Challenge
+3
+</span>
+to use on this challenge.
+</p>
+<div class='code-preview-missing'>
+<strong>Code Missing:</strong>
+You have not yet entered any code in to the previous challenge:
+Stage
+1
+Challenge
+3
+</div>
+<div class='code-preview-view'>
+<strong>
+Stage
+1
+Challenge
+3
+</strong>
+<div class='code-preview-code'></div>
+</div>
+</div>
+
+</div>
+</div>
+<div class='row pt-2'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_challenge4_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function drawSquare(x, y, size) {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A SQUARE HERE&#x000A;&#x000A;}&#x000A;&#x000A;// YOUR CODE FOR CALLING THE drawSquare FUNCTION HERE&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/flappy_square/stage1/challenge4-8d6d318d3a3d27bb9fd4165d115ea93cf9a356d4ad521a34fb2c0ba2f2fa2741.png" alt="Challenge4" /></div>
+<canvas id='flappy_square_stage1_challenge4'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='lesson row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Lesson: Basics of Animation
+</h2>
+<div class='float-xs-right pl-2 pb-2'>
+<img src="../../../assets/lessons/flappy_square/stage1/lesson5Visual-a406a77b409cfb246ad3f665a31b2861d8892df1081673eadcc9e0073575f04b.png" alt="Lesson5visual" />
+</div>
+<p>
+There are
+<span class='highlight'>three required aspects to basic animation</span>
+in canvas we need to cover:
+</p>
+<ul>
+<li>Drawing frames in rapid sequence.</li>
+<li>Clearing the canvas in between frames.</li>
+<li>Making small changes to the scene in each frame.</li>
+</ul>
+<p>
+In this lesson we're going to focus on the 1st and 3rd step of basic animation.
+</p>
+<p>
+We're going to draw a series of frames, each a bit different from each other,
+creating the illusion of continuous motion.
+</p>
+<p>
+Drawing frames in rapid sequence can be done a number of ways.
+For our purposes we'll use the
+<a class="reference-link" data-slug="set_interval" href="../set_interval/index.html">setInterval(function, intervalTime)</a>
+method.
+<code>setInterval(function, intervalTime)</code>
+runs the specified code at a regular interval (e.g. every second).
+</p>
+<p>
+Our
+<span class='highlight'>setInterval() allows us to draw frames in rapid sequence.</span>
+We can change the speed of our animation by adjusting the interval in
+<a class="reference-link" data-slug="set_interval" href="../set_interval/index.html">setInterval(function, intervalTime)</a>
+</p>
+<p>For example:</p>
+<pre><code>setInterval(programSteps, 1000)</code></pre>
+<p>will run slowly, drawing a new frame every second, while</p>
+<pre><code>setInterval(programSteps, 10)</code></pre>
+<p>
+will run very quickly, drawing 100 frames every second. The faster an animation runs
+the smoother it looks as you can draw frames that change very little, giving the
+illusion of continuous motion.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_lesson5_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = 1;&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(0, 100, size, size);&#x000A;}&#x000A;&#x000A;function adjustSize() {&#x000A;  size += 1;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  adjustSize();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 10);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage1_lesson5'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge5'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 5
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage1/challenge5Example-86aba451c8df23316561efa85dc1a1d83290b3214aec4275ddd8851bfe6dfc79.gif" alt="Challenge5example" />
+<figcaption class='text-xs-center small'>Challenge 5 Sample Solution</figcaption>
+</figure>
+<p>
+In this challenge we're going to use
+<a class="reference-link" data-slug="set_interval" href="../set_interval/index.html">setInterval(function, intervalTime)</a>
+to animate our flappy square.
+</p>
+<p>
+Use
+<span class='highlight'>setInterval(function, intervalTime),</span>
+called from the canvas "focus" event, to
+<span class='highlight'>draw the flappy square a bit lower in each frame</span>
+as if it were falling.
+</p>
+<p>
+Have your flappy square
+<span class='highlight'>start at (50, 100) and move down 10 pixels every 300 milliseconds.</span>
+</p>
+<p>
+<span class='highlight'>Important Note:</span>
+Since we are not clearing the canvas between frames (step 2
+of basic animation), we will see what looks like a rectangle growing downwards.
+If we were to clear the frame (as we will in the next challenge), it would
+look more like our flappy square were moving down or falling.
+</p>
+<p>
+Your animation should look like the example to the right.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+</p>
+
+<div class='code-preview mb-2'>
+<p>
+<strong>Previous Challenge:</strong>
+View your
+<span class='code-preview-link' data-editorid='flappy_square_stage1_challenge4_editor'>
+code from
+Stage
+1
+Challenge
+4
+</span>
+to use on this challenge.
+</p>
+<div class='code-preview-missing'>
+<strong>Code Missing:</strong>
+You have not yet entered any code in to the previous challenge:
+Stage
+1
+Challenge
+4
+</div>
+<div class='code-preview-view'>
+<strong>
+Stage
+1
+Challenge
+4
+</strong>
+<div class='code-preview-code'></div>
+</div>
+</div>
+
+</div>
+</div>
+<div class='row pt-2'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_challenge5_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = 20;&#x000A;&#x000A;// SET YOUR POSITION VARIABLES HERE&#x000A;var x =&#x000A;var y =&#x000A;&#x000A;function drawSquare() {&#x000A;&#x000A;  // YOUR CODE FOR DRAWING A SQUARE HERE&#x000A;&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;&#x000A;  // YOUR CODE FOR CHANGING THE POSITION OF THE SQUARE HERE&#x000A;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  adjustPosition();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;&#x000A;  // FILL IN THE CORRECT setInterval PARAMETERS HERE&#x000A;  interval = setInterval();&#x000A;&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage1_challenge5'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='lesson row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Lesson: A Complete Animation Cycle
+</h2>
+<div class='float-xs-right pl-2 pb-2'>
+<img src="../../../assets/lessons/flappy_square/stage1/lesson6Visual-a406a77b409cfb246ad3f665a31b2861d8892df1081673eadcc9e0073575f04b.png" alt="Lesson6visual" />
+</div>
+<p>
+As mentioned in the previous lesson, there are
+<span class='highlight'>three required aspects to basic animation:</span>
+</p>
+<ul>
+<li>Drawing frames in rapid sequence.</li>
+<li>Clearing the canvas in between frames.</li>
+<li>Making small changes to the scene in each frame.</li>
+</ul>
+<p>
+In this lesson we're going to complete the cycle by clearing the canvas
+in between frames.
+</p>
+<p>
+The method
+<a class="reference-link" data-slug="clear_rect" href="../clear_rect/index.html">context.clearRect(x, y, width, height)</a>
+allows us to clear an area of the canvas. For our purposes we'll use it to clear the entire canvas.
+</p>
+<p>
+In this example we show the example from the last lesson in reverse. If this were run without
+clearing the canvas you wouldn't see any changes, but since we're clearing the canvas
+in between each frame we see the drawing get smaller and smaller.
+</p>
+<p>In order to clear the entire canvas we use the following code:</p>
+<pre><code>context.clearRect(0, 0, canvas.width, canvas.height);</code></pre>
+<p>
+which says "clear an area starting at (0,0) that is as wide as the canvas
+and as tall as the canvas".
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="clear_rect" href="../clear_rect/index.html">clearRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_lesson6_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = canvas.width;&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(0, 0, size, size);&#x000A;}&#x000A;&#x000A;function adjustSize() {&#x000A;  size -= 1;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustSize();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 10);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage1_lesson6'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge6'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 6
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage1/challenge6Example-34553db606f4ea2f01c278ba68774c732e67376d88d5df27de1cc16f1834f232.gif" alt="Challenge6example" />
+<figcaption class='text-xs-center small'>Challenge 6 Sample Solution</figcaption>
+</figure>
+<p>
+As mentioned in the previous lesson, there are
+<span class='highlight'>three required aspects to basic animation:</span>
+</p>
+<ul>
+<li>Drawing frames in rapid sequence.</li>
+<li>Clearing the canvas in between frames.</li>
+<li>Making small changes to the scene in each frame.</li>
+</ul>
+<p>
+In this lesson we're going to complete the cycle by clearing the canvas
+in between frames.
+</p>
+<p>
+The method
+<a class="reference-link" data-slug="clear_rect" href="../clear_rect/index.html">context.clearRect(x, y, width, height)</a>
+allows us to clear an area of the canvas. As the lesson above demonstrates,
+we want to use it to clear the entire canvas.
+</p>
+<p>
+So once again, we'll start the flappy square
+at (50, 100) and move down 10 pixels every 300 milliseconds.
+</p>
+<p>
+This time, though,
+<span class='highlight'>use context.clearRect()</span>
+to clear the canvas in between frames.
+</p>
+<p>
+Use the method to clear a rectangle starting at
+<span class='highlight'>(0, 0)</span>
+with a width of
+<span class='highlight'>canvas.width</span>
+and a height of
+<span class='highlight'>canvas.height.</span>
+</p>
+<p>
+You'll need to call it from within
+</p>
+<pre><code>function programSteps() {&#x000A;  ...&#x000A;}</code></pre>
+<p>so that it gets called with each frame.</p>
+<p>
+Your animation should look like the example at the beginning of this explanation.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="clear_rect" href="../clear_rect/index.html">clearRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+</p>
+
+<div class='code-preview mb-2'>
+<p>
+<strong>Previous Challenge:</strong>
+View your
+<span class='code-preview-link' data-editorid='flappy_square_stage1_challenge5_editor'>
+code from
+Stage
+1
+Challenge
+5
+</span>
+to use on this challenge.
+</p>
+<div class='code-preview-missing'>
+<strong>Code Missing:</strong>
+You have not yet entered any code in to the previous challenge:
+Stage
+1
+Challenge
+5
+</div>
+<div class='code-preview-view'>
+<strong>
+Stage
+1
+Challenge
+5
+</strong>
+<div class='code-preview-code'></div>
+</div>
+</div>
+
+</div>
+</div>
+<div class='row pt-2'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_challenge6_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = 20;&#x000A;&#x000A;var x = 50;&#x000A;var y = 100;&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(x, y, size, size);&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  y += 10;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  adjustPosition();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 300);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage1_challenge6'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='lesson row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Lesson: Gravity
+</h2>
+<p>
+Now we need to make our flappy square fall more realistically.
+</p>
+<p>
+This essentially requires
+<span class='highlight'>simulating gravity.</span>
+</p>
+<p>
+Gravity causes objects on earth to move toward the center of the Earth
+at an accelerating rate, which means that they move faster and faster
+toward the ground.
+</p>
+<p>
+The speed of the object toward the ground is called its "velocity".
+Gravity causes the object's velocity to increase over time.
+</p>
+<p>
+In this examples when you click "Run" a ball will shoot out at
+a constant velocity moving right and up while gravity pulls it toward
+the ground, causing its upward velocity to decrease until it is negative
+(falling).
+</p>
+<p>
+In this example gravity is set to 0.4. This means that the upward speed (yVelocity)
+of our ball will decrease by 0.4 each frame. So in each frame the ball will move up
+by 0.4 pixels less than the last frame until it is no longer moving at which point
+it will move down by 0.4 pixels more each frame.
+</p>
+<p>
+This is an arbitrary value that simply makes the simulation look good as we're not
+actually trying to simulate gravity accurately.
+</p>
+<p>
+Also remember that in the canvas the "y" coordinates go up as you move down.
+This means that subtracting a negative "yVelocity" from our "y" position actually
+makes our "y" value large, drawing the ball farther down on the canvas.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="clear_rect" href="../clear_rect/index.html">clearRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_lesson7_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson7');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var gravity = 0.4;&#x000A;var size = 10;&#x000A;var interval;&#x000A;var x = 0;&#x000A;var y = 0;&#x000A;var xVelocity = 0;&#x000A;var yVelocity = 0;&#x000A;&#x000A;function drawBall() {&#x000A;  context.beginPath();&#x000A;  context.arc(x, y, size, 0, Math.PI*2, true);&#x000A;  context.closePath();&#x000A;  context.fill();&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  yVelocity -= gravity;&#x000A;  x += xVelocity;&#x000A;  y -= yVelocity;&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustPosition();&#x000A;  drawBall();&#x000A;}&#x000A;&#x000A;function resetAnimation() {&#x000A;  x = 0;&#x000A;  y = canvas.height - 60;&#x000A;  xVelocity = 8;&#x000A;  yVelocity = 12;&#x000A;}&#x000A;&#x000A;function startAnimation() {&#x000A;  interval = setInterval(runProgram, 20);&#x000A;  resetAnimation();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start the animation.', canvas.width / 2, 50);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('click', resetAnimation);&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage1_lesson7'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge7'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 7
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage1/challenge7Example-23975248a434bf7bdfb7a2d09d865a8856da075744581f3819e329528d4f4dfd.gif" alt="Challenge7example" />
+<figcaption class='text-xs-center small'>Challenge 7 Sample Solution</figcaption>
+</figure>
+<p>
+Let's give our flappy square animation a more realistic simulation
+of gravity.
+</p>
+<p>
+Using your code from Challenge 4, instead of just moving the flappy square
+down 10 pixels each frame let's track the y velocity of the flappy
+square and with each frame let's subtract gravity to increase the velocity
+downward.
+</p>
+<p>
+<span class='highlight'>
+Our flappy square should start at (50, 100) with a yVelocity of 0. Gravity
+should be set to 0.5.
+</span>
+So in each frame you'll subtract gravity from yVelocity and then
+you'll subtract yVelocity to the y variable. This will cause the y variable to go down
+at an increasing rate.
+</p>
+<p>
+Let's also speed up our animation and instead of running a frame every 300
+miliseconds, let's
+<span class='highlight'>draw a frame every 25 miliseconds.</span>
+</p>
+<p>
+Your animation should look like the example to the right.
+</p>
+<p>
+Important note: In Challenge
+6
+we added 10 to the "y" variable in each frame causing the square
+to move down. Here we need to
+<span class='highlight'>subtract "yVelocity"</span>
+as "yVelocity" will be negative and subtracting a negative is the same
+as adding a positive (I know this can get confusing with the y-coordinate
+of the canvas moving in the wrong direction).
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="clear_rect" href="../clear_rect/index.html">clearRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+</p>
+
+<div class='code-preview mb-2'>
+<p>
+<strong>Previous Challenge:</strong>
+View your
+<span class='code-preview-link' data-editorid='flappy_square_stage1_challenge6_editor'>
+code from
+Stage
+1
+Challenge
+6
+</span>
+to use on this challenge.
+</p>
+<div class='code-preview-missing'>
+<strong>Code Missing:</strong>
+You have not yet entered any code in to the previous challenge:
+Stage
+1
+Challenge
+6
+</div>
+<div class='code-preview-view'>
+<strong>
+Stage
+1
+Challenge
+6
+</strong>
+<div class='code-preview-code'></div>
+</div>
+</div>
+
+</div>
+</div>
+<div class='row pt-2'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage1_challenge7_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge7');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var gravity = ;&#x000A;var size = 20;&#x000A;var x = ;&#x000A;var y = ;&#x000A;var yVelocity = ;&#x000A;&#x000A;function drawSquare() {&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  // Instead of simply subtracting&#x000A;  // 10 from the "y" variable you'll&#x000A;  // need to both adjust the "yVelocity"&#x000A;  // and then use it to adjust "y"&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;}&#x000A;&#x000A;function startAnimation() {&#x000A;  interval =&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage1_challenge7'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div aria-hidden='true' aria-labelledby='referenceModalLabel' class='modal fade' id='reference-modal' role='dialog' tabindex='-1'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<h4 class='modal-title' id='referenceModalLabel'></h4>
+</div>
+<div class='modal-body'></div>
+<div class='modal-footer'>
+<div class='float-xs-right'>
+<button class='btn btn-secondary' data-dismiss='modal' type='button'>Close</button>
+</div>
+<div class='text-xs-left'>
+<button class='btn btn-primary text-white lesson-link'>View Full Lesson</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='py-3'>
+<h2>
+Ready for the next lesson?
+</h2>
+<p class='py-1'>
+Next up, the
+<a href="../stage2/index.html">&quot;Stage: 2&quot; lesson &gt;</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+<!-- Localized -->

@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<title>Drawing Code</title>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="MljvdknhXxYmT4OKFNsEdV6gY/ni8l4lXmJgO3SuLo7OxkawhSgh4jMg3uv3hAtsXvw3pkRIo1v5J5iC7WqLqw==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-6693732d946f61761af2eeafcf9c870441f1af9f77c9d2a5db4509578dd265e0-body=1.css" data-turbolinks-track="reload" />
+<script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/ace/ace.self-0acb0427eef086a17859bfe56ecfaf24bc47c928ad7db87d5ec5bf235e40cb40.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/code_preview.self-b37269bda74e81e3e6e832ad40469072b79b5b1d3a48a2e91986fd44549f82c0.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/drawings.self-1119b89f5468a45fd5e064d9ba68962f14b5248b9ff1a6b33b2307875e470686.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/examples.self-62f6af2ec5a00cd81eb1292963de6ac7a2146c48d0d3cba6abe1adc998cae145.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/init.self-fef4ca73cdd5fc98231ba13aa0c4b3f7a626e61c3afedb604da73204cdfb80bc.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lesson.self-4c007310fc5244946716688a8afc18ef0b6e54f4cfc18f8aff6b18ab0e203889.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage1.self-af3dd34f4f344c2e4c6fd02ae6fcf3a3ab4cd43a8d72b9e10ac7e857ec7e3321.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage2.self-225920e2665631ee62b7fbe95291c6ac9e1c62142a2bc469a623623a6c18a705.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage3.self-d849334bedcf13dec8fb3da9f57078b783809e1a25dfc733da271108516fb213.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage4.self-566ff4fe09aeeee06c9bfca2d5a81fc52bad7f964d150d6025e854e6a9a8c2de.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/clearRect.self-9e82ca8aa93793f04e73caa7f25eaf5e8c815cbe718ac5f4747de25ef19efce9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/coordinates.self-4821f9b9bad6785349895eef0fd2998882879f8d57aff2f232eb8b4d961203f1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/fill_rect.self-4bb525e22a290e2ae4aa8446082bdcd7168ea5c515f27a3b3b8b6d439760ea8a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/fill_style.self-6d153ccc75d0aa54db66acd06e950248f8cabe7184d1789400272825d0648764.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage1.self-6f21d5babc2da36a46ebff04ecd42d9634765d962b64463934205e743a61eacb.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage2.self-8eb29add53aabb7af941f9c84c2abd840c7dbf61669906cae52b8a4c84bcd409.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage3.self-cb39fe3b38a5ae28456afbcbe4c17c1b40b1fdeb13b925d136a43609a02907d3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage4.self-17d7302a880ad6257214c9cb8ead56582ece4727ecde96454c320b23f138d16e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/for_loops.self-6ea947c621baba5fe10d587860ab777038544953934ba8d15ccea3fff8128ea2.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/functions.self-d002fbef8abc3e970526900bc8987e0e6b43e4caedda60e4ea2318eae2cc0330.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage1.self-9a6bb1b4e3de5f46da1e072c0fa52d0391b4f64454b97d5b34b6ec01e46dfb32.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage2.self-274b9a3782e74ccca603cacdcfdc7de6a30a0a3ab57f9a6f1d25b7781e711f99.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage3.self-e2064f6932bc938d199b51dc1ba885fc1f3b2913935b7bdb8203011970326dbf.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage4.self-611052ea22dac28d9a24fc6ecb7c680cd07e073d394dc8a34237a2b674d846ad.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/line_to.self-65410ae951aab7cdda49956ec4aa794d97db0360507ea427d9e41ef840d88d93.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/random.self-e3526158091bc0c29fb3eaecbfa5bd813ee77bf67b2449758af5a4608bd8397b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/round.self-8f4f7fa74c9157dc1707d118675f7e35d4621225571a950953278131b01a5022.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/save.self-ba90c232d56f796645e264833860b2cbcb639bb0e37772b06ea84198141d8bec.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/scale.self-8bedfd1625ced565d0fd9cdc69c9693cd07a039860dbee59df8fc4eb524b0d70.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/switch_statements.self-9fdab32aed464bc617220d4c4fbce43b07887fe98eca5de2828efb6e05c74d5c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/translate.self-16962e3a7636c88e58d6a2bf9f63a8e5c65302badec269e70a30a97bfbc4c8ad.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/variables.self-4562a8743966906ee7fb58792fd51e5aac5203a5f64b393175caa98ba33ddedc.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/while_loops.self-d6177003c6f9f97f79cb8c63956ace41e225e85175095da98c102ebd5432f7e3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/canvas.self-429f6c3eb7215ea53ffe08598331778858aa202b6c9cdf18775ee1623316198a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/editor.self-fbbbe2d7e50971004e7c8178761a186495cfe565c8f584f7cc18297d6ec017ae.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/files.self-16fff0bc3c9a315d22413e3b6a090fb8ef8f5f1257b42dade438f57a0de1f134.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/progress.self-85855a4b2ffe2ff58692f669b689c7ad8db3cee30eb947e32791e81148164b36.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/code.self-186d38d443a8bc51bbeec7159887e3781eaad676a86b9d159eca7ec40e21f7ba.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/image_comparison.self-83be79c1bfdac13ff2c69e6916a326f2698035d7381c28f12e44637de7618bac.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/point.self-e1435fcb5c66e2107d91d34c16e06e6c0dd8d06286396d3d5b3b05c22989d9b2.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/navigation.self-3abb68970f3392649f6ee452427597fc92e324a7be21f97b6501e5a2ec47609e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/referenceModal.self-4ba25626378a146e8d2a7ae7edd72600ddef60371b98f42b0c3555b56cd02ff9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
+</head>
+<body>
+<nav class='navbar navbar-dark navbar-fixed-top bg-inverse'>
+<button aria-controls='navbar' aria-expanded='false' aria-label='Toggle navigation' class='navbar-toggler hidden-sm-up' data-target='#navbar' data-toggle='collapse' type='button'></button>
+<a class='navbar-brand' href='../../../index.html'>
+Drawing In Code:
+<small>An exploration of artistic observation and computational thinking</small>
+</a>
+</nav>
+
+<div class='container-fluid'>
+<div class='row'>
+<div class='col-md-3 col-lg-2 sidebar'>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class="section_link" href="../../../index.html">Home</a>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='drawings' href='#'>
+Your Drawings
+</a>
+<ul class='collapse nav nav-sidebar' id='drawings'>
+<li>
+<a href="../../../drawings/index.html">Create A Drawing</a>
+</li>
+<li class='section drawings-list small mt-1 hidden-xs-up'>
+<strong>My Drawings</strong>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='reference' href='#'>
+Reference
+</a>
+<ul class='collapse nav nav-sidebar' id='reference'>
+<li class='section mt-1'>
+<strong>Context2D</strong>
+</li>
+<li>
+<a href="../../reference/clear_rect/index.html">clearRect()</a>
+<span class='tag tag-default'>
+<small class='clear_rect'>0 / 2</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-clear_rect'>
+<div class='title'>context.clearRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.clearRect(x, y, width, height) will clear a rectangle starting
+at (x, y) and clearing to the right width and down height.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = '#FF0000';&#x000A;context.fillRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.clearRect(40, 20, 20, 100);&#x000A;context.clearRect(60, 60, 20, 20);&#x000A;context.clearRect(80, 20, 20, 100);&#x000A;&#x000A;context.clearRect(120, 20, 60, 20);&#x000A;context.clearRect(140, 40, 20, 60);&#x000A;context.clearRect(120, 100, 60, 20);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/clear_rect/reference-70cf88df0b9a8db2c33a8048af8493be9efdca18dd8ed4b2756cb0de8d8993af.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/fill_rect/index.html">fillRect()</a>
+<span class='tag tag-default'>
+<small class='fill_rect'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_rect'>
+<div class='title'>context.fillRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillRect(x, y, width, height) will draw a rectangle starting
+at (x, y) and filling the area "width" to the right and "height" down.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillRect(50, 50, 300, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/fill_rect/reference-ec68654dd34b051ccadd579a7b7b065ab4fa1eff1991e3d8df56cf72be3dee37.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/fill_style/index.html">fillStyle</a>
+<span class='tag tag-default'>
+<small class='fill_style'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_style'>
+<div class='title'>context.fillStyle</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillStyle will set the color for all future fills such as
+context.fillRect(). It's important to note theat context.fillStyle
+is not a method, it is an attribute. You set it like so:
+</p>
+<pre class='mb-2'><code>context.fillStyle = 'red';&#x000A;</code></pre>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = 'rgb(0,255,0)';&#x000A;context.fillRect(50, 50, 100, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/fill_style/reference-8b359c7e565a86e657117d488129208cb37d2b93ac988ee482ddaf063385e12e.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/line_to/index.html">lineTo()</a>
+<span class='tag tag-default'>
+<small class='line_to'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-line_to'>
+<div class='title'>context.lineTo()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.lineTo(x, y) creates a path from the current point - default (0,0) -
+to the point (x, y). In order to see the line you must call context.stroke().
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.beginPath();&#x000A;context.moveTo(50, 50);&#x000A;context.lineTo(100,100);&#x000A;context.lineTo(150, 50);&#x000A;context.lineTo(200, 100);&#x000A;context.stroke();&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/line_to/reference-2c3b4d87c54a374ee06ac132f850d07869ed961fac25769a9e1309faf9709371.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/save/index.html">save() / restore()</a>
+<span class='tag tag-default'>
+<small class='save'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-save'>
+<div class='title'>context.save()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.save() saves all of the properties of the context. Then, when you call
+context.restore() it will reset all changes to the context you've made.
+</p>
+<p>
+This code will produce the image below (note how the second rectangle is black
+and closer to the original origin despite calling translate and setting the
+fillStyle earlier):
+</p>
+<pre class='mb-2'><code>context.save();&#x000A;context.translate(100,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;context.restore();&#x000A;&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/save/reference-cfdb7b48454c0b82fb5105cf7a1228776bbee579585d77bf2b7cdeab9f8eb32a.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/scale/index.html">scale()</a>
+<span class='tag tag-default'>
+<small class='scale'>0 / 7</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-scale'>
+<div class='title'>context.scale()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.scale(percentX, percentY) scales the x and y coordinates of the context, making drawings
+larger or smaller.
+</p>
+<p>
+This code will produce the image below (note that all rectangles are defined to be the same size
+in the code are drawn in different sizes due to the scale of the context):
+</p>
+<pre class='mb-2'><code>context.fillRect(25,25,25,25);&#x000A;context.scale(2, 1);&#x000A;context.fillRect(75,25,25,25);&#x000A;context.scale(0.5, 1);&#x000A;context.fillRect(150,25,25,25);&#x000A;context.scale(2, 2);&#x000A;context.fillRect(300,25,25,25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/scale/reference-0569c769850c52c53953d385626946099b407d1037f93af347311149e3a2fec6.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/translate/index.html">translate()</a>
+<span class='tag tag-default'>
+<small class='translate'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-translate'>
+<div class='title'>context.translate()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.translate(x, y) shifts the origin of the context (where the (0,0) point is)
+right by x and down by y. This allows you to draw execute multiple commands in a specific
+area of the context more easily.
+</p>
+<p>
+This code will produce the image below (note how the fillRect commands are
+relative to the translation point (100,100)):
+</p>
+<pre class='mb-2'><code>context.translate(50,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(0, 0, 100, 100);&#x000A;context.fillStyle = 'green';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/translate/reference-19fc53169ce0da0d057fb00b05eecfb3fc88513d1fa46cf4aceaa8fa19f51c26.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li class='section mt-1'>
+<strong>Math</strong>
+</li>
+<li>
+<a href="../../reference/round/index.html">round() / floor() / ceil()</a>
+<span class='tag tag-default'>
+<small class='round'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-round'>
+<div class='title'>Math.round() / Math.floor() / Math.ceil()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.round(), Math.floor() and Math.ceil() will round a number to an integer.
+Math.floor() will always round down while Math.ceil() will always round up.
+Math.round() will round to the closest integer, either up or down.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/floor/visual1-9edc722b188f28c702178c13d60cbec037d2e4159d2b7b5f7782a0be2dd5f653.png" alt="Visual1" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/random/index.html">random()</a>
+<span class='tag tag-default'>
+<small class='random'>0 / 4</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-random'>
+<div class='title'>Math.random()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.random() will produce a random decimal betweek 0 and 1. Calling it many
+times will produce a different random number each time.
+</p>
+<p>
+Often you will multiple Math.random() by another number to get a random
+integer larger than 1. You may also call Math.floor() or Math.ceil() on the result
+to get an rounded integer.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/random/reference-d1ee7adb1a0544e928f64c175595c9f081740954db0ae3f889f0627b4034c642.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='concepts' href='#'>
+Concepts
+</a>
+<ul class='collapse nav nav-sidebar' id='concepts'>
+<li>
+<a href="../../concepts/variables/index.html">Variables</a>
+<span class='tag tag-default'>
+<small class='variables'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-variables'>
+<div class='title'>Variables</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+A variable allows you to store information to use or change later.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/variables/reference-b8e07ae4cdc5e13b2ee681381d7fa203f8442ff2e8abeb1cf4012cfb427439db.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/for_loops/index.html">For Loops</a>
+<span class='tag tag-default'>
+<small class='for_loops'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-for_loops'>
+<div class='title'>For Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+For-loops allow you to repeat code over and over again, potentially
+adjusting the code a little bit each time.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>for (var i=1; i<10; ++i) {&#x000A;  context.fillRect(10 * i, 75 - (5 * i), 10 * i, 10 * i);&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/for_loops/reference-ab4edc41708c315c5bc65d0ca07c1d49061a8185eb1420dbb6a056fa1be194bd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/while_loops/index.html">While Loops</a>
+<span class='tag tag-default'>
+<small class='while_loops'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-while_loops'>
+<div class='title'>While Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+While-loops allow you to repeat code over and over again until a condition is met.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>var i = 10;&#x000A;while (i < 200) {&#x000A;  context.fillRect(5, 5, i, 50);&#x000A;  i += 10;&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/while_loops/reference-b71bb24ae903b89143b68f3a561a455d71ca8c08674b34a2d9ffbde1753fc005.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/coordinates/index.html">Coordinates</a>
+<span class='tag tag-default'>
+<small class='coordinates'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-coordinates'>
+<div class='title'>The Coordinate System</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+The coordinate system consists of X and Y values starting at (0, 0) in the upper left corner.
+</p>
+<p>
+As you move down the canvas Y gets larger. As you move right on the canvas X gets larger.
+</p>
+<p>
+So the point (100, 50) means you move right 100 and down 50.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid" src="../../../assets/lessons/coordinates/reference-1875ea0cb51a1c7ed92a016a2256ba53d9b3f7820a9feaa679521c14af4e7acd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li class='active'>
+<a href="../../concepts/functions/index.html">Functions</a>
+<span class='tag tag-default'>
+<small class='functions'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-functions'>
+<div class='title'>Functions</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Functions allow you to create chunks of code that can be called with
+different parameters.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>function fillColorRect(x, y, w, h, color) {&#x000A;  context.save();&#x000A;  context.fillStyle = color;&#x000A;  context.fillRect(x, y, w, h);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;fillColorRect(50, 50, 50, 50, 'red');&#x000A;fillColorRect(150, 50, 50, 50, 'blue');&#x000A;fillColorRect(250, 50, 50, 50, 'green');&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/functions/reference-2d2a07b0286e84d953685386201fe7e0bc20198460907e83c7895681f6b37a45.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/switch_statements/index.html">Switch Statements</a>
+<span class='tag tag-default'>
+<small class='switch_statements'>0 / 4</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-switch_statements'>
+<div class='title'>Switch Statements</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Switch statements allow you to perform different code depending on
+the value of a variable.
+</p>
+<p>
+The following code will produce the picture below (the switch statement
+only performs the code inside of case 2 because "i" is set to 2):
+</p>
+<pre class='mb-2'><code>var i = 2;&#x000A;switch (i) {&#x000A;  case 1:&#x000A;    context.fillStyle = 'red';&#x000A;    break;&#x000A;  case 2:&#x000A;    context.fillStyle = 'yellow';&#x000A;    break;&#x000A;  case 3:&#x000A;    context.fillStyle = 'blue';&#x000A;    break;&#x000A;}&#x000A;context.fillRect(50, 50, 100, 50);&#x000A;&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/switch_statements/reference-3ab4709f6beedfca8a197ba64c75c9604abf7ccdb78c9adc16cf035c60914e8b.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/set_interval/index.html">setInterval()</a>
+<div class='reference-modal-content' id='reference-modal-set_interval'>
+<div class='title'>setInterval()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+setInterval() allows you to execute code at specified intervals. It
+is frequently used to create animations.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>var index = 0;&#x000A;function count() {&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText(index, canvas.width / 2, canvas.height / 2);&#x000A;}&#x000A;setInterval(count, 1000)&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/set_interval/reference-a47ff17199d8182591ccb0d45fa57147ee1136677cff7955671c6a01337479fa.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/event_listeners/index.html">Event Listeners</a>
+<div class='reference-modal-content' id='reference-modal-event_listeners'>
+<div class='title'>Event Listeners</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Event listeners allow you to "listen" for an event, such as a click, on an element
+in your html.
+</p>
+<p>
+A full list of events can be found here:
+<a target="_blank" href="https://www.tutorialspoint.com/html5/html5_events.htm">HTML5 Events</a>
+</p>
+<p>This code will produce the image below (if you were to click and draw the letters on the canvas):</p>
+<pre class='mb-2'><code>canvas.addEventListener('mousemove', function(e) {&#x000A;  if (e.buttons === 0) return;&#x000A;  context.fillRect(e.layerX - 3, e.layerY - 3, 7, 7);&#x000A;});&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/event_listeners/reference-e166d58e874cfbbeb51fb29e622c9bf89d5c7a4aec6319d3953c94db43af1b0c.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section my-1'>
+<a class='section_link' data-section='flappy_square' href='#'>Flappy Square</a>
+<ul class='collapse in nav nav-sidebar' id='flappy_square'>
+<li>
+<a href="../stage1/index.html">Stage 1</a>
+<span class='tag tag-default'>
+<small class='flappy_square_stage1'>0 / 7</small>
+</span>
+</li>
+<li>
+<a href="../stage2/index.html">Stage 2</a>
+<span class='tag tag-default'>
+<small class='flappy_square_stage2'>0 / 4</small>
+</span>
+</li>
+<li>
+<a href="../stage3/index.html">Stage 3</a>
+<span class='tag tag-default'>
+<small class='flappy_square_stage3'>0 / 3</small>
+</span>
+</li>
+<li>
+<a href="../stage4/index.html">Stage 4</a>
+<span class='tag tag-default'>
+<small class='flappy_square_stage4'>0 / 4</small>
+</span>
+</li>
+<li class='section small mt-2'>
+<strong>Relevant Reference</strong>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="clear_rect" href="../clear_rect/index.html">clearRect()</a>
+<span class='tag tag-default'>
+<small class='clear_rect'>0 / 2</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<span class='tag tag-default'>
+<small class='fill_rect'>0 / 6</small>
+</span>
+</li>
+<li class='section small mt-1'>
+<strong>Relevant Concepts</strong>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar hidden-xs-up'>
+<li class='section'>
+<a class='section_link' data-section='experimental' href='#'>
+All
+</a>
+</li>
+<ul class='nav nav-sidebar'>
+<li class='section small'>
+<strong>Active</strong>
+<li class='small '>
+<a href="../../basic_cityscape/stage1/index.html">Basic Cityscape</a>
+</li>
+</li>
+<li class='section small mt-2'>
+<strong>Experimental</strong>
+<li class='small '>
+<a href="../../snake_game/stage1/index.html">Snake Game</a>
+</li>
+<li class='small '>
+<a href="../stage1/index.html">Flappy Square</a>
+</li>
+<li class='small '>
+<a href="../../flappy_birds/stage1/index.html">Flappy Birds</a>
+</li>
+<li class='small '>
+<a href="../../granular_basic_cityscape/stage1/index.html">Basic Cityscape</a>
+</li>
+</li>
+</ul>
+</ul>
+
+</div>
+<div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
+<div class='page' id='functions'>
+<h1>
+Functions
+</h1>
+<div class='description row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Overview
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid" src="../../../assets/lessons/functions/overviewVisual1-fa51e95b3baf4cd0101ce04fc78c1c26e129c3be0d9ff5cdb5753ee603310db3.png" alt="Overviewvisual1" />
+</figure>
+<p>
+A function is a block of code that is run whenever the function is called within a program.
+</p>
+<p>
+Functions are declared using the
+<code>function</code>
+keyword. For example, we create a function named<code>doSomething()</code>by typing:
+</p>
+<pre><code>function doSomething() {&#x000A;  &#x000A;  // the code to do something&#x000A;  &#x000A;}</code></pre>
+<p>
+The curly braces {&hellip;} mark the beginning and end of the function's code block,
+which is the code run when the function is called. While computers are excellent at
+spotting the curly braces in a program, sometimes human eyes miss them. That's why it
+is standard practice to also indent the code in a block, making the code block stand
+out visually from the code around it.
+</p>
+<p>
+Functions enable you to reuse your code instead of re-writing it every time, and
+they also make your programs easier to read and maintain.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Define and Call a Function
+</h2>
+<p>
+In this example, we create a function named
+<code>drawSandwich()</code>
+that draws a sandwich. Another standard practice is to give functions descriptive
+names, so we know what they do, and to write them using camel case, capitalizing each
+word after the first one.
+</p>
+<p>
+We start by declaring and defining the function:
+</p>
+<pre><code>function drawSandwich() {&#x000A;  context.save();&#x000A;  context.fillStyle = '#F5DEB3';&#x000A;  context.fillRect(20, 20, 200, 30);&#x000A;  context.fillRect(20, 100, 200, 30);&#x000A;  context.fillStyle = '#663300';&#x000A;  context.fillRect(30, 50, 180, 50);&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(20, 62, 200, 8);&#x000A;  context.fillRect(20, 80, 200, 8);&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+Think of a function definition as a recipe. If we put a recipe for a sandwich up
+on the refrigerator, it doesn't mean there will be a sandwich waiting for us
+when we get home. We have to tell someone to use the recipe to make us a sandwich.
+</p>
+<p>
+Right now, we have given the computer a recipe to follow if we ask it to draw a sandwich,
+but we haven't told it to draw a sandwich yet. To do that, we have to call the function using:
+</p>
+<pre><code>drawSandwich();</code></pre>
+<p>
+If we step through our program line by line, here is what happens:
+</p>
+<p>
+First, the computer gets a reference to the canvas and stores it in the global variable
+<span><code>canvas</code>.
+</span>
+</p>
+<pre><code>var canvas = document.getElementById('functions_example1');</code></pre>
+<p>
+Second, the computer gets a reference to the canvas's context and stores it in the global variable
+<span><code>context</code>.
+</span>
+</p>
+<pre><code>var context = canvas.getContext('2d');</code></pre>
+<p>
+Then, the computer looks up and runs our function.
+</p>
+<pre><code>drawSandwich();</code></pre>
+<p>
+The computer recognizes that
+<code>drawSandwich()</code>
+is a function because of the parentheses (), so it searches for the function's
+definition in the program. It doesn't actually matter where we place the definition
+in the program; the computer will find it and run the function's code block.
+</p>
+<p>
+In functions that use the context, it's generally a good idea to save and restore the
+context at the start and end of the function, respectively.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_example1_editor'>var canvas = document.getElementById('functions_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;drawSandwich();&#x000A;&#x000A;function drawSandwich() {&#x000A;  context.save();&#x000A;  context.fillStyle = '#F5DEB3';&#x000A;  context.fillRect(20, 20, 200, 30);&#x000A;  context.fillRect(20, 100, 200, 30);&#x000A;  context.fillStyle = '#663300';&#x000A;  context.fillRect(30, 50, 180, 50);&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(20, 62, 200, 8);&#x000A;  context.fillRect(20, 80, 200, 8);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='functions_example1'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge1'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 1
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/functions/challenge1Visual1-fac46f1e3d432d316b8b8569e8f4ad0c6b6c79debca9eb8b95ad84eb640724d1.png" alt="Challenge1visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Define a function named
+<span><code>drawRedSquare()</code>.
+</span>
+Inside the function's code block, set the context's fillStyle to
+<code>'#FF0000'</code>
+and use the
+<code>context.fillRect()</code>
+method to draw a filled rectangle at (60, 40) with a width of 200 and a height of 200.
+</p>
+<p>
+Then, call the function
+<span><code>drawRedSquare()</code>.
+</span>
+</p>
+<p>
+The
+<code>context.fillRect()</code>
+method is simply a function that other programmers have created for us to use. The
+computer knows where to find its function definition, and it's called a method because
+it is a property of the context.
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_challenge1_editor'>var canvas = document.getElementById('functions_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// DEFINE THE FUNCTION HERE&#x000A;&#x000A;// CALL THE FUNCTION HERE&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/functions/challenge1-b4a1d8e686edbf25fb8a1094dce0667a11c00a9fbb6df9300c8577b19638436e.png" alt="Challenge1" /></div>
+<canvas id='functions_challenge1'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Pass Values into a Function
+</h2>
+<p>
+While our function
+<code>drawSandwich()</code>
+works, it's not very useful. It is hardcoded to always draw a sandwich with its
+top left corner at (20, 20). One of the reasons why we place code in functions is
+so we can use it over and over again without having to re-write it. But calling
+<code>drawSandwich()</code>
+more than once will only draw another sandwich directly on top of the first one.
+</p>
+<p>
+To make the function more useful, we are going to re-define it to draw a sandwich
+at a set of coordinates we pass it, not just (20, 20). Values passed into a function are
+called arguments, and they are stored in local variables called parameters.
+</p>
+<p>
+We add parameters to a function by listing them in the parentheses next to the function's
+name in its definition:
+</p>
+<pre><code>function drawSandwich(x, y) {&#x000A;  &#x000A;  // code block&#x000A;  &#x000A;}</code></pre>
+<p>
+In this case, parameter
+<code>x</code>
+will store the value of the sandwich's x-coordinate and parameter
+<code>y</code>
+will store the value of the y-coordinate.
+</p>
+<p>
+We then update the code inside the function to draw the rectangles for the
+bread, meat, and cheese at coordinates based on
+<code>x</code>
+and
+<span><code>y</code>:
+</span>
+</p>
+<pre><code>function drawSandwich(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#F5DEB3';&#x000A;  context.fillRect(x, y, 200, 30);&#x000A;  context.fillRect(x, y + 80, 200, 30);&#x000A;  context.fillStyle = '#663300';&#x000A;  context.fillRect(x + 10, y + 30, 180, 50);&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(x, y + 42, 200, 8);&#x000A;  context.fillRect(x, y + 60, 200, 8);&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+There is a much easier way to draw a sandwich at coordinates (x, y) using the
+<code>context.translate()</code>
+method, but we will discuss that in the
+<a class="reference-link" data-slug="translate" href="../translate/index.html">translate()</a>
+lesson.
+</p>
+<p>
+Now we can draw a stack of sandwiches by drawing three sandwiches at three
+different sets of coordinates:
+</p>
+<pre><code>drawSandwich(125, 20);&#x000A;drawSandwich(20, 130);&#x000A;drawSandwich(230, 130);</code></pre>
+<p>
+When we call the function
+<code>drawSandwich()</code>
+and pass it the arguments 125 and 20, the value 125 is stored in the parameter
+<code>x</code>
+and the value 20 in the parameter
+<span><code>y</code>.
+</span>
+</p>
+<p>
+To learn more about the coordinate system and variables, visit the
+<a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+and
+<a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a>
+lessons.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_example2_editor'>var canvas = document.getElementById('functions_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;drawSandwich(125, 20);&#x000A;drawSandwich(20, 130);&#x000A;drawSandwich(230, 130);&#x000A;&#x000A;function drawSandwich(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#F5DEB3';&#x000A;  context.fillRect(x, y, 200, 30);&#x000A;  context.fillRect(x, y + 80, 200, 30);&#x000A;  context.fillStyle = '#663300';&#x000A;  context.fillRect(x + 10, y + 30, 180, 50);&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(x, y + 42, 200, 8);&#x000A;  context.fillRect(x, y + 60, 200, 8);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='functions_example2'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge2'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 2
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/functions/challenge2Visual1-68f66c694653a2bc610678539caa50f18fb70a8951b35257040f819523d9fe6f.png" alt="Challenge2visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Re-define the function
+<code>drawRedSquare()</code>
+with the parameters
+<span><code>x</code>,
+</span>
+<span><code>y</code>,
+</span>
+and
+<span><code>s</code>,
+</span>
+where
+<code>x</code>
+is the x-coordinate of the square,
+<code>y</code>
+is the y-coordinate, and
+<code>s</code>
+is the side length.
+</p>
+<p>
+Then, use the function to draw three squares: the first at (160, 20) with a side
+length of 50; the second at (40, 80) with a side length of 120; and the third at
+(70, 210) with a side length of 90.
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_challenge2_editor'>var canvas = document.getElementById('functions_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// DEFINE THE FUNCTION HERE&#x000A;&#x000A;// CALL THE FUNCTION TO DRAW THE FIRST SQUARE HERE&#x000A;&#x000A;// CALL THE FUNCTION TO DRAW THE SECOND SQUARE HERE&#x000A;&#x000A;// CALL THE FUNCTION TO DRAW THE THIRD SQUARE HERE&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/functions/challenge2-0bf78446db6f5f0d6bac2a3cd9dcc5393e7a1ec7d4773f2f3b3e0c3d6a32f115.png" alt="Challenge2" /></div>
+<canvas id='functions_challenge2'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 3
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/functions/challenge3Visual1-1b0eeee578b0ad45552f72ac73f232d68c9e418d5f5e88254fcbb020d4e41021.png" alt="Challenge3visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+The function
+<code>drawTheLetterL()</code>
+is currently hardcoded to draw a letter L at (100, 50).
+</p>
+<p>
+Re-define the function using parameters so it will draw a letter L at any set
+of coordinates passed into it.
+</p>
+<p>
+Then, draw three letter L's: the first at (20, 120), the second at (110, 70),
+and the third at (200, 20);
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_challenge3_editor'>var canvas = document.getElementById('functions_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function drawTheLetterL() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'SlateBlue';&#x000A;  context.fillRect(100, 50, 30, 120);&#x000A;  context.fillRect(130, 140, 60, 30);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;// DRAW THE THREE LETTER L'S HERE&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/functions/challenge3-9cf9eb4b04e9d28c2027a79fe8223470de27f30396cb573f22c415f72dafede9.png" alt="Challenge3" /></div>
+<canvas id='functions_challenge3'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Return Values from Functions
+</h2>
+<p>
+One way to pass values into a function is through the use of parameters. One way
+to get values out of a function is through the use of return values.
+</p>
+<p>
+In this example, we define the
+<code>calculateArea()</code>
+function, which calculates the area of a rectangle using the values stored in parameters
+<code>w</code>
+and
+<span><code>h</code>,
+</span>
+and stores it in the local variable
+<span><code>area</code>.
+</span>
+Because
+<code>area</code>
+is a local variable, it can't be accessed from outside of the function and it will
+no longer exist once the function ends. To get the value of
+<code>area</code>
+out of the function, we use a return statement.
+</p>
+<pre><code>function calculateArea(w, h) {&#x000A;  var area = w * h;&#x000A;  return area;&#x000A;}</code></pre>
+<p>
+A return statement inside a function does two things. First, it ends the function
+even if there is more code to run below it. Second, it can return a value if one is
+provided. In this case, the
+<code>calculateArea()</code>
+function returns the value of
+<span><code>area</code>.
+</span>
+</p>
+<p>
+To use the
+<code>calculateArea()</code>
+function, we call it and store its return value in the global variable
+<span><code>area</code>.
+</span>
+We can name two variables
+<code>area</code>
+in this situation because one is global and the other is local to the function
+<span><code>calculateArea()</code>.
+</span>
+To learn more about variables and scope, visit the
+<a class="reference-link" data-slug="variables" href="../variables/index.html">variables</a>
+lesson.
+</p>
+<pre><code>var area = calculateArea(200, 100);</code></pre>
+<p>
+Finally, we draw the value stored in the global variable
+<code>area</code>
+on the canvas using the
+<code>context.fillText()</code>
+method.
+</p>
+<pre><code>context.font = '16px Arial';&#x000A;context.fillStyle = 'Black';&#x000A;context.fillText('The area is ' + area + '.', 10, 40);</code></pre>
+<p>
+Change the values passed into the
+<code>calculateArea()</code>
+function to see what happens. The function should automatically re-calculate
+the area drawn on the canvas.
+</p>
+<p>
+To learn more about variables, visit the
+<a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a>
+lesson.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_example3_editor'>var canvas = document.getElementById('functions_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function calculateArea(w, h) {&#x000A;  var area = w * h;&#x000A;  return area;&#x000A;}&#x000A;&#x000A;var area = calculateArea(200, 100);&#x000A;context.font = '16px Arial';&#x000A;context.fillStyle = 'Black';&#x000A;context.fillText('The area is ' + area + '.', 10, 40);&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='functions_example3'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge4'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 4
+</h2>
+<p>
+Define a function named
+<code>randomIntegerFrom0To255()</code>
+to calculate and return a random integer from 0 to 255.
+</p>
+<p>
+The
+<code>Math</code>
+object has a set of functions that other programmers have defined for us to
+use. Here is a full list of available
+<span><span><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">math functions</a></span>.
+</span>
+</p>
+<p>
+To calculate a random integer from 0 to 255, we will use the
+<code>Math.random()</code>
+function, which returns a random number from 0 to 1, but not including 1. By
+multiplying the value returned by the
+<code>Math.random()</code>
+function by 256, we will have a random number from 0 to 256, but not including 256.
+Then, to round that value down to an integer, we pass that value into the
+<code>Math.floor()</code>
+function. We want to round down because we don't want to round up to 256.
+</p>
+<p>
+Here is what the code for the calculation looks like on one line:
+</p>
+<pre><code>var i = Math.floor( 256 * Math.random() );</code></pre>
+<p>
+The random integer from 0 to 255 is stored in the local variable
+<span><code>i</code>,
+</span>
+which is what we want to return at the end of the function.
+</p>
+<p>
+Call the
+<code>randomIntegerFrom0To255()</code>
+function and store its return value in a global variable. Then, draw the value stored
+in this global variable on the canvas at (10, 40) by passing it into the
+<code>context.fillText()</code>
+method. Every time you run the program, a new random integer from 0 to 255 should be drawn.
+If your program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
+</p>
+<p>
+To learn more about rounding and generating random numbers, visit the
+<a class="reference-link" data-slug="round" href="../round/index.html">round() / floor() / ceil()</a>
+and
+<a class="reference-link" data-slug="random" href="../random/index.html">random()</a>
+lesson.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="random" href="../random/index.html">random()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="round" href="../round/index.html">round() / floor() / ceil()</a>
+</p>
+
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_challenge4_editor'>var canvas = document.getElementById('functions_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// DEFINE THE randomIntegerFrom0To255() FUNCTION HERE&#x000A;&#x000A;// CALL THE randomIntegerFrom0To255() FUNCTION AND STORE ITS RETURN VALUE HERE&#x000A;&#x000A;context.font = '16px Arial';&#x000A;context.fillStyle = 'Black';&#x000A;context.fillText('', 10, 40); // EDIT THIS FUNCTION CALL TO DRAW THE RANDOM INTEGER ON THE CANVAS AT (10, 40)&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='functions_challenge4'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Call Functions from Inside of Other Functions
+</h2>
+<p>
+So far, we have been defining a function and calling it from the global scope
+(outside of any function). But it is possible to call one function from inside of
+another function.
+</p>
+<p>
+In this example, we define four separate functions. The
+<code>drawRectangleWithArea()</code>
+function has four parameters that it uses to draw a green rectangle. It then calls the
+<code>calculateMidPoint()</code>
+function twice to calculate the coordinates for the center of the rectangle, storing
+those values in the local variables
+<code>midX</code>
+and
+<span><code>midY</code>.
+</span>
+Finally, it passes the values of
+<span><code>midX</code>,
+</span>
+<span><code>midY</code>,
+</span>
+<span><code>w</code>,
+</span>
+and
+<code>h</code>
+into the
+<code>printArea()</code>
+function.
+</p>
+<pre><code>function drawRectangleWithArea(x, y, w, h) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'MediumSeaGreen';&#x000A;  context.fillRect(x, y, w, h);&#x000A;  &#x000A;  var midX = calculateMidPoint(x, x + w);&#x000A;  var midY = calculateMidPoint(y, y + h);&#x000A;  &#x000A;  printArea(midX, midY, w, h);&#x000A;  &#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+The
+<code>calculateMidPoint()</code>
+function has two parameters,
+<code>a</code>
+and
+<span><code>b</code>.
+</span>
+It calculates the average of
+<code>a</code>
+and
+<span><code>b</code>,
+</span>
+and returns the value using a return statement. Note that we aren't storing
+the average in a local variable and then returning the value of that variable.
+We are just returning the value directly, cutting out an unneccesary step.
+</p>
+<pre><code>function calculateMidPoint(a, b) {&#x000A;  return (a + b) / 2;&#x000A;}</code></pre>
+<p>
+The
+<code>printArea()</code>
+function has four parameters. It passes the value of
+<code>w</code>
+and
+<code>h</code>
+into the
+<code>calculateArea()</code>
+function and stores the return value in the local variable
+<span><code>area</code>.
+</span>
+It then sets a few properties the context uses to format text and calls the
+<code>context.fillText()</code>
+method to draw a string of text with the value of
+<code>area</code>
+at the coordinates
+<span>
+(<code>x</code>,
+</span>
+<span><code>y</code>),
+</span>
+which is the midpoint of the rectangle.
+</p>
+<pre><code>function printArea(x, y, w, h) {&#x000A;  var area = calculateArea(w, h);&#x000A;  &#x000A;  context.save();&#x000A;  context.font = '16px Arial';&#x000A;  context.fillStyle = 'Black';&#x000A;  context.textAlign = 'center';&#x000A;  context.textBaseline = 'middle';&#x000A;  context.fillText('My area is ' + area, x, y);&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+The
+<code>calculateArea()</code>
+function calculates the area of a rectangle using the values stored in parameters
+<code>w</code>
+and
+<span><code>h</code>,
+</span>
+and returns the value. Again, we are cutting out a step by returning the value of
+the area directly.
+</p>
+<pre><code>function calculateArea(w, h) {&#x000A;  return w * h;&#x000A;}</code></pre>
+<p>
+At this point, we have defined four functions. All four functions have a global
+scope because their function definitions have been declared at the top level of the program,
+not inside of another function.
+And because each function has a global scope, we can access and call them
+from inside any other function. That's why we can call the
+<code>calculateMidPoint()</code>
+and
+<code>printArea()</code>
+functions from inside the
+<code>drawRectangleWithArea()</code>
+function, and we can call the
+<code>calculateArea()</code>
+function from inside the
+<code>printArea()</code>
+function.
+</p>
+<p>
+Although we have defined our four functions, our program isn't doing anything. It's
+stored references to the canvas and the canvas's context in the global variables
+<code>canvas</code>
+and
+<span><code>context</code>,
+</span>
+respectively, but that's it. We still need to call the
+<code>drawRectangleWithArea()</code>
+function:
+</p>
+<pre><code>drawRectangleWithArea(60, 40, 100, 80);</code></pre>
+<p>
+This draws a green rectangle and prints the area at its midpoint.
+</p>
+<p>
+Change the position and dimensions of the rectangle being passed into the
+<code>drawRectangleWithArea()</code>
+function. The drawing will automatically update to draw the new rectangle and print its
+area at its midpoint.
+</p>
+<p>
+Visit the relevant lessons to learn more about
+<span><code>context.save()</code>,
+</span>
+<span><code>context.fillRect()</code>,
+</span>
+<span><code>context.fillStyle</code>,
+</span>
+variables, and the context's coordinate system.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_example4_editor'>var canvas = document.getElementById('functions_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function drawRectangleWithArea(x, y, w, h) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'MediumSeaGreen';&#x000A;  context.fillRect(x, y, w, h);&#x000A;  &#x000A;  var midX = calculateMidPoint(x, x + w);&#x000A;  var midY = calculateMidPoint(y, y + h);&#x000A;  &#x000A;  printArea(midX, midY, w, h);&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function calculateMidPoint(a, b) {&#x000A;  return (a + b) / 2;&#x000A;}&#x000A;&#x000A;function printArea(x, y, w, h) {&#x000A;  var area = calculateArea(w, h);&#x000A;  &#x000A;  context.save();&#x000A;  context.font = '16px Arial';&#x000A;  context.fillStyle = 'Black';&#x000A;  context.textAlign = 'center';&#x000A;  context.textBaseline = 'middle';&#x000A;  context.fillText('My area is ' + area, x, y);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function calculateArea(w, h) {&#x000A;  return w * h;&#x000A;}&#x000A;&#x000A;drawRectangleWithArea(60, 40, 100, 80);&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='functions_example4'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge5'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 5
+</h2>
+<p>
+Copy the code you wrote for the
+<code>randomIntegerFrom0To255()</code>
+function in Challenge 4. You are going to use that function to draw random
+rectangles with random colors.
+</p>
+<p>
+In the definition for the
+<code>randomColor()</code>
+function, declare three local variables named
+<span><code>r</code>,
+</span>
+<span><code>g</code>,
+</span>
+and
+<span><code>b</code>,
+</span>
+and use them to store three random integers from 0 to 255. We will use those
+three values to return a text string describing a color in rgb() notation.
+</p>
+<p>
+In the definition for the
+<code>drawRandomRectangle()</code>
+function, declare two local variables named
+<code>w</code>
+and
+<span><code>h</code>,
+</span>
+and use them to store two random integers from 0 to 255. Store a random color
+in the
+<code>context.fillStyle</code>
+property. Then, use the
+<code>context.fillRect()</code>
+method to draw a rectangle at position
+<span>
+(<code>x</code>,
+</span>
+<span><code>y</code>)
+</span>
+with a width of
+<code>w</code>
+and a height of
+<span><code>h</code>.
+</span>
+</p>
+<p>
+Finally, call the
+<code>drawRandomRectangle()</code>
+function to draw one or more random rectangles on the canvas. Every time you run the
+program, the dimensions and color of the rectangles should change. If your program seems
+to be working, mark the challenge as complete by selecting "Yes, it looks good".
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="random" href="../random/index.html">random()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="round" href="../round/index.html">round() / floor() / ceil()</a>
+</p>
+
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_challenge5_editor'>var canvas = document.getElementById('functions_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function randomIntegerFrom0To255() {&#x000A;  // PASTE YOUR CODE FROM CHALLENGE 3 HERE&#x000A;}&#x000A;&#x000A;function randomColor() {&#x000A;  // DECLARE THREE LOCAL VARIABLES NAMED r, g, AND b&#x000A;  // USE THE VARIABLES TO STORE THREE RANDOM INTEGERS FROM 0 TO 255&#x000A;  &#x000A;  return 'rgb(' + r + ', ' + g + ', ' + b + ')';&#x000A;}&#x000A;&#x000A;function drawRandomRectangle(x, y) {&#x000A;  // DECLARE TWO LOCAL VARIABLES NAMED w AND h&#x000A;  // USE THE VARIABLES TO STORE TWO RANDOM INTEGERS FROM 0 TO 255&#x000A;  &#x000A;  context.save();&#x000A;  // STORE A RANDOM COLOR IN THE context.fillStyle PROPERTY&#x000A;  // USE THE context.fillRect() METHOD TO DRAW A RECTANGLE AT (x, y) AND WITH WIDTH w AND HEIGHT h&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;// DRAW A RANDOM RECTANGLE AT SOME POSITION&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='functions_challenge5'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Make Programs Easier to Read and Maintain
+</h2>
+<p>
+Functions are helpful because they make it possible for us to re-use a block of
+code instead of typing it each time we need it. However, there are other important
+reasons to use functions.
+</p>
+<p>
+Take a look at the function definition we created to draw sandwiches:
+</p>
+<pre><code>function drawSandwich(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#F5DEB3';&#x000A;  context.fillRect(x, y, 200, 30);&#x000A;  context.fillRect(x, y + 80, 200, 30);&#x000A;  context.fillStyle = '#663300';&#x000A;  context.fillRect(x + 10, y + 30, 180, 50);&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(x, y + 42, 200, 8);&#x000A;  context.fillRect(x, y + 60, 200, 8);&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+It's difficult to know what the function is doing just by glancing at it. If this
+was someone else's function or a function we had defined a long time ago, we would
+have to go through it carefully line by line to figure it out.
+</p>
+<p>
+Now take a look at the same function re-written by calling other functions:
+</p>
+<pre><code>function drawSandwich(x, y) {&#x000A;  context.save();&#x000A;  &#x000A;  drawBread(x, y);&#x000A;  drawRoastBeef(x + 10, y + 30);&#x000A;  drawCheeseSlice(x, y + 42);&#x000A;  drawCheeseSlice(x, y + 60);&#x000A;  drawBread(x, y + 80);&#x000A;  &#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+The function is much easier to read and understand, and it is also much easier
+to maintain. For example, if we want to update our cheese slices, we can do it in one place
+in the program, instead of in multiple places scattered throughout the program.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_example5_editor'>var canvas = document.getElementById('functions_example5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;drawSandwich(125, 20);&#x000A;drawSandwich(20, 130);&#x000A;drawSandwich(230, 130);&#x000A;&#x000A;function drawSandwich(x, y) {&#x000A;  context.save();&#x000A;  &#x000A;  drawBread(x, y);&#x000A;  drawRoastBeef(x + 10, y + 30);&#x000A;  drawCheeseSlice(x, y + 42);&#x000A;  drawCheeseSlice(x, y + 60);&#x000A;  drawBread(x, y + 80);&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawBread(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#F5DEB3';&#x000A;  context.fillRect(x, y, 200, 30);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawRoastBeef(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#663300';&#x000A;  context.fillRect(x, y, 180, 50);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawCheeseSlice(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(x, y, 200, 8);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='functions_example5'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Pass Functions into Other Functions
+</h2>
+<p>
+Besides calling functions from inside of other functions, we can also pass functions
+into other functions and store them in parameters.
+</p>
+<p>
+Why would we want to do that? Well, when we define function
+<code>a()</code>
+to call function
+<span><code>b()</code>,
+</span>
+we are hardcoding function
+<code>a()</code>
+to call function
+<span><code>b()</code>.
+</span>
+Most of the time, that's what we want. But sometimes we want function
+<code>a()</code>
+to a call a function to be determined later.
+</p>
+<p>
+In this example, we define the
+<code>drawPlate()</code>
+function, which has three parameters:
+</p>
+<pre><code>function drawPlate(x, y, drawFood) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.strokeStyle = '#999999';&#x000A;  context.fillRect(x - 120, y - 20, 240, 20);&#x000A;  context.strokeRect(x - 120, y - 20, 240, 20);&#x000A;  context.restore();&#x000A;  &#x000A;  if (drawFood === undefined) {&#x000A;    return;&#x000A;  }&#x000A;  &#x000A;  drawFood(x, y - 20);&#x000A;}</code></pre>
+<p>
+The parameters
+<code>x</code>
+and
+<code>y</code>
+are the coordinates of the bottom center point of the plate. We draw a white
+rectangle with a gray outline centered at
+<code>x</code>
+and sitting on top of
+<span><code>y</code>.
+</span>
+</p>
+<p>
+Then, we do something odd. We check if the parameter
+<code>drawFood</code>
+is
+<span><code>undefined</code>.
+</span>
+If a variable is undefined, it means a value was never assigned to it. If that's the
+case here, we are going to end the function with a return statement. There are
+other ways we could have done this, but we wanted to show you how to end a function early.
+</p>
+<p>
+If
+<code>drawFood</code>
+is not undefined, then we call it as a function. Notice the parentheses () after the
+parameter name. We are calling it as a function and passing it the coordinates of the top
+center point of the plate. This is where we want the food drawn on the plate  to be positioned.
+</p>
+<p>
+To draw a sandwich on top of a plate, we have refactored the
+<code>drawSandwich()</code>
+function so it now draws the sandwich centered at the parameter
+<code>x</code>
+and on top of
+<span><code>y</code>.
+</span>
+</p>
+<pre><code>function drawSandwich(x, y) {&#x000A;  context.save();&#x000A;  &#x000A;  drawBread(x - 100, y - 110);&#x000A;  drawRoastBeef(x - 90, y - 80);&#x000A;  drawCheeseSlice(x - 100, y - 68);&#x000A;  drawCheeseSlice(x - 100, y - 50);&#x000A;  drawBread(x -100, y - 30);&#x000A;  &#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+To draw a piece of cake on top of a plate, we have defined the
+<code>drawCake()</code>
+function:
+</p>
+<pre><code>function drawCake(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#FFFF00';&#x000A;  context.fillRect(x - 90, y - 180, 180, 180);&#x000A;  context.fillStyle = '#CD853F';&#x000A;  context.fillRect(x - 90, y - 8, 180, 8);&#x000A;  context.fillRect(x - 90, y - 51, 180, 8);&#x000A;  context.fillRect(x - 90, y - 94, 180, 8);&#x000A;  context.fillRect(x - 90, y - 137, 180, 8);&#x000A;  context.fillRect(x - 90, y - 180, 180, 8);&#x000A;  context.fillRect(x - 90, y - 180, 8, 180);&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+Putting everything together, we draw one plate with a piece of cake and one
+plate with a sandwich by calling:
+</p>
+<pre><code>drawPlate(140, 240, drawCake);&#x000A;drawPlate(400, 240, drawSandwich);</code></pre>
+<p>
+Note that we are passing the name of the
+<code>drawCake()</code>
+or
+<code>drawSandwich()</code>
+function without putting parentheses () after them. We use parentheses to call
+a function. Here we are treating the function name as a variable that we are passing
+into the
+<code>drawPlate()</code>
+function to be called later. If we don't pass in a function at all, the plate will
+be drawn empty.
+</p>
+<p>
+When we call the
+<code>drawCake()</code>
+or
+<code>drawSandwich()</code>
+functions inside of the
+<code>drawPlate()</code>
+function after passing them into the function as arguments, they behave as local functions
+that have been declared inside of the
+<code>drawPlate()</code>
+function, not as global functions. This means they have access to the local variables
+declared inside of the
+<code>drawPlate()</code>
+function.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_example6_editor'>var canvas = document.getElementById('functions_example6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;drawPlate(140, 240, drawCake);&#x000A;drawPlate(400, 240, drawSandwich);&#x000A;&#x000A;function drawPlate(x, y, drawFood) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.strokeStyle = '#999999';&#x000A;  context.fillRect(x - 120, y - 20, 240, 20);&#x000A;  context.strokeRect(x - 120, y - 20, 240, 20);&#x000A;  context.restore();&#x000A;  &#x000A;  if (drawFood === undefined) {&#x000A;    return;&#x000A;  }&#x000A;  &#x000A;  drawFood(x, y - 20);&#x000A;}&#x000A;&#x000A;function drawCake(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#FFFF00';&#x000A;  context.fillRect(x - 90, y - 180, 180, 180);&#x000A;  context.fillStyle = '#CD853F';&#x000A;  context.fillRect(x - 90, y - 8, 180, 8);&#x000A;  context.fillRect(x - 90, y - 51, 180, 8);&#x000A;  context.fillRect(x - 90, y - 94, 180, 8);&#x000A;  context.fillRect(x - 90, y - 137, 180, 8);&#x000A;  context.fillRect(x - 90, y - 180, 180, 8);&#x000A;  context.fillRect(x - 90, y - 180, 8, 180);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawSandwich(x, y) {&#x000A;  context.save();&#x000A;  &#x000A;  drawBread(x - 100, y - 110);&#x000A;  drawRoastBeef(x - 90, y - 80);&#x000A;  drawCheeseSlice(x - 100, y - 68);&#x000A;  drawCheeseSlice(x - 100, y - 50);&#x000A;  drawBread(x -100, y - 30);&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawBread(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#F5DEB3';&#x000A;  context.fillRect(x, y, 200, 30);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawRoastBeef(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#663300';&#x000A;  context.fillRect(x, y, 180, 50);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawCheeseSlice(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(x, y, 200, 8);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='functions_example6'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Anonymous Functions
+</h2>
+<p>
+In JavaScript, we can also define anonymous functions.
+</p>
+<p>
+In this example, we will draw a purple square on a plate by passing the
+<code>drawPlate()</code>
+function an anonymous function.
+</p>
+<pre><code>drawPlate(140, 240, function(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Purple';&#x000A;  context.fillRect(x - 60, y - 120, 120, 120);&#x000A;  context.restore();&#x000A;});</code></pre>
+<p>
+We could have defined a
+<code>drawPurpleSquare()</code>
+function and passed it into the
+<code>drawPlate()</code>
+function by name, but sometimes we don't want to bother naming a function
+we will only use once.
+</p>
+<p>
+It is also possible to save an anonymous function in a variable to be called later:
+</p>
+<pre><code>var drawPurpleSquare = function(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Purple';&#x000A;  context.fillRect(x - 60, y - 120, 120, 120);&#x000A;  context.restore();&#x000A;};</code></pre>
+<p>
+When a function is declared with a name, it is automatically stored in a variable
+with the same name. But in JavaScript, functions are actually objects, so we can store
+them and pass them like any other object.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='functions_example7_editor'>var canvas = document.getElementById('functions_example7');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;drawPlate(140, 240, function(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Purple';&#x000A;  context.fillRect(x - 60, y - 120, 120, 120);&#x000A;  context.restore();&#x000A;});&#x000A;&#x000A;function drawPlate(x, y, drawFood) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.strokeStyle = '#999999';&#x000A;  context.fillRect(x - 120, y - 20, 240, 20);&#x000A;  context.strokeRect(x - 120, y - 20, 240, 20);&#x000A;  context.restore();&#x000A;  &#x000A;  if (drawFood === undefined) {&#x000A;    return;&#x000A;  }&#x000A;  &#x000A;  drawFood(x, y - 20);&#x000A;}&#x000A;&#x000A;function drawCake(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#FFFF00';&#x000A;  context.fillRect(x - 90, y - 180, 180, 180);&#x000A;  context.fillStyle = '#CD853F';&#x000A;  context.fillRect(x - 90, y - 8, 180, 8);&#x000A;  context.fillRect(x - 90, y - 51, 180, 8);&#x000A;  context.fillRect(x - 90, y - 94, 180, 8);&#x000A;  context.fillRect(x - 90, y - 137, 180, 8);&#x000A;  context.fillRect(x - 90, y - 180, 180, 8);&#x000A;  context.fillRect(x - 90, y - 180, 8, 180);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawSandwich(x, y) {&#x000A;  context.save();&#x000A;  &#x000A;  drawBread(x - 100, y - 110);&#x000A;  drawRoastBeef(x - 90, y - 80);&#x000A;  drawCheeseSlice(x - 100, y - 68);&#x000A;  drawCheeseSlice(x - 100, y - 50);&#x000A;  drawBread(x -100, y - 30);&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawBread(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#F5DEB3';&#x000A;  context.fillRect(x, y, 200, 30);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawRoastBeef(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#663300';&#x000A;  context.fillRect(x, y, 180, 50);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawCheeseSlice(x, y) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(x, y, 200, 8);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='functions_example7'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div aria-hidden='true' aria-labelledby='referenceModalLabel' class='modal fade' id='reference-modal' role='dialog' tabindex='-1'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<h4 class='modal-title' id='referenceModalLabel'></h4>
+</div>
+<div class='modal-body'></div>
+<div class='modal-footer'>
+<div class='float-xs-right'>
+<button class='btn btn-secondary' data-dismiss='modal' type='button'>Close</button>
+</div>
+<div class='text-xs-left'>
+<button class='btn btn-primary text-white lesson-link'>View Full Lesson</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+<!-- Localized -->

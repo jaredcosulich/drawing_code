@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<title>Drawing Code</title>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="ls2OpN7a9Lnk05ut01c9+2pSp8LLz5tnbjAYvCw9ufRqUydiEhOKTfG8xswwCDLiag7znW11ZhnJdeAFtfkc0Q==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-6693732d946f61761af2eeafcf9c870441f1af9f77c9d2a5db4509578dd265e0-body=1.css" data-turbolinks-track="reload" />
+<script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/ace/ace.self-0acb0427eef086a17859bfe56ecfaf24bc47c928ad7db87d5ec5bf235e40cb40.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/code_preview.self-b37269bda74e81e3e6e832ad40469072b79b5b1d3a48a2e91986fd44549f82c0.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/drawings.self-1119b89f5468a45fd5e064d9ba68962f14b5248b9ff1a6b33b2307875e470686.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/examples.self-62f6af2ec5a00cd81eb1292963de6ac7a2146c48d0d3cba6abe1adc998cae145.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/init.self-fef4ca73cdd5fc98231ba13aa0c4b3f7a626e61c3afedb604da73204cdfb80bc.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lesson.self-4c007310fc5244946716688a8afc18ef0b6e54f4cfc18f8aff6b18ab0e203889.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage1.self-af3dd34f4f344c2e4c6fd02ae6fcf3a3ab4cd43a8d72b9e10ac7e857ec7e3321.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage2.self-225920e2665631ee62b7fbe95291c6ac9e1c62142a2bc469a623623a6c18a705.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage3.self-d849334bedcf13dec8fb3da9f57078b783809e1a25dfc733da271108516fb213.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage4.self-566ff4fe09aeeee06c9bfca2d5a81fc52bad7f964d150d6025e854e6a9a8c2de.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/clearRect.self-9e82ca8aa93793f04e73caa7f25eaf5e8c815cbe718ac5f4747de25ef19efce9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/coordinates.self-4821f9b9bad6785349895eef0fd2998882879f8d57aff2f232eb8b4d961203f1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/fill_rect.self-4bb525e22a290e2ae4aa8446082bdcd7168ea5c515f27a3b3b8b6d439760ea8a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/fill_style.self-6d153ccc75d0aa54db66acd06e950248f8cabe7184d1789400272825d0648764.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage1.self-6f21d5babc2da36a46ebff04ecd42d9634765d962b64463934205e743a61eacb.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage2.self-8eb29add53aabb7af941f9c84c2abd840c7dbf61669906cae52b8a4c84bcd409.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage3.self-cb39fe3b38a5ae28456afbcbe4c17c1b40b1fdeb13b925d136a43609a02907d3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage4.self-17d7302a880ad6257214c9cb8ead56582ece4727ecde96454c320b23f138d16e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/for_loops.self-6ea947c621baba5fe10d587860ab777038544953934ba8d15ccea3fff8128ea2.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/functions.self-d002fbef8abc3e970526900bc8987e0e6b43e4caedda60e4ea2318eae2cc0330.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage1.self-9a6bb1b4e3de5f46da1e072c0fa52d0391b4f64454b97d5b34b6ec01e46dfb32.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage2.self-274b9a3782e74ccca603cacdcfdc7de6a30a0a3ab57f9a6f1d25b7781e711f99.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage3.self-e2064f6932bc938d199b51dc1ba885fc1f3b2913935b7bdb8203011970326dbf.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage4.self-611052ea22dac28d9a24fc6ecb7c680cd07e073d394dc8a34237a2b674d846ad.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/line_to.self-65410ae951aab7cdda49956ec4aa794d97db0360507ea427d9e41ef840d88d93.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/random.self-e3526158091bc0c29fb3eaecbfa5bd813ee77bf67b2449758af5a4608bd8397b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/round.self-8f4f7fa74c9157dc1707d118675f7e35d4621225571a950953278131b01a5022.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/save.self-ba90c232d56f796645e264833860b2cbcb639bb0e37772b06ea84198141d8bec.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/scale.self-8bedfd1625ced565d0fd9cdc69c9693cd07a039860dbee59df8fc4eb524b0d70.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/switch_statements.self-9fdab32aed464bc617220d4c4fbce43b07887fe98eca5de2828efb6e05c74d5c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/translate.self-16962e3a7636c88e58d6a2bf9f63a8e5c65302badec269e70a30a97bfbc4c8ad.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/variables.self-4562a8743966906ee7fb58792fd51e5aac5203a5f64b393175caa98ba33ddedc.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/while_loops.self-d6177003c6f9f97f79cb8c63956ace41e225e85175095da98c102ebd5432f7e3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/canvas.self-429f6c3eb7215ea53ffe08598331778858aa202b6c9cdf18775ee1623316198a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/editor.self-fbbbe2d7e50971004e7c8178761a186495cfe565c8f584f7cc18297d6ec017ae.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/files.self-16fff0bc3c9a315d22413e3b6a090fb8ef8f5f1257b42dade438f57a0de1f134.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/progress.self-85855a4b2ffe2ff58692f669b689c7ad8db3cee30eb947e32791e81148164b36.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/code.self-186d38d443a8bc51bbeec7159887e3781eaad676a86b9d159eca7ec40e21f7ba.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/image_comparison.self-83be79c1bfdac13ff2c69e6916a326f2698035d7381c28f12e44637de7618bac.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/point.self-e1435fcb5c66e2107d91d34c16e06e6c0dd8d06286396d3d5b3b05c22989d9b2.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/navigation.self-3abb68970f3392649f6ee452427597fc92e324a7be21f97b6501e5a2ec47609e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/referenceModal.self-4ba25626378a146e8d2a7ae7edd72600ddef60371b98f42b0c3555b56cd02ff9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
+</head>
+<body>
+<nav class='navbar navbar-dark navbar-fixed-top bg-inverse'>
+<button aria-controls='navbar' aria-expanded='false' aria-label='Toggle navigation' class='navbar-toggler hidden-sm-up' data-target='#navbar' data-toggle='collapse' type='button'></button>
+<a class='navbar-brand' href='../../../index.html'>
+Drawing In Code:
+<small>An exploration of artistic observation and computational thinking</small>
+</a>
+</nav>
+
+<div class='container-fluid'>
+<div class='row'>
+<div class='col-md-3 col-lg-2 sidebar'>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class="section_link" href="../../../index.html">Home</a>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='drawings' href='#'>
+Your Drawings
+</a>
+<ul class='collapse nav nav-sidebar' id='drawings'>
+<li>
+<a href="../../../drawings/index.html">Create A Drawing</a>
+</li>
+<li class='section drawings-list small mt-1 hidden-xs-up'>
+<strong>My Drawings</strong>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='reference' href='#'>
+Reference
+</a>
+<ul class='collapse nav nav-sidebar' id='reference'>
+<li class='section mt-1'>
+<strong>Context2D</strong>
+</li>
+<li>
+<a href="../../reference/clear_rect/index.html">clearRect()</a>
+<span class='tag tag-default'>
+<small class='clear_rect'>0 / 2</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-clear_rect'>
+<div class='title'>context.clearRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.clearRect(x, y, width, height) will clear a rectangle starting
+at (x, y) and clearing to the right width and down height.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = '#FF0000';&#x000A;context.fillRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.clearRect(40, 20, 20, 100);&#x000A;context.clearRect(60, 60, 20, 20);&#x000A;context.clearRect(80, 20, 20, 100);&#x000A;&#x000A;context.clearRect(120, 20, 60, 20);&#x000A;context.clearRect(140, 40, 20, 60);&#x000A;context.clearRect(120, 100, 60, 20);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/clear_rect/reference-70cf88df0b9a8db2c33a8048af8493be9efdca18dd8ed4b2756cb0de8d8993af.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/fill_rect/index.html">fillRect()</a>
+<span class='tag tag-default'>
+<small class='fill_rect'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_rect'>
+<div class='title'>context.fillRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillRect(x, y, width, height) will draw a rectangle starting
+at (x, y) and filling the area "width" to the right and "height" down.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillRect(50, 50, 300, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/fill_rect/reference-ec68654dd34b051ccadd579a7b7b065ab4fa1eff1991e3d8df56cf72be3dee37.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/fill_style/index.html">fillStyle</a>
+<span class='tag tag-default'>
+<small class='fill_style'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_style'>
+<div class='title'>context.fillStyle</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillStyle will set the color for all future fills such as
+context.fillRect(). It's important to note theat context.fillStyle
+is not a method, it is an attribute. You set it like so:
+</p>
+<pre class='mb-2'><code>context.fillStyle = 'red';&#x000A;</code></pre>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = 'rgb(0,255,0)';&#x000A;context.fillRect(50, 50, 100, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/fill_style/reference-8b359c7e565a86e657117d488129208cb37d2b93ac988ee482ddaf063385e12e.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/line_to/index.html">lineTo()</a>
+<span class='tag tag-default'>
+<small class='line_to'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-line_to'>
+<div class='title'>context.lineTo()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.lineTo(x, y) creates a path from the current point - default (0,0) -
+to the point (x, y). In order to see the line you must call context.stroke().
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.beginPath();&#x000A;context.moveTo(50, 50);&#x000A;context.lineTo(100,100);&#x000A;context.lineTo(150, 50);&#x000A;context.lineTo(200, 100);&#x000A;context.stroke();&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/line_to/reference-2c3b4d87c54a374ee06ac132f850d07869ed961fac25769a9e1309faf9709371.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/save/index.html">save() / restore()</a>
+<span class='tag tag-default'>
+<small class='save'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-save'>
+<div class='title'>context.save()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.save() saves all of the properties of the context. Then, when you call
+context.restore() it will reset all changes to the context you've made.
+</p>
+<p>
+This code will produce the image below (note how the second rectangle is black
+and closer to the original origin despite calling translate and setting the
+fillStyle earlier):
+</p>
+<pre class='mb-2'><code>context.save();&#x000A;context.translate(100,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;context.restore();&#x000A;&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/save/reference-cfdb7b48454c0b82fb5105cf7a1228776bbee579585d77bf2b7cdeab9f8eb32a.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/scale/index.html">scale()</a>
+<span class='tag tag-default'>
+<small class='scale'>0 / 7</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-scale'>
+<div class='title'>context.scale()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.scale(percentX, percentY) scales the x and y coordinates of the context, making drawings
+larger or smaller.
+</p>
+<p>
+This code will produce the image below (note that all rectangles are defined to be the same size
+in the code are drawn in different sizes due to the scale of the context):
+</p>
+<pre class='mb-2'><code>context.fillRect(25,25,25,25);&#x000A;context.scale(2, 1);&#x000A;context.fillRect(75,25,25,25);&#x000A;context.scale(0.5, 1);&#x000A;context.fillRect(150,25,25,25);&#x000A;context.scale(2, 2);&#x000A;context.fillRect(300,25,25,25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/scale/reference-0569c769850c52c53953d385626946099b407d1037f93af347311149e3a2fec6.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/translate/index.html">translate()</a>
+<span class='tag tag-default'>
+<small class='translate'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-translate'>
+<div class='title'>context.translate()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.translate(x, y) shifts the origin of the context (where the (0,0) point is)
+right by x and down by y. This allows you to draw execute multiple commands in a specific
+area of the context more easily.
+</p>
+<p>
+This code will produce the image below (note how the fillRect commands are
+relative to the translation point (100,100)):
+</p>
+<pre class='mb-2'><code>context.translate(50,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(0, 0, 100, 100);&#x000A;context.fillStyle = 'green';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/translate/reference-19fc53169ce0da0d057fb00b05eecfb3fc88513d1fa46cf4aceaa8fa19f51c26.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li class='section mt-1'>
+<strong>Math</strong>
+</li>
+<li>
+<a href="../../reference/round/index.html">round() / floor() / ceil()</a>
+<span class='tag tag-default'>
+<small class='round'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-round'>
+<div class='title'>Math.round() / Math.floor() / Math.ceil()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.round(), Math.floor() and Math.ceil() will round a number to an integer.
+Math.floor() will always round down while Math.ceil() will always round up.
+Math.round() will round to the closest integer, either up or down.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/floor/visual1-9edc722b188f28c702178c13d60cbec037d2e4159d2b7b5f7782a0be2dd5f653.png" alt="Visual1" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/random/index.html">random()</a>
+<span class='tag tag-default'>
+<small class='random'>0 / 4</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-random'>
+<div class='title'>Math.random()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.random() will produce a random decimal betweek 0 and 1. Calling it many
+times will produce a different random number each time.
+</p>
+<p>
+Often you will multiple Math.random() by another number to get a random
+integer larger than 1. You may also call Math.floor() or Math.ceil() on the result
+to get an rounded integer.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/random/reference-d1ee7adb1a0544e928f64c175595c9f081740954db0ae3f889f0627b4034c642.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='concepts' href='#'>
+Concepts
+</a>
+<ul class='collapse nav nav-sidebar' id='concepts'>
+<li>
+<a href="../../concepts/variables/index.html">Variables</a>
+<span class='tag tag-default'>
+<small class='variables'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-variables'>
+<div class='title'>Variables</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+A variable allows you to store information to use or change later.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/variables/reference-b8e07ae4cdc5e13b2ee681381d7fa203f8442ff2e8abeb1cf4012cfb427439db.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/for_loops/index.html">For Loops</a>
+<span class='tag tag-default'>
+<small class='for_loops'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-for_loops'>
+<div class='title'>For Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+For-loops allow you to repeat code over and over again, potentially
+adjusting the code a little bit each time.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>for (var i=1; i<10; ++i) {&#x000A;  context.fillRect(10 * i, 75 - (5 * i), 10 * i, 10 * i);&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/for_loops/reference-ab4edc41708c315c5bc65d0ca07c1d49061a8185eb1420dbb6a056fa1be194bd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/while_loops/index.html">While Loops</a>
+<span class='tag tag-default'>
+<small class='while_loops'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-while_loops'>
+<div class='title'>While Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+While-loops allow you to repeat code over and over again until a condition is met.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>var i = 10;&#x000A;while (i < 200) {&#x000A;  context.fillRect(5, 5, i, 50);&#x000A;  i += 10;&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/while_loops/reference-b71bb24ae903b89143b68f3a561a455d71ca8c08674b34a2d9ffbde1753fc005.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/coordinates/index.html">Coordinates</a>
+<span class='tag tag-default'>
+<small class='coordinates'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-coordinates'>
+<div class='title'>The Coordinate System</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+The coordinate system consists of X and Y values starting at (0, 0) in the upper left corner.
+</p>
+<p>
+As you move down the canvas Y gets larger. As you move right on the canvas X gets larger.
+</p>
+<p>
+So the point (100, 50) means you move right 100 and down 50.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid" src="../../../assets/lessons/coordinates/reference-1875ea0cb51a1c7ed92a016a2256ba53d9b3f7820a9feaa679521c14af4e7acd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/functions/index.html">Functions</a>
+<span class='tag tag-default'>
+<small class='functions'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-functions'>
+<div class='title'>Functions</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Functions allow you to create chunks of code that can be called with
+different parameters.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>function fillColorRect(x, y, w, h, color) {&#x000A;  context.save();&#x000A;  context.fillStyle = color;&#x000A;  context.fillRect(x, y, w, h);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;fillColorRect(50, 50, 50, 50, 'red');&#x000A;fillColorRect(150, 50, 50, 50, 'blue');&#x000A;fillColorRect(250, 50, 50, 50, 'green');&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/functions/reference-2d2a07b0286e84d953685386201fe7e0bc20198460907e83c7895681f6b37a45.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li class='active'>
+<a href="../../concepts/switch_statements/index.html">Switch Statements</a>
+<span class='tag tag-default'>
+<small class='switch_statements'>0 / 4</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-switch_statements'>
+<div class='title'>Switch Statements</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Switch statements allow you to perform different code depending on
+the value of a variable.
+</p>
+<p>
+The following code will produce the picture below (the switch statement
+only performs the code inside of case 2 because "i" is set to 2):
+</p>
+<pre class='mb-2'><code>var i = 2;&#x000A;switch (i) {&#x000A;  case 1:&#x000A;    context.fillStyle = 'red';&#x000A;    break;&#x000A;  case 2:&#x000A;    context.fillStyle = 'yellow';&#x000A;    break;&#x000A;  case 3:&#x000A;    context.fillStyle = 'blue';&#x000A;    break;&#x000A;}&#x000A;context.fillRect(50, 50, 100, 50);&#x000A;&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/switch_statements/reference-3ab4709f6beedfca8a197ba64c75c9604abf7ccdb78c9adc16cf035c60914e8b.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/set_interval/index.html">setInterval()</a>
+<div class='reference-modal-content' id='reference-modal-set_interval'>
+<div class='title'>setInterval()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+setInterval() allows you to execute code at specified intervals. It
+is frequently used to create animations.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>var index = 0;&#x000A;function count() {&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText(index, canvas.width / 2, canvas.height / 2);&#x000A;}&#x000A;setInterval(count, 1000)&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/set_interval/reference-a47ff17199d8182591ccb0d45fa57147ee1136677cff7955671c6a01337479fa.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../concepts/event_listeners/index.html">Event Listeners</a>
+<div class='reference-modal-content' id='reference-modal-event_listeners'>
+<div class='title'>Event Listeners</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Event listeners allow you to "listen" for an event, such as a click, on an element
+in your html.
+</p>
+<p>
+A full list of events can be found here:
+<a target="_blank" href="https://www.tutorialspoint.com/html5/html5_events.htm">HTML5 Events</a>
+</p>
+<p>This code will produce the image below (if you were to click and draw the letters on the canvas):</p>
+<pre class='mb-2'><code>canvas.addEventListener('mousemove', function(e) {&#x000A;  if (e.buttons === 0) return;&#x000A;  context.fillRect(e.layerX - 3, e.layerY - 3, 7, 7);&#x000A;});&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/event_listeners/reference-e166d58e874cfbbeb51fb29e622c9bf89d5c7a4aec6319d3953c94db43af1b0c.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section my-1'>
+<a class='section_link' data-section='granular_basic_cityscape' href='#'>Basic Cityscape</a>
+<ul class='collapse in nav nav-sidebar' id='granular_basic_cityscape'>
+<li>
+<a href="../stage1/index.html">Stage 1</a>
+<span class='tag tag-default'>
+<small class='granular_basic_cityscape_stage1'>0 / 8</small>
+</span>
+</li>
+<li>
+<a href="../stage2/index.html">Stage 2</a>
+<span class='tag tag-default'>
+<small class='granular_basic_cityscape_stage2'>0 / 3</small>
+</span>
+</li>
+<li>
+<a href="../stage3/index.html">Stage 3</a>
+<span class='tag tag-default'>
+<small class='granular_basic_cityscape_stage3'>0 / 4</small>
+</span>
+</li>
+<li>
+<a href="../stage4/index.html">Stage 4</a>
+<span class='tag tag-default'>
+<small class='granular_basic_cityscape_stage4'>0 / 4</small>
+</span>
+</li>
+<li class='section small mt-2'>
+<strong>Relevant Reference</strong>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<span class='tag tag-default'>
+<small class='fill_rect'>0 / 6</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<span class='tag tag-default'>
+<small class='fill_style'>0 / 3</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="round" href="../round/index.html">round() / floor() / ceil()</a>
+<span class='tag tag-default'>
+<small class='round'>0 / 3</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="line_to" href="../line_to/index.html">lineTo()</a>
+<span class='tag tag-default'>
+<small class='line_to'>0 / 6</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="random" href="../random/index.html">random()</a>
+<span class='tag tag-default'>
+<small class='random'>0 / 4</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="translate" href="../translate/index.html">translate()</a>
+<span class='tag tag-default'>
+<small class='translate'>0 / 6</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="save" href="../save/index.html">save() / restore()</a>
+<span class='tag tag-default'>
+<small class='save'>0 / 5</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="scale" href="../scale/index.html">scale()</a>
+<span class='tag tag-default'>
+<small class='scale'>0 / 7</small>
+</span>
+</li>
+<li class='section small mt-1'>
+<strong>Relevant Concepts</strong>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a>
+<span class='tag tag-default'>
+<small class='variables'>0 / 5</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="for_loops" href="../for_loops/index.html">For Loops</a>
+<span class='tag tag-default'>
+<small class='for_loops'>0 / 6</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="while_loops" href="../while_loops/index.html">While Loops</a>
+<span class='tag tag-default'>
+<small class='while_loops'>0 / 3</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<span class='tag tag-default'>
+<small class='coordinates'>0 / 3</small>
+</span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="functions" href="../functions/index.html">Functions</a>
+<span class='tag tag-default'>
+<small class='functions'>0 / 5</small>
+</span>
+</li>
+<li class='small active'>
+<a class="reference-link" data-slug="switch_statements" href="index.html">Switch Statements</a>
+<span class='tag tag-default'>
+<small class='switch_statements'>0 / 4</small>
+</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar hidden-xs-up'>
+<li class='section'>
+<a class='section_link' data-section='experimental' href='#'>
+All
+</a>
+</li>
+<ul class='nav nav-sidebar'>
+<li class='section small'>
+<strong>Active</strong>
+<li class='small '>
+<a href="../../basic_cityscape/stage1/index.html">Basic Cityscape</a>
+</li>
+</li>
+<li class='section small mt-2'>
+<strong>Experimental</strong>
+<li class='small '>
+<a href="../../snake_game/stage1/index.html">Snake Game</a>
+</li>
+<li class='small '>
+<a href="../../flappy_square/stage1/index.html">Flappy Square</a>
+</li>
+<li class='small '>
+<a href="../../flappy_birds/stage1/index.html">Flappy Birds</a>
+</li>
+<li class='small '>
+<a href="../stage1/index.html">Basic Cityscape</a>
+</li>
+</li>
+</ul>
+</ul>
+
+</div>
+<div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
+<div class='page' id='switch_statements'>
+<h1>
+Switch Statements
+</h1>
+<div class='description row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Overview
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid" src="../../../assets/lessons/switch_statements/overviewVisual1-697eee7f04b421efebf6b629157ab71f6e151b663cd546b993bb031ff13a6702.png" alt="Overviewvisual1" />
+</figure>
+<p>
+A switch statement is used to run different code blocks depending on the
+value of an expression.
+</p>
+<pre><code>switch (theExpression) {&#x000A;  case valueA:&#x000A;    // Code block if theExpression === valueA&#x000A;    break;&#x000A;  &#x000A;  case valueB:&#x000A;    // Code block if theExpression === valueB&#x000A;    break;&#x000A;  &#x000A;  case valueC:&#x000A;    // Code block if theExpression === valueC&#x000A;    break;&#x000A;  &#x000A;  default:&#x000A;    // Code block if theExpression doesn't match any cases&#x000A;    break;&#x000A;}</code></pre>
+<p>
+At the top of the switch statement,
+<code>theExpression</code>
+is evaluated. The value of
+<code>theExpression</code>
+is then compared to the value in each case. The switch statement uses strict
+comparison
+<span>
+(<code>===</code>),
+</span>
+which means the values must be of the same type. Visit the lesson on
+<a class="reference-link" data-slug="variables" href="../variables/index.html">variables</a>
+to learn more about data types and loose typing.
+</p>
+<p>
+The switch statement runs the first code block where the comparison is true. The
+break statement, which is optional, tells the program to exit the switch statement
+at the end of the code block. If none of the cases are true, then the switch statement
+runs the code block for the default case.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Use Cases to Draw Different Messages
+</h2>
+<p>
+In this example, we compare the value stored in the variable
+<code>option</code>
+to select which message to draw. If
+<span><code>option === 0</code>,
+</span>
+then the code block in
+<code>case 0</code>
+is run and we draw the message "You chose option 0."
+Change the value assigned to the variable
+<code>option</code>
+to a different number between 0-4 to see what the code in those other cases does.
+</p>
+<p>
+To learn more about variables, visit the
+<a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a>
+lesson.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='switch_statements_example1_editor'>var canvas = document.getElementById('switch_statements_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var option = 0; // Assign option a number from 0-4&#x000A;&#x000A;switch (option) {&#x000A;  case 0:&#x000A;    context.font = '16px Arial';&#x000A;    context.fillStyle = 'Black';&#x000A;    context.fillText('You chose option 0.', 20, 40);&#x000A;    break;&#x000A;&#x000A;  case 1:&#x000A;    context.font = '24px Arial';&#x000A;    context.fillStyle = 'Crimson';&#x000A;    context.fillText('Yay! Option 1!', 200, 200);&#x000A;    break;&#x000A;&#x000A;  case 2:&#x000A;    context.font = '36px Arial';&#x000A;    context.fillStyle = 'DarkMagenta';&#x000A;    context.fillText('Groovy, man. Option 2.', 80, 160);&#x000A;    break;&#x000A;&#x000A;  case 3:&#x000A;    context.font = 'bold 48px Arial';&#x000A;    context.fillStyle = 'DeepPink';&#x000A;    context.strokeStyle = 'DarkSlateBlue';&#x000A;    context.lineWidth = 4;&#x000A;    context.textAlign = 'center';&#x000A;    context.translate(220, 150);&#x000A;    context.rotate(-Math.PI / 9);&#x000A;    context.strokeText('Wow! Option 3!', 0, 0);&#x000A;    context.fillText('Wow! Option 3!', 0, 0);&#x000A;    break;&#x000A;&#x000A;  case 4:&#x000A;    context.font = 'bold 48px Arial';&#x000A;    context.fillStyle = 'SeaGreen';&#x000A;    context.translate(10, 120);&#x000A;    context.fillText('MIRROR OPTION 4', 0, 0);&#x000A;    context.scale(1, -3);&#x000A;    var gradient = context.createLinearGradient(0,0,0,-32);&#x000A;    gradient.addColorStop(0,'rgba(0, 0, 0, 1)');&#x000A;    gradient.addColorStop(1,'rgba(0, 0, 0, 0)');&#x000A;    context.fillStyle = gradient;&#x000A;    context.fillText('MIRROR OPTION 4', 0, 0);&#x000A;    break;&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='switch_statements_example1'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge1'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 1
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/switch_statements/challenge1Visual1-c0d3314b3f785816a3030d58b7aabc5aa90f008d08e33c19e1234e0aecb6fd2c.png" alt="Challenge1visual1" />
+<figcaption class='text-xs-center small'>Your switch statement should draw one of these rectangles</figcaption>
+</figure>
+<p>
+The switch statement below uses the value assigned to the variable
+<code>rectangleType</code>
+to select which type of rectangle to draw.
+</p>
+<p>
+If
+<span><code>rectangleType === 'A'</code>,
+</span>
+then draw a rectangle with a width of 45 and height of 100 at the position (20, 20) filled with the color
+<span><code>'Red'</code>.
+</span>
+</p>
+<p>
+If
+<span><code>rectangleType === 'B'</code>,
+</span>
+then draw a rectangle with a width of 45 and height of 100 at the position (75, 20) filled with the color
+<span><code>'Yellow'</code>.
+</span>
+</p>
+<p>
+If
+<span><code>rectangleType === 'C'</code>,
+</span>
+then draw a rectangle with a width of 100 and height of 100 at the position (20, 130) filled with the color
+<span><code>'Green'</code>.
+</span>
+</p>
+<p>
+If
+<span><code>rectangleType === 'D'</code>,
+</span>
+then draw a rectangle with a width of 100 and height of 210 at the position (130, 20) filled with the color
+<span><code>'Blue'</code>.
+</span>
+</p>
+<p>
+Change the value assigned to the variable<code>rectangleType</code>to draw each of the four rectangles. The switch statement should only draw one
+rectangle at a time. If your program seems to be working, mark the challenge as
+complete by selecting "Yes, it looks good".
+</p>
+<p>
+If you need help setting fill colors and drawing rectangles, visit the
+<a class="reference-link" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+and
+<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+lessons.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+</p>
+
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='switch_statements_challenge1_editor'>var canvas = document.getElementById('switch_statements_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var rectangleType = 'A';&#x000A;&#x000A;switch (rectangleType) {&#x000A;  &#x000A;  // ADD CASES IN HERE&#x000A;  &#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/switch_statements/challenge1-7e041d36da2120c3b74203f11b539fcb97ccf86374566a1568b0ffa871b3d169.png" alt="Challenge1" /></div>
+<canvas id='switch_statements_challenge1'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Include a Default Case
+</h2>
+<p>
+In this example, we use a switch statement to change the expression on
+Rectangle Man's face.
+</p>
+<p>
+Change the value of the parameter
+<code>expression</code>
+to 'happy', 'angry', or 'scared' to see Rectangle Man's expression change.
+Note that those values are text strings, and the case values are also text
+strings to match. If we enter
+<span><code>drawFace(happy)</code>,
+</span>
+he won't be happy. We have to enter
+<span><code>drawFace('happy')</code>.
+</span>
+</p>
+<p>
+We have also included a default case at the bottom of the switch statement.
+If we enter an expression that Rectangle Man doesn't recognize, such as
+<span><code>drawFace('sad')</code>,
+</span>
+the switch statement runs the default code black. This is useful because,
+if we enter
+<code>drawFace()</code>
+with no value for
+<span><code>expression</code>,
+</span>
+we get Rectangle Man's default expression.
+</p>
+<p>
+To learn more about functions and variables, visit the
+<a class="reference-link" data-slug="functions" href="../functions/index.html">Function</a>
+and
+<a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a>
+lessons.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='switch_statements_example2_editor'>var canvas = document.getElementById('switch_statements_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.translate(200, 20);&#x000A;drawFace('happy'); // Change Rectangle Man's expression to 'happy', 'angry', 'scared', or none&#x000A;&#x000A;function drawFace(expression) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#000000';&#x000A;  context.strokeStyle = '#000000';&#x000A;  context.strokeRect(-80, 0, 160, 280); // Draw head&#x000A;  context.strokeRect(-15, 120, 30, 60); // Draw nose&#x000A;  context.strokeRect(15, 160, 10, 20); // Draw right nostril&#x000A;  context.strokeRect(-25, 160, 10, 20); // Draw left nostril&#x000A;&#x000A;  switch (expression) {&#x000A;    case 'happy':&#x000A;      context.strokeRect(20, 80, 30, 30);&#x000A;      context.fillRect(29, 89, 12, 12);&#x000A;      context.strokeRect(-50, 80, 30, 30);&#x000A;      context.fillRect(-41, 89, 12, 12);&#x000A;      context.strokeRect(-45, 200, 90, 30);&#x000A;      for (var i = 0; i < 6; i = i + 1) {&#x000A;        context.strokeRect(-45 + 15 * i, 200, 15, 15);&#x000A;        context.strokeRect(-45 + 15 * i, 215, 15, 15);&#x000A;      }&#x000A;      break;&#x000A;&#x000A;    case 'angry':&#x000A;      context.strokeRect(15, 90, 40, 10);&#x000A;      context.fillRect(25, 90, 10, 10);&#x000A;      context.strokeRect(-55, 90, 40, 10);&#x000A;      context.fillRect(-35, 90, 10, 10);&#x000A;      context.strokeRect(-40, 200, 80, 10);&#x000A;      break;&#x000A;&#x000A;    case 'scared':&#x000A;      context.strokeRect(20, 75, 30, 40);&#x000A;      context.fillRect(28, 88, 14, 14);&#x000A;      context.strokeRect(-50, 75, 30, 40);&#x000A;      context.fillRect(-42, 88, 14, 14);&#x000A;      context.strokeRect(-25, 200, 50, 60);&#x000A;      break;&#x000A;&#x000A;    default:&#x000A;      context.strokeRect(20, 80, 30, 30);&#x000A;      context.fillRect(30, 90, 10, 10);&#x000A;      context.strokeRect(-50, 80, 30, 30);&#x000A;      context.fillRect(-40, 90, 10, 10);&#x000A;      context.strokeRect(-30, 200, 60, 20);&#x000A;      break;&#x000A;  }&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='switch_statements_example2'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge2'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 2
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/switch_statements/challenge2Visual1-ccc4df2989571c95f210d7c1d16790f44a3e06f326eb80f3c5e526ac7a871fac.png" alt="Challenge2visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+The
+<code>drawFlag()</code>
+function uses three parameters
+<span>
+(<code>x</code>,
+</span>
+<span><code>y</code>,
+</span>
+and
+<span><code>country</code>)
+</span>
+to draw a flag at the position
+<span>
+(<code>x</code>,
+</span>
+<span><code>y</code>).
+</span>
+Create a switch statement inside the function so it draws a French flag if
+<span><code>country === 'France'</code>,
+</span>
+a Colombian flag if
+<span><code>country === 'Colombia'</code>,
+</span>
+or a simple white flag if
+<code>country</code>
+is undefined or has some other value.
+</p>
+<p>
+Then, use the
+<code>drawFlag()</code>
+function to draw a French flag at (200, 10), a Colombian flag at (10, 90),
+and a white flag at (200, 170).
+</p>
+<p>
+To draw a French flag, use:
+</p>
+<pre><code>context.fillStyle = '#0055A4';&#x000A;context.fillRect(0, 0, 60, 120);&#x000A;context.fillStyle = '#FFFFFF';&#x000A;context.fillRect(60, 0, 60, 120);&#x000A;context.fillStyle = '#EF4135';&#x000A;context.fillRect(120, 0, 60, 120);</code></pre>
+<p>
+To draw a Colombian flag, use:
+</p>
+<pre><code>context.fillStyle = '#FCD116';&#x000A;context.fillRect(0, 0, 180, 60);&#x000A;context.fillStyle = '#003893';&#x000A;context.fillRect(0, 60, 180, 30);&#x000A;context.fillStyle = '#CE1126';&#x000A;context.fillRect(0, 90, 180, 30);</code></pre>
+<p>
+To draw a white flag, use:
+</p>
+<pre><code>context.fillStyle = '#FFFFFF';&#x000A;context.fillRect(0, 0, 180, 120);&#x000A;</code></pre>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='switch_statements_challenge2_editor'>var canvas = document.getElementById('switch_statements_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// DRAW THE FRENCH FLAG AT (200, 10) HERE&#x000A;// DRAW THE COLOMBIAN FLAG AT (10, 90) HERE&#x000A;// DRAW THE WHITE FLAG AT (200, 170) HERE&#x000A;&#x000A;function drawFlag(x, y, country) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  &#x000A;  // CREATE THE SWITCH STATEMENT TO DRAW THE FRENCH, COLOMBIAN, OR WHITE FLAG HERE&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/switch_statements/challenge2-731871e5b1e809c4780948f74bb8655ca79e3b106fd852a615102be62ac14163.png" alt="Challenge2" /></div>
+<canvas id='switch_statements_challenge2'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Chain Together the Code in Multiply Cases
+</h2>
+<p>
+A break statement tells the program to exit a switch statement at the end
+of a code block. If there is no break statement at the end of a code block,
+the program continues to run the code in the next code block.
+</p>
+<p>
+In this example, we use a switch statement to draw Rectangle Man's face
+with some bling. Try passing values from 0 (no bling) to 4 (max bling) into the
+<code>drawFaceWithBling()</code>
+function to see how Rectangle Man's bling changes.
+</p>
+<p>
+Because we are not ending the code blocks in each case with a break statement,
+the program does not exit the switch statement when the code block is done.
+For example, if we pass a value of 2 into the parameter
+<span><code>bling</code>,
+</span>
+then
+case 2 in the switch statement will be true, and the program will run that code
+block. But when that code block is over, the program will continue running the code
+in the code blocks below, even if those cases are false, until it reaches a break
+statement or the switch statement ends.
+</p>
+<p>
+By leaving out the break statements for each case, Rectangle Man gets the bling
+from both case 2 and case 1 if we pass the
+<code>bling</code>
+parameter a value of 2, and he gets all the bling if we pass the
+<code>bling</code>
+parameter a value of 4.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='switch_statements_example3_editor'>var canvas = document.getElementById('switch_statements_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.translate(200, 50);&#x000A;drawFaceWithBling(0); // Give Rectangle Man some bling (0-4);&#x000A;&#x000A;function drawFaceWithBling(bling) {&#x000A;  context.save();&#x000A;  context.fillStyle = '#000000';&#x000A;  context.strokeStyle = '#000000';&#x000A;  context.strokeRect(-64, 0, 128, 224);&#x000A;  context.strokeRect(-12, 96, 24, 48);&#x000A;  context.strokeRect(12, 128, 8, 16);&#x000A;  context.strokeRect(-20, 128, 8, 16);&#x000A;  context.strokeRect(16, 64, 24, 24);&#x000A;  context.fillRect(24, 72, 8, 8);&#x000A;  context.strokeRect(-40, 64, 24, 24);&#x000A;  context.fillRect(-32, 72, 8, 8);&#x000A;  context.strokeRect(-24, 160, 48, 16);&#x000A;  context.strokeRect(64, 80, 12, 30);&#x000A;  context.strokeRect(-76, 80, 12, 30);&#x000A;&#x000A;  switch (bling) {&#x000A;    case 4: // Draw necklace&#x000A;      context.save();&#x000A;      context.translate(0, 132);&#x000A;      context.fillStyle = '#EECC00';&#x000A;      context.fillRect(-16, 104, 32, 60);&#x000A;      context.rotate(-Math.PI / 5);&#x000A;      for (var i = 0; i < 9; i = i + 1) {&#x000A;        context.fillRect(-8, 114, 16, 40);&#x000A;        context.rotate(Math.PI / 20);&#x000A;      }&#x000A;      context.restore();&#x000A;&#x000A;    case 3: // Draw earring&#x000A;      context.save();&#x000A;      context.fillStyle = '#EECC00';&#x000A;      context.fillRect(-76, 110, 8, 8);&#x000A;      context.fillRect(-76, 120, 8, 8);&#x000A;      context.fillRect(-76, 130, 8, 8);&#x000A;      context.fillRect(-77, 140, 10, 16);&#x000A;      context.restore();&#x000A;&#x000A;    case 2: // Draw hat&#x000A;      context.save();&#x000A;      context.fillRect(-68, -40, 136, 88);&#x000A;      context.fillRect(-88, 40, 176, 8);&#x000A;      context.fillStyle = 'FireBrick';&#x000A;      context.fillRect(-68, 16, 136, 24);&#x000A;      context.restore();&#x000A;&#x000A;    case 1: // Draw sunglasses&#x000A;      context.save();&#x000A;      context.fillRect(-72, 72, 144, 8);&#x000A;      context.fillStyle = '#660000';&#x000A;      context.fillRect(2, 64, 56, 24);&#x000A;      context.fillRect(-58, 64, 56, 24);&#x000A;      context.restore();&#x000A;  }&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='switch_statements_example3'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 3
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/switch_statements/challenge3Visual1-16313bdc420f0550edaab751f2a51a87b90c6f562ed21466956b0cf49f47564c.png" alt="Challenge3visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Right now, the
+<code>drawRedDoor()</code>
+function uses two parameters to draw a red door at the position
+<span>
+(<code>x</code>,
+</span>
+<span><code>y</code>).
+</span>
+</p>
+<p>
+Re-write the function so it accepts a third parameter,
+<span><code>detailLevel</code>.
+</span>
+Draw the door's red rectangle first. Then, add the door knob if the
+<code>detailLevel</code>
+is greater than or equal to 1, the door's window if it is greater than or equal
+to 2, and the mail slot if it is equal to 3.
+</p>
+<p>
+Draw a red door with
+<code>detailLevel === 1</code>
+at (10, 20),
+<code>detailLevel === 2</code>
+at (140, 20), and
+<code>detailLevel === 3</code>
+at (270, 20).
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='switch_statements_challenge3_editor'>var canvas = document.getElementById('switch_statements_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;drawRedDoor(10, 20);&#x000A;drawRedDoor(140, 20);&#x000A;drawRedDoor(270, 20);&#x000A;&#x000A;function drawRedDoor(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = '#FF0000';&#x000A;  context.fillRect(0, 0, 120, 240); // Red rectangle&#x000A;  context.fillStyle = '#99CCFF';&#x000A;  context.fillRect(20, 20, 80, 60); // Window&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(90, 120, 16, 16); // Door knob&#x000A;  context.fillRect(40, 180, 40, 16); // Mail slot&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/switch_statements/challenge3-77a271cfeb9b712b06eee391bcaaac6d81f0f5b5a3582735f2fefa0c55ac9b90.png" alt="Challenge3" /></div>
+<canvas id='switch_statements_challenge3'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Handle keydown Events
+</h2>
+<p>
+In this example, we use a switch statement to handle
+<code>keydown</code>
+events. Select the canvas below by clicking on it. Then, use the arrow
+or WASD keys to move the square on the canvas.
+</p>
+<p>
+There is a lot happening in this example, but the part of the program we want
+to focus on is the
+<code>moveSquare()</code>
+function, which is registered to listen for
+<code>keydown</code>
+events on the canvas.
+</p>
+<pre><code>canvas.addEventListener('keydown', moveSquare);</code></pre>
+<p>
+If a key is pressed down while the canvas is selected, a
+<code>keydown</code>
+event is generated and passed into the
+<code>moveSquare()</code>
+function, where it is then stored in the parameter
+<span><code>e</code>.
+</span>
+</p>
+<pre><code>function moveSquare(e) {&#x000A;  switch (e.keyCode) {&#x000A;    case 37:&#x000A;    case 65:&#x000A;      x -= 10; // Left&#x000A;      break;&#x000A;    &#x000A;    case 38:&#x000A;    case 87:&#x000A;      y -= 10; // Up&#x000A;      break;&#x000A;    &#x000A;    case 39:&#x000A;    case 68:&#x000A;      x += 10; // Right&#x000A;      break;&#x000A;    &#x000A;    case 40:&#x000A;    case 83:&#x000A;      y += 10; // Down&#x000A;      break;&#x000A;  }&#x000A;  &#x000A;  drawSquare();&#x000A;  e.preventDefault();&#x000A;}</code></pre>
+<p>
+Inside the
+<code>moveSquare()</code>
+function, we can identify the key that was pressed by accessing the
+<code>keydown</code>
+event's
+<code>keyCode</code>
+property. We use a switch statement to move the square to the left by subtracting 10
+from it's x-coordinate if the left arrow
+<span>
+(<code>e.keyCode === 37</code>)
+</span>
+or the a-key
+<span>
+(<code>e.keyCode === 65</code>)
+</span>
+has been pressed, and we move the square to the right by adding 10 if the right arrow
+<span>
+(<code>e.keyCode === 39</code>)
+</span>
+or the d-key
+<span>
+(<code>e.keyCode === 68</code>)
+</span>
+has been pressed. Note that if
+<span><code>e.keyCode === 37</code>,
+</span>
+the code block for
+<code>e.keyCode === 65</code>
+runs because there is no break statement between them. Finally, we redraw the square at its new position using the
+<code>drawSquare()</code>
+function. Here is a list of
+<span><span><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode">keyCode values</a></span>.
+</span>
+</p>
+<p>
+To learn more about handling events, visit the
+addEventListener()
+lesson.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='switch_statements_example4_editor'>var canvas = document.getElementById('switch_statements_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var x = 50;&#x000A;var y = 50;&#x000A;&#x000A;canvas.addEventListener('blur', pause);&#x000A;canvas.addEventListener('focus', play);&#x000A;canvas.addEventListener('keydown', moveSquare);&#x000A;&#x000A;pause();&#x000A;&#x000A;function moveSquare(e) {&#x000A;  switch (e.keyCode) {&#x000A;    case 37:&#x000A;    case 65:&#x000A;      x -= 10; // Left&#x000A;      break;&#x000A;    &#x000A;    case 38:&#x000A;    case 87:&#x000A;      y -= 10; // Up&#x000A;      break;&#x000A;    &#x000A;    case 39:&#x000A;    case 68:&#x000A;      x += 10; // Right&#x000A;      break;&#x000A;    &#x000A;    case 40:&#x000A;    case 83:&#x000A;      y += 10; // Down&#x000A;      break;&#x000A;  }&#x000A;  &#x000A;  drawSquare();&#x000A;  e.preventDefault();&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.save();&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  context.fillStyle = 'Orange';&#x000A;  context.fillRect(x, y, 40, 40);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function play() {&#x000A;  drawSquare();&#x000A;  &#x000A;  context.save();&#x000A;  context.font = '16px Arial';&#x000A;  context.textAlign = 'center';&#x000A;  context.fillStyle = 'Black';&#x000A;  context.fillText('Use the arrow or WASD keys to move the square', canvas.width / 2, canvas.height / 2);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function pause() {&#x000A;  drawSquare();&#x000A;  &#x000A;  context.save();&#x000A;  context.font = '16px Arial';&#x000A;  context.textAlign = 'center';&#x000A;  context.fillStyle = 'Black';&#x000A;  context.fillText('Click to select the canvas', canvas.width / 2, canvas.height / 2);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='switch_statements_example4'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge4'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 4
+</h2>
+<p>
+Inside the
+<code>setColor()</code>
+function, add a switch statement that will change the color of the square
+depending on the key pressed.
+</p>
+<p>
+Assign the
+<code>context.fillStyle</code>
+property the color
+<code>'Red'</code>
+if the r-key is pressed (keyCode 82), the color
+<code>'Orange'</code>
+if the o-key is pressed (keyCode 79), the color
+<code>'Yellow'</code>
+if the y-key is pressed (keyCode 89), the color
+<code>'Green'</code>
+if the g-key is pressed (keyCode 71), the color
+<code>'Blue'</code>
+if the b-key is pressed (keyCode 66), the color
+<code>'Indigo'</code>
+if the i-key is pressed (keyCode 73), and the color
+<code>'Violet'</code>
+if the v-key is pressed (keyCode 86).
+</p>
+<p>
+All you have to do is add the switch statement. The rest of the program
+has been set up for you.
+</p>
+<p>
+Try changing the color of the square by pressing the ROYGBIV keys. If your
+program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='switch_statements_challenge4_editor'>var canvas = document.getElementById('switch_statements_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;canvas.addEventListener('blur', pause);&#x000A;canvas.addEventListener('focus', play);&#x000A;canvas.addEventListener('keydown', setColor);&#x000A;&#x000A;context.fillStyle = 'Green';&#x000A;pause();&#x000A;&#x000A;function setColor(e) {&#x000A;  &#x000A;  // ADD SWITCH STATEMENT HERE&#x000A;  &#x000A;  drawSquare();&#x000A;  e.preventDefault();&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.save();&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  context.translate(canvas.width / 2 - 120, canvas.height / 2 - 120);&#x000A;  context.fillRect(0, 0, 240, 240);&#x000A;  context.restore();&#x000A;}&#x000A;    &#x000A;function play() {&#x000A;  drawSquare();&#x000A;  &#x000A;  context.save();&#x000A;  context.font = '16px Arial';&#x000A;  context.textAlign = 'center';&#x000A;  context.fillStyle = 'Black';&#x000A;  context.fillText('Use the ROYGBIV keys to change the color of the square', canvas.width / 2, canvas.height / 2);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function pause() {&#x000A;  drawSquare();&#x000A;  &#x000A;  context.save();&#x000A;  context.font = '16px Arial';&#x000A;  context.textAlign = 'center';&#x000A;  context.fillStyle = 'Black';&#x000A;  context.fillText('Click to select the canvas', canvas.width / 2, canvas.height / 2);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='switch_statements_challenge4'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div aria-hidden='true' aria-labelledby='referenceModalLabel' class='modal fade' id='reference-modal' role='dialog' tabindex='-1'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<h4 class='modal-title' id='referenceModalLabel'></h4>
+</div>
+<div class='modal-body'></div>
+<div class='modal-footer'>
+<div class='float-xs-right'>
+<button class='btn btn-secondary' data-dismiss='modal' type='button'>Close</button>
+</div>
+<div class='text-xs-left'>
+<button class='btn btn-primary text-white lesson-link'>View Full Lesson</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+<!-- Localized -->

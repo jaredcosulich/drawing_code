@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<title>Drawing Code</title>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="MXtUUe53m4tcJ0Lj6c3h5GKrG0GAYHM/+8pzPfPob17N5f2XIr7lf0lIH4IKku79YvdPHibajkFcj4uEaizKew==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-6693732d946f61761af2eeafcf9c870441f1af9f77c9d2a5db4509578dd265e0-body=1.css" data-turbolinks-track="reload" />
+<script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/ace/ace.self-0acb0427eef086a17859bfe56ecfaf24bc47c928ad7db87d5ec5bf235e40cb40.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/code_preview.self-b37269bda74e81e3e6e832ad40469072b79b5b1d3a48a2e91986fd44549f82c0.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/drawings.self-1119b89f5468a45fd5e064d9ba68962f14b5248b9ff1a6b33b2307875e470686.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/examples.self-62f6af2ec5a00cd81eb1292963de6ac7a2146c48d0d3cba6abe1adc998cae145.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/init.self-fef4ca73cdd5fc98231ba13aa0c4b3f7a626e61c3afedb604da73204cdfb80bc.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lesson.self-4c007310fc5244946716688a8afc18ef0b6e54f4cfc18f8aff6b18ab0e203889.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage1.self-af3dd34f4f344c2e4c6fd02ae6fcf3a3ab4cd43a8d72b9e10ac7e857ec7e3321.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage2.self-225920e2665631ee62b7fbe95291c6ac9e1c62142a2bc469a623623a6c18a705.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage3.self-d849334bedcf13dec8fb3da9f57078b783809e1a25dfc733da271108516fb213.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/basic_cityscape/stage4.self-566ff4fe09aeeee06c9bfca2d5a81fc52bad7f964d150d6025e854e6a9a8c2de.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/clearRect.self-9e82ca8aa93793f04e73caa7f25eaf5e8c815cbe718ac5f4747de25ef19efce9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/coordinates.self-4821f9b9bad6785349895eef0fd2998882879f8d57aff2f232eb8b4d961203f1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/fill_rect.self-4bb525e22a290e2ae4aa8446082bdcd7168ea5c515f27a3b3b8b6d439760ea8a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/fill_style.self-6d153ccc75d0aa54db66acd06e950248f8cabe7184d1789400272825d0648764.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage1.self-6f21d5babc2da36a46ebff04ecd42d9634765d962b64463934205e743a61eacb.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage2.self-8eb29add53aabb7af941f9c84c2abd840c7dbf61669906cae52b8a4c84bcd409.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage3.self-cb39fe3b38a5ae28456afbcbe4c17c1b40b1fdeb13b925d136a43609a02907d3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage4.self-17d7302a880ad6257214c9cb8ead56582ece4727ecde96454c320b23f138d16e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/for_loops.self-6ea947c621baba5fe10d587860ab777038544953934ba8d15ccea3fff8128ea2.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/functions.self-d002fbef8abc3e970526900bc8987e0e6b43e4caedda60e4ea2318eae2cc0330.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage1.self-9a6bb1b4e3de5f46da1e072c0fa52d0391b4f64454b97d5b34b6ec01e46dfb32.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage2.self-274b9a3782e74ccca603cacdcfdc7de6a30a0a3ab57f9a6f1d25b7781e711f99.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage3.self-e2064f6932bc938d199b51dc1ba885fc1f3b2913935b7bdb8203011970326dbf.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/granular_basic_cityscape/stage4.self-611052ea22dac28d9a24fc6ecb7c680cd07e073d394dc8a34237a2b674d846ad.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/line_to.self-65410ae951aab7cdda49956ec4aa794d97db0360507ea427d9e41ef840d88d93.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/random.self-e3526158091bc0c29fb3eaecbfa5bd813ee77bf67b2449758af5a4608bd8397b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/round.self-8f4f7fa74c9157dc1707d118675f7e35d4621225571a950953278131b01a5022.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/save.self-ba90c232d56f796645e264833860b2cbcb639bb0e37772b06ea84198141d8bec.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/scale.self-8bedfd1625ced565d0fd9cdc69c9693cd07a039860dbee59df8fc4eb524b0d70.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/switch_statements.self-9fdab32aed464bc617220d4c4fbce43b07887fe98eca5de2828efb6e05c74d5c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/translate.self-16962e3a7636c88e58d6a2bf9f63a8e5c65302badec269e70a30a97bfbc4c8ad.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/variables.self-4562a8743966906ee7fb58792fd51e5aac5203a5f64b393175caa98ba33ddedc.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/while_loops.self-d6177003c6f9f97f79cb8c63956ace41e225e85175095da98c102ebd5432f7e3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/canvas.self-429f6c3eb7215ea53ffe08598331778858aa202b6c9cdf18775ee1623316198a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/editor.self-fbbbe2d7e50971004e7c8178761a186495cfe565c8f584f7cc18297d6ec017ae.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/files.self-16fff0bc3c9a315d22413e3b6a090fb8ef8f5f1257b42dade438f57a0de1f134.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/progress.self-85855a4b2ffe2ff58692f669b689c7ad8db3cee30eb947e32791e81148164b36.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/code.self-186d38d443a8bc51bbeec7159887e3781eaad676a86b9d159eca7ec40e21f7ba.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/image_comparison.self-83be79c1bfdac13ff2c69e6916a326f2698035d7381c28f12e44637de7618bac.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/test/point.self-e1435fcb5c66e2107d91d34c16e06e6c0dd8d06286396d3d5b3b05c22989d9b2.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/navigation.self-3abb68970f3392649f6ee452427597fc92e324a7be21f97b6501e5a2ec47609e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/referenceModal.self-4ba25626378a146e8d2a7ae7edd72600ddef60371b98f42b0c3555b56cd02ff9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
+</head>
+<body>
+<nav class='navbar navbar-dark navbar-fixed-top bg-inverse'>
+<button aria-controls='navbar' aria-expanded='false' aria-label='Toggle navigation' class='navbar-toggler hidden-sm-up' data-target='#navbar' data-toggle='collapse' type='button'></button>
+<a class='navbar-brand' href='../../../index.html'>
+Drawing In Code:
+<small>An exploration of artistic observation and computational thinking</small>
+</a>
+</nav>
+
+<div class='container-fluid'>
+<div class='row'>
+<div class='col-md-3 col-lg-2 sidebar'>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class="section_link" href="../../../index.html">Home</a>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='drawings' href='#'>
+Your Drawings
+</a>
+<ul class='collapse nav nav-sidebar' id='drawings'>
+<li>
+<a href="../../../drawings/index.html">Create A Drawing</a>
+</li>
+<li class='section drawings-list small mt-1 hidden-xs-up'>
+<strong>My Drawings</strong>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='reference' href='#'>
+Reference
+</a>
+<ul class='collapse nav nav-sidebar' id='reference'>
+<li class='section mt-1'>
+<strong>Context2D</strong>
+</li>
+<li>
+<a href="../../reference/clear_rect/index.html">clearRect()</a>
+<span class='tag tag-default'>
+<small class='clear_rect'>0 / 2</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-clear_rect'>
+<div class='title'>context.clearRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.clearRect(x, y, width, height) will clear a rectangle starting
+at (x, y) and clearing to the right width and down height.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = '#FF0000';&#x000A;context.fillRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.clearRect(40, 20, 20, 100);&#x000A;context.clearRect(60, 60, 20, 20);&#x000A;context.clearRect(80, 20, 20, 100);&#x000A;&#x000A;context.clearRect(120, 20, 60, 20);&#x000A;context.clearRect(140, 40, 20, 60);&#x000A;context.clearRect(120, 100, 60, 20);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/clear_rect/reference-70cf88df0b9a8db2c33a8048af8493be9efdca18dd8ed4b2756cb0de8d8993af.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/fill_rect/index.html">fillRect()</a>
+<span class='tag tag-default'>
+<small class='fill_rect'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_rect'>
+<div class='title'>context.fillRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillRect(x, y, width, height) will draw a rectangle starting
+at (x, y) and filling the area "width" to the right and "height" down.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillRect(50, 50, 300, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/fill_rect/reference-ec68654dd34b051ccadd579a7b7b065ab4fa1eff1991e3d8df56cf72be3dee37.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/fill_style/index.html">fillStyle</a>
+<span class='tag tag-default'>
+<small class='fill_style'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_style'>
+<div class='title'>context.fillStyle</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillStyle will set the color for all future fills such as
+context.fillRect(). It's important to note theat context.fillStyle
+is not a method, it is an attribute. You set it like so:
+</p>
+<pre class='mb-2'><code>context.fillStyle = 'red';&#x000A;</code></pre>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = 'rgb(0,255,0)';&#x000A;context.fillRect(50, 50, 100, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/fill_style/reference-8b359c7e565a86e657117d488129208cb37d2b93ac988ee482ddaf063385e12e.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/line_to/index.html">lineTo()</a>
+<span class='tag tag-default'>
+<small class='line_to'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-line_to'>
+<div class='title'>context.lineTo()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.lineTo(x, y) creates a path from the current point - default (0,0) -
+to the point (x, y). In order to see the line you must call context.stroke().
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.beginPath();&#x000A;context.moveTo(50, 50);&#x000A;context.lineTo(100,100);&#x000A;context.lineTo(150, 50);&#x000A;context.lineTo(200, 100);&#x000A;context.stroke();&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/line_to/reference-2c3b4d87c54a374ee06ac132f850d07869ed961fac25769a9e1309faf9709371.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/save/index.html">save() / restore()</a>
+<span class='tag tag-default'>
+<small class='save'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-save'>
+<div class='title'>context.save()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.save() saves all of the properties of the context. Then, when you call
+context.restore() it will reset all changes to the context you've made.
+</p>
+<p>
+This code will produce the image below (note how the second rectangle is black
+and closer to the original origin despite calling translate and setting the
+fillStyle earlier):
+</p>
+<pre class='mb-2'><code>context.save();&#x000A;context.translate(100,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;context.restore();&#x000A;&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/save/reference-cfdb7b48454c0b82fb5105cf7a1228776bbee579585d77bf2b7cdeab9f8eb32a.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/scale/index.html">scale()</a>
+<span class='tag tag-default'>
+<small class='scale'>0 / 7</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-scale'>
+<div class='title'>context.scale()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.scale(percentX, percentY) scales the x and y coordinates of the context, making drawings
+larger or smaller.
+</p>
+<p>
+This code will produce the image below (note that all rectangles are defined to be the same size
+in the code are drawn in different sizes due to the scale of the context):
+</p>
+<pre class='mb-2'><code>context.fillRect(25,25,25,25);&#x000A;context.scale(2, 1);&#x000A;context.fillRect(75,25,25,25);&#x000A;context.scale(0.5, 1);&#x000A;context.fillRect(150,25,25,25);&#x000A;context.scale(2, 2);&#x000A;context.fillRect(300,25,25,25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/scale/reference-0569c769850c52c53953d385626946099b407d1037f93af347311149e3a2fec6.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li class='active'>
+<a href="../../reference/translate/index.html">translate()</a>
+<span class='tag tag-default'>
+<small class='translate'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-translate'>
+<div class='title'>context.translate()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.translate(x, y) shifts the origin of the context (where the (0,0) point is)
+right by x and down by y. This allows you to draw execute multiple commands in a specific
+area of the context more easily.
+</p>
+<p>
+This code will produce the image below (note how the fillRect commands are
+relative to the translation point (100,100)):
+</p>
+<pre class='mb-2'><code>context.translate(50,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(0, 0, 100, 100);&#x000A;context.fillStyle = 'green';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/translate/reference-19fc53169ce0da0d057fb00b05eecfb3fc88513d1fa46cf4aceaa8fa19f51c26.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li class='section mt-1'>
+<strong>Math</strong>
+</li>
+<li>
+<a href="../../reference/round/index.html">round() / floor() / ceil()</a>
+<span class='tag tag-default'>
+<small class='round'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-round'>
+<div class='title'>Math.round() / Math.floor() / Math.ceil()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.round(), Math.floor() and Math.ceil() will round a number to an integer.
+Math.floor() will always round down while Math.ceil() will always round up.
+Math.round() will round to the closest integer, either up or down.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/floor/visual1-9edc722b188f28c702178c13d60cbec037d2e4159d2b7b5f7782a0be2dd5f653.png" alt="Visual1" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../reference/random/index.html">random()</a>
+<span class='tag tag-default'>
+<small class='random'>0 / 4</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-random'>
+<div class='title'>Math.random()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.random() will produce a random decimal betweek 0 and 1. Calling it many
+times will produce a different random number each time.
+</p>
+<p>
+Often you will multiple Math.random() by another number to get a random
+integer larger than 1. You may also call Math.floor() or Math.ceil() on the result
+to get an rounded integer.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/random/reference-d1ee7adb1a0544e928f64c175595c9f081740954db0ae3f889f0627b4034c642.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='concepts' href='#'>
+Concepts
+</a>
+<ul class='collapse in nav nav-sidebar' id='concepts'>
+<li>
+<a href="../variables/index.html">Variables</a>
+<span class='tag tag-default'>
+<small class='variables'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-variables'>
+<div class='title'>Variables</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+A variable allows you to store information to use or change later.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/variables/reference-b8e07ae4cdc5e13b2ee681381d7fa203f8442ff2e8abeb1cf4012cfb427439db.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../for_loops/index.html">For Loops</a>
+<span class='tag tag-default'>
+<small class='for_loops'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-for_loops'>
+<div class='title'>For Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+For-loops allow you to repeat code over and over again, potentially
+adjusting the code a little bit each time.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>for (var i=1; i<10; ++i) {&#x000A;  context.fillRect(10 * i, 75 - (5 * i), 10 * i, 10 * i);&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/for_loops/reference-ab4edc41708c315c5bc65d0ca07c1d49061a8185eb1420dbb6a056fa1be194bd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../while_loops/index.html">While Loops</a>
+<span class='tag tag-default'>
+<small class='while_loops'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-while_loops'>
+<div class='title'>While Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+While-loops allow you to repeat code over and over again until a condition is met.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>var i = 10;&#x000A;while (i < 200) {&#x000A;  context.fillRect(5, 5, i, 50);&#x000A;  i += 10;&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/while_loops/reference-b71bb24ae903b89143b68f3a561a455d71ca8c08674b34a2d9ffbde1753fc005.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../coordinates/index.html">Coordinates</a>
+<span class='tag tag-default'>
+<small class='coordinates'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-coordinates'>
+<div class='title'>The Coordinate System</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+The coordinate system consists of X and Y values starting at (0, 0) in the upper left corner.
+</p>
+<p>
+As you move down the canvas Y gets larger. As you move right on the canvas X gets larger.
+</p>
+<p>
+So the point (100, 50) means you move right 100 and down 50.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid" src="../../../assets/lessons/coordinates/reference-1875ea0cb51a1c7ed92a016a2256ba53d9b3f7820a9feaa679521c14af4e7acd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../functions/index.html">Functions</a>
+<span class='tag tag-default'>
+<small class='functions'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-functions'>
+<div class='title'>Functions</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Functions allow you to create chunks of code that can be called with
+different parameters.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>function fillColorRect(x, y, w, h, color) {&#x000A;  context.save();&#x000A;  context.fillStyle = color;&#x000A;  context.fillRect(x, y, w, h);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;fillColorRect(50, 50, 50, 50, 'red');&#x000A;fillColorRect(150, 50, 50, 50, 'blue');&#x000A;fillColorRect(250, 50, 50, 50, 'green');&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/functions/reference-2d2a07b0286e84d953685386201fe7e0bc20198460907e83c7895681f6b37a45.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../switch_statements/index.html">Switch Statements</a>
+<span class='tag tag-default'>
+<small class='switch_statements'>0 / 4</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-switch_statements'>
+<div class='title'>Switch Statements</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Switch statements allow you to perform different code depending on
+the value of a variable.
+</p>
+<p>
+The following code will produce the picture below (the switch statement
+only performs the code inside of case 2 because "i" is set to 2):
+</p>
+<pre class='mb-2'><code>var i = 2;&#x000A;switch (i) {&#x000A;  case 1:&#x000A;    context.fillStyle = 'red';&#x000A;    break;&#x000A;  case 2:&#x000A;    context.fillStyle = 'yellow';&#x000A;    break;&#x000A;  case 3:&#x000A;    context.fillStyle = 'blue';&#x000A;    break;&#x000A;}&#x000A;context.fillRect(50, 50, 100, 50);&#x000A;&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/switch_statements/reference-3ab4709f6beedfca8a197ba64c75c9604abf7ccdb78c9adc16cf035c60914e8b.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../set_interval/index.html">setInterval()</a>
+<div class='reference-modal-content' id='reference-modal-set_interval'>
+<div class='title'>setInterval()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+setInterval() allows you to execute code at specified intervals. It
+is frequently used to create animations.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>var index = 0;&#x000A;function count() {&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText(index, canvas.width / 2, canvas.height / 2);&#x000A;}&#x000A;setInterval(count, 1000)&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/set_interval/reference-a47ff17199d8182591ccb0d45fa57147ee1136677cff7955671c6a01337479fa.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../event_listeners/index.html">Event Listeners</a>
+<div class='reference-modal-content' id='reference-modal-event_listeners'>
+<div class='title'>Event Listeners</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Event listeners allow you to "listen" for an event, such as a click, on an element
+in your html.
+</p>
+<p>
+A full list of events can be found here:
+<a target="_blank" href="https://www.tutorialspoint.com/html5/html5_events.htm">HTML5 Events</a>
+</p>
+<p>This code will produce the image below (if you were to click and draw the letters on the canvas):</p>
+<pre class='mb-2'><code>canvas.addEventListener('mousemove', function(e) {&#x000A;  if (e.buttons === 0) return;&#x000A;  context.fillRect(e.layerX - 3, e.layerY - 3, 7, 7);&#x000A;});&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/event_listeners/reference-e166d58e874cfbbeb51fb29e622c9bf89d5c7a4aec6319d3953c94db43af1b0c.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+</ul>
+<ul class='nav nav-sidebar hidden-xs-up'>
+<li class='section'>
+<a class='section_link' data-section='experimental' href='#'>
+All
+</a>
+</li>
+<ul class='nav nav-sidebar'>
+<li class='section small'>
+<strong>Active</strong>
+<li class='small '>
+<a href="../../basic_cityscape/stage1/index.html">Basic Cityscape</a>
+</li>
+</li>
+<li class='section small mt-2'>
+<strong>Experimental</strong>
+<li class='small '>
+<a href="../../snake_game/stage1/index.html">Snake Game</a>
+</li>
+<li class='small '>
+<a href="../../flappy_square/stage1/index.html">Flappy Square</a>
+</li>
+<li class='small '>
+<a href="../../flappy_birds/stage1/index.html">Flappy Birds</a>
+</li>
+<li class='small '>
+<a href="../../granular_basic_cityscape/stage1/index.html">Basic Cityscape</a>
+</li>
+</li>
+</ul>
+</ul>
+
+</div>
+<div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
+<div class='page' id='translate'>
+<h1>
+context.translate()
+</h1>
+<div class='description row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Overview
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid" src="../../../assets/lessons/translate/overviewVisual1-1ebb6b212a4141639f6c961ad6e16711b165a31ed01ddba98f0bc19a7281fbb0.png" alt="Overviewvisual1" />
+</figure>
+<p>
+The
+<code>context.translate()</code>
+method moves the origin of the context's coordinate system by passing it two values:
+</p>
+<pre><code>context.translate(x, y);</code></pre>
+<p>
+The
+<code>x</code>
+value moves the origin of the coordinate system horizontally and the
+<code>y</code>
+value moves it vertically. For example,
+<code>context.translate(90, 60)</code>
+moves the origin 90 pixels to the right and 60 pixels down.
+</p>
+<div class='source'>
+<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/translate">Mozilla Developer&#39;s Network</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Translate the Origin to Move the Drawing Paper
+</h2>
+<p>
+While transforming the context's coordinate system may sound highly mathematical, it
+actually simplifies any math we might need to do when drawing.
+</p>
+<p>
+Think of moving the origin of the coordinate system like moving a sheet of drawing paper.
+If we were drawing a house on a sheet of paper, we would move the paper so the house's
+position is directly under our pencil, and then we would draw the house. Once the house is
+directly under our pencil, we can draw the house without thinking about its position.
+</p>
+<p>
+On the canvas, the origin of the coordinate system (0, 0) is the point directly under our
+pencil. In this example, we draw a house at the origin and use the
+<code>context.translate()</code>
+method to position it wherever we want.
+</p>
+<p>
+We start by translating the origin to (0, 0). This doesn't move the origin at all, for
+now, which is what we want. We'll move the origin later.
+</p>
+<pre><code>context.translate(0, 0); // Position house here</code></pre>
+<p>
+Then, we draw our house at the origin.
+</p>
+<pre><code>context.fillStyle = '#FFFF00';&#x000A;context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;context.fillStyle = '#99CCFF';&#x000A;context.fillRect(15, 20, 20, 40); // Left window&#x000A;context.fillRect(85, 20, 20, 40); // Right window&#x000A;context.fillStyle = '#FF0000';&#x000A;context.fillRect(45, 40, 30, 60); // Red door</code></pre>
+<p>
+Finally, we have defined a function that will draw a set of axes at the origin of
+the coordinate system. This will help us see the position of the origin any time we want.
+Call it after drawing the house.
+</p>
+<pre><code>drawAxes();</code></pre>
+<p>
+At this point, we have drawn a yellow house with two windows and a red door at
+the origin of the coordinate system, which is in the top left corner of the canvas.
+</p>
+<p>
+Go back up to the top of the program where we translate the origin of the coordinate
+system to (0, 0). Change the line of code to move the origin to (100, 50). Then, try
+drawing the house at different positions.
+</p>
+<pre><code>context.translate(100, 50);  // Position house here</code></pre>
+<p>
+To learn more about the coordinate system, setting fill colors, and drawing rectangles, visit the
+<span><span><a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a></span>,
+</span>
+<span><span><a class="reference-link" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a></span>,
+</span>
+and
+<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+lessons.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_example1_editor'>var canvas = document.getElementById('translate_example1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.translate(0, 0); // Position house here&#x000A;&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;context.fillStyle = '#99CCFF';&#x000A;context.fillRect(15, 20, 20, 40); // Left window&#x000A;context.fillRect(85, 20, 20, 40); // Right window&#x000A;context.fillStyle = '#FF0000';&#x000A;context.fillRect(45, 40, 30, 60); // Red door&#x000A;&#x000A;drawAxes();&#x000A;&#x000A;function drawAxes() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Red';&#x000A;  context.strokeStyle = 'Red';&#x000A;  context.font = '16px Arial';&#x000A;  context.textAlign = 'center';&#x000A;  context.textBaseline = 'middle';&#x000A;  drawPoint(0, 0);&#x000A;  drawLine(0, 0, 50, 0);&#x000A;  drawArrow(50, 0, 0);&#x000A;  context.fillText('x', 60, 0);&#x000A;  drawLine(0, 0, 0, 50);&#x000A;  drawArrow(0, 50, 0.5 * Math.PI);&#x000A;  context.fillText('y', 0, 60);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawPoint(x, y) {&#x000A;  context.beginPath();&#x000A;  context.arc(x, y, 3, 0, 2 * Math.PI, false);&#x000A;  context.fill();&#x000A;}&#x000A;&#x000A;function drawLine(x1, y1, x2, y2) {&#x000A;  context.beginPath();&#x000A;  context.moveTo(x1, y1);&#x000A;  context.lineTo(x2, y2);&#x000A;  context.stroke();&#x000A;}&#x000A;&#x000A;function drawArrow(x, y, angle) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.rotate(angle);&#x000A;  context.beginPath();&#x000A;  context.moveTo(0, 0);&#x000A;  context.lineTo(-10, 5);&#x000A;  context.lineTo(-10, -5);&#x000A;  context.closePath();&#x000A;  context.fill();&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='translate_example1'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge1'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 1
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/translate/challenge1Visual1-42cd436e78bf9f297344e0c1d3829ce70e194abe97c328da02656743df303485.png" alt="Challenge1visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Right now, this program draws a French flag at the position (0, 0).
+</p>
+<p>
+Use the
+<code>context.translate()</code>
+method to draw the French flag at the position (120, 40).
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_challenge1_editor'>var canvas = document.getElementById('translate_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.fillStyle = '#0055A4';&#x000A;context.fillRect(0, 0, 80, 160); // Blue bar&#x000A;context.fillStyle = '#FFFFFF';&#x000A;context.fillRect(80, 0, 80, 160); // White bar&#x000A;context.fillStyle = '#EF4135';&#x000A;context.fillRect(160, 0, 80, 160); // Red bar&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/translate/challenge1-465b1bc6dafab62a0dfb83f831081b96edd4d69a28155d9d105521a5f546ea44.png" alt="Challenge1" /></div>
+<canvas id='translate_challenge1'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Combine Multiple Translations
+</h2>
+<p>
+When we use the
+<code>context.translate()</code>
+method to position a drawing, it is important to remember that we are moving
+the entire coordinate system and not just a single drawing.
+</p>
+<p>
+In this example, we translate the origin of the coordinate system to position
+(100, 50) and draw a house and a set of axes.
+</p>
+<pre><code>context.translate(50, 100); // Position of the first house&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;context.fillStyle = '#99CCFF';&#x000A;context.fillRect(15, 20, 20, 40); // Left window&#x000A;context.fillRect(85, 20, 20, 40); // Right window&#x000A;context.fillStyle = '#FF0000';&#x000A;context.fillRect(45, 40, 30, 60); // Red door&#x000A;drawAxes();</code></pre>
+<p>
+Then, we translate the origin of the coordinate system to position (200, 0)
+and draw second house and a second set of axes.
+</p>
+<pre><code>context.translate(200, 0); // Position of the second house&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;context.fillStyle = '#99CCFF';&#x000A;context.fillRect(15, 20, 20, 40); // Left window&#x000A;context.fillRect(85, 20, 20, 40); // Right window&#x000A;context.fillStyle = '#FF0000';&#x000A;context.fillRect(45, 40, 30, 60); // Red door&#x000A;drawAxes();</code></pre>
+<p>
+The second house is not drawn at (200, 0) in absolute coordinates on the canvas.
+It is drawn at (250, 100) because, when we apply the second translation, we are
+doing it in a coordinate system that has already been moved. The second house is
+drawn 200 pixels to the right of the origin for the first house. And if we did
+another translation and drew a third house, it would be positioned relative to the
+origin for the second house.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_example2_editor'>var canvas = document.getElementById('translate_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.translate(50, 100); // Position of the first house&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;context.fillStyle = '#99CCFF';&#x000A;context.fillRect(15, 20, 20, 40); // Left window&#x000A;context.fillRect(85, 20, 20, 40); // Right window&#x000A;context.fillStyle = '#FF0000';&#x000A;context.fillRect(45, 40, 30, 60); // Red door&#x000A;drawAxes();&#x000A;&#x000A;context.translate(200, 0); // Position of the second house&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;context.fillStyle = '#99CCFF';&#x000A;context.fillRect(15, 20, 20, 40); // Left window&#x000A;context.fillRect(85, 20, 20, 40); // Right window&#x000A;context.fillStyle = '#FF0000';&#x000A;context.fillRect(45, 40, 30, 60); // Red door&#x000A;drawAxes();&#x000A;&#x000A;function drawAxes() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Red';&#x000A;  context.strokeStyle = 'Red';&#x000A;  context.font = '16px Arial';&#x000A;  context.textAlign = 'center';&#x000A;  context.textBaseline = 'middle';&#x000A;  drawPoint(0, 0);&#x000A;  drawLine(0, 0, 50, 0);&#x000A;  drawArrow(50, 0, 0);&#x000A;  context.fillText('x', 60, 0);&#x000A;  drawLine(0, 0, 0, 50);&#x000A;  drawArrow(0, 50, 0.5 * Math.PI);&#x000A;  context.fillText('y', 0, 60);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawPoint(x, y) {&#x000A;  context.beginPath();&#x000A;  context.arc(x, y, 3, 0, 2 * Math.PI, false);&#x000A;  context.fill();&#x000A;}&#x000A;&#x000A;function drawLine(x1, y1, x2, y2) {&#x000A;  context.beginPath();&#x000A;  context.moveTo(x1, y1);&#x000A;  context.lineTo(x2, y2);&#x000A;  context.stroke();&#x000A;}&#x000A;&#x000A;function drawArrow(x, y, angle) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.rotate(angle);&#x000A;  context.beginPath();&#x000A;  context.moveTo(0, 0);&#x000A;  context.lineTo(-10, 5);&#x000A;  context.lineTo(-10, -5);&#x000A;  context.closePath();&#x000A;  context.fill();&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='translate_example2'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge2'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 2
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/translate/challenge2Visual1-10fefc0129cfddfc60239dfde58c0045b085f2953c1a572ec96dca956299f82a.png" alt="Challenge2visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Right now, this program draws a French flag at the position (0, 0).
+</p>
+<p>
+Copy the code to draw two more French flags. Use the
+<code>context.translate()</code>
+method to position the first French flag at (20, 40). Then, position the
+second French flag 200 pixels to the right of the origin for the first French
+flag, and position the third French flag 140 pixels down and 80 pixels to the
+left of the origin for the second French flag.
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_challenge2_editor'>var canvas = document.getElementById('translate_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.fillStyle = '#0055A4';&#x000A;context.fillRect(0, 0, 60, 120); // Blue bar&#x000A;context.fillStyle = '#FFFFFF';&#x000A;context.fillRect(60, 0, 60, 120); // White bar&#x000A;context.fillStyle = '#EF4135';&#x000A;context.fillRect(120, 0, 60, 120); // Red bar&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/translate/challenge2-f515f76b04665634efae6087ea5d21307775497b43f23529424dee158db3aec3.png" alt="Challenge2" /></div>
+<canvas id='translate_challenge2'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Restore the Coordinate System After a Translation
+</h2>
+<p>
+Sometimes we want to combine our translations, like when we are drawing a row of
+houses. But usually, we want to restore the coordinate system immediately after drawing
+a house so we can position and draw something else. Because the transformation matrix
+for the coordinate system is stored in the canvas's drawing state, we can use the
+<code>context.save()</code>
+and
+<code>context.restore()</code>
+methods to save the coordinate system and restore it back to its original state.
+</p>
+<p>
+In this example, we start by saving the drawing state when the origin of the
+coordinate system is in the top left corner of the canvas:
+</p>
+<pre><code>context.save(); // Save original drawing state</code></pre>
+<p>
+Then, we translate the origin of the coordinate system to (200, 50) and draw a house:
+</p>
+<pre><code>context.translate(200, 50); // Position of the first house&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;context.fillStyle = '#99CCFF';&#x000A;context.fillRect(15, 20, 20, 40); // Left window&#x000A;context.fillRect(85, 20, 20, 40); // Right window&#x000A;context.fillStyle = '#FF0000';&#x000A;context.fillRect(45, 40, 30, 60); // Red door</code></pre>
+<p>
+Before translating the origin again and drawing a second house, we restore the
+drawing state we saved earlier:
+</p>
+<pre><code>context.restore(); // Restore original drawing state</code></pre>
+<p>
+This returns the origin back to the top left corner of the canvas. So, when we translate
+the origin to (50, 150) and draw a second house, the second house is positioned at (50, 150)
+in absolute coordinates on the canvas.
+</p>
+<pre><code>context.translate(50, 150); // Position of the second house&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;context.fillStyle = '#99CCFF';&#x000A;context.fillRect(15, 20, 20, 40); // Left window&#x000A;context.fillRect(85, 20, 20, 40); // Right window&#x000A;context.fillStyle = '#FF0000';&#x000A;context.fillRect(45, 40, 30, 60); // Red door</code></pre>
+<p>
+To learn more about saving and restoring the drawing state, visit the
+<a class="reference-link" data-slug="save" href="../save/index.html">save() / restore()</a>
+lesson.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_example3_editor'>var canvas = document.getElementById('translate_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.save(); // Save original drawing state&#x000A;&#x000A;context.translate(200, 50); // Position of the first house&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;context.fillStyle = '#99CCFF';&#x000A;context.fillRect(15, 20, 20, 40); // Left window&#x000A;context.fillRect(85, 20, 20, 40); // Right window&#x000A;context.fillStyle = '#FF0000';&#x000A;context.fillRect(45, 40, 30, 60); // Red door&#x000A;&#x000A;context.restore(); // Restore original drawing state&#x000A;&#x000A;context.translate(50, 150); // Position of the second house&#x000A;context.fillStyle = '#FFFF00';&#x000A;context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;context.fillStyle = '#99CCFF';&#x000A;context.fillRect(15, 20, 20, 40); // Left window&#x000A;context.fillRect(85, 20, 20, 40); // Right window&#x000A;context.fillStyle = '#FF0000';&#x000A;context.fillRect(45, 40, 30, 60); // Red door&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='translate_example3'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 3
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/translate/challenge3Visual1-8dc3a956210ccc196806bae4ffbdc025db39a8c8c710e554ab740a521244a4c9.png" alt="Challenge3visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Use the
+<span><code>context.save()</code>,
+</span>
+<span><code>context.restore()</code>,
+</span>
+and
+<code>context.translate()</code>
+methods to draw the first French flag at position (10, 50). Then, restore the coordinate
+system to its original state and draw the second French flag at position (220, 100);
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_challenge3_editor'>var canvas = document.getElementById('translate_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.fillStyle = '#0055A4';&#x000A;context.fillRect(0, 0, 60, 120); // Blue bar&#x000A;context.fillStyle = '#FFFFFF';&#x000A;context.fillRect(60, 0, 60, 120); // White bar&#x000A;context.fillStyle = '#EF4135';&#x000A;context.fillRect(120, 0, 60, 120); // Red bar&#x000A;&#x000A;context.fillStyle = '#0055A4';&#x000A;context.fillRect(0, 0, 60, 120); // Blue bar&#x000A;context.fillStyle = '#FFFFFF';&#x000A;context.fillRect(60, 0, 60, 120); // White bar&#x000A;context.fillStyle = '#EF4135';&#x000A;context.fillRect(120, 0, 60, 120); // Red bar&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/translate/challenge3-889b2f1455f331f9f31c4c4ea7a27896b395616b915068de6ee30b97904a6af9.png" alt="Challenge3" /></div>
+<canvas id='translate_challenge3'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Use a Function to Translate a Drawing
+</h2>
+<p>
+It doesn't make sense to keep copying the same code over and over again every
+time we want to draw a yellow house or French flag. To re-use a drawing, we should
+draw it in a function.
+</p>
+<p>
+In this example, we define a
+<code>drawYellowHouse()</code>
+function to draw a yellow house.
+</p>
+<pre><code>function drawYellowHouse(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = '#FFFF00';&#x000A;  context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;  context.fillStyle = '#99CCFF';&#x000A;  context.fillRect(15, 20, 20, 40); // Left window&#x000A;  context.fillRect(85, 20, 20, 40); // Right window&#x000A;  context.fillStyle = '#FF0000';&#x000A;  context.fillRect(45, 40, 30, 60); // Red door&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+The
+<code>drawYellowHouse()</code>
+function has two parameters:
+<code>x</code>
+is the x-coordinate of the house's origin and
+<code>y</code>
+is the y-coordinate. We save and restore the drawing state by calling the
+<code>context.save()</code>
+method at the start of the function and the
+<code>context.restore()</code>
+method at the end. This restores both the coordinate system and the
+<code>context.fillStyle</code>
+property to the way they were before the function made any changes.
+</p>
+<p>
+Now we can draw as many yellow houses as we want simply by calling the
+<code>drawYellowHouse()</code>
+function and passing it the coordinates for the house.
+</p>
+<pre><code>drawYellowHouse(40, 40);&#x000A;drawYellowHouse(120, 200);&#x000A;drawYellowHouse(280, 100);</code></pre>
+<p>
+To learn more about functions and saving and restoring the drawing state, visit the
+<a class="reference-link" data-slug="functions" href="../functions/index.html">Functions</a>
+and
+<a class="reference-link" data-slug="save" href="../save/index.html">save() / restore()</a>
+lessons.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_example4_editor'>var canvas = document.getElementById('translate_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function drawYellowHouse(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = '#FFFF00';&#x000A;  context.fillRect(0, 0, 120, 100); // Yellow house&#x000A;  context.fillStyle = '#99CCFF';&#x000A;  context.fillRect(15, 20, 20, 40); // Left window&#x000A;  context.fillRect(85, 20, 20, 40); // Right window&#x000A;  context.fillStyle = '#FF0000';&#x000A;  context.fillRect(45, 40, 30, 60); // Red door&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;drawYellowHouse(40, 40);&#x000A;drawYellowHouse(120, 200);&#x000A;drawYellowHouse(280, 100);&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='translate_example4'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge4'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 4
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/translate/challenge4Visual1-efc119dffd9644034f33ac29ef19bf89ac63313b2208f570f96e3335c5118903.png" alt="Challenge4visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+The
+<code>drawPineTree()</code>
+function draws a pine tree at the origin. Re-define the function so it draws the
+pine tree at coordinates passed into the function.
+</p>
+<p>
+Then, use the function to draw pine trees at the positions (5, 40), (105, 10), (205, 60), and (305, 30).
+</p>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_challenge4_editor'>var canvas = document.getElementById('translate_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function drawPineTree() {&#x000A;  context.fillStyle = 'ForestGreen';&#x000A;  context.fillRect(40, 0, 20, 40);&#x000A;  context.fillRect(30, 40, 40, 40);&#x000A;  context.fillRect(20, 80, 60, 40);&#x000A;  context.fillRect(10, 120, 80, 40);&#x000A;  context.fillRect(0, 160, 100, 40);&#x000A;  context.fillStyle = 'Sienna';&#x000A;  context.fillRect(40, 200, 20, 40);&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/translate/challenge4-622e26a0bc4fb94dbe93d4309e4ef654aa202f1c3d166ab0099fd721a1dba26a.png" alt="Challenge4" /></div>
+<canvas id='translate_challenge4'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Nested Frames of Reference
+</h2>
+<p>
+When we are in a city and someone asks us for directions to another part of
+the city, we usually don't direct them using latitude and longitude as though
+they were coming from a different part of the globe, never mind coordinates
+to find the Earth in the solar system in the Milky Way Galaxy in the universe.
+Same thing when we are in a mall or even in a single room.
+</p>
+<p>
+It is usually much more convenient and less confusing to direct someone using
+a local frame of reference rather than an absolute frame of reference.
+</p>
+<p>
+In this example, we add details to the windows and the red door in the yellow
+house, and we make drawing those details simpler by translating to a local frame
+of reference.
+</p>
+<p>
+We start by defining a
+<code>drawWindow()</code>
+function. In the yellow house, the first window is a rectangle positioned at
+(15, 20) in the local coordinates of the house with a width of 20 and a height
+of 40. As long as a window was just a rectangle, it made sense to use the
+<code>context.fillRect()</code>
+method to position the window. But now that a window is going to be a little drawing on
+its own, with lots of rectangles inside of it, we are going to turn it into a
+function and position it using the
+<code>context.translate()</code>
+method.
+</p>
+<pre><code>function drawWindow(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = 'White';&#x000A;  context.fillRect(0, 0, 20, 40); // White border&#x000A;  context.fillStyle = '#99CCFF';&#x000A;  context.fillRect(2, 2, 7, 7); // Pane of glass&#x000A;  context.fillRect(11, 2, 7, 7);&#x000A;  context.fillRect(2, 11, 7, 7);&#x000A;  context.fillRect(11, 11, 7, 7);&#x000A;  context.fillRect(2, 20, 16, 18);&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+Note that the white rectangle we draw to create a white border for the window
+is positioned at (0, 0) and the first pane of glass is positioned at (2, 2). Those
+coordinates are in the local frame of reference of the window. We don't care where
+the window is positioned in the house or where the house is positioned on the canvas.
+</p>
+<p>
+Next, we define a
+<code>drawRedDoor()</code>
+function and draw the red door using local coordinates also:
+</p>
+<pre><code>function drawRedDoor(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = '#FF0000';&#x000A;  context.fillRect(0, 0, 30, 60); // Red door&#x000A;  context.fillStyle = '#99CCFF';&#x000A;  context.fillRect(6, 6, 18, 12); // Pane of glass&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(22, 28, 5, 5); // Door knob&#x000A;  context.fillRect(10, 45, 10, 5); // Mail slot&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+Again, note that the window in the door is positioned at (6, 6) in the
+local coordinates of the door. If we were going to give the window a stained
+glass design instead of making it a simple rectangle, we would draw the
+stained glass design by translating into the local coordinates of the door's
+window. It makes our drawing simpler and less confusing.
+</p>
+<p>
+Now that we are using functions to draw our windows and red door, we update the
+<code>drawYellowHouse()</code>
+function:
+</p>
+<pre><code>function drawYellowHouse(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = '#FFFF00';&#x000A;  context.fillRect(0, 0, 120, 100);&#x000A;  drawWindow(15, 20);&#x000A;  drawWindow(85, 20);&#x000A;  drawRedDoor(45, 40);&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+Finally, we draw two yellow houses, one at (100, 50) and the other at (200, 50).
+</p>
+<pre><code>drawYellowHouse(50, 100);&#x000A;drawYellowHouse(200, 100);</code></pre>
+<p>
+Change the coordinates of one of the yellow houses to see the entire house move
+relative to the canvas. Change the coordinates of one of the windows inside the
+<code>drawYellowHouse()</code>
+function to see an entire window move relative to the yellow house. Drawing nested
+objects in local coordinates is much easier than drawing them in absolute coordinates.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_example5_editor'>var canvas = document.getElementById('translate_example5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;drawYellowHouse(50, 100);&#x000A;drawYellowHouse(200, 100);&#x000A;&#x000A;function drawWindow(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = 'White';&#x000A;  context.fillRect(0, 0, 20, 40); // White border&#x000A;  context.fillStyle = '#99CCFF';&#x000A;  context.fillRect(2, 2, 7, 7); // Pane of glass&#x000A;  context.fillRect(11, 2, 7, 7);&#x000A;  context.fillRect(2, 11, 7, 7);&#x000A;  context.fillRect(11, 11, 7, 7);&#x000A;  context.fillRect(2, 20, 16, 18);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawRedDoor(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = '#FF0000';&#x000A;  context.fillRect(0, 0, 30, 60); // Red door&#x000A;  context.fillStyle = '#99CCFF';&#x000A;  context.fillRect(6, 6, 18, 12); // Pane of glass&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(22, 28, 5, 5); // Door knob&#x000A;  context.fillRect(10, 45, 10, 5); // Mail slot&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawYellowHouse(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = '#FFFF00';&#x000A;  context.fillRect(0, 0, 120, 100);&#x000A;  drawWindow(15, 20);&#x000A;  drawWindow(85, 20);&#x000A;  drawRedDoor(45, 40);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='translate_example5'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge5'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 5
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/translate/challenge5Visual1-7ba73c0a1841910cf7bf792befeeedfd579742c5fd357aae41ec071a5691c347.png" alt="Challenge5visual1" />
+<figcaption class='text-xs-center small'>Your drawing should look similar to, but not exactly, like this</figcaption>
+</figure>
+<p>
+Define the
+<code>drawOrnament()</code>
+function with three parameters so it positions the ornament at
+<span>
+(<code>x</code>,
+</span>
+<span><code>y</code>)
+</span>
+and fills it with the color
+<span><code>color</code>.
+</span>
+</p>
+<pre><code>function drawOrnament(x, y, color) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = color;&#x000A;  &#x000A;  // DRAW ORNAMENT IN LOCAL COORDINATES HERE&#x000A;  &#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+The ornament is drawn by drawing three rectangles on top of one another
+so the centers of the three rectangles are lined up. Use the dimensions
+in the diagram below to draw the three rectangles.
+</p>
+<img src="../../../assets/lessons/translate/challenge5Visual2-3bdea00465897349bdcb911e1c0a48fa5f4897a44a6b851286ca5f4c1795b252.png" alt="Challenge5visual2" />
+<p>
+Then, copy the
+<code>drawPineTree()</code>
+function you defined in Challenge 4 and draw some ornaments on the tree inside
+the function definition using local coordinates for the tree. Choose your own ornament
+positions and colors to create an aesthetic drawing. Your drawing will look similar to,
+but not exactly like the image above. Call the
+<code>drawPineTree()</code>
+function in your program to draw the tree at (100, 40):
+</p>
+<pre><code>drawPineTree(100, 40);</code></pre>
+<p>
+When you re-position the tree, the ornaments should move along with the tree. If your
+program seems to be working, mark the challenge as complete by selecting "Yes, it looks good".
+</p>
+<p>
+If you need help drawing the ornament, visit the
+<span><span><a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a></span>,
+</span>
+<span><span><a class="reference-link" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a></span>,
+</span>
+and
+<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+lessons.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_challenge5_editor'>var canvas = document.getElementById('translate_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// DRAW A PINE TREE AT (100, 40)&#x000A;&#x000A;function drawOrnament(x, y, color) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = color;&#x000A;  &#x000A;  // DRAW ORNAMENT IN LOCAL COORDINATES HERE&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawPineTree(x, y) {&#x000A;  &#x000A;  // DRAW A PINE TREE IN LOCAL COORDINATES HERE&#x000A;  &#x000A;  // DRAW ORNAMENTS ON THE TREE USING LOCAL COORDINATES&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='translate_challenge5'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Anchor Points
+</h2>
+<p>
+Right now, we are positioning the yellow house by its top left corner. That's
+the origin we are using for the house's local coordinate system.
+</p>
+<p>
+When drawing a house, it makes sense to use its top left corner as the origin for
+the local coordinate system. But when positioning a house on the canvas, it makes
+more sense to position the house according to where it is sitting on the ground, not
+hanging in the air.
+</p>
+<p>
+In this example, we re-define the
+<code>drawYellowHouse()</code>
+function so we are passing it the coordinates for its bottom center point, not
+its top left point.
+</p>
+<p>
+We start by changing its parameters from
+<code>x</code>
+and
+<code>y</code>
+to
+<code>centerX</code>
+and
+<span><code>groundY</code>.
+</span>
+Then, we save the drawing state as usual and translate the origin of the coordinate
+system to
+<span>
+(<code>centerX</code>,
+</span>
+<span><code>groundY</code>),
+</span>
+which is the anchor point for the house.
+</p>
+<pre><code>function drawYellowHouse(centerX, groundY) {&#x000A;  context.save();&#x000A;  context.translate(centerX, groundY); // The house's anchor point&#x000A;  &#x000A;  // Code to draw the house&#x000A;  &#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+Now, we could use the anchor point as the origin of the local coordinate
+system to draw the house, but that would be a pain. It is easier
+to draw the house when the origin is at the top left corner of the house, not
+at the bottom center point. So, we are going to use the
+<code>context.translate()</code>
+method again to move the origin before drawing. This gives us the best of
+both worlds: a good anchor point for positioning the house on the canvas and a good origin
+point for drawing the house itself.
+</p>
+<pre><code>function drawYellowHouse(centerX, groundY) {&#x000A;  context.save();&#x000A;  context.translate(centerX, groundY); // The house's anchor point&#x000A;  context.translate(-60, -100); // The origin for drawing the house&#x000A;  &#x000A;  // Code to draw the house&#x000A;  &#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+Since we know the house is 120 pixels wide and 100 pixels tall, we can move the
+origin from the bottom center point to the top left corner by moving it left
+60 pixels (half the width) and up 100 pixels. Now that the origin of the coordinate
+system back in the top left corner, we can draw the house just like we did before.
+</p>
+<pre><code>function drawYellowHouse(centerX, groundY) {&#x000A;  context.save();&#x000A;  context.translate(centerX, groundY); // The house's anchor point&#x000A;  context.translate(-60, -100); // The origin for drawing the house&#x000A;  context.fillStyle = '#FFFF00';&#x000A;  context.fillRect(0, 0, 120, 100);&#x000A;  drawWindow(15, 20);&#x000A;  drawWindow(85, 20);&#x000A;  drawRedDoor(45, 40);&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+Change the value assigned to the variable
+<code>groundY</code>
+at the top of the program to change the y-coordinate of the ground. We have also
+made minor changes to the
+<code>drawYellowHouse()</code>
+function so you can see the anchor point of the house and the origin point for
+drawing the house. To show the origin point of the house, uncomment out the first
+call to
+<code>drawAxes()</code>
+inside the
+<code>drawYellowHouse()</code>
+function.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_example6_editor'>var canvas = document.getElementById('translate_example6');&#x000A;var context = canvas.getContext('2d');&#x000A;var groundY = 240; // Assign the y-coordinate of the ground&#x000A;&#x000A;drawTheGround(groundY);&#x000A;drawYellowHouse(150, groundY);&#x000A;&#x000A;function drawYellowHouse(centerX, groundY) {&#x000A;  context.save();&#x000A;  context.translate(centerX, groundY); // The house's anchor point&#x000A;  context.save();&#x000A;  context.translate(-60, -100); // The origin for drawing the house&#x000A;  context.fillStyle = '#FFFF00';&#x000A;  context.fillRect(0, 0, 120, 100);&#x000A;  drawWindow(15, 20);&#x000A;  drawWindow(85, 20);&#x000A;  drawRedDoor(45, 40);&#x000A;  //drawAxes(); // Draw axes at the origin point&#x000A;  context.restore();&#x000A;  drawAxes(); // Draw axes at the anchor point&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawWindow(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = 'White';&#x000A;  context.fillRect(0, 0, 20, 40); // White border&#x000A;  context.fillStyle = '#99CCFF';&#x000A;  context.fillRect(2, 2, 7, 7); // Pane of glass&#x000A;  context.fillRect(11, 2, 7, 7);&#x000A;  context.fillRect(2, 11, 7, 7);&#x000A;  context.fillRect(11, 11, 7, 7);&#x000A;  context.fillRect(2, 20, 16, 18);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawRedDoor(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = '#FF0000';&#x000A;  context.fillRect(0, 0, 30, 60); // Red door&#x000A;  context.fillStyle = '#99CCFF';&#x000A;  context.fillRect(6, 6, 18, 12); // Pane of glass&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(22, 28, 5, 5); // Door knob&#x000A;  context.fillRect(10, 45, 10, 5); // Mail slot&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawTheGround(groundY) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Black';&#x000A;  context.fillRect(0, groundY, canvas.width, 2);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawAxes() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Red';&#x000A;  context.strokeStyle = 'Red';&#x000A;  context.font = '16px Arial';&#x000A;  context.textAlign = 'center';&#x000A;  context.textBaseline = 'middle';&#x000A;  drawPoint(0, 0);&#x000A;  drawLine(0, 0, 50, 0);&#x000A;  drawArrow(50, 0, 0);&#x000A;  context.fillText('x', 60, 0);&#x000A;  drawLine(0, 0, 0, 50);&#x000A;  drawArrow(0, 50, 0.5 * Math.PI);&#x000A;  context.fillText('y', 0, 60);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawPoint(x, y) {&#x000A;  context.beginPath();&#x000A;  context.arc(x, y, 3, 0, 2 * Math.PI, false);&#x000A;  context.fill();&#x000A;}&#x000A;&#x000A;function drawLine(x1, y1, x2, y2) {&#x000A;  context.beginPath();&#x000A;  context.moveTo(x1, y1);&#x000A;  context.lineTo(x2, y2);&#x000A;  context.stroke();&#x000A;}&#x000A;&#x000A;function drawArrow(x, y, angle) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.rotate(angle);&#x000A;  context.beginPath();&#x000A;  context.moveTo(0, 0);&#x000A;  context.lineTo(-10, 5);&#x000A;  context.lineTo(-10, -5);&#x000A;  context.closePath();&#x000A;  context.fill();&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='translate_example6'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge6'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 6
+</h2>
+<figure class='float-xs-right px-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/translate/challenge6Visual1-8e90ba388392f19e49882086b3d819681de2deebb77011b377b79255fc1363d0.png" alt="Challenge6visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+</figure>
+<p>
+Copy the
+<code>drawPineTree()</code>
+function you defined in Challenge 4 (the one without the ornaments), and
+re-define it so you can position a tree on the canvas using the bottom center
+point of the tree as its anchor point.
+</p>
+<p>
+Hint: A pine tree is 100 pixels wide and 240 pixels tall.
+</p>
+<p>
+Then, draw a pine tree positioned on the ground at (150,
+<span><code>groundY</code>),
+</span>
+where
+<code>groundY</code>
+is the local variable storing the y-coordinate of the ground.
+</p>
+<pre><code>drawPineTree(150, groundY);&#x000A;</code></pre>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_challenge6_editor'>var canvas = document.getElementById('translate_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;var groundY = 280; // Assign the y-coordinate of the ground&#x000A;&#x000A;drawTheGround(groundY);&#x000A;&#x000A;// DRAW A PINE TREE AT (150, groundY)&#x000A;&#x000A;function drawPineTree(centerX, groundY) {&#x000A;  &#x000A;  // MOVE THE ORIGIN TO THE ANCHOR POINT HERE&#x000A;  &#x000A;  // MOVE THE ORIGN TO THE TOP LEFT CORNER OF THE PINE TREE HERE&#x000A;  &#x000A;  // DRAW A PINE TREE IN LOCAL COORDINATES HERE&#x000A;  &#x000A;}&#x000A;&#x000A;function drawTheGround(groundY) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Black';&#x000A;  context.fillRect(0, groundY, canvas.width, 2);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/translate/challenge6-8fd99740da942fdc4a6b359e596edc5b96191678e1b8a41a3c4a218b5994d3b9.png" alt="Challenge6" /></div>
+<canvas id='translate_challenge6'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Use Translation with Other Transformations
+</h2>
+<p>
+While good anchor points are helpful in positioning drawings on the canvas,
+they are necessary when scaling or rotating drawings.
+</p>
+<p>
+In this example, we draw two houses. The anchor point of the green house is
+its top left corner. The anchor point of the yellow house is its bottom center
+point. We can scale both houses by setting a scale factor.
+</p>
+<p>
+Right now, both houses are sitting on the ground with a scale factor of 1.
+Assign the local variable
+<code>scaleFactor</code>
+at the top of the program a value of 1.2 to see what happens.
+</p>
+<pre><code>var scaleFactor = 1.2;</code></pre>
+<p>
+While both houses scale, only the yellow house remains anchored on the ground.
+Note that the anchor point does not move when a house is scaled.
+</p>
+<p>
+To learn more about scaling the coordinate system, visit the
+<a class="reference-link" data-slug="scale" href="../scale/index.html">scale()</a>
+lesson.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="scale" href="../scale/index.html">scale()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='translate_example7_editor'>var canvas = document.getElementById('translate_example7');&#x000A;var context = canvas.getContext('2d');&#x000A;var groundY = 220; // Assign the y-coordinate of the ground&#x000A;var scaleFactor = 1; // Assign the scale factor of the houses&#x000A;&#x000A;drawTheGround(groundY);&#x000A;drawGreenHouse(10, groundY - 100);&#x000A;drawYellowHouse(290, groundY);&#x000A;&#x000A;function drawYellowHouse(centerX, groundY) {&#x000A;  context.save();&#x000A;  context.translate(centerX, groundY); // The house's anchor point&#x000A;  context.scale(scaleFactor, scaleFactor);&#x000A;  context.save();&#x000A;  context.translate(-60, -100); // The origin for drawing the house&#x000A;  context.fillStyle = '#FFFF00';&#x000A;  context.fillRect(0, 0, 120, 100);&#x000A;  drawWindow(15, 20);&#x000A;  drawWindow(85, 20);&#x000A;  drawRedDoor(45, 40);&#x000A;  context.restore();&#x000A;  drawAxes(); // Draw axes at the anchor point&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawGreenHouse(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y); // The house's anchor point and origin for drawing the house&#x000A;  context.scale(scaleFactor, scaleFactor);&#x000A;  context.fillStyle = '#00FF00';&#x000A;  context.fillRect(0, 0, 120, 100);&#x000A;  drawWindow(15, 20);&#x000A;  drawWindow(85, 20);&#x000A;  drawRedDoor(45, 40);&#x000A;  drawAxes(); // Draw axes at the anchor point&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawWindow(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = 'White';&#x000A;  context.fillRect(0, 0, 20, 40); // White border&#x000A;  context.fillStyle = '#99CCFF';&#x000A;  context.fillRect(2, 2, 7, 7); // Pane of glass&#x000A;  context.fillRect(11, 2, 7, 7);&#x000A;  context.fillRect(2, 11, 7, 7);&#x000A;  context.fillRect(11, 11, 7, 7);&#x000A;  context.fillRect(2, 20, 16, 18);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawRedDoor(x, y) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = '#FF0000';&#x000A;  context.fillRect(0, 0, 30, 60); // Red door&#x000A;  context.fillStyle = '#99CCFF';&#x000A;  context.fillRect(6, 6, 18, 12); // Pane of glass&#x000A;  context.fillStyle = '#FFD700';&#x000A;  context.fillRect(22, 28, 5, 5); // Door knob&#x000A;  context.fillRect(10, 45, 10, 5); // Mail slot&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawTheGround(groundY) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Black';&#x000A;  context.fillRect(0, groundY, canvas.width, 2);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawAxes() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Red';&#x000A;  context.strokeStyle = 'Red';&#x000A;  context.font = '16px Arial';&#x000A;  context.textAlign = 'center';&#x000A;  context.textBaseline = 'middle';&#x000A;  drawPoint(0, 0);&#x000A;  drawLine(0, 0, 50, 0);&#x000A;  drawArrow(50, 0, 0);&#x000A;  context.fillText('x', 60, 0);&#x000A;  drawLine(0, 0, 0, 50);&#x000A;  drawArrow(0, 50, 0.5 * Math.PI);&#x000A;  context.fillText('y', 0, 60);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawPoint(x, y) {&#x000A;  context.beginPath();&#x000A;  context.arc(x, y, 3, 0, 2 * Math.PI, false);&#x000A;  context.fill();&#x000A;}&#x000A;&#x000A;function drawLine(x1, y1, x2, y2) {&#x000A;  context.beginPath();&#x000A;  context.moveTo(x1, y1);&#x000A;  context.lineTo(x2, y2);&#x000A;  context.stroke();&#x000A;}&#x000A;&#x000A;function drawArrow(x, y, angle) {&#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.rotate(angle);&#x000A;  context.beginPath();&#x000A;  context.moveTo(0, 0);&#x000A;  context.lineTo(-10, 5);&#x000A;  context.lineTo(-10, -5);&#x000A;  context.closePath();&#x000A;  context.fill();&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='translate_example7'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div aria-hidden='true' aria-labelledby='referenceModalLabel' class='modal fade' id='reference-modal' role='dialog' tabindex='-1'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<h4 class='modal-title' id='referenceModalLabel'></h4>
+</div>
+<div class='modal-body'></div>
+<div class='modal-footer'>
+<div class='float-xs-right'>
+<button class='btn btn-secondary' data-dismiss='modal' type='button'>Close</button>
+</div>
+<div class='text-xs-left'>
+<button class='btn btn-primary text-white lesson-link'>View Full Lesson</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+<!-- Localized -->
