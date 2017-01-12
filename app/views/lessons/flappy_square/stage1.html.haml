@@ -147,7 +147,7 @@
             In our game our flying square will be just that, a simple square.
           %p
             In this example, we'll draw a simple square using
-            = link_to_lesson('context.fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            = link_to_lesson('context.fillRect(x, y, width, height)', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
             that is
             %span.highlight 50 pixels wide and 50 pixels tall.
             We'll position it so that its
@@ -229,8 +229,11 @@
             %span.highlight Variables will allow us to store where it is and position it effectively.
           %p
             In this example we position the flappy bird at the position
-            %span.highlight (200,50)
+            %span.highlight (50,150)
             by setting the assigned variables.
+          %p
+            In order to demonstrate how we can change a variable we initially set the "y" variable
+            to 200 and then subtract 50 to position the flappy square at (50, 150)
 
           = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_style, :fill_rect]
 
@@ -267,9 +270,8 @@
             %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
-            We can
+            Use
             %span.highlight
-              use
               = link_to_lesson('variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
               to automatically size and position
             the flappy square.
@@ -300,10 +302,12 @@
             var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
-            // SET THE VARIABLES PROPERLY
-            var size =
+            var size = 20;
+
+            // SET THE X VARIABLE PROPERLY
             var x =
-            var y =
+
+            // CREATE AND SET THE Y VARIABLE
 
             context.fillRect(x, y, size, size);
 
@@ -451,16 +455,16 @@
           %p
             Drawing frames in rapid sequence can be done a number of ways.
             For our purposes we'll use the
-            = link_to_lesson('setInterval()', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
+            = link_to_lesson('setInterval(function, intervalTime)', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
             method.
-            %code setInterval()
+            %code setInterval(function, intervalTime)
             runs the specified code at a regular interval (e.g. every second).
 
           %p
             Our
             %span.highlight setInterval() allows us to draw frames in rapid sequence.
             We can change the speed of our animation by adjusting the interval in
-            = link_to_lesson('setInterval()', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
+            = link_to_lesson('setInterval(function, intervalTime)', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
           %p For example:
           %pre
             %code
@@ -553,11 +557,11 @@
 
           %p
             In this challenge we're going to use
-            %code setInterval()
+            = link_to_lesson('setInterval(function, intervalTime)', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
             to animate our flappy square.
           %p
             Use
-            %span.highlight setInterval(),
+            %span.highlight setInterval(function, intervalTime),
             called from the canvas "focus" event, to
             %span.highlight draw the flappy square a bit lower in each frame
             as if it were falling.
@@ -671,7 +675,7 @@
             = link_to_lesson('context.clearRect(x, y, width, height)', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
             allows us to clear an area of the canvas. For our purposes we'll use it to clear the entire canvas.
           %p
-            In this example we show our previous example in reverse. If this were run without
+            In this example we show the example from the last lesson in reverse. If this were run without
             clearing the canvas you wouldn't see any changes, but since we're clearing the canvas
             in between each frame we see the drawing get smaller and smaller.
           %p In order to clear the entire canvas we use the following code:
