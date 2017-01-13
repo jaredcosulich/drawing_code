@@ -169,10 +169,10 @@
     challenge = page.find("#challenge" + index);
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
-    testSolution = function(index) {
+    testSolution = function(i) {
       var solution, testCode;
       solution = function(canvas, context) {
-        return context.fillRect(50, 100 + (index * 10), 20, 20);
+        return context.fillRect(50, 100 + (i * 10), 20, 20);
       };
       testCode = new Test.Code({
         code: solution,
@@ -181,8 +181,8 @@
       return testCode.test(function(success) {
         var message;
         if (success) {
-          if (index < 5) {
-            return testSolution(index + 1);
+          if (i < 5) {
+            return testSolution(i + 1);
           } else {
             message = '<strong>Success!</strong> You\'re successfull cleared the canvas to complete the animation cycle!';
             App.currentProgress.challengeComplete('flappy_square_stage1', "challenge" + index);
