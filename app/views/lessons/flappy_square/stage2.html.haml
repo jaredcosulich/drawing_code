@@ -556,35 +556,18 @@
           %p
             Let's take the code from Challenge
             = challenge_index - 1
-            and add a boundary for our game.
-          %p
-            The boundary should
-            %span.highlight start at (25, 25) and extend to (450, 300),
-            forming a rectangle. Use
-            %code context.lineTo()
-            to draw the boundary. Be sure to use
-            %code context.beginPath()
-            %code context.moveTo()
-            and
-            %code context.stroke()
-            as described in the lesson above.
-          %p
-            We'll also start organizing our variables into hashes which allow us to
-            organize variables more effectively. Here's an example:
-          %pre
-            %code
-              :preserve
-                var rectangle = {
-                  height: 10,
-                  width: 20
-                }
+            and check to make sure our flappy square hasn't fallen below the boundary.
 
-                rectangle.width
-                => 20
           %p
-            For our purposes we'll introduce
-            %span.highlight hashes for the "square" and the "boundary"
-            and store all of the relevant variables in those hashes.
+            When the flappy square goes above the maximum y value for the boundary
+            (remember y values are larger at the bottom of the canvas) we'll
+            stop the game and display a message.
+
+          %p
+            We've provided the code to stop the game and display the message. You need
+            to call the method and determine when the game should be ended in your
+            %code checkBoundary()
+            function.
 
           %p In the end your flappy square should behave like the example provided to the right.
           = render 'lessons/relevant', relevant: [:line_to, :event_listeners]
@@ -616,9 +599,6 @@
             };
 
             function drawBoundary() {
-
-              // Draw your boundary using boundary.minX, boundary.minY, etc. here.
-
             }
 
             function drawSquare() {
@@ -628,6 +608,26 @@
             }
 
             function adjustPosition() {
+            }
+
+            function checkBoundary() {
+
+              // CODE TO CHECK WHETHER FLAPPY SQUARE
+              // IS ABOVE BOUNDARY FLOOR HERE.
+              if () {
+                endGame();
+              }
+
+            }
+
+            function endGame() {
+              pauseAnimation();
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
             }
 
             function programSteps() {
