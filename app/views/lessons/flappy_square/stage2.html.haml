@@ -10,7 +10,7 @@
         Stage 2 Overview
       %p
         In this stage we'll make our flappy bird fly!
-        We'll listen for the "up" key to be pressed and
+        We'll listen for a click on the canvas and
         make our flappy bird fly a bit before falling
         back down.
       %p
@@ -32,18 +32,22 @@
       .row
         .col-xs-12
           %h2.py-2
-            Lesson: Responding To Key Events
+            Lesson: Responding To Events
           %p
             In Stage 1 we caught a glimpse of
             = link_to_lesson('event listeners', :event_listeners, nil, class: 'reference-link', data: {slug: :event_listeners})
             when we used them to start and pause our animations when the
             canvas receives or loses focus (the 'focus' and 'blur' events).
           %p
-            In this example we'll use key events to move our square around the canvas.
+            In this example we'll listen for mouse clicks and move our square to where ever we click.
           %p
-            With key events we need to not only listen for the keydown event but also
-            make sure we're listening for the right key. We do this by checking the
-            keyCode on the event object that is passed to the event listener.
+            We can listen for clicks on the canvas using code like this:
+          %pre
+            %code
+              :preserve
+                canvas.addEventListener('click', handleClick);
+          %p
+            Click around on the canvas and watch how the square jumps to each mouse click.
 
           = render 'lessons/relevant', relevant: [:event_listeners, :fill_rect, :coordinates]
 
@@ -55,62 +59,27 @@
                 var canvas = document.getElementById('flappy_square_stage2_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
-                var interval;
-                var running = false;
-                var size = 10;
-                var move = 5;
-                var x = 0;
-                var y = 0;
-
-                function drawSquare() {
-                  context.fillRect(x, y, size, size);
+                function drawSquare(x, y) {
+                  context.fillRect(x - 20, y - 20, 40, 40);
                 }
 
-                function adjustPosition(e) {
-                  if (running) {
-                    switch (e.keyCode) {
-                      case(37):
-                        x -= move;
-                        break;
-                      case(38):
-                        y -= move;
-                        break;
-                      case(39):
-                        x += move;
-                        break;
-                      case(40):
-                        y += move;
-                        break;
-                    }
-                  }
-                  e.preventDefault();
-                }
-
-                function runProgram() {
+                function reset() {
                   context.clearRect(0, 0, canvas.width, canvas.height);
-                  drawSquare();
-                }
-
-                function startAnimation() {
-                  running = true;
-                  interval = setInterval(runProgram, 20);
-                }
-
-                function pauseAnimation() {
-                  running = false;
-                  clearInterval(interval);
 
                   context.font = "20px serif";
                   context.textAlign = 'center';
-                  context.fillText('Click on the canvas to start the animation.', canvas.width / 2, 50);
-                  context.fillText('Then use arrow keys to control the square.', canvas.width / 2, 100);
+                  context.fillText('Click anywhere on the canvas to move the square.', canvas.width / 2, 50);
                 }
 
-                canvas.addEventListener('keydown', adjustPosition);
+                function handleClick(e) {
+                  reset();
+                  drawSquare(e.layerX, e.layerY);
+                }
 
-                canvas.addEventListener('focus', startAnimation);
-                canvas.addEventListener('blur', pauseAnimation);
-                pauseAnimation();
+                canvas.addEventListener('click', handleClick);
+                reset();
+                drawSquare(100, 100);
+
 
             .visual.col-xs-6
               %h5
@@ -134,13 +103,10 @@
           %p
             Take your code from Stage 1 and make your flappy square fly.
           %p
-            %span.highlight
-              Listen for the keydown event and make sure the
-              'up' key is being pressed (keyCode = 38). Refer to the lesson above
-              if you're not sure how to use the keydown event.
-          %p
-            When the 'up' key is pressed then set the
-            %span.highlight yVelocity at 8.
+            Listen for
+            %span.highlight a click event
+            on the canvas. When a click is received set the
+            %span.highlight yVelocity to 8.
             This will cause the flappy square to jump up before
             being pulled back down by gravity.
           %p
@@ -151,13 +117,14 @@
             (this will be slow, but it will be a better framerate for testing).
 
           %p In the end your flappy square should behave like the example provided to the right.
+
           = render 'lessons/relevant', relevant: [:event_listeners]
-          = render 'lessons/code_preview', stage: 1, challenge: 6, editor_id: 'flappy_square_stage1_challenge6_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 7, editor_id: 'flappy_square_stage1_challenge7_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage2_challenge#{challenge_index}_editor"} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage2_challenge#{challenge_index}');
+            var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
             var interval;
@@ -170,27 +137,43 @@
             function drawSquare() {
             }
 
+            function flap() {
+
+              // CODE FOR ONE "FLAP"
+
+            }
+
             function adjustPosition() {
             }
 
-            function flap(e) {
-              // CODE FOR ONE FLAP
+            function programSteps() {
             }
 
             function runProgram() {
+              interval =
             }
 
+            // CODE TO CALL flap METHOD WHEN CANVAS IS CLICKED
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
             function startAnimation() {
-              interval =
+              runProgram();
             }
 
             function pauseAnimation() {
               clearInterval(interval);
             }
 
-            // LISTEN FOR A KEYDOWN EVENT AS WELL AND CALL flap()
             canvas.addEventListener('focus', startAnimation);
-            canvas.addEventListener('blur', pauseAnimation)
+            canvas.addEventListener('blur', pauseAnimation);
+            pauseAnimation();
 
         .visual.col-xs-6
           %h5
