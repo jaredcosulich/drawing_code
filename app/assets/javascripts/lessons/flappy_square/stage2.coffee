@@ -4,6 +4,7 @@ initFlappySquareStage2Challenges = ->
     initFlappySquareStage2Challenge2(page)
     initFlappySquareStage2Challenge3(page)
     initFlappySquareStage2Challenge4(page)
+    initFlappySquareStage2Challenge5(page)
 
 
 initFlappySquareStage2Challenge1 = (page) ->
@@ -17,6 +18,7 @@ initFlappySquareStage2Challenge1 = (page) ->
         App.currentProgress.challengeComplete('flappy_square_stage2', 'challenge1')
     ), 1000)
 
+
 initFlappySquareStage2Challenge2 = (page) ->
   challenge = page.find('#challenge2')
   canvas = new App.Canvas(challenge.find('canvas'))
@@ -27,6 +29,7 @@ initFlappySquareStage2Challenge2 = (page) ->
       canvas.selfAssess ->
         App.currentProgress.challengeComplete('flappy_square_stage2', 'challenge2')
     ), 2000)
+
 
 initFlappySquareStage2Challenge3 = (page) ->
   challenge = page.find('#challenge3')
@@ -42,6 +45,17 @@ initFlappySquareStage2Challenge3 = (page) ->
 
 initFlappySquareStage2Challenge4 = (page) ->
   challenge = page.find('#challenge4')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  challenge.find('.run').click ->
+    setTimeout(( ->
+      canvas.selfAssess ->
+        App.currentProgress.challengeComplete('flappy_square_stage2', 'challenge4')
+    ), 2000)
+
+initFlappySquareStage2Challenge5 = (page) ->
+  challenge = page.find('#challenge5')
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
@@ -73,7 +87,7 @@ initFlappySquareStage2Challenge4 = (page) ->
       checkMultipleTimes (success) ->
         if success
           message = '<strong>Success!</strong> You\'ve cleared the area outside of the boundary!'
-          App.currentProgress.challengeComplete('flappy_square_stage2', 'challenge4')
+          App.currentProgress.challengeComplete('flappy_square_stage2', 'challenge5')
         else
           message = 'Nice try, but you need to clear all areas outside of the boundary.'
 
