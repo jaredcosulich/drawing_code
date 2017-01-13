@@ -414,47 +414,37 @@
             %canvas{id: "flappy_square_stage2_challenge#{challenge_index}"}
           .alert
 
+
   - lesson_index += 1
   .lesson.row.py-3
     .col-xs-12
       .row
         .col-xs-12
           %h2.py-2
-            Lesson: Leaving The Game Area
+            Lesson: Monitoring Game State
           %p
-            We're going to want to create a "game area" which
-            is essentially just a square drawn within the canvas
-            that represents the valid area for the game to be drawn in.
+            In any game your code will need to be constantly monitoring
+            the environment, calculating whether different objects
+            are colliding or staying in bounds, etc.
           %p
-            It also will allow us to display the game name and score
-            above the game area later in Stage 4.
+            In our game one thing we need to monitor for is whether the
+            flappy square falls off the screen.
           %p
-            In this example we demonstrate a drawn area that, when you
-            move your mouse over if will say "In Game" and when you move
-            out of it will say "Out Of Game".
+            In this example we demonstrate a ball moving toward a line.
+            In each frame we call a function:
+          %pre
+            %code
+              :preserve
+                function checkBoundary() {
+                  if (ball.x + ball.radius >= wall.x) {
+                    endAnimation();
+                  }
+                }
           %p
-            In order to draw the game area we'll need to use the
-            = link_to_lesson('context.lineTo()', :line_to, nil, class: 'reference-link', data: {slug: :line_to})
-            method. It's a bit more compicated than the
-            %code context.fillRect()
-            method, though. When drawing a line you first trace the
-            path using
-            %code context.beginPath()
-            %code context.moveTo()
-            and
-            %code context.lineTo()
-            and then you paint the path using
-            %code context.stroke()
-          %p
-            Look at this example to see how
-            %code context.beginPath()
-            %code context.moveTo()
-            %code context.lineTo()
-            and
-            %code context.stroke()
-            are used to draw the square. You can also click on the
-            "lineTo()" button below in the "Relevant Lessons" section to see more details.
-          = render 'lessons/relevant', relevant: [:line_to, :event_listeners]
+            This code will constantly check to see if the ball has crossed
+            the line and will end the animation if it does.
+
+          = render 'lessons/relevant', relevant: [:line_to]
 
 
         .col-xs-12
@@ -464,45 +454,85 @@
                 var canvas = document.getElementById('flappy_square_stage2_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
-                var boundary = {
-                  minX: 50,
-                  maxX: 400,
-                  minY: 50,
-                  maxY: 300
+                var interval;
+                var ball = {
+                  radius: 10,
+                  x: 50,
+                  y: 150
                 };
 
-                function drawBoundary() {
-                  context.lineWidth = 2;
+                var line = {
+                  x: 250
+                };
+
+                function drawLine() {
                   context.beginPath();
-                  context.moveTo(boundary.minX, boundary.minY);
-                  context.lineTo(boundary.minX, boundary.maxY);
-                  context.lineTo(boundary.maxX, boundary.maxY);
-                  context.lineTo(boundary.maxX, boundary.minY);
-                  context.closePath();
+                  context.moveTo(line.x, 0);
+                  context.lineTo(line.x, canvas.height);
                   context.stroke();
                 }
 
-                function handleMouseMove(e) {
-                  context.clearRect(0, 0, canvas.width, canvas.height);
-
-                  drawBoundary();
-
-                  var x = e.layerX;
-                  var y = e.layerY;
-                  var inOut;
-                  if (x > boundary.minX && x < boundary.maxX && y > boundary.minY && y < boundary.maxY) {
-                   inOut = 'inside the game area.';
-                  } else {
-                   inOut = 'outside the game area.';
-                  }
-                  context.fillText('Your mouse is: ' + inOut, boundary.minX, 30);
+                function drawBall() {
+                  context.save()
+                  context.beginPath()
+                  context.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI, false)
+                  context.closePath()
+                  context.fill()
+                  context.restore()
                 }
 
-                canvas.addEventListener('mousemove', handleMouseMove);
+                function adjustPosition() {
+                  ball.x += 1;
+                }
 
-                context.font = "20px serif";
-                context.fillText('Mouse over the canvas.', boundary.minX, 30);
-                drawBoundary();
+                function checkBoundary() {
+                  if (ball.x + ball.radius >= line.x) {
+                    endAnimation();
+                  }
+                }
+
+                function endAnimation() {
+                  clearInterval(interval);
+
+                  context.font = "20px serif";
+                  context.textAlign = 'center';
+                  context.fillText('Boundary Reached.', canvas.width / 2, 100);
+                }
+
+                function programSteps() {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  adjustPosition();
+                  drawLine();
+                  drawBall();
+                  checkBoundary();
+                }
+
+                function runProgram() {
+                  interval = setInterval(programSteps, 25);
+                }
+
+                // The following code is provided for you.
+                // It creates an eventListener that listens
+                // for the canvas to come into "focus", which
+                // happens when you click on it.
+                // This allows us to stop and start each individual
+                // animation on this whole page separately.
+                function startAnimation() {
+                  runProgram();
+                }
+
+                function pauseAnimation() {
+                  clearInterval(interval);
+
+                  context.font = "20px serif";
+                  context.textAlign = 'center';
+                  context.fillText('Click anywhere on the canvas to start the animation.', canvas.width / 2, 50);
+                }
+
+                canvas.addEventListener('focus', startAnimation);
+                canvas.addEventListener('blur', pauseAnimation);
+                pauseAnimation();
+
 
             .visual.col-xs-6
               %h5
