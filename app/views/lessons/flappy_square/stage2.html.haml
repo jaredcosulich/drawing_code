@@ -36,10 +36,11 @@
           %p
             In Stage 1 we caught a glimpse of
             = link_to_lesson('event listeners', :event_listeners, nil, class: 'reference-link', data: {slug: :event_listeners})
-            when we used them to start and pause our animations when the
+            in the code we provided you that starts and pauses the animations when the
             canvas receives or loses focus (the 'focus' and 'blur' events).
           %p
-            In this example we'll listen for mouse clicks and move our square to where ever we click.
+            In this example we'll and an event listener that listens for mouse clicks
+            and we'll move our square to where ever we click.
           %p
             We can listen for clicks on the canvas using code like this:
           %pre
@@ -111,7 +112,7 @@
             being pulled back down by gravity.
           %p
             We'll also slow down the framerate so that you have more time to
-            hit the up key before the square falls off the canvas. For now
+            click on the canvas before the square falls off the canvas. For now
             let's set it to draw one frame every
             %span.highlight 80 miliseconds
             (this will be slow, but it will be a better framerate for testing).
