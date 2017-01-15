@@ -93,7 +93,7 @@
                   }
                 }
 
-                function runProgram() {
+                function programSteps() {
                   context.clearRect(0, 0, canvas.width, canvas.height);
                   moveBox();
                   drawBox();
@@ -101,8 +101,19 @@
                   checkWallCollision();
                 }
 
+                function runProgram() {
+                  interval = setInterval(programSteps, 50);
+                }
+
+
+                // The following code is provided for you.
+                // It creates an eventListener that listens
+                // for the canvas to come into "focus", which
+                // happens when you click on it.
+                // This allows us to stop and start each individual
+                // animation on this whole page separately.
                 function startAnimation() {
-                  interval = setInterval(runProgram, 50);
+                  runProgram();
                 }
 
                 function pauseAnimation() {
@@ -110,13 +121,13 @@
 
                   context.font = "20px serif";
                   context.textAlign = 'center';
-                  context.fillText('Click on the canvas to start the animation.', canvas.width / 2, 50);
+                  context.fillText('Click anywhere on the canvas to start the animation.', canvas.width / 2, 50);
                 }
 
                 canvas.addEventListener('focus', startAnimation);
                 canvas.addEventListener('blur', pauseAnimation);
-
                 pauseAnimation();
+
 
 
 
@@ -333,15 +344,26 @@
                   }
                 }
 
-                function runProgram() {
+                function programSteps() {
                   context.clearRect(0, 0, canvas.width, canvas.height);
 
                   adjustPositions();
                   drawBoxes();
                 }
 
+                function runProgram() {
+                  interval = setInterval(programSteps, 50);
+                }
+
+
+                // The following code is provided for you.
+                // It creates an eventListener that listens
+                // for the canvas to come into "focus", which
+                // happens when you click on it.
+                // This allows us to stop and start each individual
+                // animation on this whole page separately.
                 function startAnimation() {
-                  interval = setInterval(runProgram, 50);
+                  runProgram();
                 }
 
                 function pauseAnimation() {
@@ -349,14 +371,13 @@
 
                   context.font = "20px serif";
                   context.textAlign = 'center';
-                  context.fillText('Click on the canvas to start the animation.', canvas.width / 2, 50);
+                  context.fillText('Click anywhere on the canvas to start the animation.', canvas.width / 2, 50);
                 }
 
                 canvas.addEventListener('focus', startAnimation);
                 canvas.addEventListener('blur', pauseAnimation);
-
-                generateBoxes();
                 pauseAnimation();
+
 
 
             .visual.col-xs-6
@@ -504,17 +525,37 @@
             }
 
             function endGame() {
-              // EXTRACT CODE FROM checkBoundary()
-              // TO CREATE A COMMON endGame() method
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+
+              // Remember to run checkBoundary()
+              // and checkWalls() from there.
+
             }
 
             function runProgram() {
-              // Remember to run checkBoundary()
-              // and checkWalls() from there.
+              interval =
             }
 
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
             function startAnimation() {
-              interval =
+              runProgram();
             }
 
             function pauseAnimation() {
@@ -523,7 +564,7 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
-            canvas.addEventListener('keydown', flap);
+
 
         .visual.col-xs-6
           %h5
@@ -738,13 +779,33 @@
             }
 
             function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
             }
 
             function runProgram() {
+              interval =
             }
 
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
             function startAnimation() {
-              interval =
+              runProgram();
             }
 
             function pauseAnimation() {
@@ -753,7 +814,7 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
-            canvas.addEventListener('keydown', flap);
+
 
         .visual.col-xs-6
           %h5
@@ -866,13 +927,33 @@
             }
 
             function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
             }
 
             function runProgram() {
+              interval =
             }
 
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
             function startAnimation() {
-              interval =
+              runProgram();
             }
 
             function pauseAnimation() {
@@ -881,7 +962,7 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
-            canvas.addEventListener('keydown', flap);
+
 
         .visual.col-xs-6
           %h5

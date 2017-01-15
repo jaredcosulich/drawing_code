@@ -177,7 +177,7 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
-            pauseAnimation();
+
 
         .visual.col-xs-6
           %h5
@@ -402,7 +402,6 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
-            pauseAnimation();
 
 
 
@@ -659,7 +658,6 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
-            pauseAnimation();
 
 
 
@@ -926,7 +924,6 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
-            pauseAnimation();
 
 
         .visual.col-xs-6
@@ -1237,7 +1234,6 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
-            pauseAnimation();
 
         .visual.col-xs-6
           %h5
@@ -1504,6 +1500,17 @@
             function checkBoundary() {
             }
 
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
             function programSteps() {
 
               // Don't forget to clear the boundary.
@@ -1532,7 +1539,6 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
-            pauseAnimation();
 
 
         .visual.col-xs-6
