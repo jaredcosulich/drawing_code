@@ -151,7 +151,7 @@
           }
           return canvas.alert(message, success);
         });
-      }), 200);
+      }), 2500);
     });
   };
 
