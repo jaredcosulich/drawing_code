@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="n85nm1+y89zyqLOTStSF5Qqign/ijFJrw2z6n+sEQQhjUM5dk3uNKOfH7vKpi4r8Cv7WIEQ2rxVkKQImcsDkLQ==" />
+<meta name="csrf-token" content="TY9D1GZxjD1m/PgVD84C5TNv65x0IX4A5/vnvdyV486xEeoSqrjyyXOTpXTskQ38MzO/w9Kbg35Avh8ERVFG6w==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-6693732d946f61761af2eeafcf9c870441f1af9f77c9d2a5db4509578dd265e0-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -1784,6 +1784,10 @@ Canvas
 <h2 class='py-2'>
 Lesson: Clearing The Edges
 </h2>
+<figure class='float-xs-right pl-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/lesson6Visual-5d4863adc694c28b0065ae11e033698ab5e0fa194cd94b62d3aabaf821b3f514.png" alt="Lesson6visual" />
+<figcaption class='text-xs-center small'>The red areas are erased to designate the 'boundary'.</figcaption>
+</figure>
 <p>
 Since we have a boundary to our game area, it doesn't look
 great to have any part of our drawing (walls or the flappy square)
@@ -1795,13 +1799,25 @@ allow you to create complex animations on a single canvas.
 </p>
 <p>
 In this example we take our ball rolling animation and draw it
-in the middle of the canvase, clearing the areas around it so that
-it stays within the designated boundary.
+in the middle of the canvase, clearing the areas above and below it
+to demonstrate drawing each frame and then erasing parts of it
+to designate the boundary.
+</p>
+<p>
+In the image to the right you can see the red areas which are the areas
+being cleared out in the example below. This code uses the
+<a class="reference-link" data-slug="clear_rect" href="../clear_rect/index.html">context.clearRect(x, y, width, height)</a>
+method to clear the area above and the area below:
+</p>
+<pre><code>function clearBoundary() {&#x000A;  context.clearRect(0, 0, canvas.width, boundary.minY);&#x000A;  context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);&#x000A;}</code></pre>
+<p>
+This clears two rectangles, one from the top left of the screen down to the boundaries minY,
+and the other from the boundaries maxY to the bottom right of the canvas.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="clear_rect" href="../clear_rect/index.html">clearRect()</a>
 </p>
 
 </div>
@@ -1883,13 +1899,14 @@ that will clear the areas outside of the boundary after each frame is drawn.
 <p>
 We're basically drawing our full frame and then erasing everything outside of the
 boundary. We'll use the
-<a class="reference-link" data-slug="clear_rect" href="../clear_rect/index.html">context.clearRect()</a>
+<a class="reference-link" data-slug="clear_rect" href="../clear_rect/index.html">context.clearRect(x, y, width, height)</a>
 to erase everything outside of the boundary we've drawn.
 </p>
 <p>In the end your flappy square should behave like the example provided to the right.</p>
 <p>
 <strong>Relevant Lessons:</strong>
-<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="clear_rect" href="../clear_rect/index.html">clearRect()</a>
 </p>
 
 <div class='code-preview mb-2'>
