@@ -1254,6 +1254,11 @@
         .col-xs-12
           %h2.py-2
             Lesson: Clearing The Edges
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage2/lesson#{lesson_index}Visual.png", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "The red areas are erased to designate the 'boundary'."
+
           %p
             Since we have a boundary to our game area, it doesn't look
             great to have any part of our drawing (walls or the flappy square)
@@ -1263,10 +1268,28 @@
             allow you to create complex animations on a single canvas.
           %p
             In this example we take our ball rolling animation and draw it
-            in the middle of the canvase, clearing the areas around it so that
-            it stays within the designated boundary.
+            in the middle of the canvase, clearing the areas above and below it
+            to demonstrate drawing each frame and then erasing parts of it
+            to designate the boundary.
+          %p
+            In the image to the right you can see the red areas which are the areas
+            being cleared out in the example below. This code uses the
+            = link_to_lesson('context.clearRect(x, y, width, height)', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
+            method to clear the area above and the area below:
 
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+          %pre
+            %code
+              :preserve
+                function clearBoundary() {
+                  context.clearRect(0, 0, canvas.width, boundary.minY);
+                  context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+                }
+          %p
+            This clears two rectangles, one from the top left of the screen down to the boundaries minY,
+            and the other from the boundaries maxY to the bottom right of the canvas.
+
+
+          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1331,10 +1354,8 @@
                 }
 
                 function clearBoundary() {
-                  context.clearRect(0, 0, boundary.minX, canvas.height);
                   context.clearRect(0, 0, canvas.width, boundary.minY);
                   context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
-                  context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
                 }
 
                 function drawBall() {
@@ -1348,9 +1369,13 @@
                   context.restore();
                 }
 
-                function runProgram() {
-                  context.clearRect(0, 0, canvas.width, canvas.height);
+                function adjustPosition() {
                   distance += 2;
+                }
+
+                function programSteps() {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  adjustPosition();
                   drawRoad();
                   drawTrees();
                   drawGrass();
@@ -1358,8 +1383,19 @@
                   clearBoundary();
                 }
 
+                function runProgram() {
+                  interval = setInterval(programSteps, 50);
+                }
+
+
+                // The following code is provided for you.
+                // It creates an eventListener that listens
+                // for the canvas to come into "focus", which
+                // happens when you click on it.
+                // This allows us to stop and start each individual
+                // animation on this whole page separately.
                 function startAnimation() {
-                  interval = setInterval(runProgram, 50);
+                  runProgram();
                 }
 
                 function pauseAnimation() {
@@ -1367,12 +1403,13 @@
 
                   context.font = "20px serif";
                   context.textAlign = 'center';
-                  context.fillText('Click on the canvas to start the animation.', canvas.width / 2, 50);
+                  context.fillText('Click anywhere on the canvas to start the animation.', canvas.width / 2, 50);
                 }
 
                 canvas.addEventListener('focus', startAnimation);
                 canvas.addEventListener('blur', pauseAnimation);
                 pauseAnimation();
+
 
             .visual.col-xs-6
               %h5
@@ -1406,12 +1443,12 @@
           %p
             We're basically drawing our full frame and then erasing everything outside of the
             boundary. We'll use the
-            = link_to_lesson('context.clearRect()', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
+            = link_to_lesson('context.clearRect(x, y, width, height)', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
             to erase everything outside of the boundary we've drawn.
 
           %p In the end your flappy square should behave like the example provided to the right.
 
-          = render 'lessons/relevant', relevant: [:fill_rect]
+          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect]
           = render 'lessons/code_preview', stage: 2, challenge: challenge_index - 1, editor_id: "flappy_square_stage2_challenge#{challenge_index - 1}_editor"
 
       .row
@@ -1467,11 +1504,26 @@
             function checkBoundary() {
             }
 
-            function runProgram() {
+            function programSteps() {
+
+              // Don't forget to clear the boundary.
+
             }
 
-            function startAnimation() {
+            function runProgram() {
               interval =
+            }
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
             }
 
             function pauseAnimation() {
@@ -1480,6 +1532,8 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
+            pauseAnimation();
+
 
         .visual.col-xs-6
           %h5

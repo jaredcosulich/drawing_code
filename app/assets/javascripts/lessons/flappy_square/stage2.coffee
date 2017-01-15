@@ -110,6 +110,6 @@ initFlappySquareStage2Challenge6 = (page) ->
           message = 'Nice try, but you need to clear all areas outside of the boundary.'
 
         canvas.alert(message, success)
-    ), 200)
+    ), 2500)
 
 $(document).on('initialization:complete', initFlappySquareStage2Challenges)
