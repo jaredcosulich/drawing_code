@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="BvU84J4mHADPm1AzNYjNmyKBe1quf0macdYVC2c/wrP6a5UmUu9i9Nr0DVLW18KCIt0vBQjFtOTWk+2y/vtnlg==" />
+<meta name="csrf-token" content="bX111Fz1751axpKufP0BOTwk35y1sVfNrB5vW6HqE5mR49wSkDyRaU+pz8+fog4gPHiLwxMLqrMLW5fiOC62vA==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-6693732d946f61761af2eeafcf9c870441f1af9f77c9d2a5db4509578dd265e0-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -30,7 +30,7 @@
 <script src="../../../assets/lessons/fill_rect.self-4bb525e22a290e2ae4aa8446082bdcd7168ea5c515f27a3b3b8b6d439760ea8a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/fill_style.self-6d153ccc75d0aa54db66acd06e950248f8cabe7184d1789400272825d0648764.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/flappy_square/stage1.self-4cb16a6ae1c31cc01720e6980282b8c7f054e643225622cc8eb6fcff36820884.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage1.self-5e1826d318dd1ee89e345706be1d913c771654b48f9f6eb6ea15a2eaa7890042.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage2.self-8bcd55189db178b1c0849424b250e321a17b91ce50465449b4ca8f676123654d.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage3.self-cb39fe3b38a5ae28456afbcbe4c17c1b40b1fdeb13b925d136a43609a02907d3.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage4.self-17d7302a880ad6257214c9cb8ead56582ece4727ecde96454c320b23f138d16e.js?body=1" data-turbolinks-track="reload"></script>
@@ -1487,11 +1487,27 @@ For our purposes we'll use the
 <a class="reference-link" data-slug="set_interval" href="../set_interval/index.html">setInterval(function, intervalTime)</a>
 method.
 <code>setInterval(function, intervalTime)</code>
-runs the specified code at a regular interval (e.g. every second).
+runs the specified code at a regular interval (e.g. every second). You can use setInterval in
+two different ways. First you can pass it code directly:
+</p>
+<pre><code>setInterval(function() {&#x000A;  ... some code ...&#x000A;}, 500)</code></pre>
+<p>
+Or you can pass it a reference to an existing function:
+</p>
+<pre><code>function myFunction() {&#x000A;  ... some code ...&#x000A;}&#x000A;&#x000A;setInterval(myFunction, 500);</code></pre>
+<p>
+In this case the function will be called as if you ran
+<code>myFunction()</code>
+every 500 milliseconds.
 </p>
 <p>
-Our
-<span class='highlight'>setInterval() allows us to draw frames in rapid sequence.</span>
+We're going to use
+<span class='highlight'>setInterval() to draw frames in rapid sequence.</span>
+We'll pass it a reference to the function
+<code>programSteps</code>
+which contains the instructions for each frame of our game.
+</p>
+<p>
 We can change the speed of our animation by adjusting the interval in
 <a class="reference-link" data-slug="set_interval" href="../set_interval/index.html">setInterval(function, intervalTime)</a>
 </p>
@@ -1503,6 +1519,10 @@ We can change the speed of our animation by adjusting the interval in
 will run very quickly, drawing 100 frames every second. The faster an animation runs
 the smoother it looks as you can draw frames that change very little, giving the
 illusion of continuous motion.
+</p>
+<p>
+Try playing around with different interval speeds to see how it affects the fluidity
+of the animation.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
@@ -1527,7 +1547,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage1_lesson5_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = 1;&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(0, 100, size, size);&#x000A;}&#x000A;&#x000A;function adjustSize() {&#x000A;  size += 1;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  adjustSize();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 10);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage1_lesson5_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = 1;&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(0, 100, size, size);&#x000A;}&#x000A;&#x000A;function adjustSize() {&#x000A;  size += 10;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  adjustSize();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 500);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1572,7 +1592,7 @@ Canvas
 Challenge 5
 </h2>
 <figure class='float-xs-right px-2'>
-<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage1/challenge5Example-86aba451c8df23316561efa85dc1a1d83290b3214aec4275ddd8851bfe6dfc79.gif" alt="Challenge5example" />
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage1/challenge5Example-bd89b696cf71f814e93ffa5b9e3984f6458818780a98ec2e8d75a9f5f5fed1ce.gif" alt="Challenge5example" />
 <figcaption class='text-xs-center small'>Challenge 5 Sample Solution</figcaption>
 </figure>
 <p>
@@ -1589,14 +1609,7 @@ as if it were falling.
 </p>
 <p>
 Have your flappy square
-<span class='highlight'>start at (50, 100) and move down 10 pixels every 300 milliseconds.</span>
-</p>
-<p>
-<span class='highlight'>Important Note:</span>
-Since we are not clearing the canvas between frames (step 2
-of basic animation), we will see what looks like a rectangle growing downwards.
-If we were to clear the frame (as we will in the next challenge), it would
-look more like our flappy square were moving down or falling.
+<span class='highlight'>start at (50, 100) and move down 25 pixels every 300 milliseconds.</span>
 </p>
 <p>
 Your animation should look like the example to the right.
@@ -1755,7 +1768,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage1_lesson6_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = canvas.width;&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(0, 0, size, size);&#x000A;}&#x000A;&#x000A;function adjustSize() {&#x000A;  size -= 1;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustSize();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 10);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage1_lesson6_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = canvas.width;&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(0, 0, size, size);&#x000A;}&#x000A;&#x000A;function adjustSize() {&#x000A;  size -= 10;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustSize();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 500);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>

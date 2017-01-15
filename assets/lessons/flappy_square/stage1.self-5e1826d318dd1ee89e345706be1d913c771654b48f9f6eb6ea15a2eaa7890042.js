@@ -134,7 +134,7 @@
         var i, j, ref, results;
         results = [];
         for (i = j = 1, ref = index; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
-          results.push(context.fillRect(50, 100 + (i * 10), 20, 20));
+          results.push(context.fillRect(50, 100 + (i * 25), 20, 20));
         }
         return results;
       };
