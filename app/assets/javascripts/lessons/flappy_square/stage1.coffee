@@ -105,7 +105,7 @@ initFlappySquareStage1Challenge5 = (page) ->
   testSolution = (index) ->
     solution = (canvas, context) ->
       for i in [1..index]
-        context.fillRect(50, 100 + (i * 10), 20, 20)
+        context.fillRect(50, 100 + (i * 25), 20, 20)
 
     testCode = new Test.Code(code: solution, canvas: canvas)
 

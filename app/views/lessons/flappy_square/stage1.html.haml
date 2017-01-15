@@ -458,11 +458,36 @@
             = link_to_lesson('setInterval(function, intervalTime)', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
             method.
             %code setInterval(function, intervalTime)
-            runs the specified code at a regular interval (e.g. every second).
+            runs the specified code at a regular interval (e.g. every second). You can use setInterval in
+            two different ways. First you can pass it code directly:
+          %pre
+            %code
+              :preserve
+                setInterval(function() {
+                  ... some code ...
+                }, 500)
+          %p
+            Or you can pass it a reference to an existing function:
+          %pre
+            %code
+              :preserve
+                function myFunction() {
+                  ... some code ...
+                }
+
+                setInterval(myFunction, 500);
+          %p
+            In this case the function will be called as if you ran
+            %code myFunction()
+            every 500 milliseconds.
 
           %p
-            Our
-            %span.highlight setInterval() allows us to draw frames in rapid sequence.
+            We're going to use
+            %span.highlight setInterval() to draw frames in rapid sequence.
+            We'll pass it a reference to the function
+            %code programSteps
+            which contains the instructions for each frame of our game.
+          %p
             We can change the speed of our animation by adjusting the interval in
             = link_to_lesson('setInterval(function, intervalTime)', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
           %p For example:
@@ -479,6 +504,9 @@
             will run very quickly, drawing 100 frames every second. The faster an animation runs
             the smoother it looks as you can draw frames that change very little, giving the
             illusion of continuous motion.
+          %p
+            Try playing around with different interval speeds to see how it affects the fluidity
+            of the animation.
 
 
           = render 'lessons/relevant', relevant: [:fill_rect, :set_interval, :functions]
@@ -498,7 +526,7 @@
                 }
 
                 function adjustSize() {
-                  size += 1;
+                  size += 10;
                 }
 
                 function programSteps() {
@@ -507,7 +535,7 @@
                 }
 
                 function runProgram() {
-                  interval = setInterval(programSteps, 10);
+                  interval = setInterval(programSteps, 500);
                 }
 
 
@@ -567,13 +595,7 @@
             as if it were falling.
           %p
             Have your flappy square
-            %span.highlight start at (50, 100) and move down 10 pixels every 300 milliseconds.
-          %p
-            %span.highlight Important Note:
-            Since we are not clearing the canvas between frames (step 2
-            of basic animation), we will see what looks like a rectangle growing downwards.
-            If we were to clear the frame (as we will in the next challenge), it would
-            look more like our flappy square were moving down or falling.
+            %span.highlight start at (50, 100) and move down 25 pixels every 300 milliseconds.
           %p
             Your animation should look like the example to the right.
 
@@ -704,7 +726,7 @@
                 }
 
                 function adjustSize() {
-                  size -= 1;
+                  size -= 10;
                 }
 
                 function programSteps() {
@@ -714,7 +736,7 @@
                 }
 
                 function runProgram() {
-                  interval = setInterval(programSteps, 10);
+                  interval = setInterval(programSteps, 500);
                 }
 
 
