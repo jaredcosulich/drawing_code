@@ -971,7 +971,7 @@
           %pre
             %code
               :preserve
-                var treeX = distance;
+                var treeX = distance - tree.spacing;
                 var treeY = canvas.height - road.height;
                 while (treeX < canvas.width + distance + tree.spacing) {
                   if (treeX % tree.spacing === 0) {
@@ -1120,47 +1120,23 @@
             %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
-            Ok, now we're going to take our flappy square game and add
-            a moving background that the flappy square will eventually
-            have to navigate.
-          %p
-            Let's start by a series of rectangles on the roof of the game
-            area with matching rectangles on the floor of the game area.
+            Ok, now we're going to try and make our background move,
+            creating the illusion that our flappy square is flying through
+            the holes in the walls.
           %p
             While this may sound easy, it's one of the more complicated parts
-            of the game:
-          %ul
-            %li We'll have to draw a wall at a regular interval.
-            %li
-              In each frame we'll have to draw each wall a little closer to the left,
-              creating the illusion that the flappy square is flying through them,
-              while maintaining the distance between them.
-            %li
-              As they move across the canvas and eventually outside of the game
-              area to the left we'll need to position and draw new walls coming
-              from the right.
+            of the game. The lesson above provides an example of how we want to do this.
           %p
-            There are may ways to approach this algorithm. In the lesson above we
-            have a variable
-            %code distance
-            and we
-            %span.highlight add 2 to it
-            with each frame. Then we draw a tree any time the variable
-            %code distance
-            is divisible by
-            %code treeSpacing
-            \-
-            %code walls.spacing
-            in this challenge.
+            Basically we'll create a
+            %span.highlight variable "distance"
+            and we'll use that to track how far our flappy square has progressed
+            and therefore how far to the left our walls should be shifted.
           %p
-            So try to draw two rectangles (a wall), one attached to the
-            %span.highlight roof (y = 50)
-            and one to the
-            %span.highlight floor (y = 400)
-            Each of them should be
-            %span.highlight 100 pixels tall and 50 pixels wide.
-            and each wall should be space
-            %span.highlight 125 pixels apart.
+            In each frame
+            %span.highlight advance "distance" by 2 (add 2)
+            and use that to shift all walls to the left.
+          %p
+            Be sure to continue drawing walls as the background continuously shifts to the left.
 
           %p In the end your flappy square should behave like the example provided to the right.
 
@@ -1175,9 +1151,8 @@
 
             var interval;
             var gravity = 0.5;
-            var distance = 0;
+            var distance = ;
 
-            // FILL IN YOUR VARIABLES USING THIS HASH FORMAT HERE.
             var square = {
               size: 20,
               x: ,
@@ -1194,15 +1169,19 @@
             };
 
             var walls = {
+              height: ,
+              width: ,
               spacing:
-              width:
-              height:
             };
 
             function drawBoundary() {
             }
 
             function drawWalls() {
+
+              // Take into account the current "distance"
+              // when drawing your walls.
+
             }
 
             function drawSquare() {
@@ -1212,17 +1191,44 @@
             }
 
             function adjustPosition() {
-              // CODE TO ADJUST DISTANCE HERE
+              // Adjust your distance variable.
+
             }
 
             function checkBoundary() {
             }
 
-            function runProgram() {
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
             }
 
-            function startAnimation() {
+            function programSteps() {
+
+              // Don't forget to draw the walls!
+
+            }
+
+            function runProgram() {
               interval =
+            }
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
             }
 
             function pauseAnimation() {
@@ -1231,6 +1237,7 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
+            pauseAnimation();
 
         .visual.col-xs-6
           %h5
