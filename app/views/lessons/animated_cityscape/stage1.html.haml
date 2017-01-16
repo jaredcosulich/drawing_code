@@ -1,0 +1,1141 @@
+#animated_cityscape_stage1.page
+  %h1
+    Stage 1
+  .description.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/animated_cityscape/stage1/overviewVisual1.png', class: 'img-fluid')
+          %p
+            In the Basic Cityscape Challenge, we drew three rows of randomly-generated
+            buildings, creating a 3D effect by drawing the buildings in the back smaller
+            and darker.
+          %p
+            In the first stage of the Animated Cityscape Challenge, we draw the
+            sky behind the buildings, changing the color of the sky to simulate nightfall.
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Review the Basic Cityscape Challenge
+          %p
+            Because we are extending the program for the Basic Cityscape Challenge to
+            animate the cityscape, it's important to understand how that program works.
+          %p
+            We start by drawing a gray rectangle (color <code>'#CCCCCC'</code>) for
+            the ground beneath the buildings. Then, we use the <code>drawBuildingRow()</code>
+            function to draw three rows of buildings.
+          %pre
+            %code
+              :preserve
+                context.fillStyle = '#CCCCCC';
+                context.fillRect(0, 220, canvas.width, canvas.height - 220);
+                
+                drawBuildingRow(0, 280, 0.6);
+                drawBuildingRow(0, 300, 0.8);
+                drawBuildingRow(0, 320, 1.0);
+          %p
+            The first row of buildings is positioned at (0, 280) and drawn at 60% scale,
+            the second row of buildings is positioned at (0, 300) and drawn at 80% scale, and
+            the third row of buildings is positioned at (0, 320) and drawn at 100% scale.
+          %p
+            Inside the <code>drawBuildingRow()</code> function, we use the <code>scale</code>
+            parameter to calculate the color of the buildings in the row. The smaller the scale,
+            the darker the buildings. Then, we use a while loop to draw buildings the width of the
+            canvas. To draw a building, we randomly generate the number of office units per floor,
+            the number of floors, the type of windows, and the type of roof for the building and
+            pass those values into the <code>drawBuilding()</code> function.
+          %p
+            The <code>randomInteger()</code> function is used to generate random integers.
+            Switch statements inside the <code>drawWindow()</code> and <code>drawRoof()</code>
+            functions are used to draw the four different types of windows and roofs. Nested
+            for loops are used to draw windows in each office unit in the building.
+          %p
+            Please make sure you fully understand the program in the example below before continuing on in
+            this challenge. If you need help, visit the Basic Cityscape Challenge and its relevant lessons.
+          = render 'lessons/relevant', relevant: [:variables, :functions, :for_loops, :switch_statements, :while_loops, :fill_rect, :fill_style, :random, :scale]
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example1_editor', cols: 12} do
+              :preserve
+                var canvas = document.getElementById('animated_cityscape_stage1_example1');
+                var context = canvas.getContext('2d');
+                
+                context.save();
+                context.fillStyle = '#CCCCCC';
+                context.fillRect(0, 220, canvas.width, canvas.height - 220);
+                
+                drawBuildingRow(0, 280, 0.6);
+                drawBuildingRow(0, 300, 0.8);
+                drawBuildingRow(0, 320, 1.0);
+                
+                context.restore();
+                
+                function drawBuildingRow(rowX, groundY, scale) {
+                  context.save();
+                  context.translate(rowX, groundY);
+                  context.scale(scale, scale);
+                  
+                  var c = Math.round(153 * scale);
+                  var buildingColor = 'rgb(' + c + ', ' + c + ', ' + c + ')';
+                  var windowColor = 'rgb(102, 102, 102)';
+                  
+                  var x = 0;
+                  while (x < canvas.width / scale) {
+                    var units = randomInteger(4, 10);
+                    var floors = randomInteger(6, 20);
+                    var windowType = randomInteger(0, 3);
+                    var roofType;
+                    
+                    if (units > 8) {
+                			roofType = randomInteger(0, 1);
+                		} else if (units > 6) {
+                			roofType = randomInteger(0, 2);
+                		} else {
+                			roofType = randomInteger(0, 3);
+                		}
+                    
+                    var w = 16 * units + 8;
+                    var h = 16 * floors + 8;
+                    
+                    drawBuilding(x, 0, w, h, units, floors, windowType, roofType, buildingColor, windowColor);
+                    x = x + w + 12;
+                  }
+                  
+                  context.restore();
+                }
+                
+                function drawBuilding(leftX, groundY, w, h, units, floors, windowType, roofType, buildingColor, windowColor) {
+                  var x = leftX;
+                  var y = groundY - h;
+                  
+                  context.save();
+                  context.translate(x, y);
+                  context.fillStyle = buildingColor;
+                  context.fillRect(0, 0, w, h);
+                  drawRoof(w, roofType);
+                  
+                  context.translate(4, 4);
+                  context.fillStyle = windowColor;
+                  
+                  for (var i = 0; i < floors; i = i + 1) {
+                    context.save();
+                    
+                    for (var j = 0; j < units; j = j + 1) {
+                      drawWindow(windowType);
+                      context.translate(16, 0);
+                    }
+                    
+                    context.restore();
+                    context.translate(0, 16);
+                  }
+                  
+                  context.restore();
+                }
+    
+                function drawWindow(windowType) {
+                  context.save();
+                  
+                  switch (windowType) {
+                		case 0:
+                			context.fillRect(4, 2, 8, 10);
+                			break;
+                		
+                		case 1:
+                			context.fillRect(2, 3, 5, 8);
+                			context.fillRect(9, 3, 5, 8);
+                			break;
+                		
+                		case 2:
+                			context.fillRect(0, 3, 16, 8);
+                			break;
+                		
+                		case 3:
+                			context.fillRect(5, 1, 6, 14);
+                			break;
+                	}
+                  
+                  context.restore();
+                }
+                
+                function drawRoof(w, roofType) {
+                  context.save();
+                  
+                  switch(roofType) {
+                		case 0:
+                			// draw nothing
+                			break;
+                		
+                		case 1:
+                			context.fillRect(8, -16, w - 16, 16);
+                			break;
+                		
+                		case 2:
+                			context.fillRect(8, -24, w - 16, 24);
+                			context.fillRect((w - 32) / 2, -48, 32, 24);
+                			context.fillRect((w - 8) / 2, -80, 8, 56);
+                			break;
+                		
+                		case 3:
+                			context.beginPath();
+                			context.moveTo(w / 2, -80);
+                			context.lineTo(w / 2 + 16, -16);
+                			context.lineTo(w / 2 - 16, -16);
+                			context.closePath();
+                			context.fill();
+                			context.fillRect((w - 64) / 2, -16, 64, 16);
+                			break;
+                	}
+                  
+                  context.restore();
+                }
+                
+                function randomInteger(min, max) {
+                  return (min + Math.floor((max - min + 1) * Math.random()));
+                }
+
+            .visual.col-xs-12.pt-2
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#animated_cityscape_stage1_example1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/animated_cityscape/stage1/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Use the
+            %code
+              context.fillRect()
+            method to draw a building (rectangle) that is 320 pixels wide and 160
+            pixels tall so the top left corner of the building is positioned at (40, 80).
+          %p
+            Figure out the y-coordinate of the bottom of the building. Then, use the
+            %code
+              drawGround()
+            function to draw a line representing the ground beneath the building. For
+            example, if the y-coordinate of the bottom of the building is 120, use:
+          %pre
+            %code
+              :preserve
+                drawGround(120);
+          %p
+            Make sure to draw the ground after drawing the building.
+          %p
+            If you need help drawing the building or positioning the ground, visit the
+            = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+            and
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('animated_cityscape_stage1_challenge1');
+            var context = canvas.getContext('2d');
+            
+            context.fillStyle = 'Black';
+            
+            // DRAW THE BUILDING HERE
+            
+            // DRAW THE LINE FOR THE GROUND HERE
+            
+            function drawGround(y) {
+              context.save();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
+              context.restore();
+            }
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge1.png')
+            %canvas#animated_cityscape_stage1_challenge1
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use Variables to Size and Position a Building
+          %p
+            We can use variables to automatically size and position a building.
+          %p
+            In this example, we draw a green building (color
+            %span
+              %code>
+                '#228B22'
+              )
+            that is twice as tall as it is wide, and positioned at (60, 40).
+          %p
+            To change the size of the building, all we do is assign a different value to the variable
+            %span
+              %code>
+                w
+              \.
+            The program automatically calculates the height of the building and assigns it to the variable
+            %span
+              %code>
+                h
+              \.
+          %pre
+            %code
+              :preserve
+                var w = 80; // Change this value to resize the building
+                var h = 2 * w; // The height is automatically two times the width
+          %p
+            We use the values stored in the variables to draw the building:
+          %pre
+            %code
+              :preserve
+                context.fillStyle = '#228B22';
+                context.fillRect(60, 40, w, h);
+          %p
+            Change the value stored in the variable
+            %code
+              w
+            to see what happens. To learn more about variables, visit the
+            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('animated_cityscape_stage1_example2');
+                var context = canvas.getContext('2d');
+
+                var w = 80; // Change this value to resize the building
+                var h = 2 * w; // The height is automatically two times the width
+
+                context.fillStyle = '#228B22';
+                context.fillRect(60, 40, w, h);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#animated_cityscape_stage1_example2
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/animated_cityscape/stage1/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+
+          %p
+            Assign values to the variables
+            %span
+              %code>
+                x
+              ,
+            %span
+              %code>
+                y
+              ,
+            %span
+              %code>
+                w
+              ,
+            and
+            %code
+              h
+            in the program below to draw a gray (color
+            %span
+              %code>
+                '#999999'
+              )
+            building with its top left corner positioned at (100, 40) and a width of 150 and height of 240.
+          %p
+            Then, figure out the y-coordinate of the bottom of the building. Use the
+            %code
+              drawGround()
+            function to draw a line representing the ground. Draw the ground after drawing the building.
+            Can you calculate the ground's y-coordinate using the variables in the program?
+          %p
+            If you need help using variables, visit the
+            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
+          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'animated_cityscape_stage1_challenge1_editor'
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('animated_cityscape_stage1_challenge2');
+            var context = canvas.getContext('2d');
+            
+            var x = 0;
+            var y = 0; // The building's top left corner is at (100, 40)
+            var w = 100;
+            var h = 100; // The building is 150 pixels wide and 240 pixels tall
+
+            // SET THE COLOR OF THE BUILDING TO #999999 HERE
+
+            // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
+            
+            drawGround(100); // Position and draw the ground here
+            
+            function drawGround(y) {
+              context.save();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
+              context.restore();
+            }
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge2.png')
+            %canvas#animated_cityscape_stage1_challenge2
+          .alert
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            .pb-1
+              = image_tag('lessons/animated_cityscape/stage1/challenge3Visual1.png', class: 'img-fluid')
+            = image_tag('lessons/animated_cityscape/stage1/challenge3Visual2.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+
+          %p
+            For our cityscape, we don't want think about buildings in terms of pixels.
+            We want to size buildings based on the number of floors they have and the
+            number of office units on each floor, and then write the program so it
+            calculates the number of pixels for us.
+          %p
+            Each office unit is 16 pixels wide and 16 pixels tall. The outer walls,
+            roof, and floor of the building are each 4 pixels thick.
+          %p
+            The number of office units on each floor is assigned to the variable
+            %code
+              units
+            and the number of floors in the building is assigned to the variable
+            %span
+              %code>
+                floors
+              \.
+            Use the values stored in those variables to calculate the width and height of the building.
+          %p
+            Then, draw a gray (color
+            %span
+              %code>
+                '#999999'
+              )
+            building with 10 floors and 8 office units on each floor with its top left
+            corner positioned at (120, 80).
+          %p
+            Use the function
+            %code
+              drawOffices()
+            to draw the offices in the building by passing it the values stored in the variables
+            %span
+              %code>
+                x
+              ,
+            %span
+              %code>
+                y
+              ,
+            %span
+              %code>
+                w
+              ,
+            and
+            %span
+              %code>
+                h
+              \.
+          %p
+            Finally, figure out the y-coordinate of the bottom of the building and then use the
+            %code
+              drawGround()
+            function to draw a line representing the ground. Draw the ground after drawing the building.
+          %p
+            If you need help using variables, visit the
+            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
+          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'animated_cityscape_stage1_challenge2_editor'
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('animated_cityscape_stage1_challenge3');
+            var context = canvas.getContext('2d');
+            
+            var x = 120;
+            var y = 80;
+            var units = 8;
+            var floors = 10;
+
+            var w = 0; // Use the variable units to calculate the width of the building
+            var h = 0; // Use the variable floors to calculate the height of the building
+
+            // SET THE COLOR OF THE BUILDING TO #999999 HERE
+
+            // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
+
+            drawOffices(x, y, w, h); // Draw the offices
+            
+            drawGround(100); // Position and draw the ground here
+
+            function drawOffices(x, y, w, h) {
+              var u = Math.floor((w - 4) / 16);
+              var f = Math.floor((h - 4) / 16);
+
+              context.save();
+              context.translate(x + 4, y + 4);
+              context.strokeWidth = 1;
+              context.strokeStyle = '#000000';
+
+              for (var i = 0; i < f; i++) {
+                for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);
+              }
+
+              context.restore();
+            }
+            
+            function drawGround(y) {
+              context.save();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
+              context.restore();
+            }
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge3.png')
+            %canvas#animated_cityscape_stage1_challenge3
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use a Function to Draw a Building
+          %p
+            Drawing a single building takes a few steps. First, we have to calculate the width
+            and height of the building. Then, we have to set the building color and draw the
+            rectangle. Once we start drawing in windows, the list of steps will get much longer.
+          %p
+            To draw our cityscape, we have to draw dozens of buildings. Typing in all
+            that code for each building is going to be a lot of work.
+          %p
+            If there is a chunk of code that you are going to use over and over again,
+            putting that code into a function can make your life much easier. Then,
+            to run the code, all you have to do is call the function by typing one line.
+          %p
+            In this example, we create a function that will draw a French flag. Because we
+            might want to draw a French flag in lots of different places, we make the x- and
+            y-coordinates of the flag parameters. When we call
+            %span
+              %code>
+                drawFrenchFlag(30, 100)
+              ,
+            the 30 is automatically assigned to the parameter
+            %code
+              x
+            and the 100 to the parameter
+            %code
+              y
+            inside the function. Now we can easily draw as many French flags as we want!
+          %p
+            To learn more about functions, visit the
+            = link_to_lesson('Functions', :functions, nil, class: 'reference-link', data: {slug: :functions})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('animated_cityscape_stage1_example3');
+                var context = canvas.getContext('2d');
+
+                function drawFrenchFlag(x, y) {
+                  context.fillStyle = '#0055A4';
+                  context.fillRect(x, y, 20, 40);
+
+                  context.fillStyle = '#FFFFFF';
+                  context.fillRect(x + 20, y, 20, 40);
+
+                  context.fillStyle = '#EF4135';
+                  context.fillRect(x + 40, y, 20, 40);
+                }
+
+                drawFrenchFlag(30, 100);
+                drawFrenchFlag(150, 50);
+                drawFrenchFlag(300, 180);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#animated_cityscape_stage1_example3
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/animated_cityscape/stage1/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Create a
+            %code
+              drawBuilding()
+            function to draw buildings like the one from Challenge 3. The function is passed
+            four values that it will assign to the following four parameters. The first two parameters,
+            %code>
+              x
+            and
+            %span
+              %code>
+                y
+              ,
+            are the coordinates of the top left corner of the building; the third parameter,
+            %span
+              %code>
+                units
+              ,
+            is the number of office units per floor; and the fourth parameter,
+            %span
+              %code>
+                floors
+              ,
+            is the number of floors in the building.
+          %p
+            Inside the
+            %code
+              drawBuilding()
+            function, use the parameters to calculate the width and height of the building,
+            set the
+            %code
+              context.fillStyle
+            property to the color
+            %span
+              %code>
+                '#999999'
+              ,
+            and use the
+            %code
+              context.fillRect()
+            method to draw the building.
+          %p
+            Once the
+            %code
+              drawBuilding()
+            function has been defined, use it to draw two buildings. The first building has 8
+            office units per floor and 10 floors, and it is positioned at (60, 20). The second
+            building has 6 office units per floor and 16 floors, and it is positioned at (210, 20).
+          %p
+            If you need help using functions, visit the
+            = link_to_lesson('Functions', :functions, nil, class: 'reference-link', data: {slug: :functions})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style]
+          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'animated_cityscape_stage1_challenge3_editor'
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('animated_cityscape_stage1_challenge4');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(x, y, units, floors) {
+              var w = 0; // Use the parameter units to calculate the width of the building
+              var h = 0; // Use the parameter floors to calculate the height of the building
+              
+              // SET THE COLOR OF THE BUILDING TO #999999 HERE
+              
+              // DRAW THE BUILDING HERE USING THE PARAMETERS x, y AND THE VARIABLES w, h
+            }
+
+            // DRAW ONE BUILDING WITH 8 UNITS AND 10 FLOORS AT (60, 20) HERE
+            // DRAW A SECOND BUILDING WITH 6 UNITS AND 16 FLOORS AT (210, 20) HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge4.png')
+            %canvas#animated_cityscape_stage1_challenge4
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Anchor the Building to the Ground
+          %p
+            You may have noticed that the two buildings in Challenge 3 are lined up along
+            their top edges, not their bottom edges. In general, buildings are lined up along
+            their bottom edges where they sit on the ground.
+          %p
+            In this example, we create the
+            %code
+              fillCenteredRectangle()
+            function, which automatically positions a rectangle by its top center point.
+            This function has four parameters:
+            %span
+              %code>
+                centerX
+              ,
+            %span
+              %code>
+                topY
+              ,
+            %span
+              %code>
+                w
+              ,
+            and
+            %span
+              %code>
+                h
+              \.
+          %pre
+            %code
+              :preserve
+                function fillCenteredRectangle(centerX, topY, w, h) {
+                  
+                  // code block
+                  
+                }
+          %p
+            Inside the function, we use the parameters to calculate the coordinates of
+            the rectangle's top left corner and draw the rectangle:
+          %pre
+            %code
+              :preserve
+                function fillCenteredRectangle(centerX, topY, w, h) {
+                  var x = centerX - w / 2;
+                  var y = topY;
+                  
+                  context.fillRect(x, y, w, h);
+                }
+          %p
+            Since
+            %code
+              centerX
+            is the x-coordinate of the center of the rectangle, we need to subtract half
+            the rectangle's width to get the x-coordinate of the rectangle's top left corner. Since
+            %code
+              topY
+            is the y-coordinate of the top of the rectangle, which is what we want, we assign
+            it to the variable
+            %span
+              %code>
+                y
+              \.
+          %p
+            Now we can easily draw a group of rectangles and line them up by their top center
+            points. To learn more about positioning rectangles using variables, visit the
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+              ,
+            %span
+              %span><
+                = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+              ,
+            and
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('animated_cityscape_stage1_example4');
+                var context = canvas.getContext('2d');
+                
+                var centerX = 180; // The x-coordinate of the center of the rectangles
+                
+                drawCenterLine();
+                
+                context.fillStyle = 'DeepPink';
+                fillCenteredRectangle(centerX, 20, 200, 80); // Centered at centerX
+                fillCenteredRectangle(centerX, 120, 320, 100); // Centered at centerX
+                fillCenteredRectangle(centerX, 240, 240, 60); // Centered at centerX
+                
+                function fillCenteredRectangle(centerX, topY, w, h) {
+                  var x = centerX - w / 2;
+                  var y = topY;
+                  
+                  context.fillRect(x, y, w, h);
+                }
+                
+                function drawCenterLine() {
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.fillRect(centerX - 1, 0, 2, canvas.height);
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#animated_cityscape_stage1_example4
+
+
+  #challenge5.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 5
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/animated_cityscape/stage1/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Update the
+            %code
+              drawBuilding()
+            function from Challenge 4 so its parameters are now:
+            %span
+              %code>
+                leftX
+              ,
+            %span
+              %code>
+                groundY
+              ,
+            %span
+              %code>
+                w
+              ,
+            and
+            %span
+              %code>
+                h
+              \.
+          %p
+            Inside the function, calculate the coordinates of the top left corner of
+            the building's rectangle. Then, set the
+            %code
+              context.fillStyle
+            to the color
+            %code
+              '#999999'
+            and use the
+            %code
+              context.fillRect()
+            method to draw the rectangle.
+          %p
+            Once the
+            %code
+              drawBuilding()
+            function has been updated, use it to draw two buildings. The first building
+            has 12 office units per floor and 8 floors, and it is sitting on the ground
+            at (20, 280). The second building has 9 office units per floor and 15 floors,
+            and it sitting on the ground at (230, 280).
+          %p
+            The
+            %code
+              drawGround()
+            function is used to draw the ground at y = 280. Draw the buildings before
+            the ground is drawn.
+          %p
+            If you need help positioning rectangles using variables, visit the
+            %span
+              %span><
+                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+              ,
+            %span
+              %span><
+                = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+              ,
+            and
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect]
+          = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'animated_cityscape_stage1_challenge4_editor'
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge5_editor'} do
+          :preserve
+            var canvas = document.getElementById('animated_cityscape_stage1_challenge5');
+            var context = canvas.getContext('2d');
+            
+            function drawBuilding(leftX, groundY, units, floors) {
+              var w = 0; // Calculate the width of the building
+              var h = 0; // Calculate the height of the building
+              var x = 0; // Calculate the x-coordinate of the building's top left corner
+              var y = 0; // Calculate the y-coordinate of the building's top left corner
+              
+              // SET THE COLOR OF THE BUILDING TO #999999 HERE
+              
+              // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
+            }
+            
+            // DRAW ONE BUILDING WITH 12 UNITS AND 8 FLOORS SITTING AT (20, 280) HERE
+            // DRAW A SECOND BUILDING WITH 9 UNITS AND 15 FLOORS SITTING AT (230, 280) HERE
+            
+            drawGround(280); // Draws the ground at y = 280
+            
+            function drawGround(y) {
+              context.save();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
+              context.restore();
+            }
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge5.png')
+            %canvas#animated_cityscape_stage1_challenge5
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use translate() to Position the Building
+          %p
+            Now we are going to clean up the
+            %code
+              drawBuilding()
+            function a little bit.
+          %p
+            A well-written function is like a polite robot who comes over to your house
+            to do a job, and then leaves everything exactly as it found it. But if you
+            look at the function used to draw a French flag in the previous example, it
+            wasn't so tidy. It changed the
+            %code
+              context.fillStyle
+            property to the color
+            %code
+              '#EF4135'
+            and never changed it back.
+          %p
+            To make our function more tidy, we call
+            %code
+              context.save()
+            at the start of the function and
+            %code
+              context.restore()
+            at the end. Calling
+            %code
+              context.save()
+            saves the drawing state of the context (including the current
+            %code
+              context.fillStyle
+            property) and
+            %code
+              context.restore()
+            restores the drawing state to the last time we saved it.
+          %p
+            The other change is to use the
+            %code
+              context.translate()
+            method. Notice how we had to do calculations with x and y to figure out the positions
+            of the white and red rectangles in the French flag? Imagine we had to do the same for
+            dozens of windows in a building. We can eliminate a lot of that math by using the
+            %code
+              context.translate()
+            method.
+          %p
+            The
+            %code
+              context.translate()
+            method moves the origin of the coordinate system. If we move the origin to the
+            top left corner of the flag, then we can draw the rectangles in the flag as though
+            the flag is positioned at (0, 0). The math is much easier. However, when using the
+            %code
+              context.translate()
+            method, it is even more important to save and then restore the drawing state. If
+            changing the
+            %code
+              context.fillStyle
+            property is rude, moving the origin of the coordinate system and not moving it back is much ruder!
+          %p
+            Try to predict what would happen if we left out the
+            %code
+              context.save()
+            and
+            %code
+              context.restore()
+            method calls in the function. To learn more about saving and restoring the
+            drawing state and translating the origin of the coordinate system, visit the
+            = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
+            and
+            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :functions, :fill_rect, :save, :translate]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example5_editor'} do
+              :preserve
+                var canvas = document.getElementById('animated_cityscape_stage1_example5');
+                var context = canvas.getContext('2d');
+
+                function drawFrenchFlag(x, y) {
+                  context.save(); // Save the drawing state before making any changes
+                  context.translate(x, y); // Move the origin of the coordinate system to the top left corner of the flag
+
+                  context.fillStyle = '#0055A4';
+                  context.fillRect(0, 0, 20, 40); // The blue rectangle is drawn at (0, 0)
+
+                  context.fillStyle = '#FFFFFF';
+                  context.fillRect(20, 0, 20, 40); // The white rectangle is drawn at (20, 0)
+
+                  context.fillStyle = '#EF4135';
+                  context.fillRect(40, 0, 20, 40); // The red rectangle is drawn at (40, 0)
+
+                  context.restore(); // Restore the drawing state to the way it was when we saved it
+                }
+
+                drawFrenchFlag(30, 100);
+                drawFrenchFlag(150, 50);
+                drawFrenchFlag(300, 180);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#animated_cityscape_stage1_example5
+
+
+  #challenge6.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 6
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/animated_cityscape/stage1/challenge6Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+
+          %p
+            Tidy up the drawBuilding() function from Challenge 5 in the same way by
+            calling the
+            %code
+              context.save()
+            and
+            %code
+              context.restore()
+            methods at the start and end of the function, respectively. Then, use the
+            %code
+              context.translate()
+            method to move the origin to (x, y) and draw the rectangle at (0, 0).
+          %p
+            Once the
+            %code
+              drawBuilding()
+            function is tidy, draw one building with 10 office units per floor and 16
+            floors sitting on the ground at (20, 290) and another building with 12 office
+            units per floor and 10 floors sitting on the ground at (200, 290).
+          %p
+            The
+            %code
+              drawGround()
+            function is used to draw the ground at y = 290. Draw the buildings before
+            the ground is drawn.
+          %p
+            If you need help saving and restoring the drawing state and translating the origin
+            of the coordinate system, visit the
+            = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
+            and
+            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :functions, :fill_rect, :save, :translate]
+          = render 'lessons/code_preview', stage: 1, challenge: 5, editor_id: 'animated_cityscape_stage1_challenge5_editor'
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge6_editor'} do
+          :preserve
+            var canvas = document.getElementById('animated_cityscape_stage1_challenge6');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors) {
+              var w = 0; // Calculate the width of the building
+              var h = 0; // Calculate the height of the building
+              var x = 0; // Calculate the x-coordinate of the building's top left corner
+              var y = 0; // Calculate the y-coordinate of the building's top left corner
+              
+              // SAVE THE DRAWING STATE HERE
+              // MOVE THE ORIGIN TO THE TOP LEFT CORNER OF THE BUILDING HERE
+              // SET THE COLOR OF THE BUILDING TO #999999 HERE
+              // DRAW THE BUILDING AT (0, 0) HERE USING THE VARIABLES w, h
+              // RESTORE THE LAST SAVED DRAWING STATE HERE
+            }
+            
+            // DRAW ONE BUILDING WITH 10 UNITS AND 16 FLOORS SITTING AT (20, 290) HERE
+            // DRAW A SECOND BUILDING WITH 12 UNITS AND 10 FLOORS SITTING AT (200, 290) HERE
+            
+            drawGround(290); // Draws the ground at y = 290
+            
+            function drawGround(y) {
+              context.save();
+              context.fillStyle = 'Black';
+              context.fillRect(0, y, canvas.width, 2);
+              context.restore();
+            }
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge6.png')
+            %canvas#animated_cityscape_stage1_challenge6
+          .alert
