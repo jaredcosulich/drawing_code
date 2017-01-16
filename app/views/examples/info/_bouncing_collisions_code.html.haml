@@ -1,0 +1,203 @@
+:preserve
+  var canvas = document.getElementById('flappy_square_stage3_lesson2');
+  var context = canvas.getContext('2d');
+
+  var interval;
+  var count = 15;
+  var size = 20;
+  var boxes = [];
+  var boundary = {
+    minX: 25,
+    minY: 25,
+    maxX: 450,
+    maxY: 300
+  };
+
+  function overlaps(x, y, size, buffer) {
+    if (!buffer) buffer = 0;
+    var minX = x - buffer;
+    var minY = y - buffer;
+    var maxX = x + size + buffer;
+    var maxY = y + size + buffer;
+
+    for (var i=0; i< boxes.length; ++i) {
+      var box = boxes[i];
+      if (box.x == x && box.y == y) continue;
+
+      var minBoxX = box.x - buffer;
+      var minBoxY = box.y - buffer;
+      var maxBoxX = box.x + size + buffer;
+      var maxBoxY = box.y + size + buffer;
+
+      var left = (minX <= maxBoxX && minX >= minBoxX);
+      var right = (maxX >= minBoxX && maxX <= maxBoxX);
+      var top = (minY <= maxBoxY && minY >= minBoxY);
+      var bottom = (maxY >= minBoxY && maxY <= maxBoxY);
+
+      if ((left || right) && (top || bottom)) {
+        var leftOverlap = maxBoxX - minX;
+        var rightOverlap = maxX - minBoxX;
+        var topOverlap = maxBoxY - minY;
+        var bottomOverlap = maxY - minBoxY;
+
+        var overlaps = [
+          (left ? leftOverlap : 9999),
+          (right ? rightOverlap : 9999),
+          (top ? topOverlap : 9999),
+          (bottom ? bottomOverlap : 9999)
+        ];
+
+        var info = {box: box};
+        switch(Math.min.apply(null, overlaps)) {
+          case leftOverlap:
+            info.direction = 'left';
+            break;
+          case rightOverlap:
+            info.direction = 'right';
+            break;
+          case topOverlap:
+            info.direction = 'top';
+            break;
+          case bottomOverlap:
+            info.direction = 'bottom';
+            break;
+        }
+        return info;
+      }
+    }
+    return false;
+  }
+
+  function checkBoundary(x, y, size, buffer) {
+    if (!buffer) buffer = 0;
+    outOfBounds = {};
+    if (x + size + buffer > canvas.width) {
+      outOfBounds.right = true;
+    } else if (x < 0) {
+      outOfBounds.left = true;
+    }
+
+    if (y + size + buffer > canvas.height) {
+      outOfBounds.bottom = true;
+    } else if (y < 0) {
+      outOfBounds.top = true;
+    }
+    return outOfBounds;
+  }
+
+  function random(floor, ceil) {
+    return floor + Math.floor(Math.random() * ((ceil + 1) - floor));
+  }
+
+  function generateRandomPosition() {
+    var x;
+    var y;
+    do {
+      x = random(boundary.minX, boundary.maxX);
+      y = random(boundary.minY, boundary.maxY);
+    } while (overlaps(x, y, size, size));
+    return {x: x, y: y};
+  }
+
+  function generateBoxes() {
+    for (var i=0; i< count; ++i) {
+      var position = generateRandomPosition();
+
+      boxes.push({
+        x: position.x,
+        y: position.y,
+        xVelocity: [random(2, 6), random(-2, -6)][random(0, 1)],
+        yVelocity: [random(2, 6), random(-2, -6)][random(0, 1)],
+        collidedWith: {}
+      });
+    }
+  }
+
+  function adjustPositions() {
+    for (var i=0; i< count; ++i) {
+      boxes[i].x += boxes[i].xVelocity;
+      boxes[i].y += boxes[i].yVelocity;
+
+      var collision = overlaps(boxes[i].x, boxes[i].y, size);
+      if (collision) {
+        if (collision.box.collidedWith[i] > 0) {
+          collision.box.collidedWith[i] -= 1;
+        } else {
+          collision.box.collidedWith[i] = 5;
+
+          var newVelocity;
+          switch(collision.direction) {
+            case 'left':
+            case 'right':
+              newVelocity = collision.box.xVelocity;
+              collision.box.xVelocity = boxes[i].xVelocity;
+              boxes[i].xVelocity = newVelocity;
+              break;
+            case 'top':
+            case 'bottom':
+              newVelocity = collision.box.yVelocity;
+              collision.box.yVelocity = boxes[i].yVelocity;
+              boxes[i].yVelocity = newVelocity;
+              break;
+          }
+        }
+      } else {
+        boxes[i].collidedWith = {};
+      }
+
+      var boundary = checkBoundary(boxes[i].x, boxes[i].y, size);
+      if (Object.keys(boundary).length > 0) {
+        if (boundary.left || boundary.right) {
+          if (boundary.left) boxes[i].x = 1;
+          if (boundary.right) boxes[i].x = canvas.width - size - 1;
+          boxes[i].xVelocity = boxes[i].xVelocity * -1;
+        }
+
+        if (boundary.top || boundary.bottom) {
+          if (boundary.top) boxes[i].y = 1;
+          if (boundary.bottom) boxes[i].y = canvas.height - size - 1;
+          boxes[i].yVelocity = boxes[i].yVelocity * -1;
+        }
+      }
+    }
+  }
+
+  function drawBoxes() {
+    for (var i=0; i< count; ++i) {
+      var box = boxes[i];
+      context.save();
+      context.translate(box.x, box.y);
+      context.fillRect(0, 0, size, size);
+      context.fillStyle = 'white';
+      context.font = "10px serif";
+      context.textAlign = 'center';
+      context.textBaseline="middle";
+      context.fillText(i + 1, size/2, size/2);
+      context.restore();
+    }
+  }
+
+  function runProgram() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    adjustPositions();
+    drawBoxes();
+  }
+
+  function startAnimation() {
+    interval = setInterval(runProgram, 50);
+  }
+
+  function pauseAnimation() {
+    clearInterval(interval);
+
+    context.font = "20px serif";
+    context.textAlign = 'center';
+    context.fillText('Click on the canvas to start the animation.', canvas.width / 2, 50);
+  }
+
+  canvas.addEventListener('focus', startAnimation);
+  canvas.addEventListener('blur', pauseAnimation);
+
+  generateBoxes();
+  pauseAnimation();

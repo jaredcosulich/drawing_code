@@ -14,7 +14,8 @@ class ExamplesController < ApplicationController
       ],
       'Animations' => [
         :rolling_ball,
-        :simple_cannonball
+        :simple_cannonball,
+        :bouncing_collisions
       ],
       'Games' => [
         :flappy_square,
