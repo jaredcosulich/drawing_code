@@ -26,7 +26,7 @@
             Review the Basic Cityscape Challenge
           %p
             Because we are extending the program for the Basic Cityscape Challenge to
-            animate the cityscape, it's important to understand how that program works.
+            animate the drawing, it's important to understand how that program works.
           %p
             We start by drawing a gray rectangle (color <code>'#CCCCCC'</code>) for
             the ground beneath the buildings. Then, we use the <code>drawBuildingRow()</code>
@@ -52,15 +52,14 @@
             the number of floors, the type of windows, and the type of roof for the building and
             pass those values into the <code>drawBuilding()</code> function.
           %p
-            The <code>randomInteger()</code> function is used to generate random integers.
-            Switch statements inside the <code>drawWindow()</code> and <code>drawRoof()</code>
-            functions are used to draw the four different types of windows and roofs. Nested
-            for loops are used to draw windows in each office unit in the building.
+            The <code>randomInteger()</code> function is used to generate random integers,
+            switch statements inside the <code>drawWindow()</code> and <code>drawRoof()</code>
+            functions are used to draw the four different types of windows and roofs, and
+            nested for loops are used to draw windows in each office unit in each building.
           %p
             Please make sure you fully understand the program in the example below before continuing on in
             this challenge. If you need help, visit the Basic Cityscape Challenge and its relevant lessons.
           = render 'lessons/relevant', relevant: [:variables, :functions, :for_loops, :switch_statements, :while_loops, :fill_rect, :fill_style, :random, :scale]
-
 
         .col-xs-12
           .interactive.row.py-1
@@ -210,6 +209,83 @@
                 %canvas#animated_cityscape_stage1_example1
 
 
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw the Sky Behind the Buildings
+          %p
+            The sky behind the buildings is not a solid color. During the day, the sky is
+            white along the horizon and bluer higher up. At night, the sky is gray along the
+            horizon and darker higher up. And as the sun sets, the sky along the horizon
+            turns red.
+          %p
+            To smoothly transition from one color to another, we use a linear gradient. In
+            this example, we create a linear gradient using the <code>createLinearGradient()</code>
+            method and assign it to a variable named <code>gradient</code>:
+          %pre
+            %code
+              :preserve
+                var gradient = context.createLinearGradient(40, 0, 360, 0);
+          %p
+            We create a linear gradient by passing the <code>createLinearGradient()</code> method
+            the coordinates for the gradient's start position and end position. Because the two points,
+            (40, 0) and (360, 0), form a horizontal line, the linear gradient is horizontal. It starts
+            at x = 40 and ends at x = 360. The y-coordinates of the two points in a horizontal linear
+            gradient are irrelevant as long as they are the same.
+          %p
+            The next step is setting the colors in the gradient:
+          %pre
+            %code
+              :preserve
+                gradient.addColorStop(0, 'Red');
+                gradient.addColorStop(0.6, 'Blue');
+                gradient.addColorStop(1, 'Black');
+          %p
+            This sets the color in the gradient at x = 40 (position <code>0</code>) to <code>'Red'</code>
+            and the color at x = 360 (position <code>1</code>) to <code>'Black'</code>. We also set
+            the color at x = 232 (position <code>0.6</code>) to <code>'Blue'</code>. This position is 60%
+            of the way from position <code>0</code> to position <code>1</code>.
+          %p
+            Finally, we assign the linear gradient stored in the variable <code>gradient</code> to the
+            <code>context.fillStyle</code> property and use the <code>context.fillRect()</code> method to
+            draw a filled rectangle.
+          %pre
+            %code
+              :preserve
+                context.fillStyle = gradient;
+                context.fillRect(40, 40, 320, 240);
+          %p
+            Change the colors in the gradient, change the position of the middle color stop, or add another
+            color stop with a position between <code>0</code> and <code>1</code> to see what happens. To learn more
+            about linear gradients, visit the createLinearGradient() lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('animated_cityscape_stage1_example2');
+                var context = canvas.getContext('2d');
+                
+                var gradient = context.createLinearGradient(40, 0, 360, 0);
+
+                gradient.addColorStop(0, 'Red');
+                gradient.addColorStop(0.6, 'Blue');
+                gradient.addColorStop(1, 'Black');
+
+                context.fillStyle = gradient;
+                context.fillRect(40, 40, 320, 240);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#animated_cityscape_stage1_example2
+
+
   #challenge1.challenge.row.py-3
     .col-xs-12
       .row.pb-2
@@ -220,30 +296,28 @@
             = image_tag('lessons/animated_cityscape/stage1/challenge1Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Use the
-            %code
-              context.fillRect()
-            method to draw a building (rectangle) that is 320 pixels wide and 160
-            pixels tall so the top left corner of the building is positioned at (40, 80).
+            Declare a variable named <code>horizonY</code> and assign it the value
+            <code>canvas.height - 100</code>. This sets the y-coordinate of the horizon
+            100 pixels above the bottom of the canvas.
           %p
-            Figure out the y-coordinate of the bottom of the building. Then, use the
-            %code
-              drawGround()
-            function to draw a line representing the ground beneath the building. For
-            example, if the y-coordinate of the bottom of the building is 120, use:
-          %pre
-            %code
-              :preserve
-                drawGround(120);
+            Define a function named <code>drawSky()</code>. Inside the function, create
+            a vertical linear gradient so position <code>0</code> is at the horizon and
+            position <code>1</code> is 300 pixels above the horizon. Note that position
+            <code>1</code> may not be visible on the canvas. That's fine.
           %p
-            Make sure to draw the ground after drawing the building.
+            Set the color in the gradient at position <code>0</code> to <code>'rgb(255, 85, 85)'</code>,
+            the color at position <code>0.3</code> to <code>'rgb(102, 119, 153)'</code>, and the color at
+            position <code>1</code> to <code>'rgb(68, 85, 119)'</code>.
           %p
-            If you need help drawing the building or positioning the ground, visit the
-            = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
-            and
-            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
-            lessons.
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+            Fill a rectangle with the gradient positioned at (0, 0) going down to the horizon and
+            across the width of the canvas.
+          %p
+            Since the <code>drawSky()</code> function is setting the <code>context.fillStyle</code>
+            property, make sure to save and restore the drawing state at the start and end of the function.
+          %p
+            Then, use the <code>drawSky()</code> function to draw the sky. This is approximately how the
+            sky will look at 6:20 pm once the cityscape is animated.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge1_editor'} do
@@ -251,25 +325,23 @@
             var canvas = document.getElementById('animated_cityscape_stage1_challenge1');
             var context = canvas.getContext('2d');
             
-            context.fillStyle = 'Black';
+            // DECLARE AND INITIALIZE THE horizonY VARIABLE HERE
             
-            // DRAW THE BUILDING HERE
+            // CALL THE drawSky() FUNCTION HERE TO DRAW THE SKY
             
-            // DRAW THE LINE FOR THE GROUND HERE
+            // DEFINE THE drawSky() FUNCTION HERE
+            // INSIDE THE drawSky() FUNCTION, CREATE A VERTICAL LINEAR GRADIENT
+            // FROM THE HORIZON TO A POINT 300 PIXELS ABOVE THE HORIZON. SET THE
+            // COLORS IN THE GRADIENT. USE THE GRADIENT TO FILL A RECTANGLE
+            // POSITIONED AT (0, 0) THAT GOES DOWN TO THE HORIZON AND ACROSS THE
+            // WIDTH OF THE CANVAS.
             
-            function drawGround(y) {
-              context.save();
-              context.fillStyle = 'Black';
-              context.fillRect(0, y, canvas.width, 2);
-              context.restore();
-            }
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge1.png')
             %canvas#animated_cityscape_stage1_challenge1
           .alert
 
@@ -279,67 +351,94 @@
       .row
         .col-xs-12
           %h2.py-2
-            Use Variables to Size and Position a Building
+            Change Ground and Sky Colors Over Time
           %p
-            We can use variables to automatically size and position a building.
+            The colors used to draw the sky in Challenge 1 are the colors of the sky at
+            6:20 pm in the animated cityscape. However, the colors of the sky are slightly
+            different at 6:10 pm and 6:30 pm. Because we change the color of the ground and
+            sky forty times between 5:00 pm and 7:00 pm, we need an easy way to calculate
+            these colors automatically.
           %p
-            In this example, we draw a green building (color
-            %span
-              %code>
-                '#228B22'
-              )
-            that is twice as tall as it is wide, and positioned at (60, 40).
-          %p
-            To change the size of the building, all we do is assign a different value to the variable
-            %span
-              %code>
-                w
-              \.
-            The program automatically calculates the height of the building and assigns it to the variable
-            %span
-              %code>
-                h
-              \.
+            In this example, we use two for loops to draw two rows of rectangles. The first
+            for loop uses the variable <code>i</code> as its counter. Inside the for loop,
+            we use an if statement to calculate the height of the rectangle depending on the
+            value of the counter.
           %pre
             %code
               :preserve
-                var w = 80; // Change this value to resize the building
-                var h = 2 * w; // The height is automatically two times the width
+                if (i < 6) {
+                  h = 40;
+                } else if (i > 15) {
+                  h = 100;
+                } else {
+                  h = 40 + 60 * (i - 6) / 9;
+                }
           %p
-            We use the values stored in the variables to draw the building:
-          %pre
-            %code
-              :preserve
-                context.fillStyle = '#228B22';
-                context.fillRect(60, 40, w, h);
+            When the program reaches the if statement, it checks the first condition. If
+            <code>i < 6</code>, the height of the rectangle is set to 40. If the first condition
+            is false, then the program checks the second condition. If <code>i > 15</code>, the
+            height of the rectangle is set to 100. If both conditions are false, then the program
+            runs the code block in the else clause and the height of the rectangle is set to the
+            value of <code>40 + 60 * (i - 6) / 9</code>.
           %p
-            Change the value stored in the variable
-            %code
-              w
-            to see what happens. To learn more about variables, visit the
-            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
-            lesson.
+            The expression <code>40 + 60 * (i - 6) / 9</code> is designed to increase from 40 to
+            100 as <code>i</code> increases from 6 to 15. Note that <code>(6 - 6) / 9</code> = 0
+            when <code>i</code> is 6 and <code>(15 - 6) / 9</code> = 1 when <code>i</code> is 15.
+          %p
+            In the second for loop, we design the expression inside the if statement so the height
+            of the rectangle decreases from 160 to 50 as <code>j</code> increases from 3 to 10. Can
+            you update the second for loop so the height of the rectangle decreases from 150 to 90
+            as <code>j</code> increases from 8 to 13?
           = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example3_editor'} do
               :preserve
-                var canvas = document.getElementById('animated_cityscape_stage1_example2');
+                var canvas = document.getElementById('animated_cityscape_stage1_example3');
                 var context = canvas.getContext('2d');
-
-                var w = 80; // Change this value to resize the building
-                var h = 2 * w; // The height is automatically two times the width
-
-                context.fillStyle = '#228B22';
-                context.fillRect(60, 40, w, h);
+                
+                var x, y, h;
+                context.fillStyle = 'Crimson';
+                
+                for (var i = 0; i < 20; i = i + 1) {
+                  if (i < 6) {
+                    h = 40;
+                  } else if (i > 15) {
+                    h = 100;
+                  } else {
+                    h = 40 + 60 * (i - 6) / 9;
+                  }
+                  
+                  x = 20 * i;
+                  y = 120 - h;
+                  
+                  context.fillRect(x, y, 18, h);
+                }
+                
+                context.fillStyle = 'BlueViolet';
+                
+                for (var j = 0; j < 20; j = j + 1) {
+                  if (j < 3) {
+                    h = 160;
+                  } else if (j > 10) {
+                    h = 50;
+                  } else {
+                    h = 160 - 110 * (j - 3) / 7;
+                  }
+                  
+                  x = 20 * j;
+                  y = 300 - h;
+                  
+                  context.fillRect(x, y, 18, h);
+                }
 
             .visual.col-xs-6
               %h5
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#animated_cityscape_stage1_example2
+                %canvas#animated_cityscape_stage1_example3
 
 
   #challenge2.challenge.row.py-3
@@ -351,41 +450,39 @@
           %figure.float-xs-right.px-2
             = image_tag('lessons/animated_cityscape/stage1/challenge2Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
-
           %p
-            Assign values to the variables
-            %span
-              %code>
-                x
-              ,
-            %span
-              %code>
-                y
-              ,
-            %span
-              %code>
-                w
-              ,
+            Start by defining the <code>rgbColor()</code> function. This function has
+            three parameters: <code>r</code>, <code>g</code>, and <code>b</code>. Use
+            the <code>Math.round()</code> function to round the values stored in the
+            parameters and the <code>+</code> operator to combine those values into a
+            text string describing a color in 'rgb()' notation. Use a return statement
+            to return the text string from the function.
+          %p
+            If you need help, examine the <code>drawBuildingRow()</code> and <code>randomInteger()</code>
+            functions in the Basic Cityscape Challenge program at the top of the page to see how we combined
+            values into a text string to describe a row's building color and how we returned randomly generated
+            integers from a function, or visit the
+            = link_to_lesson('fillStyle', :fillStyle, nil, class: 'reference-link', data: {slug: :fillStyle})
             and
-            %code
-              h
-            in the program below to draw a gray (color
-            %span
-              %code>
-                '#999999'
-              )
-            building with its top left corner positioned at (100, 40) and a width of 150 and height of 240.
+            = link_to_lesson('Functions', :functions, nil, class: 'reference-link', data: {slug: :functions})
+            lessons.
           %p
-            Then, figure out the y-coordinate of the bottom of the building. Use the
-            %code
-              drawGround()
-            function to draw a line representing the ground. Draw the ground after drawing the building.
-            Can you calculate the ground's y-coordinate using the variables in the program?
+            Inside the <code>drawGround()</code> function, declare the variable <code>c</code>. We can use
+            this one variable to store the red, green, and blue values of the ground's color because all three
+            values are the same. If <code>time < 5</code>, set <code>c = 204</code>. If <code>time > 7</code>, set
+            <code>c = 102</code>. If <code>time</code> is between 5 and 7, create an expression so <code>c</code>
+            decreases from 204 to 102 as <code>time</code> increases from 5 to 7. Pass the value of <code>c</code>
+            into the <code>rgbColor()</code> function and assign the color returned from the function to the
+            <code>context.fillStyle</code> property. Remember, <code>c</code> is the value of the red, green, and
+            blue values of the color.
           %p
-            If you need help using variables, visit the
-            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
-            lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
+            Then, use the <code>context.fillRect()</code> method to draw a rectangle from <code>horizonY</code>
+            to the bottom of the canvas at x = 0 with a width of 72. Make sure to save and restore the drawing state
+            since the <code>drawGround()</code> function is setting the <code>context.fillStyle</code> property.
+          %p
+            Finally, set the value of <code>horizonY</code> so the y-coordinate of the horizon is 100 pixels above the
+            bottom of the canvas. The program should now draw slices of the ground at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save, :translate, :round]
           = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'animated_cityscape_stage1_challenge1_editor'
 
       .row.py-1
@@ -394,22 +491,41 @@
             var canvas = document.getElementById('animated_cityscape_stage1_challenge2');
             var context = canvas.getContext('2d');
             
-            var x = 0;
-            var y = 0; // The building's top left corner is at (100, 40)
-            var w = 100;
-            var h = 100; // The building is 150 pixels wide and 240 pixels tall
-
-            // SET THE COLOR OF THE BUILDING TO #999999 HERE
-
-            // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
+            var time;
+            var horizonY; // Set the y-coordinate of the horizon so it is 100 pixels above the bottom of the canvas
             
-            drawGround(100); // Position and draw the ground here
+            context.save();
             
-            function drawGround(y) {
-              context.save();
-              context.fillStyle = 'Black';
-              context.fillRect(0, y, canvas.width, 2);
-              context.restore();
+            time = 5.0;
+            drawGround(); // Draw the ground at 5:00 pm
+            context.translate(72, 0);
+            time = 5.5;
+            drawGround(); // Draw the ground at 5:30 pm
+            context.translate(72, 0);
+            time = 6.0;
+            drawGround(); // Draw the ground at 6:00 pm
+            context.translate(72, 0);
+            time = 6.5;
+            drawGround(); // Draw the ground at 6:30 pm
+            context.translate(72, 0);
+            time = 7.0;
+            drawGround(); // Draw the ground at 7:00 pm
+            
+            context.restore();
+            
+            function rgbColor(r, g, b) {
+              
+              // Create and return a text string in rgb() notation after rounding the values stored in r, g, and b
+              
+            }
+            
+            function drawGround() {
+              
+              // Declare the variable c
+              // Use an if statement to calculate the value of c
+              // Use the rgbColor() function to get the color of the ground and assign it to the fillStyle
+              // Draw a filled rectangle from horizonY to the bottom of the canvas at x = 0 with a width of 72
+              
             }
             
         .visual.col-xs-6
@@ -547,74 +663,6 @@
             .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge3.png')
             %canvas#animated_cityscape_stage1_challenge3
           .alert
-
-
-  .example.row.py-3
-    .col-xs-12
-      .row
-        .col-xs-12
-          %h2.py-2
-            Use a Function to Draw a Building
-          %p
-            Drawing a single building takes a few steps. First, we have to calculate the width
-            and height of the building. Then, we have to set the building color and draw the
-            rectangle. Once we start drawing in windows, the list of steps will get much longer.
-          %p
-            To draw our cityscape, we have to draw dozens of buildings. Typing in all
-            that code for each building is going to be a lot of work.
-          %p
-            If there is a chunk of code that you are going to use over and over again,
-            putting that code into a function can make your life much easier. Then,
-            to run the code, all you have to do is call the function by typing one line.
-          %p
-            In this example, we create a function that will draw a French flag. Because we
-            might want to draw a French flag in lots of different places, we make the x- and
-            y-coordinates of the flag parameters. When we call
-            %span
-              %code>
-                drawFrenchFlag(30, 100)
-              ,
-            the 30 is automatically assigned to the parameter
-            %code
-              x
-            and the 100 to the parameter
-            %code
-              y
-            inside the function. Now we can easily draw as many French flags as we want!
-          %p
-            To learn more about functions, visit the
-            = link_to_lesson('Functions', :functions, nil, class: 'reference-link', data: {slug: :functions})
-            lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style]
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example3_editor'} do
-              :preserve
-                var canvas = document.getElementById('animated_cityscape_stage1_example3');
-                var context = canvas.getContext('2d');
-
-                function drawFrenchFlag(x, y) {
-                  context.fillStyle = '#0055A4';
-                  context.fillRect(x, y, 20, 40);
-
-                  context.fillStyle = '#FFFFFF';
-                  context.fillRect(x + 20, y, 20, 40);
-
-                  context.fillStyle = '#EF4135';
-                  context.fillRect(x + 40, y, 20, 40);
-                }
-
-                drawFrenchFlag(30, 100);
-                drawFrenchFlag(150, 50);
-                drawFrenchFlag(300, 180);
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#animated_cityscape_stage1_example3
 
 
   #challenge4.challenge.row.py-3

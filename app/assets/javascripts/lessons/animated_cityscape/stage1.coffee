@@ -14,26 +14,30 @@ initAnimatedCityscapeStage1Challenge1 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    drawGround = (y) ->
+    drawSky = ->
+      gradient = context.createLinearGradient(0, horizonY, 0, horizonY - 300)
+      gradient.addColorStop(0, 'rgb(255, 85, 85)')
+      gradient.addColorStop(0.3, 'rgb(102, 119, 153)')
+      gradient.addColorStop(1, 'rgb(68, 85, 119)')
+      
       context.save()
-      context.fillStyle = 'Black'
-      context.fillRect(0, y, canvas.width, 2)
+      context.fillStyle = gradient
+      context.fillRect(0, 0, canvas.width, horizonY)
       context.restore()
       return
     
-    context.fillStyle = 'Black'
-    context.fillRect(40, 80, 320, 160)
-    drawGround(240)
+    horizonY = canvas.height - 100
+    drawSky()
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You drew the building and positioned the ground correctly!'
+        message = '<strong>Success!</strong> You created the linear gradient and drew the sky correctly!'
         App.currentProgress.challengeComplete('animated_cityscape_stage1', 'challenge1')
       else
-        message = 'Nice try, but you need to draw the building and then figure out where to draw the ground correctly.'
+        message = 'Nice try, but you need to create the linear gradient and draw the sky correctly.'
 
       canvas.alert(message, success)
 
@@ -44,31 +48,51 @@ initAnimatedCityscapeStage1Challenge2 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
+    rgbColor = (r, g, b) ->
+      'rgb(' + Math.round(r) + ', ' + Math.round(g) + ', ' + Math.round(b) + ')'
     drawGround = (y) ->
+      if time < 5
+        c = 204
+      else if time > 7
+        c = 102
+      else
+        c = 204 - 102 * (time - 5) / 2
+      
       context.save()
-      context.fillStyle = 'Black'
-      context.fillRect(0, y, canvas.width, 2)
+      context.fillStyle = rgbColor(c, c, c)
+      context.fillRect(0, horizonY, 72, 100)
       context.restore()
       return
     
-    x = 100
-    y = 40
-    w = 150
-    h = 240
+    horizonY = canvas.height - 100
     
-    context.fillStyle = '#999999'
-    context.fillRect(x, y, w, h)
-    drawGround(y + h)
+    context.save()
+    time = 5.0
+    drawGround()
+    context.translate(72, 0)
+    time = 5.5
+    drawGround()
+    context.translate(72, 0)
+    time = 6.0
+    drawGround()
+    context.translate(72, 0)
+    time = 6.5
+    drawGround()
+    context.translate(72, 0)
+    time = 7.0
+    drawGround()
+    context.translate(72, 0)
+    context.restore()
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You drew the gray building with the correct size and position, and positioned the ground beneath it!'
+        message = '<strong>Success!</strong> You calculated the ground color and drew the ground correctly for each time!'
         App.currentProgress.challengeComplete('animated_cityscape_stage1', 'challenge2')
       else
-        message = 'Nice try, but you need to draw the gray building with the correct size and position, and position the ground beneath it.'
+        message = 'Nice try, but you need to calcuate the ground color and draw the ground correctly for each time.'
 
       canvas.alert(message, success)
 
