@@ -132,6 +132,30 @@ class ApplicationController < ActionController::Base
           :switch_statements,
           :while_loops
         ]
+      },
+      {
+        experimental: true,
+        name: 'Animated Cityscape',
+        slug: 'animated_cityscape',
+        stages: [6, 6, 6, 6],
+        reference: [
+          :fill_rect,
+          :fill_style,
+          :save,
+          :translate,
+          :line_to,
+          :random,
+          :round,
+          :scale
+        ],
+        concepts: [
+          :coordinates,
+          :variables,
+          :functions,
+          :for_loops,
+          :switch_statements,
+          :while_loops
+        ]
       }
     ]
 
