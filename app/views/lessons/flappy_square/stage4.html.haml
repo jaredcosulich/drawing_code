@@ -209,7 +209,7 @@
 
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
-            
+
 
         .visual.col-xs-6
           %h5
@@ -507,6 +507,8 @@
           %p
             In this example we show two versions of the same drawing, but one is all black
             and one uses fillStyle to make the overlapping rectangles and text visible.
+          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect]
+
 
         .col-xs-12
           .interactive.row.py-1
@@ -572,6 +574,7 @@
           %p
             In the end your flappy square should look like the example provided at
             the right, but with possibly different colors.
+          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect]
           = render 'lessons/code_preview', stage: 4, challenge: 3, editor_id: 'flappy_square_stage4_challenge3_editor'
 
       .row

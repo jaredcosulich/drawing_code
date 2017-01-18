@@ -617,12 +617,7 @@
             then rounds that number down (for example from 129.83 to just 129) and we
             add 40 to give us a random integer between 40 and 200.
 
-
-
-
-
-
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+          = render 'lessons/relevant', relevant: [:random, :coordinates, :fill_rect]
 
 
         .col-xs-12
@@ -720,6 +715,7 @@
           %p
             In the end your flappy square should behave like the example provided at
             the beginning of this description.
+          = render 'lessons/relevant', relevant: [:random, :coordinates, :fill_rect]
           = render 'lessons/code_preview', stage: 3, challenge: 1, editor_id: 'flappy_square_stage3_challenge1_editor'
 
       .row
@@ -865,6 +861,7 @@
             account as well.
           %p
             In the end your flappy square should behave like the example to the right.
+          = render 'lessons/relevant', relevant: [:random, :coordinates, :fill_rect]
           = render 'lessons/code_preview', stage: 3, challenge: 2, editor_id: 'flappy_square_stage3_challenge2_editor'
 
       .row

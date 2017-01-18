@@ -70,10 +70,16 @@ class ApplicationController < ActionController::Base
         reference: [
           :clear_rect,
           :fill_rect,
+          :fill_style,
+          :line_to,
+          :random,
         ],
         concepts: [
+          :coordinates,
+          :event_listeners,
+          :functions,
           :set_interval,
-          :event_listeners
+          :variables,
         ]
       },
       {
