@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
       round: {count: 3, method: 'round() / floor() / ceil()'},
       save: {count: 5, method: 'save() / restore()'},
       scale: {count: 7, method: 'scale()'},
+      create_linear_gradient: {count: 3, method: 'createLinearGradient()'},
 
       coordinates: {count: 3, method: 'Coordinates'},
       event_listeners: {count: 0, method: 'Event Listeners'},
@@ -22,6 +23,7 @@ class ApplicationController < ActionController::Base
       switch_statements: {count: 4, method: 'Switch Statements'},
       variables: {count: 5, method: 'Variables'},
       while_loops: {count: 3, method: 'While Loops'},
+      if_statements: {count: 3, method: 'If Statements'}
     }
 
     @reference = {
@@ -152,7 +154,8 @@ class ApplicationController < ActionController::Base
           :line_to,
           :random,
           :round,
-          :scale
+          :scale,
+          :create_linear_gradient
         ],
         concepts: [
           :coordinates,
@@ -160,7 +163,8 @@ class ApplicationController < ActionController::Base
           :functions,
           :for_loops,
           :switch_statements,
-          :while_loops
+          :while_loops,
+          :if_statements
         ]
       }
     ]

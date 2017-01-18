@@ -1,0 +1,714 @@
+#create_linear_gradient.page
+  %h1
+    context.createLinearGradient()
+  .description.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/create_linear_gradient/overviewVisual1.png', class: 'img-fluid canvas-example')
+          %p
+            A while loop runs a block of code repeatedly until a condition evaluates to false.
+          %p
+            Technically, while loops have two parts:
+          %pre
+            %code
+              :preserve
+                while (condition) {
+
+                  // the code to do something
+
+                }
+          %p
+            The
+            %code
+              condition
+            is the expression evaluated at the start of each loop.
+          %p
+            If the
+            %code
+              condition
+            evaluates to true, the code block between the curly braces {&hellip;} is run
+            and the loop starts again. If the
+            %code
+              condition
+            evaluates to false, the while loop ends and the program continues.
+          %p
+            Even though while loops technically only have two parts, some code inside
+            the code block must eventually make the
+            %code
+              condition
+            false, otherwise the loop will never end and your browser will hang or crash.
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use a While Loop to Fit Text in a Box
+          %p
+            In this example, we use a while loop to fit as many lines of text as possible in a box.
+          %p
+            We start by declaring the variable
+            %span
+              %code>
+                boxHeight
+              ,
+            which stores the height of the box, and initialize it with the value 200:
+          %pre
+            %code
+              :preserve
+                var boxHeight = 200; // Assign the height of the box
+          %p
+            Then, we use the
+            %code
+              context.fillRect()
+            method to draw a rectangle, using the value stored in the variable
+            %code
+              boxHeight
+            for its height and filling it with the color
+            %span
+              %code>
+                'Orchid'
+              \.
+            We also set the
+            %span
+              %code>
+                context.fillStyle
+              ,
+            %span
+              %code>
+                context.font
+              ,
+            and
+            %code
+              context.textBaseline
+            properties for our lines of text.
+          %pre
+            %code
+              :preserve
+                context.fillStyle = 'Orchid';
+                context.fillRect(0, 0, 300, boxHeight);
+
+                context.fillStyle = 'Black';
+                context.font = '16px Arial';
+                context.textBaseline = 'bottom';
+          %p
+            We are using the variable
+            %code
+              y
+            to store the y-coordinate of our lines of text. Before setting up the
+            while loop, we declare the variable
+            %code
+              y
+            and initialize it with the value 20, the y-coordinate of the first line of text.
+          %pre
+            %code
+              :preserve
+                var y = 20; // Initialize the y-coordinate of the first line of text
+          %p
+            We want the while loop to continue running as long as the next line of text
+            still fits inside of the rectangle. So, we use
+            %code
+              y <= boxHeight
+            as our condition. If the y-coordinate of the next line of text is less than
+            or equal to the height of the rectangle, we draw a line of text at the coordinates (10,
+            %span
+              %code>
+                y
+              )
+            and update the variable
+            %code
+              y
+            with the y-coordinate for the next line of text.
+          %pre
+            %code
+              :preserve
+                while (y <= boxHeight) {
+                  context.fillText('this line of text is at y = ' + y, 10, y);
+                  y = y + 20; // Update the y-coordinate for the next line of text
+                }
+          %p
+            Updating the value stored in the variable
+            %code
+              y
+            inside of the while loop is important. If we don't do that, the while
+            loop's condition will never evaluate to false and the loop will never end.
+          %p
+            Change the value assigned to the variable
+            %code
+              boxHeight
+            to see what happens. The while loop should draw just enough lines of text to
+            fill the box. Count the lines of text to find the number of times the program
+            ran through the loop.
+          %p
+            To learn more about drawing text, visit the
+            fillText()
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'create_linear_gradient_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('create_linear_gradient_example1');
+                var context = canvas.getContext('2d');
+
+                var boxHeight = 200; // Assign the height of the box
+
+                context.fillStyle = 'Orchid';
+                context.fillRect(0, 0, 300, boxHeight);
+
+                context.fillStyle = 'Black';
+                context.font = '16px Arial';
+                context.textBaseline = 'bottom';
+
+                var y = 20; // Initialize the y-coordinate of the first line of text
+
+                while (y <= boxHeight) {
+                  context.fillText('this line of text is at y = ' + y, 10, y);
+                  y = y + 20; // Update the y-coordinate for the next line of text
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#create_linear_gradient_example1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/create_linear_gradient/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Update the while loop to draw trees from the start of the ground to the end, with
+            trees 40 pixels apart. The ground starts at the x-coordinate stored in the variable
+            %code
+              x1
+            and ends at the x-coordinate stored in the variable
+            %span
+              %code>
+                x2
+              \.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :translate]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'create_linear_gradient_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('create_linear_gradient_challenge1');
+            var context = canvas.getContext('2d');
+
+            var x1 = 20; // The x-coordinate where the ground starts
+            var x2 = 380; // The x-coordinate where the ground ends
+
+            drawGround();
+
+            var x = 0; // The x-coordinate of the next tree
+
+            while (x < 0) {
+              drawTree(x);
+              x = x + 1;
+            }
+
+            function drawTree(x) {
+              context.save();
+              context.translate(x, 150);
+              context.fillStyle = 'Sienna';
+              context.fillRect(-5, 0, 10, 50);
+              context.fillStyle = 'ForestGreen';
+              context.beginPath();
+              context.arc(0, 0, 15, 0, 2 * Math.PI, false);
+              context.fill();
+              context.restore();
+            }
+
+            function drawGround() {
+              context.save();
+              context.translate(x1 - 5, 200);
+              context.fillStyle = '#666666';
+              context.fillRect(0, 0, x2 - x1 + 10, 10);
+              context.restore();
+            }
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/create_linear_gradient/challenge1.png')
+            %canvas#create_linear_gradient_challenge1
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Convert a For Loop into a While Loop
+          %p
+            In this example, we convert a for loop into a while loop.
+            To learn
+            more about for loops, visit the
+            = link_to_lesson('For Loops', :for_loops, nil, class: 'reference-link', data: {slug: :for_loops})
+            lesson.
+          %p
+            Most for loops and while loops have the same parts, just located in different places.
+            In a for loop, we initialize, evaluate, and update the loop's condition all in the for
+            statement.
+          %pre
+            %code
+              :preserve
+                for (var i = 0; i < 8; i = i + 1) {
+                  context.fillRect(40 * i, 50, 36, 36);
+                }
+          %p
+            This for loop draws eight squares in a row.
+          %p
+            We can also set up a while loop to draw eight squares in a row. In a while loop, we
+            still evaluate the loop's condition in the while statement, but we initialize the condition
+            before the while statement and we update the condition inside the while loop's code block.
+          %pre
+            %code
+              :preserve
+                var j = 0; // Initialize the variable in the condition
+                while (j < 8) {
+                  context.fillRect(40 * i, 150, 36, 36);
+                  j = j + 1; // Update the condition by incrementing the variable
+                }
+          %p
+            To help us compare the two loops, the squares in the for loop are filled with the color
+            %code
+              'FireBrick'
+            and drawn at y = 50, and the squares in the while loop are filled with the color
+            %code
+              'DarkSlateBlue'
+            and drawn at y = 150.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :for_loops, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'create_linear_gradient_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('create_linear_gradient_example2');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = 'FireBrick';
+
+                for (var i = 0; i < 8; i = i + 1) {
+                  context.fillRect(40 * i, 50, 36, 36);
+                }
+
+                context.fillStyle = 'DarkSlateBlue';
+
+                var j = 0;
+                while (j < 8) {
+                  context.fillRect(40 * j, 150, 36, 36);
+                  j = j + 1;
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#create_linear_gradient_example2
+
+
+  #challenge2.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/create_linear_gradient/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            The for loop below draws six squares in a diagonal line. Create a while
+            loop to draw the same six squares, just shifted 100 pixels to right and
+            filled with the color
+            %code
+              'DarkOrange'
+            instead of
+            %span
+              %code>
+                'HotPink'
+              \.
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'create_linear_gradient_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('create_linear_gradient_challenge2');
+            var context = canvas.getContext('2d');
+
+            context.fillStyle = 'HotPink';
+
+            for (var i = 0; i < 6; i = i + 1) {
+              context.fillRect(40 * i, 50 * i, 45, 45);
+            }
+
+            context.fillStyle = 'DarkOrange';
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/create_linear_gradient/challenge2.png')
+            %canvas#create_linear_gradient_challenge2
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Fit Squares with Random Side Lengths along a Length
+          %p
+            While loops and for loops both run a block of code repeatedly until a condition
+            evaluates to false. We typically decide which kind of loop to use based on readability
+            and clarity. Which kind of loop makes our code easier to follow and understand?
+          %p
+            We generally use for loops if we know how many times the loop will repeat before
+            starting to loop. If we know we are going to run through a loop six times, then
+            initializing, evaluating, and updating the loop's condition in the for statement
+            makes our code easier to read and follow. However, if we don't know how often the
+            loop will repeat, using a while loop is often clearer.
+          %p
+            In this example, we are going to fit as many squares as possible along a length.
+            Because the size of the squares is random, there is no way to know ahead of time
+            how many squares will fit.
+          %p
+            We are using the variable
+            %code
+              rowLength
+            to store the length for the row of squares and the variable
+            %code
+              x
+            to store the x-coordinate of the next square. We start by declaring both variables
+            and initialize
+            %code
+              rowLength
+            with the value 360 and
+            %code
+              x
+            with the value 0, the x-coordinate of the first square.
+          %pre
+            %code
+              :preserve
+                var rowLength = 360; // The length of the row of squares
+                var x = 0; // The x-coordinate of the next square
+          %p
+            We want the while loop to continue running as long as the x-coordinate of the
+            next square is still within the length of the row. So, we use
+            %code
+              x < rowLength
+            as our condition. If the x-coordinate of the next square is less than the length
+            of the row, we generate a random side length for the square, draw the square at the
+            coordinates
+            %span
+              (
+              %code>
+                x
+              ,
+            0), and update the variable
+            %code
+              x
+            with the x-coordinate for the next square.
+          %pre
+            %code
+              :preserve
+                while (x < rowLength) {
+                  var sideLength = 20 + 60 * Math.random(); // Generate a random side length between 20 and 80
+                  context.fillRect(x, 0, sideLength, sideLength);
+                  context.strokeRect(x, 0, sideLength, sideLength);
+                  x = x + sideLength; // Calculate the x-coordinate of the next square
+                }
+          %p
+            Run the program several times to see what happens.
+          %p
+            There are a few things worth noting. First, we can count the number of squares
+            to find the number of times the program ran through the loop. Second, the number
+            of squares changes depending on the sizes of the squares. Third, the row of squares
+            is longer than the
+            %code
+              rowLength
+            because we are only checking the x-coordinate for the start of the square, not the
+            end. Fourth, we calculate the x-coordinate of the next square using the value stored in the
+            variable
+            %span
+              %code>
+                sideLength
+              ,
+            which is a random number generated inside the while loop's code block. If we used
+            %code
+              x = x + sideLength
+            to increment the variable
+            %code
+              x
+            in a for statement, it wouldn't be clear where
+            %code
+              sideLength
+            comes from. Doing the calculation inside the code block is clearer.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style, :random]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'create_linear_gradient_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('create_linear_gradient_example3');
+                var context = canvas.getContext('2d');
+
+                var rowLength = 360; // The length of the row of squares
+
+                context.fillStyle = 'White';
+                context.fillRect(0, 0, rowLength, 100); // Draw a white background for the row of squares
+
+                context.strokeStyle = 'Black';
+                context.fillStyle = 'MediumSeaGreen';
+
+                var x = 0; // The x-coordinate of the next square
+
+                while (x < rowLength) {
+                  var sideLength = 20 + 60 * Math.random(); // Generate a random side length between 20 and 80
+                  context.fillRect(x, 0, sideLength, sideLength);
+                  context.strokeRect(x, 0, sideLength, sideLength);
+                  x = x + sideLength; // Calculate the x-coordinate of the next square
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#create_linear_gradient_example3
+
+
+  #challenge3.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/create_linear_gradient/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Your drawing should look something like this
+          %p
+            Update the while loop to draw trees from the start of the ground to the end, with
+            trees a random distance apart. The ground starts at the x-coordinate stored in the variable
+            %code
+              x1
+            and ends at the x-coordinate stored in the variable
+            %span
+              %code>
+                x2
+              \.
+            The random distance to the next tree is generated and stored in the variable
+            %code
+              treeDistance
+            inside the while loop.
+          %p
+            Run your program several times. Your drawings should look similar to the image
+            to the right, except the number of trees and the distance between them should be
+            different every time. Then, if your program seems to be working, mark the challenge
+            as complete by selecting "Yes, it looks good".
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'create_linear_gradient_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('create_linear_gradient_challenge3');
+            var context = canvas.getContext('2d');
+
+            var x1 = 20; // The x-coordinate where the ground starts
+            var x2 = 380; // The x-coordinate where the ground ends
+
+            drawGround();
+
+            var x = 0; // The x-coordinate of the next tree
+
+            while (x < 0) {
+              var treeDistance = 30 + 30 * Math.random(); // Generate a random number between 30 and 60 for the distance to the next tree
+              drawTree(x);
+              x = x + 1;
+            }
+
+            function drawTree(x) {
+              context.save();
+              context.translate(x, 150);
+              context.fillStyle = 'Sienna';
+              context.fillRect(-5, 0, 10, 50);
+              context.fillStyle = 'ForestGreen';
+              context.beginPath();
+              context.arc(0, 0, 15, 0, 2 * Math.PI, false);
+              context.fill();
+              context.restore();
+            }
+
+            function drawGround() {
+              context.save();
+              context.translate(x1 - 5, 200);
+              context.fillStyle = '#666666';
+              context.fillRect(0, 0, x2 - x1 + 10, 10);
+              context.restore();
+            }
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#create_linear_gradient_challenge3
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw the Trajectory of a Cannonball
+          %p
+            In this example, we use a while loop to draw the trajectory of a cannonball.
+            We are using a while loop because the number of cannonballs drawn will vary
+            depending on the angle of the cannon. Change the angle of the cannon to see
+            the trajectory of the cannonball change.
+          %p
+            We start by drawing the ground and using the angle of the cannon to calculate the
+            geometry of the cannonball. We want to draw the first cannonball just as it
+            is coming out of the barrel of the cannon. The angle of the cannon also determines
+            the velocity of the cannonball in the x- and y-directions. Then, we draw the cannon
+            itself at the coordinates (10, 300).
+          %pre
+            %code
+              :preserve
+                var angle = 30; // The angle of the cannon (10 - 80);
+
+                drawGround();
+                calculateGeometry();
+
+                context.translate(10, 300);
+                drawCannon();
+          %p
+            By using the
+            %code
+              context.translate()
+            method to position the cannon on the ground, we also move the origin of the
+            context's coordinate system so the ground is at y = 0. This means, we can use
+            %code
+              y < -5
+            as the condition for our while loop. As long as the cannonball is at least 5
+            pixels above the ground, we draw the cannonball and calculate the position and
+            velocity of the next cannonball. The center of the cannonball needs to be at
+            least 5 pixels above the ground because the radius of the cannonball is 5 pixels.
+          %pre
+            %code
+              :preserve
+                while (y < -5) { // Keep drawing the cannonball while it is above the ground
+                  drawCannonball();
+
+                  x = x + vX;
+                  y = y + vY; // Calculate the coordinates of the next cannonball
+                  vY = vY + g; // Calculate new velocity in the y-direction due to gravity
+                }
+          %p
+            Inside the while loop, we use the velocity of the cannonball to calculate the coordinates
+            of its next position, and then adjust the velocity of the cannonball due to the effect of gravity.
+          %p
+            By using a while loop, we don't have to do any calculus or solve any quadratic
+            equations in order to plot the trajectory of the cannonball ahead of time.
+            We just keep drawing cannonballs as long as the position of the cannonball is still
+            above the ground.
+          %p
+            To learn more about math functions, visit this list of available
+            %span
+              %span><
+                = link_to('math functions', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math', target: '_blank')
+              \.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save, :translate]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'create_linear_gradient_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('create_linear_gradient_example4');
+                var context = canvas.getContext('2d');
+
+                var g = 1; // The force of gravity
+                var x = 0; // The x-coordinate of the cannonball
+                var y = 0; // The y-coordinate of the cannonball
+                var vX = 0; // The velocity of the cannonball in the x-direction
+                var vY = 0; // The velocity of the cannonball in the y-direction
+
+                var angle = 30; // The angle of the cannon (10 - 80);
+
+                drawGround();
+                calculateGeometry();
+
+                context.translate(10, 300);
+                drawCannon();
+
+                while (y < -5) { // Keep drawing the cannonball while it is above the ground
+                  drawCannonball();
+
+                  x = x + vX;
+                  y = y + vY; // Calculate the coordinates of the next cannonball
+                  vY = vY + g; // Calculate new velocity in the y-direction due to gravity
+                }
+
+                function drawCannonball() {
+                  context.save();
+                  context.fillStyle = '#666666';
+                  context.beginPath();
+                  context.arc(x, y, 5, 0, 2 * Math.PI, false);
+                  context.fill();
+                  context.restore();
+                }
+
+                function drawCannon() {
+                  context.save();
+                  context.translate(0, -15);
+                  context.save();
+                  context.rotate(angle);
+                  context.fillStyle = '#999999';
+                  context.fillRect(-10, -5, 30, 10); // Draw the cannon's barrel
+                  context.restore();
+                  context.fillStyle = '#666666';
+                  context.beginPath();
+                  context.arc(0, 5, 10, 0, 2 * Math.PI, false);
+                  context.fill(); // Draw the cannon's tire
+                  context.restore();
+                }
+
+                function drawGround() {
+                  context.save();
+                  context.fillStyle = '#333333';
+                  context.fillRect(0, 300, canvas.width, 2);
+                  context.restore();
+                }
+
+                function calculateGeometry() {
+                  angle = -Math.PI * Math.min(80, Math.max(10, angle)) / 180; // Change from degrees to radians
+                  vX = 20 * Math.cos(angle);
+                  vY = 20 * Math.sin(angle); // Set the velocity of the first cannonball
+                  x = 2 * vX;
+                  y = 2 * vY - 15; // Set the coordinates of the first cannonball
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#create_linear_gradient_example4
