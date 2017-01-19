@@ -1,0 +1,84 @@
+:preserve
+  Base@!~ var canvas = document.getElementById("example_drawings_dragon_curve_fractal_canvas");
+  var context = canvas.getContext("2d");
+  dragon.init(context, 6); ~!@dragon@!~
+  var dragon = {
+  	context: null,
+  	length: 9,
+  	rCount: 0,
+  	rMax: 12,
+  	recursion: ["F", "X"],
+  	timer: null,
+
+  	init: function(context, length) {
+  	  this.context = context;
+  	  if (length) this.length = length;
+
+  		if (this.timer === null) this.timer = setInterval(this.update, 500);
+  	},
+
+  	update: function() {
+  		if (dragon.rCount < dragon.rMax) {
+  			dragon.iterate();
+  			dragon.draw();
+  		} else {
+  			clearInterval(dragon.timer);
+  			dragon.timer = null;
+  		}
+  	},
+
+  	iterate: function() {
+  		var newRecursion = [];
+
+  		for (var i = 0; i < this.recursion.length; i++) {
+  			switch(this.recursion[i]) {
+  				case "X":
+  					newRecursion.push("X", "+", "Y", "F", "+");
+  					break;
+
+  				case "Y":
+  					newRecursion.push("-", "F", "X", "-", "Y");
+  					break;
+
+  				default:
+  					newRecursion.push(this.recursion[i]);
+  					break;
+  			}
+  		}
+
+  		this.rCount += 1;
+  		this.recursion = newRecursion;
+  	},
+
+  	draw: function() {
+  		var angle = Math.PI / 2;
+
+  		this.context.save();
+  		this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+  		this.context.lineWidth = 1;
+  		this.context.strokeStyle = "rgba(0, 0, 0, 1)";
+  		this.context.translate(((700/9) * this.length), this.context.canvas.height - ((200/9) * this.length));
+
+  		for (var i = 0; i < this.recursion.length; i++) {
+  			switch(this.recursion[i]) {
+  				case "F":
+  					this.context.beginPath();
+  					this.context.moveTo(0, 0);
+  					this.context.lineTo(this.length, 0);
+  					this.context.stroke();
+  					this.context.translate(this.length, 0);
+  					break;
+
+  				case "+":
+  					this.context.rotate(-angle);
+  					break;
+
+  				case "-":
+  					this.context.rotate(angle);
+  					break;
+  			}
+  		}
+
+  		this.context.restore();
+  	}
+  };

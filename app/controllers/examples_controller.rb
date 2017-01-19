@@ -10,7 +10,8 @@ class ExamplesController < ApplicationController
     @examples = {
       'Drawings' => [
         :flowers,
-        :sunrise_text
+        :sunrise_text,
+        :dragon_curve_fractal
       ],
       'Animations' => [
         :rolling_ball,

@@ -32,6 +32,7 @@ class App.Editor
       @codeEditor.find('.edit-text-message').html("You've changed the code. To see the results:")
 
     @startCode = @aceEditor.getValue()
+    @setCode(@startCode)
 
     @initLog()
     @initRun()

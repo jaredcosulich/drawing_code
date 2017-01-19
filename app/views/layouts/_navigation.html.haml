@@ -14,7 +14,10 @@
       %li.section.drawings-list.small.mt-1.hidden-xs-up
         %strong My Drawings
 
-
+%ul.nav.nav-sidebar
+  %li.section
+    = link_to('Gallery', examples_path, class: 'section_link')
+      
 %ul.nav.nav-sidebar
   %li.section
     %a.section_link{:href => '#', data: {section: 'reference'}}
