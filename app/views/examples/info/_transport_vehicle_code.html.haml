@@ -1,0 +1,233 @@
+:preserve
+  var canvas = document.getElementById('my_drawings_canvas');
+  var context = canvas.getContext('2d');
+
+  function drawCanvas() {
+  	context.save();
+  	context.translate(14, -168);
+
+  	context.save();
+  	context.translate(80, 264);
+  	drawChassis();
+  	context.restore();
+
+  	context.save();
+  	context.translate(120, 300);
+  	drawSideBox();
+  	context.restore();
+
+  	context.save();
+  	context.translate(80, 300);
+  	drawTire();
+  	context.translate(80, 0);
+  	drawTire();
+  	context.restore();
+
+  	context.save();
+  	context.translate(106, 280);
+  	drawCargoBed();
+  	context.restore();
+
+  	context.save();
+  	context.translate(26, 264);
+  	drawCab();
+  	context.restore();
+  	context.restore();
+  }
+
+  function drawCab() {
+  	var i, y;
+
+  	context.lineWidth = 0.5;
+  	context.strokeStyle = "rgba(0, 0, 0, 1)";
+  	context.fillStyle = "rgba(255, 238, 85, 1)";
+  	context.beginPath();
+  	context.moveTo(-2, -2);
+  	context.lineTo(4, 40);
+  	context.lineTo(12, 40);
+  	context.lineTo(12, 4);
+  	context.lineTo(64, 4);
+  	context.lineTo(64, -2);
+  	context.closePath();
+  	context.fill();
+  	context.stroke();
+
+  	context.fillStyle = "rgba(187, 221, 255, 1)";
+  	context.beginPath();
+  	context.moveTo(2, -14);
+  	context.lineTo(26, -14);
+  	context.lineTo(26, -26);
+  	context.lineTo(14, -26);
+  	context.closePath();
+  	context.fill();
+
+  	context.fillStyle = "rgba(51, 51, 51, 1)";
+  	context.beginPath();
+  	context.moveTo(-2, -2);
+  	context.lineTo(2, -14);
+  	context.lineTo(26, -14);
+  	context.lineTo(26, -26);
+  	context.lineTo(14, -26);
+  	context.lineTo(18, -28);
+  	context.lineTo(38, -28);
+  	context.lineTo(42, -26);
+  	context.lineTo(50, -14);
+  	context.lineTo(54, -2);
+  	context.closePath();
+  	context.fill();
+  	context.stroke();
+
+  	context.lineWidth = 1;
+  	context.beginPath()
+  	context.moveTo(12, -14);
+  	context.lineTo(12, 58);
+  	context.moveTo(22, -14);
+  	context.lineTo(22, 58);
+  	for (i = 0; i < 17; i++) {
+  		y = -10 + 4 * i;
+  		context.moveTo(12, y);
+  		context.lineTo(22, y);
+  	}
+  	context.stroke();
+  }
+
+  function drawCargoBed() {
+  	var i, x, y;
+
+  	context.lineWidth = 0.5;
+  	context.strokeStyle = "rgba(0, 0, 0, 1)";
+  	context.fillStyle = "rgba(204, 170, 34, 1)";
+  	for (i = 0; i < 7; i++) {
+  		x = 18 + 18 * i - 3 + 1;
+  		y = -6 - 6 * i + 1 + 3;
+  		context.beginPath();
+  		context.moveTo(x, y);
+  		context.lineTo(x + 6, y - 2);
+  		context.lineTo(x + 4, y - 8);
+  		context.lineTo(x - 2, y - 6);
+  		context.closePath();
+  		context.fill();
+  		context.stroke();
+  	}
+
+  	context.fillStyle = "rgba(204, 170, 34, 1)";
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(144, -48);
+  	context.lineTo(-16, -48);
+  	context.closePath();
+  	context.fill();
+  	context.stroke();
+
+  	context.fillStyle = "rgba(255, 238, 85, 1)";
+  	context.beginPath();
+  	context.moveTo(63, -21);
+  	context.lineTo(144, -48);
+  	context.lineTo(80, -64);
+  	context.lineTo(-21, -64);
+  	context.lineTo(-29, -72);
+  	context.lineTo(-90, -72);
+  	context.lineTo(-90, -64);
+  	context.lineTo(-64, -64);
+  	context.bezierCurveTo(-48, -64, -23, -33, -19, -21);
+  	context.closePath();
+  	context.fill();
+  	context.stroke();
+
+  	context.fillStyle = "rgba(204, 170, 34, 1)";
+  	context.beginPath();
+  	context.moveTo(60, -30);
+  	context.lineTo(111, -47);
+  	context.lineTo(80, -55);
+  	context.lineTo(54, -55);
+  	context.closePath();
+  	context.fill();
+  	context.stroke();
+
+  	context.beginPath();
+  	context.moveTo(50, -30);
+  	context.lineTo(44, -55);
+  	context.lineTo(14, -55);
+  	context.lineTo(20, -30);
+  	context.closePath();
+  	context.fill();
+  	context.stroke();
+
+  	context.beginPath();
+  	context.moveTo(10, -30);
+  	context.lineTo(4, -55);
+  	context.lineTo(-32, -55);
+  	context.bezierCurveTo(-30, -52, -16, -36, -14, -30);
+  	context.closePath();
+  	context.fill();
+  	context.stroke();
+  }
+
+  function drawTire() {
+  	var i;
+
+  	context.fillStyle = "rgba(51, 51, 51, 1)";
+  	context.save();
+  	for (i = 0; i < 20; i++) {
+  		context.rotate(0.1 * Math.PI);
+  		context.fillRect(-3, -26, 6, 6);
+  	}
+  	context.restore();
+
+  	context.beginPath();
+  	context.arc(0, 0, 24, 0, 2 * Math.PI, false);
+  	context.fill();
+
+  	context.fillStyle = "rgba(102, 102, 102, 1)";
+  	context.beginPath();
+  	context.arc(0, 0, 12, 0, 2 * Math.PI, false);
+  	context.fill();
+  }
+
+  function drawSideBox() {
+  	context.lineWidth = 0.5;
+  	context.strokeStyle = "rgba(0, 0, 0, 1)";
+  	context.fillStyle = "rgba(255, 238, 85, 1)";
+  	context.beginPath();
+  	context.moveTo(-14, -16);
+  	context.lineTo(10, -18);
+  	context.lineTo(12, -2);
+  	context.lineTo(10, 15);
+  	context.lineTo(-10, 16);
+  	context.closePath();
+  	context.fill();
+  	context.stroke();
+
+  	context.fillStyle = "rgba(204, 170, 34, 1)";
+  	context.beginPath();
+  	context.arc(-4, 10, 3, 0, 2 * Math.PI, false);
+  	context.fill();
+  	context.stroke();
+  }
+
+  function drawChassis() {
+  	context.lineWidth = 0.5;
+  	context.strokeStyle = "rgba(0, 0, 0, 1)";
+  	context.fillStyle = "rgba(102, 85, 68, 1)";
+  	context.beginPath();
+  	context.moveTo(-54, 0);
+  	context.lineTo(0, 36);
+  	context.lineTo(80, 36);
+  	context.lineTo(98, 0);
+  	context.closePath();
+  	context.fill();
+  	context.stroke();
+
+  	context.beginPath();
+  	context.moveTo(-54, 0);
+  	context.lineTo(0, 36);
+  	context.lineTo(12, 36);
+  	context.lineTo(168, -24);
+  	context.lineTo(170, -32);
+  	context.lineTo(48, 0);
+  	context.closePath();
+  	context.fill();
+  	context.stroke();
+  }
+
+  drawCanvas();
