@@ -259,8 +259,10 @@
           %p
             Change the colors in the gradient, change the position of the middle color stop, or add another
             color stop with a position between <code>0</code> and <code>1</code> to see what happens. To learn more
-            about linear gradients, visit the createLinearGradient() lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
+            about linear gradients, visit the
+            = link_to_lesson('createLinearGradient()', :create_linear_gradient, nil, class: 'reference-link', data: {slug: :create_linear_gradient})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style, :create_linear_gradient]
 
         .col-xs-12
           .interactive.row.py-1
@@ -317,7 +319,7 @@
           %p
             Then, use the <code>drawSky()</code> function to draw the sky. This is approximately how the
             sky will look at 6:20 pm once the cityscape is animated.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save]
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save, :create_linear_gradient]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge1_editor'} do
@@ -389,7 +391,7 @@
             of the rectangle decreases from 160 to 50 as <code>j</code> increases from 3 to 10. Can
             you update the second for loop so the height of the rectangle decreases from 150 to 90
             as <code>j</code> increases from 8 to 13?
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :if_statements, :fill_rect, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -482,7 +484,7 @@
           %p
             Finally, set the value of <code>horizonY</code> so the y-coordinate of the horizon is 100 pixels above the
             bottom of the canvas. The program should now draw slices of the ground at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save, :translate, :round]
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :if_statements, :fill_rect, :fill_style, :save, :translate, :round]
           = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'animated_cityscape_stage1_challenge1_editor'
 
       .row.py-1
@@ -533,7 +535,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge2.png')
             %canvas#animated_cityscape_stage1_challenge2
           .alert
 
@@ -545,64 +546,87 @@
           %h2.challenge-title.py-2
             Challenge 3
           %figure.float-xs-right.px-2
-            .pb-1
-              = image_tag('lessons/animated_cityscape/stage1/challenge3Visual1.png', class: 'img-fluid')
-            = image_tag('lessons/animated_cityscape/stage1/challenge3Visual2.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/animated_cityscape/stage1/challenge3Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
-
           %p
-            For our cityscape, we don't want think about buildings in terms of pixels.
-            We want to size buildings based on the number of floors they have and the
-            number of office units on each floor, and then write the program so it
-            calculates the number of pixels for us.
+            Now we are going to re-define the <code>drawSky()</code> function so the
+            gradient used to fill the sky also changes depending on the time of day.
           %p
-            Each office unit is 16 pixels wide and 16 pixels tall. The outer walls,
-            roof, and floor of the building are each 4 pixels thick.
-          %p
-            The number of office units on each floor is assigned to the variable
+            Inside the <code>drawSky()</code> function, start by declaring ten
+            variables. To keep the function compact, we can declare multiple variables
+            on each line. Just separate the variables with commas and make sure to end
+            each line with a semicolon.
+          %pre
             %code
-              units
-            and the number of floors in the building is assigned to the variable
-            %span
-              %code>
-                floors
-              \.
-            Use the values stored in those variables to calculate the width and height of the building.
+              :preserve
+                var r0, g0, b0;
+                var r1, g1, b1;
+                var pMiddle, rMiddle, gMiddle, bMiddle;
           %p
-            Then, draw a gray (color
-            %span
-              %code>
-                '#999999'
-              )
-            building with 10 floors and 8 office units on each floor with its top left
-            corner positioned at (120, 80).
+            The variables <code>r0</code>, <code>g0</code>, and <code>b0</code> are the
+            red, green, and blue values of the color at position <code>0</code> in the
+            gradient. The variables <code>r1</code>, <code>g1</code>, and <code>b1</code>
+            are the red, green, and blue values of the color at position <code>1</code>.
+            And the variables <code>rMiddle</code>, <code>gMiddle</code>, and <code>bMiddle</code>
+            are the red, green, and blue values of the color at position <code>pMiddle</code>.
+            The position of this middle color stop will also be changing over time.
           %p
-            Use the function
+            Set up an if statement. If <code>time < 5</code>, set <code>r0</code>, <code>g0</code>,
+            and <code>b0</code> to 255; set <code>r1</code> to 102, <code>g1</code> to 153, and
+            <code>b1</code> to 255; and set <code>pMiddle</code> to -1. Just like we can declare
+            multiple variables on one line, we can assign multiple variables on one line.
+          %pre
             %code
-              drawOffices()
-            to draw the offices in the building by passing it the values stored in the variables
-            %span
-              %code>
-                x
-              ,
-            %span
-              %code>
-                y
-              ,
-            %span
-              %code>
-                w
-              ,
-            and
-            %span
-              %code>
-                h
-              \.
+              :preserve
+                r0 = 255, g0 = 255, b0 = 255; // The sky is white at position 0
+                r1 = 102, g1 = 153, b1 = 255; // The sky is blue at position 1
+                pMiddle = -1;
           %p
-            Finally, figure out the y-coordinate of the bottom of the building and then use the
+            Why are we setting <code>pMiddle</code> to -1? Before 5:00 pm and after 7:00 pm, we only
+            need to add color stops at positions <code>0</code> and <code>1</code>; we aren't adding
+            a third color stop at position <code>pMiddle</code>. By setting <code>pMiddle</code> to -1,
+            we are letting ourselves know not to add the third color stop later on.
+          %p
+            Else if <code>time > 7</code>, set <code>r0</code>, <code>g0</code>, and <code>b0</code> to 102;
+            set <code>r1</code>, <code>g1</code>, and <code>b1</code> to 51; and set <code>pMiddle</code> to -1.
+          %pre
             %code
-              drawGround()
-            function to draw a line representing the ground. Draw the ground after drawing the building.
+              :preserve
+                r0 = 102, g0 = 102, b0 = 102; // The sky is gray at position 0
+                r1 = 51, g1 = 51, b1 = 51; // The sky is dark gray at position 1
+                pMiddle = -1;
+          %p
+            Finally, if <code>time < 5</code> and <code>time > 7</code> are both false, create expressions
+            to calculate the red, green, and blue values of the colors at all three color stops and the position
+            of the middle color stop as <code>time</code> increases from 5 to 7:
+          %ul
+            %li
+              <code>r0</code>: 255
+            %li
+              <code>g0</code>: 255 &rarr; 0
+            %li
+              <code>b0</code>: 255 &rarr; 0
+            %li
+              <code>r1</code>: 102 &rarr; 51
+            %li
+              <code>g1</code>: 153 &rarr; 51
+            %li
+              <code>b1</code>: 255 &rarr; 51
+            %li
+              <code>pMiddle</code>: 1 &rarr; 0
+            %li
+              <code>rMiddle</code>: 102
+            %li
+              <code>gMiddle</code>: 153 &rarr; 102
+            %li
+              <code>bMiddle</code>: 255 &rarr; 102
+          %p
+            This changes the color of the sky at position <code>0</code> from white to red
+            and the color of the sky at position <code>1</code> from blue to dark gray. We
+            use the middle color stop at position <code>pMiddle</code> to make the red band
+            at the horizon narrower. The color of the sky at the middle color stop changes
+            from blue to gray, but it also moves closer to the horizon as <code>pMiddle</code>
+            changes from 1 to 0.
           %p
             If you need help using variables, visit the
             = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
