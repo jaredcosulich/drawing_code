@@ -35,11 +35,12 @@
         };
       })(this));
       this.startCode = this.aceEditor.getValue();
-      this.setCode(this.startCode);
       this.initLog();
       this.initRun();
       if ((previousCode = App.currentProgress.getEditorValue(this.editorElement.id)) != null) {
         this.setCode(previousCode);
+      } else {
+        this.setCode(this.startCode);
       }
       this.ensureValidCanvasReference();
     }
