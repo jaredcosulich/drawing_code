@@ -1,0 +1,100 @@
+:preserve
+  var canvas = document.getElementById('my_drawings_canvas');
+  var context = canvas.getContext('2d');
+
+  var offscreenCanvas = document.createElement('CANVAS');
+  offscreenCanvas.width = canvas.width;
+  offscreenCanvas.height = canvas.height;
+  offscreenContext = offscreenCanvas.getContext("2d");
+
+  var square = {x: 160, y: 160, diagonal: 60, vx: 4, vy: 3};
+  var spiral = {x: 180, y: 180, scale: 0.9, rotationAngle: 27};
+  var colorstopArray = [
+  	{frame: 0, r: 255, g: 255, b: 0},
+  	{frame: 10, r: 0, g: 255, b: 0},
+  	{frame: 20, r: 0, g: 0, b: 255},
+  	{frame: 50, r: 0, g: 0, b: 255}
+  ];
+  var timer = {frame: 0, lastFrame: 50, frameTime: 50, interval: null};
+
+  function initSpiral() {
+  	timer.interval = setInterval(drawSpiral, timer.frameTime);
+  }
+
+  function drawSpiral() {
+  	offscreenContext.clearRect(0, 0, context.canvas.width, context.canvas.height);
+  	offscreenContext.save();
+  	offscreenContext.translate(spiral.x, spiral.y);
+  	offscreenContext.scale(spiral.scale, spiral.scale);
+  	offscreenContext.rotate(spiral.rotationAngle * Math.PI / 180);
+  	offscreenContext.translate(-spiral.x, -spiral.y);
+  	offscreenContext.drawImage(canvas, 0, 0);
+  	offscreenContext.restore();
+
+  	context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+  	context.drawImage(offscreenCanvas, 0, 0);
+  	context.save();
+  	context.translate(square.x, square.y);
+  	context.fillStyle = setShapeColor(timer.frame, colorstopArray);
+  	context.beginPath();
+  	context.moveTo(0, -square.diagonal / 2);
+  	context.lineTo(square.diagonal / 2, 0);
+  	context.lineTo(0, square.diagonal / 2);
+  	context.lineTo(-square.diagonal / 2, 0);
+  	context.closePath();
+  	context.fill();
+  	context.restore();
+
+  	square.x = square.x + square.vx;
+  	square.y = square.y + square.vy;
+
+  	if (square.x < square.diagonal / 2) {
+  		square.vx = -square.vx;
+  		square.x = square.diagonal - square.x;
+  	}
+
+  	if (square.x > context.canvas.width - square.diagonal / 2) {
+  		square.vx = -square.vx;
+  		square.x = 2 * context.canvas.width - square.diagonal - square.x;
+  	}
+
+  	if (square.y < square.diagonal / 2) {
+  		square.vy = -square.vy;
+  		square.y = square.diagonal - square.y;
+  	}
+
+  	if (square.y > context.canvas.height - square.diagonal / 2) {
+  		square.vy = -square.vy;
+  		square.y = 2 * context.canvas.height - square.diagonal - square.y;
+  	}
+
+  	timer.frame = (timer.frame + 1) % timer.lastFrame;
+  }
+
+  function setShapeColor(f, colorstop) {
+  	var r, g, b;
+  	var colorA, colorB, fA, fB;
+
+  	for (var i = 0; i < colorstop.length; i++) {
+  		if (colorstop[i].frame <= f) {
+  			colorA = colorstop[i];
+  			fA = colorstop[i].frame;
+
+  			if (i + 1 < colorstop.length) {
+  				colorB = colorstop[i + 1];
+  				fB = colorstop[i + 1].frame;
+  			} else {
+  				colorB = colorstop[i];
+  				fB = timer.lastFrame + 1;
+  			}
+  		}
+  	}
+
+  	r = colorA.r + (colorB.r - colorA.r) * (f - fA) / (fB - fA);
+  	g = colorA.g + (colorB.g - colorA.g) * (f - fA) / (fB - fA);
+  	b = colorA.b + (colorB.b - colorA.b) * (f - fA) / (fB - fA);
+
+  	return "rgba(" + Math.floor(r) + ", " + Math.floor(g) + ", " + Math.floor(b) + ", 1)";
+  }
+
+  initSpiral();

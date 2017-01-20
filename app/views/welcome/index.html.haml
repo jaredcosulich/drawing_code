@@ -88,6 +88,21 @@
 
     .row
       .col-xs-6
+        %h3 The Gallery
+        %p.mt-1
+          A gallery of drawings, animations, and games.
+        %p.mb-1
+          Create your own work and let us know about it so we can add
+          it to the gallery!
+        %p
+          = link_to('View The Gallery', examples_path, class: 'btn btn-primary')
+
+      .col-xs-6.text-xs-center
+        = image_tag('gallery.png', class: 'img-fluid')
+    %hr.my-3
+
+    .row
+      .col-xs-6
         %h3 Your Drawings, Animations, and Games
         %p.mt-1
           The goal of this website is to help you develop the skills
@@ -100,19 +115,3 @@
 
       .col-xs-6.text-xs-center
         = image_tag('questionmark.png', class: 'img-fluid')
-
-    -# %hr.my-3
-    -#
-    -# .row
-    -#   .col-xs-6
-    -#     %h3 The Gallery
-    -#     %p.mt-1
-    -#       A gallery of drawings, animations, and games.
-    -#     %p.mb-1
-    -#       Create your own work and let us know about it so we can add
-    -#       it to the gallery!
-    -#     %p
-    -#       = link_to('View The Gallery', examples_path, class: 'btn btn-primary')
-    -#
-    -#   .col-xs-6.text-xs-center
-    -#     = image_tag('questionmark.png', class: 'img-fluid')

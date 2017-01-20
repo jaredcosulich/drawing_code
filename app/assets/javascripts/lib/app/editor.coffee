@@ -55,7 +55,7 @@ class App.Editor
     code = @aceEditor.getValue()
     canvasId = @canvas.canvasElement.id
     return if code.match(canvasId)? || !code.match(/var canvas = document/)?
-    code = code.replace(/var canvas = document.getElementById\('([^)]*)'\);/, "var canvas = document.getElementById('#{canvasId}');")
+    code = code.replace(/var canvas = document.getElementById\(['"]([^)]*)['"]\);/, "var canvas = document.getElementById('#{canvasId}');")
     @setCode(code)
 
   setStartCode: (code) ->

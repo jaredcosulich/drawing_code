@@ -11,12 +11,14 @@ class ExamplesController < ApplicationController
       'Drawings' => [
         :flowers,
         :transport_vehicle,
+        :glass_and_bottle,
         :sunrise_text,
       ],
       'Animations' => [
+        :spiral_squares,
+        :dragon_curve_fractal,
         :rolling_ball,
         :bouncing_collisions,
-        :dragon_curve_fractal,
         :simple_cannonball,
       ],
       'Games' => [
