@@ -32,13 +32,14 @@ class App.Editor
       @codeEditor.find('.edit-text-message').html("You've changed the code. To see the results:")
 
     @startCode = @aceEditor.getValue()
-    @setCode(@startCode)
 
     @initLog()
     @initRun()
 
     if (previousCode = App.currentProgress.getEditorValue(@editorElement.id))?
       @setCode(previousCode)
+    else
+      @setCode(@startCode)
 
     @ensureValidCanvasReference()
 
