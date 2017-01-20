@@ -410,9 +410,10 @@
             and don't get discouraged. It's hard stuff.
           %p
             Luckily because our flappy square is flying constantly to the right
-            we only need to check for collisions to the right. We just
-            need to make sure the flappy square isn't flying through the hole
-            in the wall.
+            we don't need to worry about collisions to the left. This simplifies
+            things a bit. When the flappy square is in the same "x" coordinates
+            as a wiall we need to check to see if the flappy square is passing
+            through the hole in the wall.
           %p
             In each frame we'll find the wall that the flappy square is flying
             through (if any) and make sure it is not flying through any of the
@@ -424,9 +425,8 @@
             In the example code below we find the wall that the flappy square is passing
             through and check to see that the flappy square is above the bottom
             of the top part of the wall (not going through the hole). If it is
-            then we call a new method, endGame(), that pulls out the logic
-            from checkBoundary() so that both checkBoundary() and checkWalls()
-            can end the game.
+            then we call the method, endGame(), that we currently call from
+            checkBoundary() to end the game.
 
           %pre
             %code
@@ -464,11 +464,10 @@
             Yea, it's complicated.
           %p
             Take it slowly and try to work it out.
-
           %p
             In the end your flappy square should behave like the example provided at
             the beginning of this description.
-          = render 'lessons/code_preview', stage: 2, challenge: 4, editor_id: 'flappy_square_stage2_challenge4_editor'
+          = render 'lessons/code_preview', stage: 2, challenge: 6, editor_id: 'flappy_square_stage2_challenge4_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage3_challenge1_editor'} do
