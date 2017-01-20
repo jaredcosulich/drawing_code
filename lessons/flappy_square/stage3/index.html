@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="dvfSQOiKlKSsgr1w2272PFgAUy1VOLFULYVSQ4BZMlmwri0Bs96YSRkwSwPNzbH5HslDiKwxlXyIxUEiTRLyBA==" />
+<meta name="csrf-token" content="D1/rz/B7iEqL0l25JgK8ieduZ512MQVudMvYaKY8ggzJBhSOqy+Epz5gq8owoftMoad3OI84IUbRi8sJa3dCUQ==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-6693732d946f61761af2eeafcf9c870441f1af9f77c9d2a5db4509578dd265e0-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -911,9 +911,10 @@ and don't get discouraged. It's hard stuff.
 </p>
 <p>
 Luckily because our flappy square is flying constantly to the right
-we only need to check for collisions to the right. We just
-need to make sure the flappy square isn't flying through the hole
-in the wall.
+we don't need to worry about collisions to the left. This simplifies
+things a bit. When the flappy square is in the same "x" coordinates
+as a wiall we need to check to see if the flappy square is passing
+through the hole in the wall.
 </p>
 <p>
 In each frame we'll find the wall that the flappy square is flying
@@ -928,9 +929,8 @@ the wall the flappy square is flying through.
 In the example code below we find the wall that the flappy square is passing
 through and check to see that the flappy square is above the bottom
 of the top part of the wall (not going through the hole). If it is
-then we call a new method, endGame(), that pulls out the logic
-from checkBoundary() so that both checkBoundary() and checkWalls()
-can end the game.
+then we call the method, endGame(), that we currently call from
+checkBoundary() to end the game.
 </p>
 <pre><code>var left = square.x;&#x000A;var right = square.x + square.size;&#x000A;var top = square.y;&#x000A;var bottom = square.y + square.size;&#x000A;&#x000A;for (var i=0; i < walls.positions.length; ++i) {&#x000A;  var wallLeft = walls.positions[i];&#x000A;  var wallRight = position + walls.width;&#x000A;&#x000A;  if (wallLeft > right) continue;&#x000A;  if (wallRight < left) continue;&#x000A;&#x000A;  var topWallBottom = boundary.minY + walls.height;&#x000A;  if (top < topWallBottom) {&#x000A;    endGame();&#x000A;  }&#x000A;}&#x000A;</code></pre>
 <p>
@@ -964,7 +964,7 @@ code from
 Stage
 2
 Challenge
-4
+6
 </span>
 to use on this challenge.
 </p>
@@ -974,14 +974,14 @@ You have not yet entered any code in to the previous challenge:
 Stage
 2
 Challenge
-4
+6
 </div>
 <div class='code-preview-view'>
 <strong>
 Stage
 2
 Challenge
-4
+6
 </strong>
 <div class='code-preview-code'></div>
 </div>
