@@ -35,6 +35,7 @@
         };
       })(this));
       this.startCode = this.aceEditor.getValue();
+      this.setCode(this.startCode);
       this.initLog();
       this.initRun();
       if ((previousCode = App.currentProgress.getEditorValue(this.editorElement.id)) != null) {
@@ -55,7 +56,7 @@
       if ((code.match(canvasId) != null) || (code.match(/var canvas = document/) == null)) {
         return;
       }
-      code = code.replace(/var canvas = document.getElementById\('([^)]*)'\);/, "var canvas = document.getElementById('" + canvasId + "');");
+      code = code.replace(/var canvas = document.getElementById\(['"]([^)]*)['"]\);/, "var canvas = document.getElementById('" + canvasId + "');");
       return this.setCode(code);
     };
 
