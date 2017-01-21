@@ -221,7 +221,8 @@
             horizon and darker higher up. And as the sun sets, the sky along the horizon
             turns red.
           %p
-            To smoothly transition from one color to another, we use a linear gradient. In
+            To draw the sky, we use a linear gradient. A linear gradient smoothly transitions
+            from one color to another, such as white to blue or gray to dark gray. In
             this example, we create a linear gradient using the <code>createLinearGradient()</code>
             method and assign it to a variable named <code>gradient</code>:
           %pre
@@ -233,7 +234,7 @@
             the coordinates for the gradient's start position and end position. Because the two points,
             (40, 0) and (360, 0), form a horizontal line, the linear gradient is horizontal. It starts
             at x = 40 and ends at x = 360. The y-coordinates of the two points in a horizontal linear
-            gradient are irrelevant as long as they are the same.
+            gradient don't make a difference as long as they are the same.
           %p
             The next step is setting the colors in the gradient:
           %pre
@@ -256,6 +257,10 @@
               :preserve
                 context.fillStyle = gradient;
                 context.fillRect(40, 40, 320, 240);
+          %p
+            Between position <code>0</code> and position <code>0.6</code>, the color filling the rectangle
+            changes from <code>'Red'</code> to <code>'Blue'</code>. Between position <code>0.6</code>
+            and position <code>1</code>, the color changes from <code>'Blue'</code> to <code>'Black'</code>.
           %p
             Change the colors in the gradient, change the position of the middle color stop, or add another
             color stop with a position between <code>0</code> and <code>1</code> to see what happens. To learn more
@@ -304,8 +309,8 @@
           %p
             Define a function named <code>drawSky()</code>. Inside the function, create
             a vertical linear gradient so position <code>0</code> is at the horizon and
-            position <code>1</code> is 300 pixels above the horizon. Note that position
-            <code>1</code> may not be visible on the canvas. That's fine.
+            position <code>1</code> is 300 pixels above the horizon. Note that the y-coordinate
+            of position <code>1</code> may be negative and not visible on the canvas.
           %p
             Set the color in the gradient at position <code>0</code> to <code>'rgb(255, 85, 85)'</code>,
             the color at position <code>0.3</code> to <code>'rgb(102, 119, 153)'</code>, and the color at
@@ -333,12 +338,11 @@
             
             // DEFINE THE drawSky() FUNCTION HERE
             // INSIDE THE drawSky() FUNCTION, CREATE A VERTICAL LINEAR GRADIENT
-            // FROM THE HORIZON TO A POINT 300 PIXELS ABOVE THE HORIZON. SET THE
-            // COLORS IN THE GRADIENT. USE THE GRADIENT TO FILL A RECTANGLE
-            // POSITIONED AT (0, 0) THAT GOES DOWN TO THE HORIZON AND ACROSS THE
-            // WIDTH OF THE CANVAS.
+            // FROM THE HORIZON TO A POINT 300 PIXELS ABOVE THE HORIZON.
+            // SET THE COLORS IN THE GRADIENT.
+            // USE THE GRADIENT TO FILL A RECTANGLE POSITIONED AT (0, 0) THAT GOES
+            // DOWN TO THE HORIZON AND ACROSS THE WIDTH OF THE CANVAS.
             
-
         .visual.col-xs-6
           %h5
             Canvas
@@ -364,7 +368,9 @@
             In this example, we use two for loops to draw two rows of rectangles. The first
             for loop uses the variable <code>i</code> as its counter. Inside the for loop,
             we use an if statement to calculate the height of the rectangle depending on the
-            value of the counter.
+            value of the counter. Note how the height of the rectangle starts at 40, climbs
+            steadily to 100, and then levels out again. We want the ground and sky colors to
+            change in the same way as the sun sets.
           %pre
             %code
               :preserve
@@ -453,37 +459,43 @@
             = image_tag('lessons/animated_cityscape/stage1/challenge2Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Start by defining the <code>rgbColor()</code> function. This function has
-            three parameters: <code>r</code>, <code>g</code>, and <code>b</code>. Use
-            the <code>Math.round()</code> function to round the values stored in the
-            parameters and the <code>+</code> operator to combine those values into a
-            text string describing a color in 'rgb()' notation. Use a return statement
-            to return the text string from the function.
+            The <code>drawGround()</code> function will draw the rectangle for the
+            ground using darker shades of gray as the time increases from 5:00 pm to
+            7:00 pm. Because we are calculating RGB values based on the time, we
+            start by defining the <code>rgbColor()</code> function to make it easy to
+            combine RGB values into a text string in 'rgb()' notation.
+          %p
+            The <code>rgbColor()</code> function has three parameters: <code>r</code>,
+            <code>g</code>, and <code>b</code>. Round the values stored in the three parameters
+            using the <code>Math.round()</code> function and combine them into a text
+            string in 'rgb()' notation using the <code>+</code> operator. Then, return the text
+            string from the function using a return statement.
           %p
             If you need help, examine the <code>drawBuildingRow()</code> and <code>randomInteger()</code>
-            functions in the Basic Cityscape Challenge program at the top of the page to see how we combined
-            values into a text string to describe a row's building color and how we returned randomly generated
-            integers from a function, or visit the
+            functions in the Basic Cityscape Challenge program at the top of the page to see how we
+            combined values into a text string to describe a row's building color and how we returned randomly
+            generated integers from a function, or visit the
             = link_to_lesson('fillStyle', :fillStyle, nil, class: 'reference-link', data: {slug: :fillStyle})
             and
             = link_to_lesson('Functions', :functions, nil, class: 'reference-link', data: {slug: :functions})
             lessons.
           %p
-            Inside the <code>drawGround()</code> function, declare the variable <code>c</code>. We can use
-            this one variable to store the red, green, and blue values of the ground's color because all three
-            values are the same. If <code>time < 5</code>, set <code>c = 204</code>. If <code>time > 7</code>, set
-            <code>c = 102</code>. If <code>time</code> is between 5 and 7, create an expression so <code>c</code>
-            decreases from 204 to 102 as <code>time</code> increases from 5 to 7. Pass the value of <code>c</code>
-            into the <code>rgbColor()</code> function and assign the color returned from the function to the
-            <code>context.fillStyle</code> property. Remember, <code>c</code> is the value of the red, green, and
-            blue values of the color.
+            Inside the <code>drawGround()</code> function, declare the variable <code>c</code>. We
+            can use this one variable to store the red, green, and blue values of the ground's color
+            because all three values are the same. If <code>time < 5</code>, set <code>c = 204</code>.
+            If <code>time > 7</code>, set <code>c = 102</code>. If <code>time</code> is between 5 and 7,
+            create an expression so <code>c</code> decreases from 204 to 102 as <code>time</code> increases
+            from 5 to 7. Pass the value of <code>c</code> into the <code>rgbColor()</code> function and
+            assign the color returned from the function to the <code>context.fillStyle</code> property.
+            Remember, <code>c</code> is the value of the red, green, and blue values of the color.
           %p
-            Then, use the <code>context.fillRect()</code> method to draw a rectangle from <code>horizonY</code>
-            to the bottom of the canvas at x = 0 with a width of 72. Make sure to save and restore the drawing state
-            since the <code>drawGround()</code> function is setting the <code>context.fillStyle</code> property.
+            Then, use the <code>context.fillRect()</code> method to draw a rectangle from (0, <code>horizonY</code>)
+            to the bottom of the canvas and the width of the canvas. Make sure to save and restore the drawing
+            state since the <code>drawGround()</code> function is setting the <code>context.fillStyle</code> property.
           %p
-            Finally, set the value of <code>horizonY</code> so the y-coordinate of the horizon is 100 pixels above the
-            bottom of the canvas. The program should now draw slices of the ground at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
+            Finally, set the value of <code>horizonY</code> so the y-coordinate of the horizon is 100 pixels
+            above the bottom of the canvas. The program should now draw slices of the ground as it gets darker
+            at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
           = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :if_statements, :fill_rect, :fill_style, :save, :translate, :round]
           = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'animated_cityscape_stage1_challenge1_editor'
 
@@ -526,7 +538,7 @@
               // Declare the variable c
               // Use an if statement to calculate the value of c
               // Use the rgbColor() function to get the color of the ground and assign it to the fillStyle
-              // Draw a filled rectangle from horizonY to the bottom of the canvas at x = 0 with a width of 72
+              // Draw a filled rectangle from (0, horizonY) to the bottom of the canvas and the width of the canvas
               
             }
             
@@ -549,10 +561,12 @@
             = image_tag('lessons/animated_cityscape/stage1/challenge3Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Now we are going to re-define the <code>drawSky()</code> function so the
+            Now we are going to update the <code>drawSky()</code> function so the
             gradient used to fill the sky also changes depending on the time of day.
+            First, we will make the sky change from blue to dark gray. We will add
+            the red horizon later.
           %p
-            Inside the <code>drawSky()</code> function, start by declaring ten
+            Inside the <code>drawSky()</code> function, start by declaring six
             variables. To keep the function compact, we can declare multiple variables
             on each line. Just separate the variables with commas and make sure to end
             each line with a semicolon.
@@ -561,44 +575,151 @@
               :preserve
                 var r0, g0, b0;
                 var r1, g1, b1;
-                var pMiddle, rMiddle, gMiddle, bMiddle;
           %p
             The variables <code>r0</code>, <code>g0</code>, and <code>b0</code> are the
-            red, green, and blue values of the color at position <code>0</code> in the
-            gradient. The variables <code>r1</code>, <code>g1</code>, and <code>b1</code>
-            are the red, green, and blue values of the color at position <code>1</code>.
-            And the variables <code>rMiddle</code>, <code>gMiddle</code>, and <code>bMiddle</code>
-            are the red, green, and blue values of the color at position <code>pMiddle</code>.
-            The position of this middle color stop will also be changing over time.
+            RGB values of the color at position <code>0</code> in the gradient. The variables
+            <code>r1</code>, <code>g1</code>, and <code>b1</code> are the RGB values of the
+            color at position <code>1</code>.
           %p
-            Set up an if statement. If <code>time < 5</code>, set <code>r0</code>, <code>g0</code>,
-            and <code>b0</code> to 255; set <code>r1</code> to 102, <code>g1</code> to 153, and
-            <code>b1</code> to 255; and set <code>pMiddle</code> to -1. Just like we can declare
-            multiple variables on one line, we can assign multiple variables on one line.
+            If <code>time < 5</code>, set <code>r0</code>, <code>g0</code>, and <code>b0</code>
+            to 255; and set <code>r1</code> to 102, <code>g1</code> to 153, and <code>b1</code>
+            to 255. And just as we can declare multiple variables on one line, we can also assign
+            multiple variables on one line.
           %pre
             %code
               :preserve
                 r0 = 255, g0 = 255, b0 = 255; // The sky is white at position 0
                 r1 = 102, g1 = 153, b1 = 255; // The sky is blue at position 1
-                pMiddle = -1;
+          %p
+            If <code>time > 7</code>, set <code>r0</code>, <code>g0</code>, and <code>b0</code> to 102;
+            and set <code>r1</code>, <code>g1</code>, and <code>b1</code> to 51.
+          %pre
+            %code
+              :preserve
+                r0 = 102, g0 = 102, b0 = 102; // The sky is gray at position 0
+                r1 = 51, g1 = 51, b1 = 51; // The sky is dark gray at position 1
+          %p
+            Finally, if <code>time < 5</code> and <code>time > 7</code> are both false, create
+            expressions to calculate the RGB values of the colors at both positions as <code>time</code>
+            increases from 5 to 7. This changes the color of the sky at position <code>0</code> from white
+            to gray and the color of the sky at position <code>1</code> from blue to dark gray.
+          %ul
+            %li
+              <code>r0</code>: 255 &rarr; 102
+            %li
+              <code>g0</code>: 255 &rarr; 102
+            %li
+              <code>b0</code>: 255 &rarr; 102
+            %li
+              <code>r1</code>: 102 &rarr; 51
+            %li
+              <code>g1</code>: 153 &rarr; 51
+            %li
+              <code>b1</code>: 255 &rarr; 51
+          %p
+            Now, just as in Challenge 1, create a vertical linear gradient so position
+            <code>0</code> is at the horizon and position <code>1</code> is 300 pixels above the horizon.
+          %p
+            Instead of hardcoding three color stops, add color stops at positions <code>0</code>
+            and <code>1</code> and use the RGB values stored in the six variables to set the colors
+            using the <code>rgbColor()</code> function.
+          %p
+            Fill a rectangle with the gradient positioned at (0, 0) going down to the horizon and
+            across the width of the canvas.
+          %p
+            Then, set the value of <code>horizonY</code> so the y-coordinate of the horizon is 100 pixels
+            above the bottom of the canvas. The program should now draw slices of the sky as it gets darker
+            at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :if_statements, :fill_rect, :fill_style, :save, :translate, :create_linear_gradient]
+          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'animated_cityscape_stage1_challenge2_editor'
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('animated_cityscape_stage1_challenge3');
+            var context = canvas.getContext('2d');
+            
+            var time;
+            var horizonY; // Set the y-coordinate of the horizon so it is 100 pixels above the bottom of the canvas
+            
+            context.save();
+            
+            time = 5.0;
+            drawSky(); // Draw the sky at 5:00 pm
+            context.translate(72, 0);
+            time = 5.5;
+            drawSky(); // Draw the sky at 5:30 pm
+            context.translate(72, 0);
+            time = 6.0;
+            drawSky(); // Draw the sky at 6:00 pm
+            context.translate(72, 0);
+            time = 6.5;
+            drawSky(); // Draw the sky at 6:30 pm
+            context.translate(72, 0);
+            time = 7.0;
+            drawSky(); // Draw the sky at 7:00 pm
+            
+            context.restore();
+            
+            function rgbColor(r, g, b) {
+              
+              // Copy the function definition from Challenge 2
+              
+            }
+            
+            function drawSky() {
+              
+              // Declare r0, g0, b0, r1, g1, b1
+              // Use an if statement to calculate the values assigned to r0, g0, b0, r1, g1, b1
+              // Create a vertical linear gradient from the horizon to a point 300 pixels above the horizon
+              // Add color stops at positions 0 and 1
+              // Use the gradient to fill a rectangle positioned at (0, 0) that goes down to the horizon and across the width of the canvas
+              
+            }
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#animated_cityscape_stage1_challenge3
+          .alert
+
+
+  #challenge4.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/animated_cityscape/stage1/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            To turn the sky along the horizon red as the sun sets, we need to add a
+            third color stop between positions <code>0</code> and <code>1</code>. The
+            third color stop will confine the red color to a narrow band.
+          %p
+            Start by setting <code>horizonY</code>, the y-coordinate of the horizon,
+            and copying the definitions for the <code>rgbColor()</code> and <code>drawSky()</code>
+            functions from Challenge 3.
+          %p
+            Inside the <code>drawSky()</code> function, declare the variables <code>pMiddle</code>,
+            <code>rMiddle</code>, <code>gMiddle</code>, and <code>bMiddle</code> for the middle color
+            stop. We are using <code>pMiddle</code> to set the position of the color stop. By starting
+            at position <code>1</code> and moving down to position <code>0</code>, it will confine the
+            red color to a narrower and narrower band until it disappears completely.
+          %p
+            If <code>time < 5</code> or <code>time > 7</code>, set <code>pMiddle</code> to -1.
           %p
             Why are we setting <code>pMiddle</code> to -1? Before 5:00 pm and after 7:00 pm, we only
             need to add color stops at positions <code>0</code> and <code>1</code>; we aren't adding
             a third color stop at position <code>pMiddle</code>. By setting <code>pMiddle</code> to -1,
             we are letting ourselves know not to add the third color stop later on.
           %p
-            Else if <code>time > 7</code>, set <code>r0</code>, <code>g0</code>, and <code>b0</code> to 102;
-            set <code>r1</code>, <code>g1</code>, and <code>b1</code> to 51; and set <code>pMiddle</code> to -1.
-          %pre
-            %code
-              :preserve
-                r0 = 102, g0 = 102, b0 = 102; // The sky is gray at position 0
-                r1 = 51, g1 = 51, b1 = 51; // The sky is dark gray at position 1
-                pMiddle = -1;
-          %p
-            Finally, if <code>time < 5</code> and <code>time > 7</code> are both false, create expressions
-            to calculate the red, green, and blue values of the colors at all three color stops and the position
-            of the middle color stop as <code>time</code> increases from 5 to 7:
+            In the code block for the else clause, change the calculations for the color at
+            position <code>0</code> and add the calculations for the color at position <code>pMiddle</code>.
+            The calculations for the color at position <code>1</code> stay the same.
           %ul
             %li
               <code>r0</code>: 255
@@ -606,12 +727,6 @@
               <code>g0</code>: 255 &rarr; 0
             %li
               <code>b0</code>: 255 &rarr; 0
-            %li
-              <code>r1</code>: 102 &rarr; 51
-            %li
-              <code>g1</code>: 153 &rarr; 51
-            %li
-              <code>b1</code>: 255 &rarr; 51
             %li
               <code>pMiddle</code>: 1 &rarr; 0
             %li
@@ -628,129 +743,25 @@
             from blue to gray, but it also moves closer to the horizon as <code>pMiddle</code>
             changes from 1 to 0.
           %p
-            If you need help using variables, visit the
-            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
-            lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
-          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'animated_cityscape_stage1_challenge2_editor'
-
-      .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge3_editor'} do
-          :preserve
-            var canvas = document.getElementById('animated_cityscape_stage1_challenge3');
-            var context = canvas.getContext('2d');
-            
-            var x = 120;
-            var y = 80;
-            var units = 8;
-            var floors = 10;
-
-            var w = 0; // Use the variable units to calculate the width of the building
-            var h = 0; // Use the variable floors to calculate the height of the building
-
-            // SET THE COLOR OF THE BUILDING TO #999999 HERE
-
-            // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
-
-            drawOffices(x, y, w, h); // Draw the offices
-            
-            drawGround(100); // Position and draw the ground here
-
-            function drawOffices(x, y, w, h) {
-              var u = Math.floor((w - 4) / 16);
-              var f = Math.floor((h - 4) / 16);
-
-              context.save();
-              context.translate(x + 4, y + 4);
-              context.strokeWidth = 1;
-              context.strokeStyle = '#000000';
-
-              for (var i = 0; i < f; i++) {
-                for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);
-              }
-
-              context.restore();
-            }
-            
-            function drawGround(y) {
-              context.save();
-              context.fillStyle = 'Black';
-              context.fillRect(0, y, canvas.width, 2);
-              context.restore();
-            }
-            
-        .visual.col-xs-6
-          %h5
-            Canvas
-            %small (your drawing will display here)
-          .canvas
-            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge3.png')
-            %canvas#animated_cityscape_stage1_challenge3
-          .alert
-
-
-  #challenge4.challenge.row.py-3
-    .col-xs-12
-      .row
-        .col-xs-12
-          %h2.challenge-title.py-2
-            Challenge 4
-          %figure.float-xs-right.px-2
-            = image_tag('lessons/animated_cityscape/stage1/challenge4Visual1.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small What your drawing should look like
-          %p
-            Create a
+            After creating the linear gradient and adding color stops at positions <code>0</code>
+            and <code>1</code>, add the middle color stop only if <code>pMiddle >= 0</code>. If
+            <code>pMiddle</code> is -1, the program will skip this step and the middle color stop
+            won't be added.
+          %pre
             %code
-              drawBuilding()
-            function to draw buildings like the one from Challenge 3. The function is passed
-            four values that it will assign to the following four parameters. The first two parameters,
-            %code>
-              x
+              :preserve
+                if (pMiddle >= 0) {
+                  gradient.addColorStop(pMiddle, rgbColor(rMiddle, gMiddle, bMiddle));
+                }
+          %p
+            The program should now draw slices of the sky as it gets darker and redder along
+            the horizon at 5:00, 5:30, 6:00, 6:30, and 7:00 pm. If you need help with if statements
+            and linear gradients, visit the
+            = link_to_lesson('If Statements', :if_statements, nil, class: 'reference-link', data: {slug: :if_statements})
             and
-            %span
-              %code>
-                y
-              ,
-            are the coordinates of the top left corner of the building; the third parameter,
-            %span
-              %code>
-                units
-              ,
-            is the number of office units per floor; and the fourth parameter,
-            %span
-              %code>
-                floors
-              ,
-            is the number of floors in the building.
-          %p
-            Inside the
-            %code
-              drawBuilding()
-            function, use the parameters to calculate the width and height of the building,
-            set the
-            %code
-              context.fillStyle
-            property to the color
-            %span
-              %code>
-                '#999999'
-              ,
-            and use the
-            %code
-              context.fillRect()
-            method to draw the building.
-          %p
-            Once the
-            %code
-              drawBuilding()
-            function has been defined, use it to draw two buildings. The first building has 8
-            office units per floor and 10 floors, and it is positioned at (60, 20). The second
-            building has 6 office units per floor and 16 floors, and it is positioned at (210, 20).
-          %p
-            If you need help using functions, visit the
-            = link_to_lesson('Functions', :functions, nil, class: 'reference-link', data: {slug: :functions})
-            lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style]
+            = link_to_lesson('createLinearGradient()', :create_linear_gradient, nil, class: 'reference-link', data: {slug: :create_linear_gradient})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :if_statements, :fill_rect, :fill_style, :save, :translate, :create_linear_gradient]
           = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'animated_cityscape_stage1_challenge3_editor'
 
       .row.py-1
@@ -759,24 +770,52 @@
             var canvas = document.getElementById('animated_cityscape_stage1_challenge4');
             var context = canvas.getContext('2d');
 
-            function drawBuilding(x, y, units, floors) {
-              var w = 0; // Use the parameter units to calculate the width of the building
-              var h = 0; // Use the parameter floors to calculate the height of the building
+            var time;
+            var horizonY; // Set the y-coordinate of the horizon so it is 100 pixels above the bottom of the canvas
+            
+            context.save();
+            
+            time = 5.0;
+            drawSky(); // Draw the sky at 5:00 pm
+            context.translate(72, 0);
+            time = 5.5;
+            drawSky(); // Draw the sky at 5:30 pm
+            context.translate(72, 0);
+            time = 6.0;
+            drawSky(); // Draw the sky at 6:00 pm
+            context.translate(72, 0);
+            time = 6.5;
+            drawSky(); // Draw the sky at 6:30 pm
+            context.translate(72, 0);
+            time = 7.0;
+            drawSky(); // Draw the sky at 7:00 pm
+            
+            context.restore();
+            
+            function rgbColor(r, g, b) {
               
-              // SET THE COLOR OF THE BUILDING TO #999999 HERE
+              // Copy the function definition from Challenge 3
               
-              // DRAW THE BUILDING HERE USING THE PARAMETERS x, y AND THE VARIABLES w, h
             }
-
-            // DRAW ONE BUILDING WITH 8 UNITS AND 10 FLOORS AT (60, 20) HERE
-            // DRAW A SECOND BUILDING WITH 6 UNITS AND 16 FLOORS AT (210, 20) HERE
+            
+            function drawSky() {
+              
+              // Copy the function definition from Challenge 3
+              
+              // Declare variables pMiddle, rMiddle, gMiddle, bMiddle for the middle color stop
+              // Set pMiddle to -1 if time < 5 or time > 7
+              // Update p0, g0, b0 to go from (255, 255, 255) to (255, 0, 0)
+              // Calculate pMiddle to go from 1 to 0
+              // Calculate rMiddle, gMiddle, bMiddle to go from (102, 153, 255) to (102, 102, 102)
+              // Add the middle color stop if pMiddle >= 0
+              
+            }
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge4.png')
             %canvas#animated_cityscape_stage1_challenge4
           .alert
 
@@ -786,83 +825,92 @@
       .row
         .col-xs-12
           %h2.py-2
-            Anchor the Building to the Ground
+            Update the Time and Redraw the Scene with a Mouse Click
           %p
-            You may have noticed that the two buildings in Challenge 3 are lined up along
-            their top edges, not their bottom edges. In general, buildings are lined up along
-            their bottom edges where they sit on the ground.
+            At this point, we can draw the sky and ground at any time of day by manually
+            setting the <code>time</code> variable. The next step is writing a program
+            which updates the <code>time</code> variable and redraws the scene automatically.
           %p
-            In this example, we create the
-            %code
-              fillCenteredRectangle()
-            function, which automatically positions a rectangle by its top center point.
-            This function has four parameters:
-            %span
-              %code>
-                centerX
-              ,
-            %span
-              %code>
-                topY
-              ,
-            %span
-              %code>
-                w
-              ,
-            and
-            %span
-              %code>
-                h
-              \.
+            A JavaScript program is triggered by events. So far, we've done all of our
+            drawing immediately when the page first loads. But we can also tell our program
+            to listen for events and run specific functions when those events occur.
+          %p
+            In this example, we run the following code when the page loads:
           %pre
             %code
               :preserve
-                function fillCenteredRectangle(centerX, topY, w, h) {
-                  
-                  // code block
-                  
-                }
+                var canvas = document.getElementById('animated_cityscape_stage1_example4');
+                var context = canvas.getContext('2d');
+                
+                var squareX, squareY;
+                
+                initScene();
+                canvas.addEventListener('click', updateScene);
           %p
-            Inside the function, we use the parameters to calculate the coordinates of
-            the rectangle's top left corner and draw the rectangle:
+            We start by storing a reference to the canvas and the canvas's context in the
+            variables <code>canvas</code> and <code>context</code>. Then, we declare the global
+            variables <code>squareX</code> and <code>squareY</code>. We need to declare these
+            variables globally so all of our functions can use them and the values stored in them
+            are persistent and aren't deleted once a function ends. To learn more about variables
+            and scope, visit the
+            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+            lesson. Finally, we call the <code>initScene()</code> function and use the
+            <code>addEventListener()</code> method to register an event listener on the canvas
+            object.
+          %p
+            The <code>initScene()</code> function sets the initial values of <code>squareX</code>
+            and <code>squareY</code> and calls the <code>drawScene()</code> function:
           %pre
             %code
               :preserve
-                function fillCenteredRectangle(centerX, topY, w, h) {
-                  var x = centerX - w / 2;
-                  var y = topY;
+                function initScene() {
+                  squareX = 10;
+                  squareY = 10;
                   
-                  context.fillRect(x, y, w, h);
+                  drawScene();
                 }
           %p
-            Since
+            The <code>drawScene()</code> function draws a square filled with the color
+            <code>'RoyalBlue'</code> at the coordinates (<code>squareX</code>, <code>squareY</code>):
+          %pre
             %code
-              centerX
-            is the x-coordinate of the center of the rectangle, we need to subtract half
-            the rectangle's width to get the x-coordinate of the rectangle's top left corner. Since
-            %code
-              topY
-            is the y-coordinate of the top of the rectangle, which is what we want, we assign
-            it to the variable
-            %span
-              %code>
-                y
-              \.
+              :preserve
+                function drawScene() {
+                  context.save();
+                  context.fillStyle = 'RoyalBlue';
+                  context.fillRect(squareX, squareY, 20, 20);
+                  context.restore();
+                }
           %p
-            Now we can easily draw a group of rectangles and line them up by their top center
-            points. To learn more about positioning rectangles using variables, visit the
-            %span
-              %span><
-                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
-              ,
-            %span
-              %span><
-                = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
-              ,
+            By registering to listen for <code>'click'</code> events, the program will
+            automatically call the <code>updateScene()</code> function whenever a mouse
+            click is detected on the canvas. Note: Because we are passing the
+            <code>updateScene()</code> function into the <code>addEventListener()</code>
+            method as a variable, we don't include parentheses after the function name. To learn
+            more about passing functions as variables and registering event listeners, visit the
+            = link_to_lesson('Functions', :functions, nil, class: 'reference-link', data: {slug: :functions})
             and
-            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            = link_to_lesson('Event Listeners', :event_listeners, nil, class: 'reference-link', data: {slug: :event_listeners})
             lessons.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect]
+          %p
+            The <code>updateScene()</code> method adds 30 to <code>squareX</code> and 20
+            to <code>squareY</code> before calling the <code>drawScene()</code> function
+            and drawing another square:
+          %pre
+            %code
+              :preserve
+                function updateScene() {
+                  squareX += 30;
+                  squareY += 20;
+                  
+                  drawScene();
+                }
+          %p
+            Now we can automatically update the drawing on the canvas simply by clicking
+            on it. Note that the new scene is drawn on top of the existing scene. If we
+            wanted to redraw the square and make it look like the square is moving, we'd
+            have to clear the canvas first.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :event_listeners, :fill_rect, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
@@ -871,27 +919,30 @@
                 var canvas = document.getElementById('animated_cityscape_stage1_example4');
                 var context = canvas.getContext('2d');
                 
-                var centerX = 180; // The x-coordinate of the center of the rectangles
+                var squareX, squareY;
                 
-                drawCenterLine();
+                initScene();
+                canvas.addEventListener('click', updateScene);
                 
-                context.fillStyle = 'DeepPink';
-                fillCenteredRectangle(centerX, 20, 200, 80); // Centered at centerX
-                fillCenteredRectangle(centerX, 120, 320, 100); // Centered at centerX
-                fillCenteredRectangle(centerX, 240, 240, 60); // Centered at centerX
-                
-                function fillCenteredRectangle(centerX, topY, w, h) {
-                  var x = centerX - w / 2;
-                  var y = topY;
+                function initScene() {
+                  squareX = 10;
+                  squareY = 10;
                   
-                  context.fillRect(x, y, w, h);
+                  drawScene();
                 }
                 
-                function drawCenterLine() {
+                function drawScene() {
                   context.save();
-                  context.fillStyle = 'Black';
-                  context.fillRect(centerX - 1, 0, 2, canvas.height);
+                  context.fillStyle = 'RoyalBlue';
+                  context.fillRect(squareX, squareY, 20, 20);
                   context.restore();
+                }
+                
+                function updateScene() {
+                  squareX += 30;
+                  squareY += 20;
+                  
+                  drawScene();
                 }
 
             .visual.col-xs-6
@@ -910,69 +961,31 @@
             Challenge 5
           %figure.float-xs-right.px-2
             = image_tag('lessons/animated_cityscape/stage1/challenge5Visual1.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small What your drawing should look like
+            %figcaption.text-xs-center.small What your drawing should look like at 6:12 pm
           %p
-            Update the
-            %code
-              drawBuilding()
-            function from Challenge 4 so its parameters are now:
-            %span
-              %code>
-                leftX
-              ,
-            %span
-              %code>
-                groundY
-              ,
-            %span
-              %code>
-                w
-              ,
-            and
-            %span
-              %code>
-                h
-              \.
+            Write a program that increases the <code>time</code> and redraws the scene
+            when a mouse click is detected on the canvas.
           %p
-            Inside the function, calculate the coordinates of the top left corner of
-            the building's rectangle. Then, set the
-            %code
-              context.fillStyle
-            to the color
-            %code
-              '#999999'
-            and use the
-            %code
-              context.fillRect()
-            method to draw the rectangle.
+            Start by copying the definitions for the <code>drawSky()</code>,
+            <code>drawGround()</code>, and <code>rgbColor()</code> functions from Challenges 2 and 4.
           %p
-            Once the
-            %code
-              drawBuilding()
-            function has been updated, use it to draw two buildings. The first building
-            has 12 office units per floor and 8 floors, and it is sitting on the ground
-            at (20, 280). The second building has 9 office units per floor and 15 floors,
-            and it sitting on the ground at (230, 280).
+            Inside the <code>initScene()</code> function, set <code>time</code> to 5,
+            set <code>horizonY</code> so the horizon is 100 pixels above the bottom of
+            the canvas, and then call the <code>drawScene()</code> function.
           %p
-            The
-            %code
-              drawGround()
-            function is used to draw the ground at y = 280. Draw the buildings before
-            the ground is drawn.
+            Inside the <code>drawScene()</code> function, draw the sky and ground. Then,
+            call the <code>drawTime()</code> function to automatically draw the time in the
+            bottom left corner of the canvas.
           %p
-            If you need help positioning rectangles using variables, visit the
-            %span
-              %span><
-                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
-              ,
-            %span
-              %span><
-                = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
-              ,
-            and
-            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
-            lessons.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect]
+            Inside the <code>updateScene()</code> function, increase the <code>time</code>
+            by 0.2 if <code>time < 7</code>, else reset the <code>time</code> back to 5.
+            Then, call the <code>drawScene()</code> function to draw a new scene on top of
+            the current one.
+          %p
+            Press "Run" enough times to see the sky and ground change color between 5:00
+            and 7:00 pm. Once you feel satisfied that the scene is updating and drawing correctly,
+            mark the challenge as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :event_listeners]
           = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'animated_cityscape_stage1_challenge4_editor'
 
       .row.py-1
@@ -981,26 +994,69 @@
             var canvas = document.getElementById('animated_cityscape_stage1_challenge5');
             var context = canvas.getContext('2d');
             
-            function drawBuilding(leftX, groundY, units, floors) {
-              var w = 0; // Calculate the width of the building
-              var h = 0; // Calculate the height of the building
-              var x = 0; // Calculate the x-coordinate of the building's top left corner
-              var y = 0; // Calculate the y-coordinate of the building's top left corner
+            var time;
+            var horizonY;
+            
+            initScene();
+            canvas.addEventListener('click', updateScene);
+            
+            function initScene() {
               
-              // SET THE COLOR OF THE BUILDING TO #999999 HERE
+              // Set the time to 5
+              // Set horizonY so the horizon is 100 pixels above the bottom of the canvas
+              // Draw the scene
               
-              // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
             }
             
-            // DRAW ONE BUILDING WITH 12 UNITS AND 8 FLOORS SITTING AT (20, 280) HERE
-            // DRAW A SECOND BUILDING WITH 9 UNITS AND 15 FLOORS SITTING AT (230, 280) HERE
+            function drawScene() {
+              
+              // Draw the sky
+              // Draw the ground
+              
+              drawTime(); // Draw the time in the bottom left corner
+              
+            }
             
-            drawGround(280); // Draws the ground at y = 280
+            function updateScene() {
+              
+              // If time < 7, increase the time by 0.2, else reset the time back to 5
+              // Draw the scene
+              
+            }
             
-            function drawGround(y) {
+            function drawSky() {
+              
+              // Copy the function definition from Challenge 4
+              
+            }
+            
+            function drawGround() {
+              
+              // Copy the function definition from Challenge 2
+              
+            }
+            
+            function rgbColor(r, g, b) {
+              
+              // Copy the function definition from Challenge 4
+              
+            }
+            
+            function drawTime() {
+              var t;
+              var h = Math.floor(time);
+              var m = Math.round(60 * (time - h));
+              
+              if (m >= 10) {
+                t = h + ':' + m;
+              } else {
+                t = h + ':0' + m;
+              }
+              
               context.save();
-              context.fillStyle = 'Black';
-              context.fillRect(0, y, canvas.width, 2);
+              context.fillStyle = 'White';
+              context.font = '16px Arial';
+              context.fillText(t, 10, canvas.height - 10);
               context.restore();
             }
 
@@ -1009,7 +1065,6 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge5.png')
             %canvas#animated_cityscape_stage1_challenge5
           .alert
 
@@ -1019,7 +1074,7 @@
       .row
         .col-xs-12
           %h2.py-2
-            Use translate() to Position the Building
+            Update the Time and Redraw the Scene with a Timer
           %p
             Now we are going to clean up the
             %code

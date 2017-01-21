@@ -145,7 +145,7 @@ class ApplicationController < ActionController::Base
         experimental: true,
         name: 'Animated Cityscape',
         slug: 'animated_cityscape',
-        stages: [6, 6, 6, 6],
+        stages: [7, 6, 6, 6],
         reference: [
           :fill_rect,
           :fill_style,
