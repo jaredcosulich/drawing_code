@@ -39,6 +39,18 @@
             In this example we'll show a simple collision against a wall. Since we
             are only moving right we only need to check to see if the right side of the
             square overlaps with the left edge of the wall at all.
+          %p
+            This requires a simple check:
+          %pre
+            %code
+              :preserve
+                if (box.x + box.size >= wallPosition) {
+                  ... end the animation ...
+                }
+          %p
+            This is checking to see if the right side of the box (box.x + box.size)
+            has move passed the left side of the wall (its "x" coordinate). If
+            it has then we know a collision has taking place.
 
           = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
@@ -419,15 +431,55 @@
             through (if any) and make sure it is not flying through any of the
             "wall" area.
           %p
+            So, for example, if we wanted to check whether flappy square had passed
+            beyond the right side of a wall (really the right side of the wall has
+            passed the stationary flappy square) we could do something like this:
+          %pre
+            %code
+              :preserve
+                var left = square.x;
+                var wallRight = wallX + walls.size;
+                if (left > wallRight) {
+                  ... right side of wall has passed the left side of the flappy square ...
+                }
+          %p
             We'll also need to keep track of the positions of each wall to find
             the wall the flappy square is flying through.
+          %p
+            You can do this by recording the "x" coordinate of each wall in a variable:
+          %pre
+            %code
+              :preserve
+                var walls = {
+                  ...
+                  positions: []
+                }
+
+                ...
+
+                walls.positions.push(wallX);
+          %p
+            Then, you can iterate through these positions like so:
+          %pre
+            %code
+              :preserve
+                for (var i=0; i < walls.positions.length; ++i) {
+                  var position = walls.positions[i];
+                }
+          %p
+            This is a
+            = link_to_lesson('for loop', :for_loops, nil, class: 'reference-link', data: {slug: :for_loops})
+            and you can use it to perform an action using each of the positions in
+            your
+            %code position
+            array.
+
           %p
             In the example code below we find the wall that the flappy square is passing
             through and check to see that the flappy square is above the bottom
             of the top part of the wall (not going through the hole). If it is
             then we call the method, endGame(), that we currently call from
             checkBoundary() to end the game.
-
           %pre
             %code
               :preserve
@@ -437,8 +489,8 @@
                 var bottom = square.y + square.size;
 
                 for (var i=0; i < walls.positions.length; ++i) {
-                  var wallLeft = walls.positions[i];
-                  var wallRight = position + walls.width;
+                  var wallLeft = walls.positions[i] - distance;
+                  var wallRight = wallLeft + walls.width;
 
                   if (wallLeft > right) continue;
                   if (wallRight < left) continue;
@@ -467,7 +519,8 @@
           %p
             In the end your flappy square should behave like the example provided at
             the beginning of this description.
-          = render 'lessons/code_preview', stage: 2, challenge: 6, editor_id: 'flappy_square_stage2_challenge4_editor'
+          = render 'lessons/relevant', relevant: [:for_loops]
+          = render 'lessons/code_preview', stage: 2, challenge: 6, editor_id: 'flappy_square_stage2_challenge6_editor'
 
       .row
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage3_challenge1_editor'} do

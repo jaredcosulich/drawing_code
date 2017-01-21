@@ -242,7 +242,7 @@
                   minX: 50,
                   maxX: 400,
                   minY: 50,
-                  maxY: 400
+                  maxY: 300
                 };
 
                 function drawBoundary() {
@@ -303,7 +303,7 @@
             and add a boundary for our game.
           %p
             The boundary should
-            %span.highlight start at (25, 25) and extend to (450, 400),
+            %span.highlight start at (25, 25) and extend to (450, 300),
             forming a rectangle. Use
             %code context.lineTo()
             to draw the boundary. Be sure to use
@@ -507,7 +507,7 @@
                 }
 
                 function runProgram() {
-                  interval = setInterval(programSteps, 25);
+                  interval = setInterval(programSteps, 10);
                 }
 
                 // The following code is provided for you.
@@ -581,7 +581,6 @@
             var interval;
             var gravity = 0.5;
 
-            // FILL IN YOUR VARIABLES USING THIS HASH FORMAT HERE.
             var square = {
               size: 20,
               x: ,
@@ -820,14 +819,17 @@
             So try to draw two rectangles (a wall), one attached to the
             %span.highlight roof (y = 50)
             and one to the
-            %span.highlight floor (y = 400)
+            %span.highlight floor (y = 300)
             Each of them should be
             %span.highlight 100 pixels tall and 50 pixels wide.
-            and each wall should be space
-            %span.highlight 125 pixels apart.
+            and each wall should be spaced
+            %span.highlight 125 pixels
+            from the previous wall's "x" coordinate.
           %p
             We also don't want to draw our walls right on top of the flappy square
-            when the game starts, so let's draw the first one 125 pixels out.
+            when the game starts, so let's draw the first one
+            %span.highlight 125 pixels out
+            from the left wall of the game (boundary.minX).
           %p In the end your flappy square should behave like the example provided to the right.
 
           = render 'lessons/relevant', relevant: [:fill_rect, :coordinates]
@@ -968,9 +970,10 @@
           %pre
             %code
               :preserve
+                var end = canvas.width + distance + tree.spacing;
                 var treeX = distance - tree.spacing;
                 var treeY = canvas.height - road.height;
-                while (treeX < canvas.width + distance + tree.spacing) {
+                while (treeX < end) {
                   if (treeX % tree.spacing === 0) {
                     drawTree(treeX - distance, treeY);
                   }
@@ -1019,9 +1022,10 @@
                 }
 
                 function drawTrees() {
-                  var treeX = distance;
+                  var end = canvas.width + distance + tree.spacing;
+                  var treeX = distance - tree.spacing;
                   var treeY = canvas.height - road.height;
-                  while (treeX < canvas.width + distance + tree.spacing) {
+                  while (treeX < end) {
                     if (treeX % tree.spacing === 0) {
                       drawTree(treeX - distance, treeY);
                     }
