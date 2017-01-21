@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="E6AaDZaqIuCnYJXT3+WURaII2M7bapgSykzMkaYfxbrV+eVMzf4uDRLSY6DJRtOA5MHIayJjvDpvDN/wa1QF5w==" />
+<meta name="csrf-token" content="DayZpSQ+w1n2jApBRucXwKOiAi1icHFp0BoRrquBOyjL9Wbkf2rPtEM+/DJQRFAF5WsSiJt5VUF1WgLPZsr7dQ==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-6693732d946f61761af2eeafcf9c870441f1af9f77c9d2a5db4509578dd265e0-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -21,7 +21,7 @@
 <script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lesson.self-4c007310fc5244946716688a8afc18ef0b6e54f4cfc18f8aff6b18ab0e203889.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/animated_cityscape/stage1.self-db36a18e3a7661a8d275acc67cf5811cb4f28fdc593b38a07692bcc94578fa9c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/animated_cityscape/stage1.self-582f6aacf5cfd7dd09a31aa03d19da7c33cc061000a987d741602acd28343a91.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage1.self-af3dd34f4f344c2e4c6fd02ae6fcf3a3ab4cd43a8d72b9e10ac7e857ec7e3321.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage2.self-225920e2665631ee62b7fbe95291c6ac9e1c62142a2bc469a623623a6c18a705.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage3.self-d849334bedcf13dec8fb3da9f57078b783809e1a25dfc733da271108516fb213.js?body=1" data-turbolinks-track="reload"></script>
@@ -750,6 +750,15 @@ are only moving right we only need to check to see if the right side of the
 square overlaps with the left edge of the wall at all.
 </p>
 <p>
+This requires a simple check:
+</p>
+<pre><code>if (box.x + box.size >= wallPosition) {&#x000A;  ... end the animation ...&#x000A;}</code></pre>
+<p>
+This is checking to see if the right side of the box (box.x + box.size)
+has move passed the left side of the wall (its "x" coordinate). If
+it has then we know a collision has taking place.
+</p>
+<p>
 <strong>Relevant Lessons:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
@@ -922,8 +931,30 @@ through (if any) and make sure it is not flying through any of the
 "wall" area.
 </p>
 <p>
+So, for example, if we wanted to check whether flappy square had passed
+beyond the right side of a wall (really the right side of the wall has
+passed the stationary flappy square) we could do something like this:
+</p>
+<pre><code>var left = square.x;&#x000A;var wallRight = wallX + walls.size;&#x000A;if (left > wallRight) {&#x000A;  ... right side of wall has passed the left side of the flappy square ...&#x000A;}</code></pre>
+<p>
 We'll also need to keep track of the positions of each wall to find
 the wall the flappy square is flying through.
+</p>
+<p>
+You can do this by recording the "x" coordinate of each wall in a variable:
+</p>
+<pre><code>var walls = {&#x000A;  ...&#x000A;  positions: []&#x000A;}&#x000A;&#x000A;...&#x000A;&#x000A;walls.positions.push(wallX);</code></pre>
+<p>
+Then, you can iterate through these positions like so:
+</p>
+<pre><code>for (var i=0; i < walls.positions.length; ++i) {&#x000A;  var position = walls.positions[i];&#x000A;}</code></pre>
+<p>
+This is a
+<a class="reference-link" data-slug="for_loops" href="../for_loops/index.html">for loop</a>
+and you can use it to perform an action using each of the positions in
+your
+<code>position</code>
+array.
 </p>
 <p>
 In the example code below we find the wall that the flappy square is passing
@@ -932,7 +963,7 @@ of the top part of the wall (not going through the hole). If it is
 then we call the method, endGame(), that we currently call from
 checkBoundary() to end the game.
 </p>
-<pre><code>var left = square.x;&#x000A;var right = square.x + square.size;&#x000A;var top = square.y;&#x000A;var bottom = square.y + square.size;&#x000A;&#x000A;for (var i=0; i < walls.positions.length; ++i) {&#x000A;  var wallLeft = walls.positions[i];&#x000A;  var wallRight = position + walls.width;&#x000A;&#x000A;  if (wallLeft > right) continue;&#x000A;  if (wallRight < left) continue;&#x000A;&#x000A;  var topWallBottom = boundary.minY + walls.height;&#x000A;  if (top < topWallBottom) {&#x000A;    endGame();&#x000A;  }&#x000A;}&#x000A;</code></pre>
+<pre><code>var left = square.x;&#x000A;var right = square.x + square.size;&#x000A;var top = square.y;&#x000A;var bottom = square.y + square.size;&#x000A;&#x000A;for (var i=0; i < walls.positions.length; ++i) {&#x000A;  var wallLeft = walls.positions[i] - distance;&#x000A;  var wallRight = wallLeft + walls.width;&#x000A;&#x000A;  if (wallLeft > right) continue;&#x000A;  if (wallRight < left) continue;&#x000A;&#x000A;  var topWallBottom = boundary.minY + walls.height;&#x000A;  if (top < topWallBottom) {&#x000A;    endGame();&#x000A;  }&#x000A;}&#x000A;</code></pre>
 <p>
 Remember this is only checking if the flappy square is hitting the
 top portion of the wall. You'll need to ensure it isn't hitting the bottom
@@ -955,11 +986,16 @@ Take it slowly and try to work it out.
 In the end your flappy square should behave like the example provided at
 the beginning of this description.
 </p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="for_loops" href="../for_loops/index.html">For Loops</a>
+</p>
+
 <div class='code-preview mb-2'>
 <p>
 <strong>Previous Challenge:</strong>
 View your
-<span class='code-preview-link' data-editorid='flappy_square_stage2_challenge4_editor'>
+<span class='code-preview-link' data-editorid='flappy_square_stage2_challenge6_editor'>
 code from
 Stage
 2

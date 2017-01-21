@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="8yY7/9kUYDER3mnUDTxbWxiT/7lnNJNu13WTsWGXKjA1f8S+gkBs3KRsn6cbnxyeXlrvHJ49t0ZyNYDQrNzqbQ==" />
+<meta name="csrf-token" content="8/kN0R1pxMuko1zywFtfZpf2EIENX4jt+HdeOTfjia41oPKQRj3IJhERqoHW+Bij0T8AJPRWrMVdN01Y+qhJ8w==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-6693732d946f61761af2eeafcf9c870441f1af9f77c9d2a5db4509578dd265e0-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -21,7 +21,7 @@
 <script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lesson.self-4c007310fc5244946716688a8afc18ef0b6e54f4cfc18f8aff6b18ab0e203889.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/animated_cityscape/stage1.self-db36a18e3a7661a8d275acc67cf5811cb4f28fdc593b38a07692bcc94578fa9c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/animated_cityscape/stage1.self-582f6aacf5cfd7dd09a31aa03d19da7c33cc061000a987d741602acd28343a91.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage1.self-af3dd34f4f344c2e4c6fd02ae6fcf3a3ab4cd43a8d72b9e10ac7e857ec7e3321.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage2.self-225920e2665631ee62b7fbe95291c6ac9e1c62142a2bc469a623623a6c18a705.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage3.self-d849334bedcf13dec8fb3da9f57078b783809e1a25dfc733da271108516fb213.js?body=1" data-turbolinks-track="reload"></script>
@@ -581,7 +581,7 @@ A full list of events can be found here:
 <li class='active'>
 <a href="index.html">Stage 1</a>
 <span class='tag tag-default'>
-<small class='animated_cityscape_stage1'>0 / 6</small>
+<small class='animated_cityscape_stage1'>0 / 7</small>
 </span>
 </li>
 <li>
@@ -890,7 +890,8 @@ horizon and darker higher up. And as the sun sets, the sky along the horizon
 turns red.
 </p>
 <p>
-To smoothly transition from one color to another, we use a linear gradient. In
+To draw the sky, we use a linear gradient. A linear gradient smoothly transitions
+from one color to another, such as white to blue or gray to dark gray. In
 this example, we create a linear gradient using the <code>createLinearGradient()</code>
 method and assign it to a variable named <code>gradient</code>:
 </p>
@@ -900,7 +901,7 @@ We create a linear gradient by passing the <code>createLinearGradient()</code> m
 the coordinates for the gradient's start position and end position. Because the two points,
 (40, 0) and (360, 0), form a horizontal line, the linear gradient is horizontal. It starts
 at x = 40 and ends at x = 360. The y-coordinates of the two points in a horizontal linear
-gradient are irrelevant as long as they are the same.
+gradient don't make a difference as long as they are the same.
 </p>
 <p>
 The next step is setting the colors in the gradient:
@@ -918,6 +919,11 @@ Finally, we assign the linear gradient stored in the variable <code>gradient</co
 draw a filled rectangle.
 </p>
 <pre><code>context.fillStyle = gradient;&#x000A;context.fillRect(40, 40, 320, 240);</code></pre>
+<p>
+Between position <code>0</code> and position <code>0.6</code>, the color filling the rectangle
+changes from <code>'Red'</code> to <code>'Blue'</code>. Between position <code>0.6</code>
+and position <code>1</code>, the color changes from <code>'Blue'</code> to <code>'Black'</code>.
+</p>
 <p>
 Change the colors in the gradient, change the position of the middle color stop, or add another
 color stop with a position between <code>0</code> and <code>1</code> to see what happens. To learn more
@@ -1006,8 +1012,8 @@ Declare a variable named <code>horizonY</code> and assign it the value
 <p>
 Define a function named <code>drawSky()</code>. Inside the function, create
 a vertical linear gradient so position <code>0</code> is at the horizon and
-position <code>1</code> is 300 pixels above the horizon. Note that position
-<code>1</code> may not be visible on the canvas. That's fine.
+position <code>1</code> is 300 pixels above the horizon. Note that the y-coordinate
+of position <code>1</code> may be negative and not visible on the canvas.
 </p>
 <p>
 Set the color in the gradient at position <code>0</code> to <code>'rgb(255, 85, 85)'</code>,
@@ -1053,7 +1059,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage1_challenge1_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// DECLARE AND INITIALIZE THE horizonY VARIABLE HERE&#x000A;&#x000A;// CALL THE drawSky() FUNCTION HERE TO DRAW THE SKY&#x000A;&#x000A;// DEFINE THE drawSky() FUNCTION HERE&#x000A;// INSIDE THE drawSky() FUNCTION, CREATE A VERTICAL LINEAR GRADIENT&#x000A;// FROM THE HORIZON TO A POINT 300 PIXELS ABOVE THE HORIZON. SET THE&#x000A;// COLORS IN THE GRADIENT. USE THE GRADIENT TO FILL A RECTANGLE&#x000A;// POSITIONED AT (0, 0) THAT GOES DOWN TO THE HORIZON AND ACROSS THE&#x000A;// WIDTH OF THE CANVAS.&#x000A;&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage1_challenge1_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// DECLARE AND INITIALIZE THE horizonY VARIABLE HERE&#x000A;&#x000A;// CALL THE drawSky() FUNCTION HERE TO DRAW THE SKY&#x000A;&#x000A;// DEFINE THE drawSky() FUNCTION HERE&#x000A;// INSIDE THE drawSky() FUNCTION, CREATE A VERTICAL LINEAR GRADIENT&#x000A;// FROM THE HORIZON TO A POINT 300 PIXELS ABOVE THE HORIZON.&#x000A;// SET THE COLORS IN THE GRADIENT.&#x000A;// USE THE GRADIENT TO FILL A RECTANGLE POSITIONED AT (0, 0) THAT GOES&#x000A;// DOWN TO THE HORIZON AND ACROSS THE WIDTH OF THE CANVAS.&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1107,7 +1113,9 @@ these colors automatically.
 In this example, we use two for loops to draw two rows of rectangles. The first
 for loop uses the variable <code>i</code> as its counter. Inside the for loop,
 we use an if statement to calculate the height of the rectangle depending on the
-value of the counter.
+value of the counter. Note how the height of the rectangle starts at 40, climbs
+steadily to 100, and then levels out again. We want the ground and sky colors to
+change in the same way as the sun sets.
 </p>
 <pre><code>if (i < 6) {&#x000A;  h = 40;&#x000A;} else if (i > 15) {&#x000A;  h = 100;&#x000A;} else {&#x000A;  h = 40 + 60 * (i - 6) / 9;&#x000A;}</code></pre>
 <p>
@@ -1199,45 +1207,52 @@ Canvas
 Challenge 2
 </h2>
 <figure class='float-xs-right px-2'>
-<img class="img-fluid canvas-example" src="../../../assets/lessons/animated_cityscape/stage1/challenge2Visual1-6b6ba063ae7a2468082d14ba6b3e53dd8d41028291cbd63ca21da76b86bb9886.png" alt="Challenge2visual1" />
+<img class="img-fluid canvas-example" src="../../../assets/lessons/animated_cityscape/stage1/challenge2Visual1-a801f31e5583567a5ac20062035949f3728ad79622f5d163d0a15d4cfed89a2d.png" alt="Challenge2visual1" />
 <figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
 </figure>
 <p>
-Start by defining the <code>rgbColor()</code> function. This function has
-three parameters: <code>r</code>, <code>g</code>, and <code>b</code>. Use
-the <code>Math.round()</code> function to round the values stored in the
-parameters and the <code>+</code> operator to combine those values into a
-text string describing a color in 'rgb()' notation. Use a return statement
-to return the text string from the function.
+The <code>drawGround()</code> function will draw the rectangle for the
+ground using darker shades of gray as the time increases from 5:00 pm to
+7:00 pm. Because we are calculating RGB values based on the time, we
+start by defining the <code>rgbColor()</code> function to make it easy to
+combine RGB values into a text string in 'rgb()' notation.
+</p>
+<p>
+The <code>rgbColor()</code> function has three parameters: <code>r</code>,
+<code>g</code>, and <code>b</code>. Round the values stored in the three parameters
+using the <code>Math.round()</code> function and combine them into a text
+string in 'rgb()' notation using the <code>+</code> operator. Then, return the text
+string from the function using a return statement.
 </p>
 <p>
 If you need help, examine the <code>drawBuildingRow()</code> and <code>randomInteger()</code>
-functions in the Basic Cityscape Challenge program at the top of the page to see how we combined
-values into a text string to describe a row's building color and how we returned randomly generated
-integers from a function, or visit the
+functions in the Basic Cityscape Challenge program at the top of the page to see how we
+combined values into a text string to describe a row's building color and how we returned randomly
+generated integers from a function, or visit the
 <a class="reference-link" data-slug="fillStyle" href="../fillStyle/index.html">fillStyle</a>
 and
 <a class="reference-link" data-slug="functions" href="../functions/index.html">Functions</a>
 lessons.
 </p>
 <p>
-Inside the <code>drawGround()</code> function, declare the variable <code>c</code>. We can use
-this one variable to store the red, green, and blue values of the ground's color because all three
-values are the same. If <code>time < 5</code>, set <code>c = 204</code>. If <code>time > 7</code>, set
-<code>c = 102</code>. If <code>time</code> is between 5 and 7, create an expression so <code>c</code>
-decreases from 204 to 102 as <code>time</code> increases from 5 to 7. Pass the value of <code>c</code>
-into the <code>rgbColor()</code> function and assign the color returned from the function to the
-<code>context.fillStyle</code> property. Remember, <code>c</code> is the value of the red, green, and
-blue values of the color.
+Inside the <code>drawGround()</code> function, declare the variable <code>c</code>. We
+can use this one variable to store the red, green, and blue values of the ground's color
+because all three values are the same. If <code>time < 5</code>, set <code>c = 204</code>.
+If <code>time > 7</code>, set <code>c = 102</code>. If <code>time</code> is between 5 and 7,
+create an expression so <code>c</code> decreases from 204 to 102 as <code>time</code> increases
+from 5 to 7. Pass the value of <code>c</code> into the <code>rgbColor()</code> function and
+assign the color returned from the function to the <code>context.fillStyle</code> property.
+Remember, <code>c</code> is the value of the red, green, and blue values of the color.
 </p>
 <p>
-Then, use the <code>context.fillRect()</code> method to draw a rectangle from <code>horizonY</code>
-to the bottom of the canvas at x = 0 with a width of 72. Make sure to save and restore the drawing state
-since the <code>drawGround()</code> function is setting the <code>context.fillStyle</code> property.
+Then, use the <code>context.fillRect()</code> method to draw a rectangle from (0, <code>horizonY</code>)
+to the bottom of the canvas and the width of the canvas. Make sure to save and restore the drawing
+state since the <code>drawGround()</code> function is setting the <code>context.fillStyle</code> property.
 </p>
 <p>
-Finally, set the value of <code>horizonY</code> so the y-coordinate of the horizon is 100 pixels above the
-bottom of the canvas. The program should now draw slices of the ground at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
+Finally, set the value of <code>horizonY</code> so the y-coordinate of the horizon is 100 pixels
+above the bottom of the canvas. The program should now draw slices of the ground as it gets darker
+at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
@@ -1300,7 +1315,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage1_challenge2_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var time;&#x000A;var horizonY; // Set the y-coordinate of the horizon so it is 100 pixels above the bottom of the canvas&#x000A;&#x000A;context.save();&#x000A;&#x000A;time = 5.0;&#x000A;drawGround(); // Draw the ground at 5:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 5.5;&#x000A;drawGround(); // Draw the ground at 5:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.0;&#x000A;drawGround(); // Draw the ground at 6:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.5;&#x000A;drawGround(); // Draw the ground at 6:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 7.0;&#x000A;drawGround(); // Draw the ground at 7:00 pm&#x000A;&#x000A;context.restore();&#x000A;&#x000A;function rgbColor(r, g, b) {&#x000A;  &#x000A;  // Create and return a text string in rgb() notation after rounding the values stored in r, g, and b&#x000A;  &#x000A;}&#x000A;&#x000A;function drawGround() {&#x000A;  &#x000A;  // Declare the variable c&#x000A;  // Use an if statement to calculate the value of c&#x000A;  // Use the rgbColor() function to get the color of the ground and assign it to the fillStyle&#x000A;  // Draw a filled rectangle from horizonY to the bottom of the canvas at x = 0 with a width of 72&#x000A;  &#x000A;}&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage1_challenge2_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var time;&#x000A;var horizonY; // Set the y-coordinate of the horizon so it is 100 pixels above the bottom of the canvas&#x000A;&#x000A;context.save();&#x000A;&#x000A;time = 5.0;&#x000A;drawGround(); // Draw the ground at 5:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 5.5;&#x000A;drawGround(); // Draw the ground at 5:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.0;&#x000A;drawGround(); // Draw the ground at 6:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.5;&#x000A;drawGround(); // Draw the ground at 6:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 7.0;&#x000A;drawGround(); // Draw the ground at 7:00 pm&#x000A;&#x000A;context.restore();&#x000A;&#x000A;function rgbColor(r, g, b) {&#x000A;  &#x000A;  // Create and return a text string in rgb() notation after rounding the values stored in r, g, and b&#x000A;  &#x000A;}&#x000A;&#x000A;function drawGround() {&#x000A;  &#x000A;  // Declare the variable c&#x000A;  // Use an if statement to calculate the value of c&#x000A;  // Use the rgbColor() function to get the color of the ground and assign it to the fillStyle&#x000A;  // Draw a filled rectangle from (0, horizonY) to the bottom of the canvas and the width of the canvas&#x000A;  &#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1344,61 +1359,55 @@ Canvas
 Challenge 3
 </h2>
 <figure class='float-xs-right px-2'>
-<img class="img-fluid canvas-example" src="../../../assets/lessons/animated_cityscape/stage1/challenge3Visual1-ebbae37ffdc1974f3121336f9fefc50a3d73819d19ebba2446f49da7c967c2b6.png" alt="Challenge3visual1" />
+<img class="img-fluid canvas-example" src="../../../assets/lessons/animated_cityscape/stage1/challenge3Visual1-a2523c57573dcf0f5897fab81e681251fcd86ccf735e786abd314b67c45b720e.png" alt="Challenge3visual1" />
 <figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
 </figure>
 <p>
-Now we are going to re-define the <code>drawSky()</code> function so the
+Now we are going to update the <code>drawSky()</code> function so the
 gradient used to fill the sky also changes depending on the time of day.
+First, we will make the sky change from blue to dark gray. We will add
+the red horizon later.
 </p>
 <p>
-Inside the <code>drawSky()</code> function, start by declaring ten
+Inside the <code>drawSky()</code> function, start by declaring six
 variables. To keep the function compact, we can declare multiple variables
 on each line. Just separate the variables with commas and make sure to end
 each line with a semicolon.
 </p>
-<pre><code>var r0, g0, b0;&#x000A;var r1, g1, b1;&#x000A;var pMiddle, rMiddle, gMiddle, bMiddle;</code></pre>
+<pre><code>var r0, g0, b0;&#x000A;var r1, g1, b1;</code></pre>
 <p>
 The variables <code>r0</code>, <code>g0</code>, and <code>b0</code> are the
-red, green, and blue values of the color at position <code>0</code> in the
-gradient. The variables <code>r1</code>, <code>g1</code>, and <code>b1</code>
-are the red, green, and blue values of the color at position <code>1</code>.
-And the variables <code>rMiddle</code>, <code>gMiddle</code>, and <code>bMiddle</code>
-are the red, green, and blue values of the color at position <code>pMiddle</code>.
-The position of this middle color stop will also be changing over time.
+RGB values of the color at position <code>0</code> in the gradient. The variables
+<code>r1</code>, <code>g1</code>, and <code>b1</code> are the RGB values of the
+color at position <code>1</code>.
 </p>
 <p>
-Set up an if statement. If <code>time < 5</code>, set <code>r0</code>, <code>g0</code>,
-and <code>b0</code> to 255; set <code>r1</code> to 102, <code>g1</code> to 153, and
-<code>b1</code> to 255; and set <code>pMiddle</code> to -1. Just like we can declare
-multiple variables on one line, we can assign multiple variables on one line.
+If <code>time < 5</code>, set <code>r0</code>, <code>g0</code>, and <code>b0</code>
+to 255; and set <code>r1</code> to 102, <code>g1</code> to 153, and <code>b1</code>
+to 255. And just as we can declare multiple variables on one line, we can also assign
+multiple variables on one line.
 </p>
-<pre><code>r0 = 255, g0 = 255, b0 = 255; // The sky is white at position 0&#x000A;r1 = 102, g1 = 153, b1 = 255; // The sky is blue at position 1&#x000A;pMiddle = -1;</code></pre>
+<pre><code>r0 = 255, g0 = 255, b0 = 255; // The sky is white at position 0&#x000A;r1 = 102, g1 = 153, b1 = 255; // The sky is blue at position 1</code></pre>
 <p>
-Why are we setting <code>pMiddle</code> to -1? Before 5:00 pm and after 7:00 pm, we only
-need to add color stops at positions <code>0</code> and <code>1</code>; we aren't adding
-a third color stop at position <code>pMiddle</code>. By setting <code>pMiddle</code> to -1,
-we are letting ourselves know not to add the third color stop later on.
+If <code>time > 7</code>, set <code>r0</code>, <code>g0</code>, and <code>b0</code> to 102;
+and set <code>r1</code>, <code>g1</code>, and <code>b1</code> to 51.
 </p>
+<pre><code>r0 = 102, g0 = 102, b0 = 102; // The sky is gray at position 0&#x000A;r1 = 51, g1 = 51, b1 = 51; // The sky is dark gray at position 1</code></pre>
 <p>
-Else if <code>time > 7</code>, set <code>r0</code>, <code>g0</code>, and <code>b0</code> to 102;
-set <code>r1</code>, <code>g1</code>, and <code>b1</code> to 51; and set <code>pMiddle</code> to -1.
-</p>
-<pre><code>r0 = 102, g0 = 102, b0 = 102; // The sky is gray at position 0&#x000A;r1 = 51, g1 = 51, b1 = 51; // The sky is dark gray at position 1&#x000A;pMiddle = -1;</code></pre>
-<p>
-Finally, if <code>time < 5</code> and <code>time > 7</code> are both false, create expressions
-to calculate the red, green, and blue values of the colors at all three color stops and the position
-of the middle color stop as <code>time</code> increases from 5 to 7:
+Finally, if <code>time < 5</code> and <code>time > 7</code> are both false, create
+expressions to calculate the RGB values of the colors at both positions as <code>time</code>
+increases from 5 to 7. This changes the color of the sky at position <code>0</code> from white
+to gray and the color of the sky at position <code>1</code> from blue to dark gray.
 </p>
 <ul>
 <li>
-<code>r0</code>: 255
+<code>r0</code>: 255 &rarr; 102
 </li>
 <li>
-<code>g0</code>: 255 &rarr; 0
+<code>g0</code>: 255 &rarr; 102
 </li>
 <li>
-<code>b0</code>: 255 &rarr; 0
+<code>b0</code>: 255 &rarr; 102
 </li>
 <li>
 <code>r1</code>: 102 &rarr; 51
@@ -1409,38 +1418,36 @@ of the middle color stop as <code>time</code> increases from 5 to 7:
 <li>
 <code>b1</code>: 255 &rarr; 51
 </li>
-<li>
-<code>pMiddle</code>: 1 &rarr; 0
-</li>
-<li>
-<code>rMiddle</code>: 102
-</li>
-<li>
-<code>gMiddle</code>: 153 &rarr; 102
-</li>
-<li>
-<code>bMiddle</code>: 255 &rarr; 102
-</li>
 </ul>
 <p>
-This changes the color of the sky at position <code>0</code> from white to red
-and the color of the sky at position <code>1</code> from blue to dark gray. We
-use the middle color stop at position <code>pMiddle</code> to make the red band
-at the horizon narrower. The color of the sky at the middle color stop changes
-from blue to gray, but it also moves closer to the horizon as <code>pMiddle</code>
-changes from 1 to 0.
+Now, just as in Challenge 1, create a vertical linear gradient so position
+<code>0</code> is at the horizon and position <code>1</code> is 300 pixels above the horizon.
 </p>
 <p>
-If you need help using variables, visit the
-<a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a>
-lesson.
+Instead of hardcoding three color stops, add color stops at positions <code>0</code>
+and <code>1</code> and use the RGB values stored in the six variables to set the colors
+using the <code>rgbColor()</code> function.
+</p>
+<p>
+Fill a rectangle with the gradient positioned at (0, 0) going down to the horizon and
+across the width of the canvas.
+</p>
+<p>
+Then, set the value of <code>horizonY</code> so the y-coordinate of the horizon is 100 pixels
+above the bottom of the canvas. The program should now draw slices of the sky as it gets darker
+at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="if_statements" href="../if_statements/index.html">If Statements</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="create_linear_gradient" href="../create_linear_gradient/index.html">createLinearGradient()</a>
 </p>
 
 <div class='code-preview mb-2'>
@@ -1491,7 +1498,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage1_challenge3_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var x = 120;&#x000A;var y = 80;&#x000A;var units = 8;&#x000A;var floors = 10;&#x000A;&#x000A;var w = 0; // Use the variable units to calculate the width of the building&#x000A;var h = 0; // Use the variable floors to calculate the height of the building&#x000A;&#x000A;// SET THE COLOR OF THE BUILDING TO #999999 HERE&#x000A;&#x000A;// DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h&#x000A;&#x000A;drawOffices(x, y, w, h); // Draw the offices&#x000A;&#x000A;drawGround(100); // Position and draw the ground here&#x000A;&#x000A;function drawOffices(x, y, w, h) {&#x000A;  var u = Math.floor((w - 4) / 16);&#x000A;  var f = Math.floor((h - 4) / 16);&#x000A;&#x000A;  context.save();&#x000A;  context.translate(x + 4, y + 4);&#x000A;  context.strokeWidth = 1;&#x000A;  context.strokeStyle = '#000000';&#x000A;&#x000A;  for (var i = 0; i < f; i++) {&#x000A;    for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);&#x000A;  }&#x000A;&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawGround(y) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Black';&#x000A;  context.fillRect(0, y, canvas.width, 2);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage1_challenge3_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var time;&#x000A;var horizonY; // Set the y-coordinate of the horizon so it is 100 pixels above the bottom of the canvas&#x000A;&#x000A;context.save();&#x000A;&#x000A;time = 5.0;&#x000A;drawSky(); // Draw the sky at 5:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 5.5;&#x000A;drawSky(); // Draw the sky at 5:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.0;&#x000A;drawSky(); // Draw the sky at 6:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.5;&#x000A;drawSky(); // Draw the sky at 6:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 7.0;&#x000A;drawSky(); // Draw the sky at 7:00 pm&#x000A;&#x000A;context.restore();&#x000A;&#x000A;function rgbColor(r, g, b) {&#x000A;  &#x000A;  // Copy the function definition from Challenge 2&#x000A;  &#x000A;}&#x000A;&#x000A;function drawSky() {&#x000A;  &#x000A;  // Declare r0, g0, b0, r1, g1, b1&#x000A;  // Use an if statement to calculate the values assigned to r0, g0, b0, r1, g1, b1&#x000A;  // Create a vertical linear gradient from the horizon to a point 300 pixels above the horizon&#x000A;  // Add color stops at positions 0 and 1&#x000A;  // Use the gradient to fill a rectangle positioned at (0, 0) that goes down to the horizon and across the width of the canvas&#x000A;  &#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1520,7 +1527,6 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<div class='background hidden-xl-down'><img src="../../../images/lessons/animated_cityscape/stage1/challenge3.png" alt="Challenge3" /></div>
 <canvas id='animated_cityscape_stage1_challenge3'></canvas>
 </div>
 <div class='alert'></div>
@@ -1536,56 +1542,98 @@ Canvas
 Challenge 4
 </h2>
 <figure class='float-xs-right px-2'>
-<img class="img-fluid canvas-example" src="../../../images/lessons/animated_cityscape/stage1/challenge4Visual1.png" alt="Challenge4visual1" />
+<img class="img-fluid canvas-example" src="../../../assets/lessons/animated_cityscape/stage1/challenge4Visual1-ae26863373ac005a6b350b6221fb2cb59e6872009936095a1b36f1f99c39345e.png" alt="Challenge4visual1" />
 <figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
 </figure>
 <p>
-Create a
-<code>drawBuilding()</code>
-function to draw buildings like the one from Challenge 3. The function is passed
-four values that it will assign to the following four parameters. The first two parameters,<code>x</code>and
-<span><code>y</code>,
-</span>
-are the coordinates of the top left corner of the building; the third parameter,
-<span><code>units</code>,
-</span>
-is the number of office units per floor; and the fourth parameter,
-<span><code>floors</code>,
-</span>
-is the number of floors in the building.
+To turn the sky along the horizon red as the sun sets, we need to add a
+third color stop between positions <code>0</code> and <code>1</code>. The
+third color stop will confine the red color to a narrow band.
 </p>
 <p>
-Inside the
-<code>drawBuilding()</code>
-function, use the parameters to calculate the width and height of the building,
-set the
-<code>context.fillStyle</code>
-property to the color
-<span><code>'#999999'</code>,
-</span>
-and use the
-<code>context.fillRect()</code>
-method to draw the building.
+Start by setting <code>horizonY</code>, the y-coordinate of the horizon,
+and copying the definitions for the <code>rgbColor()</code> and <code>drawSky()</code>
+functions from Challenge 3.
 </p>
 <p>
-Once the
-<code>drawBuilding()</code>
-function has been defined, use it to draw two buildings. The first building has 8
-office units per floor and 10 floors, and it is positioned at (60, 20). The second
-building has 6 office units per floor and 16 floors, and it is positioned at (210, 20).
+Inside the <code>drawSky()</code> function, declare the variables <code>pMiddle</code>,
+<code>rMiddle</code>, <code>gMiddle</code>, and <code>bMiddle</code> for the middle color
+stop. We are using <code>pMiddle</code> to set the position of the color stop. By starting
+at position <code>1</code> and moving down to position <code>0</code>, it will confine the
+red color to a narrower and narrower band until it disappears completely.
 </p>
 <p>
-If you need help using functions, visit the
-<a class="reference-link" data-slug="functions" href="../functions/index.html">Functions</a>
-lesson.
+If <code>time < 5</code> or <code>time > 7</code>, set <code>pMiddle</code> to -1.
+</p>
+<p>
+Why are we setting <code>pMiddle</code> to -1? Before 5:00 pm and after 7:00 pm, we only
+need to add color stops at positions <code>0</code> and <code>1</code>; we aren't adding
+a third color stop at position <code>pMiddle</code>. By setting <code>pMiddle</code> to -1,
+we are letting ourselves know not to add the third color stop later on.
+</p>
+<p>
+In the code block for the else clause, change the calculations for the color at
+position <code>0</code> and add the calculations for the color at position <code>pMiddle</code>.
+The calculations for the color at position <code>1</code> stay the same.
+</p>
+<ul>
+<li>
+<code>r0</code>: 255
+</li>
+<li>
+<code>g0</code>: 255 &rarr; 0
+</li>
+<li>
+<code>b0</code>: 255 &rarr; 0
+</li>
+<li>
+<code>pMiddle</code>: 1 &rarr; 0
+</li>
+<li>
+<code>rMiddle</code>: 102
+</li>
+<li>
+<code>gMiddle</code>: 153 &rarr; 102
+</li>
+<li>
+<code>bMiddle</code>: 255 &rarr; 102
+</li>
+</ul>
+<p>
+This changes the color of the sky at position <code>0</code> from white to red
+and the color of the sky at position <code>1</code> from blue to dark gray. We
+use the middle color stop at position <code>pMiddle</code> to make the red band
+at the horizon narrower. The color of the sky at the middle color stop changes
+from blue to gray, but it also moves closer to the horizon as <code>pMiddle</code>
+changes from 1 to 0.
+</p>
+<p>
+After creating the linear gradient and adding color stops at positions <code>0</code>
+and <code>1</code>, add the middle color stop only if <code>pMiddle >= 0</code>. If
+<code>pMiddle</code> is -1, the program will skip this step and the middle color stop
+won't be added.
+</p>
+<pre><code>if (pMiddle >= 0) {&#x000A;  gradient.addColorStop(pMiddle, rgbColor(rMiddle, gMiddle, bMiddle));&#x000A;}</code></pre>
+<p>
+The program should now draw slices of the sky as it gets darker and redder along
+the horizon at 5:00, 5:30, 6:00, 6:30, and 7:00 pm. If you need help with if statements
+and linear gradients, visit the
+<a class="reference-link" data-slug="if_statements" href="../if_statements/index.html">If Statements</a>
+and
+<a class="reference-link" data-slug="create_linear_gradient" href="../create_linear_gradient/index.html">createLinearGradient()</a>
+lessons.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="if_statements" href="../if_statements/index.html">If Statements</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="create_linear_gradient" href="../create_linear_gradient/index.html">createLinearGradient()</a>
 </p>
 
 <div class='code-preview mb-2'>
@@ -1636,7 +1684,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage1_challenge4_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function drawBuilding(x, y, units, floors) {&#x000A;  var w = 0; // Use the parameter units to calculate the width of the building&#x000A;  var h = 0; // Use the parameter floors to calculate the height of the building&#x000A;  &#x000A;  // SET THE COLOR OF THE BUILDING TO #999999 HERE&#x000A;  &#x000A;  // DRAW THE BUILDING HERE USING THE PARAMETERS x, y AND THE VARIABLES w, h&#x000A;}&#x000A;&#x000A;// DRAW ONE BUILDING WITH 8 UNITS AND 10 FLOORS AT (60, 20) HERE&#x000A;// DRAW A SECOND BUILDING WITH 6 UNITS AND 16 FLOORS AT (210, 20) HERE&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage1_challenge4_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var time;&#x000A;var horizonY; // Set the y-coordinate of the horizon so it is 100 pixels above the bottom of the canvas&#x000A;&#x000A;context.save();&#x000A;&#x000A;time = 5.0;&#x000A;drawSky(); // Draw the sky at 5:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 5.5;&#x000A;drawSky(); // Draw the sky at 5:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.0;&#x000A;drawSky(); // Draw the sky at 6:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.5;&#x000A;drawSky(); // Draw the sky at 6:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 7.0;&#x000A;drawSky(); // Draw the sky at 7:00 pm&#x000A;&#x000A;context.restore();&#x000A;&#x000A;function rgbColor(r, g, b) {&#x000A;  &#x000A;  // Copy the function definition from Challenge 3&#x000A;  &#x000A;}&#x000A;&#x000A;function drawSky() {&#x000A;  &#x000A;  // Copy the function definition from Challenge 3&#x000A;  &#x000A;  // Declare variables pMiddle, rMiddle, gMiddle, bMiddle for the middle color stop&#x000A;  // Set pMiddle to -1 if time < 5 or time > 7&#x000A;  // Update p0, g0, b0 to go from (255, 255, 255) to (255, 0, 0)&#x000A;  // Calculate pMiddle to go from 1 to 0&#x000A;  // Calculate rMiddle, gMiddle, bMiddle to go from (102, 153, 255) to (102, 102, 102)&#x000A;  // Add the middle color stop if pMiddle >= 0&#x000A;  &#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1665,7 +1713,6 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<div class='background hidden-xl-down'><img src="../../../images/lessons/animated_cityscape/stage1/challenge4.png" alt="Challenge4" /></div>
 <canvas id='animated_cityscape_stage1_challenge4'></canvas>
 </div>
 <div class='alert'></div>
@@ -1678,62 +1725,76 @@ Canvas
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='py-2'>
-Anchor the Building to the Ground
+Update the Time and Redraw the Scene with a Mouse Click
 </h2>
 <p>
-You may have noticed that the two buildings in Challenge 3 are lined up along
-their top edges, not their bottom edges. In general, buildings are lined up along
-their bottom edges where they sit on the ground.
+At this point, we can draw the sky and ground at any time of day by manually
+setting the <code>time</code> variable. The next step is writing a program
+which updates the <code>time</code> variable and redraws the scene automatically.
 </p>
 <p>
-In this example, we create the
-<code>fillCenteredRectangle()</code>
-function, which automatically positions a rectangle by its top center point.
-This function has four parameters:
-<span><code>centerX</code>,
-</span>
-<span><code>topY</code>,
-</span>
-<span><code>w</code>,
-</span>
+A JavaScript program is triggered by events. So far, we've done all of our
+drawing immediately when the page first loads. But we can also tell our program
+to listen for events and run specific functions when those events occur.
+</p>
+<p>
+In this example, we run the following code when the page loads:
+</p>
+<pre><code>var canvas = document.getElementById('animated_cityscape_stage1_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var squareX, squareY;&#x000A;&#x000A;initScene();&#x000A;canvas.addEventListener('click', updateScene);</code></pre>
+<p>
+We start by storing a reference to the canvas and the canvas's context in the
+variables <code>canvas</code> and <code>context</code>. Then, we declare the global
+variables <code>squareX</code> and <code>squareY</code>. We need to declare these
+variables globally so all of our functions can use them and the values stored in them
+are persistent and aren't deleted once a function ends. To learn more about variables
+and scope, visit the
+<a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a>
+lesson. Finally, we call the <code>initScene()</code> function and use the
+<code>addEventListener()</code> method to register an event listener on the canvas
+object.
+</p>
+<p>
+The <code>initScene()</code> function sets the initial values of <code>squareX</code>
+and <code>squareY</code> and calls the <code>drawScene()</code> function:
+</p>
+<pre><code>function initScene() {&#x000A;  squareX = 10;&#x000A;  squareY = 10;&#x000A;  &#x000A;  drawScene();&#x000A;}</code></pre>
+<p>
+The <code>drawScene()</code> function draws a square filled with the color
+<code>'RoyalBlue'</code> at the coordinates (<code>squareX</code>, <code>squareY</code>):
+</p>
+<pre><code>function drawScene() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'RoyalBlue';&#x000A;  context.fillRect(squareX, squareY, 20, 20);&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+By registering to listen for <code>'click'</code> events, the program will
+automatically call the <code>updateScene()</code> function whenever a mouse
+click is detected on the canvas. Note: Because we are passing the
+<code>updateScene()</code> function into the <code>addEventListener()</code>
+method as a variable, we don't include parentheses after the function name. To learn
+more about passing functions as variables and registering event listeners, visit the
+<a class="reference-link" data-slug="functions" href="../functions/index.html">Functions</a>
 and
-<span><code>h</code>.
-</span>
-</p>
-<pre><code>function fillCenteredRectangle(centerX, topY, w, h) {&#x000A;  &#x000A;  // code block&#x000A;  &#x000A;}</code></pre>
-<p>
-Inside the function, we use the parameters to calculate the coordinates of
-the rectangle's top left corner and draw the rectangle:
-</p>
-<pre><code>function fillCenteredRectangle(centerX, topY, w, h) {&#x000A;  var x = centerX - w / 2;&#x000A;  var y = topY;&#x000A;  &#x000A;  context.fillRect(x, y, w, h);&#x000A;}</code></pre>
-<p>
-Since
-<code>centerX</code>
-is the x-coordinate of the center of the rectangle, we need to subtract half
-the rectangle's width to get the x-coordinate of the rectangle's top left corner. Since
-<code>topY</code>
-is the y-coordinate of the top of the rectangle, which is what we want, we assign
-it to the variable
-<span><code>y</code>.
-</span>
-</p>
-<p>
-Now we can easily draw a group of rectangles and line them up by their top center
-points. To learn more about positioning rectangles using variables, visit the
-<span><span><a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a></span>,
-</span>
-<span><span><a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a></span>,
-</span>
-and
-<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
 lessons.
+</p>
+<p>
+The <code>updateScene()</code> method adds 30 to <code>squareX</code> and 20
+to <code>squareY</code> before calling the <code>drawScene()</code> function
+and drawing another square:
+</p>
+<pre><code>function updateScene() {&#x000A;  squareX += 30;&#x000A;  squareY += 20;&#x000A;  &#x000A;  drawScene();&#x000A;}</code></pre>
+<p>
+Now we can automatically update the drawing on the canvas simply by clicking
+on it. Note that the new scene is drawn on top of the existing scene. If we
+wanted to redraw the square and make it look like the square is moving, we'd
+have to clear the canvas first.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
 </p>
 
 </div>
@@ -1752,7 +1813,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage1_example4_editor'>var canvas = document.getElementById('animated_cityscape_stage1_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var centerX = 180; // The x-coordinate of the center of the rectangles&#x000A;&#x000A;drawCenterLine();&#x000A;&#x000A;context.fillStyle = 'DeepPink';&#x000A;fillCenteredRectangle(centerX, 20, 200, 80); // Centered at centerX&#x000A;fillCenteredRectangle(centerX, 120, 320, 100); // Centered at centerX&#x000A;fillCenteredRectangle(centerX, 240, 240, 60); // Centered at centerX&#x000A;&#x000A;function fillCenteredRectangle(centerX, topY, w, h) {&#x000A;  var x = centerX - w / 2;&#x000A;  var y = topY;&#x000A;  &#x000A;  context.fillRect(x, y, w, h);&#x000A;}&#x000A;&#x000A;function drawCenterLine() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Black';&#x000A;  context.fillRect(centerX - 1, 0, 2, canvas.height);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage1_example4_editor'>var canvas = document.getElementById('animated_cityscape_stage1_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var squareX, squareY;&#x000A;&#x000A;initScene();&#x000A;canvas.addEventListener('click', updateScene);&#x000A;&#x000A;function initScene() {&#x000A;  squareX = 10;&#x000A;  squareY = 10;&#x000A;  &#x000A;  drawScene();&#x000A;}&#x000A;&#x000A;function drawScene() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'RoyalBlue';&#x000A;  context.fillRect(squareX, squareY, 20, 20);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function updateScene() {&#x000A;  squareX += 30;&#x000A;  squareY += 20;&#x000A;  &#x000A;  drawScene();&#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1797,63 +1858,44 @@ Canvas
 Challenge 5
 </h2>
 <figure class='float-xs-right px-2'>
-<img class="img-fluid canvas-example" src="../../../images/lessons/animated_cityscape/stage1/challenge5Visual1.png" alt="Challenge5visual1" />
-<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/animated_cityscape/stage1/challenge5Visual1-6530363b090cb5a29cfef2672a1ad42825275bc639126616771fae082147f726.png" alt="Challenge5visual1" />
+<figcaption class='text-xs-center small'>What your drawing should look like at 6:12 pm</figcaption>
 </figure>
 <p>
-Update the
-<code>drawBuilding()</code>
-function from Challenge 4 so its parameters are now:
-<span><code>leftX</code>,
-</span>
-<span><code>groundY</code>,
-</span>
-<span><code>w</code>,
-</span>
-and
-<span><code>h</code>.
-</span>
+Write a program that increases the <code>time</code> and redraws the scene
+when a mouse click is detected on the canvas.
 </p>
 <p>
-Inside the function, calculate the coordinates of the top left corner of
-the building's rectangle. Then, set the
-<code>context.fillStyle</code>
-to the color
-<code>'#999999'</code>
-and use the
-<code>context.fillRect()</code>
-method to draw the rectangle.
+Start by copying the definitions for the <code>drawSky()</code>,
+<code>drawGround()</code>, and <code>rgbColor()</code> functions from Challenges 2 and 4.
 </p>
 <p>
-Once the
-<code>drawBuilding()</code>
-function has been updated, use it to draw two buildings. The first building
-has 12 office units per floor and 8 floors, and it is sitting on the ground
-at (20, 280). The second building has 9 office units per floor and 15 floors,
-and it sitting on the ground at (230, 280).
+Inside the <code>initScene()</code> function, set <code>time</code> to 5,
+set <code>horizonY</code> so the horizon is 100 pixels above the bottom of
+the canvas, and then call the <code>drawScene()</code> function.
 </p>
 <p>
-The
-<code>drawGround()</code>
-function is used to draw the ground at y = 280. Draw the buildings before
-the ground is drawn.
+Inside the <code>drawScene()</code> function, draw the sky and ground. Then,
+call the <code>drawTime()</code> function to automatically draw the time in the
+bottom left corner of the canvas.
 </p>
 <p>
-If you need help positioning rectangles using variables, visit the
-<span><span><a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a></span>,
-</span>
-<span><span><a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a></span>,
-</span>
-and
-<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
-lessons.
+Inside the <code>updateScene()</code> function, increase the <code>time</code>
+by 0.2 if <code>time < 7</code>, else reset the <code>time</code> back to 5.
+Then, call the <code>drawScene()</code> function to draw a new scene on top of
+the current one.
+</p>
+<p>
+Press "Run" enough times to see the sky and ground change color between 5:00
+and 7:00 pm. Once you feel satisfied that the scene is updating and drawing correctly,
+mark the challenge as complete by selecting "Yes, it looks good".
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
 </p>
 
 <div class='code-preview mb-2'>
@@ -1904,7 +1946,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage1_challenge5_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;  var w = 0; // Calculate the width of the building&#x000A;  var h = 0; // Calculate the height of the building&#x000A;  var x = 0; // Calculate the x-coordinate of the building's top left corner&#x000A;  var y = 0; // Calculate the y-coordinate of the building's top left corner&#x000A;  &#x000A;  // SET THE COLOR OF THE BUILDING TO #999999 HERE&#x000A;  &#x000A;  // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h&#x000A;}&#x000A;&#x000A;// DRAW ONE BUILDING WITH 12 UNITS AND 8 FLOORS SITTING AT (20, 280) HERE&#x000A;// DRAW A SECOND BUILDING WITH 9 UNITS AND 15 FLOORS SITTING AT (230, 280) HERE&#x000A;&#x000A;drawGround(280); // Draws the ground at y = 280&#x000A;&#x000A;function drawGround(y) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Black';&#x000A;  context.fillRect(0, y, canvas.width, 2);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage1_challenge5_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var time;&#x000A;var horizonY;&#x000A;&#x000A;initScene();&#x000A;canvas.addEventListener('click', updateScene);&#x000A;&#x000A;function initScene() {&#x000A;  &#x000A;  // Set the time to 5&#x000A;  // Set horizonY so the horizon is 100 pixels above the bottom of the canvas&#x000A;  // Draw the scene&#x000A;  &#x000A;}&#x000A;&#x000A;function drawScene() {&#x000A;  &#x000A;  // Draw the sky&#x000A;  // Draw the ground&#x000A;  &#x000A;  drawTime(); // Draw the time in the bottom left corner&#x000A;  &#x000A;}&#x000A;&#x000A;function updateScene() {&#x000A;  &#x000A;  // If time < 7, increase the time by 0.2, else reset the time back to 5&#x000A;  // Draw the scene&#x000A;  &#x000A;}&#x000A;&#x000A;function drawSky() {&#x000A;  &#x000A;  // Copy the function definition from Challenge 4&#x000A;  &#x000A;}&#x000A;&#x000A;function drawGround() {&#x000A;  &#x000A;  // Copy the function definition from Challenge 2&#x000A;  &#x000A;}&#x000A;&#x000A;function rgbColor(r, g, b) {&#x000A;  &#x000A;  // Copy the function definition from Challenge 4&#x000A;  &#x000A;}&#x000A;&#x000A;function drawTime() {&#x000A;  var t;&#x000A;  var h = Math.floor(time);&#x000A;  var m = Math.round(60 * (time - h));&#x000A;  &#x000A;  if (m >= 10) {&#x000A;    t = h + ':' + m;&#x000A;  } else {&#x000A;    t = h + ':0' + m;&#x000A;  }&#x000A;  &#x000A;  context.save();&#x000A;  context.fillStyle = 'White';&#x000A;  context.font = '16px Arial';&#x000A;  context.fillText(t, 10, canvas.height - 10);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1933,7 +1975,6 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<div class='background hidden-xl-down'><img src="../../../images/lessons/animated_cityscape/stage1/challenge5.png" alt="Challenge5" /></div>
 <canvas id='animated_cityscape_stage1_challenge5'></canvas>
 </div>
 <div class='alert'></div>
@@ -1946,7 +1987,7 @@ Canvas
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='py-2'>
-Use translate() to Position the Building
+Update the Time and Redraw the Scene with a Timer
 </h2>
 <p>
 Now we are going to clean up the
