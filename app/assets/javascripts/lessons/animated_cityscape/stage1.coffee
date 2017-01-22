@@ -6,6 +6,7 @@ initAnimatedCityscapeStage1Challenges = ->
     initAnimatedCityscapeStage1Challenge4(page)
     initAnimatedCityscapeStage1Challenge5(page)
     initAnimatedCityscapeStage1Challenge6(page)
+    initAnimatedCityscapeStage1Challenge7(page)
 
 
 initAnimatedCityscapeStage1Challenge1 = (page) ->
@@ -267,41 +268,19 @@ initAnimatedCityscapeStage1Challenge6 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  solution = (canvas, context) ->
-    drawBuilding = (leftX, groundY, units, floors) ->
-      w = 8 + 16 * units
-      h = 8 + 16 * floors
-      x = leftX
-      y = groundY - h
-      context.save()
-      context.translate(x, y)
-      context.fillStyle = '#999999'
-      context.fillRect(0, 0, w, h)
-      context.restore()
-      return
-    
-    drawGround = (y) ->
-      context.save()
-      context.fillStyle = 'Black'
-      context.fillRect(0, y, canvas.width, 2)
-      context.restore()
-      return
-    
-    drawBuilding(20, 290, 10, 16)
-    drawBuilding(200, 290, 12, 10)
-    drawGround(290)
+  challenge.find('.run').click ->
+    canvas.selfAssess ->
+      App.currentProgress.challengeComplete('animated_cityscape_stage1', 'challenge6')
 
-  testCode = new Test.Code(code: solution, canvas: canvas)
+
+initAnimatedCityscapeStage1Challenge7 = (page) ->
+  challenge = page.find('#challenge7')
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
 
   challenge.find('.run').click ->
-    testCode.test (success) ->
-      if success
-        message = '<strong>Success!</strong> You positioned both buildings by translating the origin of the coordinate system!'
-        App.currentProgress.challengeComplete('animated_cityscape_stage1', 'challenge6')
-      else
-        message = 'Nice try, but you need to position the two buildings by translating the origin of the coordinate system.'
-
-      canvas.alert(message, success)
+    canvas.selfAssess ->
+      App.currentProgress.challengeComplete('animated_cityscape_stage1', 'challenge7')
 
 
 $(document).on('initialization:complete', initAnimatedCityscapeStage1Challenges)
