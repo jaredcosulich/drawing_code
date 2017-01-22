@@ -900,8 +900,8 @@
             %code
               :preserve
                 function updateScene() {
-                  squareX += 30;
-                  squareY += 20;
+                  squareX += 30; // This is a shorter way of writing squareX = squareX + 30
+                  squareY += 20; // This is a shorter way of writing squareY = squareY + 20
                   
                   drawScene();
                 }
@@ -939,8 +939,8 @@
                 }
                 
                 function updateScene() {
-                  squareX += 30;
-                  squareY += 20;
+                  squareX += 30; // This is a shorter way of writing squareX = squareX + 30
+                  squareY += 20; // This is a shorter way of writing squareY = squareY + 20
                   
                   drawScene();
                 }
@@ -982,9 +982,9 @@
             Then, call the <code>drawScene()</code> function to draw a new scene on top of
             the current one.
           %p
-            Press "Run" enough times to see the sky and ground change color between 5:00
-            and 7:00 pm. Once you feel satisfied that the scene is updating and drawing correctly,
-            mark the challenge as complete by selecting "Yes, it looks good".
+            Press "Run" and click on the canvas enough times to see the sky and ground change
+            color between 5:00 and 7:00 pm. Once you feel satisfied that the scene is updating
+            and drawing correctly, mark the challenge as complete by selecting "Yes, it looks good".
           = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :event_listeners]
           = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'animated_cityscape_stage1_challenge4_editor'
 
@@ -1076,76 +1076,76 @@
           %h2.py-2
             Update the Time and Redraw the Scene with a Timer
           %p
-            Now we are going to clean up the
-            %code
-              drawBuilding()
-            function a little bit.
+            Instead of using a mouse click to update the time and redraw the scene,
+            we are going to use a timer.
           %p
-            A well-written function is like a polite robot who comes over to your house
-            to do a job, and then leaves everything exactly as it found it. But if you
-            look at the function used to draw a French flag in the previous example, it
-            wasn't so tidy. It changed the
+            In this example, we set up a timer to update the scene from the previous
+            example. We start by declaring the global variable <code>timer</code>. Then,
+            instead of adding an event listener to the canvas object to detect mouse
+            clicks, we use the <code>setInterval()</code> method to create a timer that will
+            automatically call the <code>updateScene()</code> function every 25 milliseconds.
+            We store a reference to the timer in the variable <code>timer</code>.
+          %pre
             %code
-              context.fillStyle
-            property to the color
-            %code
-              '#EF4135'
-            and never changed it back.
+              :preserve
+                var timer;
+                
+                timer = setInterval(updateScene, 25); // Call the updateScene() function every 25 milliseconds
           %p
-            To make our function more tidy, we call
-            %code
-              context.save()
-            at the start of the function and
-            %code
-              context.restore()
-            at the end. Calling
-            %code
-              context.save()
-            saves the drawing state of the context (including the current
-            %code
-              context.fillStyle
-            property) and
-            %code
-              context.restore()
-            restores the drawing state to the last time we saved it.
+            Again, because we are passing the <code>updateScene()</code> function into
+            the <code>setInterval()</code> method as a variable, we don't include
+            parentheses at the end of the function name. The number <code>25</code> tells
+            the timer how long to wait before calling the <code>updateScene()</code>
+            function again. The <code>setInterval()</code> method measures time in
+            milliseconds and there are 1000 milliseconds in one second. So, if the timer
+            calls the <code>updateScene()</code> function every 25 milliseconds, it will
+            update the scene 40 times per second (1000 &divide; 25 = 40).
           %p
-            The other change is to use the
+            Inside the <code>updateScene()</code> function, we increase <code>squareX</code>
+            and <code>squareY</code> by 3 and 2, instead of 30 and 20, so the square doesn't
+            move as far in each update. Then, if <code>squareX > canvas.width</code>, which
+            means the latest square is positioned past the right edge of the canvas, we cancel
+            the timer and stop updating the scene by passing the reference stored in the
+            <code>timer</code> variable into the <code>clearInterval()</code> method.
+          %pre
             %code
-              context.translate()
-            method. Notice how we had to do calculations with x and y to figure out the positions
-            of the white and red rectangles in the French flag? Imagine we had to do the same for
-            dozens of windows in a building. We can eliminate a lot of that math by using the
-            %code
-              context.translate()
-            method.
+              :preserve
+                function updateScene() {
+                  squareX += 3; // This is a shorter way of writing squareX = squareX + 3
+                  squareY += 2; // This is a shorter way of writing squareY = squareY + 2
+                  
+                  drawScene();
+                  
+                  if (squareX > canvas.width) {
+                    clearInterval(timer); // Cancel the timer and stop updating the scene
+                  }
+                }
           %p
-            The
+            Finally, inside the <code>drawScene()</code> function, before drawing the
+            square, we draw a rectangle filled with the color <code>'Cornsilk'</code>
+            covering the entire canvas. This will cover the previous scene, so now it
+            looks like one square is moving instead of a new square being drawn each time.
+          %pre
             %code
-              context.translate()
-            method moves the origin of the coordinate system. If we move the origin to the
-            top left corner of the flag, then we can draw the rectangles in the flag as though
-            the flag is positioned at (0, 0). The math is much easier. However, when using the
-            %code
-              context.translate()
-            method, it is even more important to save and then restore the drawing state. If
-            changing the
-            %code
-              context.fillStyle
-            property is rude, moving the origin of the coordinate system and not moving it back is much ruder!
+              :preserve
+                function drawScene() {
+                  context.save();
+                  context.fillStyle = 'Cornsilk';
+                  context.fillRect(0, 0, canvas.width, canvas.height); // Draw a rectangle over the entire canvas
+                  context.fillStyle = 'RoyalBlue';
+                  context.fillRect(squareX, squareY, 20, 20);
+                  context.restore();
+                }
           %p
-            Try to predict what would happen if we left out the
-            %code
-              context.save()
-            and
-            %code
-              context.restore()
-            method calls in the function. To learn more about saving and restoring the
-            drawing state and translating the origin of the coordinate system, visit the
-            = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
-            and
-            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
-            lessons.
-          = render 'lessons/relevant', relevant: [:coordinates, :functions, :fill_rect, :save, :translate]
+            Press "Run" to reload the page and start the animation.
+          %p
+            See what happens if you don't draw a rectangle over the previous scene or if
+            you change how far the square moves or the time interval between updates. Note:
+            if you try to update the scene too quickly, the program won't be able to keep
+            up and the animation may stutter. To learn more setting timers, visit the
+            = link_to_lesson('setInterval()', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :set_interval]
 
         .col-xs-12
           .interactive.row.py-1
@@ -1153,26 +1153,39 @@
               :preserve
                 var canvas = document.getElementById('animated_cityscape_stage1_example5');
                 var context = canvas.getContext('2d');
-
-                function drawFrenchFlag(x, y) {
-                  context.save(); // Save the drawing state before making any changes
-                  context.translate(x, y); // Move the origin of the coordinate system to the top left corner of the flag
-
-                  context.fillStyle = '#0055A4';
-                  context.fillRect(0, 0, 20, 40); // The blue rectangle is drawn at (0, 0)
-
-                  context.fillStyle = '#FFFFFF';
-                  context.fillRect(20, 0, 20, 40); // The white rectangle is drawn at (20, 0)
-
-                  context.fillStyle = '#EF4135';
-                  context.fillRect(40, 0, 20, 40); // The red rectangle is drawn at (40, 0)
-
-                  context.restore(); // Restore the drawing state to the way it was when we saved it
+                
+                var timer;
+                var squareX, squareY;
+                
+                initScene();
+                timer = setInterval(updateScene, 25);
+                
+                function initScene() {
+                  squareX = 10;
+                  squareY = 10;
+                  
+                  drawScene();
                 }
-
-                drawFrenchFlag(30, 100);
-                drawFrenchFlag(150, 50);
-                drawFrenchFlag(300, 180);
+                
+                function drawScene() {
+                  context.save();
+                  context.fillStyle = 'Cornsilk';
+                  context.fillRect(0, 0, canvas.width, canvas.height); // Draw a rectangle over the entire canvas
+                  context.fillStyle = 'RoyalBlue';
+                  context.fillRect(squareX, squareY, 20, 20);
+                  context.restore();
+                }
+                
+                function updateScene() {
+                  squareX += 3; // This is a shorter way of writing squareX = squareX + 3
+                  squareY += 2; // This is a shorter way of writing squareY = squareY + 2
+                  
+                  drawScene();
+                  
+                  if (squareX > canvas.width) {
+                    clearInterval(timer); // Cancel the timer and stop updating the scene
+                  }
+                }
 
             .visual.col-xs-6
               %h5
@@ -1188,43 +1201,23 @@
         .col-xs-12
           %h2.challenge-title.py-2
             Challenge 6
-          %figure.float-xs-right.px-2
-            = image_tag('lessons/animated_cityscape/stage1/challenge6Visual1.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small What your drawing should look like
-
           %p
-            Tidy up the drawBuilding() function from Challenge 5 in the same way by
-            calling the
-            %code
-              context.save()
-            and
-            %code
-              context.restore()
-            methods at the start and end of the function, respectively. Then, use the
-            %code
-              context.translate()
-            method to move the origin to (x, y) and draw the rectangle at (0, 0).
+            Copy the program from Challenge 5.
           %p
-            Once the
-            %code
-              drawBuilding()
-            function is tidy, draw one building with 10 office units per floor and 16
-            floors sitting on the ground at (20, 290) and another building with 12 office
-            units per floor and 10 floors sitting on the ground at (200, 290).
+            Then, change the program so that, instead of listening for mouse clicks to
+            update the scene, a timer automatically calls the <code>updateScene()</code>
+            function every 50 milliseconds.
           %p
-            The
-            %code
-              drawGround()
-            function is used to draw the ground at y = 290. Draw the buildings before
-            the ground is drawn.
+            Inside the <code>updateScene()</code> function, increase the time by 0.05
+            and, instead of resetting the time back to 5, cancel the timer and stop updating
+            the scene if <code>time > 7</code>.
           %p
-            If you need help saving and restoring the drawing state and translating the origin
-            of the coordinate system, visit the
-            = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
-            and
-            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
-            lessons.
-          = render 'lessons/relevant', relevant: [:coordinates, :functions, :fill_rect, :save, :translate]
+            Press "Run" and watch the sky and ground change color between 5:00 and 7:00 pm.
+            If you need to slow the animation down to get a better look, increase the time
+            interval passed into the <code>setInterval()</code> method. Once you feel satisfied
+            that the scene is updating and drawing correctly, mark the challenge as complete by
+            selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:variables, :functions, :set_interval]
           = render 'lessons/code_preview', stage: 1, challenge: 5, editor_id: 'animated_cityscape_stage1_challenge5_editor'
 
       .row.py-1
@@ -1233,28 +1226,66 @@
             var canvas = document.getElementById('animated_cityscape_stage1_challenge6');
             var context = canvas.getContext('2d');
 
-            function drawBuilding(leftX, groundY, units, floors) {
-              var w = 0; // Calculate the width of the building
-              var h = 0; // Calculate the height of the building
-              var x = 0; // Calculate the x-coordinate of the building's top left corner
-              var y = 0; // Calculate the y-coordinate of the building's top left corner
+            var time;
+            var horizonY;
+            
+            initScene();
+            canvas.addEventListener('click', updateScene);
+            
+            function initScene() {
               
-              // SAVE THE DRAWING STATE HERE
-              // MOVE THE ORIGIN TO THE TOP LEFT CORNER OF THE BUILDING HERE
-              // SET THE COLOR OF THE BUILDING TO #999999 HERE
-              // DRAW THE BUILDING AT (0, 0) HERE USING THE VARIABLES w, h
-              // RESTORE THE LAST SAVED DRAWING STATE HERE
+              // Copy the function definition from Challenge 5
+              
             }
             
-            // DRAW ONE BUILDING WITH 10 UNITS AND 16 FLOORS SITTING AT (20, 290) HERE
-            // DRAW A SECOND BUILDING WITH 12 UNITS AND 10 FLOORS SITTING AT (200, 290) HERE
+            function drawScene() {
+              
+              // Copy the function definition from Challenge 5
+              
+            }
             
-            drawGround(290); // Draws the ground at y = 290
+            function updateScene() {
+              
+              // Copy the function definition from Challenge 5
+              
+              // Increase the time by 0.05
+              // If time >= 7, cancel the timer and stop updating the scene
+              
+            }
             
-            function drawGround(y) {
+            function drawSky() {
+              
+              // Copy the function definition from Challenge 5
+              
+            }
+            
+            function drawGround() {
+              
+              // Copy the function definition from Challenge 5
+              
+            }
+            
+            function rgbColor(r, g, b) {
+              
+              // Copy the function definition from Challenge 5
+              
+            }
+            
+            function drawTime() {
+              var t;
+              var h = Math.floor(time);
+              var m = Math.round(60 * (time - h));
+              
+              if (m >= 10) {
+                t = h + ':' + m;
+              } else {
+                t = h + ':0' + m;
+              }
+              
               context.save();
-              context.fillStyle = 'Black';
-              context.fillRect(0, y, canvas.width, 2);
+              context.fillStyle = 'White';
+              context.font = '16px Arial';
+              context.fillText(t, 10, canvas.height - 10);
               context.restore();
             }
 
@@ -1263,6 +1294,226 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage1/challenge6.png')
             %canvas#animated_cityscape_stage1_challenge6
+          .alert
+
+
+  .example.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Play and Pause the Scene
+          %p
+            In this example, we add event listeners to the previous example's program
+            to play and pause the scene.
+          %p
+            We can register our program to listen for more than mouse click events. On
+            a web page, only one HTML element can have the focus at a time. The focus
+            determines which element is actively receiving keyboard events. On this page
+            alone there are thirteen editors. It would get kind of crazy if you were typing
+            into more than one editor at a time.
+          %p
+            Note: A canvas element does not normally receive the focus. We have enabled
+            each canvas to receive the focus by setting its <code>tabindex</code> attribute.
+            That's not something you need to know about until you start creating the HTML
+            for your own web pages.
+          %p
+            Because we have enabled each canvas to receive the focus, clicking on a
+            canvas selects it and triggers a <code>'focus'</code> event. Clicking on a
+            different part of the page deselects it and triggers a <code>'blur'</code>
+            event. We start by adding event listeners to play the scene when the canvas
+            receives a <code>'focus'</code> event and pause the scene when the canvas
+            receives a <code>'blur'</code> event.
+          %pre
+            %code
+              :preserve
+                canvas.addEventListener('focus', playScene);
+                canvas.addEventListener('blur', pauseScene);
+          %p
+            Instead of starting the timer when the page first loads, we start the timer
+            inside the <code>playScene()</code> function. We also check the position of
+            the last square before starting the timer. If the last square is off the canvas,
+            we reset it's position.
+          %pre
+            %code
+              :preserve
+                function playScene() {
+                  if (squareX > canvas.width) {
+                    squareX = 10;
+                    squareY = 10; // Reset the square's position
+                  }
+                  
+                  timer = setInterval(updateScene, 25);
+                }
+          %p
+            Inside the <code>pauseScene()</code> function, we cancel the timer and
+            draw the text string <code>'Click to Play'</code> in the center of the
+            canvas so the user knows how to start the animation.
+          %pre
+            %code
+              :preserve
+                function pauseScene() {
+                  clearInterval(timer);
+                  
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.font = '16px Arial';
+                  context.textAlign = 'center';
+                  context.fillText('Click to Play', canvas.width / 2, canvas.height / 2);
+                  context.restore();
+                }
+          %p
+            We also call the <code>pauseScene()</code> function when the page first loads
+            so the <code>'Click to Play'</code> text string is drawn right away.
+          %p
+            Then, inside the <code>updateScene()</code> function, instead of canceling
+            the timer if <code>squareX > canvas.width</code>, we use the <code>blur()</code>
+            method to blur the canvas. When the canvas loses the focus, it receives a
+            <code>blur</code> event and the <code>pauseScene()</code> function is called.
+          %pre
+            %code
+              :preserve
+                function updateScene() {
+                  squareX += 3; // This is a shorter way of writing squareX = squareX + 3
+                  squareY += 2; // This is a shorter way of writing squareY = squareY + 2
+                  
+                  drawScene();
+                  
+                  if (squareX > canvas.width) {
+                    canvas.blur(); // Remove the focus from the canvas
+                  }
+                }
+          %p
+            Click on the canvas to start the animation. The animation will continue
+            running until you click on a different part of the page or until the latest
+            square is positioned past the right edge of the canvas. If you restart the
+            animation and the latest square was positioned past the right edge of the
+            canvas, <code>squareX</code> and <code>squareY</code> are reset and the animation
+            starts again from the beginning.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :event_listeners, :fill_rect, :fill_style, :set_interval]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example6_editor'} do
+              :preserve
+                var canvas = document.getElementById('animated_cityscape_stage1_example6');
+                var context = canvas.getContext('2d');
+                
+                var timer;
+                var squareX, squareY;
+                
+                initScene();
+                pauseScene();
+                canvas.addEventListener('focus', playScene);
+                canvas.addEventListener('blur', pauseScene);
+                
+                function initScene() {
+                  squareX = 10;
+                  squareY = 10;
+                  
+                  drawScene();
+                }
+                
+                function drawScene() {
+                  context.save();
+                  context.fillStyle = 'Cornsilk';
+                  context.fillRect(0, 0, canvas.width, canvas.height); // Draw a rectangle over the entire canvas
+                  context.fillStyle = 'RoyalBlue';
+                  context.fillRect(squareX, squareY, 20, 20);
+                  context.restore();
+                }
+                
+                function updateScene() {
+                  squareX += 3; // This is a shorter way of writing squareX = squareX + 3
+                  squareY += 2; // This is a shorter way of writing squareY = squareY + 2
+                  
+                  drawScene();
+                  
+                  if (squareX > canvas.width) {
+                    canvas.blur(); // Remove the focus from the canvas
+                  }
+                }
+                
+                function playScene() {
+                  if (squareX > canvas.width) {
+                    squareX = 10;
+                    squareY = 10; // Reset the square's position
+                  }
+                  
+                  timer = setInterval(updateScene, 25);
+                }
+                
+                function pauseScene() {
+                  clearInterval(timer);
+                  
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.font = '16px Arial';
+                  context.textAlign = 'center';
+                  context.fillText('Click to Play', canvas.width / 2, canvas.height / 2);
+                  context.restore();
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#animated_cityscape_stage1_example6
+
+
+  #challenge7.challenge.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 7
+          %p
+            Copy the program from Challenge 6.
+          %p
+            Then, change the program so the scene is initially paused and the time set
+            to 2. Play the scene when the canvas receives the focus and continue playing
+            the scene until the canvas loses the focus or until <code>time > 12</code>. If
+            the canvas receives the focus and the time is already greater than 12, reset
+            the time back to 2 and replay the scene from the beginning.
+          %p
+            Press "Run" and click on the canvas to start playing the scene. Once you feel
+            satisfied that the scene is playing and pausing correctly, mark the challenge
+            as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:variables, :functions, :event_listeners, :set_interval]
+          = render 'lessons/code_preview', stage: 1, challenge: 6, editor_id: 'animated_cityscape_stage1_challenge6_editor'
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge7_editor'} do
+          :preserve
+            var canvas = document.getElementById('animated_cityscape_stage1_challenge7');
+            var context = canvas.getContext('2d');
+
+            // Copy the program from Challenge 6 here
+            
+            function playScene() {
+              
+            }
+            
+            function pauseScene() {
+              
+              // Cancel the timer
+              
+              context.save();
+              context.fillStyle = 'rgba(0, 0, 0, 0.2)';
+              context.fillRect(canvas.width / 2 - 55, canvas.height / 2 - 18, 110, 24);
+              context.fillStyle = 'White';
+              context.font = '16px Arial';
+              context.textAlign = 'center';
+              context.fillText('Click to Play', canvas.width / 2, canvas.height / 2);
+              context.restore();
+            }
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#animated_cityscape_stage1_challenge7
           .alert

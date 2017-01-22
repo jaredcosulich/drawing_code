@@ -155,7 +155,8 @@ class ApplicationController < ActionController::Base
           :random,
           :round,
           :scale,
-          :create_linear_gradient
+          :create_linear_gradient,
+          :set_interval
         ],
         concepts: [
           :coordinates,
@@ -164,7 +165,8 @@ class ApplicationController < ActionController::Base
           :for_loops,
           :switch_statements,
           :while_loops,
-          :if_statements
+          :if_statements,
+          :event_listeners
         ]
       }
     ]
