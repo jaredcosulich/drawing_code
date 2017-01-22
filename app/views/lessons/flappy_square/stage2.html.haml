@@ -447,7 +447,7 @@
 
 
         .col-xs-12
-          .interactive.row.py-1
+          .interactive.focus-on-run.row.py-1
             = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage2_lesson#{lesson_index}_editor"} do
               :preserve
                 var canvas = document.getElementById('flappy_square_stage2_lesson#{lesson_index}');
@@ -988,7 +988,7 @@
           = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :set_interval]
 
         .col-xs-12
-          .interactive.row.py-1
+          .interactive.focus-on-run.row.py-1
             = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage2_lesson#{lesson_index}_editor"} do
               :preserve
                 var canvas = document.getElementById('flappy_square_stage2_lesson#{lesson_index}');
@@ -1292,7 +1292,7 @@
           = render 'lessons/relevant', relevant: [:coordinates, :clear_rect]
 
         .col-xs-12
-          .interactive.row.py-1
+          .interactive.focus-on-run.row.py-1
             = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage2_lesson#{lesson_index}_editor"} do
               :preserve
                 var canvas = document.getElementById('flappy_square_stage2_lesson#{lesson_index}');

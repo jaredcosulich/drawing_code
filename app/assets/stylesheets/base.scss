@@ -126,6 +126,22 @@ img {
   .lesson-text-message {
     display: none;
   }
+
+  .run-and-focus {
+    display: none;
+  }
+}
+
+.focus-on-run {
+  .buttons {
+    .run-only {
+      display: none;
+    }
+
+    .run-and-focus {
+      display: inline-block;
+    }
+  }
 }
 
 .lesson {

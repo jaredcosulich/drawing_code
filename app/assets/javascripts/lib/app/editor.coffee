@@ -79,7 +79,10 @@ class App.Editor
       @aceEditor.getValue()
 
   initRun: ->
-    @codeEditor.find('.buttons .run').click (e) =>
+    @codeEditor.find('.buttons .run-only').click (e) =>
+      @run()
+
+    @codeEditor.find('.buttons .run-and-focus').click (e) =>
       @run( => @canvas.canvas.focus())
 
     @codeEditor.find('.buttons .reset').click (e) =>
@@ -144,16 +147,32 @@ class App.Editor
       errorMessage += "Line: #{errorLineNumber})"
       @log(errorMessage)
 
+  initTimeouts: ->
+    if @timeouts?
+      clearTimeout(timeout) for timeout in @timeouts
+    @timeouts = []
+
+  initIntervals: ->
+    if @intervals?
+      clearTimeout(interval) for interval in @intervals
+    @intervals = []
+
   setTimeout: (f, time) ->
-    setTimeout(( => @wrapCode(f)), time)
+    timeout = setTimeout(( => @wrapCode(f)), time)
+    @timeouts.push(timeout)
+    return timeout
 
   setInterval: (f, time) ->
-    setInterval(( => @wrapCode(f)), time)
+    interval = setInterval(( => @wrapCode(f)), time)
+    @intervals.push(interval)
+    return interval
 
   addCanvasEventListener: (event, f) ->
     @canvas.canvasElement.addEventListener(event, (e) => @wrapCode(f, e))
 
   runCode: (code, fileMap) ->
+    @initTimeouts()
+    @initIntervals()
     code = code.replace(/setTimeout/g, 'wrapper.setTimeout')
     code = code.replace(/setInterval/g, 'wrapper.setInterval')
     code = code.replace(/canvas\.addEventListener/g, 'wrapper.addCanvasEventListener')
