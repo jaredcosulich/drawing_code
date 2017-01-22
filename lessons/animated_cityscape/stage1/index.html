@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="8/kN0R1pxMuko1zywFtfZpf2EIENX4jt+HdeOTfjia41oPKQRj3IJhERqoHW+Bij0T8AJPRWrMVdN01Y+qhJ8w==" />
+<meta name="csrf-token" content="kLIj0s/itn4l2WeLMo0C9sHwt5sGtOCNnBLldXqlOzu1qelbL2Q/jp9ljqmE0fXYyOvdduo1NerN3nbFvVYQRQ==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-6693732d946f61761af2eeafcf9c870441f1af9f77c9d2a5db4509578dd265e0-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -21,7 +21,7 @@
 <script src="../../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lesson.self-4c007310fc5244946716688a8afc18ef0b6e54f4cfc18f8aff6b18ab0e203889.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/animated_cityscape/stage1.self-582f6aacf5cfd7dd09a31aa03d19da7c33cc061000a987d741602acd28343a91.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/animated_cityscape/stage1.self-80e467064710da3b6cd9a06f0893672dbc339fa3ce3fbda6993898f97d144340.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage1.self-af3dd34f4f344c2e4c6fd02ae6fcf3a3ab4cd43a8d72b9e10ac7e857ec7e3321.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage2.self-225920e2665631ee62b7fbe95291c6ac9e1c62142a2bc469a623623a6c18a705.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage3.self-d849334bedcf13dec8fb3da9f57078b783809e1a25dfc733da271108516fb213.js?body=1" data-turbolinks-track="reload"></script>
@@ -659,6 +659,9 @@ A full list of events can be found here:
 <small class='create_linear_gradient'>0 / 3</small>
 </span>
 </li>
+<li class='small '>
+<a class="reference-link" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+</li>
 <li class='section small mt-1'>
 <strong>Relevant Concepts</strong>
 </li>
@@ -703,6 +706,9 @@ A full list of events can be found here:
 <span class='tag tag-default'>
 <small class='if_statements'>0 / 3</small>
 </span>
+</li>
+<li class='small '>
+<a class="reference-link" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
 </li>
 </ul>
 </li>
@@ -1780,7 +1786,7 @@ The <code>updateScene()</code> method adds 30 to <code>squareX</code> and 20
 to <code>squareY</code> before calling the <code>drawScene()</code> function
 and drawing another square:
 </p>
-<pre><code>function updateScene() {&#x000A;  squareX += 30;&#x000A;  squareY += 20;&#x000A;  &#x000A;  drawScene();&#x000A;}</code></pre>
+<pre><code>function updateScene() {&#x000A;  squareX += 30; // This is a shorter way of writing squareX = squareX + 30&#x000A;  squareY += 20; // This is a shorter way of writing squareY = squareY + 20&#x000A;  &#x000A;  drawScene();&#x000A;}</code></pre>
 <p>
 Now we can automatically update the drawing on the canvas simply by clicking
 on it. Note that the new scene is drawn on top of the existing scene. If we
@@ -1813,7 +1819,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage1_example4_editor'>var canvas = document.getElementById('animated_cityscape_stage1_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var squareX, squareY;&#x000A;&#x000A;initScene();&#x000A;canvas.addEventListener('click', updateScene);&#x000A;&#x000A;function initScene() {&#x000A;  squareX = 10;&#x000A;  squareY = 10;&#x000A;  &#x000A;  drawScene();&#x000A;}&#x000A;&#x000A;function drawScene() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'RoyalBlue';&#x000A;  context.fillRect(squareX, squareY, 20, 20);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function updateScene() {&#x000A;  squareX += 30;&#x000A;  squareY += 20;&#x000A;  &#x000A;  drawScene();&#x000A;}&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage1_example4_editor'>var canvas = document.getElementById('animated_cityscape_stage1_example4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var squareX, squareY;&#x000A;&#x000A;initScene();&#x000A;canvas.addEventListener('click', updateScene);&#x000A;&#x000A;function initScene() {&#x000A;  squareX = 10;&#x000A;  squareY = 10;&#x000A;  &#x000A;  drawScene();&#x000A;}&#x000A;&#x000A;function drawScene() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'RoyalBlue';&#x000A;  context.fillRect(squareX, squareY, 20, 20);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function updateScene() {&#x000A;  squareX += 30; // This is a shorter way of writing squareX = squareX + 30&#x000A;  squareY += 20; // This is a shorter way of writing squareY = squareY + 20&#x000A;  &#x000A;  drawScene();&#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1886,9 +1892,9 @@ Then, call the <code>drawScene()</code> function to draw a new scene on top of
 the current one.
 </p>
 <p>
-Press "Run" enough times to see the sky and ground change color between 5:00
-and 7:00 pm. Once you feel satisfied that the scene is updating and drawing correctly,
-mark the challenge as complete by selecting "Yes, it looks good".
+Press "Run" and click on the canvas enough times to see the sky and ground change
+color between 5:00 and 7:00 pm. Once you feel satisfied that the scene is updating
+and drawing correctly, mark the challenge as complete by selecting "Yes, it looks good".
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
@@ -1990,73 +1996,63 @@ Canvas
 Update the Time and Redraw the Scene with a Timer
 </h2>
 <p>
-Now we are going to clean up the
-<code>drawBuilding()</code>
-function a little bit.
+Instead of using a mouse click to update the time and redraw the scene,
+we are going to use a timer.
 </p>
 <p>
-A well-written function is like a polite robot who comes over to your house
-to do a job, and then leaves everything exactly as it found it. But if you
-look at the function used to draw a French flag in the previous example, it
-wasn't so tidy. It changed the
-<code>context.fillStyle</code>
-property to the color
-<code>'#EF4135'</code>
-and never changed it back.
+In this example, we set up a timer to update the scene from the previous
+example. We start by declaring the global variable <code>timer</code>. Then,
+instead of adding an event listener to the canvas object to detect mouse
+clicks, we use the <code>setInterval()</code> method to create a timer that will
+automatically call the <code>updateScene()</code> function every 25 milliseconds.
+We store a reference to the timer in the variable <code>timer</code>.
+</p>
+<pre><code>var timer;&#x000A;&#x000A;timer = setInterval(updateScene, 25); // Call the updateScene() function every 25 milliseconds</code></pre>
+<p>
+Again, because we are passing the <code>updateScene()</code> function into
+the <code>setInterval()</code> method as a variable, we don't include
+parentheses at the end of the function name. The number <code>25</code> tells
+the timer how long to wait before calling the <code>updateScene()</code>
+function again. The <code>setInterval()</code> method measures time in
+milliseconds and there are 1000 milliseconds in one second. So, if the timer
+calls the <code>updateScene()</code> function every 25 milliseconds, it will
+update the scene 40 times per second (1000 &divide; 25 = 40).
 </p>
 <p>
-To make our function more tidy, we call
-<code>context.save()</code>
-at the start of the function and
-<code>context.restore()</code>
-at the end. Calling
-<code>context.save()</code>
-saves the drawing state of the context (including the current
-<code>context.fillStyle</code>
-property) and
-<code>context.restore()</code>
-restores the drawing state to the last time we saved it.
+Inside the <code>updateScene()</code> function, we increase <code>squareX</code>
+and <code>squareY</code> by 3 and 2, instead of 30 and 20, so the square doesn't
+move as far in each update. Then, if <code>squareX > canvas.width</code>, which
+means the latest square is positioned past the right edge of the canvas, we cancel
+the timer and stop updating the scene by passing the reference stored in the
+<code>timer</code> variable into the <code>clearInterval()</code> method.
+</p>
+<pre><code>function updateScene() {&#x000A;  squareX += 3; // This is a shorter way of writing squareX = squareX + 3&#x000A;  squareY += 2; // This is a shorter way of writing squareY = squareY + 2&#x000A;  &#x000A;  drawScene();&#x000A;  &#x000A;  if (squareX > canvas.width) {&#x000A;    clearInterval(timer); // Cancel the timer and stop updating the scene&#x000A;  }&#x000A;}</code></pre>
+<p>
+Finally, inside the <code>drawScene()</code> function, before drawing the
+square, we draw a rectangle filled with the color <code>'Cornsilk'</code>
+covering the entire canvas. This will cover the previous scene, so now it
+looks like one square is moving instead of a new square being drawn each time.
+</p>
+<pre><code>function drawScene() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Cornsilk';&#x000A;  context.fillRect(0, 0, canvas.width, canvas.height); // Draw a rectangle over the entire canvas&#x000A;  context.fillStyle = 'RoyalBlue';&#x000A;  context.fillRect(squareX, squareY, 20, 20);&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+Press "Run" to reload the page and start the animation.
 </p>
 <p>
-The other change is to use the
-<code>context.translate()</code>
-method. Notice how we had to do calculations with x and y to figure out the positions
-of the white and red rectangles in the French flag? Imagine we had to do the same for
-dozens of windows in a building. We can eliminate a lot of that math by using the
-<code>context.translate()</code>
-method.
-</p>
-<p>
-The
-<code>context.translate()</code>
-method moves the origin of the coordinate system. If we move the origin to the
-top left corner of the flag, then we can draw the rectangles in the flag as though
-the flag is positioned at (0, 0). The math is much easier. However, when using the
-<code>context.translate()</code>
-method, it is even more important to save and then restore the drawing state. If
-changing the
-<code>context.fillStyle</code>
-property is rude, moving the origin of the coordinate system and not moving it back is much ruder!
-</p>
-<p>
-Try to predict what would happen if we left out the
-<code>context.save()</code>
-and
-<code>context.restore()</code>
-method calls in the function. To learn more about saving and restoring the
-drawing state and translating the origin of the coordinate system, visit the
-<a class="reference-link" data-slug="save" href="../save/index.html">save() / restore()</a>
-and
-<a class="reference-link" data-slug="translate" href="../translate/index.html">translate()</a>
-lessons.
+See what happens if you don't draw a rectangle over the previous scene or if
+you change how far the square moves or the time interval between updates. Note:
+if you try to update the scene too quickly, the program won't be able to keep
+up and the animation may stutter. To learn more setting timers, visit the
+<a class="reference-link" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+lesson.
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
 </p>
 
 </div>
@@ -2075,7 +2071,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage1_example5_editor'>var canvas = document.getElementById('animated_cityscape_stage1_example5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function drawFrenchFlag(x, y) {&#x000A;  context.save(); // Save the drawing state before making any changes&#x000A;  context.translate(x, y); // Move the origin of the coordinate system to the top left corner of the flag&#x000A;&#x000A;  context.fillStyle = '#0055A4';&#x000A;  context.fillRect(0, 0, 20, 40); // The blue rectangle is drawn at (0, 0)&#x000A;&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(20, 0, 20, 40); // The white rectangle is drawn at (20, 0)&#x000A;&#x000A;  context.fillStyle = '#EF4135';&#x000A;  context.fillRect(40, 0, 20, 40); // The red rectangle is drawn at (40, 0)&#x000A;&#x000A;  context.restore(); // Restore the drawing state to the way it was when we saved it&#x000A;}&#x000A;&#x000A;drawFrenchFlag(30, 100);&#x000A;drawFrenchFlag(150, 50);&#x000A;drawFrenchFlag(300, 180);&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage1_example5_editor'>var canvas = document.getElementById('animated_cityscape_stage1_example5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var timer;&#x000A;var squareX, squareY;&#x000A;&#x000A;initScene();&#x000A;timer = setInterval(updateScene, 25);&#x000A;&#x000A;function initScene() {&#x000A;  squareX = 10;&#x000A;  squareY = 10;&#x000A;  &#x000A;  drawScene();&#x000A;}&#x000A;&#x000A;function drawScene() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Cornsilk';&#x000A;  context.fillRect(0, 0, canvas.width, canvas.height); // Draw a rectangle over the entire canvas&#x000A;  context.fillStyle = 'RoyalBlue';&#x000A;  context.fillRect(squareX, squareY, 20, 20);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function updateScene() {&#x000A;  squareX += 3; // This is a shorter way of writing squareX = squareX + 3&#x000A;  squareY += 2; // This is a shorter way of writing squareY = squareY + 2&#x000A;  &#x000A;  drawScene();&#x000A;  &#x000A;  if (squareX > canvas.width) {&#x000A;    clearInterval(timer); // Cancel the timer and stop updating the scene&#x000A;  }&#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -2119,48 +2115,31 @@ Canvas
 <h2 class='challenge-title py-2'>
 Challenge 6
 </h2>
-<figure class='float-xs-right px-2'>
-<img class="img-fluid canvas-example" src="../../../images/lessons/animated_cityscape/stage1/challenge6Visual1.png" alt="Challenge6visual1" />
-<figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
-</figure>
 <p>
-Tidy up the drawBuilding() function from Challenge 5 in the same way by
-calling the
-<code>context.save()</code>
-and
-<code>context.restore()</code>
-methods at the start and end of the function, respectively. Then, use the
-<code>context.translate()</code>
-method to move the origin to (x, y) and draw the rectangle at (0, 0).
+Copy the program from Challenge 5.
 </p>
 <p>
-Once the
-<code>drawBuilding()</code>
-function is tidy, draw one building with 10 office units per floor and 16
-floors sitting on the ground at (20, 290) and another building with 12 office
-units per floor and 10 floors sitting on the ground at (200, 290).
+Then, change the program so that, instead of listening for mouse clicks to
+update the scene, a timer automatically calls the <code>updateScene()</code>
+function every 50 milliseconds.
 </p>
 <p>
-The
-<code>drawGround()</code>
-function is used to draw the ground at y = 290. Draw the buildings before
-the ground is drawn.
+Inside the <code>updateScene()</code> function, increase the time by 0.05
+and, instead of resetting the time back to 5, cancel the timer and stop updating
+the scene if <code>time > 7</code>.
 </p>
 <p>
-If you need help saving and restoring the drawing state and translating the origin
-of the coordinate system, visit the
-<a class="reference-link" data-slug="save" href="../save/index.html">save() / restore()</a>
-and
-<a class="reference-link" data-slug="translate" href="../translate/index.html">translate()</a>
-lessons.
+Press "Run" and watch the sky and ground change color between 5:00 and 7:00 pm.
+If you need to slow the animation down to get a better look, increase the time
+interval passed into the <code>setInterval()</code> method. Once you feel satisfied
+that the scene is updating and drawing correctly, mark the challenge as complete by
+selecting "Yes, it looks good".
 </p>
 <p>
 <strong>Relevant Lessons:</strong>
-<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
 </p>
 
 <div class='code-preview mb-2'>
@@ -2211,7 +2190,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage1_challenge6_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function drawBuilding(leftX, groundY, units, floors) {&#x000A;  var w = 0; // Calculate the width of the building&#x000A;  var h = 0; // Calculate the height of the building&#x000A;  var x = 0; // Calculate the x-coordinate of the building's top left corner&#x000A;  var y = 0; // Calculate the y-coordinate of the building's top left corner&#x000A;  &#x000A;  // SAVE THE DRAWING STATE HERE&#x000A;  // MOVE THE ORIGIN TO THE TOP LEFT CORNER OF THE BUILDING HERE&#x000A;  // SET THE COLOR OF THE BUILDING TO #999999 HERE&#x000A;  // DRAW THE BUILDING AT (0, 0) HERE USING THE VARIABLES w, h&#x000A;  // RESTORE THE LAST SAVED DRAWING STATE HERE&#x000A;}&#x000A;&#x000A;// DRAW ONE BUILDING WITH 10 UNITS AND 16 FLOORS SITTING AT (20, 290) HERE&#x000A;// DRAW A SECOND BUILDING WITH 12 UNITS AND 10 FLOORS SITTING AT (200, 290) HERE&#x000A;&#x000A;drawGround(290); // Draws the ground at y = 290&#x000A;&#x000A;function drawGround(y) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Black';&#x000A;  context.fillRect(0, y, canvas.width, 2);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage1_challenge6_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var time;&#x000A;var horizonY;&#x000A;&#x000A;initScene();&#x000A;canvas.addEventListener('click', updateScene);&#x000A;&#x000A;function initScene() {&#x000A;  &#x000A;  // Copy the function definition from Challenge 5&#x000A;  &#x000A;}&#x000A;&#x000A;function drawScene() {&#x000A;  &#x000A;  // Copy the function definition from Challenge 5&#x000A;  &#x000A;}&#x000A;&#x000A;function updateScene() {&#x000A;  &#x000A;  // Copy the function definition from Challenge 5&#x000A;  &#x000A;  // Increase the time by 0.05&#x000A;  // If time >= 7, cancel the timer and stop updating the scene&#x000A;  &#x000A;}&#x000A;&#x000A;function drawSky() {&#x000A;  &#x000A;  // Copy the function definition from Challenge 5&#x000A;  &#x000A;}&#x000A;&#x000A;function drawGround() {&#x000A;  &#x000A;  // Copy the function definition from Challenge 5&#x000A;  &#x000A;}&#x000A;&#x000A;function rgbColor(r, g, b) {&#x000A;  &#x000A;  // Copy the function definition from Challenge 5&#x000A;  &#x000A;}&#x000A;&#x000A;function drawTime() {&#x000A;  var t;&#x000A;  var h = Math.floor(time);&#x000A;  var m = Math.round(60 * (time - h));&#x000A;  &#x000A;  if (m >= 10) {&#x000A;    t = h + ':' + m;&#x000A;  } else {&#x000A;    t = h + ':0' + m;&#x000A;  }&#x000A;  &#x000A;  context.save();&#x000A;  context.fillStyle = 'White';&#x000A;  context.font = '16px Arial';&#x000A;  context.fillText(t, 10, canvas.height - 10);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -2240,8 +2219,250 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<div class='background hidden-xl-down'><img src="../../../images/lessons/animated_cityscape/stage1/challenge6.png" alt="Challenge6" /></div>
 <canvas id='animated_cityscape_stage1_challenge6'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Play and Pause the Scene
+</h2>
+<p>
+In this example, we add event listeners to the previous example's program
+to play and pause the scene.
+</p>
+<p>
+We can register our program to listen for more than mouse click events. On
+a web page, only one HTML element can have the focus at a time. The focus
+determines which element is actively receiving keyboard events. On this page
+alone there are thirteen editors. It would get kind of crazy if you were typing
+into more than one editor at a time.
+</p>
+<p>
+Note: A canvas element does not normally receive the focus. We have enabled
+each canvas to receive the focus by setting its <code>tabindex</code> attribute.
+That's not something you need to know about until you start creating the HTML
+for your own web pages.
+</p>
+<p>
+Because we have enabled each canvas to receive the focus, clicking on a
+canvas selects it and triggers a <code>'focus'</code> event. Clicking on a
+different part of the page deselects it and triggers a <code>'blur'</code>
+event. We start by adding event listeners to play the scene when the canvas
+receives a <code>'focus'</code> event and pause the scene when the canvas
+receives a <code>'blur'</code> event.
+</p>
+<pre><code>canvas.addEventListener('focus', playScene);&#x000A;canvas.addEventListener('blur', pauseScene);</code></pre>
+<p>
+Instead of starting the timer when the page first loads, we start the timer
+inside the <code>playScene()</code> function. We also check the position of
+the last square before starting the timer. If the last square is off the canvas,
+we reset it's position.
+</p>
+<pre><code>function playScene() {&#x000A;  if (squareX > canvas.width) {&#x000A;    squareX = 10;&#x000A;    squareY = 10; // Reset the square's position&#x000A;  }&#x000A;  &#x000A;  timer = setInterval(updateScene, 25);&#x000A;}</code></pre>
+<p>
+Inside the <code>pauseScene()</code> function, we cancel the timer and
+draw the text string <code>'Click to Play'</code> in the center of the
+canvas so the user knows how to start the animation.
+</p>
+<pre><code>function pauseScene() {&#x000A;  clearInterval(timer);&#x000A;  &#x000A;  context.save();&#x000A;  context.fillStyle = 'Black';&#x000A;  context.font = '16px Arial';&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click to Play', canvas.width / 2, canvas.height / 2);&#x000A;  context.restore();&#x000A;}</code></pre>
+<p>
+We also call the <code>pauseScene()</code> function when the page first loads
+so the <code>'Click to Play'</code> text string is drawn right away.
+</p>
+<p>
+Then, inside the <code>updateScene()</code> function, instead of canceling
+the timer if <code>squareX > canvas.width</code>, we use the <code>blur()</code>
+method to blur the canvas. When the canvas loses the focus, it receives a
+<code>blur</code> event and the <code>pauseScene()</code> function is called.
+</p>
+<pre><code>function updateScene() {&#x000A;  squareX += 3; // This is a shorter way of writing squareX = squareX + 3&#x000A;  squareY += 2; // This is a shorter way of writing squareY = squareY + 2&#x000A;  &#x000A;  drawScene();&#x000A;  &#x000A;  if (squareX > canvas.width) {&#x000A;    canvas.blur(); // Remove the focus from the canvas&#x000A;  }&#x000A;}</code></pre>
+<p>
+Click on the canvas to start the animation. The animation will continue
+running until you click on a different part of the page or until the latest
+square is positioned past the right edge of the canvas. If you restart the
+animation and the latest square was positioned past the right edge of the
+canvas, <code>squareX</code> and <code>squareY</code> are reset and the animation
+starts again from the beginning.
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='animated_cityscape_stage1_example6_editor'>var canvas = document.getElementById('animated_cityscape_stage1_example6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var timer;&#x000A;var squareX, squareY;&#x000A;&#x000A;initScene();&#x000A;pauseScene();&#x000A;canvas.addEventListener('focus', playScene);&#x000A;canvas.addEventListener('blur', pauseScene);&#x000A;&#x000A;function initScene() {&#x000A;  squareX = 10;&#x000A;  squareY = 10;&#x000A;  &#x000A;  drawScene();&#x000A;}&#x000A;&#x000A;function drawScene() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Cornsilk';&#x000A;  context.fillRect(0, 0, canvas.width, canvas.height); // Draw a rectangle over the entire canvas&#x000A;  context.fillStyle = 'RoyalBlue';&#x000A;  context.fillRect(squareX, squareY, 20, 20);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function updateScene() {&#x000A;  squareX += 3; // This is a shorter way of writing squareX = squareX + 3&#x000A;  squareY += 2; // This is a shorter way of writing squareY = squareY + 2&#x000A;  &#x000A;  drawScene();&#x000A;  &#x000A;  if (squareX > canvas.width) {&#x000A;    canvas.blur(); // Remove the focus from the canvas&#x000A;  }&#x000A;}&#x000A;&#x000A;function playScene() {&#x000A;  if (squareX > canvas.width) {&#x000A;    squareX = 10;&#x000A;    squareY = 10; // Reset the square's position&#x000A;  }&#x000A;  &#x000A;  timer = setInterval(updateScene, 25);&#x000A;}&#x000A;&#x000A;function pauseScene() {&#x000A;  clearInterval(timer);&#x000A;  &#x000A;  context.save();&#x000A;  context.fillStyle = 'Black';&#x000A;  context.font = '16px Arial';&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click to Play', canvas.width / 2, canvas.height / 2);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='animated_cityscape_stage1_example6'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-3' id='challenge7'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 7
+</h2>
+<p>
+Copy the program from Challenge 6.
+</p>
+<p>
+Then, change the program so the scene is initially paused and the time set
+to 2. Play the scene when the canvas receives the focus and continue playing
+the scene until the canvas loses the focus or until <code>time > 12</code>. If
+the canvas receives the focus and the time is already greater than 12, reset
+the time back to 2 and replay the scene from the beginning.
+</p>
+<p>
+Press "Run" and click on the canvas to start playing the scene. Once you feel
+satisfied that the scene is playing and pausing correctly, mark the challenge
+as complete by selecting "Yes, it looks good".
+</p>
+<p>
+<strong>Relevant Lessons:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
+</p>
+
+<div class='code-preview mb-2'>
+<p>
+<strong>Previous Challenge:</strong>
+View your
+<span class='code-preview-link' data-editorid='animated_cityscape_stage1_challenge6_editor'>
+code from
+Stage
+1
+Challenge
+6
+</span>
+to use on this challenge.
+</p>
+<div class='code-preview-missing'>
+<strong>Code Missing:</strong>
+You have not yet entered any code in to the previous challenge:
+Stage
+1
+Challenge
+6
+</div>
+<div class='code-preview-view'>
+<strong>
+Stage
+1
+Challenge
+6
+</strong>
+<div class='code-preview-code'></div>
+</div>
+</div>
+
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='animated_cityscape_stage1_challenge7_editor'>var canvas = document.getElementById('animated_cityscape_stage1_challenge7');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// Copy the program from Challenge 6 here&#x000A;&#x000A;function playScene() {&#x000A;  &#x000A;}&#x000A;&#x000A;function pauseScene() {&#x000A;  &#x000A;  // Cancel the timer&#x000A;  &#x000A;  context.save();&#x000A;  context.fillStyle = 'rgba(0, 0, 0, 0.2)';&#x000A;  context.fillRect(canvas.width / 2 - 55, canvas.height / 2 - 18, 110, 24);&#x000A;  context.fillStyle = 'White';&#x000A;  context.font = '16px Arial';&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click to Play', canvas.width / 2, canvas.height / 2);&#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run btn btn-success'>
+Run
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='animated_cityscape_stage1_challenge7'></canvas>
 </div>
 <div class='alert'></div>
 </div>

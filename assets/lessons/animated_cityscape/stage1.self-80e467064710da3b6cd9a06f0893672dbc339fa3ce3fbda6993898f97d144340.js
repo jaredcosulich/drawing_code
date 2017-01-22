@@ -1,5 +1,5 @@
 (function() {
-  var initAnimatedCityscapeStage1Challenge1, initAnimatedCityscapeStage1Challenge2, initAnimatedCityscapeStage1Challenge3, initAnimatedCityscapeStage1Challenge4, initAnimatedCityscapeStage1Challenge5, initAnimatedCityscapeStage1Challenge6, initAnimatedCityscapeStage1Challenges;
+  var initAnimatedCityscapeStage1Challenge1, initAnimatedCityscapeStage1Challenge2, initAnimatedCityscapeStage1Challenge3, initAnimatedCityscapeStage1Challenge4, initAnimatedCityscapeStage1Challenge5, initAnimatedCityscapeStage1Challenge6, initAnimatedCityscapeStage1Challenge7, initAnimatedCityscapeStage1Challenges;
 
   initAnimatedCityscapeStage1Challenges = function() {
     var page;
@@ -9,7 +9,8 @@
       initAnimatedCityscapeStage1Challenge3(page);
       initAnimatedCityscapeStage1Challenge4(page);
       initAnimatedCityscapeStage1Challenge5(page);
-      return initAnimatedCityscapeStage1Challenge6(page);
+      initAnimatedCityscapeStage1Challenge6(page);
+      return initAnimatedCityscapeStage1Challenge7(page);
     }
   };
 
@@ -293,48 +294,25 @@
   };
 
   initAnimatedCityscapeStage1Challenge6 = function(page) {
-    var canvas, challenge, editor, solution, testCode;
+    var canvas, challenge, editor;
     challenge = page.find('#challenge6');
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
-    solution = function(canvas, context) {
-      var drawBuilding, drawGround;
-      drawBuilding = function(leftX, groundY, units, floors) {
-        var h, w, x, y;
-        w = 8 + 16 * units;
-        h = 8 + 16 * floors;
-        x = leftX;
-        y = groundY - h;
-        context.save();
-        context.translate(x, y);
-        context.fillStyle = '#999999';
-        context.fillRect(0, 0, w, h);
-        context.restore();
-      };
-      drawGround = function(y) {
-        context.save();
-        context.fillStyle = 'Black';
-        context.fillRect(0, y, canvas.width, 2);
-        context.restore();
-      };
-      drawBuilding(20, 290, 10, 16);
-      drawBuilding(200, 290, 12, 10);
-      return drawGround(290);
-    };
-    testCode = new Test.Code({
-      code: solution,
-      canvas: canvas
-    });
     return challenge.find('.run').click(function() {
-      return testCode.test(function(success) {
-        var message;
-        if (success) {
-          message = '<strong>Success!</strong> You positioned both buildings by translating the origin of the coordinate system!';
-          App.currentProgress.challengeComplete('animated_cityscape_stage1', 'challenge6');
-        } else {
-          message = 'Nice try, but you need to position the two buildings by translating the origin of the coordinate system.';
-        }
-        return canvas.alert(message, success);
+      return canvas.selfAssess(function() {
+        return App.currentProgress.challengeComplete('animated_cityscape_stage1', 'challenge6');
+      });
+    });
+  };
+
+  initAnimatedCityscapeStage1Challenge7 = function(page) {
+    var canvas, challenge, editor;
+    challenge = page.find('#challenge7');
+    canvas = new App.Canvas(challenge.find('canvas'));
+    editor = new App.Editor(challenge.find('.editor'), canvas);
+    return challenge.find('.run').click(function() {
+      return canvas.selfAssess(function() {
+        return App.currentProgress.challengeComplete('animated_cityscape_stage1', 'challenge7');
       });
     });
   };
