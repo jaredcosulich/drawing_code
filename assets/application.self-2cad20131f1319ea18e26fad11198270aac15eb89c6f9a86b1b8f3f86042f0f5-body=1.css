@@ -6500,82 +6500,92 @@ img.bordered {
 /* line 126, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .buttons .lesson-text-message {
   display: none; }
+/* line 130, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.buttons .run-and-focus {
+  display: none; }
 
-/* line 131, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 137, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.focus-on-run .buttons .run-only {
+  display: none; }
+/* line 141, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+.focus-on-run .buttons .run-and-focus {
+  display: inline-block; }
+
+/* line 147, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .lesson {
   background-color: #fcfcfc; }
-  /* line 134, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+  /* line 150, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
   .lesson .buttons {
     text-align: center; }
-    /* line 137, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+    /* line 153, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
     .lesson .buttons .btn {
       margin: 0 12px; }
-    /* line 141, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+    /* line 157, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
     .lesson .buttons .reset {
       float: none; }
-    /* line 145, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+    /* line 161, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
     .lesson .buttons .lesson-text-message {
       display: block; }
 
-/* line 152, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 168, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .highlight {
   background-color: #FDF2B1; }
 
-/* line 157, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 173, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .code-preview .code-preview-link {
   color: #0275d8;
   cursor: pointer; }
-/* line 162, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 178, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .code-preview .code-preview-view {
   display: none; }
-  /* line 165, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+  /* line 181, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
   .code-preview .code-preview-view .code-preview-code {
     height: 300px; }
-/* line 170, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 186, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .code-preview .code-preview-missing {
   display: none; }
 
-/* line 175, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 191, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .canvas-example {
   background-color: #EEEEEE;
   border: 1px solid #333; }
 
-/* line 180, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 196, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .reference-modal-content {
   display: none; }
 
-/* line 184, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 200, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 pre {
   background-color: #efefef;
   padding: 12px; }
 
-/* line 189, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 205, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 .files {
   display: none;
   float: right;
   margin-bottom: -3px; }
-  /* line 194, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+  /* line 210, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
   .files .dropdown-menu {
     margin-top: -3px; }
-  /* line 198, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+  /* line 214, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
   .files .btn-group > .btn:hover, .files .btn-group-vertical > .btn:hover {
     z-index: auto; }
 
-/* line 206, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 222, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 #examples .group.hidden {
   display: none; }
-/* line 210, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 226, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 #examples .group a.example, #examples .group a.example:hover, #examples .group a.example:visited {
   cursor: pointer;
   text-align: center;
   color: black;
   text-decoration: none; }
-  /* line 216, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+  /* line 232, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
   #examples .group a.example .card-block, #examples .group a.example:hover .card-block, #examples .group a.example:visited .card-block {
     padding-bottom: 1em;
     position: relative;
     text-align: left; }
-    /* line 221, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+    /* line 237, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
     #examples .group a.example .card-block .card-footer, #examples .group a.example:hover .card-block .card-footer, #examples .group a.example:visited .card-block .card-footer {
       border: none;
       height: 3em;
@@ -6591,18 +6601,18 @@ pre {
       /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
       /* IE6-9 */ }
-    /* line 235, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+    /* line 251, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
     #examples .group a.example .card-block .card-text, #examples .group a.example:hover .card-block .card-text, #examples .group a.example:visited .card-block .card-text {
       height: 4em;
       overflow: hidden; }
-      /* line 239, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+      /* line 255, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
       #examples .group a.example .card-block .card-text .title, #examples .group a.example:hover .card-block .card-text .title, #examples .group a.example:visited .card-block .card-text .title {
         font-weight: bold; }
-      /* line 243, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+      /* line 259, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
       #examples .group a.example .card-block .card-text .description, #examples .group a.example:hover .card-block .card-text .description, #examples .group a.example:visited .card-block .card-text .description {
         font-size: smaller; }
 
-/* line 253, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
+/* line 269, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
 #example-drawing .title {
   font-size: xx-large;
   font-weight: bold;

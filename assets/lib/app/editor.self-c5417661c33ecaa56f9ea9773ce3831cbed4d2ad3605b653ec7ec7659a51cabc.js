@@ -88,7 +88,12 @@
     };
 
     Editor.prototype.initRun = function() {
-      this.codeEditor.find('.buttons .run').click((function(_this) {
+      this.codeEditor.find('.buttons .run-only').click((function(_this) {
+        return function(e) {
+          return _this.run();
+        };
+      })(this));
+      this.codeEditor.find('.buttons .run-and-focus').click((function(_this) {
         return function(e) {
           return _this.run(function() {
             return _this.canvas.canvas.focus();
@@ -202,20 +207,50 @@
       }
     };
 
+    Editor.prototype.initTimeouts = function() {
+      var i, len, ref, timeout;
+      if (this.timeouts != null) {
+        ref = this.timeouts;
+        for (i = 0, len = ref.length; i < len; i++) {
+          timeout = ref[i];
+          clearTimeout(timeout);
+        }
+      }
+      return this.timeouts = [];
+    };
+
+    Editor.prototype.initIntervals = function() {
+      var i, interval, len, ref;
+      if (this.intervals != null) {
+        ref = this.intervals;
+        for (i = 0, len = ref.length; i < len; i++) {
+          interval = ref[i];
+          clearTimeout(interval);
+        }
+      }
+      return this.intervals = [];
+    };
+
     Editor.prototype.setTimeout = function(f, time) {
-      return setTimeout(((function(_this) {
+      var timeout;
+      timeout = setTimeout(((function(_this) {
         return function() {
           return _this.wrapCode(f);
         };
       })(this)), time);
+      this.timeouts.push(timeout);
+      return timeout;
     };
 
     Editor.prototype.setInterval = function(f, time) {
-      return setInterval(((function(_this) {
+      var interval;
+      interval = setInterval(((function(_this) {
         return function() {
           return _this.wrapCode(f);
         };
       })(this)), time);
+      this.intervals.push(interval);
+      return interval;
     };
 
     Editor.prototype.addCanvasEventListener = function(event, f) {
@@ -228,6 +263,8 @@
 
     Editor.prototype.runCode = function(code, fileMap) {
       var wrappedCode;
+      this.initTimeouts();
+      this.initIntervals();
       code = code.replace(/setTimeout/g, 'wrapper.setTimeout');
       code = code.replace(/setInterval/g, 'wrapper.setInterval');
       code = code.replace(/canvas\.addEventListener/g, 'wrapper.addCanvasEventListener');
