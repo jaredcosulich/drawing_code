@@ -1,12 +1,12 @@
 :preserve
-  var canvas = document.getElementById('my_drawings_canvas');
+  var canvas = document.getElementById('example_drawings_cartwheeling_stickman_canvas');
   var context = canvas.getContext('2d');
 
   var xA, yA, xB, yB, xC, yC, xD, yD, xE, yE, stickmanX;
   var stickmanData;
   var deltaX, deltaY, horizon, scale;
   var yPetal, rPetal, petalColor, rCenter, centerColor, flowerCount;
-  var cloudX, h, w, r1, r2, r3, r4;
+  var cloudX, h, w, r1, r2, r3, r4, cloudContext;
   var frame, bFrame, cFrame, dFrame, eFrame, timerInterval, timer;
   var backgroundCanvas;
 
@@ -23,8 +23,8 @@
   	newCloud = false;
   	stickmanX = -150;
 
-  	initBackground();
   	initCloud();
+  	initBackground();
   	initStickmanData();
 
   	frame = 0;
@@ -44,6 +44,15 @@
   }
 
   function initCloud() {
+    if (cloudContext) {
+      cloudContext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      var cloudCanvas = document.createElement('CANVAS');
+      cloudCanvas.width = canvas.width;
+      cloudCanvas.height = canvas.height;
+      cloudContext = cloudCanvas.getContext("2d");
+    }
+
   	h = 80;
   	w = Math.round(h * 0.5 * (3 + Math.random()));
   	r1 = Math.round(h * 0.25 * (2 + Math.random()));
@@ -51,6 +60,7 @@
   	r3 = Math.round(h * 0.25 * (2 + Math.random()));
   	r4 = Math.round(h * 0.25 * (2 + Math.random()));
   	cloudColor = "rgba(255, 255, 255, 1)";
+  	drawCloud(true);
   }
 
   function initStickmanData() {
@@ -148,13 +158,8 @@
   }
 
   function animateCloud() {
-  	context.save();
-
-  	context.globalAlpha = 0.9;
-  	context.restore();
   	drawCloud();
   	cloudX = cloudX + 4;
-
   	if (cloudX >= canvas.width) {
   	  initCloud();
   		cloudX = -270;
@@ -420,30 +425,37 @@
   	backgroundContext.restore();
   }
 
-  function drawCloud() {
-    context.save();
+  function drawCloud(init) {
+    if (init) {
+      cloudContext.save();
+      cloudContext.translate(140, 60);
+    	cloudContext.fillStyle = "rgba(255, 255, 255, 1)";
 
-    context.translate(cloudX + 140, 60);
-  	context.fillStyle = "rgba(255, 255, 255, 1)";
+    	cloudContext.fillRect(-w / 2, 0, w, h);
 
-  	context.fillRect(-w / 2, 0, w, h);
+    	cloudContext.beginPath();
+    	cloudContext.arc(-w / 2, h - r1, r1, 0, 2 * Math.PI, false);
+    	cloudContext.fill();
 
-  	context.beginPath();
-  	context.arc(-w / 2, h - r1, r1, 0, 2 * Math.PI, false);
-  	context.fill();
+    	cloudContext.beginPath();
+    	cloudContext.arc(w / 2, h - r2, r2, 0, 2 * Math.PI, false);
+    	cloudContext.fill();
 
-  	context.beginPath();
-  	context.arc(w / 2, h - r2, r2, 0, 2 * Math.PI, false);
-  	context.fill();
+    	cloudContext.beginPath();
+    	cloudContext.arc(-w / 2 + r3, 0, r3, 0, 2 * Math.PI, false);
+    	cloudContext.fill();
 
-  	context.beginPath();
-  	context.arc(-w / 2 + r3, 0, r3, 0, 2 * Math.PI, false);
-  	context.fill();
-
-  	context.beginPath();
-  	context.arc(w / 2 - r4, 0, r4, 0, 2 * Math.PI, false);
-  	context.fill();
-    context.restore();
+    	cloudContext.beginPath();
+    	cloudContext.arc(w / 2 - r4, 0, r4, 0, 2 * Math.PI, false);
+    	cloudContext.fill();
+    	cloudContext.restore();
+    } else {
+      context.save();
+      context.translate(cloudX, 0);
+      context.globalAlpha = 0.9
+      context.drawImage(cloudContext.canvas, 0, 0);
+      context.restore();
+    }
   }
 
   function drawPetal(backgroundContext) {
