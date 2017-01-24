@@ -1,0 +1,462 @@
+:preserve
+  var canvas = document.getElementById('my_drawings_canvas');
+  var context = canvas.getContext('2d');
+
+  var xA, yA, xB, yB, xC, yC, xD, yD, xE, yE, stickmanX;
+  var stickmanData;
+  var deltaX, deltaY, horizon, scale;
+  var yPetal, rPetal, petalColor, rCenter, centerColor, flowerCount;
+  var cloudX, h, w, r1, r2, r3, r4;
+  var frame, bFrame, cFrame, dFrame, eFrame, timerInterval, timer;
+  var backgroundCanvas;
+
+  function initFieldCanvas() {
+  	deltaX = 150;
+  	deltaY = 240;
+  	horizon = 210;
+  	yPetal = 40;
+  	rPetal = 24;
+  	petalColor = "rgba(255, 153, 51, 1)";
+  	rCenter = 24;
+  	centerColor = "rgba(255, 255, 51, 1)";
+  	cloudX = -150;
+  	newCloud = false;
+  	stickmanX = -150;
+
+  	initBackground();
+  	initCloud();
+  	initStickmanData();
+
+  	frame = 0;
+  	timerInterval = 50;
+  	timer = setInterval(animatePage, timerInterval);
+  }
+
+  function initBackground() {
+    backgroundCanvas = document.createElement('CANVAS');
+    backgroundCanvas.width = canvas.width;
+    backgroundCanvas.height = canvas.height;
+    var backgroundContext = backgroundCanvas.getContext("2d");
+
+  	drawBackground(backgroundContext);
+  	backgroundContext.translate(0, horizon);
+  	drawFlowerField(backgroundContext);
+  }
+
+  function initCloud() {
+  	h = 80;
+  	w = Math.round(h * 0.5 * (3 + Math.random()));
+  	r1 = Math.round(h * 0.25 * (2 + Math.random()));
+  	r2 = Math.round(h * 0.25 * (2 + Math.random()));
+  	r3 = Math.round(h * 0.25 * (2 + Math.random()));
+  	r4 = Math.round(h * 0.25 * (2 + Math.random()));
+  	cloudColor = "rgba(255, 255, 255, 1)";
+  }
+
+  function initStickmanData() {
+  	var a, b, c, d, e;
+
+  	xA = 110;
+  	yA = 170;
+  	xB = 160;
+  	yB = 180;
+  	xC = 360;
+  	yC = 160;
+  	xD = 560;
+  	yD = 180;
+  	xE = 610;
+  	yE = 170;
+
+  	bFrame = 10;
+  	cFrame = 25;
+  	dFrame = 40;
+  	eFrame = 50;
+
+  	stickmanData = [
+  		{a: 0, b: 50, c: 180, d: 310, e: 360, ab: 0, bc: 0, cd: 0, de: 0},
+  		{a: 120, b: 130, c: 140, d: 80, e: 120, ab: 0, bc: 0, cd: 0, de: 0},
+  		{a: -120, b: -80, c: -140, d: -130, e: -120, ab: 0, bc: 0, cd: 0, de: 0},
+  		{a: 0, b: 30, c: 0, d: 0, e: 0, ab: 0, bc: 0, cd: 0, de: 0},
+  		{a: 0, b: 0, c: 0, d: -30, e: 0, ab: 0, bc: 0, cd: 0, de: 0},
+  		{a: 30, b: 10, c: 60, d: 90, e: 30, ab: 0, bc: 0, cd: 0, de: 0},
+  		{a: -30, b: -90, c: -60, d: -10, e: -30, ab: 0, bc: 0, cd: 0, de: 0},
+  		{a: 0, b: 0, c: 0, d: -80, e: 0, ab: 0, bc: 0, cd: 0, de: 0},
+  		{a: 0, b: 80, c: 0, d: 0, e: 0, ab: 0, bc: 0, cd: 0, de: 0}
+  	];
+
+  	for (var i = 0; i < stickmanData.length; i++) {
+  		stickmanData[i].ab = (stickmanData[i].b - stickmanData[i].a) / bFrame;
+  		stickmanData[i].bc = (stickmanData[i].c - stickmanData[i].b) / (cFrame - bFrame);
+  		stickmanData[i].cd = (stickmanData[i].d - stickmanData[i].c) / (dFrame - cFrame);
+  		stickmanData[i].de = (stickmanData[i].e - stickmanData[i].d) / (eFrame - dFrame);
+  	}
+  }
+
+  function animatePage() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(backgroundCanvas, 0, 0);
+  	animateCloud();
+  	animateStickman();
+
+  	if (timer != null) {
+  		frame += 2;
+  		if (frame == eFrame) stickmanX += 500;
+  		if (stickmanX >= canvas.width * 2) stickmanX -= Math.floor(canvas.width * 3);
+  		frame = frame % eFrame;
+
+  	}
+  }
+
+  function animateStickman() {
+  	var i, x, y;
+  	var stickmanPose = new Array();
+
+  	if (frame <= bFrame) {
+  		for (i = 0; i < stickmanData.length; i++) {
+  			x = xA + (xB - xA) * frame / bFrame;
+  			y = yA + (yB - yA) * frame / bFrame;
+  			stickmanPose[i] = stickmanData[i].a + stickmanData[i].ab * frame;
+  		}
+  	} else if (frame <= cFrame) {
+  		for (i = 0; i < stickmanData.length; i++) {
+  			x = xB + (xC - xB) * (frame - bFrame) / (cFrame - bFrame);
+  			y = yB + (yC - yB) * (frame - bFrame) / (cFrame - bFrame);
+  			stickmanPose[i] = stickmanData[i].b + stickmanData[i].bc * (frame - bFrame);
+  		}
+  	} else if (frame <= dFrame) {
+  		for (i = 0; i < stickmanData.length; i++) {
+  			x = xC + (xD - xC) * (frame - cFrame) / (dFrame - cFrame);
+  			y = yC + (yD - yC) * (frame - cFrame) / (dFrame - cFrame);
+  			stickmanPose[i] = stickmanData[i].c + stickmanData[i].cd * (frame - cFrame);
+  		}
+  	} else if (frame <= eFrame) {
+  		for (i = 0; i < stickmanData.length; i++) {
+  			x = xD + (xE - xD) * (frame - dFrame) / (eFrame - dFrame);
+  			y = yD + (yE - yD) * (frame - dFrame) / (eFrame - dFrame);
+  			stickmanPose[i] = stickmanData[i].d + stickmanData[i].de * (frame - dFrame);
+  		}
+  	}
+
+  	x = x + stickmanX;
+
+  	context.save();
+  	context.scale(0.5, 0.5);
+  	context.translate(x, y + 300);
+  	context.lineWidth = 4;
+  	drawStickman(stickmanPose);
+  	context.restore();
+  }
+
+  function animateCloud() {
+  	context.save();
+
+  	context.globalAlpha = 0.9;
+  	context.restore();
+  	drawCloud();
+  	cloudX = cloudX + 4;
+
+  	if (cloudX >= canvas.width) {
+  	  initCloud();
+  		cloudX = -270;
+  	}
+  }
+
+  function drawStickman(pose) {
+  	var stickWidth = 2;
+  	var stickmanColor = "rgba(0, 0, 0, 1)";
+  	var x = 160;
+  	var y = 160;
+  	var torsoLength = 100;
+  	var headRadius = 30;
+  	var upperArmLength = 60;
+  	var lowerArmLength = 50;
+  	var upperLegLength = 80;
+  	var lowerLegLength = 60;
+
+  	var torsoAngle = pose[0] * Math.PI / 180;
+  	var rightUpperArmAngle = pose[1] * Math.PI / 180;
+  	var leftUpperArmAngle = pose[2] * Math.PI / 180;
+  	var rightLowerArmAngle = pose[3] * Math.PI / 180;
+  	var leftLowerArmAngle = pose[4] * Math.PI / 180;
+  	var rightUpperLegAngle = pose[5] * Math.PI / 180;
+  	var leftUpperLegAngle = pose[6] * Math.PI / 180;
+  	var rightLowerLegAngle = pose[7] * Math.PI / 180;
+  	var leftLowerLegAngle = pose[8] * Math.PI / 180;
+
+  	context.save();
+
+  	//context.lineWidth = stickWidth;
+  	context.strokeStyle = stickmanColor;
+
+  	// Draw torso
+  	context.rotate(torsoAngle);
+  	context.translate(0, -4 * torsoLength / 5);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, torsoLength);
+  	context.stroke();
+
+  	// Draw head
+  	context.beginPath();
+  	context.arc(0, -headRadius, headRadius, 0, 2 * Math.PI, false);
+  	context.stroke();
+
+  	// Move origin to shoulders
+  	context.translate(0, torsoLength / 5);
+  	context.save();
+
+  	// Draw right upper arm
+  	context.rotate(rightUpperArmAngle);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, upperArmLength);
+  	context.stroke();
+
+  	// Move origin to right elbow
+  	context.translate(0, upperArmLength);
+
+  	// Draw right lower arm
+  	context.rotate(rightLowerArmAngle);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, lowerArmLength);
+  	context.stroke();
+
+  	// Move origin back to shoulders
+  	context.restore();
+  	context.save();
+
+  	// Draw left upper arm
+  	context.rotate(leftUpperArmAngle);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, upperArmLength);
+  	context.stroke();
+
+  	// Move origin to left elbow
+  	context.translate(0, upperArmLength);
+
+  	// Draw left lower arm
+  	context.rotate(leftLowerArmAngle);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, lowerArmLength);
+  	context.stroke();
+
+  	// Move origin to hip
+  	context.restore();
+  	context.translate(0, 4 * torsoLength / 5);
+  	context.save();
+
+  	// Draw right upper leg
+  	context.rotate(rightUpperLegAngle);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, upperLegLength);
+  	context.stroke();
+
+  	// Move origin to right knee
+  	context.translate(0, upperLegLength);
+
+  	// Draw right lower leg
+  	context.rotate(rightLowerLegAngle);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, lowerLegLength);
+  	context.stroke();
+
+  	// Move origin back to hip
+  	context.restore();
+
+  	// Draw left upper leg
+  	context.rotate(leftUpperLegAngle);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, upperLegLength);
+  	context.stroke();
+
+  	// Move origin to left knee
+  	context.translate(0, upperLegLength);
+
+  	// Draw left lower leg
+  	context.rotate(leftLowerLegAngle);
+  	context.beginPath();
+  	context.moveTo(0, 0);
+  	context.lineTo(0, lowerLegLength);
+  	context.stroke();
+
+  	// Restore context back to original state
+  	context.restore();
+  }
+
+  function drawBackground(backgroundContext) {
+  	var skyGradient, sunGradient, fieldGradient;
+
+  	skyGradient = backgroundContext.createLinearGradient(0, 0, 0, 240);
+  	skyGradient.addColorStop(0, 'rgba(51, 51, 255, 1)');
+  	skyGradient.addColorStop(1, 'rgba(204, 204, 255, 1)');
+  	backgroundContext.fillStyle = skyGradient;
+  	backgroundContext.fillRect(0, 0, canvas.width, 240);
+
+  	sunGradient = backgroundContext.createRadialGradient(canvas.width, 0, 100, canvas.width, 0, 200);
+  	sunGradient.addColorStop(0, 'rgba(255, 255, 51, 1)');
+  	sunGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+  	backgroundContext.fillStyle = sunGradient;
+  	backgroundContext.beginPath();
+  	backgroundContext.moveTo(canvas.width, 0);
+  	backgroundContext.lineTo(canvas.width, 200);
+  	backgroundContext.arcTo(canvas.width/3, 200, canvas.width/3, 0, 200);
+  	backgroundContext.fill();
+
+  	fieldGradient = backgroundContext.createLinearGradient(0, 480, 0, 240);
+  	fieldGradient.addColorStop(0, 'rgba(0, 204, 0, 1)');
+  	fieldGradient.addColorStop(1, 'rgba(153, 204, 153, 1)');
+  	backgroundContext.fillStyle = fieldGradient;
+  	backgroundContext.fillRect(0, 240, canvas.width, 240);
+  }
+
+  function drawFlowerField(backgroundContext) {
+  	backgroundContext.save();
+
+  	scaleRow = Math.ceil(canvas.width / deltaX);
+  	var rows = 8;
+  	totalFlowers = (scaleRow * ((rows * (rows + 1)) / 2));
+  	for (flowerCount = 0; flowerCount < totalFlowers; flowerCount++) {
+  		switch(flowerCount) {
+  			case 0:
+  				scale = 1 / 8;
+  				initNewRow(backgroundContext);
+  				break;
+  			case (totalFlowers - (scaleRow * 28)):
+  				scale = 1 / 7;
+  				initNewRow(backgroundContext);
+  				break;
+  			case (totalFlowers - (scaleRow * 21)):
+  				scale = 1 / 6;
+  				initNewRow(backgroundContext);
+  				break;
+  			case (totalFlowers - (scaleRow * 15)):
+  				scale = 1 / 5;
+  				initNewRow(backgroundContext);
+  				break;
+  			case (totalFlowers - (scaleRow * 10)):
+  				scale = 1 / 4;
+  				initNewRow(backgroundContext);
+  				break;
+  			case (totalFlowers - (scaleRow * 6)):
+  				scale = 1 / 3;
+  				initNewRow(backgroundContext);
+  				break;
+  			case (totalFlowers - (scaleRow * 3)):
+  				scale = 1 / 2;
+  				initNewRow(backgroundContext);
+  				break;
+  			case (totalFlowers - scaleRow):
+  				scale = 1;
+  				initNewRow(backgroundContext);
+  				break;
+  			default:
+  				initNewFlower(backgroundContext);
+  		}
+
+  		drawFlower(backgroundContext, 0);
+  	}
+
+  	backgroundContext.restore();
+  }
+
+  function initNewRow(backgroundContext) {
+  	if (flowerCount > 0) {
+  		backgroundContext.restore();
+  		backgroundContext.save();
+  	}
+
+  	backgroundContext.scale(scale, scale);
+  	backgroundContext.translate(deltaX / 2, deltaY);
+  }
+
+  function initNewFlower(backgroundContext) {
+  	backgroundContext.translate(deltaX, 0);
+  }
+
+  function drawFlower(backgroundContext, color) {
+  	var i;
+  	var spaceX, spaceY;
+
+  	if (color == 0) {
+  		color = 1 + Math.floor(3 * Math.random());
+  	}
+
+  	backgroundContext.save();
+
+  	switch(color) {
+  		case 1:
+  			// purple
+  			petalColor = 'rgba(204, 102, 255, 1)';
+  			break;
+  		case 2:
+  			// red
+  			petalColor = 'rgba(255, 102, 153, 1)';
+  			break;
+  		case 3:
+  			// orange
+  			petalColor = 'rgba(255, 153, 51, 1)';
+  			break;
+  	}
+
+  	backgroundContext.fillStyle = petalColor;
+  	spaceX = deltaX - 128;
+  	spaceY = 16;
+  	backgroundContext.translate(spaceX * (Math.random() - 0.5), spaceY * (Math.random() - 0.5));
+  	backgroundContext.rotate(Math.random() * Math.PI / 6);
+
+  	for (i = 0; i < 6; i++) {
+  		drawPetal(backgroundContext);
+  		backgroundContext.rotate(Math.PI / 3);
+  	}
+
+  	drawCenter(backgroundContext);
+
+  	backgroundContext.restore();
+  }
+
+  function drawCloud() {
+    context.save();
+
+    context.translate(cloudX + 140, 60);
+  	context.fillStyle = "rgba(255, 255, 255, 1)";
+
+  	context.fillRect(-w / 2, 0, w, h);
+
+  	context.beginPath();
+  	context.arc(-w / 2, h - r1, r1, 0, 2 * Math.PI, false);
+  	context.fill();
+
+  	context.beginPath();
+  	context.arc(w / 2, h - r2, r2, 0, 2 * Math.PI, false);
+  	context.fill();
+
+  	context.beginPath();
+  	context.arc(-w / 2 + r3, 0, r3, 0, 2 * Math.PI, false);
+  	context.fill();
+
+  	context.beginPath();
+  	context.arc(w / 2 - r4, 0, r4, 0, 2 * Math.PI, false);
+  	context.fill();
+    context.restore();
+  }
+
+  function drawPetal(backgroundContext) {
+  	backgroundContext.beginPath();
+  	backgroundContext.arc(0, yPetal, rPetal, 0, 2 * Math.PI, false);
+  	backgroundContext.fill();
+  }
+
+  function drawCenter(backgroundContext) {
+  	backgroundContext.fillStyle = centerColor;
+  	backgroundContext.beginPath();
+  	backgroundContext.arc(0, 0, rCenter, 0, 2 * Math.PI, false);
+  	backgroundContext.fill();
+  }
+
+  initFieldCanvas();

@@ -12,7 +12,7 @@ class ExamplesController < ApplicationController
         :flowers,
         :transport_vehicle,
         :curve_stitching_hexagon,
-        :curve_stitching_star,        
+        :curve_stitching_star,
         :curve_stitching_triangle,
         :glass_and_bottle,
         :sunrise_text,
@@ -20,6 +20,7 @@ class ExamplesController < ApplicationController
       'Animations' => [
         :spiral_squares,
         :dragon_curve_fractal,
+        :cartwheeling_stickman,
         :rolling_ball,
         :bouncing_collisions,
         :simple_cannonball,
