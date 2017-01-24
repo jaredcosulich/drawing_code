@@ -1,0 +1,200 @@
+:preserve
+  var canvas = document.getElementById('my_drawings_canvas');
+  var context = canvas.getContext('2d');
+
+  context.scale(0.5, 0.5);
+
+  var tickCount = 21;
+
+  function initDrawing() {
+  	var lineA = new Line(0, 0, 390, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(0 * Math.PI / 3);
+  	});
+
+  	var lineB = new Line(390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), 0, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(0 * Math.PI / 3);
+  	});
+
+  	var lineC = new Line(390, 0, 390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(0 * Math.PI / 3);
+  	});
+
+  	var lineD = new Line(0, 0, 390, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(1 * Math.PI / 3);
+  	});
+
+  	var lineE = new Line(390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), 0, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(1 * Math.PI / 3);
+  	});
+
+  	var lineF = new Line(390, 0, 390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(1 * Math.PI / 3);
+  	});
+
+  	var lineG = new Line(0, 0, 390, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(2 * Math.PI / 3);
+  	});
+
+  	var lineH = new Line(390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), 0, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(2 * Math.PI / 3);
+  	});
+
+  	var lineI = new Line(390, 0, 390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(2 * Math.PI / 3);
+  	});
+
+  	var lineJ = new Line(0, 0, 390, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(3 * Math.PI / 3);
+  	});
+
+  	var lineK = new Line(390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), 0, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(3 * Math.PI / 3);
+  	});
+
+  	var lineL = new Line(390, 0, 390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(3 * Math.PI / 3);
+  	});
+
+  	var lineM = new Line(0, 0, 390, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(4 * Math.PI / 3);
+  	});
+
+  	var lineN = new Line(390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), 0, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(4 * Math.PI / 3);
+  	});
+
+  	var lineO = new Line(390, 0, 390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(4 * Math.PI / 3);
+  	});
+
+  	var lineP = new Line(0, 0, 390, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(5 * Math.PI / 3);
+  	});
+
+  	var lineQ = new Line(390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), 0, 0, tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(5 * Math.PI / 3);
+  	});
+
+  	var lineR = new Line(390, 0, 390 * Math.cos(Math.PI / 3), 390 * Math.sin(Math.PI / 3), tickCount, function() {
+  		context.translate(400, 400);
+  		context.rotate(5 * Math.PI / 3);
+  	});
+
+  	for (var i = 0; i < tickCount; i++) {
+  		context.beginPath();
+  		lineA.moveTo(i);
+  		lineC.lineTo(i);
+  		context.stroke();
+
+  		context.beginPath();
+  		lineC.moveTo(i);
+  		lineB.lineTo(i);
+  		context.stroke();
+
+  		context.beginPath();
+  		lineD.moveTo(i);
+  		lineF.lineTo(i);
+  		context.stroke();
+
+  		context.beginPath();
+  		lineF.moveTo(i);
+  		lineE.lineTo(i);
+  		context.stroke();
+
+  		context.beginPath();
+  		lineG.moveTo(i);
+  		lineI.lineTo(i);
+  		context.stroke();
+
+  		context.beginPath();
+  		lineI.moveTo(i);
+  		lineH.lineTo(i);
+  		context.stroke();
+
+  		context.beginPath();
+  		lineJ.moveTo(i);
+  		lineL.lineTo(i);
+  		context.stroke();
+
+  		context.beginPath();
+  		lineL.moveTo(i);
+  		lineK.lineTo(i);
+  		context.stroke();
+
+  		context.beginPath();
+  		lineM.moveTo(i);
+  		lineO.lineTo(i);
+  		context.stroke();
+
+  		context.beginPath();
+  		lineO.moveTo(i);
+  		lineN.lineTo(i);
+  		context.stroke();
+
+  		context.beginPath();
+  		lineP.moveTo(i);
+  		lineR.lineTo(i);
+  		context.stroke();
+
+  		context.beginPath();
+  		lineR.moveTo(i);
+  		lineQ.lineTo(i);
+  		context.stroke();
+  	}
+  }
+
+  var Line = function(x0, y0, x1, y1, tickCount, transform) {
+  	this.points = [];
+
+  	for (var i = 0; i < tickCount; i++) {
+  		var x = (x0 == x1) ? x0 : x0 + (x1 - x0) * i / (tickCount - 1);
+  		var y = (y0 == y1) ? y0 : y0 + (y1 - y0) * i / (tickCount - 1);
+
+  		this.points.push({x: x, y: y});
+  	}
+
+  	this.transform = transform;
+
+  	this.draw = function() {
+  		context.save();
+  		if (this.transform !== undefined) this.transform();
+  		context.beginPath();
+  		context.moveTo(this.points[0].x, this.points[0].y);
+  		context.lineTo(this.points[this.points.length - 1].x, this.points[this.points.length - 1].y);
+  		context.stroke();
+  		context.restore();
+  	};
+
+  	this.moveTo = function(i) {
+  		context.save();
+  		if (this.transform !== undefined) this.transform();
+  		context.moveTo(this.points[i].x, this.points[i].y);
+  		context.restore();
+  	};
+
+  	this.lineTo = function(i) {
+  		context.save();
+  		if (this.transform !== undefined) this.transform();
+  		context.lineTo(this.points[i].x, this.points[i].y);
+  		context.restore();
+  	};
+  }
+
+  initDrawing();

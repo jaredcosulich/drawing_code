@@ -11,6 +11,9 @@ class ExamplesController < ApplicationController
       'Drawings' => [
         :flowers,
         :transport_vehicle,
+        :curve_stitching_hexagon,
+        :curve_stitching_star,        
+        :curve_stitching_triangle,
         :glass_and_bottle,
         :sunrise_text,
       ],
