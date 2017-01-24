@@ -1,6 +1,6 @@
-#animated_cityscape_stage1.page
+#animated_cityscape_stage2.page
   %h1
-    Stage 1
+    Stage 2
   .description.row.py-3
     .col-xs-12
       .row
@@ -8,14 +8,12 @@
           %h2.py-2
             Overview
           %figure.float-xs-right.px-2
-            = image_tag('lessons/animated_cityscape/stage1/overviewVisual1.png', class: 'img-fluid')
+            = image_tag('lessons/animated_cityscape/stage2/overviewVisual1.png', class: 'img-fluid')
           %p
-            In the Basic Cityscape Challenge, we drew three rows of randomly-generated
-            buildings, creating a 3D effect by drawing the buildings in the back smaller
-            and darker.
-          %p
-            In the first stage of the Animated Cityscape Challenge, we draw the
-            sky behind the buildings, changing the color of the sky to simulate nightfall.
+            In the second stage of the Animated Cityscape Challenge, we draw the
+            buildings in front of the sky. Because we have to redraw the buildings
+            every time the sky is redrawn, we store the data needed to redraw each
+            building in an object and each row of buildings in an array.
 
 
   .example.row.py-3
@@ -23,190 +21,392 @@
       .row
         .col-xs-12
           %h2.py-2
-            Review the Basic Cityscape Challenge
+            Store Data in Objects
           %p
-            Because we are extending the program for the Basic Cityscape Challenge to
-            animate the drawing, it's important to understand how that program works.
+            In this example, we draw three blue squares on top of a yellow background.
           %p
-            We start by drawing a gray rectangle (color <code>'#CCCCCC'</code>) for
-            the ground beneath the buildings. Then, we use the <code>drawBuildingRow()</code>
-            function to draw three rows of buildings.
+            We start by declaring four global variables: <code>counter</code>,
+            <code>squareA</code>, <code>squareB</code>, and <code>squareC</code>.
+            We use <code>counter</code> to keep track of the number of times we have
+            updated the scene and the three square variables to store the data needed
+            to redraw the squares after each update.
           %pre
             %code
               :preserve
-                context.fillStyle = '#CCCCCC';
-                context.fillRect(0, 220, canvas.width, canvas.height - 220);
-                
-                drawBuildingRow(0, 280, 0.6);
-                drawBuildingRow(0, 300, 0.8);
-                drawBuildingRow(0, 320, 1.0);
+                var counter;
+                var squareA, squareB, squareC;
           %p
-            The first row of buildings is positioned at (0, 280) and drawn at 60% scale,
-            the second row of buildings is positioned at (0, 300) and drawn at 80% scale, and
-            the third row of buildings is positioned at (0, 320) and drawn at 100% scale.
+            When the page first loads, the program calls the <code>initScene()</code> function
+            and adds an event listener to the canvas. The event listener automatically calls the
+            <code>updateScene()</code> function whenever a mouse click is detected on the canvas.
+          %pre
+            %code
+              :preserve
+                initScene();
+                canvas.addEventListener('click', updateScene);
           %p
-            Inside the <code>drawBuildingRow()</code> function, we use the <code>scale</code>
-            parameter to calculate the color of the buildings in the row. The smaller the scale,
-            the darker the buildings. Then, we use a while loop to draw buildings the width of the
-            canvas. To draw a building, we randomly generate the number of office units per floor,
-            the number of floors, the type of windows, and the type of roof for the building and
-            pass those values into the <code>drawBuilding()</code> function.
+            Inside the <code>initScene()</code> function, we initialize the four variables
+            and then call the <code>drawScene()</code> function.
+          %pre
+            %code
+              :preserve
+                function initScene() {
+                  counter = 0;
+                  squareA = {x: 200, y:  40, s: 60};
+                  squareB = {x:  80, y: 120, s: 40};
+                  squareC = {x: 240, y: 220, s: 80};
+                  
+                  drawScene();
+                }
           %p
-            The <code>randomInteger()</code> function is used to generate random integers,
-            switch statements inside the <code>drawWindow()</code> and <code>drawRoof()</code>
-            functions are used to draw the four different types of windows and roofs, and
-            nested for loops are used to draw windows in each office unit in each building.
+            The variable <code>squareA</code> is initialized as an object with three
+            properties: <code>x</code>, <code>y</code>, and <code>s</code>. An object is
+            simply a collection of properties, where each property has a name (or key) and
+            a value. In this case, the <code>x</code> property in object <code>squareA</code>
+            is assigned the value <code>200</code>.
           %p
-            Please make sure you fully understand the program in the example below before continuing on in
-            this challenge. If you need help, visit the Basic Cityscape Challenge and its relevant lessons.
-          = render 'lessons/relevant', relevant: [:variables, :functions, :for_loops, :switch_statements, :while_loops, :fill_rect, :fill_style, :random, :scale]
+            Inside the <code>drawScene()</code> function, we draw the yellow background
+            (covering the previous scene) with the frame number and then draw the three
+            squares. We draw each square by passing the object storing its data into the
+            <code>drawSquare()</code> function as a parameter.
+          %pre
+            %code
+              :preserve
+                function drawScene() {
+                  drawBackground();
+                  drawSquare(squareA);
+                  drawSquare(squareB);
+                  drawSquare(squareC);
+                }
+          %p
+            Inside the <code>drawSquare()</code> function, the object passed into the function
+            is stored in the parameter <code>square</code>. We access the values stored in the
+            object's properties using dot notation. For example, to access the value stored in
+            the object's <code>x</code> property, we use <code>square.x</code>.
+          %pre
+            %code
+              :preserve
+                function drawSquare(square) {
+                  context.save();
+                  context.fillStyle = 'RoyalBlue';
+                  context.fillRect(square.x, square.y, square.s, square.s); // Use the data in the object square to draw the square
+                  context.restore();
+                }
+          %p
+            The <code>updateScene()</code> function is called automatically whenever a
+            mouse click is detected on the canvas. Inside the <code>updateScene()</code>
+            function, we increase the value stored in the <code>counter</code> by 1, decrease
+            the values stored in the <code>squareA.x</code> and <code>squareC.y</code>
+            properties by 5, and increase the value stored in the <code>squareB.x</code>
+            property by 5 before redrawing the scene. Because we are drawing the yellow
+            background over the previous scene, the squares look like they are moving.
+          %pre
+            %code
+              :preserve
+                function updateScene() {
+                  counter += 1;
+                  squareA.x -= 5; // This is a shorter way of writing squareA.x = squareA.x - 5
+                  squareB.x += 5;
+                  squareC.y -= 5;
+                  drawScene();
+                }
+          %p
+            Click on the canvas to see the scene update. Change the values stored in the
+            objects to change the size and position of the squares. To learn more about objects,
+            visit the
+            = link_to_lesson('Objects', :objects, nil, class: 'reference-link', data: {slug: :objects})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :objects, :fill_rect, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example1_editor', cols: 12} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_example1_editor'} do
               :preserve
-                var canvas = document.getElementById('animated_cityscape_stage1_example1');
+                var canvas = document.getElementById('animated_cityscape_stage2_example1');
                 var context = canvas.getContext('2d');
                 
-                context.save();
-                context.fillStyle = '#CCCCCC';
-                context.fillRect(0, 220, canvas.width, canvas.height - 220);
+                var counter;
+                var squareA, squareB, squareC;
                 
-                drawBuildingRow(0, 280, 0.6);
-                drawBuildingRow(0, 300, 0.8);
-                drawBuildingRow(0, 320, 1.0);
+                initScene();
+                canvas.addEventListener('click', updateScene);
                 
-                context.restore();
+                function initScene() {
+                  counter = 0;
+                  squareA = {x: 200, y:  40, s: 60};
+                  squareB = {x:  80, y: 120, s: 40};
+                  squareC = {x: 240, y: 220, s: 80};
+                  
+                  drawScene();
+                }
                 
-                function drawBuildingRow(rowX, groundY, scale) {
+                function drawScene() {
+                  drawBackground();
+                  drawSquare(squareA);
+                  drawSquare(squareB);
+                  drawSquare(squareC);
+                }
+                
+                function updateScene() {
+                  counter += 1;
+                  squareA.x -= 5; // This is a shorter way of writing squareA.x = squareA.x - 5
+                  squareB.x += 5;
+                  squareC.y -= 5;
+                  drawScene();
+                }
+                
+                function drawSquare(square) {
                   context.save();
-                  context.translate(rowX, groundY);
-                  context.scale(scale, scale);
-                  
-                  var c = Math.round(153 * scale);
-                  var buildingColor = 'rgb(' + c + ', ' + c + ', ' + c + ')';
-                  var windowColor = 'rgb(102, 102, 102)';
-                  
-                  var x = 0;
-                  while (x < canvas.width / scale) {
-                    var units = randomInteger(4, 10);
-                    var floors = randomInteger(6, 20);
-                    var windowType = randomInteger(0, 3);
-                    var roofType;
-                    
-                    if (units > 8) {
-                			roofType = randomInteger(0, 1);
-                		} else if (units > 6) {
-                			roofType = randomInteger(0, 2);
-                		} else {
-                			roofType = randomInteger(0, 3);
-                		}
-                    
-                    var w = 16 * units + 8;
-                    var h = 16 * floors + 8;
-                    
-                    drawBuilding(x, 0, w, h, units, floors, windowType, roofType, buildingColor, windowColor);
-                    x = x + w + 12;
-                  }
-                  
+                  context.fillStyle = 'RoyalBlue';
+                  context.fillRect(square.x, square.y, square.s, square.s); // Use the data in the object square to draw the square
                   context.restore();
                 }
                 
-                function drawBuilding(leftX, groundY, w, h, units, floors, windowType, roofType, buildingColor, windowColor) {
-                  var x = leftX;
-                  var y = groundY - h;
-                  
+                function drawBackground() {
                   context.save();
-                  context.translate(x, y);
-                  context.fillStyle = buildingColor;
-                  context.fillRect(0, 0, w, h);
-                  drawRoof(w, roofType);
-                  
-                  context.translate(4, 4);
-                  context.fillStyle = windowColor;
-                  
-                  for (var i = 0; i < floors; i = i + 1) {
-                    context.save();
-                    
-                    for (var j = 0; j < units; j = j + 1) {
-                      drawWindow(windowType);
-                      context.translate(16, 0);
-                    }
-                    
-                    context.restore();
-                    context.translate(0, 16);
-                  }
-                  
+                  context.fillStyle = 'Cornsilk';
+                  context.fillRect(0, 0, canvas.width, canvas.height); // Draw a rectangle over the entire canvas
+                  context.fillStyle = '#CCCCCC';
+                  context.font = '48px Arial';
+                  context.fillText('Frame: ' + counter, 10, 48); // Print the number of the frame on the background
                   context.restore();
-                }
-    
-                function drawWindow(windowType) {
-                  context.save();
-                  
-                  switch (windowType) {
-                		case 0:
-                			context.fillRect(4, 2, 8, 10);
-                			break;
-                		
-                		case 1:
-                			context.fillRect(2, 3, 5, 8);
-                			context.fillRect(9, 3, 5, 8);
-                			break;
-                		
-                		case 2:
-                			context.fillRect(0, 3, 16, 8);
-                			break;
-                		
-                		case 3:
-                			context.fillRect(5, 1, 6, 14);
-                			break;
-                	}
-                  
-                  context.restore();
-                }
-                
-                function drawRoof(w, roofType) {
-                  context.save();
-                  
-                  switch(roofType) {
-                		case 0:
-                			// draw nothing
-                			break;
-                		
-                		case 1:
-                			context.fillRect(8, -16, w - 16, 16);
-                			break;
-                		
-                		case 2:
-                			context.fillRect(8, -24, w - 16, 24);
-                			context.fillRect((w - 32) / 2, -48, 32, 24);
-                			context.fillRect((w - 8) / 2, -80, 8, 56);
-                			break;
-                		
-                		case 3:
-                			context.beginPath();
-                			context.moveTo(w / 2, -80);
-                			context.lineTo(w / 2 + 16, -16);
-                			context.lineTo(w / 2 - 16, -16);
-                			context.closePath();
-                			context.fill();
-                			context.fillRect((w - 64) / 2, -16, 64, 16);
-                			break;
-                	}
-                  
-                  context.restore();
-                }
-                
-                function randomInteger(min, max) {
-                  return (min + Math.floor((max - min + 1) * Math.random()));
                 }
 
-            .visual.col-xs-12.pt-2
+            .visual.col-xs-6
               %h5
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#animated_cityscape_stage1_example1
+                %canvas#animated_cityscape_stage2_example1
+
+
+  #challenge1.challenge.row.py-3
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/animated_cityscape/stage2/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Even though we aren't moving the buildings in the Animated Cityscape
+            Challenge, we still need to redraw them every time we redraw the sky
+            because the new sky will cover over everything previously drawn on the
+            canvas. And to redraw the buildings, we need to store the data used to
+            draw each building.
+          %p.pb-1
+            Inside the <code>initScene()</code> function, initialize the three variables,
+            <code>buildingA</code>, <code>buildingB</code>, and <code>buildingC</code>, as
+            objects with the property names and values listed below. Then, draw the scene.
+          %table
+            %tr
+              %td
+                <code>buildingA</code>:
+                %ul
+                  %li
+                    leftX: 6,
+                  %li
+                    groundY: 300,
+                  %li
+                    w: 88,
+                  %li
+                    h: 200,
+                  %li
+                    units: 5,
+                  %li
+                    floors: 12,
+                  %li
+                    windowType: 3,
+                  %li
+                    roofType: 2
+              %td.px-2
+                <code>buildingB</code>:
+                %ul
+                  %li
+                    leftX: 106,
+                  %li
+                    groundY: 300,
+                  %li
+                    w: 168,
+                  %li
+                    h: 136,
+                  %li
+                    units: 10,
+                  %li
+                    floors: 8,
+                  %li
+                    windowType: 2,
+                  %li
+                    roofType: 1
+              %td
+                <code>buildingC</code>:
+                %ul
+                  %li
+                    leftX: 286,
+                  %li
+                    groundY: 300,
+                  %li
+                    w: 72,
+                  %li
+                    h: 248,
+                  %li
+                    units: 4,
+                  %li
+                    floors: 15,
+                  %li
+                    windowType: 0,
+                  %li
+                    roofType: 0
+          %p.pt-1
+            Note how we are declaring <code>buildingA</code>, <code>buildingB</code>, and
+            <code>buildingC</code> as global variables. This is important because, if we
+            declared the three variables inside the <code>initScene()</code> function, they
+            would no longer exist once the function ends. By declaring them globally, they
+            persist and can be accessed from within other functions.
+          %p
+            Inside the <code>drawScene()</code> function, declare and initialize the
+            variables <code>buildingColor</code> and <code>windowColor</code> with the
+            colors <code>'rgb(153, 153, 153)'</code> and <code>'rgb(102, 102, 102)'</code>,
+            respectively. Then, draw the three buildings by passing the object with each
+            building's data into the <code>drawBuilding()</code> function.
+          %p
+            Finally, change the <code>drawBuilding()</code> function's definition so it
+            now accepts just three parameters, where <code>b</code> is the parameter storing
+            the building's data object.
+          %pre
+            %code
+              :preserve
+                function drawBuilding(b, buildingColor, windowColor) {
+                  
+                  // code block
+                  
+                }
+          %p
+            Then, go through the <code>drawBuilding()</code> function and replace any
+            references to deleted parameters with references to the building object's
+            properties. For example, the building's left x-coordinate is now stored in
+            the <code>b.leftX</code> property, not in the <code>leftX</code> parameter,
+            which no longer exists.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :for_loops, :objects, :fill_rect, :fill_style]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('animated_cityscape_stage2_challenge1');
+            var context = canvas.getContext('2d');
+            
+            var buildingA, buildingB, buildingC;
+            
+            initScene();
+            
+            function initScene() {
+              
+              // Initialize the three building variables
+              // Draw the scene
+              
+            }
+            
+            function drawScene() {
+              
+              // Declare and intialize the buildingColor and windowColor variables
+              // Draw the three buildings by passing the data for each building in the drawBuilding() function
+              
+            }
+            
+            function drawBuilding(leftX, groundY, w, h, units, floors, windowType, roofType, buildingColor, windowColor) {
+              var x = leftX;
+              var y = groundY - h;
+              
+              context.save();
+              context.translate(x, y);
+              context.fillStyle = buildingColor;
+              context.fillRect(0, 0, w, h);
+              drawRoof(w, roofType);
+              
+              context.translate(4, 4);
+              context.fillStyle = windowColor;
+              
+              for (var i = 0; i < floors; i = i + 1) {
+                context.save();
+                
+                for (var j = 0; j < units; j = j + 1) {
+                  drawWindow(windowType);
+                  context.translate(16, 0);
+                }
+                
+                context.restore();
+                context.translate(0, 16);
+              }
+              
+              context.restore();
+            }
+
+            function drawWindow(windowType) {
+              context.save();
+              
+              switch (windowType) {
+            		case 0:
+            			context.fillRect(4, 2, 8, 10);
+            			break;
+            		
+            		case 1:
+            			context.fillRect(2, 3, 5, 8);
+            			context.fillRect(9, 3, 5, 8);
+            			break;
+            		
+            		case 2:
+            			context.fillRect(0, 3, 16, 8);
+            			break;
+            		
+            		case 3:
+            			context.fillRect(5, 1, 6, 14);
+            			break;
+            	}
+              
+              context.restore();
+            }
+            
+            function drawRoof(w, roofType) {
+              context.save();
+              
+              switch(roofType) {
+            		case 0:
+            			// draw nothing
+            			break;
+            		
+            		case 1:
+            			context.fillRect(8, -16, w - 16, 16);
+            			break;
+            		
+            		case 2:
+            			context.fillRect(8, -24, w - 16, 24);
+            			context.fillRect((w - 32) / 2, -48, 32, 24);
+            			context.fillRect((w - 8) / 2, -80, 8, 56);
+            			break;
+            		
+            		case 3:
+            			context.beginPath();
+            			context.moveTo(w / 2, -80);
+            			context.lineTo(w / 2 + 16, -16);
+            			context.lineTo(w / 2 - 16, -16);
+            			context.closePath();
+            			context.fill();
+            			context.fillRect((w - 64) / 2, -16, 64, 16);
+            			break;
+            	}
+              
+              context.restore();
+            }
+            
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/animated_cityscape/stage2/challenge1.png')
+            %canvas#animated_cityscape_stage2_challenge1
+          .alert
 
 
   .example.row.py-3
@@ -214,7 +414,7 @@
       .row
         .col-xs-12
           %h2.py-2
-            Draw the Sky Behind the Buildings
+            Store Objects in an Array
           %p
             The sky behind the buildings is not a solid color. During the day, the sky is
             white along the horizon and bluer higher up. At night, the sky is gray along the
@@ -271,9 +471,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_example2_editor'} do
               :preserve
-                var canvas = document.getElementById('animated_cityscape_stage1_example2');
+                var canvas = document.getElementById('animated_cityscape_stage2_example2');
                 var context = canvas.getContext('2d');
                 
                 var gradient = context.createLinearGradient(40, 0, 360, 0);
@@ -290,66 +490,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#animated_cityscape_stage1_example2
-
-
-  #challenge1.challenge.row.py-3
-    .col-xs-12
-      .row.pb-2
-        .col-xs-12
-          %h2.challenge-title.py-2
-            Challenge 1
-          %figure.float-xs-right.px-2
-            = image_tag('lessons/animated_cityscape/stage1/challenge1Visual1.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small What your drawing should look like
-          %p
-            Declare a variable named <code>horizonY</code> and assign it the value
-            <code>canvas.height - 100</code>. This sets the y-coordinate of the horizon
-            100 pixels above the bottom of the canvas.
-          %p
-            Define a function named <code>drawSky()</code>. Inside the function, create
-            a vertical linear gradient so position <code>0</code> is at the horizon and
-            position <code>1</code> is 300 pixels above the horizon. Note that the y-coordinate
-            of position <code>1</code> may be negative and not visible on the canvas.
-          %p
-            Set the color in the gradient at position <code>0</code> to <code>'rgb(255, 85, 85)'</code>,
-            the color at position <code>0.3</code> to <code>'rgb(102, 119, 153)'</code>, and the color at
-            position <code>1</code> to <code>'rgb(68, 85, 119)'</code>.
-          %p
-            Fill a rectangle with the gradient positioned at (0, 0) going down to the horizon and
-            across the width of the canvas.
-          %p
-            Since the <code>drawSky()</code> function is setting the <code>context.fillStyle</code>
-            property, make sure to save and restore the drawing state at the start and end of the function.
-          %p
-            Then, use the <code>drawSky()</code> function to draw the sky. This is approximately how the
-            sky will look at 6:20 pm once the cityscape is animated.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style, :save, :create_linear_gradient]
-
-      .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge1_editor'} do
-          :preserve
-            var canvas = document.getElementById('animated_cityscape_stage1_challenge1');
-            var context = canvas.getContext('2d');
-            
-            // DECLARE AND INITIALIZE THE horizonY VARIABLE HERE
-            
-            // CALL THE drawSky() FUNCTION HERE TO DRAW THE SKY
-            
-            // DEFINE THE drawSky() FUNCTION HERE
-            // INSIDE THE drawSky() FUNCTION, CREATE A VERTICAL LINEAR GRADIENT
-            // FROM THE HORIZON TO A POINT 300 PIXELS ABOVE THE HORIZON.
-            // SET THE COLORS IN THE GRADIENT.
-            // USE THE GRADIENT TO FILL A RECTANGLE POSITIONED AT (0, 0) THAT GOES
-            // DOWN TO THE HORIZON AND ACROSS THE WIDTH OF THE CANVAS.
-            
-        .visual.col-xs-6
-          %h5
-            Canvas
-            %small (your drawing will display here)
-          .canvas
-            %canvas#animated_cityscape_stage1_challenge1
-          .alert
+                %canvas#animated_cityscape_stage2_example2
 
 
   .example.row.py-3
@@ -401,9 +542,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example3_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_example3_editor'} do
               :preserve
-                var canvas = document.getElementById('animated_cityscape_stage1_example3');
+                var canvas = document.getElementById('animated_cityscape_stage2_example3');
                 var context = canvas.getContext('2d');
                 
                 var x, y, h;
@@ -446,7 +587,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#animated_cityscape_stage1_example3
+                %canvas#animated_cityscape_stage2_example3
 
 
   #challenge2.challenge.row.py-3
@@ -456,7 +597,7 @@
           %h2.challenge-title.py-2
             Challenge 2
           %figure.float-xs-right.px-2
-            = image_tag('lessons/animated_cityscape/stage1/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/animated_cityscape/stage2/challenge2Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
             The <code>drawGround()</code> function will draw the rectangle for the
@@ -497,12 +638,12 @@
             above the bottom of the canvas. The program should now draw slices of the ground as it gets darker
             at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
           = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :if_statements, :fill_rect, :fill_style, :save, :translate, :round]
-          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'animated_cityscape_stage1_challenge1_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'animated_cityscape_stage2_challenge1_editor'
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_challenge2_editor'} do
           :preserve
-            var canvas = document.getElementById('animated_cityscape_stage1_challenge2');
+            var canvas = document.getElementById('animated_cityscape_stage2_challenge2');
             var context = canvas.getContext('2d');
             
             var time;
@@ -542,12 +683,16 @@
               
             }
             
+            function randomInteger(min, max) {
+              return (min + Math.floor((max - min + 1) * Math.random()));
+            }
+            
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#animated_cityscape_stage1_challenge2
+            %canvas#animated_cityscape_stage2_challenge2
           .alert
 
 
@@ -558,7 +703,7 @@
           %h2.challenge-title.py-2
             Challenge 3
           %figure.float-xs-right.px-2
-            = image_tag('lessons/animated_cityscape/stage1/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/animated_cityscape/stage2/challenge3Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
             Now we are going to update the <code>drawSky()</code> function so the
@@ -631,12 +776,12 @@
             above the bottom of the canvas. The program should now draw slices of the sky as it gets darker
             at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
           = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :if_statements, :fill_rect, :fill_style, :save, :translate, :create_linear_gradient]
-          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'animated_cityscape_stage1_challenge2_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'animated_cityscape_stage2_challenge2_editor'
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_challenge3_editor'} do
           :preserve
-            var canvas = document.getElementById('animated_cityscape_stage1_challenge3');
+            var canvas = document.getElementById('animated_cityscape_stage2_challenge3');
             var context = canvas.getContext('2d');
             
             var time;
@@ -682,7 +827,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#animated_cityscape_stage1_challenge3
+            %canvas#animated_cityscape_stage2_challenge3
           .alert
 
 
@@ -693,7 +838,7 @@
           %h2.challenge-title.py-2
             Challenge 4
           %figure.float-xs-right.px-2
-            = image_tag('lessons/animated_cityscape/stage1/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/animated_cityscape/stage2/challenge4Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
             To turn the sky along the horizon red as the sun sets, we need to add a
@@ -762,12 +907,12 @@
             = link_to_lesson('createLinearGradient()', :create_linear_gradient, nil, class: 'reference-link', data: {slug: :create_linear_gradient})
             lessons.
           = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :if_statements, :fill_rect, :fill_style, :save, :translate, :create_linear_gradient]
-          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'animated_cityscape_stage1_challenge3_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'animated_cityscape_stage2_challenge3_editor'
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge4_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_challenge4_editor'} do
           :preserve
-            var canvas = document.getElementById('animated_cityscape_stage1_challenge4');
+            var canvas = document.getElementById('animated_cityscape_stage2_challenge4');
             var context = canvas.getContext('2d');
 
             var time;
@@ -816,7 +961,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#animated_cityscape_stage1_challenge4
+            %canvas#animated_cityscape_stage2_challenge4
           .alert
 
 
@@ -839,7 +984,7 @@
           %pre
             %code
               :preserve
-                var canvas = document.getElementById('animated_cityscape_stage1_example4');
+                var canvas = document.getElementById('animated_cityscape_stage2_example4');
                 var context = canvas.getContext('2d');
                 
                 var squareX, squareY;
@@ -914,9 +1059,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example4_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_example4_editor'} do
               :preserve
-                var canvas = document.getElementById('animated_cityscape_stage1_example4');
+                var canvas = document.getElementById('animated_cityscape_stage2_example4');
                 var context = canvas.getContext('2d');
                 
                 var squareX, squareY;
@@ -950,7 +1095,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#animated_cityscape_stage1_example4
+                %canvas#animated_cityscape_stage2_example4
 
 
   #challenge5.challenge.row.py-3
@@ -960,7 +1105,7 @@
           %h2.challenge-title.py-2
             Challenge 5
           %figure.float-xs-right.px-2
-            = image_tag('lessons/animated_cityscape/stage1/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/animated_cityscape/stage2/challenge5Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like at 6:12 pm
           %p
             Write a program that increases the <code>time</code> and redraws the scene
@@ -986,12 +1131,12 @@
             color between 5:00 and 7:00 pm. Once you feel satisfied that the scene is updating
             and drawing correctly, mark the challenge as complete by selecting "Yes, it looks good".
           = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :event_listeners]
-          = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'animated_cityscape_stage1_challenge4_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'animated_cityscape_stage2_challenge4_editor'
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge5_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_challenge5_editor'} do
           :preserve
-            var canvas = document.getElementById('animated_cityscape_stage1_challenge5');
+            var canvas = document.getElementById('animated_cityscape_stage2_challenge5');
             var context = canvas.getContext('2d');
             
             var time;
@@ -1065,7 +1210,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#animated_cityscape_stage1_challenge5
+            %canvas#animated_cityscape_stage2_challenge5
           .alert
 
 
@@ -1080,17 +1225,17 @@
             we are going to use a timer.
           %p
             In this example, we set up a timer to update the scene from the previous
-            example. We start by declaring the global variable <code>interval</code>. Then,
+            example. We start by declaring the global variable <code>timer</code>. Then,
             instead of adding an event listener to the canvas object to detect mouse
             clicks, we use the <code>setInterval()</code> method to create a timer that will
-            automatically call the <code>updateScene()</code> function every 25 milliseconds
-            and we store a reference to the timer in the variable <code>interval</code>.
+            automatically call the <code>updateScene()</code> function every 25 milliseconds.
+            We store a reference to the timer in the variable <code>timer</code>.
           %pre
             %code
               :preserve
-                var interval;
+                var timer;
                 
-                interval = setInterval(updateScene, 25); // Call the updateScene() function every 25 milliseconds
+                timer = setInterval(updateScene, 25); // Call the updateScene() function every 25 milliseconds
           %p
             Again, because we are passing the <code>updateScene()</code> function into
             the <code>setInterval()</code> method as a variable, we don't include
@@ -1106,7 +1251,7 @@
             move as far in each update. Then, if <code>squareX > canvas.width</code>, which
             means the latest square is positioned past the right edge of the canvas, we cancel
             the timer and stop updating the scene by passing the reference stored in the
-            <code>interval</code> variable into the <code>clearInterval()</code> method.
+            <code>timer</code> variable into the <code>clearInterval()</code> method.
           %pre
             %code
               :preserve
@@ -1117,7 +1262,7 @@
                   drawScene();
                   
                   if (squareX > canvas.width) {
-                    clearInterval(interval); // Cancel the timer and stop updating the scene
+                    clearInterval(timer); // Cancel the timer and stop updating the scene
                   }
                 }
           %p
@@ -1149,16 +1294,16 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example5_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_example5_editor'} do
               :preserve
-                var canvas = document.getElementById('animated_cityscape_stage1_example5');
+                var canvas = document.getElementById('animated_cityscape_stage2_example5');
                 var context = canvas.getContext('2d');
                 
-                var interval;
+                var timer;
                 var squareX, squareY;
                 
                 initScene();
-                interval = setInterval(updateScene, 25);
+                timer = setInterval(updateScene, 25);
                 
                 function initScene() {
                   squareX = 10;
@@ -1183,7 +1328,7 @@
                   drawScene();
                   
                   if (squareX > canvas.width) {
-                    clearInterval(interval); // Cancel the timer and stop updating the scene
+                    clearInterval(timer); // Cancel the timer and stop updating the scene
                   }
                 }
 
@@ -1192,7 +1337,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#animated_cityscape_stage1_example5
+                %canvas#animated_cityscape_stage2_example5
 
 
   #challenge6.challenge.row.py-3
@@ -1218,12 +1363,12 @@
             that the scene is updating and drawing correctly, mark the challenge as complete by
             selecting "Yes, it looks good".
           = render 'lessons/relevant', relevant: [:variables, :functions, :set_interval]
-          = render 'lessons/code_preview', stage: 1, challenge: 5, editor_id: 'animated_cityscape_stage1_challenge5_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 5, editor_id: 'animated_cityscape_stage2_challenge5_editor'
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge6_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_challenge6_editor'} do
           :preserve
-            var canvas = document.getElementById('animated_cityscape_stage1_challenge6');
+            var canvas = document.getElementById('animated_cityscape_stage2_challenge6');
             var context = canvas.getContext('2d');
 
             var time;
@@ -1294,7 +1439,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#animated_cityscape_stage1_challenge6
+            %canvas#animated_cityscape_stage2_challenge6
           .alert
 
 
@@ -1344,7 +1489,7 @@
                     squareY = 10; // Reset the square's position
                   }
                   
-                  interval = setInterval(updateScene, 25);
+                  timer = setInterval(updateScene, 25);
                 }
           %p
             Inside the <code>pauseScene()</code> function, we cancel the timer and
@@ -1354,7 +1499,7 @@
             %code
               :preserve
                 function pauseScene() {
-                  clearInterval(interval);
+                  clearInterval(timer);
                   
                   context.save();
                   context.fillStyle = 'Black';
@@ -1395,12 +1540,12 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_example6_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_example6_editor'} do
               :preserve
-                var canvas = document.getElementById('animated_cityscape_stage1_example6');
+                var canvas = document.getElementById('animated_cityscape_stage2_example6');
                 var context = canvas.getContext('2d');
                 
-                var interval;
+                var timer;
                 var squareX, squareY;
                 
                 initScene();
@@ -1441,11 +1586,11 @@
                     squareY = 10; // Reset the square's position
                   }
                   
-                  interval = setInterval(updateScene, 25);
+                  timer = setInterval(updateScene, 25);
                 }
                 
                 function pauseScene() {
-                  clearInterval(interval);
+                  clearInterval(timer);
                   
                   context.save();
                   context.fillStyle = 'Black';
@@ -1460,7 +1605,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#animated_cityscape_stage1_example6
+                %canvas#animated_cityscape_stage2_example6
 
 
   #challenge7.challenge.row.py-3
@@ -1482,12 +1627,12 @@
             satisfied that the scene is playing and pausing correctly, mark the challenge
             as complete by selecting "Yes, it looks good".
           = render 'lessons/relevant', relevant: [:variables, :functions, :event_listeners, :set_interval]
-          = render 'lessons/code_preview', stage: 1, challenge: 6, editor_id: 'animated_cityscape_stage1_challenge6_editor'
+          = render 'lessons/code_preview', stage: 1, challenge: 6, editor_id: 'animated_cityscape_stage2_challenge6_editor'
 
       .row.py-1
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage1_challenge7_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'animated_cityscape_stage2_challenge7_editor'} do
           :preserve
-            var canvas = document.getElementById('animated_cityscape_stage1_challenge7');
+            var canvas = document.getElementById('animated_cityscape_stage2_challenge7');
             var context = canvas.getContext('2d');
 
             // Copy the program from Challenge 6 here
@@ -1515,5 +1660,5 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#animated_cityscape_stage1_challenge7
+            %canvas#animated_cityscape_stage2_challenge7
           .alert

@@ -23,7 +23,9 @@ class ApplicationController < ActionController::Base
       switch_statements: {count: 4, method: 'Switch Statements'},
       variables: {count: 5, method: 'Variables'},
       while_loops: {count: 3, method: 'While Loops'},
-      if_statements: {count: 3, method: 'If Statements'}
+      if_statements: {count: 3, method: 'If Statements'},
+      objects: {count: 3, method: 'Objects'},
+      arrays: {count: 3, method: 'Arrays'}
     }
 
     @reference = {
@@ -166,7 +168,9 @@ class ApplicationController < ActionController::Base
           :switch_statements,
           :while_loops,
           :if_statements,
-          :event_listeners
+          :event_listeners,
+          :objects,
+          :arrays
         ]
       }
     ]
