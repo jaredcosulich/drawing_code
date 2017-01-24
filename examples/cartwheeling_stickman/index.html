@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<title>Drawing Code</title>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="FuA1doSrQ6aC3O5t3bFDy/U4WWqMCjYnpMtv7kT9iQ8z+///ZC3KVjhgB09r7bTl/CMzh2CL40D1B/xegw6icQ==" />
+<link rel="stylesheet" media="all" href="../../assets/application.self-2cad20131f1319ea18e26fad11198270aac15eb89c6f9a86b1b8f3f86042f0f5-body=1.css" data-turbolinks-track="reload" />
+<script src="../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/ace/ace.self-0acb0427eef086a17859bfe56ecfaf24bc47c928ad7db87d5ec5bf235e40cb40.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/code_preview.self-b37269bda74e81e3e6e832ad40469072b79b5b1d3a48a2e91986fd44549f82c0.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/drawings.self-1119b89f5468a45fd5e064d9ba68962f14b5248b9ff1a6b33b2307875e470686.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/examples.self-62f6af2ec5a00cd81eb1292963de6ac7a2146c48d0d3cba6abe1adc998cae145.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/init.self-fef4ca73cdd5fc98231ba13aa0c4b3f7a626e61c3afedb604da73204cdfb80bc.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/jasmine_examples/Player.self-df86cadc05ae752e78b03dabdf6332dfdb2fb5016d4cf4572c81e57779cc62c4.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lesson.self-4c007310fc5244946716688a8afc18ef0b6e54f4cfc18f8aff6b18ab0e203889.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/animated_cityscape/stage1.self-80e467064710da3b6cd9a06f0893672dbc339fa3ce3fbda6993898f97d144340.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/animated_cityscape/stage2.self-4addabe9a70f069b9fb65a754fead73b51f367e2f14c747bb63ca88a4d5b656b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/arrays.self-6668c327ba2e7d5bcf91328a1b2dad1acf19568b060719f2428daab71e3d722a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/basic_cityscape/stage1.self-af3dd34f4f344c2e4c6fd02ae6fcf3a3ab4cd43a8d72b9e10ac7e857ec7e3321.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/basic_cityscape/stage2.self-225920e2665631ee62b7fbe95291c6ac9e1c62142a2bc469a623623a6c18a705.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/basic_cityscape/stage3.self-d849334bedcf13dec8fb3da9f57078b783809e1a25dfc733da271108516fb213.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/basic_cityscape/stage4.self-566ff4fe09aeeee06c9bfca2d5a81fc52bad7f964d150d6025e854e6a9a8c2de.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/clearRect.self-9e82ca8aa93793f04e73caa7f25eaf5e8c815cbe718ac5f4747de25ef19efce9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/coordinates.self-4821f9b9bad6785349895eef0fd2998882879f8d57aff2f232eb8b4d961203f1.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/create_linear_gradient.self-ab2b095d11ee8db1ddc55bb8a6d8ddb228a26f658da8dd84b46aefc823d3dd84.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/fill_rect.self-4bb525e22a290e2ae4aa8446082bdcd7168ea5c515f27a3b3b8b6d439760ea8a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/fill_style.self-6d153ccc75d0aa54db66acd06e950248f8cabe7184d1789400272825d0648764.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/flappy_square/stage1.self-5e1826d318dd1ee89e345706be1d913c771654b48f9f6eb6ea15a2eaa7890042.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/flappy_square/stage2.self-8bcd55189db178b1c0849424b250e321a17b91ce50465449b4ca8f676123654d.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/flappy_square/stage3.self-cb39fe3b38a5ae28456afbcbe4c17c1b40b1fdeb13b925d136a43609a02907d3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/flappy_square/stage4.self-17d7302a880ad6257214c9cb8ead56582ece4727ecde96454c320b23f138d16e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/for_loops.self-6ea947c621baba5fe10d587860ab777038544953934ba8d15ccea3fff8128ea2.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/functions.self-d002fbef8abc3e970526900bc8987e0e6b43e4caedda60e4ea2318eae2cc0330.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/granular_basic_cityscape/stage1.self-9a6bb1b4e3de5f46da1e072c0fa52d0391b4f64454b97d5b34b6ec01e46dfb32.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/granular_basic_cityscape/stage2.self-274b9a3782e74ccca603cacdcfdc7de6a30a0a3ab57f9a6f1d25b7781e711f99.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/granular_basic_cityscape/stage3.self-e2064f6932bc938d199b51dc1ba885fc1f3b2913935b7bdb8203011970326dbf.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/granular_basic_cityscape/stage4.self-611052ea22dac28d9a24fc6ecb7c680cd07e073d394dc8a34237a2b674d846ad.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/if_statements.self-101ecc2cff3aa907c15c9f716abadc39aecfb0d8ede7e9f6ce462da649f1294b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/line_to.self-65410ae951aab7cdda49956ec4aa794d97db0360507ea427d9e41ef840d88d93.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/objects.self-cf5de257b5741f14d31d462d8f3634e6965f23199795b5c44e433ded6515b856.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/random.self-e3526158091bc0c29fb3eaecbfa5bd813ee77bf67b2449758af5a4608bd8397b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/round.self-8f4f7fa74c9157dc1707d118675f7e35d4621225571a950953278131b01a5022.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/save.self-ba90c232d56f796645e264833860b2cbcb639bb0e37772b06ea84198141d8bec.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/scale.self-8bedfd1625ced565d0fd9cdc69c9693cd07a039860dbee59df8fc4eb524b0d70.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/switch_statements.self-9fdab32aed464bc617220d4c4fbce43b07887fe98eca5de2828efb6e05c74d5c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/translate.self-16962e3a7636c88e58d6a2bf9f63a8e5c65302badec269e70a30a97bfbc4c8ad.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/variables.self-4562a8743966906ee7fb58792fd51e5aac5203a5f64b393175caa98ba33ddedc.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lessons/while_loops.self-d6177003c6f9f97f79cb8c63956ace41e225e85175095da98c102ebd5432f7e3.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lib/app/canvas.self-429f6c3eb7215ea53ffe08598331778858aa202b6c9cdf18775ee1623316198a.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lib/app/editor.self-c5417661c33ecaa56f9ea9773ce3831cbed4d2ad3605b653ec7ec7659a51cabc.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lib/app/files.self-16fff0bc3c9a315d22413e3b6a090fb8ef8f5f1257b42dade438f57a0de1f134.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lib/app/progress.self-85855a4b2ffe2ff58692f669b689c7ad8db3cee30eb947e32791e81148164b36.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lib/test/code.self-186d38d443a8bc51bbeec7159887e3781eaad676a86b9d159eca7ec40e21f7ba.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lib/test/image_comparison.self-83be79c1bfdac13ff2c69e6916a326f2698035d7381c28f12e44637de7618bac.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/lib/test/point.self-e1435fcb5c66e2107d91d34c16e06e6c0dd8d06286396d3d5b3b05c22989d9b2.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/navigation.self-3abb68970f3392649f6ee452427597fc92e324a7be21f97b6501e5a2ec47609e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/referenceModal.self-4ba25626378a146e8d2a7ae7edd72600ddef60371b98f42b0c3555b56cd02ff9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
+</head>
+<body>
+<nav class='navbar navbar-dark navbar-fixed-top bg-inverse'>
+<button aria-controls='navbar' aria-expanded='false' aria-label='Toggle navigation' class='navbar-toggler hidden-sm-up' data-target='#navbar' data-toggle='collapse' type='button'></button>
+<a class='navbar-brand' href='../../index.html'>
+Drawing In Code:
+<small>An exploration of artistic observation and computational thinking</small>
+</a>
+</nav>
+
+<div class='container-fluid'>
+<div class='row'>
+<div class='col-md-3 col-lg-2 sidebar'>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class="section_link" href="../../index.html">Home</a>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='drawings' href='#'>
+Your Drawings
+</a>
+<ul class='collapse nav nav-sidebar' id='drawings'>
+<li>
+<a href="../../drawings/index.html">Create A Drawing</a>
+</li>
+<li class='section drawings-list small mt-1 hidden-xs-up'>
+<strong>My Drawings</strong>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class="section_link" href="../index.html">Gallery</a>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='reference' href='#'>
+Reference
+</a>
+<ul class='collapse nav nav-sidebar' id='reference'>
+<li class='section mt-1'>
+<strong>Context2D</strong>
+</li>
+<li>
+<a href="../../lessons/reference/clear_rect/index.html">clearRect()</a>
+<span class='tag tag-default'>
+<small class='clear_rect'>0 / 2</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-clear_rect'>
+<div class='title'>context.clearRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.clearRect(x, y, width, height) will clear a rectangle starting
+at (x, y) and clearing to the right width and down height.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = '#FF0000';&#x000A;context.fillRect(0, 0, canvas.width, canvas.height);&#x000A;&#x000A;context.clearRect(40, 20, 20, 100);&#x000A;context.clearRect(60, 60, 20, 20);&#x000A;context.clearRect(80, 20, 20, 100);&#x000A;&#x000A;context.clearRect(120, 20, 60, 20);&#x000A;context.clearRect(140, 40, 20, 60);&#x000A;context.clearRect(120, 100, 60, 20);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/clear_rect/reference-70cf88df0b9a8db2c33a8048af8493be9efdca18dd8ed4b2756cb0de8d8993af.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/reference/fill_rect/index.html">fillRect()</a>
+<span class='tag tag-default'>
+<small class='fill_rect'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_rect'>
+<div class='title'>context.fillRect()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillRect(x, y, width, height) will draw a rectangle starting
+at (x, y) and filling the area "width" to the right and "height" down.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillRect(50, 50, 300, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/fill_rect/reference-ec68654dd34b051ccadd579a7b7b065ab4fa1eff1991e3d8df56cf72be3dee37.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/reference/fill_style/index.html">fillStyle</a>
+<span class='tag tag-default'>
+<small class='fill_style'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-fill_style'>
+<div class='title'>context.fillStyle</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.fillStyle will set the color for all future fills such as
+context.fillRect(). It's important to note theat context.fillStyle
+is not a method, it is an attribute. You set it like so:
+</p>
+<pre class='mb-2'><code>context.fillStyle = 'red';&#x000A;</code></pre>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.fillStyle = 'rgb(0,255,0)';&#x000A;context.fillRect(50, 50, 100, 200);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/fill_style/reference-8b359c7e565a86e657117d488129208cb37d2b93ac988ee482ddaf063385e12e.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/reference/line_to/index.html">lineTo()</a>
+<span class='tag tag-default'>
+<small class='line_to'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-line_to'>
+<div class='title'>context.lineTo()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.lineTo(x, y) creates a path from the current point - default (0,0) -
+to the point (x, y). In order to see the line you must call context.stroke().
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>context.beginPath();&#x000A;context.moveTo(50, 50);&#x000A;context.lineTo(100,100);&#x000A;context.lineTo(150, 50);&#x000A;context.lineTo(200, 100);&#x000A;context.stroke();&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/line_to/reference-2c3b4d87c54a374ee06ac132f850d07869ed961fac25769a9e1309faf9709371.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/reference/save/index.html">save() / restore()</a>
+<span class='tag tag-default'>
+<small class='save'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-save'>
+<div class='title'>context.save()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.save() saves all of the properties of the context. Then, when you call
+context.restore() it will reset all changes to the context you've made.
+</p>
+<p>
+This code will produce the image below (note how the second rectangle is black
+and closer to the original origin despite calling translate and setting the
+fillStyle earlier):
+</p>
+<pre class='mb-2'><code>context.save();&#x000A;context.translate(100,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;context.restore();&#x000A;&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/save/reference-cfdb7b48454c0b82fb5105cf7a1228776bbee579585d77bf2b7cdeab9f8eb32a.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/reference/scale/index.html">scale()</a>
+<span class='tag tag-default'>
+<small class='scale'>0 / 7</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-scale'>
+<div class='title'>context.scale()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.scale(percentX, percentY) scales the x and y coordinates of the context, making drawings
+larger or smaller.
+</p>
+<p>
+This code will produce the image below (note that all rectangles are defined to be the same size
+in the code are drawn in different sizes due to the scale of the context):
+</p>
+<pre class='mb-2'><code>context.fillRect(25,25,25,25);&#x000A;context.scale(2, 1);&#x000A;context.fillRect(75,25,25,25);&#x000A;context.scale(0.5, 1);&#x000A;context.fillRect(150,25,25,25);&#x000A;context.scale(2, 2);&#x000A;context.fillRect(300,25,25,25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/scale/reference-0569c769850c52c53953d385626946099b407d1037f93af347311149e3a2fec6.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/reference/translate/index.html">translate()</a>
+<span class='tag tag-default'>
+<small class='translate'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-translate'>
+<div class='title'>context.translate()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+context.translate(x, y) shifts the origin of the context (where the (0,0) point is)
+right by x and down by y. This allows you to draw execute multiple commands in a specific
+area of the context more easily.
+</p>
+<p>
+This code will produce the image below (note how the fillRect commands are
+relative to the translation point (100,100)):
+</p>
+<pre class='mb-2'><code>context.translate(50,50);&#x000A;context.fillStyle = 'red';&#x000A;context.fillRect(0, 0, 100, 100);&#x000A;context.fillStyle = 'green';&#x000A;context.fillRect(10, 10, 25, 25);&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/translate/reference-19fc53169ce0da0d057fb00b05eecfb3fc88513d1fa46cf4aceaa8fa19f51c26.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li class='section mt-1'>
+<strong>Math</strong>
+</li>
+<li>
+<a href="../../lessons/reference/round/index.html">round() / floor() / ceil()</a>
+<span class='tag tag-default'>
+<small class='round'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-round'>
+<div class='title'>Math.round() / Math.floor() / Math.ceil()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.round(), Math.floor() and Math.ceil() will round a number to an integer.
+Math.floor() will always round down while Math.ceil() will always round up.
+Math.round() will round to the closest integer, either up or down.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/floor/visual1-9edc722b188f28c702178c13d60cbec037d2e4159d2b7b5f7782a0be2dd5f653.png" alt="Visual1" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/reference/random/index.html">random()</a>
+<span class='tag tag-default'>
+<small class='random'>0 / 4</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-random'>
+<div class='title'>Math.random()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Math.random() will produce a random decimal betweek 0 and 1. Calling it many
+times will produce a different random number each time.
+</p>
+<p>
+Often you will multiple Math.random() by another number to get a random
+integer larger than 1. You may also call Math.floor() or Math.ceil() on the result
+to get an rounded integer.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/random/reference-d1ee7adb1a0544e928f64c175595c9f081740954db0ae3f889f0627b4034c642.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+<li class='section'>
+<a class='section_link' data-section='concepts' href='#'>
+Concepts
+</a>
+<ul class='collapse nav nav-sidebar' id='concepts'>
+<li>
+<a href="../../lessons/concepts/variables/index.html">Variables</a>
+<span class='tag tag-default'>
+<small class='variables'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-variables'>
+<div class='title'>Variables</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+A variable allows you to store information to use or change later.
+</p>
+</div>
+<div class='offset-xs-1 col-xs-10'>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/variables/reference-b8e07ae4cdc5e13b2ee681381d7fa203f8442ff2e8abeb1cf4012cfb427439db.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/concepts/for_loops/index.html">For Loops</a>
+<span class='tag tag-default'>
+<small class='for_loops'>0 / 6</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-for_loops'>
+<div class='title'>For Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+For-loops allow you to repeat code over and over again, potentially
+adjusting the code a little bit each time.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>for (var i=1; i<10; ++i) {&#x000A;  context.fillRect(10 * i, 75 - (5 * i), 10 * i, 10 * i);&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/for_loops/reference-ab4edc41708c315c5bc65d0ca07c1d49061a8185eb1420dbb6a056fa1be194bd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/concepts/while_loops/index.html">While Loops</a>
+<span class='tag tag-default'>
+<small class='while_loops'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-while_loops'>
+<div class='title'>While Loops</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+While-loops allow you to repeat code over and over again until a condition is met.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>var i = 10;&#x000A;while (i < 200) {&#x000A;  context.fillRect(5, 5, i, 50);&#x000A;  i += 10;&#x000A;}&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/while_loops/reference-b71bb24ae903b89143b68f3a561a455d71ca8c08674b34a2d9ffbde1753fc005.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/concepts/coordinates/index.html">Coordinates</a>
+<span class='tag tag-default'>
+<small class='coordinates'>0 / 3</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-coordinates'>
+<div class='title'>The Coordinate System</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+The coordinate system consists of X and Y values starting at (0, 0) in the upper left corner.
+</p>
+<p>
+As you move down the canvas Y gets larger. As you move right on the canvas X gets larger.
+</p>
+<p>
+So the point (100, 50) means you move right 100 and down 50.
+</p>
+<p class='text-xs-center'>
+<img class="img-fluid" src="../../assets/lessons/coordinates/reference-1875ea0cb51a1c7ed92a016a2256ba53d9b3f7820a9feaa679521c14af4e7acd.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/concepts/functions/index.html">Functions</a>
+<span class='tag tag-default'>
+<small class='functions'>0 / 5</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-functions'>
+<div class='title'>Functions</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Functions allow you to create chunks of code that can be called with
+different parameters.
+</p>
+<p>
+The following code will produce the picture below:
+</p>
+<pre class='mb-2'><code>function fillColorRect(x, y, w, h, color) {&#x000A;  context.save();&#x000A;  context.fillStyle = color;&#x000A;  context.fillRect(x, y, w, h);&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;fillColorRect(50, 50, 50, 50, 'red');&#x000A;fillColorRect(150, 50, 50, 50, 'blue');&#x000A;fillColorRect(250, 50, 50, 50, 'green');&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/functions/reference-2d2a07b0286e84d953685386201fe7e0bc20198460907e83c7895681f6b37a45.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/concepts/switch_statements/index.html">Switch Statements</a>
+<span class='tag tag-default'>
+<small class='switch_statements'>0 / 4</small>
+</span>
+<div class='reference-modal-content' id='reference-modal-switch_statements'>
+<div class='title'>Switch Statements</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Switch statements allow you to perform different code depending on
+the value of a variable.
+</p>
+<p>
+The following code will produce the picture below (the switch statement
+only performs the code inside of case 2 because "i" is set to 2):
+</p>
+<pre class='mb-2'><code>var i = 2;&#x000A;switch (i) {&#x000A;  case 1:&#x000A;    context.fillStyle = 'red';&#x000A;    break;&#x000A;  case 2:&#x000A;    context.fillStyle = 'yellow';&#x000A;    break;&#x000A;  case 3:&#x000A;    context.fillStyle = 'blue';&#x000A;    break;&#x000A;}&#x000A;context.fillRect(50, 50, 100, 50);&#x000A;&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/switch_statements/reference-3ab4709f6beedfca8a197ba64c75c9604abf7ccdb78c9adc16cf035c60914e8b.png" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/concepts/set_interval/index.html">setInterval()</a>
+<div class='reference-modal-content' id='reference-modal-set_interval'>
+<div class='title'>setInterval()</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+setInterval() allows you to execute code at specified intervals. It
+is frequently used to create animations.
+</p>
+<p>This code will produce the image below:</p>
+<pre class='mb-2'><code>var index = 0;&#x000A;function count() {&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText(index, canvas.width / 2, canvas.height / 2);&#x000A;}&#x000A;setInterval(count, 1000)&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/set_interval/reference-a47ff17199d8182591ccb0d45fa57147ee1136677cff7955671c6a01337479fa.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+<li>
+<a href="../../lessons/concepts/event_listeners/index.html">Event Listeners</a>
+<div class='reference-modal-content' id='reference-modal-event_listeners'>
+<div class='title'>Event Listeners</div>
+<div class='content'>
+<div class='row'>
+<div class='col-xs-12'>
+<p>
+Event listeners allow you to "listen" for an event, such as a click, on an element
+in your html.
+</p>
+<p>
+A full list of events can be found here:
+<a target="_blank" href="https://www.tutorialspoint.com/html5/html5_events.htm">HTML5 Events</a>
+</p>
+<p>This code will produce the image below (if you were to click and draw the letters on the canvas):</p>
+<pre class='mb-2'><code>canvas.addEventListener('mousemove', function(e) {&#x000A;  if (e.buttons === 0) return;&#x000A;  context.fillRect(e.layerX - 3, e.layerY - 3, 7, 7);&#x000A;});&#x000A;</code></pre>
+<p class='text-xs-center'>
+<img class="img-fluid canvas-example" src="../../assets/lessons/event_listeners/reference-e166d58e874cfbbeb51fb29e622c9bf89d5c7a4aec6319d3953c94db43af1b0c.gif" alt="Reference" />
+</p>
+</div>
+</div>
+</div>
+
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='nav nav-sidebar'>
+</ul>
+<ul class='nav nav-sidebar hidden-xs-up'>
+<li class='section'>
+<a class='section_link' data-section='experimental' href='#'>
+All
+</a>
+</li>
+<ul class='nav nav-sidebar'>
+<li class='section small'>
+<strong>Active</strong>
+<li class='small '>
+<a href="../../lessons/basic_cityscape/stage1/index.html">Basic Cityscape</a>
+</li>
+</li>
+<li class='section small mt-2'>
+<strong>Experimental</strong>
+<li class='small '>
+<a href="../../lessons/snake_game/stage1/index.html">Snake Game</a>
+</li>
+<li class='small '>
+<a href="../../lessons/flappy_square/stage1/index.html">Flappy Square</a>
+</li>
+<li class='small '>
+<a href="../../lessons/flappy_birds/stage1/index.html">Flappy Birds</a>
+</li>
+<li class='small '>
+<a href="../../lessons/granular_basic_cityscape/stage1/index.html">Basic Cityscape</a>
+</li>
+<li class='small '>
+<a href="../../lessons/animated_cityscape/stage1/index.html">Animated Cityscape</a>
+</li>
+</li>
+</ul>
+</ul>
+
+</div>
+<div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
+<div id='example-drawing'>
+<div class='title'>
+Cartwheeling Stickman
+</div>
+<div class='description'>
+A stickman cartwheeling through a field of flowers. Somewhat rough code, but good demonstration
+of artistic observations animated.
+</div>
+
+<div class='simple row pb-3 pt-2'>
+<div class='col-xs-12'>
+<div class='freeform'>
+<div class='row pb-3'>
+<div class='visual col-xs-12'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='example_drawings_cartwheeling_stickman_canvas'></canvas>
+</div>
+</div>
+</div>
+<div class='row py-1'>
+<div class='code-editor col-xs-12' data-files='1'>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='my_drawingscartwheeling_stickman_editor'>var canvas = document.getElementById('my_drawings_canvas');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var xA, yA, xB, yB, xC, yC, xD, yD, xE, yE, stickmanX;&#x000A;var stickmanData;&#x000A;var deltaX, deltaY, horizon, scale;&#x000A;var yPetal, rPetal, petalColor, rCenter, centerColor, flowerCount;&#x000A;var cloudX, h, w, r1, r2, r3, r4;&#x000A;var frame, bFrame, cFrame, dFrame, eFrame, timerInterval, timer;&#x000A;var backgroundCanvas;&#x000A;&#x000A;function initFieldCanvas() {&#x000A;	deltaX = 150;&#x000A;	deltaY = 240;&#x000A;	horizon = 210;&#x000A;	yPetal = 40;&#x000A;	rPetal = 24;&#x000A;	petalColor = "rgba(255, 153, 51, 1)";&#x000A;	rCenter = 24;&#x000A;	centerColor = "rgba(255, 255, 51, 1)";&#x000A;	cloudX = -150;&#x000A;	newCloud = false;&#x000A;	stickmanX = -150;&#x000A;&#x000A;	initBackground();&#x000A;	initCloud();&#x000A;	initStickmanData();&#x000A;&#x000A;	frame = 0;&#x000A;	timerInterval = 50;&#x000A;	timer = setInterval(animatePage, timerInterval);&#x000A;}&#x000A;&#x000A;function initBackground() {&#x000A;  backgroundCanvas = document.createElement('CANVAS');&#x000A;  backgroundCanvas.width = canvas.width;&#x000A;  backgroundCanvas.height = canvas.height;&#x000A;  var backgroundContext = backgroundCanvas.getContext("2d");&#x000A;&#x000A;	drawBackground(backgroundContext);&#x000A;	backgroundContext.translate(0, horizon);&#x000A;	drawFlowerField(backgroundContext);&#x000A;}&#x000A;&#x000A;function initCloud() {&#x000A;	h = 80;&#x000A;	w = Math.round(h * 0.5 * (3 + Math.random()));&#x000A;	r1 = Math.round(h * 0.25 * (2 + Math.random()));&#x000A;	r2 = Math.round(h * 0.25 * (2 + Math.random()));&#x000A;	r3 = Math.round(h * 0.25 * (2 + Math.random()));&#x000A;	r4 = Math.round(h * 0.25 * (2 + Math.random()));&#x000A;	cloudColor = "rgba(255, 255, 255, 1)";&#x000A;}&#x000A;&#x000A;function initStickmanData() {&#x000A;	var a, b, c, d, e;&#x000A;&#x000A;	xA = 110;&#x000A;	yA = 170;&#x000A;	xB = 160;&#x000A;	yB = 180;&#x000A;	xC = 360;&#x000A;	yC = 160;&#x000A;	xD = 560;&#x000A;	yD = 180;&#x000A;	xE = 610;&#x000A;	yE = 170;&#x000A;&#x000A;	bFrame = 10;&#x000A;	cFrame = 25;&#x000A;	dFrame = 40;&#x000A;	eFrame = 50;&#x000A;&#x000A;	stickmanData = [&#x000A;		{a: 0, b: 50, c: 180, d: 310, e: 360, ab: 0, bc: 0, cd: 0, de: 0},&#x000A;		{a: 120, b: 130, c: 140, d: 80, e: 120, ab: 0, bc: 0, cd: 0, de: 0},&#x000A;		{a: -120, b: -80, c: -140, d: -130, e: -120, ab: 0, bc: 0, cd: 0, de: 0},&#x000A;		{a: 0, b: 30, c: 0, d: 0, e: 0, ab: 0, bc: 0, cd: 0, de: 0},&#x000A;		{a: 0, b: 0, c: 0, d: -30, e: 0, ab: 0, bc: 0, cd: 0, de: 0},&#x000A;		{a: 30, b: 10, c: 60, d: 90, e: 30, ab: 0, bc: 0, cd: 0, de: 0},&#x000A;		{a: -30, b: -90, c: -60, d: -10, e: -30, ab: 0, bc: 0, cd: 0, de: 0},&#x000A;		{a: 0, b: 0, c: 0, d: -80, e: 0, ab: 0, bc: 0, cd: 0, de: 0},&#x000A;		{a: 0, b: 80, c: 0, d: 0, e: 0, ab: 0, bc: 0, cd: 0, de: 0}&#x000A;	];&#x000A;&#x000A;	for (var i = 0; i < stickmanData.length; i++) {&#x000A;		stickmanData[i].ab = (stickmanData[i].b - stickmanData[i].a) / bFrame;&#x000A;		stickmanData[i].bc = (stickmanData[i].c - stickmanData[i].b) / (cFrame - bFrame);&#x000A;		stickmanData[i].cd = (stickmanData[i].d - stickmanData[i].c) / (dFrame - cFrame);&#x000A;		stickmanData[i].de = (stickmanData[i].e - stickmanData[i].d) / (eFrame - dFrame);&#x000A;	}&#x000A;}&#x000A;&#x000A;function animatePage() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  context.drawImage(backgroundCanvas, 0, 0);&#x000A;	animateCloud();&#x000A;	animateStickman();&#x000A;&#x000A;	if (timer != null) {&#x000A;		frame += 2;&#x000A;		if (frame == eFrame) stickmanX += 500;&#x000A;		if (stickmanX >= canvas.width * 2) stickmanX -= Math.floor(canvas.width * 3);&#x000A;		frame = frame % eFrame;&#x000A;&#x000A;	}&#x000A;}&#x000A;&#x000A;function animateStickman() {&#x000A;	var i, x, y;&#x000A;	var stickmanPose = new Array();&#x000A;&#x000A;	if (frame <= bFrame) {&#x000A;		for (i = 0; i < stickmanData.length; i++) {&#x000A;			x = xA + (xB - xA) * frame / bFrame;&#x000A;			y = yA + (yB - yA) * frame / bFrame;&#x000A;			stickmanPose[i] = stickmanData[i].a + stickmanData[i].ab * frame;&#x000A;		}&#x000A;	} else if (frame <= cFrame) {&#x000A;		for (i = 0; i < stickmanData.length; i++) {&#x000A;			x = xB + (xC - xB) * (frame - bFrame) / (cFrame - bFrame);&#x000A;			y = yB + (yC - yB) * (frame - bFrame) / (cFrame - bFrame);&#x000A;			stickmanPose[i] = stickmanData[i].b + stickmanData[i].bc * (frame - bFrame);&#x000A;		}&#x000A;	} else if (frame <= dFrame) {&#x000A;		for (i = 0; i < stickmanData.length; i++) {&#x000A;			x = xC + (xD - xC) * (frame - cFrame) / (dFrame - cFrame);&#x000A;			y = yC + (yD - yC) * (frame - cFrame) / (dFrame - cFrame);&#x000A;			stickmanPose[i] = stickmanData[i].c + stickmanData[i].cd * (frame - cFrame);&#x000A;		}&#x000A;	} else if (frame <= eFrame) {&#x000A;		for (i = 0; i < stickmanData.length; i++) {&#x000A;			x = xD + (xE - xD) * (frame - dFrame) / (eFrame - dFrame);&#x000A;			y = yD + (yE - yD) * (frame - dFrame) / (eFrame - dFrame);&#x000A;			stickmanPose[i] = stickmanData[i].d + stickmanData[i].de * (frame - dFrame);&#x000A;		}&#x000A;	}&#x000A;&#x000A;	x = x + stickmanX;&#x000A;&#x000A;	context.save();&#x000A;	context.scale(0.5, 0.5);&#x000A;	context.translate(x, y + 300);&#x000A;	context.lineWidth = 4;&#x000A;	drawStickman(stickmanPose);&#x000A;	context.restore();&#x000A;}&#x000A;&#x000A;function animateCloud() {&#x000A;	context.save();&#x000A;&#x000A;	context.globalAlpha = 0.9;&#x000A;	context.restore();&#x000A;	drawCloud();&#x000A;	cloudX = cloudX + 4;&#x000A;&#x000A;	if (cloudX >= canvas.width) {&#x000A;	  initCloud();&#x000A;		cloudX = -270;&#x000A;	}&#x000A;}&#x000A;&#x000A;function drawStickman(pose) {&#x000A;	var stickWidth = 2;&#x000A;	var stickmanColor = "rgba(0, 0, 0, 1)";&#x000A;	var x = 160;&#x000A;	var y = 160;&#x000A;	var torsoLength = 100;&#x000A;	var headRadius = 30;&#x000A;	var upperArmLength = 60;&#x000A;	var lowerArmLength = 50;&#x000A;	var upperLegLength = 80;&#x000A;	var lowerLegLength = 60;&#x000A;&#x000A;	var torsoAngle = pose[0] * Math.PI / 180;&#x000A;	var rightUpperArmAngle = pose[1] * Math.PI / 180;&#x000A;	var leftUpperArmAngle = pose[2] * Math.PI / 180;&#x000A;	var rightLowerArmAngle = pose[3] * Math.PI / 180;&#x000A;	var leftLowerArmAngle = pose[4] * Math.PI / 180;&#x000A;	var rightUpperLegAngle = pose[5] * Math.PI / 180;&#x000A;	var leftUpperLegAngle = pose[6] * Math.PI / 180;&#x000A;	var rightLowerLegAngle = pose[7] * Math.PI / 180;&#x000A;	var leftLowerLegAngle = pose[8] * Math.PI / 180;&#x000A;&#x000A;	context.save();&#x000A;&#x000A;	//context.lineWidth = stickWidth;&#x000A;	context.strokeStyle = stickmanColor;&#x000A;&#x000A;	// Draw torso&#x000A;	context.rotate(torsoAngle);&#x000A;	context.translate(0, -4 * torsoLength / 5);&#x000A;	context.beginPath();&#x000A;	context.moveTo(0, 0);&#x000A;	context.lineTo(0, torsoLength);&#x000A;	context.stroke();&#x000A;&#x000A;	// Draw head&#x000A;	context.beginPath();&#x000A;	context.arc(0, -headRadius, headRadius, 0, 2 * Math.PI, false);&#x000A;	context.stroke();&#x000A;&#x000A;	// Move origin to shoulders&#x000A;	context.translate(0, torsoLength / 5);&#x000A;	context.save();&#x000A;&#x000A;	// Draw right upper arm&#x000A;	context.rotate(rightUpperArmAngle);&#x000A;	context.beginPath();&#x000A;	context.moveTo(0, 0);&#x000A;	context.lineTo(0, upperArmLength);&#x000A;	context.stroke();&#x000A;&#x000A;	// Move origin to right elbow&#x000A;	context.translate(0, upperArmLength);&#x000A;&#x000A;	// Draw right lower arm&#x000A;	context.rotate(rightLowerArmAngle);&#x000A;	context.beginPath();&#x000A;	context.moveTo(0, 0);&#x000A;	context.lineTo(0, lowerArmLength);&#x000A;	context.stroke();&#x000A;&#x000A;	// Move origin back to shoulders&#x000A;	context.restore();&#x000A;	context.save();&#x000A;&#x000A;	// Draw left upper arm&#x000A;	context.rotate(leftUpperArmAngle);&#x000A;	context.beginPath();&#x000A;	context.moveTo(0, 0);&#x000A;	context.lineTo(0, upperArmLength);&#x000A;	context.stroke();&#x000A;&#x000A;	// Move origin to left elbow&#x000A;	context.translate(0, upperArmLength);&#x000A;&#x000A;	// Draw left lower arm&#x000A;	context.rotate(leftLowerArmAngle);&#x000A;	context.beginPath();&#x000A;	context.moveTo(0, 0);&#x000A;	context.lineTo(0, lowerArmLength);&#x000A;	context.stroke();&#x000A;&#x000A;	// Move origin to hip&#x000A;	context.restore();&#x000A;	context.translate(0, 4 * torsoLength / 5);&#x000A;	context.save();&#x000A;&#x000A;	// Draw right upper leg&#x000A;	context.rotate(rightUpperLegAngle);&#x000A;	context.beginPath();&#x000A;	context.moveTo(0, 0);&#x000A;	context.lineTo(0, upperLegLength);&#x000A;	context.stroke();&#x000A;&#x000A;	// Move origin to right knee&#x000A;	context.translate(0, upperLegLength);&#x000A;&#x000A;	// Draw right lower leg&#x000A;	context.rotate(rightLowerLegAngle);&#x000A;	context.beginPath();&#x000A;	context.moveTo(0, 0);&#x000A;	context.lineTo(0, lowerLegLength);&#x000A;	context.stroke();&#x000A;&#x000A;	// Move origin back to hip&#x000A;	context.restore();&#x000A;&#x000A;	// Draw left upper leg&#x000A;	context.rotate(leftUpperLegAngle);&#x000A;	context.beginPath();&#x000A;	context.moveTo(0, 0);&#x000A;	context.lineTo(0, upperLegLength);&#x000A;	context.stroke();&#x000A;&#x000A;	// Move origin to left knee&#x000A;	context.translate(0, upperLegLength);&#x000A;&#x000A;	// Draw left lower leg&#x000A;	context.rotate(leftLowerLegAngle);&#x000A;	context.beginPath();&#x000A;	context.moveTo(0, 0);&#x000A;	context.lineTo(0, lowerLegLength);&#x000A;	context.stroke();&#x000A;&#x000A;	// Restore context back to original state&#x000A;	context.restore();&#x000A;}&#x000A;&#x000A;function drawBackground(backgroundContext) {&#x000A;	var skyGradient, sunGradient, fieldGradient;&#x000A;&#x000A;	skyGradient = backgroundContext.createLinearGradient(0, 0, 0, 240);&#x000A;	skyGradient.addColorStop(0, 'rgba(51, 51, 255, 1)');&#x000A;	skyGradient.addColorStop(1, 'rgba(204, 204, 255, 1)');&#x000A;	backgroundContext.fillStyle = skyGradient;&#x000A;	backgroundContext.fillRect(0, 0, canvas.width, 240);&#x000A;&#x000A;	sunGradient = backgroundContext.createRadialGradient(canvas.width, 0, 100, canvas.width, 0, 200);&#x000A;	sunGradient.addColorStop(0, 'rgba(255, 255, 51, 1)');&#x000A;	sunGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');&#x000A;	backgroundContext.fillStyle = sunGradient;&#x000A;	backgroundContext.beginPath();&#x000A;	backgroundContext.moveTo(canvas.width, 0);&#x000A;	backgroundContext.lineTo(canvas.width, 200);&#x000A;	backgroundContext.arcTo(canvas.width/3, 200, canvas.width/3, 0, 200);&#x000A;	backgroundContext.fill();&#x000A;&#x000A;	fieldGradient = backgroundContext.createLinearGradient(0, 480, 0, 240);&#x000A;	fieldGradient.addColorStop(0, 'rgba(0, 204, 0, 1)');&#x000A;	fieldGradient.addColorStop(1, 'rgba(153, 204, 153, 1)');&#x000A;	backgroundContext.fillStyle = fieldGradient;&#x000A;	backgroundContext.fillRect(0, 240, canvas.width, 240);&#x000A;}&#x000A;&#x000A;function drawFlowerField(backgroundContext) {&#x000A;	backgroundContext.save();&#x000A;&#x000A;	scaleRow = Math.ceil(canvas.width / deltaX);&#x000A;	var rows = 8;&#x000A;	totalFlowers = (scaleRow * ((rows * (rows + 1)) / 2));&#x000A;	for (flowerCount = 0; flowerCount < totalFlowers; flowerCount++) {&#x000A;		switch(flowerCount) {&#x000A;			case 0:&#x000A;				scale = 1 / 8;&#x000A;				initNewRow(backgroundContext);&#x000A;				break;&#x000A;			case (totalFlowers - (scaleRow * 28)):&#x000A;				scale = 1 / 7;&#x000A;				initNewRow(backgroundContext);&#x000A;				break;&#x000A;			case (totalFlowers - (scaleRow * 21)):&#x000A;				scale = 1 / 6;&#x000A;				initNewRow(backgroundContext);&#x000A;				break;&#x000A;			case (totalFlowers - (scaleRow * 15)):&#x000A;				scale = 1 / 5;&#x000A;				initNewRow(backgroundContext);&#x000A;				break;&#x000A;			case (totalFlowers - (scaleRow * 10)):&#x000A;				scale = 1 / 4;&#x000A;				initNewRow(backgroundContext);&#x000A;				break;&#x000A;			case (totalFlowers - (scaleRow * 6)):&#x000A;				scale = 1 / 3;&#x000A;				initNewRow(backgroundContext);&#x000A;				break;&#x000A;			case (totalFlowers - (scaleRow * 3)):&#x000A;				scale = 1 / 2;&#x000A;				initNewRow(backgroundContext);&#x000A;				break;&#x000A;			case (totalFlowers - scaleRow):&#x000A;				scale = 1;&#x000A;				initNewRow(backgroundContext);&#x000A;				break;&#x000A;			default:&#x000A;				initNewFlower(backgroundContext);&#x000A;		}&#x000A;&#x000A;		drawFlower(backgroundContext, 0);&#x000A;	}&#x000A;&#x000A;	backgroundContext.restore();&#x000A;}&#x000A;&#x000A;function initNewRow(backgroundContext) {&#x000A;	if (flowerCount > 0) {&#x000A;		backgroundContext.restore();&#x000A;		backgroundContext.save();&#x000A;	}&#x000A;&#x000A;	backgroundContext.scale(scale, scale);&#x000A;	backgroundContext.translate(deltaX / 2, deltaY);&#x000A;}&#x000A;&#x000A;function initNewFlower(backgroundContext) {&#x000A;	backgroundContext.translate(deltaX, 0);&#x000A;}&#x000A;&#x000A;function drawFlower(backgroundContext, color) {&#x000A;	var i;&#x000A;	var spaceX, spaceY;&#x000A;&#x000A;	if (color == 0) {&#x000A;		color = 1 + Math.floor(3 * Math.random());&#x000A;	}&#x000A;&#x000A;	backgroundContext.save();&#x000A;&#x000A;	switch(color) {&#x000A;		case 1:&#x000A;			// purple&#x000A;			petalColor = 'rgba(204, 102, 255, 1)';&#x000A;			break;&#x000A;		case 2:&#x000A;			// red&#x000A;			petalColor = 'rgba(255, 102, 153, 1)';&#x000A;			break;&#x000A;		case 3:&#x000A;			// orange&#x000A;			petalColor = 'rgba(255, 153, 51, 1)';&#x000A;			break;&#x000A;	}&#x000A;&#x000A;	backgroundContext.fillStyle = petalColor;&#x000A;	spaceX = deltaX - 128;&#x000A;	spaceY = 16;&#x000A;	backgroundContext.translate(spaceX * (Math.random() - 0.5), spaceY * (Math.random() - 0.5));&#x000A;	backgroundContext.rotate(Math.random() * Math.PI / 6);&#x000A;&#x000A;	for (i = 0; i < 6; i++) {&#x000A;		drawPetal(backgroundContext);&#x000A;		backgroundContext.rotate(Math.PI / 3);&#x000A;	}&#x000A;&#x000A;	drawCenter(backgroundContext);&#x000A;&#x000A;	backgroundContext.restore();&#x000A;}&#x000A;&#x000A;function drawCloud() {&#x000A;  context.save();&#x000A;&#x000A;  context.translate(cloudX + 140, 60);&#x000A;	context.fillStyle = "rgba(255, 255, 255, 1)";&#x000A;&#x000A;	context.fillRect(-w / 2, 0, w, h);&#x000A;&#x000A;	context.beginPath();&#x000A;	context.arc(-w / 2, h - r1, r1, 0, 2 * Math.PI, false);&#x000A;	context.fill();&#x000A;&#x000A;	context.beginPath();&#x000A;	context.arc(w / 2, h - r2, r2, 0, 2 * Math.PI, false);&#x000A;	context.fill();&#x000A;&#x000A;	context.beginPath();&#x000A;	context.arc(-w / 2 + r3, 0, r3, 0, 2 * Math.PI, false);&#x000A;	context.fill();&#x000A;&#x000A;	context.beginPath();&#x000A;	context.arc(w / 2 - r4, 0, r4, 0, 2 * Math.PI, false);&#x000A;	context.fill();&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawPetal(backgroundContext) {&#x000A;	backgroundContext.beginPath();&#x000A;	backgroundContext.arc(0, yPetal, rPetal, 0, 2 * Math.PI, false);&#x000A;	backgroundContext.fill();&#x000A;}&#x000A;&#x000A;function drawCenter(backgroundContext) {&#x000A;	backgroundContext.fillStyle = centerColor;&#x000A;	backgroundContext.beginPath();&#x000A;	backgroundContext.arc(0, 0, rCenter, 0, 2 * Math.PI, false);&#x000A;	backgroundContext.fill();&#x000A;}&#x000A;&#x000A;initFieldCanvas();</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+<p>This is a lesson, not a challenge, the code runs automatically.</p>
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run run-only btn btn-success'>
+Run
+</div>
+<div class='run run-and-focus btn btn-success'>
+Run and Focus Canvas
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div aria-hidden='true' aria-labelledby='referenceModalLabel' class='modal fade' id='reference-modal' role='dialog' tabindex='-1'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<h4 class='modal-title' id='referenceModalLabel'></h4>
+</div>
+<div class='modal-body'></div>
+<div class='modal-footer'>
+<div class='float-xs-right'>
+<button class='btn btn-secondary' data-dismiss='modal' type='button'>Close</button>
+</div>
+<div class='text-xs-left'>
+<button class='btn btn-primary text-white lesson-link'>View Full Lesson</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+<!-- Localized -->
