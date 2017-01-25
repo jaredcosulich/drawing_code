@@ -42,6 +42,7 @@ class Test.Code
     #     context.save()
     #     w = Math.ceil(index/4) % width
     #     h = Math.floor(Math.ceil(index/4) / width)
+    #     console.log(w, h, testImageData[index], pixel, testImageData[index] - pixel)
     #     context.translate(w, h)
     #     context.fillStyle = '#ff0000'
     #     context.fillRect(-2,-2,5,5)
