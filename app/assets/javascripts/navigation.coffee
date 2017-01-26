@@ -14,4 +14,21 @@ initNavigation = ->
 
     return false
 
+  # quickReference = $('.nav-sidebar #quick-reference')
+  # quickReference.css(
+  #   paddingTop: $('.sidebar').height() - quickReference.height() - quickReference.position().top
+  # )
+
+  sectionTops = []
+  sectionTops.push($(section).position().top) for section in $('.page .section')
+  sectionTops.reverse()
+
+  $(window).scroll (e) ->
+    top = $(window).scrollTop()
+    for sectionTop, index in sectionTops
+      if top >= sectionTop
+        $('.sidebar').find(".page_section").removeClass('active')
+        $('.sidebar').find("#page_section#{sectionTops.length - index - 1}").addClass('active')
+        return
+
 $(document).on('turbolinks:load', initNavigation)

@@ -1,5 +1,5 @@
 %p
-  %strong Relevant Lessons:
+  %strong Quick Reference:
   - relevant.each do |lesson_id|
     - method = @lessons[lesson_id][:method]
-    = link_to_lesson(method, lesson_id, nil, class: 'reference-link btn btn-primary btn-sm', data: {slug: lesson_id}) 
+    = link_to_lesson(method, lesson_id, nil, class: 'reference-link btn btn-primary btn-sm', data: {slug: lesson_id})

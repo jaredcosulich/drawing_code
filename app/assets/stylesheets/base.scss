@@ -4,6 +4,15 @@
   }
 }
 
+.py-4 {
+  padding-top: 6rem !important;
+  padding-bottom: 6rem !important;
+}
+
+.pt-4 {
+  padding-top: 6rem !important;
+}
+
 img {
   &.bordered {
     border: 1px solid #ccc;
@@ -145,7 +154,9 @@ img {
 }
 
 .lesson {
-  background-color: #fcfcfc;
+  .row {
+    background-color: #fcfcfc;
+  }
 
   .buttons {
     text-align: center;
