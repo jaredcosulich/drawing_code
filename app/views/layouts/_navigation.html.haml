@@ -88,16 +88,16 @@
             -# if @lessons[lesson][:count] > 0
               %span.tag.tag-default
                 %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
-        -#
-          %li.section.small.mt-1
-            %strong Concepts
 
-          - challenge_path[:concepts].each do |lesson|
-            %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
-              = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug], class: 'reference-link', data: {slug: lesson})
-              -# if @lessons[lesson][:count] > 0
-                %span.tag.tag-default
-                  %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
+        %li.section.small.mt-1
+          %strong Concepts
+
+        - challenge_path[:concepts].each do |lesson|
+          %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
+            = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug], class: 'reference-link', data: {slug: lesson})
+            -# if @lessons[lesson][:count] > 0
+              %span.tag.tag-default
+                %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 
 
 %ul.nav.nav-sidebar.hidden-xs-up
