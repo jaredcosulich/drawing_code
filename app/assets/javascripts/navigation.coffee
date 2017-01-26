@@ -28,7 +28,7 @@ initNavigation = ->
     for sectionTop, index in sectionTops
       if top >= sectionTop
         $('.sidebar').find(".page_section").removeClass('active')
-        $('.sidebar').find("#page_section#{sectionTops.length - index - 1}").addClass('active')
+        $('.sidebar').find("#page_section#{sectionTops.length - index}").addClass('active')
         return
 
 $(document).on('turbolinks:load', initNavigation)

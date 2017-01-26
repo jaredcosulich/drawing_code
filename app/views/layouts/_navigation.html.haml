@@ -70,7 +70,7 @@
                 %small{class: "#{challenge_path[:slug]}_stage#{lesson_index}"}= "0 / #{challenge_count}"
             - if params[:id] == "stage#{lesson_index}"
               - challenge_count.times do |i|
-                %li.page_section.small{id: "page_section#{i}", style: 'margin-left: 6px;'}
+                %li.page_section.small{id: "page_section#{i + 1}", style: 'margin-left: 6px;'}
                   = link_to("Section #{i + 1}", "#section#{i + 1}")
                   %span.tag.tag-success.hidden-xs-up &#10003;
 
