@@ -213,6 +213,396 @@
             %canvas{id: "flappy_square_stage1_challenge#{challenge_index}"}
           .alert
 
+
+  - lesson_index += 1
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Using beginPath(), lineTo(), and stroke()
+          %p
+            We're going to want to create a "game area" for our game which
+            is essentially just a rectangle drawn within the canvas
+            that represents the valid area for the game to be drawn in.
+          %p
+            But we don't want our square to be filled in, so
+            = link_to_lesson('context.fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            won't work. We'll need to use
+            = link_to_lesson('context.lineTo()', :line_to, nil, class: 'reference-link', data: {slug: :line_to})
+            to draw a line and outline a rectangle.
+          %p
+            Unfortunately the
+            = link_to_lesson('context.lineTo()', :line_to, nil, class: 'reference-link', data: {slug: :line_to})
+            method is a bit more compicated than the
+            %code context.fillRect()
+            method.
+          %p
+            When drawing a line you first trace the path using
+            %code context.beginPath()
+            %code context.moveTo()
+            %code context.lineTo()
+            and
+            %code context.closePath();
+            and then you paint the path using
+            %code context.stroke()
+          %p
+            Essentially all the commands (beginPath(), moveTo(), lineTo(), and closePath()) are being
+            used to trace and invisible path within the canvas. The
+            %code context.stroke()
+            method tells the canvas to paint the line. You could have also called
+            %code context.fill()
+            to fill in the traced out area.
+          %p
+            Look at this example to see how these methods
+            are used to draw a triangle. You can also click on the
+            "lineTo()" button below in the "Relevant Lessons" section to see more details.
+          = render 'lessons/relevant', relevant: [:coordinates, :line_to]
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_lesson#{lesson_index}_editor"} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage1_lesson#{lesson_index}');
+                var context = canvas.getContext('2d');
+
+                context.beginPath();
+                context.moveTo(50, 200);
+                context.lineTo(200, 50);
+                context.lineTo(350, 200);
+                context.closePath();
+                context.stroke();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas{id: "flappy_square_stage1_lesson#{lesson_index}"}
+
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}Example.png", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            Let's take the code from Challenge
+            = challenge_index - 1
+            and add a boundary for our game.
+          %p
+            The boundary should
+            %span.highlight start at (25, 25) and extend to (450, 300),
+            forming a rectangle. Use
+            %code context.lineTo()
+            to draw the boundary. Be sure to use
+            %code context.beginPath()
+            %code context.moveTo()
+            and
+            %code context.stroke()
+            as described in the lesson above.
+
+          %p In the end our game should look like the example provided to the right.
+          = render 'lessons/relevant', relevant: [:line_to, :fill_rect, :coordinates]
+          = render 'lessons/code_preview', stage: 1, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index - 1}_editor"
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            // YOUR PREVIOUS FLAPPY SQUARE CODE
+
+            // YOUR NEW CODE FOR A GAME BOUNDARY
+
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage1_challenge#{challenge_index}"}
+          .alert
+
+
+
+  - lesson_index += 1
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: A Wall
+          %p
+            Our game needs a background. Really it needs a series of walls with holes
+            in them that are randomly generated, but this is akin to a background
+            that is generated by the code, so we'll start there.
+          %p
+            Since there will be essentially an unlimited number of walls in our game we'll need to
+            create them algorithmically. This means that rather than explicitly
+            writing code that draws these walls, which would take forever,
+            we need to write code that itself determines where the walls should go.
+          %p
+            In this example we show a series of trees which serves as a background.
+            We could call our drawTree() method explicitly like this:
+          %pre
+            %code
+              :preserve
+                var treeY = canvas.height - road.height;
+                drawTree(50, treeY);
+                drawTree(80, treeY);
+                drawTree(110, treeY);
+                drawTree(140, treeY);
+                ... etc, etc ...
+          %p
+            Or we could draw trees algorithmically, drawing them every 75 pixels until
+            the end of the canvas is reached. This would look like:
+          %pre
+            %code
+              :preserve
+                var treeSpacing = 75;
+                var treeX = 0;
+                var treeY = canvas.height - road.height;
+                while (treeX < canvas.width) {
+                  drawTree(treeX, treeY);
+                  treeX += treeSpacing;
+                }
+          %p
+            This code starts at
+            %code treeX = 0
+            and loops over and over, drawing one tree each time while also
+            adding 75 (treeSpacing) to treeX while treeX is less than the width of the
+            canvas plus treeSpacing (to account for trees on the border).
+          %p
+            Check out the lesson on
+            = link_to_lesson('while loops', :while_loops, nil, class: 'reference-link', data: {slug: :while_loops})
+            to better understand how these loops work.
+          %p
+            The example below uses this code to draw our trees algorithmically, drawing
+            a tree every 75 pixels.
+
+          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :while_loops]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_lesson#{lesson_index}_editor"} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage1_lesson#{lesson_index}');
+                var context = canvas.getContext('2d');
+
+                var interval;
+                var road = {
+                  height: 30
+                };
+
+                var tree = {
+                  spacing: 75
+                };
+
+                function drawRoad() {
+                  context.save();
+                  context.fillStyle = '#cccccc';
+                  var roadY = canvas.height - road.height;
+                  context.fillRect(0, roadY, canvas.width, road.height);
+                  context.restore();
+                }
+
+                function drawGrass() {
+                  context.save();
+                  context.fillStyle = '#238d23';
+                  var grassHeight = 6;
+                  var grassY = canvas.height - road.height - grassHeight;
+                  context.fillRect(0, grassY, canvas.width, grassHeight);
+                  context.restore();
+                }
+
+                function drawTrees() {
+                  var treeX = 0;
+                  var treeY = canvas.height - road.height;
+                  while (treeX < canvas.width + tree.spacing) {
+                    drawTree(treeX, treeY);
+                    treeX += tree.spacing;
+                  }
+                }
+
+                function drawTree(centerX, bottomY) {
+                  context.save();
+                  context.translate(centerX, bottomY);
+                  context.fillStyle = '#a5681c';
+                  context.fillRect(0, -60, 12, 60);
+
+                  context.beginPath();
+                  context.arc(6, -60, 32, 0, Math.PI*2, true);
+                  context.closePath();
+                  context.fillStyle = '#238d23';
+                  context.fill();
+
+                  context.restore();
+                }
+
+                drawRoad();
+                drawGrass();
+                drawTrees();
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas{id: "flappy_square_stage1_lesson#{lesson_index}"}
+
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            Let's add walls to our game.
+          %p
+            Eventually we'll need to animate these walls, randomize them,
+            and track them to make sure that we are not running into the them.
+          %p
+            Let's start, though, by simply adding a series of rectangles to the roof
+            of the game area with matching rectangles on the floor of the game area.
+          %p
+            So try to draw two rectangles (a wall), one attached to the
+            %span.highlight roof (y = 50)
+            and one to the
+            %span.highlight floor (y = 300)
+            Each of them should be
+            %span.highlight 100 pixels tall and 50 pixels wide.
+            and each wall should be spaced
+            %span.highlight 125 pixels
+            from the previous wall's "x" coordinate.
+          %p
+            We also don't want to draw our walls right on top of the flappy square
+            when the game starts, so let's draw the first one
+            %span.highlight 125 pixels out
+            from the left wall of the game (boundary.minX).
+          %p In the end your flappy square should behave like the example provided to the right.
+
+          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates]
+          = render 'lessons/code_preview', stage: 2, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index - 1}_editor"
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var gravity = 0.5;
+
+            var square = {
+              size: 20,
+              x: ,
+              y: ,
+              jump: ,
+              yVelocity:
+            };
+
+            var boundary = {
+              minX: ,
+              minY: ,
+              maxX: ,
+              maxY:
+            };
+
+            var walls = {
+              height: ,
+              width: ,
+              spacing:
+            };
+
+            function drawBoundary() {
+            }
+
+            function drawWalls() {
+
+              // Draw your walls here.
+
+            }
+
+            function drawSquare() {
+            }
+
+            function flap(e) {
+            }
+
+            function adjustPosition() {
+            }
+
+            function checkBoundary() {
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+
+              // Don't forget to draw the walls!
+
+            }
+
+            function runProgram() {
+              interval =
+            }
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage1_challenge#{challenge_index}"}
+          .alert
+
+
   - lesson_index += 1
   .lesson.row.py-3
     .col-xs-12
@@ -424,6 +814,288 @@
             .background.hidden-xl-down= image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}.png")
             %canvas{id: "flappy_square_stage1_challenge#{challenge_index}"}
           .alert
+
+
+
+
+
+
+
+
+  - lesson_index += 1
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Algorithmic Objects
+          %p
+            Our game needs a background. Really it needs a series of walls with holes
+            in them that are randomly generated, but this is akin to a background
+            that is generated by the code, so we'll start there.
+          %p
+            Since there will be essentially an unlimited number of walls in our game we'll need to
+            create them algorithmically. This means that rather than explicitly
+            writing code that draws these walls, which would take forever,
+            we need to write code that itself determines where the walls should go.
+          %p
+            In this example we show a series of trees which serves as a background.
+            We could call our drawTree() method explicitly like this:
+          %pre
+            %code
+              :preserve
+                var treeY = canvas.height - road.height;
+                drawTree(50, treeY);
+                drawTree(80, treeY);
+                drawTree(110, treeY);
+                drawTree(140, treeY);
+                ... etc, etc ...
+          %p
+            Or we could draw trees algorithmically, drawing them every 75 pixels until
+            the end of the canvas is reached. This would look like:
+          %pre
+            %code
+              :preserve
+                var treeSpacing = 75;
+                var treeX = 0;
+                var treeY = canvas.height - road.height;
+                while (treeX < canvas.width) {
+                  drawTree(treeX, treeY);
+                  treeX += treeSpacing;
+                }
+          %p
+            This code starts at
+            %code treeX = 0
+            and loops over and over, drawing one tree each time while also
+            adding 75 (treeSpacing) to treeX while treeX is less than the width of the
+            canvas plus treeSpacing (to account for trees on the border).
+          %p
+            Check out the lesson on
+            = link_to_lesson('while loops', :while_loops, nil, class: 'reference-link', data: {slug: :while_loops})
+            to better understand how these loops work.
+          %p
+            The example below uses this code to draw our trees algorithmically, drawing
+            a tree every 75 pixels.
+
+          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :while_loops]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_lesson#{lesson_index}_editor"} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage1_lesson#{lesson_index}');
+                var context = canvas.getContext('2d');
+
+                var interval;
+                var road = {
+                  height: 30
+                };
+
+                var tree = {
+                  spacing: 75
+                };
+
+                function drawRoad() {
+                  context.save();
+                  context.fillStyle = '#cccccc';
+                  var roadY = canvas.height - road.height;
+                  context.fillRect(0, roadY, canvas.width, road.height);
+                  context.restore();
+                }
+
+                function drawGrass() {
+                  context.save();
+                  context.fillStyle = '#238d23';
+                  var grassHeight = 6;
+                  var grassY = canvas.height - road.height - grassHeight;
+                  context.fillRect(0, grassY, canvas.width, grassHeight);
+                  context.restore();
+                }
+
+                function drawTrees() {
+                  var treeX = 0;
+                  var treeY = canvas.height - road.height;
+                  while (treeX < canvas.width + tree.spacing) {
+                    drawTree(treeX, treeY);
+                    treeX += tree.spacing;
+                  }
+                }
+
+                function drawTree(centerX, bottomY) {
+                  context.save();
+                  context.translate(centerX, bottomY);
+                  context.fillStyle = '#a5681c';
+                  context.fillRect(0, -60, 12, 60);
+
+                  context.beginPath();
+                  context.arc(6, -60, 32, 0, Math.PI*2, true);
+                  context.closePath();
+                  context.fillStyle = '#238d23';
+                  context.fill();
+
+                  context.restore();
+                }
+
+                drawRoad();
+                drawGrass();
+                drawTrees();
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas{id: "flappy_square_stage1_lesson#{lesson_index}"}
+
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage1/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            Let's add walls to our game.
+          %p
+            Eventually we'll need to animate these walls, randomize them,
+            and track them to make sure that we are not running into the them.
+          %p
+            Let's start, though, by simply adding a series of rectangles to the roof
+            of the game area with matching rectangles on the floor of the game area.
+          %p
+            So try to draw two rectangles (a wall), one attached to the
+            %span.highlight roof (y = 50)
+            and one to the
+            %span.highlight floor (y = 300)
+            Each of them should be
+            %span.highlight 100 pixels tall and 50 pixels wide.
+            and each wall should be spaced
+            %span.highlight 125 pixels
+            from the previous wall's "x" coordinate.
+          %p
+            We also don't want to draw our walls right on top of the flappy square
+            when the game starts, so let's draw the first one
+            %span.highlight 125 pixels out
+            from the left wall of the game (boundary.minX).
+          %p In the end your flappy square should behave like the example provided to the right.
+
+          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates]
+          = render 'lessons/code_preview', stage: 2, challenge: challenge_index - 1, editor_id: "flappy_square_stage1_challenge#{challenge_index - 1}_editor"
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage1_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var gravity = 0.5;
+
+            var square = {
+              size: 20,
+              x: ,
+              y: ,
+              jump: ,
+              yVelocity:
+            };
+
+            var boundary = {
+              minX: ,
+              minY: ,
+              maxX: ,
+              maxY:
+            };
+
+            var walls = {
+              height: ,
+              width: ,
+              spacing:
+            };
+
+            function drawBoundary() {
+            }
+
+            function drawWalls() {
+
+              // Draw your walls here.
+
+            }
+
+            function drawSquare() {
+            }
+
+            function flap(e) {
+            }
+
+            function adjustPosition() {
+            }
+
+            function checkBoundary() {
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+
+              // Don't forget to draw the walls!
+
+            }
+
+            function runProgram() {
+              interval =
+            }
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage1_challenge#{challenge_index}"}
+          .alert
+
+
+
+
+
+
+
+
 
 
 

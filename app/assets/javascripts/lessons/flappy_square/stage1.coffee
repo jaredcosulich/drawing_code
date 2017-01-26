@@ -58,18 +58,29 @@ initFlappySquareStage1Challenge3 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
+  # solution = (canvas, context) ->
+  #   context.fillRect(50, 150, 20, 20)
+
+
   solution = (canvas, context) ->
-    context.fillRect(50, 150, 20, 20)
+    context.fillRect(50, 100, 20, 20);
+    context.beginPath();
+    context.moveTo(25, 25);
+    context.lineTo(450, 25);
+    context.lineTo(450, 300);
+    context.lineTo(25, 300);
+    context.closePath();
+    context.stroke();
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You\'ve drawn a flappy square using variables!'
+        message = '<strong>Success!</strong> You\'ve drawn the game area with the correct dimensions!'
         App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
       else
-        message = 'Nice try, but you need to set your variables properly.'
+        message = 'Nice try, but you need to draw a game area with the correct dimensions.'
 
       canvas.alert(message, success)
 
