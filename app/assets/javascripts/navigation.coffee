@@ -20,8 +20,13 @@ initNavigation = ->
     )
 
   sectionTops = []
-  sectionTops.push($(section).position().top) for section in $('.page .section')
-  sectionTops.reverse()
+
+  setSectionTops = ->
+    sectionTops = []
+    sectionTops.push($(section).position().top) for section in $('.page .section')
+    sectionTops.reverse()
+  setSectionTops()
+  $('img').load(setSectionTops)
 
   if sectionTops.length
     $(window).scroll (e) ->
