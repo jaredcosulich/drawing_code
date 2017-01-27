@@ -91,8 +91,23 @@ initFlappySquareStage1Challenge4 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
+  # solution = (canvas, context) ->
+  #   context.fillRect(50, 100, 20, 20)
+
   solution = (canvas, context) ->
-    context.fillRect(50, 100, 20, 20)
+    context.fillRect(50, 100, 20, 20);
+
+    context.beginPath();
+    context.moveTo(25, 25);
+    context.lineTo(450, 25);
+    context.lineTo(450, 300);
+    context.lineTo(25, 300);
+    context.closePath();
+    context.stroke();
+
+    context.fillRect(150, 25, 50, 100);
+    context.fillRect(150, 200, 50, 100);
+    
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
