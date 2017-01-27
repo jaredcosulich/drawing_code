@@ -56,6 +56,8 @@ class App.Progress
     tag = $(document.createElement('SPAN'))
     tag.addClass('tag').addClass('tag-success').html('Completed!')
     challengeTitle.append(tag)
+    sectionId = challengeId.replace(/challenge/, 'section')
+    $(".nav-sidebar #page_#{sectionId} .tag-success").removeClass('hidden-xs-up')
 
   toggleChallenge: (page, challengeId) ->
     successTag = $("##{challengeId}").find('.challenge-title .tag-success')
