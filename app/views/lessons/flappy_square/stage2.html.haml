@@ -186,9 +186,695 @@
           .alert
 
 
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - lesson_index += 1
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Basics of Animation
+
+          .float-xs-right.pl-2.pb-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/lesson#{lesson_index}Visual.png")
+
+          %p
+            There are
+            %span.highlight three required aspects to basic animation
+            in canvas we need to cover:
+          %ul
+            %li Drawing frames in rapid sequence.
+            %li Clearing the canvas in between frames.
+            %li Making small changes to the scene in each frame.
+
+          %p
+            In this lesson we're going to focus on the 1st and 3rd step of basic animation.
+          %p
+            We're going to draw a series of frames, each a bit different from each other,
+            creating the illusion of continuous motion.
+          %p
+            Drawing frames in rapid sequence can be done a number of ways.
+            For our purposes we'll use the
+            = link_to_lesson('setInterval(function, intervalTime)', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
+            method.
+            %code setInterval(function, intervalTime)
+            runs the specified code at a regular interval (e.g. every second). You can use setInterval in
+            two different ways. First you can pass it code directly:
+          %pre
+            %code
+              :preserve
+                setInterval(function() {
+                  ... some code ...
+                }, 500)
+          %p
+            Or you can pass it a reference to an existing function:
+          %pre
+            %code
+              :preserve
+                function myFunction() {
+                  ... some code ...
+                }
+
+                setInterval(myFunction, 500);
+          %p
+            In this case the function will be called as if you ran
+            %code myFunction()
+            every 500 milliseconds.
+
+          %p
+            We're going to use
+            %span.highlight setInterval() to draw frames in rapid sequence.
+            We'll pass it a reference to the function
+            %code programSteps
+            which contains the instructions for each frame of our game.
+          %p
+            We can change the speed of our animation by adjusting the intervalTime in
+            = link_to_lesson('setInterval(function, intervalTime)', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
+          %p For example:
+          %pre
+            %code
+              :preserve
+                setInterval(programSteps, 1000)
+          %p will run slowly, drawing a new frame every second, while
+          %pre
+            %code
+              :preserve
+                setInterval(programSteps, 10)
+          %p
+            will run very quickly, drawing 100 frames every second. The faster an animation runs
+            the smoother it looks as you can draw frames that change very little, giving the
+            illusion of continuous motion.
+          %p
+            Try playing around with different interval speeds to see how it affects the fluidity
+            of the animation.
+
+
+          = render 'lessons/relevant', relevant: [:fill_rect, :set_interval, :functions]
+
+        .col-xs-12
+          .interactive.focus-on-run.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor"} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
+                var context = canvas.getContext('2d');
+
+                var interval;
+                var size = 1;
+
+                function drawSquare() {
+                  context.fillRect(0, 100, size, size);
+                }
+
+                function adjustSize() {
+                  size += 10;
+                }
+
+                function programSteps() {
+                  adjustSize();
+                  drawSquare();
+                }
+
+                function runProgram() {
+                  interval = setInterval(programSteps, 500);
+                }
 
 
 
+                // The following code is provided for you.
+                // It creates an eventListener that listens
+                // for the canvas to come into "focus", which
+                // happens when you click on it.
+                // This allows us to stop and start each individual
+                // animation on this whole page separately.
+                function startAnimation() {
+                  runProgram();
+                }
+
+                function pauseAnimation() {
+                  clearInterval(interval);
+
+                  context.font = "20px serif";
+                  context.textAlign = 'center';
+                  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);
+                  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);
+                }
+
+                canvas.addEventListener('focus', startAnimation);
+                canvas.addEventListener('blur', pauseAnimation);
+                pauseAnimation();
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
+
+  - challenge_index += 1
+  .challenge.row.py-4{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.px-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            Now we're going to start animating our game.
+          %p
+            In this challenge we're going to focus on using
+            = link_to_lesson('setInterval(function, intervalTime)', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
+            to animate just our flappy square.
+          %p
+            We'll make the flappy square move down on the canvas. Soon we'll make
+            it's downward movement look more realistic by mathematically simulating
+            gravity, but for now we'll just make it move down one step at a time.
+
+          %p
+            Use
+            %span.highlight setInterval(function, intervalTime),
+            as provided to
+            %span.highlight draw the flappy square a bit lower in each frame
+            as if it were falling.
+          %p
+            Have your flappy square
+            %span.highlight start at (50, 100) and move down 25 pixels every 300 milliseconds.
+          %p
+            As we are not yet clearing the canvas in between frames we'll be creating multiple
+            flappy squares. In the next challenge we'll look at cleaning that up to create
+            a true animation.
+          %p
+            Your animation should look like the example to the right.
+
+          = render 'lessons/relevant', relevant: [:fill_rect, :set_interval, :functions]
+          = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
+
+      .row.pt-2
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+
+            // CODE FROM PREVIOUS CHALLENGE HERE
+
+            function adjustPosition() {
+              // ADJUST THE "y" COORDINATE OF THE SQUARE
+            }
+
+            function programSteps() {
+              adjustPosition();
+              drawSquare();
+              drawBoundary();
+              drawWall(boundary.minX + 125);
+              drawWall(boundary.minX + (125 * 2));
+              drawWall(boundary.minX + (125 * 3));
+            }
+
+            function runProgram() {
+
+              // FILL IN THE CORRECT setInterval PARAMETERS HERE
+              interval = setInterval();
+
+            }
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
+          .alert
+
+
+
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - lesson_index += 1
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: A Complete Animation Cycle
+
+          .float-xs-right.pl-2.pb-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/lesson#{lesson_index}Visual.png")
+
+          %p
+            As mentioned in the previous lesson, there are
+            %span.highlight three required aspects to basic animation:
+          %ul
+            %li Drawing frames in rapid sequence.
+            %li Clearing the canvas in between frames.
+            %li Making small changes to the scene in each frame.
+          %p
+            In this lesson we're going to complete the cycle by clearing the canvas
+            in between frames.
+          %p
+            The method
+            = link_to_lesson('context.clearRect(x, y, width, height)', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
+            allows us to clear an area of the canvas. For our purposes we'll use it to clear the entire canvas.
+          %p
+            In this example we show the example from the last lesson in reverse. If this were run without
+            clearing the canvas you wouldn't see any changes, but since we're clearing the canvas
+            in between each frame we see the drawing get smaller and smaller.
+          %p In order to clear the entire canvas we use the following code:
+          %pre
+            %code
+              :preserve
+                context.clearRect(0, 0, canvas.width, canvas.height);
+          %p
+            which says "clear an area starting at (0,0) that is as wide as the canvas
+            and as tall as the canvas".
+
+          = render 'lessons/relevant', relevant: [:clear_rect, :fill_rect, :set_interval, :functions]
+
+        .col-xs-12
+          .interactive.focus-on-run.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor"} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
+                var context = canvas.getContext('2d');
+
+                var interval;
+                var size = canvas.width;
+
+                function drawSquare() {
+                  context.fillRect(0, 0, size, size);
+                }
+
+                function adjustSize() {
+                  size -= 10;
+                }
+
+                function programSteps() {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  adjustSize();
+                  drawSquare();
+                }
+
+                function runProgram() {
+                  interval = setInterval(programSteps, 500);
+                }
+
+
+
+                // The following code is provided for you.
+                // It creates an eventListener that listens
+                // for the canvas to come into "focus", which
+                // happens when you click on it.
+                // This allows us to stop and start each individual
+                // animation on this whole page separately.
+                function startAnimation() {
+                  runProgram();
+                }
+
+                function pauseAnimation() {
+                  clearInterval(interval);
+
+                  context.font = "20px serif";
+                  context.textAlign = 'center';
+                  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);
+                  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);
+                }
+
+                canvas.addEventListener('focus', startAnimation);
+                canvas.addEventListener('blur', pauseAnimation);
+                pauseAnimation();
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
+
+  - challenge_index += 1
+  .challenge.row.py-4{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.px-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            As mentioned in the previous lesson, there are
+            %span.highlight three required aspects to basic animation:
+          %ul
+            %li Drawing frames in rapid sequence.
+            %li Clearing the canvas in between frames.
+            %li Making small changes to the scene in each frame.
+          %p
+            In this lesson we're going to complete the cycle by clearing the canvas
+            in between frames.
+          %p
+            The method
+            = link_to_lesson('context.clearRect(x, y, width, height)', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
+            allows us to clear an area of the canvas. As the lesson above demonstrates,
+            we want to use it to clear the entire canvas.
+          %p
+            So once again, we'll start the flappy square
+            at (50, 100) and move down 10 pixels every 300 milliseconds.
+          %p
+            This time, though,
+            %span.highlight use context.clearRect()
+            to clear the canvas in between frames.
+          %p
+            Use the method to clear a rectangle starting at
+            %span.highlight (0, 0)
+            with a width of
+            %span.highlight canvas.width
+            and a height of
+            %span.highlight canvas.height.
+          %p
+            You'll need to call it from within
+          %pre
+            %code
+              :preserve
+                function programSteps() {
+                  ...
+                }
+          %p so that it gets called with each frame.
+          %p
+            Your animation should look like the example at the beginning of this explanation.
+
+          = render 'lessons/relevant', relevant: [:clear_rect, :fill_rect, :set_interval, :functions]
+          = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
+
+      .row.pt-2
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var size = 20;
+
+            var x = 50;
+            var y = 100;
+
+            function drawSquare() {
+              context.fillRect(x, y, size, size);
+            }
+
+            function adjustPosition() {
+              y += 10;
+            }
+
+            function programSteps() {
+              adjustPosition();
+              drawSquare();
+            }
+
+            function runProgram() {
+              interval = setInterval(programSteps, 300);
+            }
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
+          .alert
+
+
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - lesson_index += 1
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Gravity
+          %p
+            Now we need to make our flappy square fall more realistically.
+          %p
+            This essentially requires
+            %span.highlight simulating gravity.
+          %p
+            Gravity causes objects on earth to move toward the center of the Earth
+            at an accelerating rate, which means that they move faster and faster
+            toward the ground.
+          %p
+            The speed of the object toward the ground is called its "velocity".
+            Gravity causes the object's velocity to increase over time.
+          %p
+            In this examples when you click "Run" a ball will shoot out at
+            a constant velocity moving right and up while gravity pulls it toward
+            the ground, causing its upward velocity to decrease until it is negative
+            (falling).
+          %p
+            In this example gravity is set to 0.4. This means that the upward speed (yVelocity)
+            of our ball will decrease by 0.4 each frame. So in each frame the ball will move up
+            by 0.4 pixels less than the last frame until it is no longer moving at which point
+            it will move down by 0.4 pixels more each frame.
+          %p
+            This is an arbitrary value that simply makes the simulation look good as we're not
+            actually trying to simulate gravity accurately.
+          %p
+            Also remember that in the canvas the "y" coordinates go up as you move down.
+            This means that subtracting a negative "yVelocity" from our "y" position actually
+            makes our "y" value large, drawing the ball farther down on the canvas.
+
+          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect, :fill_rect, :set_interval, :functions]
+
+        .col-xs-12
+          .interactive.focus-on-run.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor"} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
+                var context = canvas.getContext('2d');
+
+                var gravity = 0.4;
+                var size = 10;
+                var interval;
+                x = 0;
+                y = canvas.height - 60;
+                xVelocity = 8;
+                yVelocity = 12;
+
+                function drawBall() {
+                  context.beginPath();
+                  context.arc(x, y, size, 0, Math.PI*2, true);
+                  context.closePath();
+                  context.fill();
+                }
+
+                function adjustPosition() {
+                  yVelocity -= gravity;
+                  x += xVelocity;
+                  y -= yVelocity;
+                }
+
+                function programSteps() {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  adjustPosition();
+                  drawBall();
+                }
+
+                function runProgram() {
+                  interval = setInterval(programSteps, 25);
+                }
+
+                // The following code is provided for you.
+                // It creates an eventListener that listens
+                // for the canvas to come into "focus", which
+                // happens when you click on it.
+                // This allows us to stop and start each individual
+                // animation on this whole page separately.
+                function startAnimation() {
+                  runProgram();
+                }
+
+                function pauseAnimation() {
+                  clearInterval(interval);
+
+                  context.font = "20px serif";
+                  context.textAlign = 'center';
+                  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);
+                  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);
+                }
+
+                canvas.addEventListener('focus', startAnimation);
+                canvas.addEventListener('blur', pauseAnimation);
+                pauseAnimation();
+
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
+
+  - challenge_index += 1
+  .challenge.row.py-4{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.px-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            Let's give our flappy square animation a more realistic simulation
+            of gravity.
+          %p
+            Using your code from Challenge 4, instead of just moving the flappy square
+            down 10 pixels each frame let's track the y velocity of the flappy
+            square and with each frame let's subtract gravity to increase the velocity
+            downward.
+          %p
+            %span.highlight
+              Our flappy square should start at (50, 100) with a yVelocity of 0. Gravity
+              should be set to 0.5.
+            So in each frame you'll subtract gravity from yVelocity and then
+            you'll subtract yVelocity to the y variable. This will cause the y variable to
+            increase at an increasing rate (making the flappy square go down
+            at an increasing rate).
+          %p
+            Let's also speed up our animation and instead of running a frame every 300
+            miliseconds, let's
+            %span.highlight draw a frame every 25 miliseconds.
+          %p
+            Your animation should look like the example to the right.
+          %p
+            Important note: In Challenge
+            = challenge_index - 1
+            we added 10 to the "y" variable in each frame causing the square
+            to move down. Here we need to
+            %span.highlight subtract "yVelocity"
+            as "yVelocity" will be negative and subtracting a negative is the same
+            as adding a positive (I know this can get confusing with the y-coordinate
+            of the canvas moving in the wrong direction).
+
+          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect, :set_interval, :fill_rect, :functions]
+          = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
+
+      .row.pt-2
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var gravity = ;
+            var size = 20;
+            var x = ;
+            var y = ;
+            var yVelocity = ;
+
+            function drawSquare() {
+            }
+
+            function adjustPosition() {
+              // Instead of simply subtracting
+              // 10 from the "y" variable you'll
+              // need to both adjust the "yVelocity"
+              // and then use it to adjust "y"
+            }
+
+            function programSteps() {
+            }
+
+            function runProgram() {
+              interval =
+            }
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
+          .alert
 
 
 

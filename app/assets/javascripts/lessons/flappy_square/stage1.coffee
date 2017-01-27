@@ -188,27 +188,7 @@ initFlappySquareStage1Challenge6 = (page) ->
 
 
 
-  # testSolution = (index) ->
-  #   solution = (canvas, context) ->
-  #     for i in [1..index]
-  #       context.fillRect(50, 100 + (i * 25), 20, 20)
-  #
-  #   testCode = new Test.Code(code: solution, canvas: canvas)
-  #
-  #   testCode.test (success) ->
-  #     if success
-  #       if index < 5
-  #         testSolution(index + 1)
-  #       else
-  #         message = '<strong>Success!</strong> You\'re successfull animated a flappy square moving down!'
-  #         App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
-  #         canvas.alert(message, success)
-  #     else
-  #       message = 'Nice try, but you need to animate a flappy square moving down.'
-  #       canvas.alert(message, success)
-  #
-  # challenge.find('.run').click ->
-  #   testSolution(1)
+  
 
 ###
 initFlappySquareStage1Challenge6 = (page) ->
