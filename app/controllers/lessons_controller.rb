@@ -12,18 +12,18 @@ class LessonsController < ApplicationController
       render_reference(lessons, lesson_slug)
 
     else
-      challenge_path = @challenge_paths.select { |cp| cp[:slug] == params[:section] }.first      
+      @challenge_path = @challenge_paths.select { |cp| cp[:slug] == params[:section] }.first
 
       if @lessons[lesson_slug].present?
 
         @challenge_count = @lessons[lesson_slug][:count]
-        lessons = challenge_path[:reference].index(lesson_slug).present? ?
-          challenge_path[:reference] : challenge_path[:concepts]
+        lessons = @challenge_path[:reference].index(lesson_slug).present? ?
+          @challenge_path[:reference] : @challenge_path[:concepts]
         render_reference(lessons, lesson_slug)
 
       else
 
-        lessons = challenge_path[:stages]
+        lessons = @challenge_path[:stages]
         lesson_index = params[:id].gsub(/stage/, '').to_i
         @challenge_count = lessons[lesson_index - 1]
 

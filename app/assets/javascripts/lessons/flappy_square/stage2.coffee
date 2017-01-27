@@ -1,12 +1,53 @@
 initFlappySquareStage2Challenges = ->
   if (page = $('#flappy_square_stage2')).length > 0
     initFlappySquareStage2Challenge1(page)
-    initFlappySquareStage2Challenge2(page)
-    initFlappySquareStage2Challenge3(page)
-    initFlappySquareStage2Challenge4(page)
-    initFlappySquareStage2Challenge5(page)
-    initFlappySquareStage2Challenge6(page)
+    # initFlappySquareStage2Challenge2(page)
+    # initFlappySquareStage2Challenge3(page)
+    # initFlappySquareStage2Challenge4(page)
+    # initFlappySquareStage2Challenge5(page)
+    # initFlappySquareStage2Challenge6(page)
 
+
+initFlappySquareStage2Challenge1 = (page) ->
+  index = 1
+  challenge = page.find("#challenge#{index}")
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  solution = (canvas, context) ->
+    drawWall = (x) ->
+      context.fillRect(x, 25, 50, 100);
+      context.fillRect(x, 200, 50, 100);
+
+    context.fillRect(50, 100, 20, 20);
+
+    context.beginPath();
+    context.moveTo(25, 25);
+    context.lineTo(450, 25);
+    context.lineTo(450, 300);
+    context.lineTo(25, 300);
+    context.closePath();
+    context.stroke();
+
+    drawWall(150);
+    drawWall(275);
+    drawWall(400);
+
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You\'ve drawn the flappy square game using functions and there are three walls properly placed!'
+        App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
+      else
+        message = 'Nice try, but your game should be using functions and produce three walls that are spaced every 125 pixels.'
+
+      canvas.alert(message, success)
+
+
+###
 initFlappySquareStage2Challenge1 = (page) ->
   challengeIndex = 1
   challenge = page.find("#challenge#{challengeIndex}")
@@ -111,5 +152,5 @@ initFlappySquareStage2Challenge6 = (page) ->
 
         canvas.alert(message, success)
     ), 2500)
-
+###
 $(document).on('initialization:complete', initFlappySquareStage2Challenges)

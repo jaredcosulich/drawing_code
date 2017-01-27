@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
         experimental: true,
         name: 'Flappy Square',
         slug: 'flappy_square',
-        stages: [6, 6, 3, 4],
+        stages: [6, 1, 3, 4],
         reference: [
           :clear_rect,
           :fill_rect,

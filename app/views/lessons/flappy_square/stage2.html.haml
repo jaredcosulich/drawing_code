@@ -1,3 +1,5 @@
+- stage_index = 2
+- section_index = 0
 - lesson_index = 0
 - challenge_index = 0
 
@@ -25,6 +27,174 @@
     .col-xs-6
       = image_tag('lessons/flappy_square/stage2/overview.gif', class: 'img-fluid canvas-example')
 
+
+
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - lesson_index += 1
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Using Functions
+          %p
+            Right now we only have one wall. In our game we're going to
+            need an endless stream of walls for our flappy square to fly through.
+          %p
+            Calling
+            %code context.fillRect()
+            over and over and over again in our code is not going to work.
+          %p
+            If there is a chunk of code that you are going to use over and over again,
+            putting that code into a function can make your life much easier. Then,
+            to run the code, all you have to do is call the function by typing one line.
+          %p
+            %span.highlight
+              In this example, we create a function that will draw a French flag. Because
+              we might want to draw a French flag in lots of different places, we make the
+              x- and y-coordinates of the flag variables.
+            When we call drawFrenchFlag(30, 100), the 30 is assigned to the variable <i>x</i>
+            and the 100 is assigned to the variable <i>y</i> inside of the function. Now we can
+            easily draw as many French flags as we want!
+          %p
+            Functions are a core concept in software development. If you feel uncertain about them
+            you should click on the "Functions" quick reference button below and click on the
+            "Full Lesson" button in the pop-up.
+
+          = render 'lessons/relevant', relevant: [:functions, :fill_rect, :fill_style, :coordinates, :variables]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor"} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
+                var context = canvas.getContext('2d');
+
+                function drawFrenchFlag(x, y) {
+                  context.fillStyle = '#0055A4';
+                  context.fillRect(x, y, 20, 40);
+
+                  context.fillStyle = '#FFFFFF';
+                  context.fillRect(x + 20, y, 20, 40);
+
+                  context.fillStyle = '#EF4135';
+                  context.fillRect(x + 40, y, 20, 40);
+                }
+
+                drawFrenchFlag(30, 100);
+                drawFrenchFlag(150, 50);
+                drawFrenchFlag(300, 180);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
+
+
+  - challenge_index += 1
+  .challenge.row.py-4{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.png", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            %span.highlight
+              Let's write three functions that draw our flappy square, our boundary, and our wall.
+          %p
+            Our flappy square function will be called
+            %code drawSquare()
+            and will not require any parameters. We'll use our square hash variable within
+            our function to draw the square like so:
+          %pre
+            %code
+              :preserve
+                function drawSquare() {
+                  context.fillRect(square.x, square.y, square.size, square.size);
+                }
+          %p
+            Our boundary will be drawn in the
+            %code drawBoundary()
+            function which will not need any values either. We'll get those from
+            our boundary hash variable.
+          %p
+            Lastly our walls will be drawn in the
+            %code drawWall(x)
+            function which will accept one parameter, the "x" coordinate of the wall.
+          %p
+            Once your functions are in place we can call the
+            %code drawWall(x)
+            function three times, creating walls
+            %span.highlight every 125 pixels,
+            starting from the left border of the boundary.
+          %p
+            Once complete your game should look like the example provided above.
+          %p
+            Note: Functions are a core concept in software development. If you feel uncertain about them
+            you should click on the "Functions" quick reference button below and click on the
+            "Full Lesson" button in the pop-up.
+
+
+          = render 'lessons/relevant', relevant: [:functions, :fill_rect, :coordinates, :variables]
+
+          - last_stage = stage_index - 1
+          - last_challenge = @challenge_path[:stages][stage_index - 2]
+          = render 'lessons/code_preview', stage: last_stage, challenge: last_challenge, editor_id: "flappy_square_stage#{last_stage}_challenge#{last_challenge}_editor"
+
+      .row.pt-2
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            // BOUNDARY HASH HERE
+
+            // SQUARE HASH HERE
+
+            // WALL HASH HERE
+
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
+            }
+
+            // GAME BOUNDARY FUNCTION
+
+            // WALL FUNCTION
+
+            drawSquare();
+
+            // CODE TO CALL BOUNDARY FUNCTION HERE
+
+            // CODE TO CALL WALL FUNCTION THREE TIMES HERE
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}.png")
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
+          .alert
+
+
+
+
+
+
+
+
+
+
+-#
 
   - lesson_index += 1
   .lesson.row.py-3
@@ -253,9 +423,9 @@
               var y = e.layerY;
               var inOut;
               if (x > boundary.minX && x < boundary.maxX && y > boundary.minY && y < boundary.maxY) {
-               inOut = 'inside the game area.';
+                inOut = 'inside the game area.';
               } else {
-               inOut = 'outside the game area.';
+                inOut = 'outside the game area.';
               }
               context.fillText('Your mouse is: ' + inOut, boundary.minX, 40);
             }
