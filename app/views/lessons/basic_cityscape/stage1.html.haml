@@ -14,8 +14,9 @@
             buildings with different sizes. Because we will be drawing lots of buildings,
             we will automate the process using functions and variables.
 
+  #section1.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -106,8 +107,7 @@
               .canvas
                 %canvas#basic_cityscape_stage1_example1
 
-
-  #challenge1.challenge.row.py-3
+  #challenge1.challenge.row.py-4
     .col-xs-12
       .row.pb-2
         .col-xs-12
@@ -147,13 +147,13 @@
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage1_challenge1');
             var context = canvas.getContext('2d');
-            
+
             context.fillStyle = 'Black';
-            
+
             // DRAW THE BUILDING HERE
-            
+
             // DRAW THE LINE FOR THE GROUND HERE
-            
+
             function drawGround(y) {
               context.save();
               context.fillStyle = 'Black';
@@ -170,8 +170,9 @@
             %canvas#basic_cityscape_stage1_challenge1
           .alert
 
+  #section2.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -239,7 +240,7 @@
                 %canvas#basic_cityscape_stage1_example2
 
 
-  #challenge2.challenge.row.py-3
+  #challenge2.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
@@ -290,7 +291,7 @@
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage1_challenge2');
             var context = canvas.getContext('2d');
-            
+
             var x = 0;
             var y = 0; // The building's top left corner is at (100, 40)
             var w = 100;
@@ -299,16 +300,16 @@
             // SET THE COLOR OF THE BUILDING TO #999999 HERE
 
             // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
-            
+
             drawGround(100); // Position and draw the ground here
-            
+
             function drawGround(y) {
               context.save();
               context.fillStyle = 'Black';
               context.fillRect(0, y, canvas.width, 2);
               context.restore();
             }
-            
+
         .visual.col-xs-6
           %h5
             Canvas
@@ -318,8 +319,9 @@
             %canvas#basic_cityscape_stage1_challenge2
           .alert
 
+  #section3.section.py-2 &nbsp;
 
-  #challenge3.challenge.row.py-3
+  #challenge3.challenge.row.pt-2.pb-4
     .col-xs-12
       .row
         .col-xs-12
@@ -396,7 +398,7 @@
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage1_challenge3');
             var context = canvas.getContext('2d');
-            
+
             var x = 120;
             var y = 80;
             var units = 8;
@@ -410,7 +412,7 @@
             // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
 
             drawOffices(x, y, w, h); // Draw the offices
-            
+
             drawGround(100); // Position and draw the ground here
 
             function drawOffices(x, y, w, h) {
@@ -428,14 +430,14 @@
 
               context.restore();
             }
-            
+
             function drawGround(y) {
               context.save();
               context.fillStyle = 'Black';
               context.fillRect(0, y, canvas.width, 2);
               context.restore();
             }
-            
+
         .visual.col-xs-6
           %h5
             Canvas
@@ -445,8 +447,9 @@
             %canvas#basic_cityscape_stage1_challenge3
           .alert
 
+  #section4.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -514,7 +517,7 @@
                 %canvas#basic_cityscape_stage1_example3
 
 
-  #challenge4.challenge.row.py-3
+  #challenge4.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
@@ -587,9 +590,9 @@
             function drawBuilding(x, y, units, floors) {
               var w = 0; // Use the parameter units to calculate the width of the building
               var h = 0; // Use the parameter floors to calculate the height of the building
-              
+
               // SET THE COLOR OF THE BUILDING TO #999999 HERE
-              
+
               // DRAW THE BUILDING HERE USING THE PARAMETERS x, y AND THE VARIABLES w, h
             }
 
@@ -605,8 +608,9 @@
             %canvas#basic_cityscape_stage1_challenge4
           .alert
 
+  #section5.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -643,9 +647,9 @@
             %code
               :preserve
                 function fillCenteredRectangle(centerX, topY, w, h) {
-                  
+
                   // code block
-                  
+
                 }
           %p
             Inside the function, we use the parameters to calculate the coordinates of
@@ -656,7 +660,7 @@
                 function fillCenteredRectangle(centerX, topY, w, h) {
                   var x = centerX - w / 2;
                   var y = topY;
-                  
+
                   context.fillRect(x, y, w, h);
                 }
           %p
@@ -695,23 +699,23 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage1_example4');
                 var context = canvas.getContext('2d');
-                
+
                 var centerX = 180; // The x-coordinate of the center of the rectangles
-                
+
                 drawCenterLine();
-                
+
                 context.fillStyle = 'DeepPink';
                 fillCenteredRectangle(centerX, 20, 200, 80); // Centered at centerX
                 fillCenteredRectangle(centerX, 120, 320, 100); // Centered at centerX
                 fillCenteredRectangle(centerX, 240, 240, 60); // Centered at centerX
-                
+
                 function fillCenteredRectangle(centerX, topY, w, h) {
                   var x = centerX - w / 2;
                   var y = topY;
-                  
+
                   context.fillRect(x, y, w, h);
                 }
-                
+
                 function drawCenterLine() {
                   context.save();
                   context.fillStyle = 'Black';
@@ -727,7 +731,7 @@
                 %canvas#basic_cityscape_stage1_example4
 
 
-  #challenge5.challenge.row.py-3
+  #challenge5.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
@@ -805,23 +809,23 @@
           :preserve
             var canvas = document.getElementById('basic_cityscape_stage1_challenge5');
             var context = canvas.getContext('2d');
-            
+
             function drawBuilding(leftX, groundY, units, floors) {
               var w = 0; // Calculate the width of the building
               var h = 0; // Calculate the height of the building
               var x = 0; // Calculate the x-coordinate of the building's top left corner
               var y = 0; // Calculate the y-coordinate of the building's top left corner
-              
+
               // SET THE COLOR OF THE BUILDING TO #999999 HERE
-              
+
               // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
             }
-            
+
             // DRAW ONE BUILDING WITH 12 UNITS AND 8 FLOORS SITTING AT (20, 280) HERE
             // DRAW A SECOND BUILDING WITH 9 UNITS AND 15 FLOORS SITTING AT (230, 280) HERE
-            
+
             drawGround(280); // Draws the ground at y = 280
-            
+
             function drawGround(y) {
               context.save();
               context.fillStyle = 'Black';
@@ -838,8 +842,9 @@
             %canvas#basic_cityscape_stage1_challenge5
           .alert
 
+  #section6.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -952,7 +957,7 @@
                 %canvas#basic_cityscape_stage1_example5
 
 
-  #challenge6.challenge.row.py-3
+  #challenge6.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
@@ -1008,19 +1013,19 @@
               var h = 0; // Calculate the height of the building
               var x = 0; // Calculate the x-coordinate of the building's top left corner
               var y = 0; // Calculate the y-coordinate of the building's top left corner
-              
+
               // SAVE THE DRAWING STATE HERE
               // MOVE THE ORIGIN TO THE TOP LEFT CORNER OF THE BUILDING HERE
               // SET THE COLOR OF THE BUILDING TO #999999 HERE
               // DRAW THE BUILDING AT (0, 0) HERE USING THE VARIABLES w, h
               // RESTORE THE LAST SAVED DRAWING STATE HERE
             }
-            
+
             // DRAW ONE BUILDING WITH 10 UNITS AND 16 FLOORS SITTING AT (20, 290) HERE
             // DRAW A SECOND BUILDING WITH 12 UNITS AND 10 FLOORS SITTING AT (200, 290) HERE
-            
+
             drawGround(290); // Draws the ground at y = 290
-            
+
             function drawGround(y) {
               context.save();
               context.fillStyle = 'Black';

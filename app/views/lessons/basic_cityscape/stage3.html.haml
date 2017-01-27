@@ -14,8 +14,9 @@
             buildings by varying the types of windows in the offices and the types of roofs
             on the buildings. Then, we create and draw a random building.
 
+  #section1.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -61,12 +62,12 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage3_example1');
                 var context = canvas.getContext('2d');
-                
+
                 context.save();
                 context.translate(20, 40);
                 drawFlag('Colombia');
                 context.restore();
-                
+
                 function drawFlag(country) {
                   context.save();
 
@@ -116,7 +117,7 @@
                 %canvas#basic_cityscape_stage3_example1
 
 
-  #challenge1.challenge.row.py-3
+  #challenge1.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
@@ -139,9 +140,9 @@
             %code
               :preserve
                 function drawBuilding(x, y, units, floors, windowType) {
-                  
+
                   // code block
-                  
+
                 }
           %p
             Inside the
@@ -189,9 +190,9 @@
             %code
               :preserve
                 function drawWindow(windowType) {
-                  
+
                   // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
-                  
+
                 }
           %p
             Inside the
@@ -239,7 +240,7 @@
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF WINDOWS HERE
 
             }
-            
+
             // DRAW A BUILDING AT (20, 320) WITH 6 OFFICE UNITS, 10 FLOORS, AND TYPE 1 WINDOWS
             // DRAW A BUILDING AT (136, 320) WITH 10 OFFICE UNITS, 6 FLOORS, AND TYPE 2 WINDOWS
             // DRAW A BUILDING AT (316, 320) WITH 5 OFFICE UNITS, 14 FLOORS, AND TYPE 3 WINDOWS
@@ -253,8 +254,9 @@
             %canvas#basic_cityscape_stage3_challenge1
           .alert
 
+  #section2.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -272,9 +274,9 @@
             %code
               :preserve
                 function drawRoof(w) {
-                  
+
                   // code block
-                  
+
                 }
           %p
             Inside the
@@ -334,7 +336,7 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage3_example2');
                 var context = canvas.getContext('2d');
-                
+
                 function drawRoof(w) {
                   context.save();
                   context.translate(w / 2, -96); // Move to the center of the roof and top of the triangle
@@ -348,7 +350,7 @@
                   context.fillRect(-(w - 16) / 2, 80, w - 16, 16);
                   context.restore();
                 }
-                
+
                 function drawBuilding(leftX, groundY, units, floors) {
                   var w = 16 * units + 8;
                   var h = 16 * floors + 8;
@@ -375,7 +377,7 @@
                 %canvas#basic_cityscape_stage3_example2
 
 
-  #challenge2.challenge.row.py-3
+  #challenge2.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
@@ -468,7 +470,7 @@
               // YOUR CODE FOR DRAWING THE FOUR DIFFERENT TYPES OF ROOFS HERE
 
             }
-            
+
             // DRAW A BUILDING AT (20, 320) WITH 6 OFFICE UNITS, 10 FLOORS, TYPE 1 WINDOWS, TYPE 2 ROOF
             // DRAW A BUILDING AT (136, 320) WITH 10 OFFICE UNITS, 6 FLOORS, TYPE 2 WINDOWS, TYPE 1 ROOF
             // DRAW A BUILDING AT (316, 320) WITH 5 OFFICE UNITS, 14 FLOORS, TYPE 3 WINDOWS, TYPE 3 ROOF
@@ -482,8 +484,9 @@
             %canvas#basic_cityscape_stage3_challenge2
           .alert
 
+  #section3.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -576,7 +579,7 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage3_example3');
                 var context = canvas.getContext('2d');
-                
+
                 var country = Math.floor(3 * Math.random()) // Generates a random integer between 0 and 2
                 var flagCount = 2 + Math.floor(4 * Math.random()); // Generates a random integer between 2 and 5
 
@@ -588,7 +591,7 @@
                 }
 
                 context.restore();
-                
+
                 function drawFlag(country) {
                   context.save();
 
@@ -638,7 +641,7 @@
                 %canvas#basic_cityscape_stage3_example3
 
 
-  #challenge3.challenge.row.py-3
+  #challenge3.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
@@ -703,8 +706,9 @@
             %canvas#basic_cityscape_stage3_challenge3
           .alert
 
+  #section4.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -794,7 +798,7 @@
                 %canvas#basic_cityscape_stage3_example4
 
 
-  #challenge4.challenge.row.py-3
+  #challenge4.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
@@ -860,7 +864,7 @@
             %code
               :preserve
                 var roofType;
-                
+
                 if (units > 8) {
                   roofType = randomInteger(0, 1);
                 } else if (units > 6) {
