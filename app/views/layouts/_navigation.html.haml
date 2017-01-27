@@ -1,24 +1,24 @@
 %ul.nav.nav-sidebar
   %li.section
     = link_to 'Home', root_path, class: 'section_link'
+-#
+  %ul.nav.nav-sidebar
+    %li.section
+      %a.section_link{:href => '#', data: {section: 'drawings'}}
+        Your Drawings
 
-%ul.nav.nav-sidebar
-  %li.section
-    %a.section_link{:href => '#', data: {section: 'drawings'}}
-      Your Drawings
+      %ul.nav.nav-sidebar#drawings{class: (@drawing ? 'collapse in' : 'collapse')}
+        %li{class: ('active' if @my_drawing)}
+          = link_to('Create A Drawing', drawings_path)
 
-    %ul.nav.nav-sidebar#drawings{class: (@drawing ? 'collapse in' : 'collapse')}
-      %li{class: ('active' if @my_drawing)}
-        = link_to('Create A Drawing', drawings_path)
+        %li.section.drawings-list.small.mt-1.hidden-xs-up
+          %strong My Drawings
 
-      %li.section.drawings-list.small.mt-1.hidden-xs-up
-        %strong My Drawings
+  %ul.nav.nav-sidebar
+    %li.section
+      = link_to('Gallery', examples_path, class: 'section_link')
 
-%ul.nav.nav-sidebar
-  %li.section
-    = link_to('Gallery', examples_path, class: 'section_link')
-      
-%ul.nav.nav-sidebar
+%ul.nav.nav-sidebar{style: 'display: none;'}
   %li.section
     %a.section_link{:href => '#', data: {section: 'reference'}}
       Reference
@@ -37,7 +37,7 @@
             .reference-modal-content{id: "reference-modal-#{id}"}
               = render partial: "lessons/modal/#{id}"
 
-%ul.nav.nav-sidebar
+%ul.nav.nav-sidebar{style: 'display: none;'}
   %li.section
     %a.section_link{:href => '#', data: {section: 'concepts'}}
       Concepts
@@ -68,24 +68,34 @@
             - if challenge_count > 0
               %span.tag.tag-default
                 %small{class: "#{challenge_path[:slug]}_stage#{lesson_index}"}= "0 / #{challenge_count}"
+            - if params[:id] == "stage#{lesson_index}"
+              - challenge_count.times do |i|
+                %li.page_section.row.small{id: "page_section#{i + 1}"}
+                  = link_to("Section #{i + 1}", "#section#{i + 1}", style: 'margin-left: 21px; width: 6.5em; display: inline-block;')
+                  %span.tag.tag-success.hidden-xs-up &#10003;
 
-        %li.section.small.mt-2
-          %strong Relevant Reference
+
+
+
+
+      %ul.nav.nav-sidebar#quick-reference
+        %li.section.small.mt-3
+          %strong Quick Reference
 
         - challenge_path[:reference].each do |lesson|
           %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
             = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug], class: 'reference-link', data: {slug: lesson})
-            - if @lessons[lesson][:count] > 0
+            -# if @lessons[lesson][:count] > 0
               %span.tag.tag-default
                 %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 
         %li.section.small.mt-1
-          %strong Relevant Concepts
+          %strong Concepts
 
         - challenge_path[:concepts].each do |lesson|
           %li{class: "small #{('active' if params[:id] == lesson.to_s)}"}
             = link_to_lesson(@lessons[lesson][:method], lesson, challenge_path[:slug], class: 'reference-link', data: {slug: lesson})
-            - if @lessons[lesson][:count] > 0
+            -# if @lessons[lesson][:count] > 0
               %span.tag.tag-default
                 %small{class: lesson}= "0 / #{ @lessons[lesson][:count]}"
 

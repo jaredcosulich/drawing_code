@@ -15,8 +15,9 @@
             The buildings in the background are smaller and darker in color. This will
             create the illusion of 3D depth.
 
+  #section1.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -40,7 +41,7 @@
             %code
               :preserve
                 var x = 0;
-                
+
                 while (x < 400) {
                   var s = randomInteger(10, 50);
                   context.save();
@@ -90,15 +91,15 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage4_example1');
                 var context = canvas.getContext('2d');
-                
+
                 context.save();
                 context.fillStyle = '#FFFFFF';
                 context.fillRect(0, 0, 400, 100);
                 context.strokeStyle = '#FF1493';
                 context.translate(0, 100);
-                
+
                 var x = 0;
-                
+
                 while (x < 400) {
                   var s = randomInteger(10, 50);
                   context.save();
@@ -110,14 +111,14 @@
                 }
 
                 context.restore();
-                
+
                 function drawSquare(s) {
                   context.save();
                   context.translate(0, -s);
                   context.strokeRect(0, 0, s, s);
                   context.restore();
                 }
-                
+
                 function randomInteger(min, max) {
                   var i = min + Math.floor((max - min + 1) * Math.random());
 
@@ -132,7 +133,7 @@
                 %canvas#basic_cityscape_stage4_example1
 
 
-  #challenge1.challenge.row.py-3
+  #challenge1.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
@@ -153,9 +154,9 @@
                 function drawBuildingRow(rowX, groundY) {
                   context.save();
                   context.translate(rowX, groundY);
-                  
+
                   // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE
-                  
+
                   context.restore();
                 }
           %p
@@ -215,9 +216,9 @@
               %code
                 :preserve
                   function drawBuilding(leftX, groundY, w, h, units, floors, windowType, roofType) {
-                    
+
                     // YOUR CODE FOR DRAWING A BUILDING HERE
-                    
+
                   }
           %p
             And because the width of the building is now stored in the variable
@@ -289,9 +290,9 @@
             function drawBuildingRow(rowX, groundY) {
               context.save();
               context.translate(rowX, groundY);
-              
+
               // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE
-              
+
               context.restore();
             }
 
@@ -307,8 +308,9 @@
             %canvas#basic_cityscape_stage4_challenge1
           .alert
 
+  #section2.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -364,7 +366,7 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage4_example2');
                 var context = canvas.getContext('2d');
-                
+
                 context.save();
                 context.translate(20, 20);
                 context.scale(0.6, 0.6); // Changes the scale of the coordinate system
@@ -417,7 +419,7 @@
 
                   context.restore();
                 }
-                
+
                 function randomInteger(min, max) {
                   var i = min + Math.floor((max - min + 1) * Math.random());
 
@@ -432,7 +434,7 @@
                 %canvas#basic_cityscape_stage4_example2
 
 
-  #challenge2.challenge.row.py-3
+  #challenge2.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
@@ -455,9 +457,9 @@
                 function drawBuildingRow(rowX, groundY, scale) {
                   context.save();
                   context.translate(rowX, groundY);
-                  
+
                   // YOUR CODE FOR DRAWING A ROW OF RANDOM BUILDINGS HERE
-                  
+
                   context.restore();
                 }
           %p
@@ -576,8 +578,9 @@
             %canvas#basic_cityscape_stage4_challenge2
           .alert
 
+  #section3.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -667,7 +670,7 @@
               :preserve
                 var canvas = document.getElementById('basic_cityscape_stage4_example3');
                 var context = canvas.getContext('2d');
-                
+
                 var r = randomInteger(0, 255) // Choose a random amount of red
                 var g = randomInteger(0, 255) // Choose a random amount of green
                 var b = randomInteger(0, 255) // Choose a random amount of blue
@@ -680,7 +683,7 @@
                 drawText(color, 220, 300); // Print the text string stored in the variable color
 
                 context.restore();
-                
+
                 function drawText(text, x, y) {
                   context.save();
                   context.fillStyle = 'rgb(0, 0, 0)';
@@ -704,7 +707,7 @@
                 %canvas#basic_cityscape_stage4_example3
 
 
-  #challenge3.challenge.row.py-3
+  #challenge3.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
@@ -849,8 +852,9 @@
             %canvas#basic_cityscape_stage4_challenge3
           .alert
 
+  #section4.section.py-2 &nbsp;
 
-  .example.row.py-3
+  .lesson.row.pt-2
     .col-xs-12
       .row
         .col-xs-12
@@ -999,7 +1003,7 @@
                 %canvas#basic_cityscape_stage4_example4
 
 
-  #challenge4.challenge.row.py-3
+  #challenge4.challenge.row.py-4
     .col-xs-12
       .row
         .col-xs-12
