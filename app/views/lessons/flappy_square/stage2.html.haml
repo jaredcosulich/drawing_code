@@ -604,7 +604,7 @@
             var context = canvas.getContext('2d');
 
             var interval;
-            
+
             // CODE FROM PREVIOUS CHALLENGE HERE
             // JUST FIGURE OUT WHERE TO ADD
             // context.clearRect(0, 0, canvas.width, canvas.height)
@@ -768,8 +768,10 @@
             Let's give our flappy square animation a more realistic simulation
             of gravity.
           %p
-            Using your code from Challenge 4, instead of just moving the flappy square
-            down 10 pixels each frame let's track the y velocity of the flappy
+            Using your code from Challenge
+            = challenge_index - 1
+            instead of just moving the flappy square
+            down 25 pixels each frame let's track the y velocity of the flappy
             square and with each frame let's subtract gravity to increase the velocity
             downward.
           %p
@@ -789,7 +791,7 @@
           %p
             Important note: In Challenge
             = challenge_index - 1
-            we added 10 to the "y" variable in each frame causing the square
+            we added 25 to the "y" variable in each frame causing the square
             to move down. Here we need to
             %span.highlight subtract "yVelocity"
             as "yVelocity" will be negative and subtracting a negative is the same
@@ -807,19 +809,25 @@
 
             var interval;
             var gravity = ;
-            var size = 20;
-            var x = ;
-            var y = ;
-            var yVelocity = ;
+
+            // HASH VARIABLE HERE
+            // Remember to store yVelocity in
+            // your square hash variable
 
             function drawSquare() {
             }
 
+            function drawBoundary() {
+            }
+
+            function drawWall(x) {
+            }
+
             function adjustPosition() {
-              // Instead of simply subtracting
-              // 10 from the "y" variable you'll
-              // need to both adjust the "yVelocity"
-              // and then use it to adjust "y"
+              // Instead of simply adding
+              // 25 to the "square.y" variable you'll
+              // need to both adjust the "square.yVelocity"
+              // and then use it to adjust "square.y"
             }
 
             function programSteps() {

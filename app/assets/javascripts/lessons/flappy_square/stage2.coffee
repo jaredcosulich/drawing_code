@@ -120,7 +120,7 @@ initFlappySquareStage2Challenge4 = (page) ->
     setTimeout(( ->
       canvas.selfAssess ->
         App.currentProgress.challengeComplete('flappy_square_stage2', "challenge#{challengeIndex}")
-    ), 2000)
+    ), 1000)
 
 ###
 initFlappySquareStage2Challenge1 = (page) ->
