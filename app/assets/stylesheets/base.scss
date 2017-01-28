@@ -287,3 +287,19 @@ pre {
     margin-bottom: 24px;
   }
 }
+
+.code-i-wrote {
+  .code-i-wrote-link {
+    color: #0275d8;
+    cursor: pointer;
+  }
+
+  .code-i-wrote-view {
+    display: none;
+
+    .code-i-wrote-code {
+      height: 300px;
+    }
+  }
+
+}
