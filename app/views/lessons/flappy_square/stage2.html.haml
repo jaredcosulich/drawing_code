@@ -133,7 +133,9 @@
           %p
             Once your functions are in place we can call the
             %code drawWall(x)
-            function three times, creating walls
+            function three times from a
+            %code drawWalls()
+            function, creating walls
             %span.highlight every 125 pixels,
             starting from the left border of the boundary.
           %p
@@ -170,11 +172,16 @@
 
             // WALL FUNCTION
 
+            function drawWalls() {
+              // CODE TO CALL WALL FUNCTION THREE TIMES HERE
+            }
+
             drawSquare();
 
             // CODE TO CALL BOUNDARY FUNCTION HERE
 
-            // CODE TO CALL WALL FUNCTION THREE TIMES HERE
+            // CODE TO CALL drawWalls() FUNCTION HERE
+
 
         .visual.col-xs-6
           %h5
@@ -393,9 +400,7 @@
               adjustPosition();
               drawSquare();
               drawBoundary();
-              drawWall(boundary.minX + 125);
-              drawWall(boundary.minX + (125 * 2));
-              drawWall(boundary.minX + (125 * 3));
+              drawWalls();
             }
 
             function runProgram() {
@@ -821,6 +826,9 @@
             }
 
             function drawWall(x) {
+            }
+
+            function drawWalls() {            
             }
 
             function adjustPosition() {
