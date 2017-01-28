@@ -11,18 +11,12 @@
       %h2.py-2
         Stage 2 Overview
       %p
-        In this stage we'll make our flappy bird fly!
-        We'll listen for a click on the canvas and
-        make our flappy bird fly a bit before falling
-        back down.
+        In this stage we'll animate our flappy square!
       %p
-        Then, if the bird falls outside of the game area
-        we'll end the game.
-      %p
-        Lastly we'll create a simple moving background that
-        the flappy square can fly through. We won't yet check
-        to see if the flappy square runs into any walls, we'll
-        just create them to provide the illusion of movement.
+        We'll walk through a series of challenges that
+        move our flappy square toward an animation that
+        simulates gravity, causing it to fall off of our
+        canvas.
 
     .col-xs-6
       = image_tag('lessons/flappy_square/stage2/overview.gif', class: 'img-fluid canvas-example')
@@ -1197,167 +1191,7 @@
 
 -#
 
-  - lesson_index += 1
-  .lesson.row.py-3
-    .col-xs-12
-      .row
-        .col-xs-12
-          %h2.py-2
-            Lesson: Responding To Events
-          %p
-            In Stage 1 we caught a glimpse of
-            = link_to_lesson('event listeners', :event_listeners, nil, class: 'reference-link', data: {slug: :event_listeners})
-            in the code we provided you that starts and pauses the animations when the
-            canvas receives or loses focus (the 'focus' and 'blur' events).
-          %p
-            In this example we'll and an event listener that listens for mouse clicks
-            and we'll move our square to where ever we click.
-          %p
-            We can listen for clicks on the canvas using code like this:
-          %pre
-            %code
-              :preserve
-                canvas.addEventListener('click', handleClick);
-          %p
-            Click around on the canvas and watch how the square jumps to each mouse click.
 
-          = render 'lessons/relevant', relevant: [:event_listeners, :fill_rect, :coordinates]
-
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage2_lesson#{lesson_index}_editor"} do
-              :preserve
-                var canvas = document.getElementById('flappy_square_stage2_lesson#{lesson_index}');
-                var context = canvas.getContext('2d');
-
-                function drawSquare(x, y) {
-                  context.fillRect(x - 20, y - 20, 40, 40);
-                }
-
-                function reset() {
-                  context.clearRect(0, 0, canvas.width, canvas.height);
-
-                  context.font = "20px serif";
-                  context.textAlign = 'center';
-                  context.fillText('Click anywhere on the canvas to move the square.', canvas.width / 2, 50);
-                }
-
-                function handleClick(e) {
-                  reset();
-                  drawSquare(e.layerX, e.layerY);
-                }
-
-                canvas.addEventListener('click', handleClick);
-                reset();
-                drawSquare(100, 100);
-
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas{id: "flappy_square_stage2_lesson#{lesson_index}"}
-
-  - challenge_index += 1
-  .challenge.row.py-3{id: "challenge#{challenge_index}"}
-    .col-xs-12
-      .row.pb-2
-        .col-xs-12
-          %h2.challenge-title.py-2
-            = "Challenge #{challenge_index}"
-
-          %figure.float-xs-right.pl-2
-            = image_tag("lessons/flappy_square/stage2/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
-
-          %p
-            Take your code from Stage 1 and make your flappy square fly.
-          %p
-            Listen for
-            %span.highlight a click event
-            on the canvas. When a click is received set the
-            %span.highlight "yVelocity" to the "jump" variable.
-            And let's set the
-            %span.highlight "jump" variable to 8.
-            This will cause the flappy square to jump up before
-            being pulled back down by gravity.
-          %p
-            We'll also slow down the framerate so that you have more time to
-            click on the canvas before the square falls off the canvas. For now
-            let's set it to draw one frame every
-            %span.highlight 80 miliseconds
-            (this will be slow, but it will be a better framerate for testing).
-
-          %p In the end your flappy square should behave like the example provided to the right.
-
-          = render 'lessons/relevant', relevant: [:event_listeners]
-          = render 'lessons/code_preview', stage: 1, challenge: 7, editor_id: 'flappy_square_stage1_challenge7_editor'
-
-      .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage2_challenge#{challenge_index}_editor"} do
-          :preserve
-            var canvas = document.getElementById('flappy_square_stage1_challenge#{challenge_index}');
-            var context = canvas.getContext('2d');
-
-            var interval;
-            var gravity = ;
-            var size = 20;
-            var x = ;
-            var y = ;
-            var jump = ;
-            var yVelocity = ;
-
-            function drawSquare() {
-            }
-
-            function flap() {
-
-              // CODE FOR ONE "FLAP"
-
-            }
-
-            function adjustPosition() {
-            }
-
-            function programSteps() {
-            }
-
-            function runProgram() {
-              interval =
-            }
-
-            // CODE TO CALL flap METHOD WHEN CANVAS IS CLICKED
-
-
-
-            // The following code is provided for you.
-            // It creates an eventListener that listens
-            // for the canvas to come into "focus", which
-            // happens when you click on it.
-            // This allows us to stop and start each individual
-            // animation on this whole page separately.
-            function startAnimation() {
-              runProgram();
-            }
-
-            function pauseAnimation() {
-              clearInterval(interval);
-            }
-
-            canvas.addEventListener('focus', startAnimation);
-            canvas.addEventListener('blur', pauseAnimation);
-            canvas.focus();
-
-
-        .visual.col-xs-6
-          %h5
-            Canvas
-            %small (your drawing will display here)
-          .canvas
-            %canvas{id: "flappy_square_stage2_challenge#{challenge_index}"}
-          .alert
 
 
 
