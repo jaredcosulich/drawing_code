@@ -140,7 +140,7 @@
             %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
           .alert
 
-      .row.py-2
+      .row.pt-2
         = render :layout => '/lessons/code_i_wrote' do
           :preserve
             var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
@@ -229,6 +229,16 @@
             .background.hidden-xl-down= image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}.png")
             %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            context.fillRect(50, 100, 20, 20);
+
+
 
   - section_index += 1
   .section.py-2{id: "section#{section_index}"} &nbsp;
@@ -353,6 +363,24 @@
             %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            context.fillRect(50, 100, 20, 20);
+
+            context.beginPath();
+            context.moveTo(25, 25);
+            context.lineTo(450, 25);
+            context.lineTo(450, 300);
+            context.lineTo(25, 300);
+            context.closePath();
+            context.stroke();
+
+
+
   - section_index += 1
   .section.py-2{id: "section#{section_index}"} &nbsp;
 
@@ -415,6 +443,27 @@
             .background.hidden-xl-down= image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}.png")
             %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            context.fillRect(50, 100, 20, 20);
+
+            context.beginPath();
+            context.moveTo(25, 25);
+            context.lineTo(450, 25);
+            context.lineTo(450, 300);
+            context.lineTo(25, 300);
+            context.closePath();
+            context.stroke();
+
+            context.fillRect(150, 25, 50, 100);
+            context.fillRect(150, 200, 50, 100);
+
+
 
   - section_index += 1
   .section.py-2{id: "section#{section_index}"} &nbsp;
@@ -561,6 +610,41 @@
             %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var boundaryMinX = 25;
+            var boundaryMinY = 25;
+            var boundaryMaxX = 450;
+            var boundaryMaxY = 300;
+
+            var squareX = 50;
+            var squareY = 100;
+            var squareSize = 20;
+
+            var wallX = boundaryMinX + 100;
+            var wallWidth = 50;
+            var wallHeight = 100;
+
+            context.fillRect(squareX, squareY, squareSize, squareSize);
+
+            context.beginPath();
+            context.moveTo(boundaryMinX, boundaryMinY);
+            context.lineTo(boundaryMaxX, boundaryMinY);
+            context.lineTo(boundaryMaxX, boundaryMaxY);
+            context.lineTo(boundaryMinX, boundaryMaxY);
+            context.closePath();
+            context.stroke();
+
+            context.fillRect(wallX, boundaryMinY, wallWidth, wallHeight);
+            context.fillRect(wallX, boundaryMaxY - wallHeight, wallWidth, wallHeight);
+
+
+
+
   - section_index += 1
   .section.py-2{id: "section#{section_index}"} &nbsp;
 
@@ -650,6 +734,44 @@
             .background.hidden-xl-down= image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}.png")
             %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
+            };
+
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20
+            };
+
+            var wall = {
+              x: boundary.minX + 125,
+              width: 50,
+              height: 100
+            };
+
+            context.fillRect(square.x, square.y, square.size, square.size);
+
+            context.beginPath();
+            context.moveTo(boundary.minX, boundary.minY);
+            context.lineTo(boundary.maxX, boundary.minY);
+            context.lineTo(boundary.maxX, boundary.maxY);
+            context.lineTo(boundary.minX, boundary.maxY);
+            context.closePath();
+            context.stroke();
+
+            context.fillRect(wall.x, boundary.minY, wall.width, wall.height);
+            context.fillRect(wall.x, boundary.maxY - wall.height, wall.width, wall.height);
 
 
 -#
