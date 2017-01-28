@@ -40,7 +40,7 @@ initFlappySquareStage2Challenge1 = (page) ->
     testCode.test (success) ->
       if success
         message = '<strong>Success!</strong> You\'ve drawn the flappy square game using functions and there are three walls properly placed!'
-        App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
+        App.currentProgress.challengeComplete('flappy_square_stage2', "challenge#{index}")
       else
         message = 'Nice try, but your game should be using functions and produce three walls that are spaced every 125 pixels.'
 

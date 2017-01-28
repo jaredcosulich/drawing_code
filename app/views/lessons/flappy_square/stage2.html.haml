@@ -604,27 +604,10 @@
             var context = canvas.getContext('2d');
 
             var interval;
-            var size = 20;
-
-            var x = 50;
-            var y = 100;
-
-            function drawSquare() {
-              context.fillRect(x, y, size, size);
-            }
-
-            function adjustPosition() {
-              y += 10;
-            }
-
-            function programSteps() {
-              adjustPosition();
-              drawSquare();
-            }
-
-            function runProgram() {
-              interval = setInterval(programSteps, 300);
-            }
+            
+            // CODE FROM PREVIOUS CHALLENGE HERE
+            // JUST FIGURE OUT WHERE TO ADD
+            // context.clearRect(0, 0, canvas.width, canvas.height)
 
 
 
