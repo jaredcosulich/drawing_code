@@ -140,6 +140,16 @@
             %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
           .alert
 
+      .row.py-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            context.fillRect(60, 90, 45, 60);
+
+
+
   - section_index += 1
   .section.py-2{id: "section#{section_index}"} &nbsp;
 
