@@ -302,3 +302,333 @@
             canvas.addEventListener('focus', startAnimation);
             canvas.addEventListener('blur', pauseAnimation);
             canvas.focus();
+
+
+
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - lesson_index += 1
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Monitoring Game State
+          %p
+            In any game your code will need to be constantly monitoring
+            the environment, calculating whether different objects
+            are colliding or staying in bounds, etc.
+          %p
+            In our game one thing we need to monitor for is whether the
+            flappy square falls off the screen.
+          %p
+            In this example we demonstrate a game area. If you mouse over the canvas
+            it will note when you are inside our outside the game area.
+          %p
+            The code below checks to see if the mouse is inside our outside the game area:
+          %pre
+            %code
+              :preserve
+                if (x > boundary.minX && x < boundary.maxX && y > boundary.minY && y < boundary.maxY) {
+                  inOut = 'inside the game area.';
+                } else {
+                  inOut = 'outside the game area.';
+                }
+
+          = render 'lessons/relevant', relevant: [:event_listeners]
+
+        .col-xs-12
+          .interactive.focus-on-run.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor"} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
+                var context = canvas.getContext('2d');
+
+                var boundary = {
+                  minX: 50,
+                  maxX: 400,
+                  minY: 50,
+                  maxY: 300
+                };
+
+                function drawBoundary() {
+                  context.lineWidth = 2;
+                  context.beginPath();
+                  context.moveTo(boundary.minX, boundary.minY);
+                  context.lineTo(boundary.minX, boundary.maxY);
+                  context.lineTo(boundary.maxX, boundary.maxY);
+                  context.lineTo(boundary.maxX, boundary.minY);
+                  context.closePath();
+                  context.stroke();
+                }
+
+                function handleMouseMove(e) {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+
+                  drawBoundary();
+
+                  var x = e.layerX;
+                  var y = e.layerY;
+                  var inOut;
+                  if (x > boundary.minX && x < boundary.maxX && y > boundary.minY && y < boundary.maxY) {
+                    inOut = 'inside the game area.';
+                  } else {
+                    inOut = 'outside the game area.';
+                  }
+                  context.fillText('Your mouse is: ' + inOut, boundary.minX, 40);
+                }
+
+                canvas.addEventListener('mousemove', handleMouseMove);
+
+                context.font = "20px serif";
+                context.fillText('Mouse over the canvas.', boundary.minX, 40);
+                drawBoundary();
+
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
+
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            Let's take the code from Challenge
+            = challenge_index - 1
+            and check to make sure our flappy square hasn't fallen below the boundary.
+
+          %p
+            When the flappy square goes above the maximum y value for the boundary
+            (remember y values are larger at the bottom of the canvas) we'll
+            stop the game and display a message.
+
+          %p
+            We've provided the code to stop the game and display the message. You need
+            to call the method and determine when the game should be ended in your
+            %code checkBoundary()
+            function.
+
+          %p In the end your flappy square should behave like the example provided to the right.
+          = render 'lessons/relevant', relevant: [:event_listeners]
+          = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var gravity = ;
+
+            // HASH VARIABLE HERE
+            // Remember to store yVelocity in
+            // your square hash variable
+
+            function drawSquare() {
+            }
+
+            function drawBoundary() {
+            }
+
+            function drawWall(x) {
+            }
+
+            function drawWalls() {
+            }
+
+            function flap() {
+            }
+
+            function adjustPosition() {
+            }
+
+            function checkBoundary() {
+
+              // CODE TO CHECK WHETHER FLAPPY SQUARE
+              // IS ABOVE BOUNDARY FLOOR HERE.
+              if () {
+                endGame();
+              }
+
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+            }
+
+            function runProgram() {
+              interval =
+            }
+
+            canvas.addEventListener('click', flap)
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
+          .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+            
+            var interval;
+            var gravity = 0.5;
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
+            };
+
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20,
+              yVelocity: 0,
+              jump: -8
+            };
+
+            var wall = {
+              width: 50,
+              height: 100
+            };
+
+
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
+            }
+
+            function drawBoundary() {
+              context.beginPath();
+              context.moveTo(boundary.minX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.maxY);
+              context.lineTo(boundary.minX, boundary.maxY);
+              context.closePath();
+              context.stroke();
+            }
+
+            function drawWall(x) {
+              context.fillRect(x, boundary.minY, wall.width, wall.height);
+              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+            }
+
+            function drawWalls() {
+              drawWall(boundary.minX + 125);
+              drawWall(boundary.minX + (125 * 2));
+              drawWall(boundary.minX + (125 * 3));
+            }
+
+            function flap() {
+              square.yVelocity = square.jump;
+            }
+
+            function adjustPosition() {
+              square.yVelocity += gravity;
+              square.y += square.yVelocity;
+            }
+
+            function checkBoundary() {
+              if (square.y >= boundary.maxY) {
+                endGame();
+              }
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              adjustPosition();
+              drawSquare();
+              drawBoundary();
+              drawWalls();
+              checkBoundary();
+            }
+
+            function runProgram() {
+              interval = setInterval(programSteps, 80);
+            }
+
+            canvas.addEventListener('click', flap);
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
