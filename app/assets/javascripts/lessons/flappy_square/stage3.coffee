@@ -2,7 +2,7 @@ initFlappySquareStage3Challenges = ->
   if (page = $('#flappy_square_stage3')).length > 0
     initFlappySquareStage3Challenge1(page)
     initFlappySquareStage3Challenge2(page)
-    # initFlappySquareStage3Challenge3(page)
+    initFlappySquareStage3Challenge3(page)
 
 
 initFlappySquareStage3Challenge1 = (page) ->
