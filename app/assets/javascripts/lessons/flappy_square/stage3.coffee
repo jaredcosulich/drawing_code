@@ -3,43 +3,59 @@ initFlappySquareStage3Challenges = ->
     initFlappySquareStage3Challenge1(page)
     initFlappySquareStage3Challenge2(page)
     initFlappySquareStage3Challenge3(page)
+    initFlappySquareStage3Challenge4(page)
 
 
 initFlappySquareStage3Challenge1 = (page) ->
-  challenge = page.find('#challenge1')
+  stage = 1
+  challenge = page.find("#challenge#{stage}")
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   challenge.find('.run').click ->
     setTimeout(( ->
       canvas.selfAssess ->
-        App.currentProgress.challengeComplete('flappy_square_stage3', 'challenge1')
+        App.currentProgress.challengeComplete('flappy_square_stage3', "challenge#{stage}")
     ), 3000)
 
 
 initFlappySquareStage3Challenge2 = (page) ->
-  challenge = page.find('#challenge2')
+  stage = 2
+  challenge = page.find("#challenge#{stage}")
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   challenge.find('.run').click ->
     setTimeout(( ->
       canvas.selfAssess ->
-        App.currentProgress.challengeComplete('flappy_square_stage3', 'challenge2')
+        App.currentProgress.challengeComplete('flappy_square_stage3', "challenge#{stage}")
     ), 3000)
 
 
 initFlappySquareStage3Challenge3 = (page) ->
-  challenge = page.find('#challenge3')
+  stage = 3
+  challenge = page.find("#challenge#{stage}")
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   challenge.find('.run').click ->
     setTimeout(( ->
       canvas.selfAssess ->
-        App.currentProgress.challengeComplete('flappy_square_stage3', 'challenge3')
+        App.currentProgress.challengeComplete('flappy_square_stage3', "challenge#{stage}")
     ), 3000)
 
+
+initFlappySquareStage3Challenge4 = (page) ->
+  stage = 4
+  challenge = page.find("#challenge#{stage}")
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  challenge.find('.run').click ->
+    setTimeout(( ->
+      canvas.selfAssess ->
+        App.currentProgress.challengeComplete('flappy_square_stage3', "challenge#{stage}")
+    ), 3000)
 
 
 $(document).on('initialization:complete', initFlappySquareStage3Challenges)

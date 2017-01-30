@@ -142,7 +142,7 @@
             var gravity = ;
 
             // HASH VARIABLE HERE
-            // Remember to store yVelocity in
+            // Remember to store "yVelocity" in
             // your square hash variable
 
             function drawSquare() {
@@ -435,9 +435,7 @@
             var interval;
             var gravity = ;
 
-            // HASH VARIABLE HERE
-            // Remember to store yVelocity in
-            // your square hash variable
+            // HASH VARIABLES HERE
 
             function drawSquare() {
             }
@@ -846,10 +844,9 @@
 
             var interval;
             var gravity = ;
+            var distance = ;
 
-            // HASH VARIABLE HERE
-            // Remember to store yVelocity in
-            // your square hash variable
+            // HASH VARIABLES HERE
 
             function drawSquare() {
             }
@@ -934,8 +931,8 @@
             var context = canvas.getContext('2d');
 
             var interval;
-            var distance = 0;
             var gravity = 0.5;
+            var distance = 0;
 
             var boundary = {
               minX: 25,
@@ -1134,7 +1131,8 @@
                   height: 30
                 };
 
-                var trees = {
+                var tree = {
+                  width: 64,
                   spacing: 75
                 };
 
@@ -1156,9 +1154,9 @@
                 }
 
                 function drawTrees() {
-                  var treeX = distance - trees.spacing;
-                  while (treeX < canvas.width + distance + trees.spacing) {
-                    if (treeX % trees.spacing === 0) {
+                  var treeX = distance - tree.width;
+                  while (treeX < canvas.width + distance + tree.width) {
+                    if (treeX % tree.spacing === 0) {
                       drawTree(treeX - distance);
                     }
                     treeX += 1;
@@ -1173,7 +1171,7 @@
                   context.fillRect(0, -60, 12, 60);
 
                   context.beginPath();
-                  context.arc(6, -60, 32, 0, Math.PI*2, true);
+                  context.arc(6, -60, tree.width / 2, 0, Math.PI*2, true);
                   context.closePath();
                   context.fillStyle = '#238d23';
                   context.fill();
@@ -1253,31 +1251,34 @@
             %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
-            Let's add walls to our game.
+            Ok, let's try to algorithmically create our walls so that we can
+            have an infinited number of walls that continuously scroll by.
           %p
-            Eventually we'll need to animate these walls, randomize them,
-            and track them to make sure that we are not running into the them.
+            Eventually we'll need to randomize the spacing of the walls,
+            but for now let's just place them
+            %span.highlight every 125 pixels.
           %p
-            Let's start, though, by simply adding a series of rectangles to the roof
-            of the game area with matching rectangles on the floor of the game area.
+            You'll need to create a loop that continuously creates new walls
+            and has the existing walls continuously scroll to the left.
           %p
-            So try to draw two rectangles (a wall), one attached to the
-            %span.highlight roof (y = 50)
-            and one to the
-            %span.highlight floor (y = 300)
-            Each of them should be
-            %span.highlight 100 pixels tall and 50 pixels wide.
-            and each wall should be spaced
+            The lesson above provides one example of an algorithm that accomplishes this.
+            It uses a while loop to loop through every pixel on the canvas, checking
+            to see when a pixel, adjusted for distance, is divisible by the spacing (125 pixels):
+          %pre
+            %code
+              :preserve
+                if (wallX % wall.spacing === 0) {
+                  ...
+                }
+          %p
+            We have one more challenge for our game, though. We don't want the flappy square
+            to launch right into a wall, so you'll need to change the algorithm from
+            the lesson above so that the "x" position of the first wall is no less than
             %span.highlight 125 pixels
-            from the previous wall's "x" coordinate.
-          %p
-            We also don't want to draw our walls right on top of the flappy square
-            when the game starts, so let's draw the first one
-            %span.highlight 125 pixels out
-            from the left wall of the game (boundary.minX).
+            while still not causing walls to vanish too early as the scroll to the left.
           %p In the end your flappy square should behave like the example provided to the right.
 
-          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates]
+          = render 'lessons/relevant', relevant: [:set_interval, :fill_rect, :coordinates]
           = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
 
       .row
@@ -1287,42 +1288,29 @@
             var context = canvas.getContext('2d');
 
             var interval;
-            var gravity = 0.5;
+            var gravity = ;
+            var distance = ;
 
-            var square = {
-              size: 20,
-              x: ,
-              y: ,
-              jump: ,
-              yVelocity:
-            };
-
-            var boundary = {
-              minX: ,
-              minY: ,
-              maxX: ,
-              maxY:
-            };
-
-            var walls = {
-              height: ,
-              width: ,
-              spacing:
-            };
-
-            function drawBoundary() {
-            }
-
-            function drawWalls() {
-
-              // Draw your walls here.
-
-            }
+            // HASH VARIABLE HERE
+            // Remember to store "spacing" in
+            // your wall hash variable
 
             function drawSquare() {
             }
 
-            function flap(e) {
+            function drawBoundary() {
+            }
+
+            function drawWall(x) {
+            }
+
+            function drawWalls() {
+              // In here we'll have to create an
+              // algorithm that continuously creates
+              // new walls starting at 125 pixels.
+            }
+
+            function flap() {
             }
 
             function adjustPosition() {
@@ -1343,14 +1331,13 @@
             }
 
             function programSteps() {
-
-              // Don't forget to draw the walls!
-
             }
 
             function runProgram() {
               interval =
             }
+
+            canvas.addEventListener('click', flap)
 
 
 
@@ -1381,9 +1368,139 @@
             %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var distance = 0;
+            var gravity = 0.5;
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
+            };
+
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20,
+              yVelocity: 0,
+              jump: -8
+            };
+
+            var wall = {
+              width: 50,
+              height: 100,
+              spacing: 125
+            };
+
+
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
+            }
+
+            function drawBoundary() {
+              context.beginPath();
+              context.moveTo(boundary.minX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.maxY);
+              context.lineTo(boundary.minX, boundary.maxY);
+              context.closePath();
+              context.stroke();
+            }
+
+            function drawWall(x) {
+              context.fillRect(x, boundary.minY, wall.width, wall.height);
+              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+            }
+
+            function drawWalls() {
+              var wallX = distance - wall.width;
+
+              if (wallX < wall.spacing) {
+                wallX = wall.spacing;
+              }
+
+              while (wallX < canvas.width + distance + wall.width) {
+                if (wallX  % wall.spacing === 0) {
+                  drawWall(wallX - distance);
+                }
+                wallX += 1;
+              }
+            }
+
+            function flap() {
+              square.yVelocity = square.jump;
+            }
+
+            function adjustPosition() {
+              distance += 2;
+              square.yVelocity += gravity;
+              square.y += square.yVelocity;
+            }
+
+            function checkBoundary() {
+              if (square.y >= boundary.maxY) {
+                endGame();
+              }
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              adjustPosition();
+              drawSquare();
+              drawBoundary();
+              drawWalls();
+              checkBoundary();
+            }
+
+            function runProgram() {
+              interval = setInterval(programSteps, 80);
+            }
+
+            canvas.addEventListener('click', flap);
 
 
 
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+
+
+
+
+-#
 
   - section_index += 1
   .section.py-2{id: "section#{section_index}"} &nbsp;
@@ -1606,10 +1723,9 @@
 
             var interval;
             var gravity = ;
+            var distance = ;
 
-            // HASH VARIABLE HERE
-            // Remember to store yVelocity in
-            // your square hash variable
+            // HASH VARIABLES HERE
 
             function drawSquare() {
             }
@@ -1621,9 +1737,8 @@
             }
 
             function drawWalls() {
-              // Remember to adjust the "x"
-              // coordinate of each wall by
-              // "distance" here.
+              // Your algorithm to continuously
+              // draw new walls space
             }
 
             function flap() {
