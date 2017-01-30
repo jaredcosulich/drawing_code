@@ -1498,10 +1498,6 @@
 
 
 
-
-
--#
-
   - section_index += 1
   .section.py-2{id: "section#{section_index}"} &nbsp;
 
@@ -1511,50 +1507,43 @@
       .row
         .col-xs-12
           %h2.py-2
-            Lesson: Scrolling Objects
+            Lesson: Clearing The Edges
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/lesson#{lesson_index}Visual.png", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "The red areas are erased to designate the 'boundary'."
+
           %p
-            In our game our walls will move to the left while our flappy square
-            stays in the same "x" position, giving the illusion that our flappy
-            square is flying through the walls even though it is not changing
-            its "x" coordinate.
+            Since we have a boundary to our game area, it doesn't look
+            great to have any part of our drawing (walls or the flappy square)
+            display outside of the boundary.
           %p
-            In this example we'll demonstrate a background that moves to the
-            left while a red ball stays stationary, giving the impression
-            that the ball is rolling through the background.
+            Clearing areas can allow you to accomplish this goal. It can also
+            allow you to create complex animations on a single canvas.
           %p
-            We'll use a variable, distance, to track the position of the background,
-            adjusting the position of each tree drawn by 'distance'. Each frame
-            adjusts 'distance' by 2 pixels, causing each tree to be drawn 2 pixels
-            to the left.
+            In this example we take our ball rolling animation and draw it
+            in the middle of the canvas, clearing the areas above and below it
+            to demonstrate drawing each frame and then erasing parts of it
+            to designate the boundary.
           %p
-            Then we can adjust the drawing of our trees by "distance". In each frame
-            we need to make sure we draw all trees adjusted in the same way. So now
-            we need to examine the space between
-            %code distance
-            and
-            %code canvas.width + distance
-            to find all of the locations that are divisible by
-            %code tree.spacing
-            In our example this looks like:
+            In the image to the right you can see the red areas which are the areas
+            being cleared out in the example below. This code uses the
+            = link_to_lesson('context.clearRect(x, y, width, height)', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
+            method to clear the area above and the area below:
+
           %pre
             %code
               :preserve
-                var end = canvas.width + distance + tree.spacing;
-                var treeX = distance - tree.spacing;
-                var treeY = canvas.height - road.height;
-                while (treeX < end) {
-                  if (treeX % tree.spacing === 0) {
-                    drawTree(treeX - distance, treeY);
-                  }
-                  treeX += 1;
+                function clearBoundary() {
+                  context.clearRect(0, 0, canvas.width, boundary.minY);
+                  context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
                 }
           %p
-            When this is done fast enough it creates the illusion of the trees
-            moving slowly, which in turn creates the illusion of the ball moving
-            because in real life backgrounds don't move.
+            This clears two rectangles, one from the top left of the screen down to the boundaries minY,
+            and the other from the boundaries maxY to the bottom right of the canvas.
 
 
-          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :set_interval]
+          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect]
 
         .col-xs-12
           .interactive.focus-on-run.row.py-1
@@ -1565,18 +1554,27 @@
 
                 var interval;
                 var distance = 0;
+
                 var road = {
                   height: 40
                 };
 
                 var tree = {
-                  spacing: 100
+                  width: 64,
+                  spacing: 75
+                };
+
+                var boundary = {
+                  minX: 100,
+                  maxX: 400,
+                  minY: 100,
+                  maxY: 200
                 };
 
                 function drawRoad() {
                   context.save();
                   context.fillStyle = '#cccccc';
-                  var roadY = canvas.height - road.height;
+                  var roadY = boundary.maxY - road.height;
                   context.fillRect(0, roadY, canvas.width, road.height);
                   context.restore();
                 }
@@ -1585,31 +1583,30 @@
                   context.save();
                   context.fillStyle = '#238d23';
                   var grassHeight = 6;
-                  var grassY = canvas.height - road.height - grassHeight;
+                  var grassY = boundary.maxY - road.height - grassHeight;
                   context.fillRect(0, grassY, canvas.width, grassHeight);
                   context.restore();
                 }
 
                 function drawTrees() {
-                  var end = canvas.width + distance + tree.spacing;
-                  var treeX = distance - tree.spacing;
-                  var treeY = canvas.height - road.height;
-                  while (treeX < end) {
+                  var treeX = distance - tree.width;
+                  while (treeX < canvas.width + distance + tree.width) {
                     if (treeX % tree.spacing === 0) {
-                      drawTree(treeX - distance, treeY);
+                      drawTree(treeX - distance);
                     }
                     treeX += 1;
                   }
                 }
 
-                function drawTree(centerX, bottomY) {
+                function drawTree(centerX) {
+                  var bottomY = boundary.maxY - road.height;
                   context.save();
                   context.translate(centerX, bottomY);
                   context.fillStyle = '#a5681c';
                   context.fillRect(0, -60, 12, 60);
 
                   context.beginPath();
-                  context.arc(6, -60, 32, 0, Math.PI*2, true);
+                  context.arc(6, -60, tree.width / 2, 0, Math.PI*2, true);
                   context.closePath();
                   context.fillStyle = '#238d23';
                   context.fill();
@@ -1617,12 +1614,16 @@
                   context.restore();
                 }
 
+                function clearBoundary() {
+                  context.clearRect(0, 0, canvas.width, boundary.minY);
+                  context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+                }
+
                 function drawBall() {
-                  var ballRadius = 15;
                   context.save();
-                  context.translate(50, canvas.height - (road.height/2) - ballRadius);
+                  context.translate(boundary.minX + 50, boundary.maxY - (road.height / 2) - 10);
                   context.beginPath();
-                  context.arc(0, 0, ballRadius, 0, Math.PI*2, true);
+                  context.arc(0, 0, 15, 0, Math.PI*2, true);
                   context.closePath();
                   context.fillStyle = 'red';
                   context.fill();
@@ -1640,11 +1641,13 @@
                   drawTrees();
                   drawGrass();
                   drawBall();
+                  clearBoundary();
                 }
 
                 function runProgram() {
                   interval = setInterval(programSteps, 50);
                 }
+
 
                 // The following code is provided for you.
                 // It creates an eventListener that listens
@@ -1669,7 +1672,6 @@
                 pauseAnimation();
 
 
-
             .visual.col-xs-6
               %h5
                 Canvas
@@ -1691,28 +1693,23 @@
             %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
-            Ok, now we're going to try and make our walls move,
-            creating the illusion that our flappy square is flying through
-            the holes.
+            For this challenge we're going to clean up the edges of our game.
           %p
-            While this may sound easy, it's one of the more complicated parts
-            of the game. The lesson above provides an example of how we want to do this.
+            Right now the walls appear outside of the boundary and, if the flappy square
+            goes above or below the boundary we still show it.
           %p
-            Basically we'll create a
-            %span.highlight variable "distance"
-            and we'll use that to track how far our flappy square has progressed
-            and therefore how far to the left our walls should be shifted.
+            So we're going to add a method
+            %code clearBoundary()
+            that will clear the areas outside of the boundary after each frame is drawn.
           %p
-            In each frame
-            %span.highlight advance "distance" by 2 (add 2)
-            and use that to shift all walls to the left.
-          %p
-            Since we only have three trees so far we can simply adjust the "x" coordinate
-            of each one by "distance" in each frame.
+            We're basically drawing our full frame and then erasing everything outside of the
+            boundary. We'll use the
+            = link_to_lesson('context.clearRect(x, y, width, height)', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
+            to erase everything outside of the boundary we've drawn.
 
           %p In the end your flappy square should behave like the example provided to the right.
 
-          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :set_interval]
+          = render 'lessons/relevant', relevant: [:coordinates, :clear_rect]
           = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
 
       .row
@@ -1725,7 +1722,7 @@
             var gravity = ;
             var distance = ;
 
-            // HASH VARIABLES HERE
+            // HASH VARIABLE HERE
 
             function drawSquare() {
             }
@@ -1737,16 +1734,16 @@
             }
 
             function drawWalls() {
-              // Your algorithm to continuously
-              // draw new walls space
             }
 
             function flap() {
             }
 
             function adjustPosition() {
-              // Let's adjust our "distance"
-              // variable here.
+            }
+
+            function clearBoundary() {
+              // CODE HERE TO CLEAR ALL AREAS OUTSIDE OF THE BOUNDARY
             }
 
             function checkBoundary() {
@@ -1764,6 +1761,9 @@
             }
 
             function programSteps() {
+
+              // Don't forget to clear the boundary.
+
             }
 
             function runProgram() {
@@ -1801,3 +1801,139 @@
           .canvas
             %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var distance = 0;
+            var gravity = 0.5;
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
+            };
+
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20,
+              yVelocity: 0,
+              jump: -8
+            };
+
+            var wall = {
+              width: 50,
+              height: 100,
+              spacing: 125
+            };
+
+
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
+            }
+
+            function drawBoundary() {
+              context.beginPath();
+              context.moveTo(boundary.minX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.maxY);
+              context.lineTo(boundary.minX, boundary.maxY);
+              context.closePath();
+              context.stroke();
+            }
+
+            function drawWall(x) {
+              context.fillRect(x, boundary.minY, wall.width, wall.height);
+              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+            }
+
+            function drawWalls() {
+              var wallX = distance - wall.width;
+
+              if (wallX < wall.spacing) {
+                wallX = wall.spacing;
+              }
+
+              while (wallX < canvas.width + distance + wall.width) {
+                if (wallX  % wall.spacing === 0) {
+                  drawWall(wallX - distance);
+                }
+                wallX += 1;
+              }
+            }
+
+            function flap() {
+              square.yVelocity = square.jump;
+            }
+
+            function adjustPosition() {
+              distance += 2;
+              square.yVelocity += gravity;
+              square.y += square.yVelocity;
+            }
+
+            function clearBoundary() {
+              context.clearRect(0, 0, canvas.width, boundary.minY);
+              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
+              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(0, 0, boundary.minX, canvas.height);
+            }
+
+            function checkBoundary() {
+              if (square.y >= boundary.maxY) {
+                endGame();
+              }
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              adjustPosition();
+              drawSquare();
+              drawBoundary();
+              drawWalls();
+              clearBoundary();
+              checkBoundary();
+            }
+
+            function runProgram() {
+              interval = setInterval(programSteps, 80);
+            }
+
+            canvas.addEventListener('click', flap);
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
