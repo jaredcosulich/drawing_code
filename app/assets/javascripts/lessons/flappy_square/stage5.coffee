@@ -15,7 +15,7 @@ initFlappySquareStage5Challenge1 = (page) ->
   challenge.find('.run').click ->
     setTimeout(( ->
       canvas.selfAssess ->
-        App.currentProgress.challengeComplete('flappy_square_Stage5', "challenge#{challengeIndex}")
+        App.currentProgress.challengeComplete('flappy_square_stage5', "challenge#{challengeIndex}")
     ), 500)
 
 
@@ -28,7 +28,7 @@ initFlappySquareStage5Challenge2 = (page) ->
   challenge.find('.run').click ->
     setTimeout(( ->
       canvas.selfAssess ->
-        App.currentProgress.challengeComplete('flappy_square_Stage5', "challenge#{challengeIndex}")
+        App.currentProgress.challengeComplete('flappy_square_stage5', "challenge#{challengeIndex}")
     ), 2000)
 
 
@@ -41,7 +41,7 @@ initFlappySquareStage5Challenge3 = (page) ->
   challenge.find('.run').click ->
     setTimeout(( ->
       canvas.selfAssess ->
-        App.currentProgress.challengeComplete('flappy_square_Stage5', "challenge#{challengeIndex}")
+        App.currentProgress.challengeComplete('flappy_square_stage5', "challenge#{challengeIndex}")
     ), 2000)
 
 
@@ -54,7 +54,7 @@ initFlappySquareStage5Challenge4 = (page) ->
   challenge.find('.run').click ->
     setTimeout(( ->
       canvas.selfAssess ->
-        App.currentProgress.challengeComplete('flappy_square_Stage5', "challenge#{challengeIndex}")
+        App.currentProgress.challengeComplete('flappy_square_stage5', "challenge#{challengeIndex}")
     ), 2000)
 
 
