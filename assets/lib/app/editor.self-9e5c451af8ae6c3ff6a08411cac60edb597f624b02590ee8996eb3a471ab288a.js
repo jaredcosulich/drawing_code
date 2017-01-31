@@ -27,6 +27,20 @@
       if (this.codeEditor.data('files')) {
         this.initFiles();
       }
+      this.editor.on('mousemove', (function(_this) {
+        return function() {
+          if (_this.editor.height() !== _this.currentEditorHeight) {
+            return _this.resize();
+          }
+        };
+      })(this));
+      this.aceEditor.session.on('changeScrollTop', (function(_this) {
+        return function() {
+          if (_this.editor.height() !== _this.currentEditorHeight) {
+            return _this.resize();
+          }
+        };
+      })(this));
       this.editor.on('keyup', (function(_this) {
         return function() {
           _this.ensureValidCanvasReference();

@@ -68,6 +68,9 @@
             completedChallengeCount = this.challengesCompleted(page).length;
             if ((challengeCount = $(".nav-sidebar ." + page)).length > 0) {
               totalChallengeCount = parseInt(challengeCount.html().split(' / ')[1]);
+              if (completedChallengeCount > totalChallengeCount) {
+                completedChallengeCount = totalChallengeCount;
+              }
               challengeCount.html(completedChallengeCount + " / " + totalChallengeCount);
               if (completedChallengeCount === totalChallengeCount) {
                 challengeCount.closest('.tag').removeClass('tag-default tag-warning').addClass('tag-success');

@@ -42,7 +42,7 @@
             _this.drawCode();
           }
           success = _this.compareImageData();
-          if (success || count > 30) {
+          if (success || count >= 0) {
             clearInterval(testInterval);
             callback(success);
           }

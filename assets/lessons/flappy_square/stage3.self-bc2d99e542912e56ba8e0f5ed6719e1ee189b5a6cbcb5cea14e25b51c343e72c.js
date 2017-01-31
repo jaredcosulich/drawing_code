@@ -1,19 +1,18 @@
 (function() {
-  var initFlappySquareStage2Challenge1, initFlappySquareStage2Challenge2, initFlappySquareStage2Challenge3, initFlappySquareStage2Challenge4, initFlappySquareStage2Challenge5, initFlappySquareStage2Challenge6, initFlappySquareStage2Challenges;
+  var initFlappySquareStage3Challenge1, initFlappySquareStage3Challenge2, initFlappySquareStage3Challenge3, initFlappySquareStage3Challenge4, initFlappySquareStage3Challenge5, initFlappySquareStage3Challenges;
 
-  initFlappySquareStage2Challenges = function() {
+  initFlappySquareStage3Challenges = function() {
     var page;
-    if ((page = $('#flappy_square_stage2')).length > 0) {
-      initFlappySquareStage2Challenge1(page);
-      initFlappySquareStage2Challenge2(page);
-      initFlappySquareStage2Challenge3(page);
-      initFlappySquareStage2Challenge4(page);
-      initFlappySquareStage2Challenge5(page);
-      return initFlappySquareStage2Challenge6(page);
+    if ((page = $('#flappy_square_stage3')).length > 0) {
+      initFlappySquareStage3Challenge1(page);
+      initFlappySquareStage3Challenge2(page);
+      initFlappySquareStage3Challenge3(page);
+      initFlappySquareStage3Challenge4(page);
+      return initFlappySquareStage3Challenge5(page);
     }
   };
 
-  initFlappySquareStage2Challenge1 = function(page) {
+  initFlappySquareStage3Challenge1 = function(page) {
     var canvas, challenge, challengeIndex, editor;
     challengeIndex = 1;
     challenge = page.find("#challenge" + challengeIndex);
@@ -22,13 +21,13 @@
     return challenge.find('.run').click(function() {
       return setTimeout((function() {
         return canvas.selfAssess(function() {
-          return App.currentProgress.challengeComplete('flappy_square_stage2', "challenge" + challengeIndex);
+          return App.currentProgress.challengeComplete('flappy_square_stage3', "challenge" + challengeIndex);
         });
-      }), 2000);
+      }), 3000);
     });
   };
 
-  initFlappySquareStage2Challenge2 = function(page) {
+  initFlappySquareStage3Challenge2 = function(page) {
     var canvas, challenge, challengeIndex, editor;
     challengeIndex = 2;
     challenge = page.find("#challenge" + challengeIndex);
@@ -37,13 +36,13 @@
     return challenge.find('.run').click(function() {
       return setTimeout((function() {
         return canvas.selfAssess(function() {
-          return App.currentProgress.challengeComplete('flappy_square_stage2', "challenge" + challengeIndex);
+          return App.currentProgress.challengeComplete('flappy_square_stage3', "challenge" + challengeIndex);
         });
-      }), 2000);
+      }), 3000);
     });
   };
 
-  initFlappySquareStage2Challenge3 = function(page) {
+  initFlappySquareStage3Challenge3 = function(page) {
     var canvas, challenge, challengeIndex, editor;
     challengeIndex = 3;
     challenge = page.find("#challenge" + challengeIndex);
@@ -52,13 +51,13 @@
     return challenge.find('.run').click(function() {
       return setTimeout((function() {
         return canvas.selfAssess(function() {
-          return App.currentProgress.challengeComplete('flappy_square_stage2', "challenge" + challengeIndex);
+          return App.currentProgress.challengeComplete('flappy_square_stage3', "challenge" + challengeIndex);
         });
-      }), 2000);
+      }), 3000);
     });
   };
 
-  initFlappySquareStage2Challenge4 = function(page) {
+  initFlappySquareStage3Challenge4 = function(page) {
     var canvas, challenge, challengeIndex, editor;
     challengeIndex = 4;
     challenge = page.find("#challenge" + challengeIndex);
@@ -67,30 +66,15 @@
     return challenge.find('.run').click(function() {
       return setTimeout((function() {
         return canvas.selfAssess(function() {
-          return App.currentProgress.challengeComplete('flappy_square_stage2', "challenge" + challengeIndex);
+          return App.currentProgress.challengeComplete('flappy_square_stage3', "challenge" + challengeIndex);
         });
-      }), 2000);
+      }), 3000);
     });
   };
 
-  initFlappySquareStage2Challenge5 = function(page) {
-    var canvas, challenge, challengeIndex, editor;
-    challengeIndex = 5;
-    challenge = page.find("#challenge" + challengeIndex);
-    canvas = new App.Canvas(challenge.find('canvas'));
-    editor = new App.Editor(challenge.find('.editor'), canvas);
-    return challenge.find('.run').click(function() {
-      return setTimeout((function() {
-        return canvas.selfAssess(function() {
-          return App.currentProgress.challengeComplete('flappy_square_stage2', "challenge" + challengeIndex);
-        });
-      }), 2000);
-    });
-  };
-
-  initFlappySquareStage2Challenge6 = function(page) {
+  initFlappySquareStage3Challenge5 = function(page) {
     var canvas, challenge, challengeIndex, checkMultipleTimes, editor, points, successCount;
-    challengeIndex = 6;
+    challengeIndex = 5;
     challenge = page.find("#challenge" + challengeIndex);
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
@@ -145,7 +129,7 @@
           var message;
           if (success) {
             message = '<strong>Success!</strong> You\'ve cleared the area outside of the boundary!';
-            App.currentProgress.challengeComplete('flappy_square_stage2', "challenge" + challengeIndex);
+            App.currentProgress.challengeComplete('flappy_square_stage3', "challenge" + challengeIndex);
           } else {
             message = 'Nice try, but you need to clear all areas outside of the boundary.';
           }
@@ -155,6 +139,6 @@
     });
   };
 
-  $(document).on('initialization:complete', initFlappySquareStage2Challenges);
+  $(document).on('initialization:complete', initFlappySquareStage3Challenges);
 
 }).call(this);
