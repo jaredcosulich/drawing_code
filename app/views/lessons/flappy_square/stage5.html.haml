@@ -28,7 +28,7 @@
 
 
     .col-xs-6
-      = image_tag('lessons/flappy_square/stage4/challenge4Example.gif', class: 'img-fluid canvas-example')
+      = image_tag("lessons/flappy_square/stage#{stage_index}/challenge4Example.gif", class: 'img-fluid canvas-example')
 
 
   .lesson.row.py-3
@@ -57,9 +57,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage4_lesson1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_lesson1_editor'} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage4_lesson1');
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson1');
                 var context = canvas.getContext('2d');
 
                 function spiralText(size) {
@@ -89,7 +89,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage4_lesson1
+                %canvas#flappy_square_stage#{stage_index}_lesson1
 
 
   #challenge1.challenge.row.py-3
@@ -100,7 +100,7 @@
             Challenge 1
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage4/challenge1Example.png', class: 'img-fluid canvas-example')
+            = image_tag('lessons/flappy_square/stage#{stage_index}/challenge1Example.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small Challenge 1 Sample Solution
 
           %p
@@ -126,9 +126,9 @@
           = render 'lessons/code_preview', stage: 3, challenge: 3, editor_id: 'flappy_square_stage3_challenge3_editor'
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage4_challenge1_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_challenge1_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage4_challenge1');
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge1');
             var context = canvas.getContext('2d');
 
             var interval;
@@ -222,7 +222,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage4_challenge1
+            %canvas#flappy_square_stage#{stage_index}_challenge1
           .alert
 
 
@@ -235,7 +235,7 @@
             Challenge 2
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage4/challenge2Example.gif', class: 'img-fluid canvas-example')
+            = image_tag('lessons/flappy_square/stage#{stage_index}/challenge2Example.gif', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small Challenge 2 Sample Solution
 
           %p
@@ -252,12 +252,12 @@
             frames or roughly once per second (every 800 miliseconds). In the next lesson
             we can tweak all of these variable to get the game play just right.
 
-          = render 'lessons/code_preview', stage: 4, challenge: 1, editor_id: 'flappy_square_stage4_challenge1_editor'
+          = render 'lessons/code_preview', stage: stage_index, challenge: 1, editor_id: 'flappy_square_stage#{stage_index}_challenge1_editor'
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage4_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_challenge2_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage4_challenge2');
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge2');
             var context = canvas.getContext('2d');
 
             var interval;
@@ -351,7 +351,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage4_challenge2
+            %canvas#flappy_square_stage#{stage_index}_challenge2
           .alert
 
 
@@ -363,7 +363,7 @@
             Challenge 3
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage4/challenge3Example.gif', class: 'img-fluid canvas-example')
+            = image_tag('lessons/flappy_square/stage#{stage_index}/challenge3Example.gif', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small Challenge 3 Sample Solution
 
           %p
@@ -390,12 +390,12 @@
             Lastly  we've shrunk the holes down so that the smallest hole is 70 pixels
             and the largest hole is 120 pixels.
 
-          = render 'lessons/code_preview', stage: 4, challenge: 2, editor_id: 'flappy_square_stage4_challenge2_editor'
+          = render 'lessons/code_preview', stage: stage_index, challenge: 2, editor_id: 'flappy_square_stage#{stage_index}_challenge2_editor'
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage4_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_challenge3_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage4_challenge3');
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge3');
             var context = canvas.getContext('2d');
 
             var interval;
@@ -489,7 +489,7 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage4_challenge3
+            %canvas#flappy_square_stage#{stage_index}_challenge3
           .alert
 
 
@@ -521,9 +521,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage4_lesson2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_lesson2_editor'} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage4_lesson2');
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson2');
                 var context = canvas.getContext('2d');
 
                 function draw(x, y, color1, color2, color3) {
@@ -553,7 +553,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage4_lesson2
+                %canvas#flappy_square_stage#{stage_index}_lesson2
 
 
   #challenge4.challenge.row.py-3
@@ -564,7 +564,7 @@
             Challenge 4
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage4/challenge4Example.gif', class: 'img-fluid canvas-example')
+            = image_tag('lessons/flappy_square/stage#{stage_index}/challenge4Example.gif', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small Challenge 4 Sample Solution
 
           %p
@@ -584,12 +584,12 @@
             In the end your flappy square should look like the example provided at
             the right, but with possibly different colors.
           = render 'lessons/relevant', relevant: [:fill_style, :fill_rect]
-          = render 'lessons/code_preview', stage: 4, challenge: 3, editor_id: 'flappy_square_stage4_challenge3_editor'
+          = render 'lessons/code_preview', stage: stage_index, challenge: 3, editor_id: 'flappy_square_stage#{stage_index}_challenge3_editor'
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage4_challenge4_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_challenge4_editor'} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage4_challenge4');
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge4');
             var context = canvas.getContext('2d');
 
             var interval;
@@ -683,5 +683,5 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage4_challenge4
+            %canvas#flappy_square_stage#{stage_index}_challenge4
           .alert

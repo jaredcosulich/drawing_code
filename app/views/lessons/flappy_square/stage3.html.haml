@@ -11,16 +11,20 @@
       %h2.py-2
         Stage 3 Overview
       %p
-        In Stage 3 we'll work on our walls a bit more.
+        In this stage we'll make our flappy bird fly!
       %p
-        We need to make sure that if our flappy square runs into them
-        then we end the game.
+        We're going to explore event listeners,
+        which will allow us to listen for a click on the canvas
+        and make our flappy bird fly a bit before falling back down.
       %p
-        It would also be good to randomize how often they appear and how
-        big the hole is that the flappy square needs to fly through.
+        Then, if the bird falls outside of the game area we'll end the game.
+      %p
+        Lastly we'll create a simple moving background that the flappy square
+        can fly through. We won't yet check to see if the flappy square runs
+        into any walls, we'll just create them to provide the illusion of movement.
 
     .col-xs-6
-      = image_tag('lessons/flappy_square/stage3/challenge3Example.gif', class: 'img-fluid canvas-example')
+      = image_tag("lessons/flappy_square/stage#{stage_index}/overview.gif", class: 'img-fluid canvas-example')
 
 
 
