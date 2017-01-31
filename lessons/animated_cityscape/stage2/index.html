@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="VCSt9rzaurypGP+lzSg4ZCYnMWd1MZrOyjLUO/yFHlRxP2d/XFwzTBOkFod7dM9KLzxbipmwT6mb/keLO3Y1Kg==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-2cad20131f1319ea18e26fad11198270aac15eb89c6f9a86b1b8f3f86042f0f5-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="uAPUBEFVdWHNzQIUGDezOf1B3vsxHTGw7kC8TnR1Xn2dGB6NodP8kXdx6zaua0QX9Fq0Ft2c5Ne/jC/+s4Z1Aw==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-81167f059076fb7946036bc61a339b77482e23e48f7ddb7e89fdce8f844bc775-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -14,6 +14,7 @@
 <script src="../../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/code_i_wrote.self-3c7f058b4395fe52a93f2ddb0f1c44ac05f84bd2382709aff2f7e89443f3e089.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/code_preview.self-b37269bda74e81e3e6e832ad40469072b79b5b1d3a48a2e91986fd44549f82c0.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/drawings.self-1119b89f5468a45fd5e064d9ba68962f14b5248b9ff1a6b33b2307875e470686.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/examples.self-62f6af2ec5a00cd81eb1292963de6ac7a2146c48d0d3cba6abe1adc998cae145.js?body=1" data-turbolinks-track="reload"></script>
@@ -22,7 +23,7 @@
 <script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lesson.self-4c007310fc5244946716688a8afc18ef0b6e54f4cfc18f8aff6b18ab0e203889.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/animated_cityscape/stage1.self-80e467064710da3b6cd9a06f0893672dbc339fa3ce3fbda6993898f97d144340.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/animated_cityscape/stage2.self-4addabe9a70f069b9fb65a754fead73b51f367e2f14c747bb63ca88a4d5b656b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/animated_cityscape/stage2.self-2bc6acdcf50b13621a3143f4e5f34cf01318613ef8549650b0c8c59e6db66faf.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/arrays.self-6668c327ba2e7d5bcf91328a1b2dad1acf19568b060719f2428daab71e3d722a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage1.self-af3dd34f4f344c2e4c6fd02ae6fcf3a3ab4cd43a8d72b9e10ac7e857ec7e3321.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage2.self-225920e2665631ee62b7fbe95291c6ac9e1c62142a2bc469a623623a6c18a705.js?body=1" data-turbolinks-track="reload"></script>
@@ -58,11 +59,11 @@
 <script src="../../../assets/lib/app/canvas.self-429f6c3eb7215ea53ffe08598331778858aa202b6c9cdf18775ee1623316198a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/editor.self-c5417661c33ecaa56f9ea9773ce3831cbed4d2ad3605b653ec7ec7659a51cabc.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/files.self-16fff0bc3c9a315d22413e3b6a090fb8ef8f5f1257b42dade438f57a0de1f134.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/progress.self-85855a4b2ffe2ff58692f669b689c7ad8db3cee30eb947e32791e81148164b36.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/progress.self-2d0c48c19bcdbfe80c95050cc3d141e65622061f38d75d7725e490355f869df4.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/code.self-186d38d443a8bc51bbeec7159887e3781eaad676a86b9d159eca7ec40e21f7ba.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/image_comparison.self-83be79c1bfdac13ff2c69e6916a326f2698035d7381c28f12e44637de7618bac.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/point.self-e1435fcb5c66e2107d91d34c16e06e6c0dd8d06286396d3d5b3b05c22989d9b2.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/navigation.self-3abb68970f3392649f6ee452427597fc92e324a7be21f97b6501e5a2ec47609e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/navigation.self-b26734ce44686d640f740ef02728ff6997a6fdc4dbb848f27d16bf0b6a8c7833.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/referenceModal.self-4ba25626378a146e8d2a7ae7edd72600ddef60371b98f42b0c3555b56cd02ff9.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
 </head>
@@ -83,27 +84,7 @@ Drawing In Code:
 <a class="section_link" href="../../../index.html">Home</a>
 </li>
 </ul>
-<ul class='nav nav-sidebar'>
-<li class='section'>
-<a class='section_link' data-section='drawings' href='#'>
-Your Drawings
-</a>
-<ul class='collapse nav nav-sidebar' id='drawings'>
-<li>
-<a href="../../../drawings/index.html">Create A Drawing</a>
-</li>
-<li class='section drawings-list small mt-1 hidden-xs-up'>
-<strong>My Drawings</strong>
-</li>
-</ul>
-</li>
-</ul>
-<ul class='nav nav-sidebar'>
-<li class='section'>
-<a class="section_link" href="../../../examples/index.html">Gallery</a>
-</li>
-</ul>
-<ul class='nav nav-sidebar'>
+<ul class='nav nav-sidebar' style='display: none;'>
 <li class='section'>
 <a class='section_link' data-section='reference' href='#'>
 Reference
@@ -360,7 +341,7 @@ to get an rounded integer.
 </ul>
 </li>
 </ul>
-<ul class='nav nav-sidebar'>
+<ul class='nav nav-sidebar' style='display: none;'>
 <li class='section'>
 <a class='section_link' data-section='concepts' href='#'>
 Concepts
@@ -592,6 +573,30 @@ A full list of events can be found here:
 <span class='tag tag-default'>
 <small class='animated_cityscape_stage2'>0 / 6</small>
 </span>
+<li class='page_section row small' id='page_section1'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section1">Section 1</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section2'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section2">Section 2</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section3'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section3">Section 3</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section4'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section4">Section 4</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section5'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section5">Section 5</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section6'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section6">Section 6</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
 </li>
 <li>
 <a href="../stage3/index.html">Stage 3</a>
@@ -605,125 +610,73 @@ A full list of events can be found here:
 <small class='animated_cityscape_stage4'>0 / 6</small>
 </span>
 </li>
-<li class='section small mt-2'>
-<strong>Relevant Reference</strong>
+</ul>
+<ul class='nav nav-sidebar' id='quick-reference'>
+<li class='section small mt-3'>
+<strong>Quick Reference</strong>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
-<span class='tag tag-default'>
-<small class='fill_rect'>0 / 6</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
-<span class='tag tag-default'>
-<small class='fill_style'>0 / 3</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="save" href="../save/index.html">save() / restore()</a>
-<span class='tag tag-default'>
-<small class='save'>0 / 5</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="translate" href="../translate/index.html">translate()</a>
-<span class='tag tag-default'>
-<small class='translate'>0 / 6</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="line_to" href="../line_to/index.html">lineTo()</a>
-<span class='tag tag-default'>
-<small class='line_to'>0 / 6</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="random" href="../random/index.html">random()</a>
-<span class='tag tag-default'>
-<small class='random'>0 / 4</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="round" href="../round/index.html">round() / floor() / ceil()</a>
-<span class='tag tag-default'>
-<small class='round'>0 / 3</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="scale" href="../scale/index.html">scale()</a>
-<span class='tag tag-default'>
-<small class='scale'>0 / 7</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="create_linear_gradient" href="../create_linear_gradient/index.html">createLinearGradient()</a>
-<span class='tag tag-default'>
-<small class='create_linear_gradient'>0 / 3</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
 </li>
 <li class='section small mt-1'>
-<strong>Relevant Concepts</strong>
+<strong>Concepts</strong>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
-<span class='tag tag-default'>
-<small class='coordinates'>0 / 3</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a>
-<span class='tag tag-default'>
-<small class='variables'>0 / 5</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="functions" href="../functions/index.html">Functions</a>
-<span class='tag tag-default'>
-<small class='functions'>0 / 5</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="for_loops" href="../for_loops/index.html">For Loops</a>
-<span class='tag tag-default'>
-<small class='for_loops'>0 / 6</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="switch_statements" href="../switch_statements/index.html">Switch Statements</a>
-<span class='tag tag-default'>
-<small class='switch_statements'>0 / 4</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="while_loops" href="../while_loops/index.html">While Loops</a>
-<span class='tag tag-default'>
-<small class='while_loops'>0 / 3</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="if_statements" href="../if_statements/index.html">If Statements</a>
-<span class='tag tag-default'>
-<small class='if_statements'>0 / 3</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="objects" href="../objects/index.html">Objects</a>
-<span class='tag tag-default'>
-<small class='objects'>0 / 3</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="arrays" href="../arrays/index.html">Arrays</a>
-<span class='tag tag-default'>
-<small class='arrays'>0 / 3</small>
-</span>
 </li>
 </ul>
 </li>
@@ -856,7 +809,7 @@ visit the
 lesson.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
@@ -893,7 +846,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1046,24 +999,28 @@ persist and can be accessed from within other functions.
 Inside the <code>drawScene()</code> function, declare and initialize the
 variables <code>buildingColor</code> and <code>windowColor</code> with the
 colors <code>'rgb(153, 153, 153)'</code> and <code>'rgb(102, 102, 102)'</code>,
-respectively. Then, draw the three buildings by passing the object with each
-building's data into the <code>drawBuilding()</code> function.
+respectively. Then, draw the three buildings by passing the object that contains
+each building's data into the <code>drawBuilding()</code> function along with
+<code>buildingColor</code> and <code>windowColor</code>.
 </p>
 <p>
-Finally, change the <code>drawBuilding()</code> function's definition so it
-now accepts just three parameters, where <code>b</code> is the parameter storing
-the building's data object.
+Finally, change the <code>drawBuilding()</code> function's definition so it now
+accepts three parameters instead of ten. Instead of passing values for the
+building's left x-coordinate, ground y-coordinate, width, height, number of office
+units, number of floors, window type, and roof type into the function separately,
+we are going to pass all of those values as properties stored in a single object,
+<code>b</code>.
 </p>
 <pre><code>function drawBuilding(b, buildingColor, windowColor) {&#x000A;  &#x000A;  // code block&#x000A;  &#x000A;}</code></pre>
 <p>
 Then, go through the <code>drawBuilding()</code> function and replace any
-references to deleted parameters with references to the building object's
+references to the deleted parameters with references to the building object's
 properties. For example, the building's left x-coordinate is now stored in
 the <code>b.leftX</code> property, not in the <code>leftX</code> parameter,
 which no longer exists.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
@@ -1089,7 +1046,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage2_challenge1_editor'>var canvas = document.getElementById('animated_cityscape_stage2_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var buildingA, buildingB, buildingC;&#x000A;&#x000A;initScene();&#x000A;&#x000A;function initScene() {&#x000A;  &#x000A;  // Initialize the three building variables&#x000A;  // Draw the scene&#x000A;  &#x000A;}&#x000A;&#x000A;function drawScene() {&#x000A;  &#x000A;  // Declare and intialize the buildingColor and windowColor variables&#x000A;  // Draw the three buildings by passing the data for each building in the drawBuilding() function&#x000A;  &#x000A;}&#x000A;&#x000A;function drawBuilding(leftX, groundY, w, h, units, floors, windowType, roofType, buildingColor, windowColor) {&#x000A;  var x = leftX;&#x000A;  var y = groundY - h;&#x000A;  &#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = buildingColor;&#x000A;  context.fillRect(0, 0, w, h);&#x000A;  drawRoof(w, roofType);&#x000A;  &#x000A;  context.translate(4, 4);&#x000A;  context.fillStyle = windowColor;&#x000A;  &#x000A;  for (var i = 0; i < floors; i = i + 1) {&#x000A;    context.save();&#x000A;    &#x000A;    for (var j = 0; j < units; j = j + 1) {&#x000A;      drawWindow(windowType);&#x000A;      context.translate(16, 0);&#x000A;    }&#x000A;    &#x000A;    context.restore();&#x000A;    context.translate(0, 16);&#x000A;  }&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  context.save();&#x000A;  &#x000A;  switch (windowType) {&#x000A;		case 0:&#x000A;			context.fillRect(4, 2, 8, 10);&#x000A;			break;&#x000A;		&#x000A;		case 1:&#x000A;			context.fillRect(2, 3, 5, 8);&#x000A;			context.fillRect(9, 3, 5, 8);&#x000A;			break;&#x000A;		&#x000A;		case 2:&#x000A;			context.fillRect(0, 3, 16, 8);&#x000A;			break;&#x000A;		&#x000A;		case 3:&#x000A;			context.fillRect(5, 1, 6, 14);&#x000A;			break;&#x000A;	}&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawRoof(w, roofType) {&#x000A;  context.save();&#x000A;  &#x000A;  switch(roofType) {&#x000A;		case 0:&#x000A;			// draw nothing&#x000A;			break;&#x000A;		&#x000A;		case 1:&#x000A;			context.fillRect(8, -16, w - 16, 16);&#x000A;			break;&#x000A;		&#x000A;		case 2:&#x000A;			context.fillRect(8, -24, w - 16, 24);&#x000A;			context.fillRect((w - 32) / 2, -48, 32, 24);&#x000A;			context.fillRect((w - 8) / 2, -80, 8, 56);&#x000A;			break;&#x000A;		&#x000A;		case 3:&#x000A;			context.beginPath();&#x000A;			context.moveTo(w / 2, -80);&#x000A;			context.lineTo(w / 2 + 16, -16);&#x000A;			context.lineTo(w / 2 - 16, -16);&#x000A;			context.closePath();&#x000A;			context.fill();&#x000A;			context.fillRect((w - 64) / 2, -16, 64, 16);&#x000A;			break;&#x000A;	}&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage2_challenge1_editor'>var canvas = document.getElementById('animated_cityscape_stage2_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var buildingA, buildingB, buildingC;&#x000A;&#x000A;initScene();&#x000A;&#x000A;function initScene() {&#x000A;  &#x000A;  // Initialize the three building variables&#x000A;  // Draw the scene&#x000A;  &#x000A;}&#x000A;&#x000A;function drawScene() {&#x000A;  &#x000A;  // Declare and intialize the buildingColor and windowColor variables&#x000A;  // Draw the three buildings by passing the data for each building in the drawBuilding() function&#x000A;  &#x000A;}&#x000A;&#x000A;function drawBuilding(leftX, groundY, w, h, units, floors, windowType, roofType, buildingColor, windowColor) {&#x000A;  var x = leftX;&#x000A;  var y = groundY - h;&#x000A;  &#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = buildingColor;&#x000A;  context.fillRect(0, 0, w, h);&#x000A;  drawRoof(w, roofType);&#x000A;  &#x000A;  context.translate(4, 4);&#x000A;  context.fillStyle = windowColor;&#x000A;  &#x000A;  for (var i = 0; i < floors; i += 1) {&#x000A;    context.save();&#x000A;    &#x000A;    for (var j = 0; j < units; j += 1) {&#x000A;      drawWindow(windowType);&#x000A;      context.translate(16, 0);&#x000A;    }&#x000A;    &#x000A;    context.restore();&#x000A;    context.translate(0, 16);&#x000A;  }&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  context.save();&#x000A;  &#x000A;  switch (windowType) {&#x000A;		case 0:&#x000A;			context.fillRect(4, 2, 8, 10);&#x000A;			break;&#x000A;		&#x000A;		case 1:&#x000A;			context.fillRect(2, 3, 5, 8);&#x000A;			context.fillRect(9, 3, 5, 8);&#x000A;			break;&#x000A;		&#x000A;		case 2:&#x000A;			context.fillRect(0, 3, 16, 8);&#x000A;			break;&#x000A;		&#x000A;		case 3:&#x000A;			context.fillRect(5, 1, 6, 14);&#x000A;			break;&#x000A;	}&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawRoof(w, roofType) {&#x000A;  context.save();&#x000A;  &#x000A;  switch(roofType) {&#x000A;		case 0:&#x000A;			// draw nothing&#x000A;			break;&#x000A;		&#x000A;		case 1:&#x000A;			context.fillRect(8, -16, w - 16, 16);&#x000A;			break;&#x000A;		&#x000A;		case 2:&#x000A;			context.fillRect(8, -24, w - 16, 24);&#x000A;			context.fillRect((w - 32) / 2, -48, 32, 24);&#x000A;			context.fillRect((w - 8) / 2, -80, 8, 56);&#x000A;			break;&#x000A;		&#x000A;		case 3:&#x000A;			context.beginPath();&#x000A;			context.moveTo(w / 2, -80);&#x000A;			context.lineTo(w / 2 + 16, -16);&#x000A;			context.lineTo(w / 2 - 16, -16);&#x000A;			context.closePath();&#x000A;			context.fill();&#x000A;			context.fillRect((w - 64) / 2, -16, 64, 16);&#x000A;			break;&#x000A;	}&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1101,7 +1058,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1137,60 +1094,92 @@ Canvas
 Store Objects in an Array
 </h2>
 <p>
-The sky behind the buildings is not a solid color. During the day, the sky is
-white along the horizon and bluer higher up. At night, the sky is gray along the
-horizon and darker higher up. And as the sun sets, the sky along the horizon
-turns red.
+When storing the data used to draw three squares, it's okay to declare three
+separate variables named <code>squareA</code>, <code>squareB</code>, and
+<code>squareC</code>, one for each square. But it becomes a problem if we need
+to store the data to draw a hundred squares or if we don't know how many buildings
+we'll be drawing ahead of time, as in the Animated Cityscape Challenge.
 </p>
 <p>
-To draw the sky, we use a linear gradient. A linear gradient smoothly transitions
-from one color to another, such as white to blue or gray to dark gray. In
-this example, we create a linear gradient using the <code>createLinearGradient()</code>
-method and assign it to a variable named <code>gradient</code>:
-</p>
-<pre><code>var gradient = context.createLinearGradient(40, 0, 360, 0);</code></pre>
-<p>
-We create a linear gradient by passing the <code>createLinearGradient()</code> method
-the coordinates for the gradient's start position and end position. Because the two points,
-(40, 0) and (360, 0), form a horizontal line, the linear gradient is horizontal. It starts
-at x = 40 and ends at x = 360. The y-coordinates of the two points in a horizontal linear
-gradient don't make a difference as long as they are the same.
+One way to store an arbitrary number of values in a variable is by using an array.
+An array is basically a list with an index starting at 0. Imagine a list of books
+stored in an array named <code>bookArray</code>. We can access the first book in the
+list at <code>bookArray[0]</code> and the second book at <code>bookArray[1]</code>.
+To add a new book at the end of the list, we use the array's <code>push()</code> method,
+and to find the number of books in the list, we access the array's <code>length</code>
+property.
 </p>
 <p>
-The next step is setting the colors in the gradient:
-</p>
-<pre><code>gradient.addColorStop(0, 'Red');&#x000A;gradient.addColorStop(0.6, 'Blue');&#x000A;gradient.addColorStop(1, 'Black');</code></pre>
-<p>
-This sets the color in the gradient at x = 40 (position <code>0</code>) to <code>'Red'</code>
-and the color at x = 360 (position <code>1</code>) to <code>'Black'</code>. We also set
-the color at x = 232 (position <code>0.6</code>) to <code>'Blue'</code>. This position is 60%
-of the way from position <code>0</code> to position <code>1</code>.
+In this example, we update the program from the previous example to store each
+square's data in an array.
 </p>
 <p>
-Finally, we assign the linear gradient stored in the variable <code>gradient</code> to the
-<code>context.fillStyle</code> property and use the <code>context.fillRect()</code> method to
-draw a filled rectangle.
+Instead of declaring the three separate variables <code>squareA</code>,
+<code>squareB</code>, and <code>squareC</code>, we start by declaring the global
+variable <code>squareArray</code>:
 </p>
-<pre><code>context.fillStyle = gradient;&#x000A;context.fillRect(40, 40, 320, 240);</code></pre>
+<pre><code>var counter;&#x000A;var squareArray;</code></pre>
 <p>
-Between position <code>0</code> and position <code>0.6</code>, the color filling the rectangle
-changes from <code>'Red'</code> to <code>'Blue'</code>. Between position <code>0.6</code>
-and position <code>1</code>, the color changes from <code>'Blue'</code> to <code>'Black'</code>.
+Inside the <code>initScene()</code> method, we initialize <code>squareArray</code>
+as an empty array, <code>[]</code>. We have to initialize <code>squareArray</code>
+as an array before we can use the <code>push()</code> method to add data to the end
+of the array.
+</p>
+<pre><code>function initScene() {&#x000A;  counter = 0;&#x000A;  &#x000A;  squareArray = []; // Initialize the variable as an empty array&#x000A;  squareArray.push( {x: 200, y:  40, s: 60} ); // Add the data for the first square to the end of the array&#x000A;  squareArray.push( {x:  80, y: 120, s: 40} ); // Add the data for the second square to the end of the array&#x000A;  squareArray.push( {x: 240, y: 220, s: 80} ); // Add the data for the third square to the end of the array&#x000A;  &#x000A;  drawScene();&#x000A;}</code></pre>
+<p>
+At this point, we have pushed the data for three squares onto the end of the array,
+and we can access the data for the first square at <code>squareArray[0]</code>, the
+data for the second square at <code>squareArray[1]</code>, and the data for the third
+square at <code>squareArray[2]</code>. By using an array, we can easily store the
+data for a hundred squares in a single variable.
 </p>
 <p>
-Change the colors in the gradient, change the position of the middle color stop, or add another
-color stop with a position between <code>0</code> and <code>1</code> to see what happens. To learn more
-about linear gradients, visit the
-<a class="reference-link" data-slug="create_linear_gradient" href="../create_linear_gradient/index.html">createLinearGradient()</a>
+When working with objects and arrays, it's important to understand where values
+are stored and how to access them. Keep this reference in mind when working with
+the data stored in <code>squareArray</code>:
+</p>
+<pre><code>squareArray // Used to access the array containing the data for all the squares&#x000A;squareArray[0] // Used to access the data for the first square in the array&#x000A;squareArray[0].x // Used to access the x-coordinate in the data for the first square in the array</code></pre>
+<p>
+Inside the <code>drawScene()</code> function, we could draw each square
+by passing its data into the <code>drawSquare()</code> method manually like this:
+</p>
+<pre><code>function drawScene() {&#x000A;  drawBackground();&#x000A;  &#x000A;  drawSquare(squareArray[0]);&#x000A;  drawSquare(squareArray[1]);&#x000A;  drawSquare(squareArray[2]);&#x000A;}</code></pre>
+<p>
+But we are going to automate the process using a for loop. This way, if we add
+the data for a fourth square to the array, the <code>drawScene()</code> function
+will automatically draw it, too.
+</p>
+<pre><code>function drawScene() {&#x000A;  drawBackground();&#x000A;  &#x000A;  for (var i = 0; i < squareArray.length; i += 1) {&#x000A;    drawSquare(squareArray[i]);&#x000A;  }&#x000A;}</code></pre>
+<p>
+Note that the for loop runs as long as <code>i < squareArray.length</code>. This
+is because, while the length of the array is 3, the last square's data is at index
+2. Remember, the index of an array starts at 0, so the last item in an array is
+always at index <code>length - 1</code>.
+</p>
+<p>
+Finally, we update the <code>updateScene()</code> function to use
+<code>squareArray</code> instead of <code>squareA</code>, <code>squareB</code>,
+and <code>squareC</code>.
+</p>
+<pre><code>function updateScene() {&#x000A;  counter += 1;&#x000A;  squareArray[0].x -= 5;&#x000A;  squareArray[1].x += 5;&#x000A;  squareArray[2].y -= 5;&#x000A;  drawScene();&#x000A;}</code></pre>
+<p>
+Click on the canvas to see the scene update. Change the values stored in the
+objects to change the size and position of the squares and push another set of
+data into the array to add another square. To learn more about arrays,
+visit the
+<a class="reference-link" data-slug="arrays" href="../arrays/index.html">Arrays</a>
 lesson.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="for_loops" href="../for_loops/index.html">For Loops</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="objects" href="../objects/index.html">Objects</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="arrays" href="../arrays/index.html">Arrays</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="create_linear_gradient" href="../create_linear_gradient/index.html">createLinearGradient()</a>
 </p>
 
 </div>
@@ -1209,7 +1198,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage2_example2_editor'>var canvas = document.getElementById('animated_cityscape_stage2_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var gradient = context.createLinearGradient(40, 0, 360, 0);&#x000A;&#x000A;gradient.addColorStop(0, 'Red');&#x000A;gradient.addColorStop(0.6, 'Blue');&#x000A;gradient.addColorStop(1, 'Black');&#x000A;&#x000A;context.fillStyle = gradient;&#x000A;context.fillRect(40, 40, 320, 240);&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage2_example2_editor'>var canvas = document.getElementById('animated_cityscape_stage2_example2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var counter;&#x000A;var squareArray;&#x000A;&#x000A;initScene();&#x000A;canvas.addEventListener('click', updateScene);&#x000A;&#x000A;function initScene() {&#x000A;  counter = 0;&#x000A;  &#x000A;  squareArray = []; // Initialize the variable as an empty array&#x000A;  squareArray.push( {x: 200, y:  40, s: 60} ); // Add the data for the first square to the end of the array&#x000A;  squareArray.push( {x:  80, y: 120, s: 40} ); // Add the data for the second square to the end of the array&#x000A;  squareArray.push( {x: 240, y: 220, s: 80} ); // Add the data for the third square to the end of the array&#x000A;  &#x000A;  drawScene();&#x000A;}&#x000A;&#x000A;function drawScene() {&#x000A;  drawBackground();&#x000A;  &#x000A;  for (var i = 0; i < squareArray.length; i += 1) {&#x000A;    drawSquare(squareArray[i]);&#x000A;  }&#x000A;}&#x000A;&#x000A;function updateScene() {&#x000A;  counter += 1;&#x000A;  squareArray[0].x -= 5;&#x000A;  squareArray[1].x += 5;&#x000A;  squareArray[2].y -= 5;&#x000A;  drawScene();&#x000A;}&#x000A;&#x000A;function drawSquare(square) {&#x000A;  context.save();&#x000A;  context.fillStyle = 'RoyalBlue';&#x000A;  context.fillRect(square.x, square.y, square.s, square.s); // Use the data in the object square to draw the square&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawBackground() {&#x000A;  context.save();&#x000A;  context.fillStyle = 'Cornsilk';&#x000A;  context.fillRect(0, 0, canvas.width, canvas.height); // Draw a rectangle over the entire canvas&#x000A;  context.fillStyle = '#CCCCCC';&#x000A;  context.font = '48px Arial';&#x000A;  context.fillText('Frame: ' + counter, 10, 48); // Print the number of the frame on the background&#x000A;  context.restore();&#x000A;}&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1221,7 +1210,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1249,113 +1238,6 @@ Canvas
 </div>
 </div>
 </div>
-<div class='example row py-3'>
-<div class='col-xs-12'>
-<div class='row'>
-<div class='col-xs-12'>
-<h2 class='py-2'>
-Change Ground and Sky Colors Over Time
-</h2>
-<p>
-The colors used to draw the sky in Challenge 1 are the colors of the sky at
-6:20 pm in the animated cityscape. However, the colors of the sky are slightly
-different at 6:10 pm and 6:30 pm. Because we change the color of the ground and
-sky forty times between 5:00 pm and 7:00 pm, we need an easy way to calculate
-these colors automatically.
-</p>
-<p>
-In this example, we use two for loops to draw two rows of rectangles. The first
-for loop uses the variable <code>i</code> as its counter. Inside the for loop,
-we use an if statement to calculate the height of the rectangle depending on the
-value of the counter. Note how the height of the rectangle starts at 40, climbs
-steadily to 100, and then levels out again. We want the ground and sky colors to
-change in the same way as the sun sets.
-</p>
-<pre><code>if (i < 6) {&#x000A;  h = 40;&#x000A;} else if (i > 15) {&#x000A;  h = 100;&#x000A;} else {&#x000A;  h = 40 + 60 * (i - 6) / 9;&#x000A;}</code></pre>
-<p>
-When the program reaches the if statement, it checks the first condition. If
-<code>i < 6</code>, the height of the rectangle is set to 40. If the first condition
-is false, then the program checks the second condition. If <code>i > 15</code>, the
-height of the rectangle is set to 100. If both conditions are false, then the program
-runs the code block in the else clause and the height of the rectangle is set to the
-value of <code>40 + 60 * (i - 6) / 9</code>.
-</p>
-<p>
-The expression <code>40 + 60 * (i - 6) / 9</code> is designed to increase from 40 to
-100 as <code>i</code> increases from 6 to 15. Note that <code>(6 - 6) / 9</code> = 0
-when <code>i</code> is 6 and <code>(15 - 6) / 9</code> = 1 when <code>i</code> is 15.
-</p>
-<p>
-In the second for loop, we design the expression inside the if statement so the height
-of the rectangle decreases from 160 to 50 as <code>j</code> increases from 3 to 10. Can
-you update the second for loop so the height of the rectangle decreases from 150 to 90
-as <code>j</code> increases from 8 to 13?
-</p>
-<p>
-<strong>Relevant Lessons:</strong>
-<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="if_statements" href="../if_statements/index.html">If Statements</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
-</p>
-
-</div>
-<div class='col-xs-12'>
-<div class='interactive row py-1'>
-<div class='code-editor col-xs-6' data-files=''>
-<div class='files'>
-<div class='btn-group'>
-<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
-Files
-</button>
-<div class='dropdown-menu dropdown-menu-right'></div>
-</div>
-</div>
-<h5>
-Editor
-<small class='instructions'>(write code below)</small>
-</h5>
-<div class='editor' id='animated_cityscape_stage2_example3_editor'>var canvas = document.getElementById('animated_cityscape_stage2_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var x, y, h;&#x000A;context.fillStyle = 'Crimson';&#x000A;&#x000A;for (var i = 0; i < 20; i = i + 1) {&#x000A;  if (i < 6) {&#x000A;    h = 40;&#x000A;  } else if (i > 15) {&#x000A;    h = 100;&#x000A;  } else {&#x000A;    h = 40 + 60 * (i - 6) / 9;&#x000A;  }&#x000A;  &#x000A;  x = 20 * i;&#x000A;  y = 120 - h;&#x000A;  &#x000A;  context.fillRect(x, y, 18, h);&#x000A;}&#x000A;&#x000A;context.fillStyle = 'BlueViolet';&#x000A;&#x000A;for (var j = 0; j < 20; j = j + 1) {&#x000A;  if (j < 3) {&#x000A;    h = 160;&#x000A;  } else if (j > 10) {&#x000A;    h = 50;&#x000A;  } else {&#x000A;    h = 160 - 110 * (j - 3) / 7;&#x000A;  }&#x000A;  &#x000A;  x = 20 * j;&#x000A;  y = 300 - h;&#x000A;  &#x000A;  context.fillRect(x, y, 18, h);&#x000A;}&#x000A;</div>
-<div class='log bg-faded text-muted small'>
-<button aria-label='Close' class='close' type='button'>
-<span aria-hidden='true'>×</span>
-</button>
-<div class='title'>
-<strong>Message Log</strong>
-</div>
-<div class='messages'></div>
-</div>
-<div class='buttons py-1'>
-<div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
-<p>But change it! Play with it! Click "Run" to see your changes.</p>
-</div>
-<div class='run run-only btn btn-success'>
-Run
-</div>
-<div class='run run-and-focus btn btn-success'>
-Run and Focus Canvas
-</div>
-<div class='reset btn btn-danger'>
-Reset
-</div>
-</div>
-</div>
-<div class='visual col-xs-6'>
-<h5>
-Canvas
-<small>(your drawing will display here)</small>
-</h5>
-<div class='canvas'>
-<canvas id='animated_cityscape_stage2_example3'></canvas>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 <div class='challenge row py-3' id='challenge2'>
 <div class='col-xs-12'>
 <div class='row'>
@@ -1364,64 +1246,41 @@ Canvas
 Challenge 2
 </h2>
 <figure class='float-xs-right px-2'>
-<img class="img-fluid canvas-example" src="../../../images/lessons/animated_cityscape/stage2/challenge2Visual1.png" alt="Challenge2visual1" />
+<img class="img-fluid canvas-example" src="../../../assets/lessons/animated_cityscape/stage2/challenge1Visual1-71c5331e6e346c792ed4b9bca3953ebf24872e091bc959fbf5ceade30a82fb7a.png" alt="Challenge1visual1" />
 <figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
 </figure>
 <p>
-The <code>drawGround()</code> function will draw the rectangle for the
-ground using darker shades of gray as the time increases from 5:00 pm to
-7:00 pm. Because we are calculating RGB values based on the time, we
-start by defining the <code>rgbColor()</code> function to make it easy to
-combine RGB values into a text string in 'rgb()' notation.
+Update the program from Challenge 1 to store the data for each building
+in an array instead of in separate variables. Start by copying your program
+from Challenge 1 into the editor below.
 </p>
 <p>
-The <code>rgbColor()</code> function has three parameters: <code>r</code>,
-<code>g</code>, and <code>b</code>. Round the values stored in the three parameters
-using the <code>Math.round()</code> function and combine them into a text
-string in 'rgb()' notation using the <code>+</code> operator. Then, return the text
-string from the function using a return statement.
+Instead of declaring the variables <code>buildingA</code>, <code>buildingB</code>,
+and <code>buildingC</code>, declare only one global variable: <code>buildingRow</code>.
 </p>
 <p>
-If you need help, examine the <code>drawBuildingRow()</code> and <code>randomInteger()</code>
-functions in the Basic Cityscape Challenge program at the top of the page to see how we
-combined values into a text string to describe a row's building color and how we returned randomly
-generated integers from a function, or visit the
-<a class="reference-link" data-slug="fillStyle" href="../fillStyle/index.html">fillStyle</a>
-and
-<a class="reference-link" data-slug="functions" href="../functions/index.html">Functions</a>
-lessons.
+Inside the <code>initScene()</code> function, initialize <code>buildingRow</code>
+with an empty array. Then, push the data for the three buildings onto the end of the
+array using the array's <code>push()</code> method.
 </p>
 <p>
-Inside the <code>drawGround()</code> function, declare the variable <code>c</code>. We
-can use this one variable to store the red, green, and blue values of the ground's color
-because all three values are the same. If <code>time < 5</code>, set <code>c = 204</code>.
-If <code>time > 7</code>, set <code>c = 102</code>. If <code>time</code> is between 5 and 7,
-create an expression so <code>c</code> decreases from 204 to 102 as <code>time</code> increases
-from 5 to 7. Pass the value of <code>c</code> into the <code>rgbColor()</code> function and
-assign the color returned from the function to the <code>context.fillStyle</code> property.
-Remember, <code>c</code> is the value of the red, green, and blue values of the color.
+Inside the <code>drawScene()</code> function, use a for loop to pass the data for
+each building into the <code>drawBuilding()</code> function along with the building
+and window colors. Remember, the data for the first building is stored in the object
+at <code>buildingRow[0]</code>, the data for the second building in the object at
+<code>buildingRow[1]</code>, and the data for the third building in the object at
+<code>buildingRow[2]</code>.
 </p>
 <p>
-Then, use the <code>context.fillRect()</code> method to draw a rectangle from (0, <code>horizonY</code>)
-to the bottom of the canvas and the width of the canvas. Make sure to save and restore the drawing
-state since the <code>drawGround()</code> function is setting the <code>context.fillStyle</code> property.
-</p>
-<p>
-Finally, set the value of <code>horizonY</code> so the y-coordinate of the horizon is 100 pixels
-above the bottom of the canvas. The program should now draw slices of the ground as it gets darker
-at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
-</p>
-<p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="if_statements" href="../if_statements/index.html">If Statements</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="for_loops" href="../for_loops/index.html">For Loops</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="objects" href="../objects/index.html">Objects</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="arrays" href="../arrays/index.html">Arrays</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="round" href="../round/index.html">round() / floor() / ceil()</a>
 </p>
 
 <div class='code-preview mb-2'>
@@ -1472,7 +1331,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage2_challenge2_editor'>var canvas = document.getElementById('animated_cityscape_stage2_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var time;&#x000A;var horizonY; // Set the y-coordinate of the horizon so it is 100 pixels above the bottom of the canvas&#x000A;&#x000A;context.save();&#x000A;&#x000A;time = 5.0;&#x000A;drawGround(); // Draw the ground at 5:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 5.5;&#x000A;drawGround(); // Draw the ground at 5:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.0;&#x000A;drawGround(); // Draw the ground at 6:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.5;&#x000A;drawGround(); // Draw the ground at 6:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 7.0;&#x000A;drawGround(); // Draw the ground at 7:00 pm&#x000A;&#x000A;context.restore();&#x000A;&#x000A;function rgbColor(r, g, b) {&#x000A;  &#x000A;  // Create and return a text string in rgb() notation after rounding the values stored in r, g, and b&#x000A;  &#x000A;}&#x000A;&#x000A;function drawGround() {&#x000A;  &#x000A;  // Declare the variable c&#x000A;  // Use an if statement to calculate the value of c&#x000A;  // Use the rgbColor() function to get the color of the ground and assign it to the fillStyle&#x000A;  // Draw a filled rectangle from (0, horizonY) to the bottom of the canvas and the width of the canvas&#x000A;  &#x000A;}&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  return (min + Math.floor((max - min + 1) * Math.random()));&#x000A;}&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage2_challenge2_editor'>var canvas = document.getElementById('animated_cityscape_stage2_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// COPY YOUR PROGRAM FROM CHALLENGE 1 HERE&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1484,7 +1343,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1504,9 +1363,110 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/animated_cityscape/stage2/challenge1-9924583a02f3e8e290a5ea8007373f832e8ae7698056874310b45acfb233755d.png" alt="Challenge1" /></div>
 <canvas id='animated_cityscape_stage2_challenge2'></canvas>
 </div>
 <div class='alert'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='example row py-3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
+Initialize and Draw Building Rows Separately
+</h2>
+<p>
+In the Basic Cityscape Challenge, we created the data for a building row and then
+drew the building row at the same time using the <code>drawBuildingRow()</code> function.
+This meant that, if we wanted to draw the building row again, we would recreate the data.
+But since the data is generated randomly, the buildings would be different each time and
+it would look like we were drawing a brand new scene instead of updating the existing scene.
+</p>
+<p>
+We are currently in the process of separating those two steps. The goal is to
+create the data for a building row using the <code>initBuildingRow()</code> function
+when the page first loads and then use that data to redraw the buildings using the
+<code>drawBuildingRow()</code> function when we update the scene. That way, it will
+look like the same scene changing over time.
+</p>
+<p>
+Since we are separating the current <code>drawBuildingRow()</code> function into two
+separate functions, you should review how the <code>drawBuildingRow()</code> function
+works. In this example, we position a building row at (0, 280) and draw it with a scale
+factor of 0.6. We use the scale factor to calculate the color of the buildings in the
+row and a while loop to create and draw just enough buildings to cover the width of the
+canvas. Each building is randomly generated using the <code>randomInteger()</code>
+function.
+</p>
+<p>
+<strong>Quick Reference:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="while_loops" href="../while_loops/index.html">While Loops</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="if_statements" href="../if_statements/index.html">If Statements</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="scale" href="../scale/index.html">scale()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="random" href="../random/index.html">random()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="round" href="../round/index.html">round() / floor() / ceil()</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-12' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='animated_cityscape_stage2_example3_editor'>var canvas = document.getElementById('animated_cityscape_stage2_example3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;drawBuildingRow(0, 280, 0.6);&#x000A;&#x000A;function drawBuildingRow(rowX, groundY, scale) {&#x000A;  context.save();&#x000A;  context.translate(rowX, groundY);&#x000A;  context.scale(scale, scale);&#x000A;  &#x000A;  var c = Math.round(153 * scale);&#x000A;  var buildingColor = 'rgb(' + c + ', ' + c + ', ' + c + ')';&#x000A;  var windowColor = 'rgb(102, 102, 102)';&#x000A;  &#x000A;  var x = 0;&#x000A;  while (x < canvas.width / scale) {&#x000A;    var units = randomInteger(4, 10);&#x000A;    var floors = randomInteger(6, 20);&#x000A;    var windowType = randomInteger(0, 3);&#x000A;    var roofType;&#x000A;    &#x000A;    if (units > 8) {&#x000A;			roofType = randomInteger(0, 1);&#x000A;		} else if (units > 6) {&#x000A;			roofType = randomInteger(0, 2);&#x000A;		} else {&#x000A;			roofType = randomInteger(0, 3);&#x000A;		}&#x000A;    &#x000A;    var w = 16 * units + 8;&#x000A;    var h = 16 * floors + 8;&#x000A;    &#x000A;    drawBuilding(x, 0, w, h, units, floors, windowType, roofType, buildingColor, windowColor);&#x000A;    x = x + w + 12;&#x000A;  }&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawBuilding(leftX, groundY, w, h, units, floors, windowType, roofType, buildingColor, windowColor) {&#x000A;  var x = leftX;&#x000A;  var y = groundY - h;&#x000A;  &#x000A;  context.save();&#x000A;  context.translate(x, y);&#x000A;  context.fillStyle = buildingColor;&#x000A;  context.fillRect(0, 0, w, h);&#x000A;  drawRoof(w, roofType);&#x000A;  &#x000A;  context.translate(4, 4);&#x000A;  context.fillStyle = windowColor;&#x000A;  &#x000A;  for (var i = 0; i < floors; i += 1) {&#x000A;    context.save();&#x000A;    &#x000A;    for (var j = 0; j < units; j += 1) {&#x000A;      drawWindow(windowType);&#x000A;      context.translate(16, 0);&#x000A;    }&#x000A;    &#x000A;    context.restore();&#x000A;    context.translate(0, 16);&#x000A;  }&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawWindow(windowType) {&#x000A;  context.save();&#x000A;  &#x000A;  switch (windowType) {&#x000A;		case 0:&#x000A;			context.fillRect(4, 2, 8, 10);&#x000A;			break;&#x000A;		&#x000A;		case 1:&#x000A;			context.fillRect(2, 3, 5, 8);&#x000A;			context.fillRect(9, 3, 5, 8);&#x000A;			break;&#x000A;		&#x000A;		case 2:&#x000A;			context.fillRect(0, 3, 16, 8);&#x000A;			break;&#x000A;		&#x000A;		case 3:&#x000A;			context.fillRect(5, 1, 6, 14);&#x000A;			break;&#x000A;	}&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function drawRoof(w, roofType) {&#x000A;  context.save();&#x000A;  &#x000A;  switch(roofType) {&#x000A;		case 0:&#x000A;			// draw nothing&#x000A;			break;&#x000A;		&#x000A;		case 1:&#x000A;			context.fillRect(8, -16, w - 16, 16);&#x000A;			break;&#x000A;		&#x000A;		case 2:&#x000A;			context.fillRect(8, -24, w - 16, 24);&#x000A;			context.fillRect((w - 32) / 2, -48, 32, 24);&#x000A;			context.fillRect((w - 8) / 2, -80, 8, 56);&#x000A;			break;&#x000A;		&#x000A;		case 3:&#x000A;			context.beginPath();&#x000A;			context.moveTo(w / 2, -80);&#x000A;			context.lineTo(w / 2 + 16, -16);&#x000A;			context.lineTo(w / 2 - 16, -16);&#x000A;			context.closePath();&#x000A;			context.fill();&#x000A;			context.fillRect((w - 64) / 2, -16, 64, 16);&#x000A;			break;&#x000A;	}&#x000A;  &#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function randomInteger(min, max) {&#x000A;  return (min + Math.floor((max - min + 1) * Math.random()));&#x000A;}&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+This is a lesson, not a challenge, the code runs automatically.
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run run-only btn btn-success'>
+Run
+</div>
+<div class='run run-and-focus btn btn-success'>
+Run and Focus Canvas
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-12 pt-2'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='animated_cityscape_stage2_example3'></canvas>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1519,95 +1479,46 @@ Canvas
 Challenge 3
 </h2>
 <figure class='float-xs-right px-2'>
-<img class="img-fluid canvas-example" src="../../../images/lessons/animated_cityscape/stage2/challenge3Visual1.png" alt="Challenge3visual1" />
+<img class="img-fluid canvas-example" src="../../../assets/lessons/animated_cityscape/stage2/challenge3Visual1-40ee032e730f315a398b320139ea6917d8d7211133d13950041851a353faa693.png" alt="Challenge3visual1" />
 <figcaption class='text-xs-center small'>What your drawing should look like</figcaption>
 </figure>
 <p>
-Now we are going to update the <code>drawSky()</code> function so the
-gradient used to fill the sky also changes depending on the time of day.
-First, we will make the sky change from blue to dark gray. We will add
-the red horizon later.
+Update the program from Challenge 2 to draw a building row at a set
+position and scale. Set the building color based on the scale of the row.
+Start by copying your program from Challenge 2 into the editor below.
 </p>
 <p>
-Inside the <code>drawSky()</code> function, start by declaring six
-variables. To keep the function compact, we can declare multiple variables
-on each line. Just separate the variables with commas and make sure to end
-each line with a semicolon.
-</p>
-<pre><code>var r0, g0, b0;&#x000A;var r1, g1, b1;</code></pre>
-<p>
-The variables <code>r0</code>, <code>g0</code>, and <code>b0</code> are the
-RGB values of the color at position <code>0</code> in the gradient. The variables
-<code>r1</code>, <code>g1</code>, and <code>b1</code> are the RGB values of the
-color at position <code>1</code>.
+Since we are going to position the row of buildings in the
+<code>drawBuildingRow()</code> function, change the <code>groundY</code>
+property for all three buildings in the row to <code>0</code>.
 </p>
 <p>
-If <code>time < 5</code>, set <code>r0</code>, <code>g0</code>, and <code>b0</code>
-to 255; and set <code>r1</code> to 102, <code>g1</code> to 153, and <code>b1</code>
-to 255. And just as we can declare multiple variables on one line, we can also assign
-multiple variables on one line.
-</p>
-<pre><code>r0 = 255, g0 = 255, b0 = 255; // The sky is white at position 0&#x000A;r1 = 102, g1 = 153, b1 = 255; // The sky is blue at position 1</code></pre>
-<p>
-If <code>time > 7</code>, set <code>r0</code>, <code>g0</code>, and <code>b0</code> to 102;
-and set <code>r1</code>, <code>g1</code>, and <code>b1</code> to 51.
-</p>
-<pre><code>r0 = 102, g0 = 102, b0 = 102; // The sky is gray at position 0&#x000A;r1 = 51, g1 = 51, b1 = 51; // The sky is dark gray at position 1</code></pre>
-<p>
-Finally, if <code>time < 5</code> and <code>time > 7</code> are both false, create
-expressions to calculate the RGB values of the colors at both positions as <code>time</code>
-increases from 5 to 7. This changes the color of the sky at position <code>0</code> from white
-to gray and the color of the sky at position <code>1</code> from blue to dark gray.
-</p>
-<ul>
-<li>
-<code>r0</code>: 255 &rarr; 102
-</li>
-<li>
-<code>g0</code>: 255 &rarr; 102
-</li>
-<li>
-<code>b0</code>: 255 &rarr; 102
-</li>
-<li>
-<code>r1</code>: 102 &rarr; 51
-</li>
-<li>
-<code>g1</code>: 153 &rarr; 51
-</li>
-<li>
-<code>b1</code>: 255 &rarr; 51
-</li>
-</ul>
-<p>
-Now, just as in Challenge 1, create a vertical linear gradient so position
-<code>0</code> is at the horizon and position <code>1</code> is 300 pixels above the horizon.
+Define a function named <code>drawBuildingRow()</code> which accepts three
+parameters: <code>rowX</code>, <code>groundY</code>, and <code>scale</code>.
+Use the <code>context.translate()</code> method to position the row and the
+<code>context.scale()</code> method to scale the row. Don't forget to save
+and restore the drawing state. Then, use the scale to calculate the building
+color. Look at the program in the example above to see how.
 </p>
 <p>
-Instead of hardcoding three color stops, add color stops at positions <code>0</code>
-and <code>1</code> and use the RGB values stored in the six variables to set the colors
-using the <code>rgbColor()</code> function.
+Finally, move the for loop used to draw the buildings from the <code>drawScene()</code>
+function into the <code>drawBuildingRow()</code> function and call the
+<code>drawBuildingRow()</code> function inside the <code>drawScene()</code> function.
+Draw the row of buildings stored in the <code>buildingRow</code> array at
+(0, 280) with a scale factor of 0.6.
 </p>
 <p>
-Fill a rectangle with the gradient positioned at (0, 0) going down to the horizon and
-across the width of the canvas.
-</p>
-<p>
-Then, set the value of <code>horizonY</code> so the y-coordinate of the horizon is 100 pixels
-above the bottom of the canvas. The program should now draw slices of the sky as it gets darker
-at 5:00, 5:30, 6:00, 6:30, and 7:00 pm.
-</p>
-<p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="if_statements" href="../if_statements/index.html">If Statements</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="for_loops" href="../for_loops/index.html">For Loops</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="objects" href="../objects/index.html">Objects</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="arrays" href="../arrays/index.html">Arrays</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="create_linear_gradient" href="../create_linear_gradient/index.html">createLinearGradient()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="scale" href="../scale/index.html">scale()</a>
 </p>
 
 <div class='code-preview mb-2'>
@@ -1658,7 +1569,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage2_challenge3_editor'>var canvas = document.getElementById('animated_cityscape_stage2_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var time;&#x000A;var horizonY; // Set the y-coordinate of the horizon so it is 100 pixels above the bottom of the canvas&#x000A;&#x000A;context.save();&#x000A;&#x000A;time = 5.0;&#x000A;drawSky(); // Draw the sky at 5:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 5.5;&#x000A;drawSky(); // Draw the sky at 5:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.0;&#x000A;drawSky(); // Draw the sky at 6:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.5;&#x000A;drawSky(); // Draw the sky at 6:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 7.0;&#x000A;drawSky(); // Draw the sky at 7:00 pm&#x000A;&#x000A;context.restore();&#x000A;&#x000A;function rgbColor(r, g, b) {&#x000A;  &#x000A;  // Copy the function definition from Challenge 2&#x000A;  &#x000A;}&#x000A;&#x000A;function drawSky() {&#x000A;  &#x000A;  // Declare r0, g0, b0, r1, g1, b1&#x000A;  // Use an if statement to calculate the values assigned to r0, g0, b0, r1, g1, b1&#x000A;  // Create a vertical linear gradient from the horizon to a point 300 pixels above the horizon&#x000A;  // Add color stops at positions 0 and 1&#x000A;  // Use the gradient to fill a rectangle positioned at (0, 0) that goes down to the horizon and across the width of the canvas&#x000A;  &#x000A;}&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage2_challenge3_editor'>var canvas = document.getElementById('animated_cityscape_stage2_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// COPY YOUR PROGRAM FROM CHALLENGE 2 HERE&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1670,7 +1581,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1690,6 +1601,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/animated_cityscape/stage2/challenge3-ee16dc3b688a54023943166c5e7fd35df97b4354e2b78c1d186647e96aa9f8fa.png" alt="Challenge3" /></div>
 <canvas id='animated_cityscape_stage2_challenge3'></canvas>
 </div>
 <div class='alert'></div>
@@ -1787,7 +1699,7 @@ and
 lessons.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
@@ -1847,7 +1759,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='animated_cityscape_stage2_challenge4_editor'>var canvas = document.getElementById('animated_cityscape_stage2_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var time;&#x000A;var horizonY; // Set the y-coordinate of the horizon so it is 100 pixels above the bottom of the canvas&#x000A;&#x000A;context.save();&#x000A;&#x000A;time = 5.0;&#x000A;drawSky(); // Draw the sky at 5:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 5.5;&#x000A;drawSky(); // Draw the sky at 5:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.0;&#x000A;drawSky(); // Draw the sky at 6:00 pm&#x000A;context.translate(72, 0);&#x000A;time = 6.5;&#x000A;drawSky(); // Draw the sky at 6:30 pm&#x000A;context.translate(72, 0);&#x000A;time = 7.0;&#x000A;drawSky(); // Draw the sky at 7:00 pm&#x000A;&#x000A;context.restore();&#x000A;&#x000A;function rgbColor(r, g, b) {&#x000A;  &#x000A;  // Copy the function definition from Challenge 3&#x000A;  &#x000A;}&#x000A;&#x000A;function drawSky() {&#x000A;  &#x000A;  // Copy the function definition from Challenge 3&#x000A;  &#x000A;  // Declare variables pMiddle, rMiddle, gMiddle, bMiddle for the middle color stop&#x000A;  // Set pMiddle to -1 if time < 5 or time > 7&#x000A;  // Update p0, g0, b0 to go from (255, 255, 255) to (255, 0, 0)&#x000A;  // Calculate pMiddle to go from 1 to 0&#x000A;  // Calculate rMiddle, gMiddle, bMiddle to go from (102, 153, 255) to (102, 102, 102)&#x000A;  // Add the middle color stop if pMiddle >= 0&#x000A;  &#x000A;}&#x000A;</div>
+<div class='editor' id='animated_cityscape_stage2_challenge4_editor'>var canvas = document.getElementById('animated_cityscape_stage2_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// COPY YOUR PROGRAM FROM CHALLENGE 3 HERE&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1859,7 +1771,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1954,7 +1866,7 @@ wanted to redraw the square and make it look like the square is moving, we'd
 have to clear the canvas first.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
@@ -1991,7 +1903,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -2060,7 +1972,7 @@ color between 5:00 and 7:00 pm. Once you feel satisfied that the scene is updati
 and drawing correctly, mark the challenge as complete by selecting "Yes, it looks good".
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
@@ -2127,7 +2039,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -2212,7 +2124,7 @@ up and the animation may stutter. To learn more setting timers, visit the
 lesson.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
@@ -2249,7 +2161,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -2305,7 +2217,7 @@ that the scene is updating and drawing correctly, mark the challenge as complete
 selecting "Yes, it looks good".
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="set_interval" href="../set_interval/index.html">setInterval()</a>
@@ -2371,7 +2283,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -2464,7 +2376,7 @@ canvas, <code>squareX</code> and <code>squareY</code> are reset and the animatio
 starts again from the beginning.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
@@ -2502,7 +2414,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -2553,7 +2465,7 @@ satisfied that the scene is playing and pausing correctly, mark the challenge
 as complete by selecting "Yes, it looks good".
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="event_listeners" href="../event_listeners/index.html">Event Listeners</a>
@@ -2620,7 +2532,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>

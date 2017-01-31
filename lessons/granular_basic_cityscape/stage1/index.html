@@ -4,8 +4,8 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="R9+/V+ju48lroeGhkBEDznlvENBZbJDCmPLlJ8ypXWFixHXeCGhqOdEdCIMmTfTgcHR6PbXtRaXJPnaXC1p2Hw==" />
-<link rel="stylesheet" media="all" href="../../../assets/application.self-2cad20131f1319ea18e26fad11198270aac15eb89c6f9a86b1b8f3f86042f0f5-body=1.css" data-turbolinks-track="reload" />
+<meta name="csrf-token" content="rBlat6JL5JPI/UqKZOS5g0nkt8bLTycCEkRm7z0aiZOJApA+Qs1tY3JBo6jSuE6tQP/dKyfO8mVDiPVf+umi7Q==" />
+<link rel="stylesheet" media="all" href="../../../assets/application.self-81167f059076fb7946036bc61a339b77482e23e48f7ddb7e89fdce8f844bc775-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/bootstrap.self-4e71bfbf6aff83432bb0f204b1cfa3beaf9d05f0d2acf9ec752924a628245be1.js?body=1" data-turbolinks-track="reload"></script>
@@ -14,6 +14,7 @@
 <script src="../../../assets/ace/mode-javascript.self-f62f7e63cad01dbe717d22344bf979ec13fa33f523d1b94b1576022bd4aa4d7a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/action_cable.self-1641ec3e8ea24ed63601e86efcca7f9266e09f390e82199d56aa7e4bd50e1aa9.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/cable.self-6e0514260c1aa76eaf252412ce74e63f68819fd19bf740595f592c5ba4c36537.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/code_i_wrote.self-3c7f058b4395fe52a93f2ddb0f1c44ac05f84bd2382709aff2f7e89443f3e089.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/code_preview.self-b37269bda74e81e3e6e832ad40469072b79b5b1d3a48a2e91986fd44549f82c0.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/drawings.self-1119b89f5468a45fd5e064d9ba68962f14b5248b9ff1a6b33b2307875e470686.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/examples.self-62f6af2ec5a00cd81eb1292963de6ac7a2146c48d0d3cba6abe1adc998cae145.js?body=1" data-turbolinks-track="reload"></script>
@@ -22,7 +23,7 @@
 <script src="../../../assets/jasmine_examples/Song.self-676a725aa543d21fbf2f98b899a89804ae472e93d25bc4f115b4914af237a610.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lesson.self-4c007310fc5244946716688a8afc18ef0b6e54f4cfc18f8aff6b18ab0e203889.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/animated_cityscape/stage1.self-80e467064710da3b6cd9a06f0893672dbc339fa3ce3fbda6993898f97d144340.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/animated_cityscape/stage2.self-4addabe9a70f069b9fb65a754fead73b51f367e2f14c747bb63ca88a4d5b656b.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/animated_cityscape/stage2.self-2bc6acdcf50b13621a3143f4e5f34cf01318613ef8549650b0c8c59e6db66faf.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/arrays.self-6668c327ba2e7d5bcf91328a1b2dad1acf19568b060719f2428daab71e3d722a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage1.self-af3dd34f4f344c2e4c6fd02ae6fcf3a3ab4cd43a8d72b9e10ac7e857ec7e3321.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/basic_cityscape/stage2.self-225920e2665631ee62b7fbe95291c6ac9e1c62142a2bc469a623623a6c18a705.js?body=1" data-turbolinks-track="reload"></script>
@@ -58,11 +59,11 @@
 <script src="../../../assets/lib/app/canvas.self-429f6c3eb7215ea53ffe08598331778858aa202b6c9cdf18775ee1623316198a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/editor.self-c5417661c33ecaa56f9ea9773ce3831cbed4d2ad3605b653ec7ec7659a51cabc.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/app/files.self-16fff0bc3c9a315d22413e3b6a090fb8ef8f5f1257b42dade438f57a0de1f134.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lib/app/progress.self-85855a4b2ffe2ff58692f669b689c7ad8db3cee30eb947e32791e81148164b36.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lib/app/progress.self-2d0c48c19bcdbfe80c95050cc3d141e65622061f38d75d7725e490355f869df4.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/code.self-186d38d443a8bc51bbeec7159887e3781eaad676a86b9d159eca7ec40e21f7ba.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/image_comparison.self-83be79c1bfdac13ff2c69e6916a326f2698035d7381c28f12e44637de7618bac.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lib/test/point.self-e1435fcb5c66e2107d91d34c16e06e6c0dd8d06286396d3d5b3b05c22989d9b2.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/navigation.self-3abb68970f3392649f6ee452427597fc92e324a7be21f97b6501e5a2ec47609e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/navigation.self-b26734ce44686d640f740ef02728ff6997a6fdc4dbb848f27d16bf0b6a8c7833.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/referenceModal.self-4ba25626378a146e8d2a7ae7edd72600ddef60371b98f42b0c3555b56cd02ff9.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/application.self-4d37d7bcf4b0b32507438063ae47ba88dd0178863f7c7a2c7125b221eefea772.js?body=1" data-turbolinks-track="reload"></script>
 </head>
@@ -83,27 +84,7 @@ Drawing In Code:
 <a class="section_link" href="../../../index.html">Home</a>
 </li>
 </ul>
-<ul class='nav nav-sidebar'>
-<li class='section'>
-<a class='section_link' data-section='drawings' href='#'>
-Your Drawings
-</a>
-<ul class='collapse nav nav-sidebar' id='drawings'>
-<li>
-<a href="../../../drawings/index.html">Create A Drawing</a>
-</li>
-<li class='section drawings-list small mt-1 hidden-xs-up'>
-<strong>My Drawings</strong>
-</li>
-</ul>
-</li>
-</ul>
-<ul class='nav nav-sidebar'>
-<li class='section'>
-<a class="section_link" href="../../../examples/index.html">Gallery</a>
-</li>
-</ul>
-<ul class='nav nav-sidebar'>
+<ul class='nav nav-sidebar' style='display: none;'>
 <li class='section'>
 <a class='section_link' data-section='reference' href='#'>
 Reference
@@ -360,7 +341,7 @@ to get an rounded integer.
 </ul>
 </li>
 </ul>
-<ul class='nav nav-sidebar'>
+<ul class='nav nav-sidebar' style='display: none;'>
 <li class='section'>
 <a class='section_link' data-section='concepts' href='#'>
 Concepts
@@ -586,6 +567,38 @@ A full list of events can be found here:
 <span class='tag tag-default'>
 <small class='granular_basic_cityscape_stage1'>0 / 8</small>
 </span>
+<li class='page_section row small' id='page_section1'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section1">Section 1</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section2'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section2">Section 2</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section3'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section3">Section 3</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section4'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section4">Section 4</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section5'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section5">Section 5</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section6'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section6">Section 6</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section7'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section7">Section 7</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section8'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section8">Section 8</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
 </li>
 <li>
 <a href="../stage2/index.html">Stage 2</a>
@@ -605,95 +618,55 @@ A full list of events can be found here:
 <small class='granular_basic_cityscape_stage4'>0 / 4</small>
 </span>
 </li>
-<li class='section small mt-2'>
-<strong>Relevant Reference</strong>
+</ul>
+<ul class='nav nav-sidebar' id='quick-reference'>
+<li class='section small mt-3'>
+<strong>Quick Reference</strong>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
-<span class='tag tag-default'>
-<small class='fill_rect'>0 / 6</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
-<span class='tag tag-default'>
-<small class='fill_style'>0 / 3</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="round" href="../round/index.html">round() / floor() / ceil()</a>
-<span class='tag tag-default'>
-<small class='round'>0 / 3</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="line_to" href="../line_to/index.html">lineTo()</a>
-<span class='tag tag-default'>
-<small class='line_to'>0 / 6</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="random" href="../random/index.html">random()</a>
-<span class='tag tag-default'>
-<small class='random'>0 / 4</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="translate" href="../translate/index.html">translate()</a>
-<span class='tag tag-default'>
-<small class='translate'>0 / 6</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="save" href="../save/index.html">save() / restore()</a>
-<span class='tag tag-default'>
-<small class='save'>0 / 5</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="scale" href="../scale/index.html">scale()</a>
-<span class='tag tag-default'>
-<small class='scale'>0 / 7</small>
-</span>
 </li>
 <li class='section small mt-1'>
-<strong>Relevant Concepts</strong>
+<strong>Concepts</strong>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="variables" href="../variables/index.html">Variables</a>
-<span class='tag tag-default'>
-<small class='variables'>0 / 5</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="for_loops" href="../for_loops/index.html">For Loops</a>
-<span class='tag tag-default'>
-<small class='for_loops'>0 / 6</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="while_loops" href="../while_loops/index.html">While Loops</a>
-<span class='tag tag-default'>
-<small class='while_loops'>0 / 3</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
-<span class='tag tag-default'>
-<small class='coordinates'>0 / 3</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="functions" href="../functions/index.html">Functions</a>
-<span class='tag tag-default'>
-<small class='functions'>0 / 5</small>
-</span>
 </li>
 <li class='small '>
 <a class="reference-link" data-slug="switch_statements" href="../switch_statements/index.html">Switch Statements</a>
-<span class='tag tag-default'>
-<small class='switch_statements'>0 / 4</small>
-</span>
 </li>
 </ul>
 </li>
@@ -736,7 +709,7 @@ All
 <div class='col-xs-12 offset-md-3 col-md-9 offset-lg-2 col-lg-10 main'>
 <div class='page' id='granular_basic_cityscape_stage1'>
 <h1>Stage 1</h1>
-<div class='description row py-3'>
+<div class='description row py-4'>
 <div class='col-xs-6'>
 <h2 class='py-2'>
 Overview
@@ -751,7 +724,8 @@ we will automate the process using functions and variables.
 <img class="img-fluid" src="../../../assets/lessons/granular_basic_cityscape/stage1/overviewVisual1-c6013759268ac56bdb4029bf5eb3d2bee7ff1fe82392ee5741b486343346193b.png" alt="Overviewvisual1" />
 </div>
 </div>
-<div class='lesson row py-3'>
+<div class='section py-2' id='section1'>&nbsp;</div>
+<div class='lesson row'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
@@ -785,7 +759,7 @@ Try adjusting the coordinates of the two squares and see how they move around
 the coordinate system.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 </p>
@@ -818,7 +792,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -846,7 +820,7 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-3' id='challenge1'>
+<div class='challenge row py-4' id='challenge1'>
 <div class='col-xs-12'>
 <div class='row pb-2'>
 <div class='col-xs-12'>
@@ -870,7 +844,7 @@ left corner of the canvas and 90px down. The rectangle should be 45px wide (widt
 </p>
 <p>In the end your drawing should look like the example provided to the right.</p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
@@ -904,7 +878,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -932,7 +906,8 @@ Canvas
 </div>
 </div>
 </div>
-<div class='lesson row py-3'>
+<div class='section py-2' id='section2'>&nbsp;</div>
+<div class='lesson row pt-2'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
@@ -953,7 +928,7 @@ This example shows the ground as a simple line, 240px from the top
 of the canvas.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 </p>
@@ -986,7 +961,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1014,7 +989,7 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-3' id='challenge2'>
+<div class='challenge row py-4' id='challenge2'>
 <div class='col-xs-12'>
 <div class='row pb-2'>
 <div class='col-xs-12'>
@@ -1035,7 +1010,7 @@ place the ground 260px from the top of the canvas.
 </p>
 <p>In the end your drawing should look like the example provided to the right.</p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
@@ -1069,7 +1044,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1097,7 +1072,8 @@ Canvas
 </div>
 </div>
 </div>
-<div class='lesson row py-3'>
+<div class='section py-2' id='section3'>&nbsp;</div>
+<div class='lesson row pt-2'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
@@ -1121,7 +1097,7 @@ Remember: In the context's
 the origin (0, 0) is at the top left corner of the canvas.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 </p>
@@ -1154,7 +1130,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1182,7 +1158,7 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-3' id='challenge3'>
+<div class='challenge row py-4' id='challenge3'>
 <div class='col-xs-12'>
 <div class='row pb-2'>
 <div class='col-xs-12'>
@@ -1210,7 +1186,7 @@ You'll need to calculate the top of the building.
 </p>
 <p>In the end your building should look like the example provided to the right.</p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
@@ -1244,7 +1220,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1272,7 +1248,8 @@ Canvas
 </div>
 </div>
 </div>
-<div class='lesson row py-3'>
+<div class='section py-2' id='section4'>&nbsp;</div>
+<div class='lesson row pt-2'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
@@ -1295,7 +1272,7 @@ There are a number of ways to define the color, as shown in the
 lesson.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
@@ -1329,7 +1306,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1357,7 +1334,7 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-3' id='challenge4'>
+<div class='challenge row py-4' id='challenge4'>
 <div class='col-xs-12'>
 <div class='row pb-2'>
 <div class='col-xs-12'>
@@ -1382,7 +1359,7 @@ Most importantly, the
 </p>
 <p>In the end your building should look like the example provided to the right.</p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
@@ -1448,7 +1425,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1476,7 +1453,8 @@ Canvas
 </div>
 </div>
 </div>
-<div class='example row py-3'>
+<div class='section py-2' id='section5'>&nbsp;</div>
+<div class='lesson row pt-2'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
@@ -1500,7 +1478,7 @@ of the top of the building (assigning it to the variable <i>y</i>). These
 variables are then used to draw the building.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
@@ -1535,7 +1513,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1563,7 +1541,7 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-3' id='challenge5'>
+<div class='challenge row py-4' id='challenge5'>
 <div class='col-xs-12'>
 <div class='row pb-2'>
 <div class='col-xs-12'>
@@ -1592,7 +1570,7 @@ and is
 </p>
 <p>In the end your building should look like the example provided to the right.</p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
@@ -1659,7 +1637,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1687,8 +1665,9 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-3' id='challenge6'>
-<div class='col-xs-12'>
+<div class='section py-2' id='section6'>&nbsp;</div>
+<div class='challenge row pt-2 pb-4' id='challenge6'>
+<div class='col-xs-12' id='section6'>
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='challenge-title py-2'>
@@ -1731,7 +1710,7 @@ corner of your building, and w and h are the width and height of your building.
 In the end your drawing should look like the example on the right.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
@@ -1798,7 +1777,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1826,7 +1805,8 @@ Canvas
 </div>
 </div>
 </div>
-<div class='lesson row py-3'>
+<div class='section py-2' id='section7'>&nbsp;</div>
+<div class='lesson row pt-2'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
@@ -1859,7 +1839,7 @@ and the 100 is assigned to the variable <i>y</i> inside of the function. Now we 
 easily draw as many French flags as we want!
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
@@ -1895,7 +1875,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -1923,7 +1903,7 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-3' id='challenge7'>
+<div class='challenge row py-4' id='challenge7'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
@@ -1958,7 +1938,7 @@ Just like with Challenge 6, both buildings should be gray (color #999999) and ea
 office should be 16 x 16 width 4 pixels of padding around the whole building.
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
@@ -2026,7 +2006,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -2054,7 +2034,8 @@ Canvas
 </div>
 </div>
 </div>
-<div class='lesson row py-3'>
+<div class='section py-2' id='section8'>&nbsp;</div>
+<div class='lesson row pt-2'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
@@ -2103,7 +2084,7 @@ and context.restore() from the function. You'll have to reset the example and th
 refresh the entire page to get everything back to normal.)
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
@@ -2140,7 +2121,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>
@@ -2168,7 +2149,7 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-3' id='challenge8'>
+<div class='challenge row py-4' id='challenge8'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
@@ -2202,7 +2183,7 @@ then the next translation will be relative to the first translation and your
 drawing may be off the canvas!
 </p>
 <p>
-<strong>Relevant Lessons:</strong>
+<strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_style" href="../fill_style/index.html">fillStyle</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
@@ -2271,7 +2252,7 @@ Editor
 </div>
 <div class='buttons py-1'>
 <div class='lesson-text-message small text-xs-center'>
-<p>This is a lesson, not a challenge, the code runs automatically.</p>
+This is a lesson, not a challenge, the code runs automatically.
 <p>But change it! Play with it! Click "Run" to see your changes.</p>
 </div>
 <div class='run run-only btn btn-success'>

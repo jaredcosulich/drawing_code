@@ -103,14 +103,16 @@
     };
 
     Progress.prototype.markChallengeComplete = function(challengeId) {
-      var challengeTitle, tag;
+      var challengeTitle, sectionId, tag;
       challengeTitle = $("#" + challengeId).find('.challenge-title');
       if (challengeTitle.find('.tag-success').length > 0) {
         return;
       }
       tag = $(document.createElement('SPAN'));
       tag.addClass('tag').addClass('tag-success').html('Completed!');
-      return challengeTitle.append(tag);
+      challengeTitle.append(tag);
+      sectionId = challengeId.replace(/challenge/, 'section');
+      return $(".nav-sidebar #page_" + sectionId + " .tag-success").removeClass('hidden-xs-up');
     };
 
     Progress.prototype.toggleChallenge = function(page, challengeId) {
