@@ -25,16 +25,22 @@ initNavigation = ->
     sectionTops = []
     sectionTops.push($(section).position().top) for section in $('.page .section')
     sectionTops.reverse()
-  setSectionTops()
-  $('img').load(setSectionTops)
 
-  if sectionTops.length
-    $(window).scroll (e) ->
-      top = $(window).scrollTop()
-      for sectionTop, index in sectionTops
-        if top >= sectionTop
+  selectSectionTop = ->
+    return unless sectionTops.length
+    top = $(window).scrollTop()
+    for sectionTop, index in sectionTops
+      if top >= sectionTop
+        active = $('.sidebar').find("#page_section#{sectionTops.length - index}")
+        unless active.hasClass('active')
           $('.sidebar').find(".page_section").removeClass('active')
-          $('.sidebar').find("#page_section#{sectionTops.length - index}").addClass('active')
-          return
+          active.addClass('active')
+        return
+
+  $('img').load(setSectionTops)
+  $(window).scroll(selectSectionTop)
+
+  setSectionTops()
+  selectSectionTop()
 
 $(document).on('turbolinks:load', initNavigation)

@@ -6,7 +6,7 @@ initFlappySquareStage1Challenges = ->
     initFlappySquareStage1Challenge4(page)
     initFlappySquareStage1Challenge5(page)
     initFlappySquareStage1Challenge6(page)
-    initFlappySquareStage1Challenge7(page)
+    # initFlappySquareStage1Challenge7(page)
 
 initFlappySquareStage1Challenge1 = (page) ->
   index = 1
@@ -58,18 +58,28 @@ initFlappySquareStage1Challenge3 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
+  # solution = (canvas, context) ->
+  #   context.fillRect(50, 150, 20, 20)
+
   solution = (canvas, context) ->
-    context.fillRect(50, 150, 20, 20)
+    context.fillRect(50, 100, 20, 20);
+    context.beginPath();
+    context.moveTo(25, 25);
+    context.lineTo(450, 25);
+    context.lineTo(450, 300);
+    context.lineTo(25, 300);
+    context.closePath();
+    context.stroke();
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You\'ve drawn a flappy square using variables!'
+        message = '<strong>Success!</strong> You\'ve drawn the game area with the correct dimensions!'
         App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
       else
-        message = 'Nice try, but you need to set your variables properly.'
+        message = 'Nice try, but you need to draw a game area with the correct dimensions.'
 
       canvas.alert(message, success)
 
@@ -80,18 +90,33 @@ initFlappySquareStage1Challenge4 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
+  # solution = (canvas, context) ->
+  #   context.fillRect(50, 100, 20, 20)
+
   solution = (canvas, context) ->
-    context.fillRect(50, 100, 20, 20)
+    context.fillRect(50, 100, 20, 20);
+
+    context.beginPath();
+    context.moveTo(25, 25);
+    context.lineTo(450, 25);
+    context.lineTo(450, 300);
+    context.lineTo(25, 300);
+    context.closePath();
+    context.stroke();
+
+    context.fillRect(150, 25, 50, 100);
+    context.fillRect(150, 200, 50, 100);
+
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You\'ve drawn a flappy square using a function!'
+        message = '<strong>Success!</strong> You\'ve added a wall to the game in the correct position!'
         App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
       else
-        message = 'Nice try, but you need to write code in the function to draw the flappy square.'
+        message = 'Nice try, but you need to position the wall in the correct place and with the correct dimensions.'
 
       canvas.alert(message, success)
 
@@ -102,29 +127,70 @@ initFlappySquareStage1Challenge5 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  testSolution = (index) ->
-    solution = (canvas, context) ->
-      for i in [1..index]
-        context.fillRect(50, 100 + (i * 25), 20, 20)
+  solution = (canvas, context) ->
+    context.fillRect(50, 100, 20, 20);
 
-    testCode = new Test.Code(code: solution, canvas: canvas)
+    context.beginPath();
+    context.moveTo(25, 25);
+    context.lineTo(450, 25);
+    context.lineTo(450, 300);
+    context.lineTo(25, 300);
+    context.closePath();
+    context.stroke();
 
-    testCode.test (success) ->
-      if success
-        if index < 5
-          testSolution(index + 1)
-        else
-          message = '<strong>Success!</strong> You\'re successfull animated a flappy square moving down!'
-          App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
-          canvas.alert(message, success)
-      else
-        message = 'Nice try, but you need to animate a flappy square moving down.'
-        canvas.alert(message, success)
+    context.fillRect(125, 25, 50, 100);
+    context.fillRect(125, 200, 50, 100);
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
-    testSolution(1)
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You\'ve drawn the flappy square game using variables!'
+        App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
+      else
+        message = 'Nice try, but your game should be using variables with a wall that is slightly closer to the left boundary wall.'
+
+      canvas.alert(message, success)
 
 
+initFlappySquareStage1Challenge6 = (page) ->
+  index = 6
+  challenge = page.find("#challenge#{index}")
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  solution = (canvas, context) ->
+    context.fillRect(50, 100, 20, 20);
+
+    context.beginPath();
+    context.moveTo(25, 25);
+    context.lineTo(450, 25);
+    context.lineTo(450, 300);
+    context.lineTo(25, 300);
+    context.closePath();
+    context.stroke();
+
+    context.fillRect(150, 25, 50, 100);
+    context.fillRect(150, 200, 50, 100);
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You\'ve drawn the flappy square game using hashes!'
+        App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
+      else
+        message = 'Nice try, but your game should be using hashes with a wall that is 125 pixels from the boundary\'s left wall.'
+
+      canvas.alert(message, success)
+
+
+
+  
+
+###
 initFlappySquareStage1Challenge6 = (page) ->
   index = 6
   challenge = page.find("#challenge#{index}")
@@ -186,7 +252,7 @@ initFlappySquareStage1Challenge7 = (page) ->
 
   challenge.find('.run').click ->
     testSolution(1)
-
+###
 
 
 $(document).on('initialization:complete', initFlappySquareStage1Challenges)

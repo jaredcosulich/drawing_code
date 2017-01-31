@@ -1,0 +1,1248 @@
+- stage_index = 5
+- section_index = 0
+- lesson_index = 0
+- challenge_index = 0
+
+#flappy_square_stage5.page
+  %h1 Stage 5
+
+  .description.row.py-3
+    .col-xs-6
+      %h2.py-2
+        Stage 5 Overview
+      %p
+        Now for the finishing touches.
+
+      %p
+        We need to give our game a name and display the player's score.
+
+      %p
+        We also might want to play around with the various variables involved
+        such as the rate of gravity, the frame rate, the size of the holes,
+        etc.
+      %p
+        Lastly we'll add some color to make sure the different elements (the flappy
+        square, the walls, and the "Game Over" text) are distinctly visible and
+        separated.
+
+
+
+    .col-xs-6
+      = image_tag("lessons/flappy_square/stage#{stage_index}/overview.gif", class: 'img-fluid canvas-example')
+
+
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - lesson_index += 1
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Text In The Game
+          %p
+            We've used text in the past to show the "Game Over" message.
+          %p
+            We'll also want to use text to display the name of the game and
+            a score counter.
+          %p
+            The canvas provides a number of methods and attributes that can
+            affect the text. You can change the font, color, size, boldness, italics,
+            etc. You can align it left, center, or right, or any number of
+            = link_to('vertical alignments.', 'http://www.w3schools.com/tags/canvas_textbaseline.asp', target: '_blank')
+          %p
+            You can also rotate text by rotating the canvas underneath,
+            which is what we are doing in this example, creating a shell-like
+            pattern from the text. We're also using context.measureText() to
+            determine the width of the text and figure out where to start
+            the next text.
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor"} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
+                var context = canvas.getContext('2d');
+
+                function spiralText(size) {
+                  var text = 'spiraling around';
+                  context.font = size + 'px serif';
+                  context.textBaseline = 'middle';
+                  context.fillText(text, 0, 0);
+                  return context.measureText(text);
+                }
+
+                var size = 42;
+                var textArea;
+
+                context.translate(size/2, size/2);
+                textArea = spiralText(size);
+
+                while (size > 0) {
+                  context.translate(textArea.width, size/2);
+                  context.rotate(90 * (Math.PI/180));
+                  size -= 2;
+                  textArea = spiralText(size);
+                }
+
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
+
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.png", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            Let's give our game a name. We've used "Flappy Square"
+            in the example solution, but you can name it however you want.
+          %p
+            You can use any font style or size that you want. The example
+            provided shows the "serif" font at 15px.
+          %p
+            Play around with the different alignments until your happy with the placement.
+            Here is the reference for horizontal alignment (context.textAlign) and Vertical
+            alignment (context.textBaseline).
+
+          %ul
+            %li= link_to('Horizontal Alignment (context.textAlign)', 'http://www.w3schools.com/tags/canvas_textalign.asp', target: '_blank')
+            %li= link_to('Vertical Alignment (context.textBaseline)', 'http://www.w3schools.com/tags/canvas_textbaseline.asp', target: '_blank')
+          %p
+            Remember the text you draw for the game's name will be erased in
+            each frame when we call
+            %code context.clearRect(x, y, width, height)
+            so you might want to draw the game's name in a function that you cal from
+            %code programSteps()
+            so that the title is drawn in each frame after you clear the area outside of the game area.
+          %p
+            We've removed all of the template code for these challenges so you
+            should just
+            %span.highlight copy in your code from the previous challenge
+            and work from there. You'll need to make all of the code design decisions yourself.
+          %p
+            In the end your flappy square should look like the example provided at
+            the right.
+
+          - last_stage = stage_index - 1
+          - last_challenge = @challenge_path[:stages][stage_index - 2]
+          = render 'lessons/code_preview', stage: last_stage, challenge: last_challenge, editor_id: "flappy_square_stage#{last_stage}_challenge#{last_challenge}_editor"
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
+          .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var distance = 0;
+            var gravity = 0.5;
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
+            };
+
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20,
+              yVelocity: 0,
+              jump: -8
+            };
+
+            var wall = {
+              width: 50,
+              minHole: 75,
+              maxHole: 150,
+              positions: []
+            };
+
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
+            }
+
+            function drawBoundary() {
+              context.beginPath();
+              context.moveTo(boundary.minX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.maxY);
+              context.lineTo(boundary.minX, boundary.maxY);
+              context.closePath();
+              context.stroke();
+            }
+
+            function drawWall(wallInfo) {
+              var x = wallInfo.x - distance;
+              context.fillRect(
+                x,
+                boundary.minY,
+                wall.width,
+                wallInfo.topHeight
+              );
+              context.fillRect(
+                x,
+                boundary.maxY - wallInfo.bottomHeight,
+                wall.width,
+                wallInfo.bottomHeight
+              );
+            }
+
+            function random(min, max) {
+              return (min + Math.floor(Math.random() * (max - min)));
+            }
+
+            function drawWalls() {
+              var wallX = square.x;
+              if (wall.positions.length > 0) {
+                wallX = wall.positions[wall.positions.length - 1].x;
+              }
+
+              var end = boundary.maxX + distance + wall.width;
+              var boundaryHeight = boundary.maxY - boundary.minY;
+
+              while (wallX < end) {
+                wallX += random(100, 200);
+
+                var topHeight = random(25, 150);
+                var bottomHeight = random(25, 150);
+                if (boundaryHeight - topHeight - bottomHeight < wall.minHole) {
+                  bottomHeight = boundaryHeight - topHeight - wall.minHole;
+                }
+                if (boundaryHeight - topHeight - bottomHeight > wall.maxHole) {
+                  bottomHeight = boundaryHeight - topHeight - wall.maxHole;
+                }
+
+                wall.positions.push({
+                  x: wallX,
+                  topHeight: topHeight,
+                  bottomHeight: bottomHeight
+                });
+              }
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                drawWall(wall.positions[i]);
+              }
+            }
+
+            function flap() {
+              square.yVelocity = square.jump;
+            }
+
+            function adjustPosition() {
+              distance += 2;
+              square.yVelocity += gravity;
+              square.y += square.yVelocity;
+            }
+
+            function clearBoundary() {
+              context.clearRect(0, 0, canvas.width, boundary.minY);
+              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
+              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(0, 0, boundary.minX, canvas.height);
+            }
+
+            function checkBoundary() {
+              if (square.y >= boundary.maxY) {
+                endGame();
+              }
+            }
+
+            function checkWalls() {
+              var left = square.x;
+              var right = square.x + square.size;
+              var top = square.y;
+              var bottom = square.y + square.size;
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                var wallInfo = wall.positions[i];
+                var wallLeft = wallInfo.x - distance;
+                var wallRight = wallLeft + wall.width;
+
+                if (wallLeft > right) continue;
+                if (wallRight < left) continue;
+
+                var topWallBottom = boundary.minY + wallInfo.topHeight;
+                var bottomWallTop = boundary.maxY - wallInfo.bottomHeight;
+                if (top < topWallBottom || bottom > bottomWallTop) {
+                  endGame();
+                }
+              }
+            }
+
+            function drawTitle() {
+              context.save();
+              context.font = "15px serif";
+              context.textAlign = 'left';
+              context.textBaseline = 'bottom';
+
+              var x = boundary.minX;
+              var y = boundary.minY;
+              context.fillText('Flappy Square', x, y);
+              context.restore();
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              adjustPosition();
+              drawSquare();
+              drawBoundary();
+              drawWalls();
+              clearBoundary();
+              checkWalls();
+              checkBoundary();
+              drawTitle();
+            }
+
+            function runProgram() {
+              interval = setInterval(programSteps, 80);
+            }
+
+            canvas.addEventListener('click', flap);
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+
+
+
+
+
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            Ok, so now that we've got some practice work with text under our belts
+            let's try something a bit more tricky: displaying the score.
+          %p
+            We'll display our score counter, something like "Score: 30" in the top
+            right corner. With each frame we'll update the score.
+          %p
+            The score itself is arbitrary, but since the goal of the game is simply
+            to stay alive as long as possible then the score should reflect that.
+          %p
+            In the example to the right we're using a score that increments every 10
+            frames or roughly once per second (every 800 miliseconds). In the next lesson
+            we can tweak all of these variable to get the game play just right.
+
+          = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
+          .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var distance = 0;
+            var gravity = 0.5;
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
+            };
+
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20,
+              yVelocity: 0,
+              jump: -8
+            };
+
+            var wall = {
+              width: 50,
+              minHole: 75,
+              maxHole: 150,
+              positions: []
+            };
+
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
+            }
+
+            function drawBoundary() {
+              context.beginPath();
+              context.moveTo(boundary.minX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.maxY);
+              context.lineTo(boundary.minX, boundary.maxY);
+              context.closePath();
+              context.stroke();
+            }
+
+            function drawWall(wallInfo) {
+              var x = wallInfo.x - distance;
+              context.fillRect(
+                x,
+                boundary.minY,
+                wall.width,
+                wallInfo.topHeight
+              );
+              context.fillRect(
+                x,
+                boundary.maxY - wallInfo.bottomHeight,
+                wall.width,
+                wallInfo.bottomHeight
+              );
+            }
+
+            function random(min, max) {
+              return (min + Math.floor(Math.random() * (max - min)));
+            }
+
+            function drawWalls() {
+              var wallX = square.x;
+              if (wall.positions.length > 0) {
+                wallX = wall.positions[wall.positions.length - 1].x;
+              }
+
+              var end = boundary.maxX + distance + wall.width;
+              var boundaryHeight = boundary.maxY - boundary.minY;
+
+              while (wallX < end) {
+                wallX += random(100, 200);
+
+                var topHeight = random(25, 150);
+                var bottomHeight = random(25, 150);
+                if (boundaryHeight - topHeight - bottomHeight < wall.minHole) {
+                  bottomHeight = boundaryHeight - topHeight - wall.minHole;
+                }
+                if (boundaryHeight - topHeight - bottomHeight > wall.maxHole) {
+                  bottomHeight = boundaryHeight - topHeight - wall.maxHole;
+                }
+
+                wall.positions.push({
+                  x: wallX,
+                  topHeight: topHeight,
+                  bottomHeight: bottomHeight
+                });
+              }
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                drawWall(wall.positions[i]);
+              }
+            }
+
+            function flap() {
+              square.yVelocity = square.jump;
+            }
+
+            function adjustPosition() {
+              distance += 2;
+              square.yVelocity += gravity;
+              square.y += square.yVelocity;
+            }
+
+            function clearBoundary() {
+              context.clearRect(0, 0, canvas.width, boundary.minY);
+              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
+              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(0, 0, boundary.minX, canvas.height);
+            }
+
+            function checkBoundary() {
+              if (square.y >= boundary.maxY) {
+                endGame();
+              }
+            }
+
+            function checkWalls() {
+              var left = square.x;
+              var right = square.x + square.size;
+              var top = square.y;
+              var bottom = square.y + square.size;
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                var wallInfo = wall.positions[i];
+                var wallLeft = wallInfo.x - distance;
+                var wallRight = wallLeft + wall.width;
+
+                if (wallLeft > right) continue;
+                if (wallRight < left) continue;
+
+                var topWallBottom = boundary.minY + wallInfo.topHeight;
+                var bottomWallTop = boundary.maxY - wallInfo.bottomHeight;
+                if (top < topWallBottom || bottom > bottomWallTop) {
+                  endGame();
+                }
+              }
+            }
+
+            function drawTitle() {
+              context.save();
+              context.font = "15px serif";
+              context.textAlign = 'left';
+              context.textBaseline = 'bottom';
+
+              var x = boundary.minX;
+              var y = boundary.minY;
+              context.fillText('Flappy Square', x, y);
+              context.restore();
+            }
+
+            function drawScore() {
+              context.save();
+              context.font = "15px serif";
+              context.textAlign = 'right';
+              context.textBaseline = 'bottom';
+
+              var x = boundary.maxX;
+              var y = boundary.minY;
+              context.fillText('Score: ' + Math.floor(distance / 20), x, y);
+              context.restore();
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              adjustPosition();
+              drawSquare();
+              drawBoundary();
+              drawWalls();
+              clearBoundary();
+              checkWalls();
+              checkBoundary();
+              drawTitle();
+              drawScore();
+            }
+
+            function runProgram() {
+              interval = setInterval(programSteps, 80);
+            }
+
+            canvas.addEventListener('click', flap);
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+
+
+
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+
+          %p
+            Well our game is almost done, but the gameplay could probably
+            use a little improving.
+          %p
+            There's no right or wrong answer to this but you can play around a
+            number of variables to adjust the difficulty of the game.
+          %ul
+            %li How strong gravity is.
+            %li How many frames are drawn per second.
+            %li The size of the flappy square.
+            %li The size of the holes in each wall.
+            %li The width of each wall.
+            %li The possible distance between walls.
+            %li The rate at which the score goes up.
+          %p
+            Try playing around with each of these factors until the game
+            feels appropriately challenging.
+          %p
+            In the example solution we've provided we've increased the frame rate
+            to redraw every 50 miliseconds, we've shrunk the flappy bird down to
+            15x15 pixels, we've increased gravity to 1.0 and the jump velocity to 10.
+            Lastly  we've shrunk the holes down so that the smallest hole is 70 pixels
+            and the largest hole is 120 pixels.
+
+          = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
+          .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var distance = 0;
+            var gravity = 1;
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
+            };
+
+            var square = {
+              x: 50,
+              y: 100,
+              size: 15,
+              yVelocity: 0,
+              jump: -10
+            };
+
+            var wall = {
+              width: 50,
+              minHole: 70,
+              maxHole: 120,
+              positions: []
+            };
+
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
+            }
+
+            function drawBoundary() {
+              context.beginPath();
+              context.moveTo(boundary.minX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.maxY);
+              context.lineTo(boundary.minX, boundary.maxY);
+              context.closePath();
+              context.stroke();
+            }
+
+            function drawWall(wallInfo) {
+              var x = wallInfo.x - distance;
+              context.fillRect(
+                x,
+                boundary.minY,
+                wall.width,
+                wallInfo.topHeight
+              );
+              context.fillRect(
+                x,
+                boundary.maxY - wallInfo.bottomHeight,
+                wall.width,
+                wallInfo.bottomHeight
+              );
+            }
+
+            function random(min, max) {
+              return (min + Math.floor(Math.random() * (max - min)));
+            }
+
+            function drawWalls() {
+              var wallX = square.x;
+              if (wall.positions.length > 0) {
+                wallX = wall.positions[wall.positions.length - 1].x;
+              }
+
+              var end = boundary.maxX + distance + wall.width;
+              var boundaryHeight = boundary.maxY - boundary.minY;
+
+              while (wallX < end) {
+                wallX += random(100, 200);
+
+                var topHeight = random(25, 150);
+                var bottomHeight = random(25, 150);
+                if (boundaryHeight - topHeight - bottomHeight < wall.minHole) {
+                  bottomHeight = boundaryHeight - topHeight - wall.minHole;
+                }
+                if (boundaryHeight - topHeight - bottomHeight > wall.maxHole) {
+                  bottomHeight = boundaryHeight - topHeight - wall.maxHole;
+                }
+
+                wall.positions.push({
+                  x: wallX,
+                  topHeight: topHeight,
+                  bottomHeight: bottomHeight
+                });
+              }
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                drawWall(wall.positions[i]);
+              }
+            }
+
+            function flap() {
+              square.yVelocity = square.jump;
+            }
+
+            function adjustPosition() {
+              distance += 2;
+              square.yVelocity += gravity;
+              square.y += square.yVelocity;
+            }
+
+            function clearBoundary() {
+              context.clearRect(0, 0, canvas.width, boundary.minY);
+              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
+              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(0, 0, boundary.minX, canvas.height);
+            }
+
+            function checkBoundary() {
+              if (square.y >= boundary.maxY) {
+                endGame();
+              }
+            }
+
+            function checkWalls() {
+              var left = square.x;
+              var right = square.x + square.size;
+              var top = square.y;
+              var bottom = square.y + square.size;
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                var wallInfo = wall.positions[i];
+                var wallLeft = wallInfo.x - distance;
+                var wallRight = wallLeft + wall.width;
+
+                if (wallLeft > right) continue;
+                if (wallRight < left) continue;
+
+                var topWallBottom = boundary.minY + wallInfo.topHeight;
+                var bottomWallTop = boundary.maxY - wallInfo.bottomHeight;
+                if (top < topWallBottom || bottom > bottomWallTop) {
+                  endGame();
+                }
+              }
+            }
+
+            function drawTitle() {
+              context.save();
+              context.font = "15px serif";
+              context.textAlign = 'left';
+              context.textBaseline = 'bottom';
+
+              var x = boundary.minX;
+              var y = boundary.minY;
+              context.fillText('Flappy Square', x, y);
+              context.restore();
+            }
+
+            function drawScore() {
+              context.save();
+              context.font = "15px serif";
+              context.textAlign = 'right';
+              context.textBaseline = 'bottom';
+
+              var x = boundary.maxX;
+              var y = boundary.minY;
+              context.fillText('Score: ' + Math.floor(distance / 20), x, y);
+              context.restore();
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              adjustPosition();
+              drawSquare();
+              drawBoundary();
+              drawWalls();
+              clearBoundary();
+              checkWalls();
+              checkBoundary();
+              drawTitle();
+              drawScore();
+            }
+
+            function runProgram() {
+              interval = setInterval(programSteps, 50);
+            }
+
+            canvas.addEventListener('click', flap);
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+
+
+
+
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - lesson_index += 1
+  .lesson.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Lesson: Colors
+          %p
+            Our game is a little stark and some times it is hard to read
+            the "Game Over" message because the flappy square, the walls,
+            and the text are all black.
+          %p
+            In a future challenge path we'll explore using sprites and background
+            images to give our game a much more realistic feel, but for now
+            we can just provide our game with some simple colors to make the
+            different object more obvious.
+          %p
+            The
+            = link_to_lesson('context.fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
+            attribute makes it easy for us to change the color of the flappy square,
+            the walls, and the text.
+          %p
+            In this example we show two versions of the same drawing, but one is all black
+            and one uses fillStyle to make the overlapping rectangles and text visible.
+          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect]
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor'} do
+              :preserve
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
+                var context = canvas.getContext('2d');
+
+                function draw(x, y, color1, color2, color3) {
+                  context.save();
+
+                  context.translate(x, y);
+
+                  context.fillStyle = color1;
+                  context.fillRect(0, 0, 300, 100);
+
+                  context.fillStyle = color2;
+                  context.fillRect(0, 0, 150, 50);
+
+                  context.fillStyle = color3;
+                  context.font = '20px serif';
+                  context.textBaseline = 'middle';
+                  context.fillText('HI THERE!', 25, 25);
+
+                  context.restore();
+                }
+
+                draw(50, 50, 'black', 'black', 'black');
+                draw(50, 200, 'red', 'green', 'black');
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
+
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            Let's try to make the different elements in our game more distinct and visible.
+          %p
+            Try changing the colors of the flappy square, the walls, and the "Game Over" text.
+          %p
+            You can use any color you want. We've used "red" for our flappy square, "green"
+            for our walls, and we've left the "Game Over" text as black.
+          %p
+            Remember that
+            = link_to_lesson('context.fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
+            sets the fillStyle from that point onward so you may want to use
+            = link_to_lesson('context.save() and context.restore()', :save, nil, class: 'reference-link', data: {slug: :save})
+            to reset the fillStyle after you change it.
+          %p
+            In the end your flappy square should look like the example provided at
+            the right, but with possibly different colors.
+          = render 'lessons/relevant', relevant: [:fill_style, :fill_rect]
+          = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
+
+      .row
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor'} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
+          .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var distance = 0;
+            var gravity = 1;
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
+            };
+
+            var square = {
+              x: 50,
+              y: 100,
+              size: 15,
+              yVelocity: 0,
+              jump: -10
+            };
+
+            var wall = {
+              width: 50,
+              minHole: 70,
+              maxHole: 120,
+              positions: []
+            };
+
+            function drawSquare() {
+              context.save();
+              context.fillStyle = 'red';
+              context.fillRect(square.x, square.y, square.size, square.size);
+              context.restore();
+            }
+
+            function drawBoundary() {
+              context.beginPath();
+              context.moveTo(boundary.minX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.maxY);
+              context.lineTo(boundary.minX, boundary.maxY);
+              context.closePath();
+              context.stroke();
+            }
+
+            function drawWall(wallInfo) {
+              context.save();
+              context.fillStyle = 'green';
+              context.translate(wallInfo.x - distance, 0);
+              context.fillRect(
+                0,
+                boundary.minY,
+                wall.width,
+                wallInfo.topHeight
+              );
+              context.fillRect(
+                0,
+                boundary.maxY - wallInfo.bottomHeight,
+                wall.width,
+                wallInfo.bottomHeight
+              );
+              context.restore();
+            }
+
+            function random(min, max) {
+              return (min + Math.floor(Math.random() * (max - min)));
+            }
+
+            function drawWalls() {
+              var wallX = square.x;
+              if (wall.positions.length > 0) {
+                wallX = wall.positions[wall.positions.length - 1].x;
+              }
+
+              var end = boundary.maxX + distance + wall.width;
+              var boundaryHeight = boundary.maxY - boundary.minY;
+
+              while (wallX < end) {
+                wallX += random(100, 200);
+
+                var topHeight = random(25, 150);
+                var bottomHeight = random(25, 150);
+                if (boundaryHeight - topHeight - bottomHeight < wall.minHole) {
+                  bottomHeight = boundaryHeight - topHeight - wall.minHole;
+                }
+                if (boundaryHeight - topHeight - bottomHeight > wall.maxHole) {
+                  bottomHeight = boundaryHeight - topHeight - wall.maxHole;
+                }
+
+                wall.positions.push({
+                  x: wallX,
+                  topHeight: topHeight,
+                  bottomHeight: bottomHeight
+                });
+              }
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                drawWall(wall.positions[i]);
+              }
+            }
+
+            function flap() {
+              square.yVelocity = square.jump;
+            }
+
+            function adjustPosition() {
+              distance += 2;
+              square.yVelocity += gravity;
+              square.y += square.yVelocity;
+            }
+
+            function clearBoundary() {
+              context.clearRect(0, 0, canvas.width, boundary.minY);
+              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
+              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(0, 0, boundary.minX, canvas.height);
+            }
+
+            function checkBoundary() {
+              if (square.y >= boundary.maxY) {
+                endGame();
+              }
+            }
+
+            function checkWalls() {
+              var left = square.x;
+              var right = square.x + square.size;
+              var top = square.y;
+              var bottom = square.y + square.size;
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                var wallInfo = wall.positions[i];
+                var wallLeft = wallInfo.x - distance;
+                var wallRight = wallLeft + wall.width;
+
+                if (wallLeft > right) continue;
+                if (wallRight < left) continue;
+
+                var topWallBottom = boundary.minY + wallInfo.topHeight;
+                var bottomWallTop = boundary.maxY - wallInfo.bottomHeight;
+                if (top < topWallBottom || bottom > bottomWallTop) {
+                  endGame();
+                }
+              }
+            }
+
+            function drawTitle() {
+              context.save();
+              context.font = "15px serif";
+              context.textAlign = 'left';
+              context.textBaseline = 'bottom';
+
+              var x = boundary.minX;
+              var y = boundary.minY;
+              context.fillText('Flappy Square', x, y);
+              context.restore();
+            }
+
+            function drawScore() {
+              context.save();
+              context.font = "15px serif";
+              context.textAlign = 'right';
+              context.textBaseline = 'bottom';
+
+              var x = boundary.maxX;
+              var y = boundary.minY;
+              context.fillText('Score: ' + Math.floor(distance / 20), x, y);
+              context.restore();
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              adjustPosition();
+              drawSquare();
+              drawBoundary();
+              drawWalls();
+              clearBoundary();
+              checkWalls();
+              checkBoundary();
+              drawTitle();
+              drawScore();
+            }
+
+            function runProgram() {
+              interval = setInterval(programSteps, 50);
+            }
+
+            canvas.addEventListener('click', flap);
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();

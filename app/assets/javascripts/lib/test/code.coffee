@@ -10,6 +10,10 @@ class Test.Code
     @testCanvas.height = @canvas.canvasElement.height
     @testContext = @testCanvas.getContext('2d')
 
+    # $(@testCanvas).css(position: 'absolute', top: 0, left: 0, zIndex: 9999)
+    # row = @canvas.canvas.closest('.row')
+    # row.css(position: 'relative').append(@testCanvas)
+
   drawCode: ->
     unless (startTime = @canvas.canvas.data('startTime'))
       setTimeout(( => @drawCode()), 5)
@@ -23,7 +27,7 @@ class Test.Code
     testInterval = setInterval(( =>
       @drawCode() if count == 0
       success = @compareImageData()
-      if success || count > 30
+      if success || count >= 0 #30
         clearInterval(testInterval)
         callback(success)
       count += 1
@@ -42,7 +46,7 @@ class Test.Code
     #     context.save()
     #     w = Math.ceil(index/4) % width
     #     h = Math.floor(Math.ceil(index/4) / width)
-    #     console.log(w, h, testImageData[index], pixel, testImageData[index] - pixel)
+    #     # console.log(w, h, testImageData[index], pixel, testImageData[index] - pixel)
     #     context.translate(w, h)
     #     context.fillStyle = '#ff0000'
     #     context.fillRect(-2,-2,5,5)
