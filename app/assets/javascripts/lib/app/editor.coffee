@@ -20,11 +20,11 @@ class App.Editor
 
     @initFiles() if @codeEditor.data('files')
 
-    # @resize()
-    # @editor.on 'mousemove', =>
-    #   @resize() if @editor.height() != @currentEditorHeight
-    #
-    # @aceEditor.session.on 'changeScrollTop', => @resize()
+    @editor.on 'mousemove', =>
+      @resize() if @editor.height() != @currentEditorHeight
+
+    @aceEditor.session.on 'changeScrollTop', =>
+      @resize() if @editor.height() != @currentEditorHeight
 
     @editor.on 'keyup', =>
       @ensureValidCanvasReference()
@@ -46,11 +46,6 @@ class App.Editor
   resize: ->
     @currentEditorHeight = @editor.height()
     @aceEditor.resize()
-    # setTimeout(( =>
-    #   @editor.find('.ace_scroller').css(right: '18px')
-    #   @editor.find('.ace_scrollbar-v').css(bottom: '18px')
-    #   @editor.find('.ace_scrollbar-h').css(bottom: '18px')
-    # ), 250)
 
   ensureValidCanvasReference: ->
     code = @aceEditor.getValue()

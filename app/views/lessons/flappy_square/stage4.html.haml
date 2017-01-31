@@ -66,9 +66,9 @@
 
         .col-xs-12
           .interactive.focus-on-run.focus-on-run.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_lesson1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor"} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson1');
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
                 var interval;
@@ -157,9 +157,9 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage#{stage_index}_lesson1
+                %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
 
-
+  - lesson_index += 1
   .lesson.row.py-3
     .col-xs-12
       .row
@@ -185,9 +185,9 @@
 
         .col-xs-12
           .interactive.focus-on-run.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_lesson2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor"} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson2');
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
                 var interval;
@@ -407,22 +407,25 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage#{stage_index}_lesson2
+                %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
 
 
-  #challenge1.challenge.row.py-3
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
     .col-xs-12
       .row.pb-2
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 1
+            = "Challenge #{challenge_index}"
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage#{stage_index}/challenge1Example.gif', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 1 Sample Solution
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
-            So now we're going to take our code from Stage 2 and we're going
+            So now we're going to take our code from Stage
+            = stage_index - 1
+            and we're going
             to track whether our flappy square runs into a wall.
           %p
             Collision detection is one of the more complicated problems you'll
@@ -447,7 +450,7 @@
             %code
               :preserve
                 var left = square.x;
-                var wallRight = wallX + walls.size;
+                var wallRight = wallX + wall.width;
                 if (left > wallRight) {
                   ... right side of wall has passed the left side of the flappy square ...
                 }
@@ -459,22 +462,26 @@
           %pre
             %code
               :preserve
-                var walls = {
+                var wall = {
                   ...
                   positions: []
                 }
 
                 ...
 
-                walls.positions.push(wallX);
+                wall.positions.push(wallX);
           %p
             Then, you can iterate through these positions like so:
           %pre
             %code
               :preserve
-                for (var i=0; i < walls.positions.length; ++i) {
-                  var position = walls.positions[i];
+                for (var i=0; i < wall.positions.length; ++i) {
+                  var position = wall.positions[i];
                 }
+          %p
+            You just need to be careful not to store the same wall multiple
+            times. You may want to store values first, only storing the positions
+            of new walls, and then draw all of the walls.
           %p
             This is a
             = link_to_lesson('for loop', :for_loops, nil, class: 'reference-link', data: {slug: :for_loops})
@@ -497,14 +504,14 @@
                 var top = square.y;
                 var bottom = square.y + square.size;
 
-                for (var i=0; i < walls.positions.length; ++i) {
-                  var wallLeft = walls.positions[i] - distance;
-                  var wallRight = wallLeft + walls.width;
+                for (var i=0; i < wall.positions.length; ++i) {
+                  var wallLeft = wall.positions[i] - distance;
+                  var wallRight = wallLeft + wall.width;
 
                   if (wallLeft > right) continue;
                   if (wallRight < left) continue;
 
-                  var topWallBottom = boundary.minY + walls.height;
+                  var topWallBottom = boundary.minY + wall.height;
                   if (top < topWallBottom) {
                     endGame();
                   }
@@ -534,58 +541,69 @@
           = render 'lessons/code_preview', stage: last_stage, challenge: last_challenge, editor_id: "flappy_square_stage#{last_stage}_challenge#{last_challenge}_editor"
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_challenge1_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge1');
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
             var interval;
-            var gravity = 0.5;
             var distance = 0;
-
-            var square = {
-              size: 20,
-              x: ,
-              y: ,
-              jump: ,
-              yVelocity:
-            };
+            var gravity = 0.5;
 
             var boundary = {
-              minX: ,
-              minY: ,
-              maxX: ,
-              maxY:
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
             };
 
-            var walls = {
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20,
+              yVelocity: 0,
+              jump: -8
+            };
+
+            var wall = {
               spacing:
               width:
               height:
               positions: []
             };
 
-            function drawBoundary() {
-            }
-
-            function drawWalls() {
-              // Remember to track their positions in wall.positions as well.
-            }
-
             function drawSquare() {
             }
 
-            function flap(e) {
+            function drawBoundary() {
+            }
+
+            function drawWall(x) {
+            }
+
+            function drawWalls() {
+
+              // Remember to track their positions
+              // in wall.positions as well.
+
+            }
+
+            function flap() {
             }
 
             function adjustPosition() {
+            }
+
+            function clearBoundary() {
             }
 
             function checkBoundary() {
             }
 
             function checkWalls() {
+
               // CODE TO CHECK FOR WALL COLLISIONS HERE
+
             }
 
             function endGame() {
@@ -609,6 +627,8 @@
             function runProgram() {
               interval =
             }
+
+            canvas.addEventListener('click', flap);
 
 
 
@@ -636,12 +656,181 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage#{stage_index}_challenge1
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var distance = 0;
+            var gravity = 0.5;
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
+            };
+
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20,
+              yVelocity: 0,
+              jump: -8
+            };
+
+            var wall = {
+              spacing: 125,
+              width: 50,
+              height: 100,
+              positions: []
+            };
+
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
+            }
+
+            function drawBoundary() {
+              context.beginPath();
+              context.moveTo(boundary.minX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.maxY);
+              context.lineTo(boundary.minX, boundary.maxY);
+              context.closePath();
+              context.stroke();
+            }
+
+            function drawWall(x) {
+              context.fillRect(x, boundary.minY, wall.width, wall.height);
+              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+            }
+
+            function drawWalls() {
+              var wallX = distance - wall.width;
+
+              if (wall.positions.length > 0) {
+                wallX = wall.positions[wall.positions.length - 1];
+              } else if (wallX < wall.spacing) {
+                wallX = wall.spacing;
+              }
+
+              while (wallX < canvas.width + distance + wall.width) {
+                if (wallX  % wall.spacing === 0) {
+                  wall.positions.push(wallX);
+                }
+                wallX += 1;
+              }
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                var position = wall.positions[i];
+                drawWall(position - distance);
+              }
+            }
+
+            function flap() {
+              square.yVelocity = square.jump;
+            }
+
+            function adjustPosition() {
+              distance += 2;
+              square.yVelocity += gravity;
+              square.y += square.yVelocity;
+            }
+
+            function clearBoundary() {
+              context.clearRect(0, 0, canvas.width, boundary.minY);
+              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
+              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(0, 0, boundary.minX, canvas.height);
+            }
+
+            function checkBoundary() {
+              if (square.y >= boundary.maxY) {
+                endGame();
+              }
+            }
+
+            function checkWalls() {
+              var left = square.x;
+              var right = square.x + square.size;
+              var top = square.y;
+              var bottom = square.y + square.size;
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                var wallLeft = wall.positions[i] - distance;
+                var wallRight = wallLeft + wall.width;
+
+                if (wallLeft > right) continue;
+                if (wallRight < left) continue;
+
+                var topWallBottom = boundary.minY + wall.height;
+                var bottomWallTop = boundary.maxY - wall.height;
+                if (top < topWallBottom || bottom > bottomWallTop) {
+                  endGame();
+                }
+              }
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              adjustPosition();
+              drawSquare();
+              drawBoundary();
+              drawWalls();
+              clearBoundary();
+              checkWalls();
+              checkBoundary();
+            }
+
+            function runProgram() {
+              interval = setInterval(programSteps, 80);
+            }
+
+            canvas.addEventListener('click', flap);
 
 
 
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+
+
+
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - lesson_index += 1
   .lesson.row.py-3
     .col-xs-12
       .row
@@ -682,14 +871,13 @@
             then rounds that number down (for example from 129.83 to just 129) and we
             add 40 to give us a random integer between 40 and 200.
 
-          = render 'lessons/relevant', relevant: [:random, :coordinates, :fill_rect]
-
+          = render 'lessons/relevant', relevant: [:random, :round, :coordinates, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_lesson3_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor"} do
               :preserve
-                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson3');
+                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
                 var ground = canvas.height - 20;
@@ -716,19 +904,19 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#flappy_square_stage#{stage_index}_lesson3
+                %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
 
-
-  #challenge2.challenge.row.py-3
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
     .col-xs-12
       .row.pb-2
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 2
+            = "Challenge #{challenge_index}"
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage#{stage_index}/challenge2Example.gif', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 2 Sample Solution
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
 
           %p
             Our game landscape is a little repetitive. Each wall is equally spaced apart
@@ -780,57 +968,64 @@
           %p
             In the end your flappy square should behave like the example provided at
             the beginning of this description.
-          = render 'lessons/relevant', relevant: [:random, :coordinates, :fill_rect]
-          = render 'lessons/code_preview', stage: 3, challenge: 1, editor_id: 'flappy_square_stage#{stage_index}_challenge1_editor'
+          = render 'lessons/relevant', relevant: [:random, :round, :coordinates, :fill_rect]
+          = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_challenge2_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge2');
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
             var interval;
-            var gravity = 0.5;
             var distance = 0;
-
-            var square = {
-              size: 20,
-              x: ,
-              y: ,
-              jump: ,
-              yVelocity:
-            };
+            var gravity = 0.5;
 
             var boundary = {
-              minX: ,
-              minY: ,
-              maxX: ,
-              maxY:
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
             };
 
-            var walls = {
-              spacing:
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20,
+              yVelocity: 0,
+              jump: -8
+            };
+
+            var wall = {
               width:
               height:
               positions: []
             };
 
-            function drawBoundary() {
-            }
-
-            function drawWalls() {
-              // USE Math.random() TO POSITION
-              // THE WALLS RANDOMLY. BE SURE TO
-              // TRACK THE POSITION OF EACH WALL!
-            }
-
             function drawSquare() {
             }
 
-            function flap(e) {
+            function drawBoundary() {
+            }
+
+            function drawWall(x) {
+            }
+
+            function drawWalls() {
+
+              // Use Math.random() to position
+              // the walls randomly. Remember to
+              // track the position of each wall.
+
+            }
+
+            function flap() {
             }
 
             function adjustPosition() {
+            }
+
+            function clearBoundary() {
             }
 
             function checkBoundary() {
@@ -857,6 +1052,178 @@
               interval =
             }
 
+            canvas.addEventListener('click', flap);
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
+          .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var distance = 0;
+            var gravity = 0.5;
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
+            };
+
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20,
+              yVelocity: 0,
+              jump: -8
+            };
+
+            var wall = {
+              width: 50,
+              height: 75,
+              positions: []
+            };
+
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
+            }
+
+            function drawBoundary() {
+              context.beginPath();
+              context.moveTo(boundary.minX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.maxY);
+              context.lineTo(boundary.minX, boundary.maxY);
+              context.closePath();
+              context.stroke();
+            }
+
+            function drawWall(x) {
+              context.fillRect(x, boundary.minY, wall.width, wall.height);
+              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+            }
+
+            function drawWalls() {
+              var wallX;
+              if (wall.positions.length > 0) {
+                wallX = wall.positions[wall.positions.length - 1];
+              } else {
+                wallX = boundary.minX + 125;
+                wall.positions.push(wallX);
+              }
+
+              while (wallX < canvas.width + distance + wall.width) {
+                wallX += (100 + Math.floor(Math.random() * 100));
+                wall.positions.push(wallX);
+              }
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                var position = wall.positions[i];
+                drawWall(position - distance);
+              }
+            }
+
+            function flap() {
+              square.yVelocity = square.jump;
+            }
+
+            function adjustPosition() {
+              distance += 2;
+              square.yVelocity += gravity;
+              square.y += square.yVelocity;
+            }
+
+            function clearBoundary() {
+              context.clearRect(0, 0, canvas.width, boundary.minY);
+              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
+              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(0, 0, boundary.minX, canvas.height);
+            }
+
+            function checkBoundary() {
+              if (square.y >= boundary.maxY) {
+                endGame();
+              }
+            }
+
+            function checkWalls() {
+              var left = square.x;
+              var right = square.x + square.size;
+              var top = square.y;
+              var bottom = square.y + square.size;
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                var wallLeft = wall.positions[i] - distance;
+                var wallRight = wallLeft + wall.width;
+
+                if (wallLeft > right) continue;
+                if (wallRight < left) continue;
+
+                var topWallBottom = boundary.minY + wall.height;
+                var bottomWallTop = boundary.maxY - wall.height;
+                if (top < topWallBottom || bottom > bottomWallTop) {
+                  endGame();
+                }
+              }
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              adjustPosition();
+              drawSquare();
+              drawBoundary();
+              drawWalls();
+              clearBoundary();
+              checkWalls();
+              checkBoundary();
+            }
+
+            function runProgram() {
+              interval = setInterval(programSteps, 80);
+            }
+
+            canvas.addEventListener('click', flap);
+
 
 
             // The following code is provided for you.
@@ -878,26 +1245,26 @@
             canvas.focus();
 
 
-        .visual.col-xs-6
-          %h5
-            Canvas
-            %small (your drawing will display here)
-          .canvas
-            %canvas#flappy_square_stage#{stage_index}_challenge2
-          .alert
 
 
 
-  #challenge3.challenge.row.py-3
+
+
+
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - challenge_index += 1
+  .challenge.row.py-3{id: "challenge#{challenge_index}"}
     .col-xs-12
       .row.pb-2
         .col-xs-12
           %h2.challenge-title.py-2
-            Challenge 3
+            = "Challenge #{challenge_index}"
 
           %figure.float-xs-right.pl-2
-            = image_tag('lessons/flappy_square/stage#{stage_index}/challenge3Example.gif', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small Challenge 3 Sample Solution
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
           %p
             Ok, now that we have a better understanding of randomization let's apply it to the
             position and size of the hole in each wall.
@@ -928,65 +1295,83 @@
           %p
             In the end your flappy square should behave like the example to the right.
           = render 'lessons/relevant', relevant: [:random, :coordinates, :fill_rect]
-          = render 'lessons/code_preview', stage: 3, challenge: 2, editor_id: 'flappy_square_stage#{stage_index}_challenge2_editor'
+          = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
 
       .row
-        = render :layout => '/lessons/editor', :locals => {:editor_id => 'flappy_square_stage#{stage_index}_challenge3_editor'} do
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
           :preserve
-            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge3');
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
             var interval;
-            var gravity = 0.5;
             var distance = 0;
-
-            var square = {
-              size: 20,
-              x: ,
-              y: ,
-              jump: ,
-              yVelocity:
-            };
+            var gravity = 0.5;
 
             var boundary = {
-              minX: ,
-              minY: ,
-              maxX: ,
-              maxY:
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
             };
 
-            var walls = {
-              spacing:
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20,
+              yVelocity: 0,
+              jump: -8
+            };
+
+            var wall = {
               width:
               height:
               positions: []
             };
 
-            function drawBoundary() {
-            }
-
-            function drawWalls() {
-              // Set the height of the top and
-              // bottom portions of the wall
-              // randomly and track them.
-            }
-
             function drawSquare() {
             }
 
-            function flap(e) {
+            function drawBoundary() {
+            }
+
+            function drawWall(wallInfo) {
+
+              // You'll need to pass in all of the
+              // wall information and use it to
+              // draw a wall with the specified
+              // top and bottom heights.
+
+              // You may also want to account for
+              // distance here now as well.
+
+            }
+
+            function drawWalls() {
+
+              // Set the height of the top and
+              // bottom portions of the wall
+              // randomly and track them.
+
+            }
+
+            function flap() {
             }
 
             function adjustPosition() {
+            }
+
+            function clearBoundary() {
             }
 
             function checkBoundary() {
             }
 
             function checkWalls() {
+
               // Be sure to incorporate
               // the new randomly generated
               // heights.
+
             }
 
             function endGame() {
@@ -1006,6 +1391,8 @@
             function runProgram() {
               interval =
             }
+
+            canvas.addEventListener('click', flap);
 
 
 
@@ -1033,5 +1420,197 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            %canvas#flappy_square_stage#{stage_index}_challenge3
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var interval;
+            var distance = 0;
+            var gravity = 0.5;
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              maxX: 450,
+              maxY: 300
+            };
+
+            var square = {
+              x: 50,
+              y: 100,
+              size: 20,
+              yVelocity: 0,
+              jump: -8
+            };
+
+            var wall = {
+              width: 50,
+              minHole: 75,
+              maxHole: 150,
+              positions: []
+            };
+
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
+            }
+
+            function drawBoundary() {
+              context.beginPath();
+              context.moveTo(boundary.minX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.minY);
+              context.lineTo(boundary.maxX, boundary.maxY);
+              context.lineTo(boundary.minX, boundary.maxY);
+              context.closePath();
+              context.stroke();
+            }
+
+            function drawWall(wallInfo) {
+              var x = wallInfo.x - distance;
+              context.fillRect(
+                x,
+                boundary.minY,
+                wall.width,
+                wallInfo.topHeight
+              );
+              context.fillRect(
+                x,
+                boundary.maxY - wallInfo.bottomHeight,
+                wall.width,
+                wallInfo.bottomHeight
+              );
+            }
+
+            function random(min, max) {
+              return (min + Math.floor(Math.random() * (max - min)));
+            }
+
+            function drawWalls() {
+              var wallX = square.x;
+              if (wall.positions.length > 0) {
+                wallX = wall.positions[wall.positions.length - 1].x;
+              }
+
+              var end = boundary.maxX + distance + wall.width;
+              var boundaryHeight = boundary.maxY - boundary.minY;
+
+              while (wallX < end) {
+                wallX += random(100, 200);
+
+                var topHeight = random(25, 150);
+                var bottomHeight = random(25, 150);
+                if (boundaryHeight - topHeight - bottomHeight < wall.minHole) {
+                  bottomHeight = boundaryHeight - topHeight - wall.minHole;
+                }
+                if (boundaryHeight - topHeight - bottomHeight > wall.maxHole) {
+                  bottomHeight = boundaryHeight - topHeight - wall.maxHole;
+                }
+
+                wall.positions.push({
+                  x: wallX,
+                  topHeight: topHeight,
+                  bottomHeight: bottomHeight
+                });
+              }
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                drawWall(wall.positions[i]);
+              }
+            }
+
+            function flap() {
+              square.yVelocity = square.jump;
+            }
+
+            function adjustPosition() {
+              distance += 2;
+              square.yVelocity += gravity;
+              square.y += square.yVelocity;
+            }
+
+            function clearBoundary() {
+              context.clearRect(0, 0, canvas.width, boundary.minY);
+              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
+              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(0, 0, boundary.minX, canvas.height);
+            }
+
+            function checkBoundary() {
+              if (square.y >= boundary.maxY) {
+                endGame();
+              }
+            }
+
+            function checkWalls() {
+              var left = square.x;
+              var right = square.x + square.size;
+              var top = square.y;
+              var bottom = square.y + square.size;
+
+              for (var i=0; i < wall.positions.length; ++i) {
+                var wallInfo = wall.positions[i];
+                var wallLeft = wallInfo.x - distance;
+                var wallRight = wallLeft + wall.width;
+
+                if (wallLeft > right) continue;
+                if (wallRight < left) continue;
+
+                var topWallBottom = boundary.minY + wallInfo.topHeight;
+                var bottomWallTop = boundary.maxY - wallInfo.bottomHeight;
+                if (top < topWallBottom || bottom > bottomWallTop) {
+                  endGame();
+                }
+              }
+            }
+
+            function endGame() {
+              context.font = "20px serif";
+              context.textAlign = 'center';
+
+              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
+              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              context.fillText('Game Over', xCenter, yCenter);
+
+              pauseAnimation();
+            }
+
+            function programSteps() {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              adjustPosition();
+              drawSquare();
+              drawBoundary();
+              drawWalls();
+              clearBoundary();
+              checkWalls();
+              checkBoundary();
+            }
+
+            function runProgram() {
+              interval = setInterval(programSteps, 80);
+            }
+
+            canvas.addEventListener('click', flap);
+
+
+
+            // The following code is provided for you.
+            // It creates an eventListener that listens
+            // for the canvas to come into "focus", which
+            // happens when you click on it.
+            // This allows us to stop and start each individual
+            // animation on this whole page separately.
+            function startAnimation() {
+              runProgram();
+            }
+
+            function pauseAnimation() {
+              clearInterval(interval);
+            }
+
+            canvas.addEventListener('focus', startAnimation);
+            canvas.addEventListener('blur', pauseAnimation);
+            canvas.focus();
