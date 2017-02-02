@@ -199,26 +199,8 @@ challenge6Solution = (canvas, context) ->
   x = 120
   y = ground - h
 
-  drawOffices = (x, y, w, h) ->
-    u = Math.floor((w - 4) / 16)
-    f = Math.floor((h - 4) / 16)
-    context.save()
-    context.translate x + 4, y + 4
-    context.strokeWidth = 1
-    context.strokeStyle = '#000000'
-    i = 0
-    while i < f
-      j = 0
-      while j < u
-        context.strokeRect 16 * j, 16 * i, 16, 16
-        j++
-      i++
-    context.restore()
-    return
-
   context.fillStyle = '#999999'
   context.fillRect x, y, w, h
-  drawOffices x, y, w, h
 
 
 challenge7Solution = (canvas, context) ->

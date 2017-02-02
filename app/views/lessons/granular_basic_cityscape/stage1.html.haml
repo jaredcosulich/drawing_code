@@ -1,3 +1,6 @@
+- stage_index = 1
+- challenge_index = 0
+
 #granular_basic_cityscape_stage1.page
   %h1 Stage 1
 
@@ -66,7 +69,7 @@
               .canvas
                 %canvas#granular_basic_cityscape_stage1_lesson1
 
-
+  - challenge_index += 1
   #challenge1.challenge.row.py-4
     .col-xs-12
       .row.pb-2
@@ -108,6 +111,17 @@
             %canvas#granular_basic_cityscape_stage1_challenge1
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            context.fillRect(60, 90, 45, 45);
+
+
+
+
   #section2.section.py-2 &nbsp;
 
   .lesson.row.pt-2
@@ -148,7 +162,7 @@
               .canvas
                 %canvas#granular_basic_cityscape_stage1_lesson2
 
-
+  - challenge_index += 1
   #challenge2.challenge.row.py-4
     .col-xs-12
       .row.pb-2
@@ -176,8 +190,8 @@
             var canvas = document.getElementById('granular_basic_cityscape_stage1_challenge2');
             var context = canvas.getContext('2d');
 
-            // Uncomment out the ground variable and set it properly.
-            // var ground =
+            // Set the ground variable properly.
+            var ground =
 
             context.fillRect(0, ground, canvas.width, 5);
 
@@ -189,6 +203,19 @@
             .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge2.png')
             %canvas#granular_basic_cityscape_stage1_challenge2
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            // Set the ground variable properly.
+            var ground = 260;
+
+            context.fillRect(0, ground, canvas.width, 5);
+
+
 
   #section3.section.py-2 &nbsp;
 
@@ -234,7 +261,7 @@
               .canvas
                 %canvas#granular_basic_cityscape_stage1_lesson3
 
-
+  - challenge_index += 1
   #challenge3.challenge.row.py-4
     .col-xs-12
       .row.pb-2
@@ -280,6 +307,17 @@
             %canvas#granular_basic_cityscape_stage1_challenge3
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var ground = 240;
+
+            context.fillRect(40, ground - 160, 320, 160);
+
+
   #section4.section.py-2 &nbsp;
 
   .lesson.row.pt-2
@@ -324,7 +362,7 @@
               .canvas
                 %canvas#granular_basic_cityscape_stage1_lesson4
 
-
+  - challenge_index += 1
   #challenge4.challenge.row.py-4
     .col-xs-12
       .row.pb-2
@@ -366,6 +404,19 @@
             .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge4.png')
             %canvas#granular_basic_cityscape_stage1_challenge4
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var ground = 280;
+
+            context.fillStyle = '#999999';
+            context.fillRect(60, ground - 210, 90, 210);
+
+
 
   #section5.section.py-2 &nbsp;
 
@@ -410,6 +461,7 @@
               .canvas
                 %canvas#granular_basic_cityscape_stage1_example5
 
+  - challenge_index += 1
   #challenge5.challenge.row.py-4
     .col-xs-12
       .row.pb-2
@@ -472,8 +524,27 @@
             %canvas#granular_basic_cityscape_stage1_challenge5
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var ground = 240;
+            var width = 200;
+            var height = 80;
+            var x = 60;
+            var y = ground - height;
+
+            context.fillStyle = '#666666';
+
+            context.fillRect(x, y, width, height);
+
+
+
   #section6.section.py-2 &nbsp;
 
+  - challenge_index += 1
   #challenge6.challenge.row.pt-2.pb-4
     #section6.col-xs-12
       .row
@@ -539,23 +610,6 @@
 
             context.fillRect(x, y, w, h);
 
-            drawOffices(x, y, w, h);
-
-            function drawOffices(x, y, w, h) {
-              var u = Math.floor((w - 4) / 16);
-              var f = Math.floor((h - 4) / 16);
-
-              context.save();
-              context.translate(x + 4, y + 4);
-              context.strokeWidth = 1;
-              context.strokeStyle = '#000000';
-
-              for (var i = 0; i < f; i++) {
-                for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);
-              }
-
-              context.restore();
-            }
         .visual.col-xs-6
           %h5
             Canvas
@@ -564,6 +618,27 @@
             .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge6.png')
             %canvas#granular_basic_cityscape_stage1_challenge6
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var ground = 280;
+            var units = 8;
+            var floors = 10;
+
+            var w = (units * 16) + (2 * 4);
+            var h = (floors * 16) + (2 * 4);
+
+            var x = 120;
+            var y = ground - h;
+
+            context.fillStyle = '#999999';
+            context.fillRect(x, y, w, h);
+
+
 
   #section7.section.py-2 &nbsp;
 
@@ -624,7 +699,7 @@
               .canvas
                 %canvas#granular_basic_cityscape_stage1_example7
 
-
+  - challenge_index += 1
   #challenge7.challenge.row.py-4
     .col-xs-12
       .row
@@ -679,6 +754,24 @@
             .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge7.png')
             %canvas#granular_basic_cityscape_stage1_challenge7
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors) {
+              var width = (units * 16) + (4 * 2);
+              var height = (floors * 16) + (4 * 2);
+              context.fillRect(leftX, groundY - height, width, height);
+            }
+
+            context.fillStyle = '#999999';
+            drawBuilding(50, 300, 8, 12);
+            drawBuilding(200, 300, 6, 18);
+
+
 
   #section8.section.py-2 &nbsp;
 
@@ -757,7 +850,7 @@
               .canvas
                 %canvas#granular_basic_cityscape_stage1_example8
 
-
+  - challenge_index += 1
   #challenge8.challenge.row.py-4
     .col-xs-12
       .row
@@ -801,9 +894,9 @@
               var width = (units * 16) + (4 * 2);
               var height = (floors * 16) + (4 * 2);
 
-              context.translate(leftX, groundY - height);
+              // CODE TO TRANSLATE POSITION HERE
 
-              // YOUR CODE FOR DRAWING A BUILDING HERE
+              // CODE FOR DRAWING A BUILDING HERE
 
               context.restore();
             }
@@ -818,3 +911,25 @@
             .background.hidden-xl-down= image_tag('lessons/granular_basic_cityscape/stage1/challenge8.png')
             %canvas#granular_basic_cityscape_stage1_challenge8
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+            
+            function drawBuilding(leftX, groundY, units, floors) {
+              context.save();
+
+              var width = (units * 16) + (4 * 2);
+              var height = (floors * 16) + (4 * 2);
+
+              context.translate(leftX, groundY - height);
+              context.fillRect(0, 0, width, height);
+
+              context.restore();
+            }
+
+            context.fillStyle = '#999999';
+            drawBuilding(40, 300, 12, 6);
+            drawBuilding(280, 300, 10, 15);
