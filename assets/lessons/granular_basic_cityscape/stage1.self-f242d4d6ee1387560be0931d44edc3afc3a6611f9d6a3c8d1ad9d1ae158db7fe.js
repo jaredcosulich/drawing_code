@@ -105,10 +105,10 @@
     ];
     return challenge.find('.run').click(function() {
       return setTimeout((function() {
-        var k, len, message, point, success;
+        var i, len, message, point, success;
         success = true;
-        for (k = 0, len = points.length; k < len; k++) {
-          point = points[k];
+        for (i = 0, len = points.length; i < len; i++) {
+          point = points[i];
           if (point.test() < 1) {
             success = false;
             break;
@@ -257,7 +257,7 @@
   $(document).on('initialization:complete', initBasicCityscapeStage1Challenges);
 
   challenge6Solution = function(canvas, context) {
-    var drawOffices, floors, ground, h, units, w, x, y;
+    var floors, ground, h, units, w, x, y;
     ground = 280;
     units = 8;
     floors = 10;
@@ -265,28 +265,8 @@
     h = floors * 16 + 4 * 2;
     x = 120;
     y = ground - h;
-    drawOffices = function(x, y, w, h) {
-      var f, i, j, u;
-      u = Math.floor((w - 4) / 16);
-      f = Math.floor((h - 4) / 16);
-      context.save();
-      context.translate(x + 4, y + 4);
-      context.strokeWidth = 1;
-      context.strokeStyle = '#000000';
-      i = 0;
-      while (i < f) {
-        j = 0;
-        while (j < u) {
-          context.strokeRect(16 * j, 16 * i, 16, 16);
-          j++;
-        }
-        i++;
-      }
-      context.restore();
-    };
     context.fillStyle = '#999999';
-    context.fillRect(x, y, w, h);
-    return drawOffices(x, y, w, h);
+    return context.fillRect(x, y, w, h);
   };
 
   challenge7Solution = function(canvas, context) {
