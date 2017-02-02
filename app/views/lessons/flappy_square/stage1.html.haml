@@ -75,8 +75,14 @@
           %p
             Try adjusting the coordinates of the two squares and see how they move around
             the coordinate system.
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
+          %p
+            %strong Important:
+            %span.highlight This is a lesson, not a challenge.
+            It is here just to help you learn. Play around with it to see your code changes
+            affect the result. Scroll down for the first challenge.
+
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -173,8 +179,13 @@
             Remember: In the context's
             = link_to_lesson('coordinate system', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
             the origin (0, 0) is at the top left corner of the canvas.
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+          %p
+            %strong Important:
+            %span.highlight This is a lesson, not a challenge.
+            It is here just to help you learn. Play around with it to see your code changes
+            affect the result. Scroll down for the next challenge.
 
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -402,12 +413,12 @@
             Eventually we'll need to create many walls, animate them, randomize them,
             and track them to make sure that we are not running into the them.
           %p
-            Let's start, though, by simply creating one wall. We'll create one rectangles
+            Let's start, though, by simply creating one wall. We'll create one rectangle
             that is attached to the roof of the game area with a matching rectangle on
             the floor of the game area.
           %p
             So try to draw two rectangles (a wall), one attached to the
-            %span.highlight roof (y = 50)
+            %span.highlight roof (y = 25)
             and one to the
             %span.highlight floor (y = 300)
             Each of them should be

@@ -55,31 +55,20 @@ initBasicCityscapeStage1Challenge3 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  points = [
-    new Test.Point(x: 40, y: 240, canvas: canvas),
-    new Test.Point(x: 360, y: 80, canvas: canvas),
-    new Test.Point(x: 20, y: 240, badPoint: true, canvas: canvas)
-    new Test.Point(x: 40, y: 260, badPoint: true, canvas: canvas)
-    new Test.Point(x: 360, y: 60, badPoint: true, canvas: canvas)
-    new Test.Point(x: 380, y: 80, badPoint: true, canvas: canvas)
-  ]
+  solution = (canvas, context) ->
+    context.fillRect(40, 240 - 160, 320, 160);
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
-    setTimeout(( ->
-      success = true
-      for point in points
-        if point.test() < 1
-          success = false
-          break
-
+    testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> Your building is sitting on the x!'
+        message = '<strong>Success!</strong> Your building is in the correct position!'
         App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge3')
       else
-        message = 'Nice try, but you need to draw a building sitting on the lower left x and covering the top right x.'
-
+        message = 'Nice try, but you need to draw a building that is it the correct position (over the building shadow).'
       canvas.alert(message, success)
-    ), 200)
+      
 
 initBasicCityscapeStage1Challenge4 = (page) ->
   challenge = page.find('#challenge4')
