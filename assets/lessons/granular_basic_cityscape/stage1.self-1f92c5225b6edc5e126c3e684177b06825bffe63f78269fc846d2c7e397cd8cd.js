@@ -68,60 +68,28 @@
   };
 
   initBasicCityscapeStage1Challenge3 = function(page) {
-    var canvas, challenge, editor, points;
+    var canvas, challenge, editor, solution, testCode;
     challenge = page.find('#challenge3');
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
-    points = [
-      new Test.Point({
-        x: 40,
-        y: 240,
-        canvas: canvas
-      }), new Test.Point({
-        x: 360,
-        y: 80,
-        canvas: canvas
-      }), new Test.Point({
-        x: 20,
-        y: 240,
-        badPoint: true,
-        canvas: canvas
-      }), new Test.Point({
-        x: 40,
-        y: 260,
-        badPoint: true,
-        canvas: canvas
-      }), new Test.Point({
-        x: 360,
-        y: 60,
-        badPoint: true,
-        canvas: canvas
-      }), new Test.Point({
-        x: 380,
-        y: 80,
-        badPoint: true,
-        canvas: canvas
-      })
-    ];
+    solution = function(canvas, context) {
+      return context.fillRect(40, 240 - 160, 320, 160);
+    };
+    testCode = new Test.Code({
+      code: solution,
+      canvas: canvas
+    });
     return challenge.find('.run').click(function() {
-      return setTimeout((function() {
-        var i, len, message, point, success;
-        success = true;
-        for (i = 0, len = points.length; i < len; i++) {
-          point = points[i];
-          if (point.test() < 1) {
-            success = false;
-            break;
-          }
-        }
+      return testCode.test(function(success) {
+        var message;
         if (success) {
-          message = '<strong>Success!</strong> Your building is sitting on the x!';
+          message = '<strong>Success!</strong> Your building is in the correct position!';
           App.currentProgress.challengeComplete('granular_basic_cityscape_stage1', 'challenge3');
         } else {
-          message = 'Nice try, but you need to draw a building sitting on the lower left x and covering the top right x.';
+          message = 'Nice try, but you need to draw a building that is it the correct position (over the building shadow).';
         }
         return canvas.alert(message, success);
-      }), 200);
+      });
     });
   };
 
