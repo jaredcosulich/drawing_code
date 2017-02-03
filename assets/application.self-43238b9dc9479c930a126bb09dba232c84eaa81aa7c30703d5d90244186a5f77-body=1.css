@@ -6640,4 +6640,5 @@ pre {
   display: none; }
   /* line 300, /Users/jcosulich/workspace/drawing_code/app/assets/stylesheets/base.scss */
   .code-i-wrote .code-i-wrote-view .code-i-wrote-code {
-    height: 300px; }
+    height: 300px;
+    border: 1px solid #ccc; }
