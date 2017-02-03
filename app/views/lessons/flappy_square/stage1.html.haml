@@ -76,13 +76,13 @@
             Try adjusting the coordinates of the two squares and see how they move around
             the coordinate system.
 
-          %p
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+          %p.mt-3
             %strong Important:
             %span.highlight This is a lesson, not a challenge.
             It is here just to help you learn. Play around with it to see your code changes
             affect the result. Scroll down for the first challenge.
-
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -179,13 +179,14 @@
             Remember: In the context's
             = link_to_lesson('coordinate system', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
             the origin (0, 0) is at the top left corner of the canvas.
-          %p
+
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+          %p.mt-3
             %strong Important:
             %span.highlight This is a lesson, not a challenge.
             It is here just to help you learn. Play around with it to see your code changes
             affect the result. Scroll down for the next challenge.
-
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
