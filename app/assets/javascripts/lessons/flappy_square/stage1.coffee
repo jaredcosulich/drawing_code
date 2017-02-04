@@ -182,13 +182,13 @@ initFlappySquareStage1Challenge6 = (page) ->
         message = '<strong>Success!</strong> You\'ve drawn the flappy square game using hashes!'
         App.currentProgress.challengeComplete('flappy_square_stage1', "challenge#{index}")
       else
-        message = 'Nice try, but your game should be using hashes with a wall that is 125 pixels from the boundary\'s left wall.'
+        message = 'Nice try, but your game should be using hashes with a wall that is 125 pixels from the left boundary.'
 
       canvas.alert(message, success)
 
 
 
-  
+
 
 ###
 initFlappySquareStage1Challenge6 = (page) ->

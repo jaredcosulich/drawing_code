@@ -428,7 +428,7 @@
             We also don't want to draw our walls right on top of the flappy square
             when the game starts, so let's draw this first one
             %span.highlight 125 pixels out
-            from the left wall of the game.
+            from the left boundary of the game.
           %p In the end your flappy square should behave like the example provided to the right.
 
           = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :line_to]
@@ -572,9 +572,9 @@
             and should be
             %span.highlight 20 pixels wide and 20 pixels tall.
           %p
-            The wall should be
+            Each section of the wall (top and bottom) should be
             %span.highlight 50 pixels wide and 100 pixels tall
-            and should be attached to the top and bottom of the boundary.
+            and should be attached to the top and bottom of the boundary respectively.
           %p
             To work with our variable effectively let's reposition our wall
             %span.highlight 100 pixels
