@@ -396,6 +396,16 @@
             when the game starts, so let's draw this first one
             %span.highlight 125 pixels out
             from the left boundary of the game.
+          %p
+            Hint: you can make the computer do the calculations for you. For example:
+          %pre
+            %code
+              :preserve
+                context.fillRect(100 - 50, 100 + 50, 200, 200);
+          %p
+            This would is essentially the same as writing
+            %code context.fillRect(50, 150, 200, 200);
+
           %p In the end your flappy square should behave like the example provided to the right.
 
           = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :line_to]
@@ -543,9 +553,9 @@
             %span.highlight 100 pixels
             from the left boundary instead of 125 pixels.
           %p
-            Variable are a core concept in software development. If you feel uncertain about them
-            you should click on the "variables" quick reference button below and click on the
-            "Full Lesson" button in the pop-up.
+            Variable are an importent concept in coding. If you feel uncertain about them
+            you can find more information and exercise around functions by clicking on the "variables"
+            quick reference button below and then clicking on the "Full Lesson" button in the pop-up.
           %p
             In the end your game should look like the image provided above.
 
