@@ -691,18 +691,14 @@
               positions: []
             };
 
-            function drawSquare() {
-              context.fillRect(square.x, square.y, square.size, square.size);
+            function drawBoundary() {
+              var width = boundary.maxX - boundary.minX;
+              var height = boundary.maxY - boundary.minY;
+              context.strokeRect(boundary.minX, boundary.minY, width, height);
             }
 
-            function drawBoundary() {
-              context.beginPath();
-              context.moveTo(boundary.minX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.maxY);
-              context.lineTo(boundary.minX, boundary.maxY);
-              context.closePath();
-              context.stroke();
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
             }
 
             function drawWall(x) {
@@ -1113,18 +1109,14 @@
               positions: []
             };
 
-            function drawSquare() {
-              context.fillRect(square.x, square.y, square.size, square.size);
+            function drawBoundary() {
+              var width = boundary.maxX - boundary.minX;
+              var height = boundary.maxY - boundary.minY;
+              context.strokeRect(boundary.minX, boundary.minY, width, height);
             }
 
-            function drawBoundary() {
-              context.beginPath();
-              context.moveTo(boundary.minX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.maxY);
-              context.lineTo(boundary.minX, boundary.maxY);
-              context.closePath();
-              context.stroke();
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
             }
 
             function drawWall(x) {
@@ -1455,18 +1447,14 @@
               positions: []
             };
 
-            function drawSquare() {
-              context.fillRect(square.x, square.y, square.size, square.size);
+            function drawBoundary() {
+              var width = boundary.maxX - boundary.minX;
+              var height = boundary.maxY - boundary.minY;
+              context.strokeRect(boundary.minX, boundary.minY, width, height);
             }
 
-            function drawBoundary() {
-              context.beginPath();
-              context.moveTo(boundary.minX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.maxY);
-              context.lineTo(boundary.minX, boundary.maxY);
-              context.closePath();
-              context.stroke();
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
             }
 
             function drawWall(wallInfo) {
