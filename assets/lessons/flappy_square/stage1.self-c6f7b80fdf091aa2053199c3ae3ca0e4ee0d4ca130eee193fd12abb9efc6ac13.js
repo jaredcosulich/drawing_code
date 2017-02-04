@@ -74,14 +74,8 @@
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
     solution = function(canvas, context) {
-      context.fillRect(50, 100, 20, 20);
-      context.beginPath();
-      context.moveTo(25, 25);
-      context.lineTo(450, 25);
-      context.lineTo(450, 300);
-      context.lineTo(25, 300);
-      context.closePath();
-      return context.stroke();
+      context.strokeRect(25, 25, 425, 275);
+      return context.fillRect(50, 100, 20, 20);
     };
     testCode = new Test.Code({
       code: solution,
@@ -202,7 +196,7 @@
           message = '<strong>Success!</strong> You\'ve drawn the flappy square game using hashes!';
           App.currentProgress.challengeComplete('flappy_square_stage1', "challenge" + index);
         } else {
-          message = 'Nice try, but your game should be using hashes with a wall that is 125 pixels from the boundary\'s left wall.';
+          message = 'Nice try, but your game should be using hashes with a wall that is 125 pixels from the left boundary.';
         }
         return canvas.alert(message, success);
       });

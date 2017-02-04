@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="z4xY13TJwLcJr7rQGAIRH1WwEWrp0n2Wg2qU0VOPz/fql5JelE9JR7MTU/KuXuYxXKt7hwVTqPHSpgdhlHzkiQ==" />
+<meta name="csrf-token" content="ym5BEbg4T/W7Jli0TpQSuQqWpvQik9kGD0WUGovx9lPvdYuYWL7GBQGasZb4yOWXA43MGc4SDGFeiQeqTALdLQ==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-43238b9dc9479c930a126bb09dba232c84eaa81aa7c30703d5d90244186a5f77-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -35,7 +35,7 @@
 <script src="../../../assets/lessons/fill_rect.self-4bb525e22a290e2ae4aa8446082bdcd7168ea5c515f27a3b3b8b6d439760ea8a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/fill_style.self-6d153ccc75d0aa54db66acd06e950248f8cabe7184d1789400272825d0648764.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/flappy_square/stage1.self-8b122a6e1e47756d584bf5dec576afd7ae99f4fb75dfa727a3d2cd042b422270.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage1.self-c6f7b80fdf091aa2053199c3ae3ca0e4ee0d4ca130eee193fd12abb9efc6ac13.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage2.self-f3be52b4d5e0779fad68ca6eedfc18c2e968291aafcd14becd90382199594552.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage3.self-bc2d99e542912e56ba8e0f5ed6719e1ee189b5a6cbcb5cea14e25b51c343e72c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage4.self-7ca1693fdaf6615b4f33fdec5f1a25573d9a2aeeec983ca01396c526289972da.js?body=1" data-turbolinks-track="reload"></script>
@@ -1135,7 +1135,7 @@ View One Possible Solution
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='py-2'>
-Lesson: Using beginPath(), lineTo(), and stroke()
+Lesson: Using context.strokeRect()
 </h2>
 <p>
 We're going to want to create a "game area" for our game which
@@ -1144,45 +1144,25 @@ that represents the valid area for the game to be drawn in.
 </p>
 <p>
 But we don't want our square to be filled in, so
-<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">context.fillRect()</a>
+<a class="reference-link" data-slug="fill_rect" href="../fill_rect/index.html">context.fillRect(x, y, width, height)</a>
 won't work. We'll need to use
-<a class="reference-link" data-slug="line_to" href="../line_to/index.html">context.lineTo()</a>
-to draw a line and outline a rectangle.
+<code>context.strokeRect(x, y, width, height)</code>
+instead.
 </p>
 <p>
-Unfortunately the
-<a class="reference-link" data-slug="line_to" href="../line_to/index.html">context.lineTo()</a>
-method is a bit more compicated than the
-<code>context.fillRect()</code>
-method.
+<code>context.strokeRect(x, y, width, height)</code>
+works the same as
+<code>context.fillRect(x, y, width, height)</code>
+but doesn't fill in the space with any color.
 </p>
 <p>
-When drawing a line you first trace the path using
-<code>context.beginPath()</code>
-<code>context.moveTo()</code>
-<code>context.lineTo()</code>
-and
-<code>context.closePath();</code>
-and then you paint the path using
-<code>context.stroke()</code>
-</p>
-<p>
-Essentially all the commands (beginPath(), moveTo(), lineTo(), and closePath()) are being
-used to trace and invisible path within the canvas. The
-<code>context.stroke()</code>
-method tells the canvas to paint the line. You could have also called
-<code>context.fill()</code>
-to fill in the traced out area.
-</p>
-<p>
-Look at this example to see how these methods
-are used to draw a triangle. You can also click on the
-"lineTo()" button below in the "Relevant Lessons" section to see more details.
+The example below shows a simple example of using
+<code>context.strokeRect(x, y, width, height)</code>
+to draw a square on the canvas.
 </p>
 <p>
 <strong>Quick Reference:</strong>
 <a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
-<a class="reference-link btn btn-primary btn-sm" data-slug="line_to" href="../line_to/index.html">lineTo()</a>
 </p>
 
 </div>
@@ -1201,7 +1181,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage1_lesson3_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(50, 200);&#x000A;context.lineTo(200, 50);&#x000A;context.lineTo(350, 200);&#x000A;context.closePath();&#x000A;context.stroke();&#x000A;</div>
+<div class='editor' id='flappy_square_stage1_lesson3_editor'>var canvas = document.getElementById('flappy_square_stage1_lesson3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.strokeRect(50, 50, 100, 100);&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1261,13 +1241,7 @@ and add a boundary for our game.
 The boundary should
 <span class='highlight'>start at (25, 25) and extend to (450, 300),</span>
 forming a rectangle. Use
-<code>context.lineTo()</code>
-to draw the boundary. Be sure to use
-<code>context.beginPath()</code>
-<code>context.moveTo()</code>
-and
-<code>context.stroke()</code>
-as described in the lesson above.
+<code>context.strokeRect(x, y, width, height)</code>
 </p>
 <p>In the end our game should look like the example provided to the right.</p>
 <p>
@@ -1373,7 +1347,7 @@ View One Possible Solution
 </span>
 </p>
 <div class='code-i-wrote-view'>
-<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.fillRect(50, 100, 20, 20);&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(25, 25);&#x000A;context.lineTo(450, 25);&#x000A;context.lineTo(450, 300);&#x000A;context.lineTo(25, 300);&#x000A;context.closePath();&#x000A;context.stroke();&#x000A;&#x000A;&#x000A;</div>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.strokeRect(25, 25, 425, 275);&#x000A;&#x000A;context.fillRect(50, 100, 20, 20);&#x000A;&#x000A;&#x000A;</div>
 </div>
 </div>
 </div>
@@ -1415,7 +1389,7 @@ Each of them should be
 We also don't want to draw our walls right on top of the flappy square
 when the game starts, so let's draw this first one
 <span class='highlight'>125 pixels out</span>
-from the left wall of the game.
+from the left boundary of the game.
 </p>
 <p>In the end your flappy square should behave like the example provided to the right.</p>
 <p>
@@ -1521,7 +1495,7 @@ View One Possible Solution
 </span>
 </p>
 <div class='code-i-wrote-view'>
-<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.fillRect(50, 100, 20, 20);&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(25, 25);&#x000A;context.lineTo(450, 25);&#x000A;context.lineTo(450, 300);&#x000A;context.lineTo(25, 300);&#x000A;context.closePath();&#x000A;context.stroke();&#x000A;&#x000A;context.fillRect(150, 25, 50, 100);&#x000A;context.fillRect(150, 200, 50, 100);&#x000A;&#x000A;&#x000A;</div>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;context.strokeRect(25, 25, 425, 275);&#x000A;&#x000A;context.fillRect(50, 100, 20, 20);&#x000A;&#x000A;context.fillRect(25 + 125, 25, 50, 100);&#x000A;context.fillRect(25 + 125, 300 - 100, 50, 100);&#x000A;&#x000A;&#x000A;</div>
 </div>
 </div>
 </div>
@@ -1646,8 +1620,10 @@ Setting a variable looks like this:
 </p>
 <pre><code>var wallX = 25;&#x000A;</code></pre>
 <p>
-We've provided the variables for the boundary. You can se the variables
-for the flappy square and the boundary.
+We've provided the variables for the boundary. We've set the minimum values
+and maximum values for the boundary so that it will be easier to make boundary
+calculations in the future. We've also provided placeholder variable declarations
+for the flappy squre. You'll need to write the variables for the wall.
 </p>
 <p>
 As a reminder the flappy square should be positioned at
@@ -1656,9 +1632,9 @@ and should be
 <span class='highlight'>20 pixels wide and 20 pixels tall.</span>
 </p>
 <p>
-The wall should be
+Each section of the wall (top and bottom) should be
 <span class='highlight'>50 pixels wide and 100 pixels tall</span>
-and should be attached to the top and bottom of the boundary.
+and should be attached to the top and bottom of the boundary respectively.
 </p>
 <p>
 To work with our variable effectively let's reposition our wall
@@ -1777,7 +1753,7 @@ View One Possible Solution
 </span>
 </p>
 <div class='code-i-wrote-view'>
-<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundaryMinX = 25;&#x000A;var boundaryMinY = 25;&#x000A;var boundaryMaxX = 450;&#x000A;var boundaryMaxY = 300;&#x000A;&#x000A;var squareX = 50;&#x000A;var squareY = 100;&#x000A;var squareSize = 20;&#x000A;&#x000A;var wallX = boundaryMinX + 100;&#x000A;var wallWidth = 50;&#x000A;var wallHeight = 100;&#x000A;&#x000A;context.fillRect(squareX, squareY, squareSize, squareSize);&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(boundaryMinX, boundaryMinY);&#x000A;context.lineTo(boundaryMaxX, boundaryMinY);&#x000A;context.lineTo(boundaryMaxX, boundaryMaxY);&#x000A;context.lineTo(boundaryMinX, boundaryMaxY);&#x000A;context.closePath();&#x000A;context.stroke();&#x000A;&#x000A;context.fillRect(wallX, boundaryMinY, wallWidth, wallHeight);&#x000A;context.fillRect(wallX, boundaryMaxY - wallHeight, wallWidth, wallHeight);&#x000A;&#x000A;&#x000A;&#x000A;</div>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundaryMinX = 25;&#x000A;var boundaryMinY = 25;&#x000A;var boundaryMaxX = 450;&#x000A;var boundaryMaxY = 300;&#x000A;&#x000A;var squareX = 50;&#x000A;var squareY = 100;&#x000A;var squareSize = 20;&#x000A;&#x000A;var wallX = boundaryMinX + 100;&#x000A;var wallWidth = 50;&#x000A;var wallHeight = 100;&#x000A;&#x000A;context.strokeRect(boundaryMinX, boundaryMinY, boundaryMaxX - boundaryMinX, boundaryMaxY - boundaryMinY);&#x000A;&#x000A;context.fillRect(squareX, squareY, squareSize, squareSize);&#x000A;&#x000A;context.fillRect(wallX, boundaryMinY, wallWidth, wallHeight);&#x000A;context.fillRect(wallX, boundaryMaxY - wallHeight, wallWidth, wallHeight);&#x000A;&#x000A;&#x000A;&#x000A;</div>
 </div>
 </div>
 </div>
@@ -1936,7 +1912,7 @@ View One Possible Solution
 </span>
 </p>
 <div class='code-i-wrote-view'>
-<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  maxX: 450,&#x000A;  maxY: 300&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 50,&#x000A;  y: 100,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  x: boundary.minX + 125,&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;context.fillRect(square.x, square.y, square.size, square.size);&#x000A;&#x000A;context.beginPath();&#x000A;context.moveTo(boundary.minX, boundary.minY);&#x000A;context.lineTo(boundary.maxX, boundary.minY);&#x000A;context.lineTo(boundary.maxX, boundary.maxY);&#x000A;context.lineTo(boundary.minX, boundary.maxY);&#x000A;context.closePath();&#x000A;context.stroke();&#x000A;&#x000A;context.fillRect(wall.x, boundary.minY, wall.width, wall.height);&#x000A;context.fillRect(wall.x, boundary.maxY - wall.height, wall.width, wall.height);</div>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  maxX: 450,&#x000A;  maxY: 300&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 50,&#x000A;  y: 100,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  x: boundary.minX + 125,&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;context.strokeRect(boundary.minX, boundary.minY, boundary.maxX - boundary.minX, boundary.maxY - boundary.minY);&#x000A;&#x000A;context.fillRect(square.x, square.y, square.size, square.size);&#x000A;&#x000A;context.fillRect(wall.x, boundary.minY, wall.width, wall.height);&#x000A;context.fillRect(wall.x, boundary.maxY - wall.height, wall.width, wall.height);</div>
 </div>
 </div>
 </div>
