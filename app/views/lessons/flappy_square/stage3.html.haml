@@ -145,14 +145,14 @@
             var interval;
             var gravity = ;
 
-            // HASH VARIABLE HERE
+            // HASH VARIABLES HERE
             // Remember to store "yVelocity" in
             // your square hash variable
 
-            function drawSquare() {
+            function drawBoundary() {
             }
 
-            function drawBoundary() {
+            function drawSquare() {
             }
 
             function drawWall(x) {
@@ -221,13 +221,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -240,9 +240,7 @@
 
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -250,14 +248,14 @@
             }
 
             function drawWall(x) {
-              context.fillRect(x, boundary.minY, wall.width, wall.height);
-              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+              context.fillRect(x, 0, wall.width, wall.height);
+              context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);
             }
 
             function drawWalls() {
-              drawWall(boundary.minX + 125);
-              drawWall(boundary.minX + (125 * 2));
-              drawWall(boundary.minX + (125 * 3));
+              drawWall(125);
+              drawWall(125 * 2);
+              drawWall(125 * 3);
             }
 
             function flap() {
@@ -272,6 +270,8 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
@@ -437,10 +437,10 @@
 
             // HASH VARIABLES HERE
 
-            function drawSquare() {
+            function drawBoundary() {
             }
 
-            function drawBoundary() {
+            function drawSquare() {
             }
 
             function drawWall(x) {
@@ -527,13 +527,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -546,9 +546,7 @@
 
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -556,14 +554,14 @@
             }
 
             function drawWall(x) {
-              context.fillRect(x, boundary.minY, wall.width, wall.height);
-              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+              context.fillRect(x, 0, wall.width, wall.height);
+              context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);
             }
 
             function drawWalls() {
-              drawWall(boundary.minX + 125);
-              drawWall(boundary.minX + (125 * 2));
-              drawWall(boundary.minX + (125 * 3));
+              drawWall(125);
+              drawWall(125 * 2);
+              drawWall(125 * 3);
             }
 
             function flap() {
@@ -595,6 +593,8 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
@@ -844,10 +844,10 @@
 
             // HASH VARIABLES HERE
 
-            function drawSquare() {
+            function drawBoundary() {
             }
 
-            function drawBoundary() {
+            function drawSquare() {
             }
 
             function drawWall(x) {
@@ -933,13 +933,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -952,9 +952,7 @@
 
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -962,14 +960,14 @@
             }
 
             function drawWall(x) {
-              context.fillRect(x, boundary.minY, wall.width, wall.height);
-              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+              context.fillRect(x, 0, wall.width, wall.height);
+              context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);
             }
 
             function drawWalls() {
-              drawWall(boundary.minX + 125 - distance);
-              drawWall(boundary.minX + (125 * 2) - distance);
-              drawWall(boundary.minX + (125 * 3) - distance);
+              drawWall(125 - distance);
+              drawWall((125 * 2) - distance);
+              drawWall((125 * 3) - distance);
             }
 
             function flap() {
@@ -983,7 +981,7 @@
             }
 
             function checkBoundary() {
-              if (square.y >= boundary.maxY) {
+              if (square.y >= boundary.height) {
                 endGame();
               }
             }
@@ -1002,6 +1000,8 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
@@ -1283,14 +1283,14 @@
             var gravity = ;
             var distance = ;
 
-            // HASH VARIABLE HERE
+            // HASH VARIABLES HERE
             // Remember to store "spacing" in
             // your wall hash variable
 
-            function drawSquare() {
+            function drawBoundary() {
             }
 
-            function drawBoundary() {
+            function drawSquare() {
             }
 
             function drawWall(x) {
@@ -1373,13 +1373,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -1393,9 +1393,7 @@
 
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -1403,8 +1401,8 @@
             }
 
             function drawWall(x) {
-              context.fillRect(x, boundary.minY, wall.width, wall.height);
-              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+              context.fillRect(x, 0, wall.width, wall.height);
+              context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);
             }
 
             function drawWalls() {
@@ -1433,7 +1431,7 @@
             }
 
             function checkBoundary() {
-              if (square.y >= boundary.maxY) {
+              if (square.y >= boundary.height) {
                 endGame();
               }
             }
@@ -1452,6 +1450,8 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
