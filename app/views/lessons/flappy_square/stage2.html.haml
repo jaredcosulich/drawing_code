@@ -294,12 +294,12 @@
             %figcaption.text-xs-center.small.mb-1
               A slower running animation
               %br
-              (setInterval(programSteps, 1000))
+              setInterval(programSteps, 1000)
             = image_tag("lessons/flappy_square/stage#{stage_index}/lesson#{lesson_index}Visual3.gif", class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small
               A faster running animation
               %br
-              (setInterval(programSteps, 10))
+              setInterval(programSteps, 10)
 
           %p
             In this case the function will be called as if you ran
