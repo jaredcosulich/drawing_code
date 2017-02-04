@@ -261,44 +261,28 @@
       .row
         .col-xs-12
           %h2.py-2
-            Lesson: Using beginPath(), lineTo(), and stroke()
+            Lesson: Using context.strokeRect()
           %p
             We're going to want to create a "game area" for our game which
             is essentially just a rectangle drawn within the canvas
             that represents the valid area for the game to be drawn in.
           %p
             But we don't want our square to be filled in, so
-            = link_to_lesson('context.fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            = link_to_lesson('context.fillRect(x, y, width, height)', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
             won't work. We'll need to use
-            = link_to_lesson('context.lineTo()', :line_to, nil, class: 'reference-link', data: {slug: :line_to})
-            to draw a line and outline a rectangle.
+            %code context.strokeRect(x, y, width, height)
+            instead.
           %p
-            Unfortunately the
-            = link_to_lesson('context.lineTo()', :line_to, nil, class: 'reference-link', data: {slug: :line_to})
-            method is a bit more compicated than the
-            %code context.fillRect()
-            method.
+            %code context.strokeRect(x, y, width, height)
+            works the same as
+            %code context.fillRect(x, y, width, height)
+            but doesn't fill in the space with any color.
           %p
-            When drawing a line you first trace the path using
-            %code context.beginPath()
-            %code context.moveTo()
-            %code context.lineTo()
-            and
-            %code context.closePath();
-            and then you paint the path using
-            %code context.stroke()
-          %p
-            Essentially all the commands (beginPath(), moveTo(), lineTo(), and closePath()) are being
-            used to trace and invisible path within the canvas. The
-            %code context.stroke()
-            method tells the canvas to paint the line. You could have also called
-            %code context.fill()
-            to fill in the traced out area.
-          %p
-            Look at this example to see how these methods
-            are used to draw a triangle. You can also click on the
-            "lineTo()" button below in the "Relevant Lessons" section to see more details.
-          = render 'lessons/relevant', relevant: [:coordinates, :line_to]
+            The example below shows a simple example of using
+            %code context.strokeRect(x, y, width, height)
+            to draw a square on the canvas.
+
+          = render 'lessons/relevant', relevant: [:coordinates]
 
 
         .col-xs-12
@@ -308,12 +292,7 @@
                 var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
                 var context = canvas.getContext('2d');
 
-                context.beginPath();
-                context.moveTo(50, 200);
-                context.lineTo(200, 50);
-                context.lineTo(350, 200);
-                context.closePath();
-                context.stroke();
+                context.strokeRect(50, 50, 100, 100);
 
             .visual.col-xs-6
               %h5
@@ -342,13 +321,7 @@
             The boundary should
             %span.highlight start at (25, 25) and extend to (450, 300),
             forming a rectangle. Use
-            %code context.lineTo()
-            to draw the boundary. Be sure to use
-            %code context.beginPath()
-            %code context.moveTo()
-            and
-            %code context.stroke()
-            as described in the lesson above.
+            %code context.strokeRect(x, y, width, height)
 
           %p In the end our game should look like the example provided to the right.
           = render 'lessons/relevant', relevant: [:line_to, :fill_rect, :coordinates]
@@ -381,15 +354,9 @@
             var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
-            context.fillRect(50, 100, 20, 20);
+            context.strokeRect(25, 25, 425, 275);
 
-            context.beginPath();
-            context.moveTo(25, 25);
-            context.lineTo(450, 25);
-            context.lineTo(450, 300);
-            context.lineTo(25, 300);
-            context.closePath();
-            context.stroke();
+            context.fillRect(50, 100, 20, 20);
 
 
 
@@ -462,18 +429,12 @@
             var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
+            context.strokeRect(25, 25, 425, 275);
+
             context.fillRect(50, 100, 20, 20);
 
-            context.beginPath();
-            context.moveTo(25, 25);
-            context.lineTo(450, 25);
-            context.lineTo(450, 300);
-            context.lineTo(25, 300);
-            context.closePath();
-            context.stroke();
-
-            context.fillRect(150, 25, 50, 100);
-            context.fillRect(150, 200, 50, 100);
+            context.fillRect(25 + 125, 25, 50, 100);
+            context.fillRect(25 + 125, 300 - 100, 50, 100);
 
 
 
@@ -564,8 +525,10 @@
                 var wallX = 25;
 
           %p
-            We've provided the variables for the boundary. You can se the variables
-            for the flappy square and the boundary.
+            We've provided the variables for the boundary. We've set the minimum values
+            and maximum values for the boundary so that it will be easier to make boundary
+            calculations in the future. We've also provided placeholder variable declarations
+            for the flappy squre. You'll need to write the variables for the wall.
           %p
             As a reminder the flappy square should be positioned at
             %span.highlight (50, 100)
@@ -641,15 +604,9 @@
             var wallWidth = 50;
             var wallHeight = 100;
 
-            context.fillRect(squareX, squareY, squareSize, squareSize);
+            context.strokeRect(boundaryMinX, boundaryMinY, boundaryMaxX - boundaryMinX, boundaryMaxY - boundaryMinY);
 
-            context.beginPath();
-            context.moveTo(boundaryMinX, boundaryMinY);
-            context.lineTo(boundaryMaxX, boundaryMinY);
-            context.lineTo(boundaryMaxX, boundaryMaxY);
-            context.lineTo(boundaryMinX, boundaryMaxY);
-            context.closePath();
-            context.stroke();
+            context.fillRect(squareX, squareY, squareSize, squareSize);
 
             context.fillRect(wallX, boundaryMinY, wallWidth, wallHeight);
             context.fillRect(wallX, boundaryMaxY - wallHeight, wallWidth, wallHeight);
@@ -772,15 +729,9 @@
               height: 100
             };
 
-            context.fillRect(square.x, square.y, square.size, square.size);
+            context.strokeRect(boundary.minX, boundary.minY, boundary.maxX - boundary.minX, boundary.maxY - boundary.minY);
 
-            context.beginPath();
-            context.moveTo(boundary.minX, boundary.minY);
-            context.lineTo(boundary.maxX, boundary.minY);
-            context.lineTo(boundary.maxX, boundary.maxY);
-            context.lineTo(boundary.minX, boundary.maxY);
-            context.closePath();
-            context.stroke();
+            context.fillRect(square.x, square.y, square.size, square.size);
 
             context.fillRect(wall.x, boundary.minY, wall.width, wall.height);
             context.fillRect(wall.x, boundary.maxY - wall.height, wall.width, wall.height);

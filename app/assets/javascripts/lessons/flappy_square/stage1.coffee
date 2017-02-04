@@ -62,14 +62,8 @@ initFlappySquareStage1Challenge3 = (page) ->
   #   context.fillRect(50, 150, 20, 20)
 
   solution = (canvas, context) ->
+    context.strokeRect(25, 25, 425, 275);
     context.fillRect(50, 100, 20, 20);
-    context.beginPath();
-    context.moveTo(25, 25);
-    context.lineTo(450, 25);
-    context.lineTo(450, 300);
-    context.lineTo(25, 300);
-    context.closePath();
-    context.stroke();
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 

@@ -209,18 +209,14 @@
               height: 100
             };
 
-            function drawSquare() {
-              context.fillRect(square.x, square.y, square.size, square.size);
+            function drawBoundary() {
+              var width = boundary.maxX - boundary.minX;
+              var height = boundary.maxY - boundary.minY;
+              context.strokeRect(boundary.minX, boundary.minY, width, height);
             }
 
-            function drawBoundary() {
-              context.beginPath();
-              context.moveTo(boundary.minX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.maxY);
-              context.lineTo(boundary.minX, boundary.maxY);
-              context.closePath();
-              context.stroke();
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
             }
 
             function drawWall(x) {
@@ -275,6 +271,7 @@
             %code setInterval(function, intervalTime)
             runs the specified code at a regular interval (e.g. every second). You can use setInterval in
             two different ways. First you can pass it code directly:
+
           %pre
             %code
               :preserve
@@ -291,6 +288,19 @@
                 }
 
                 setInterval(myFunction, 500);
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/lesson#{lesson_index}Visual2.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small.mb-1
+              A slower running animation
+              %br
+              setInterval(programSteps, 1000)
+            = image_tag("lessons/flappy_square/stage#{stage_index}/lesson#{lesson_index}Visual3.gif", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small
+              A faster running animation
+              %br
+              setInterval(programSteps, 10)
+
           %p
             In this case the function will be called as if you ran
             %code myFunction()
@@ -302,15 +312,19 @@
             We'll pass it a reference to the function
             %code programSteps
             which contains the instructions for each frame of our game.
+
           %p
             We can change the speed of our animation by adjusting the intervalTime in
             = link_to_lesson('setInterval(function, intervalTime)', :set_interval, nil, class: 'reference-link', data: {slug: :set_interval})
+
           %p For example:
           %pre
             %code
               :preserve
                 setInterval(programSteps, 1000)
+
           %p will run slowly, drawing a new frame every second, while
+
           %pre
             %code
               :preserve
@@ -444,8 +458,8 @@
 
             function programSteps() {
               adjustPosition();
-              drawSquare();
               drawBoundary();
+              drawSquare();
               drawWalls();
             }
 
@@ -512,18 +526,14 @@
               height: 100
             };
 
-            function drawSquare() {
-              context.fillRect(square.x, square.y, square.size, square.size);
+            function drawBoundary() {
+              var width = boundary.maxX - boundary.minX;
+              var height = boundary.maxY - boundary.minY;
+              context.strokeRect(boundary.minX, boundary.minY, width, height);
             }
 
-            function drawBoundary() {
-              context.beginPath();
-              context.moveTo(boundary.minX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.maxY);
-              context.lineTo(boundary.minX, boundary.maxY);
-              context.closePath();
-              context.stroke();
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
             }
 
             function drawWall(x) {
@@ -544,8 +554,8 @@
 
             function programSteps() {
               adjustPosition();
-              drawSquare();
               drawBoundary();
+              drawSquare();
               drawWalls();
             }
 
@@ -802,18 +812,14 @@
               height: 100
             };
 
-            function drawSquare() {
-              context.fillRect(square.x, square.y, square.size, square.size);
+            function drawBoundary() {
+              var width = boundary.maxX - boundary.minX;
+              var height = boundary.maxY - boundary.minY;
+              context.strokeRect(boundary.minX, boundary.minY, width, height);
             }
 
-            function drawBoundary() {
-              context.beginPath();
-              context.moveTo(boundary.minX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.maxY);
-              context.lineTo(boundary.minX, boundary.maxY);
-              context.closePath();
-              context.stroke();
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
             }
 
             function drawWall(x) {
@@ -834,8 +840,8 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
-              drawSquare();
               drawBoundary();
+              drawSquare();
               drawWalls();
             }
 
@@ -1126,18 +1132,14 @@
               height: 100
             };
 
-            function drawSquare() {
-              context.fillRect(square.x, square.y, square.size, square.size);
+            function drawBoundary() {
+              var width = boundary.maxX - boundary.minX;
+              var height = boundary.maxY - boundary.minY;
+              context.strokeRect(boundary.minX, boundary.minY, width, height);
             }
 
-            function drawBoundary() {
-              context.beginPath();
-              context.moveTo(boundary.minX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.minY);
-              context.lineTo(boundary.maxX, boundary.maxY);
-              context.lineTo(boundary.minX, boundary.maxY);
-              context.closePath();
-              context.stroke();
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
             }
 
             function drawWall(x) {
@@ -1159,8 +1161,8 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
-              drawSquare();
               drawBoundary();
+              drawSquare();
               drawWalls();
             }
 
