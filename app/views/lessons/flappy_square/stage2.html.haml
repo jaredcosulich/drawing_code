@@ -103,11 +103,17 @@
 
           %p
             %span.highlight
-              Let's write three functions that draw our flappy square, our boundary, and our wall.
+              Let's write three functions that draw our boundary, our flappy square, and our wall.
+
+          %p
+            Our boundary will be drawn in the
+            %code drawBoundary()
+            function which will not need any parameters. All of the information we need
+            for this function comes from our boundary hash variable.
           %p
             Our flappy square function will be called
             %code drawSquare()
-            and will not require any parameters. We'll use our square hash variable within
+            and will not require any parameters either. We'll use our square hash variable within
             our function to draw the square like so:
           %pre
             %code
@@ -115,11 +121,6 @@
                 function drawSquare() {
                   context.fillRect(square.x, square.y, square.size, square.size);
                 }
-          %p
-            Our boundary will be drawn in the
-            %code drawBoundary()
-            function which will not need any values either. We'll get those from
-            our boundary hash variable.
           %p
             Lastly our walls will be drawn in the
             %code drawWall(x)
@@ -132,6 +133,18 @@
             function, creating walls
             %span.highlight every 125 pixels,
             starting from the left border of the boundary.
+          %p
+            So if you wrote code like this:
+          %pre
+            %code
+              :preserve
+                drawWall(100);
+                drawWall(200);
+          %p
+            Then the value of 100 and then 200 would be stored in the "x" variable
+            in the drawWall(x) function. The drawWall(x) function would then use
+            that x variable to draw one wall at 100 pixels and another wall at
+            200 pixels.
           %p
             Once complete your game should look like the example provided above.
           %p
@@ -157,13 +170,18 @@
 
             // WALL HASH HERE
 
+
+            // GAME BOUNDARY FUNCTION
+
             function drawSquare() {
               context.fillRect(square.x, square.y, square.size, square.size);
             }
 
-            // GAME BOUNDARY FUNCTION
-
-            // WALL FUNCTION
+            function drawWall(x) {
+              // Write your code to draw a wall here
+              // but use the "x" variable that is passed
+              // in to draw a wall in different places.
+            }
 
             function drawWalls() {
               // CODE TO CALL WALL FUNCTION THREE TIMES HERE
