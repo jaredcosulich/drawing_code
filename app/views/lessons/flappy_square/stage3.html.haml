@@ -271,10 +271,12 @@
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
 
+              context.save();
               context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
+              context.restore();
             }
 
             function runProgram() {
@@ -594,11 +596,13 @@
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
 
+              context.save();
               context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
               checkBoundary();
+              context.restore();
             }
 
             function runProgram() {
@@ -1001,11 +1005,13 @@
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
 
+              context.save();
               context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
               checkBoundary();
+              context.restore();
             }
 
             function runProgram() {
@@ -1451,11 +1457,13 @@
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
 
+              context.save();
               context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
               checkBoundary();
+              context.restore();
             }
 
             function runProgram() {

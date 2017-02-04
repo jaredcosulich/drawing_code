@@ -479,6 +479,153 @@
 
 
 
+  - section_index += 1
+  .section.py-2{id: "section#{section_index}"} &nbsp;
+
+  - challenge_index += 1
+  .challenge.row.py-4{id: "challenge#{challenge_index}"}
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            = "Challenge #{challenge_index}"
+
+          %figure.float-xs-right.pl-2
+            = image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}Example.png", class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small= "Challenge #{challenge_index} Sample Solution"
+
+          %p
+            You may have noticed that the lesson on
+            %code context.translate(x, y)
+            calls the method
+            = link_to_lesson('context.save()', :save, nil, class: 'reference-link', data: {slug: :save})
+            and the method
+            %code context.restore()
+          %pre
+            %code
+              :preserve
+                function drawFrenchFlag(x, y) {
+                  context.save(); // Save the drawing state before making any changes
+                  context.translate(x, y); // Move the origin of the coordinate system to the top left corner of the flag
+
+                  ...
+
+                  context.restore(); // Restore the drawing state to the way it was when we saved it
+                }
+          %p
+            We need to call
+            %code context.save()
+            and
+            %code contest.restore()
+            in order to reset the canvas origin.
+          %p
+            If we call
+            %code context.translate()
+            more than once then each translation will build on top of the last. So this:
+          %pre
+            %code
+              :preserve
+                context.translate(20, 20);
+                context.translate(20, 20);
+                context.translate(20, 20);
+                context.fillRect(0, 0, 50, 50);
+          %p
+            Would cause a square to be drawn at (60, 60).
+          %p
+            While this isn't causing any problems yet, it will cause problems as soon as
+            we begin animating our game (in the next section).
+          %p
+            So in preparation for the animation let's wrap our translation
+            with a call to
+            %code context.save()
+            and
+            %code context.restore()
+          %p
+            Call
+            %code context.save()
+            before the translation and then
+            %code context.restore()
+            once you're done drawing everything.
+
+          %p
+            In the end your flappy square game should look just like it did after the last
+            challenge.
+
+          = render 'lessons/relevant', relevant: [:save, :translate, :functions, :fill_rect, :coordinates, :variables]
+          = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
+
+      .row.pt-2
+        = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_challenge#{challenge_index}_editor"} do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            // CODE FROM PREVIOUS CHALLENGE
+            // Place context.save() before the translation
+            // and context.restore() after everything has been drawn.
+
+
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag("lessons/flappy_square/stage#{stage_index}/challenge#{challenge_index}.png")
+            %canvas{id: "flappy_square_stage#{stage_index}_challenge#{challenge_index}"}
+          .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            var boundary = {
+              minX: 25,
+              minY: 25,
+              width: 425,
+              height: 275
+            };
+
+            var square = {
+              x: 25,
+              y: 75,
+              size: 20
+            };
+
+            var wall = {
+              width: 50,
+              height: 100
+            };
+
+            function drawBoundary() {
+              context.strokeRect(0, 0, boundary.width, boundary.height);
+            }
+
+            function drawSquare() {
+              context.fillRect(square.x, square.y, square.size, square.size);
+            }
+
+            function drawWall(x) {
+              context.fillRect(x, 0, wall.width, wall.height);
+              context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);
+            }
+
+            function drawWalls() {
+              drawWall(125);
+              drawWall(125 * 2);
+              drawWall(125 * 3);
+            }
+
+            context.save();
+            context.translate(boundary.minX, boundary.minY);
+            drawSquare();
+            drawBoundary();
+            drawWalls();
+            context.restore();
+
+
 
   - section_index += 1
   .section.py-2{id: "section#{section_index}"} &nbsp;
@@ -704,10 +851,12 @@
             function programSteps() {
               adjustPosition();
 
+              context.save();
               context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
+              context.restore();
             }
 
             function runProgram() {
@@ -800,10 +949,12 @@
             function programSteps() {
               adjustPosition();
 
+              context.save();
               context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
+              context.restore();
             }
 
             function runProgram() {
@@ -1086,10 +1237,12 @@
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
 
+              context.save();
               context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
+              context.restore();
             }
 
             function runProgram() {
@@ -1407,10 +1560,12 @@
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
 
+              context.save();
               context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
+              context.restore();
             }
 
             function runProgram() {
