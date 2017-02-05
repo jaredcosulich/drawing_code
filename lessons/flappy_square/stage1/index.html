@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="ym5BEbg4T/W7Jli0TpQSuQqWpvQik9kGD0WUGovx9lPvdYuYWL7GBQGasZb4yOWXA43MGc4SDGFeiQeqTALdLQ==" />
+<meta name="csrf-token" content="Dfjb6IH75hWL6aNHyY9lkJFbfgARIzq21O6F1HQUskUo4xFhYX1v5TFVSmV/05K+mEAU7f2i79GFIhZks+eZOw==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-43238b9dc9479c930a126bb09dba232c84eaa81aa7c30703d5d90244186a5f77-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -35,8 +35,8 @@
 <script src="../../../assets/lessons/fill_rect.self-4bb525e22a290e2ae4aa8446082bdcd7168ea5c515f27a3b3b8b6d439760ea8a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/fill_style.self-6d153ccc75d0aa54db66acd06e950248f8cabe7184d1789400272825d0648764.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/flappy_square/stage1.self-c6f7b80fdf091aa2053199c3ae3ca0e4ee0d4ca130eee193fd12abb9efc6ac13.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/flappy_square/stage2.self-f3be52b4d5e0779fad68ca6eedfc18c2e968291aafcd14becd90382199594552.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage1.self-e8ed085afc5633e0cc0f858ee4af57e6e0ea739889a726eacd1917e1842e1c4d.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage2.self-3ac728261bc343038050becaac0878f4396ee958ec16bd857db410475c22e230.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage3.self-bc2d99e542912e56ba8e0f5ed6719e1ee189b5a6cbcb5cea14e25b51c343e72c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage4.self-7ca1693fdaf6615b4f33fdec5f1a25573d9a2aeeec983ca01396c526289972da.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage5.self-ca777df2cf099ea395e9672fc353531bdc3b78962c0b6cb414abe4b161624434.js?body=1" data-turbolinks-track="reload"></script>
@@ -596,7 +596,7 @@ A full list of events can be found here:
 <li>
 <a href="../stage2/index.html">Stage 2</a>
 <span class='tag tag-default'>
-<small class='flappy_square_stage2'>0 / 4</small>
+<small class='flappy_square_stage2'>0 / 6</small>
 </span>
 </li>
 <li>
@@ -1299,7 +1299,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage1_challenge3_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// YOUR PREVIOUS FLAPPY SQUARE CODE&#x000A;&#x000A;// YOUR NEW CODE FOR A GAME BOUNDARY&#x000A;&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage1_challenge3_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// YOUR NEW CODE FOR A GAME BOUNDARY&#x000A;&#x000A;// YOUR PREVIOUS FLAPPY SQUARE CODE&#x000A;&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1391,6 +1391,14 @@ when the game starts, so let's draw this first one
 <span class='highlight'>125 pixels out</span>
 from the left boundary of the game.
 </p>
+<p>
+Hint: you can make the computer do the calculations for you. For example:
+</p>
+<pre><code>context.fillRect(100 - 50, 100 + 50, 200, 200);</code></pre>
+<p>
+This would is essentially the same as writing
+<code>context.fillRect(50, 150, 200, 200);</code>
+</p>
 <p>In the end your flappy square should behave like the example provided to the right.</p>
 <p>
 <strong>Quick Reference:</strong>
@@ -1447,7 +1455,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage1_challenge4_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// CODE FOR YOUR FLAPPY SQUARE&#x000A;&#x000A;// CODE FOR YOUR GAME BOUNDARY&#x000A;&#x000A;// CODE FOR YOUR WALL&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage1_challenge4_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// CODE FOR YOUR GAME BOUNDARY&#x000A;&#x000A;// CODE FOR YOUR FLAPPY SQUARE&#x000A;&#x000A;// CODE FOR YOUR WALL&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1620,10 +1628,9 @@ Setting a variable looks like this:
 </p>
 <pre><code>var wallX = 25;&#x000A;</code></pre>
 <p>
-We've provided the variables for the boundary. We've set the minimum values
-and maximum values for the boundary so that it will be easier to make boundary
-calculations in the future. We've also provided placeholder variable declarations
-for the flappy squre. You'll need to write the variables for the wall.
+We've provided the variables for the boundaryand a placeholder
+variable declarations for the flappy squre. You'll need to
+write the variables for the wall.
 </p>
 <p>
 As a reminder the flappy square should be positioned at
@@ -1642,9 +1649,9 @@ To work with our variable effectively let's reposition our wall
 from the left boundary instead of 125 pixels.
 </p>
 <p>
-Variable are a core concept in software development. If you feel uncertain about them
-you should click on the "variables" quick reference button below and click on the
-"Full Lesson" button in the pop-up.
+Variable are an important concept in coding. If you feel uncertain about them
+you can find more information and exercise around functions by clicking on the "variables"
+quick reference button below and then clicking on the "Full Lesson" button in the pop-up.
 </p>
 <p>
 In the end your game should look like the image provided above.
@@ -1705,7 +1712,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage1_challenge5_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundaryMinX = 25;&#x000A;var boundaryMinY = 25;&#x000A;var boundaryMaxX = 450;&#x000A;var boundaryMaxY = 300;&#x000A;&#x000A;var squareX = ;&#x000A;var squareY = ;&#x000A;var squareSize = ;&#x000A;&#x000A;// WALL VARIABLES HERE&#x000A;&#x000A;// CODE FOR YOUR FLAPPY SQUARE&#x000A;&#x000A;// CODE FOR YOUR GAME BOUNDARY&#x000A;&#x000A;// CODE FOR YOUR WALL&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage1_challenge5_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundaryMinX = 25;&#x000A;var boundaryMinY = 25;&#x000A;var boundaryWidth = 425;&#x000A;var boundaryHeight = 275;&#x000A;&#x000A;var squareX = ;&#x000A;var squareY = ;&#x000A;var squareSize = ;&#x000A;&#x000A;// WALL VARIABLES HERE&#x000A;&#x000A;// CODE FOR YOUR GAME BOUNDARY&#x000A;&#x000A;// CODE FOR YOUR FLAPPY SQUARE&#x000A;&#x000A;// CODE FOR YOUR WALL&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1753,7 +1760,7 @@ View One Possible Solution
 </span>
 </p>
 <div class='code-i-wrote-view'>
-<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundaryMinX = 25;&#x000A;var boundaryMinY = 25;&#x000A;var boundaryMaxX = 450;&#x000A;var boundaryMaxY = 300;&#x000A;&#x000A;var squareX = 50;&#x000A;var squareY = 100;&#x000A;var squareSize = 20;&#x000A;&#x000A;var wallX = boundaryMinX + 100;&#x000A;var wallWidth = 50;&#x000A;var wallHeight = 100;&#x000A;&#x000A;context.strokeRect(boundaryMinX, boundaryMinY, boundaryMaxX - boundaryMinX, boundaryMaxY - boundaryMinY);&#x000A;&#x000A;context.fillRect(squareX, squareY, squareSize, squareSize);&#x000A;&#x000A;context.fillRect(wallX, boundaryMinY, wallWidth, wallHeight);&#x000A;context.fillRect(wallX, boundaryMaxY - wallHeight, wallWidth, wallHeight);&#x000A;&#x000A;&#x000A;&#x000A;</div>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundaryMinX = 25;&#x000A;var boundaryMinY = 25;&#x000A;var boundaryWidth = 425;&#x000A;var boundaryHeight = 275;&#x000A;&#x000A;var squareX = 50;&#x000A;var squareY = 100;&#x000A;var squareSize = 20;&#x000A;&#x000A;var wallX = boundaryMinX + 100;&#x000A;var wallWidth = 50;&#x000A;var wallHeight = 100;&#x000A;&#x000A;context.strokeRect(boundaryMinX, boundaryMinY, boundaryWidth, boundaryHeight);&#x000A;&#x000A;context.fillRect(squareX, squareY, squareSize, squareSize);&#x000A;&#x000A;context.fillRect(wallX, boundaryMinY, wallWidth, wallHeight);&#x000A;context.fillRect(wallX, boundaryMinY + boundaryHeight - wallHeight, wallWidth, wallHeight);&#x000A;&#x000A;&#x000A;</div>
 </div>
 </div>
 </div>
@@ -1782,7 +1789,7 @@ in different ways.
 <p>
 In our code right now are variables look very similar:
 </p>
-<pre><code>var boundaryMinX = 25;&#x000A;var boundaryMinY = 25;&#x000A;var boundaryMaxX = 450;&#x000A;var boundaryMaxY = 300;</code></pre>
+<pre><code>var boundaryMinX = 25;&#x000A;var boundaryMinY = 25;&#x000A;var boundaryWidth = 425;&#x000A;var boundaryHeight = 275;</code></pre>
 <p>
 Those four variable declations all repeat the word "boundary".
 </p>
@@ -1793,7 +1800,7 @@ to collect all of these variables together.
 <p>
 This would look like this:
 </p>
-<pre><code>var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  maxX: 450,&#x000A;  maxY: 300&#x000A;}</code></pre>
+<pre><code>var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  width: 425,&#x000A;  height: 275&#x000A;}</code></pre>
 <p>
 This makes it a bit easier to read our code and reduces a lot of
 unnecessary duplication.
@@ -1864,7 +1871,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage1_challenge6_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundary = {&#x000A;  // SET THE DETAILS OF YOUR BOUNDARY HASH HERE&#x000A;};&#x000A;&#x000A;// SQUARE HASH HERE&#x000A;&#x000A;// WALL HASH HERE&#x000A;&#x000A;// CODE FOR YOUR FLAPPY SQUARE&#x000A;&#x000A;// CODE FOR YOUR GAME BOUNDARY&#x000A;&#x000A;// CODE FOR YOUR WALL&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage1_challenge6_editor'>var canvas = document.getElementById('flappy_square_stage1_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundary = {&#x000A;  // SET THE DETAILS OF YOUR BOUNDARY HASH HERE&#x000A;};&#x000A;&#x000A;// SQUARE HASH HERE&#x000A;&#x000A;// WALL HASH HERE&#x000A;&#x000A;// CODE FOR YOUR GAME BOUNDARY&#x000A;&#x000A;// CODE FOR YOUR FLAPPY SQUARE&#x000A;&#x000A;// CODE FOR YOUR WALL&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1912,7 +1919,7 @@ View One Possible Solution
 </span>
 </p>
 <div class='code-i-wrote-view'>
-<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  maxX: 450,&#x000A;  maxY: 300&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 50,&#x000A;  y: 100,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  x: boundary.minX + 125,&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;context.strokeRect(boundary.minX, boundary.minY, boundary.maxX - boundary.minX, boundary.maxY - boundary.minY);&#x000A;&#x000A;context.fillRect(square.x, square.y, square.size, square.size);&#x000A;&#x000A;context.fillRect(wall.x, boundary.minY, wall.width, wall.height);&#x000A;context.fillRect(wall.x, boundary.maxY - wall.height, wall.width, wall.height);</div>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage1_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  width: 425,&#x000A;  height: 275&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 50,&#x000A;  y: 100,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  x: boundary.minX + 125,&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;context.strokeRect(boundary.minX, boundary.minY, boundary.width, boundary.height);&#x000A;&#x000A;context.fillRect(square.x, square.y, square.size, square.size);&#x000A;&#x000A;context.fillRect(wall.x, boundary.minY, wall.width, wall.height);&#x000A;context.fillRect(wall.x, boundary.minY + boundary.height - wall.height, wall.width, wall.height);</div>
 </div>
 </div>
 </div>

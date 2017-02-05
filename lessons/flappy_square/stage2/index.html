@@ -4,7 +4,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <title>Drawing Code</title>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="wM5bEvTXtUYDTld5DnKfLUywOCo68NGU7SwTNXUprqbl1ZGbFFE8trnyvlu4LmgDRatSx9ZxBPO84ICFstqF2A==" />
+<meta name="csrf-token" content="3DqaPpsvL3i8bZkE2Tyqa3dsh36aXtijqU+M96ECFKD5IVC3e6mmiAbRcCZvYF1Ffnftk3bfDcT4gx9HZvE/3g==" />
 <link rel="stylesheet" media="all" href="../../../assets/application.self-43238b9dc9479c930a126bb09dba232c84eaa81aa7c30703d5d90244186a5f77-body=1.css" data-turbolinks-track="reload" />
 <script src="../../../assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" data-turbolinks-track="reload"></script>
@@ -35,8 +35,8 @@
 <script src="../../../assets/lessons/fill_rect.self-4bb525e22a290e2ae4aa8446082bdcd7168ea5c515f27a3b3b8b6d439760ea8a.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/fill_style.self-6d153ccc75d0aa54db66acd06e950248f8cabe7184d1789400272825d0648764.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_birds/stage1.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/flappy_square/stage1.self-c6f7b80fdf091aa2053199c3ae3ca0e4ee0d4ca130eee193fd12abb9efc6ac13.js?body=1" data-turbolinks-track="reload"></script>
-<script src="../../../assets/lessons/flappy_square/stage2.self-f3be52b4d5e0779fad68ca6eedfc18c2e968291aafcd14becd90382199594552.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage1.self-e8ed085afc5633e0cc0f858ee4af57e6e0ea739889a726eacd1917e1842e1c4d.js?body=1" data-turbolinks-track="reload"></script>
+<script src="../../../assets/lessons/flappy_square/stage2.self-3ac728261bc343038050becaac0878f4396ee958ec16bd857db410475c22e230.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage3.self-bc2d99e542912e56ba8e0f5ed6719e1ee189b5a6cbcb5cea14e25b51c343e72c.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage4.self-7ca1693fdaf6615b4f33fdec5f1a25573d9a2aeeec983ca01396c526289972da.js?body=1" data-turbolinks-track="reload"></script>
 <script src="../../../assets/lessons/flappy_square/stage5.self-ca777df2cf099ea395e9672fc353531bdc3b78962c0b6cb414abe4b161624434.js?body=1" data-turbolinks-track="reload"></script>
@@ -572,7 +572,7 @@ A full list of events can be found here:
 <li class='active'>
 <a href="index.html">Stage 2</a>
 <span class='tag tag-default'>
-<small class='flappy_square_stage2'>0 / 4</small>
+<small class='flappy_square_stage2'>0 / 6</small>
 </span>
 <li class='page_section row small' id='page_section1'>
 <a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section1">Section 1</a>
@@ -588,6 +588,14 @@ A full list of events can be found here:
 </li>
 <li class='page_section row small' id='page_section4'>
 <a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section4">Section 4</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section5'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section5">Section 5</a>
+<span class='tag tag-success hidden-xs-up'>&#10003;</span>
+</li>
+<li class='page_section row small' id='page_section6'>
+<a style="margin-left: 21px; width: 6.5em; display: inline-block;" href="#section6">Section 6</a>
 <span class='tag tag-success hidden-xs-up'>&#10003;</span>
 </li>
 </li>
@@ -822,22 +830,22 @@ Challenge 1
 </figure>
 <p>
 <span class='highlight'>
-Let's write three functions that draw our flappy square, our boundary, and our wall.
+Let's write three functions that draw our boundary, our flappy square, and our wall.
 </span>
+</p>
+<p>
+Our boundary will be drawn in the
+<code>drawBoundary()</code>
+function which will not need any parameters. All of the information we need
+for this function comes from our boundary hash variable.
 </p>
 <p>
 Our flappy square function will be called
 <code>drawSquare()</code>
-and will not require any parameters. We'll use our square hash variable within
+and will not require any parameters either. We'll use our square hash variable within
 our function to draw the square like so:
 </p>
 <pre><code>function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}</code></pre>
-<p>
-Our boundary will be drawn in the
-<code>drawBoundary()</code>
-function which will not need any values either. We'll get those from
-our boundary hash variable.
-</p>
 <p>
 Lastly our walls will be drawn in the
 <code>drawWall(x)</code>
@@ -851,6 +859,16 @@ function three times from a
 function, creating walls
 <span class='highlight'>every 125 pixels,</span>
 starting from the left border of the boundary.
+</p>
+<p>
+So if you wrote code like this:
+</p>
+<pre><code>drawWall(100);&#x000A;drawWall(200);</code></pre>
+<p>
+Then the value of 100 and then 200 would be stored in the "x" variable
+in the drawWall(x) function. The drawWall(x) function would then use
+that x variable to draw one wall at 100 pixels and another wall at
+200 pixels.
 </p>
 <p>
 Once complete your game should look like the example provided above.
@@ -916,7 +934,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage2_challenge1_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// BOUNDARY HASH HERE&#x000A;&#x000A;// SQUARE HASH HERE&#x000A;&#x000A;// WALL HASH HERE&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;// GAME BOUNDARY FUNCTION&#x000A;&#x000A;// WALL FUNCTION&#x000A;&#x000A;function drawWalls() {&#x000A;  // CODE TO CALL WALL FUNCTION THREE TIMES HERE&#x000A;}&#x000A;&#x000A;drawSquare();&#x000A;&#x000A;// CODE TO CALL BOUNDARY FUNCTION HERE&#x000A;&#x000A;// CODE TO CALL drawWalls() FUNCTION HERE&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage2_challenge1_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// BOUNDARY HASH HERE&#x000A;&#x000A;// SQUARE HASH HERE&#x000A;&#x000A;// WALL HASH HERE&#x000A;&#x000A;&#x000A;// GAME BOUNDARY FUNCTION&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;  // Write your code to draw a wall here&#x000A;  // but use the "x" variable that is passed&#x000A;  // in to draw a wall in different places.&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;  // CODE TO CALL WALL FUNCTION THREE TIMES HERE&#x000A;}&#x000A;&#x000A;drawBoundary();&#x000A;drawSquare();&#x000A;drawWalls();&#x000A;&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -964,7 +982,7 @@ View One Possible Solution
 </span>
 </p>
 <div class='code-i-wrote-view'>
-<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage2_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  maxX: 450,&#x000A;  maxY: 300&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 50,&#x000A;  y: 100,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;  var width = boundary.maxX - boundary.minX;&#x000A;  var height = boundary.maxY - boundary.minY;&#x000A;  context.strokeRect(boundary.minX, boundary.minY, width, height);&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;  context.fillRect(x, boundary.minY, wall.width, wall.height);&#x000A;  context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;  drawWall(boundary.minX + 125);&#x000A;  drawWall(boundary.minX + (125 * 2));&#x000A;  drawWall(boundary.minX + (125 * 3));&#x000A;}&#x000A;&#x000A;drawSquare();&#x000A;drawBoundary();&#x000A;drawWalls();&#x000A;&#x000A;</div>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage2_challenge1');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  width: 425,&#x000A;  height: 275&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 50,&#x000A;  y: 100,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;  context.strokeRect(boundary.minX, boundary.minY, boundary.width, boundary.height);&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;  context.fillRect(x, boundary.minY, wall.width, wall.height);&#x000A;  context.fillRect(x, boundary.minY + boundary.height - wall.height, wall.width, wall.height);&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;  drawWall(boundary.minX + 125);&#x000A;  drawWall(boundary.minX + (125 * 2));&#x000A;  drawWall(boundary.minX + (125 * 3));&#x000A;}&#x000A;&#x000A;drawBoundary();&#x000A;drawSquare();&#x000A;drawWalls();&#x000A;&#x000A;&#x000A;</div>
 </div>
 </div>
 </div>
@@ -976,10 +994,453 @@ View One Possible Solution
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='py-2'>
+Using context.translate(x, y)
+</h2>
+<p>
+Between our boundary and our walls we're doing a lot of math to position
+everything correctly.
+</p>
+<p>
+For example the example solution above uses the following code in
+our drawBoundary() function:
+</p>
+<pre><code>function drawBoundary() {&#x000A;  context.strokeRect(boundary.minX, boundary.minY, boundary.width, boundary.height);&#x000A;}</code></pre>
+<p>
+In drawWall(x) we are have:
+</p>
+<pre><code>context.fillRect(x, boundary.minY + boundary.height - wall.height, wall.width, wall.height);</code></pre>
+<p>
+And in drawWalls() we are have:
+</p>
+<pre><code>drawWall(boundary.minX + 125);&#x000A;drawWall(boundary.minX + (125 * 2));&#x000A;drawWall(boundary.minX + (125 * 3));</code></pre>
+<p>
+In each of these examples we have to do math to shift the everything we
+are drawing to take into account the boundary.
+</p>
+<div class='float-xs-right pl-2 pb-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/lesson2Visual-bc4d0dd714365af372b67676f9b1be923c421846c815b2fa695e4e6e7276586f.png" alt="Lesson2visual" />
+</div>
+<p>
+The canvas's context has a powerful method,
+<a class="reference-link" data-slug="translate" href="../translate/index.html">context.translate(x, y)</a>
+that allows you to shift the origin of the canvas.
+</p>
+<p>
+This means that the point (0, 0) is no longer the top left corner of the canvas.
+</p>
+<p>
+For example, if you were to call
+<code>context.translate(50, 200);</code>
+then from then on if you were to call
+<code>context.translate(50, 50, 10, 10);</code>
+it would draw a square at the point (100, 250) instead of (50, 50);
+</p>
+<p>
+This means we can shift our origin point to be at the top left
+corner of our boundary instead of the top left corner of the canvas.
+This will greatly simplify our code.
+</p>
+<p>
+In this example we take the flags drawn in the previous example and use
+<a class="reference-link" data-slug="translate" href="../translate/index.html">context.translate(x, y)</a>
+to shift the origin to the top left corner
+of the flag. From there we can more easily draw the flag without having
+to do any math to position the rectangles.
+</p>
+<p>
+<strong>Quick Reference:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+</p>
+
+</div>
+<div class='col-xs-12'>
+<div class='interactive row py-1'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage2_lesson2_editor'>var canvas = document.getElementById('flappy_square_stage2_lesson2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;function drawFrenchFlag(x, y) {&#x000A;  context.save(); // Save the drawing state before making any changes&#x000A;  context.translate(x, y); // Move the origin of the coordinate system to the top left corner of the flag&#x000A;&#x000A;  context.fillStyle = '#0055A4';&#x000A;  context.fillRect(0, 0, 20, 40); // The blue rectangle is drawn at (0, 0)&#x000A;&#x000A;  context.fillStyle = '#FFFFFF';&#x000A;  context.fillRect(20, 0, 20, 40); // The white rectangle is drawn at (20, 0)&#x000A;&#x000A;  context.fillStyle = '#EF4135';&#x000A;  context.fillRect(40, 0, 20, 40); // The red rectangle is drawn at (40, 0)&#x000A;&#x000A;  context.restore(); // Restore the drawing state to the way it was when we saved it&#x000A;}&#x000A;&#x000A;drawFrenchFlag(30, 100);&#x000A;drawFrenchFlag(150, 50);&#x000A;drawFrenchFlag(300, 180);&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+This is a lesson, not a challenge, the code runs automatically.
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run run-only btn btn-success'>
+Run
+</div>
+<div class='run run-and-focus btn btn-success'>
+Run and Focus Canvas
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<canvas id='flappy_square_stage2_lesson2'></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='challenge row py-4' id='challenge2'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 2
+</h2>
+<figure class='float-xs-right pl-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/challenge2Example-4643027862250dcba44807454dc0f024619ce3b5cad7ccbe4a293989c424fd5f.png" alt="Challenge2example" />
+<figcaption class='text-xs-center small'>Challenge 2 Sample Solution</figcaption>
+</figure>
+<p>
+Let's use
+<a class="reference-link" data-slug="translate" href="../translate/index.html">context.translate(x, y)</a>
+to make our code a bit simpler and easier to read.
+</p>
+<p>
+<span class='highlight'>
+Translate the origin from the top left corner of the canvas (0, 0) to the
+top left corner of the boundary (boundary.minX, boundary.minY).
+</span>
+From that point on the origin (0, 0) will now be the top left corner of the boundary.
+</p>
+<p>
+This means you'll need to change the rest of your code to take into account
+the new origin. This should make the code much simpler.
+</p>
+<p>
+In particular you'll need to
+<span class='highlight'>adjust the "x" and "y" values</span>
+in your square hash variable:
+<code>square.x</code>
+</p>
+<p>
+In the end your flappy square game should look just like it did after the last
+challenge but the code should be simplified.
+</p>
+<p>
+<strong>Quick Reference:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+</p>
+
+<div class='code-preview mb-2'>
+<p>
+<strong>Previous Challenge:</strong>
+View your
+<span class='code-preview-link' data-editorid='flappy_square_stage2_challenge1_editor'>
+code from
+Stage
+2
+Challenge
+1
+</span>
+to use on this challenge.
+</p>
+<div class='code-preview-missing'>
+<strong>Code Missing:</strong>
+You have not yet entered any code in to the previous challenge:
+Stage
+2
+Challenge
+1
+</div>
+<div class='code-preview-view'>
+<strong>
+Stage
+2
+Challenge
+1
+</strong>
+<div class='code-preview-code'></div>
+</div>
+</div>
+
+</div>
+</div>
+<div class='row pt-2'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage2_challenge2_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// BOUNDARY HASH HERE&#x000A;&#x000A;// SQUARE HASH HERE&#x000A;// Don't forget to change the x and y values.&#x000A;&#x000A;// WALL HASH HERE&#x000A;&#x000A;&#x000A;// GAME BOUNDARY FUNCTION&#x000A;&#x000A;// DRAW SQUARE FUNCTION&#x000A;&#x000A;// DRAW WALL FUNCTION&#x000A;&#x000A;// DRAW WALLS FUNCTION&#x000A;&#x000A;&#x000A;// CODE TO TRANSLATE THE ORIGIN&#x000A;&#x000A;drawBoundary();&#x000A;drawSquare();&#x000A;drawWalls();&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+This is a lesson, not a challenge, the code runs automatically.
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run run-only btn btn-success'>
+Run
+</div>
+<div class='run run-and-focus btn btn-success'>
+Run and Focus Canvas
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/flappy_square/stage2/challenge2-7626ebd5ead41e09bfbc71e436fafe5ece9fbbe2594de647e1c5af0cf8938fc3.png" alt="Challenge2" /></div>
+<canvas id='flappy_square_stage2_challenge2'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+<div class='row pt-2'>
+<div class='col-xs-9 code-i-wrote py-2'>
+<p>
+<strong>A Solution:</strong>
+Here's the code I wrote to complete this challenge.
+<span class='code-i-wrote-link'>
+View One Possible Solution
+</span>
+</p>
+<div class='code-i-wrote-view'>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage2_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  width: 425,&#x000A;  height: 275&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 25,&#x000A;  y: 75,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;  context.strokeRect(0, 0, boundary.width, boundary.height);&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;  context.fillRect(x, 0, wall.width, wall.height);&#x000A;  context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;  drawWall(125);&#x000A;  drawWall(125 * 2);&#x000A;  drawWall(125 * 3);&#x000A;}&#x000A;&#x000A;context.translate(boundary.minX, boundary.minY);&#x000A;drawSquare();&#x000A;drawBoundary();&#x000A;drawWalls();&#x000A;&#x000A;&#x000A;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='section py-2' id='section3'>&nbsp;</div>
+<div class='challenge row py-4' id='challenge3'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='challenge-title py-2'>
+Challenge 3
+</h2>
+<figure class='float-xs-right pl-2'>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/challenge3Example-4643027862250dcba44807454dc0f024619ce3b5cad7ccbe4a293989c424fd5f.png" alt="Challenge3example" />
+<figcaption class='text-xs-center small'>Challenge 3 Sample Solution</figcaption>
+</figure>
+<p>
+You may have noticed that the lesson on
+<code>context.translate(x, y)</code>
+calls the method
+<a class="reference-link" data-slug="save" href="../save/index.html">context.save()</a>
+and the method
+<code>context.restore()</code>
+</p>
+<pre><code>function drawFrenchFlag(x, y) {&#x000A;  context.save(); // Save the drawing state before making any changes&#x000A;  context.translate(x, y); // Move the origin of the coordinate system to the top left corner of the flag&#x000A;&#x000A;  ...&#x000A;&#x000A;  context.restore(); // Restore the drawing state to the way it was when we saved it&#x000A;}</code></pre>
+<p>
+We need to call
+<code>context.save()</code>
+and
+<code>contest.restore()</code>
+in order to reset the canvas origin.
+</p>
+<p>
+If we call
+<code>context.translate()</code>
+more than once then each translation will build on top of the last. So this:
+</p>
+<pre><code>context.translate(20, 20);&#x000A;context.translate(20, 20);&#x000A;context.translate(20, 20);&#x000A;context.fillRect(0, 0, 50, 50);</code></pre>
+<p>
+Would cause a square to be drawn at (60, 60).
+</p>
+<p>
+While this isn't causing any problems yet, it will cause problems as soon as
+we begin animating our game (in the next section).
+</p>
+<p>
+So in preparation for the animation let's wrap our translation
+with a call to
+<code>context.save()</code>
+and
+<code>context.restore()</code>
+</p>
+<p>
+Call
+<code>context.save()</code>
+before the translation and then
+<code>context.restore()</code>
+once you're done drawing everything.
+</p>
+<p>
+In the end your flappy square game should look just like it did after the last
+challenge.
+</p>
+<p>
+<strong>Quick Reference:</strong>
+<a class="reference-link btn btn-primary btn-sm" data-slug="save" href="../save/index.html">save() / restore()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="translate" href="../translate/index.html">translate()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="functions" href="../functions/index.html">Functions</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="fill_rect" href="../fill_rect/index.html">fillRect()</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="coordinates" href="../coordinates/index.html">Coordinates</a>
+<a class="reference-link btn btn-primary btn-sm" data-slug="variables" href="../variables/index.html">Variables</a>
+</p>
+
+<div class='code-preview mb-2'>
+<p>
+<strong>Previous Challenge:</strong>
+View your
+<span class='code-preview-link' data-editorid='flappy_square_stage2_challenge2_editor'>
+code from
+Stage
+2
+Challenge
+2
+</span>
+to use on this challenge.
+</p>
+<div class='code-preview-missing'>
+<strong>Code Missing:</strong>
+You have not yet entered any code in to the previous challenge:
+Stage
+2
+Challenge
+2
+</div>
+<div class='code-preview-view'>
+<strong>
+Stage
+2
+Challenge
+2
+</strong>
+<div class='code-preview-code'></div>
+</div>
+</div>
+
+</div>
+</div>
+<div class='row pt-2'>
+<div class='code-editor col-xs-6' data-files=''>
+<div class='files'>
+<div class='btn-group'>
+<button aria-expanded='false' aria-haspopup='true' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' type='button'>
+Files
+</button>
+<div class='dropdown-menu dropdown-menu-right'></div>
+</div>
+</div>
+<h5>
+Editor
+<small class='instructions'>(write code below)</small>
+</h5>
+<div class='editor' id='flappy_square_stage2_challenge3_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;// CODE FROM PREVIOUS CHALLENGE&#x000A;// Place context.save() before the translation&#x000A;// and context.restore() after everything has been drawn.&#x000A;&#x000A;&#x000A;</div>
+<div class='log bg-faded text-muted small'>
+<button aria-label='Close' class='close' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<div class='title'>
+<strong>Message Log</strong>
+</div>
+<div class='messages'></div>
+</div>
+<div class='buttons py-1'>
+<div class='lesson-text-message small text-xs-center'>
+This is a lesson, not a challenge, the code runs automatically.
+<p>But change it! Play with it! Click "Run" to see your changes.</p>
+</div>
+<div class='run run-only btn btn-success'>
+Run
+</div>
+<div class='run run-and-focus btn btn-success'>
+Run and Focus Canvas
+</div>
+<div class='reset btn btn-danger'>
+Reset
+</div>
+</div>
+</div>
+<div class='visual col-xs-6'>
+<h5>
+Canvas
+<small>(your drawing will display here)</small>
+</h5>
+<div class='canvas'>
+<div class='background hidden-xl-down'><img src="../../../assets/lessons/flappy_square/stage2/challenge3-7626ebd5ead41e09bfbc71e436fafe5ece9fbbe2594de647e1c5af0cf8938fc3.png" alt="Challenge3" /></div>
+<canvas id='flappy_square_stage2_challenge3'></canvas>
+</div>
+<div class='alert'></div>
+</div>
+</div>
+<div class='row pt-2'>
+<div class='col-xs-9 code-i-wrote py-2'>
+<p>
+<strong>A Solution:</strong>
+Here's the code I wrote to complete this challenge.
+<span class='code-i-wrote-link'>
+View One Possible Solution
+</span>
+</p>
+<div class='code-i-wrote-view'>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage2_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  width: 425,&#x000A;  height: 275&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 25,&#x000A;  y: 75,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;  context.strokeRect(0, 0, boundary.width, boundary.height);&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;  context.fillRect(x, 0, wall.width, wall.height);&#x000A;  context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;  drawWall(125);&#x000A;  drawWall(125 * 2);&#x000A;  drawWall(125 * 3);&#x000A;}&#x000A;&#x000A;context.save();&#x000A;context.translate(boundary.minX, boundary.minY);&#x000A;drawSquare();&#x000A;drawBoundary();&#x000A;drawWalls();&#x000A;context.restore();&#x000A;&#x000A;&#x000A;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='section py-2' id='section4'>&nbsp;</div>
+<div class='lesson row pt-2'>
+<div class='col-xs-12'>
+<div class='row'>
+<div class='col-xs-12'>
+<h2 class='py-2'>
 Lesson: Basics of Animation
 </h2>
 <div class='float-xs-right pl-2 pb-2'>
-<img src="../../../assets/lessons/flappy_square/stage2/lesson2Visual-a406a77b409cfb246ad3f665a31b2861d8892df1081673eadcc9e0073575f04b.png" alt="Lesson2visual" />
+<img src="../../../assets/lessons/flappy_square/stage2/lesson3Visual-a406a77b409cfb246ad3f665a31b2861d8892df1081673eadcc9e0073575f04b.png" alt="Lesson3visual" />
 </div>
 <p>
 There are
@@ -1013,13 +1474,13 @@ Or you can pass it a reference to an existing function:
 </p>
 <pre><code>function myFunction() {&#x000A;  ... some code ...&#x000A;}&#x000A;&#x000A;setInterval(myFunction, 500);&#x000A;</code></pre>
 <figure class='float-xs-right pl-2'>
-<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/lesson2Visual2-e9adb119da733e78fb50ec563ea591cf27a2be8390e6014e8265de77f1f2d8fd.gif" alt="Lesson2visual2" />
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/lesson3Visual2-e9adb119da733e78fb50ec563ea591cf27a2be8390e6014e8265de77f1f2d8fd.gif" alt="Lesson3visual2" />
 <figcaption class='text-xs-center small mb-1'>
 A slower running animation
 <br>
 setInterval(programSteps, 1000)
 </figcaption>
-<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/lesson2Visual3-02bbe3831e2e11c55d9d23b1ac529eb8559c3a14540fad6761b7a8a5bd800dfd.gif" alt="Lesson2visual3" />
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/lesson3Visual3-02bbe3831e2e11c55d9d23b1ac529eb8559c3a14540fad6761b7a8a5bd800dfd.gif" alt="Lesson3visual3" />
 <figcaption class='text-xs-center small'>
 A faster running animation
 <br>
@@ -1078,7 +1539,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage2_lesson2_editor'>var canvas = document.getElementById('flappy_square_stage2_lesson2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = 1;&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(0, 100, size, size);&#x000A;}&#x000A;&#x000A;function adjustSize() {&#x000A;  size += 10;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  adjustSize();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 500);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage2_lesson3_editor'>var canvas = document.getElementById('flappy_square_stage2_lesson3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = 1;&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(0, 100, size, size);&#x000A;}&#x000A;&#x000A;function adjustSize() {&#x000A;  size += 10;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  adjustSize();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 500);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1110,7 +1571,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='flappy_square_stage2_lesson2'></canvas>
+<canvas id='flappy_square_stage2_lesson3'></canvas>
 </div>
 </div>
 </div>
@@ -1118,16 +1579,16 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-4' id='challenge2'>
+<div class='challenge row py-4' id='challenge4'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='challenge-title py-2'>
-Challenge 2
+Challenge 4
 </h2>
 <figure class='float-xs-right px-2'>
-<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/challenge2Example-17d2bd2c3859cf265facf065915d348279ab0e24d373b84e7bf14ded74c0bc73.gif" alt="Challenge2example" />
-<figcaption class='text-xs-center small'>Challenge 2 Sample Solution</figcaption>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/challenge4Example-17d2bd2c3859cf265facf065915d348279ab0e24d373b84e7bf14ded74c0bc73.gif" alt="Challenge4example" />
+<figcaption class='text-xs-center small'>Challenge 4 Sample Solution</figcaption>
 </figure>
 <p>
 Now we're going to start animating our game.
@@ -1172,12 +1633,12 @@ Your animation should look like the example to the right.
 <p>
 <strong>Previous Challenge:</strong>
 View your
-<span class='code-preview-link' data-editorid='flappy_square_stage2_challenge1_editor'>
+<span class='code-preview-link' data-editorid='flappy_square_stage2_challenge3_editor'>
 code from
 Stage
 2
 Challenge
-1
+3
 </span>
 to use on this challenge.
 </p>
@@ -1187,14 +1648,14 @@ You have not yet entered any code in to the previous challenge:
 Stage
 2
 Challenge
-1
+3
 </div>
 <div class='code-preview-view'>
 <strong>
 Stage
 2
 Challenge
-1
+3
 </strong>
 <div class='code-preview-code'></div>
 </div>
@@ -1216,7 +1677,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage2_challenge2_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;&#x000A;// CODE FROM PREVIOUS CHALLENGE HERE&#x000A;&#x000A;function adjustPosition() {&#x000A;  // ADJUST THE "y" COORDINATE OF THE SQUARE&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  adjustPosition();&#x000A;  drawBoundary();&#x000A;  drawSquare();&#x000A;  drawWalls();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;&#x000A;  // FILL IN THE CORRECT setInterval PARAMETERS HERE&#x000A;  interval = setInterval();&#x000A;&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();&#x000A;&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage2_challenge4_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;&#x000A;// CODE FROM PREVIOUS CHALLENGE HERE&#x000A;&#x000A;function adjustPosition() {&#x000A;  // ADJUST THE "y" COORDINATE OF THE SQUARE&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  adjustPosition();&#x000A;&#x000A;  context.save();&#x000A;  context.translate(boundary.minX, boundary.minY);&#x000A;  drawBoundary();&#x000A;  drawSquare();&#x000A;  drawWalls();&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;&#x000A;  // FILL IN THE CORRECT setInterval PARAMETERS HERE&#x000A;  interval = setInterval();&#x000A;&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();&#x000A;&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1248,7 +1709,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='flappy_square_stage2_challenge2'></canvas>
+<canvas id='flappy_square_stage2_challenge4'></canvas>
 </div>
 <div class='alert'></div>
 </div>
@@ -1263,13 +1724,13 @@ View One Possible Solution
 </span>
 </p>
 <div class='code-i-wrote-view'>
-<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage2_challenge2');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  maxX: 450,&#x000A;  maxY: 300&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 50,&#x000A;  y: 100,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;  var width = boundary.maxX - boundary.minX;&#x000A;  var height = boundary.maxY - boundary.minY;&#x000A;  context.strokeRect(boundary.minX, boundary.minY, width, height);&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;  context.fillRect(x, boundary.minY, wall.width, wall.height);&#x000A;  context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;  drawWall(boundary.minX + 125);&#x000A;  drawWall(boundary.minX + (125 * 2));&#x000A;  drawWall(boundary.minX + (125 * 3));&#x000A;}&#x000A;&#x000A;&#x000A;function adjustPosition() {&#x000A;  square.y += 25;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  adjustPosition();&#x000A;  drawBoundary();&#x000A;  drawSquare();&#x000A;  drawWalls();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 300);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();&#x000A;&#x000A;</div>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage2_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  width: 425,&#x000A;  height: 275&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 25,&#x000A;  y: 75,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;  context.strokeRect(0, 0, boundary.width, boundary.height);&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;  context.fillRect(x, 0, wall.width, wall.height);&#x000A;  context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;  drawWall(125);&#x000A;  drawWall(125 * 2);&#x000A;  drawWall(125 * 3);&#x000A;}&#x000A;&#x000A;&#x000A;function adjustPosition() {&#x000A;  square.y += 25;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  adjustPosition();&#x000A;&#x000A;  context.save();&#x000A;  context.translate(boundary.minX, boundary.minY);&#x000A;  drawBoundary();&#x000A;  drawSquare();&#x000A;  drawWalls();&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 300);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();&#x000A;&#x000A;</div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class='section py-2' id='section3'>&nbsp;</div>
+<div class='section py-2' id='section5'>&nbsp;</div>
 <div class='lesson row pt-2'>
 <div class='col-xs-12'>
 <div class='row'>
@@ -1278,7 +1739,7 @@ View One Possible Solution
 Lesson: A Complete Animation Cycle
 </h2>
 <div class='float-xs-right pl-2 pb-2'>
-<img src="../../../assets/lessons/flappy_square/stage2/lesson3Visual-a406a77b409cfb246ad3f665a31b2861d8892df1081673eadcc9e0073575f04b.png" alt="Lesson3visual" />
+<img src="../../../assets/lessons/flappy_square/stage2/lesson4Visual-a406a77b409cfb246ad3f665a31b2861d8892df1081673eadcc9e0073575f04b.png" alt="Lesson4visual" />
 </div>
 <p>
 As mentioned in the previous lesson, there are
@@ -1333,7 +1794,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage2_lesson3_editor'>var canvas = document.getElementById('flappy_square_stage2_lesson3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = canvas.width;&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(0, 0, size, size);&#x000A;}&#x000A;&#x000A;function adjustSize() {&#x000A;  size -= 10;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustSize();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 500);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage2_lesson4_editor'>var canvas = document.getElementById('flappy_square_stage2_lesson4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var size = canvas.width;&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(0, 0, size, size);&#x000A;}&#x000A;&#x000A;function adjustSize() {&#x000A;  size -= 10;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustSize();&#x000A;  drawSquare();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 500);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1365,7 +1826,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='flappy_square_stage2_lesson3'></canvas>
+<canvas id='flappy_square_stage2_lesson4'></canvas>
 </div>
 </div>
 </div>
@@ -1373,16 +1834,16 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-4' id='challenge3'>
+<div class='challenge row py-4' id='challenge5'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='challenge-title py-2'>
-Challenge 3
+Challenge 5
 </h2>
 <figure class='float-xs-right px-2'>
-<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/challenge3Example-f3cad329ef9dc83bb0b9a4c55d58b0d75450f440e761d1e007e2df9c42fe37c9.gif" alt="Challenge3example" />
-<figcaption class='text-xs-center small'>Challenge 3 Sample Solution</figcaption>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/challenge5Example-f3cad329ef9dc83bb0b9a4c55d58b0d75450f440e761d1e007e2df9c42fe37c9.gif" alt="Challenge5example" />
+<figcaption class='text-xs-center small'>Challenge 5 Sample Solution</figcaption>
 </figure>
 <p>
 As mentioned in the previous lesson, there are
@@ -1440,12 +1901,12 @@ Your animation should look like the example at the beginning of this explanation
 <p>
 <strong>Previous Challenge:</strong>
 View your
-<span class='code-preview-link' data-editorid='flappy_square_stage2_challenge2_editor'>
+<span class='code-preview-link' data-editorid='flappy_square_stage2_challenge4_editor'>
 code from
 Stage
 2
 Challenge
-2
+4
 </span>
 to use on this challenge.
 </p>
@@ -1455,14 +1916,14 @@ You have not yet entered any code in to the previous challenge:
 Stage
 2
 Challenge
-2
+4
 </div>
 <div class='code-preview-view'>
 <strong>
 Stage
 2
 Challenge
-2
+4
 </strong>
 <div class='code-preview-code'></div>
 </div>
@@ -1484,7 +1945,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage2_challenge3_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;&#x000A;// CODE FROM PREVIOUS CHALLENGE HERE&#x000A;// JUST FIGURE OUT WHERE TO ADD&#x000A;// context.clearRect(0, 0, canvas.width, canvas.height)&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();&#x000A;&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage2_challenge5_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;&#x000A;// CODE FROM PREVIOUS CHALLENGE HERE&#x000A;// JUST FIGURE OUT WHERE TO ADD&#x000A;// context.clearRect(0, 0, canvas.width, canvas.height)&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();&#x000A;&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1516,7 +1977,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='flappy_square_stage2_challenge3'></canvas>
+<canvas id='flappy_square_stage2_challenge5'></canvas>
 </div>
 <div class='alert'></div>
 </div>
@@ -1531,13 +1992,13 @@ View One Possible Solution
 </span>
 </p>
 <div class='code-i-wrote-view'>
-<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage2_challenge3');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  maxX: 450,&#x000A;  maxY: 300&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 50,&#x000A;  y: 100,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;  var width = boundary.maxX - boundary.minX;&#x000A;  var height = boundary.maxY - boundary.minY;&#x000A;  context.strokeRect(boundary.minX, boundary.minY, width, height);&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;  context.fillRect(x, boundary.minY, wall.width, wall.height);&#x000A;  context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;  drawWall(boundary.minX + 125);&#x000A;  drawWall(boundary.minX + (125 * 2));&#x000A;  drawWall(boundary.minX + (125 * 3));&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  square.y += 25;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustPosition();&#x000A;  drawBoundary();&#x000A;  drawSquare();&#x000A;  drawWalls();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 300);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();&#x000A;&#x000A;&#x000A;&#x000A;&#x000A;&#x000A;</div>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage2_challenge5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  width: 425,&#x000A;  height: 275&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 25,&#x000A;  y: 75,&#x000A;  size: 20&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;  context.strokeRect(0, 0, boundary.width, boundary.height);&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;  context.fillRect(x, 0, wall.width, wall.height);&#x000A;  context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;  drawWall(125);&#x000A;  drawWall(125 * 2);&#x000A;  drawWall(125 * 3);&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  square.y += 25;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustPosition();&#x000A;&#x000A;  context.save();&#x000A;  context.translate(boundary.minX, boundary.minY);&#x000A;  drawBoundary();&#x000A;  drawSquare();&#x000A;  drawWalls();&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 300);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();&#x000A;&#x000A;&#x000A;&#x000A;&#x000A;&#x000A;</div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class='section py-2' id='section4'>&nbsp;</div>
+<div class='section py-2' id='section6'>&nbsp;</div>
 <div class='lesson row pt-2'>
 <div class='col-xs-12'>
 <div class='row'>
@@ -1607,7 +2068,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage2_lesson4_editor'>var canvas = document.getElementById('flappy_square_stage2_lesson4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var gravity = 0.4;&#x000A;var size = 10;&#x000A;var interval;&#x000A;x = 0;&#x000A;y = canvas.height - 60;&#x000A;xVelocity = 8;&#x000A;yVelocity = 12;&#x000A;&#x000A;function drawBall() {&#x000A;  context.beginPath();&#x000A;  context.arc(x, y, size, 0, Math.PI*2, true);&#x000A;  context.closePath();&#x000A;  context.fill();&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  yVelocity -= gravity;&#x000A;  x += xVelocity;&#x000A;  y -= yVelocity;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustPosition();&#x000A;  drawBall();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 25);&#x000A;}&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage2_lesson5_editor'>var canvas = document.getElementById('flappy_square_stage2_lesson5');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var gravity = 0.4;&#x000A;var size = 10;&#x000A;var interval;&#x000A;x = 0;&#x000A;y = canvas.height - 60;&#x000A;xVelocity = 8;&#x000A;yVelocity = 12;&#x000A;&#x000A;function drawBall() {&#x000A;  context.beginPath();&#x000A;  context.arc(x, y, size, 0, Math.PI*2, true);&#x000A;  context.closePath();&#x000A;  context.fill();&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  yVelocity -= gravity;&#x000A;  x += xVelocity;&#x000A;  y -= yVelocity;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustPosition();&#x000A;  drawBall();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 25);&#x000A;}&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;&#x000A;  context.font = "20px serif";&#x000A;  context.textAlign = 'center';&#x000A;  context.fillText('Click anywhere on the canvas to start animation', canvas.width / 2, 50);&#x000A;  context.fillText('or click "Run" to restart the animations.', canvas.width / 2, 75);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;pauseAnimation();&#x000A;&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1639,7 +2100,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='flappy_square_stage2_lesson4'></canvas>
+<canvas id='flappy_square_stage2_lesson5'></canvas>
 </div>
 </div>
 </div>
@@ -1647,16 +2108,16 @@ Canvas
 </div>
 </div>
 </div>
-<div class='challenge row py-4' id='challenge4'>
+<div class='challenge row py-4' id='challenge6'>
 <div class='col-xs-12'>
 <div class='row'>
 <div class='col-xs-12'>
 <h2 class='challenge-title py-2'>
-Challenge 4
+Challenge 6
 </h2>
 <figure class='float-xs-right px-2'>
-<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/challenge4Example-86fd863620277412004f0ca412a1bd7c809a4acf5c5dccf1fcabcb4e133b47f5.gif" alt="Challenge4example" />
-<figcaption class='text-xs-center small'>Challenge 4 Sample Solution</figcaption>
+<img class="img-fluid canvas-example" src="../../../assets/lessons/flappy_square/stage2/challenge6Example-86fd863620277412004f0ca412a1bd7c809a4acf5c5dccf1fcabcb4e133b47f5.gif" alt="Challenge6example" />
+<figcaption class='text-xs-center small'>Challenge 6 Sample Solution</figcaption>
 </figure>
 <p>
 Let's give our flappy square animation a more realistic simulation
@@ -1664,7 +2125,7 @@ of gravity.
 </p>
 <p>
 Using your code from Challenge
-3
+5
 instead of just moving the flappy square
 down 25 pixels each frame let's track the y velocity of the flappy
 square and with each frame let's subtract gravity to increase the velocity
@@ -1690,7 +2151,7 @@ Your animation should look like the example to the right.
 </p>
 <p>
 Important note: In Challenge
-3
+5
 we added 25 to the "y" variable in each frame causing the square
 to move down. Here we need to
 <span class='highlight'>subtract "yVelocity"</span>
@@ -1711,12 +2172,12 @@ of the canvas moving in the wrong direction).
 <p>
 <strong>Previous Challenge:</strong>
 View your
-<span class='code-preview-link' data-editorid='flappy_square_stage2_challenge3_editor'>
+<span class='code-preview-link' data-editorid='flappy_square_stage2_challenge5_editor'>
 code from
 Stage
 2
 Challenge
-3
+5
 </span>
 to use on this challenge.
 </p>
@@ -1726,14 +2187,14 @@ You have not yet entered any code in to the previous challenge:
 Stage
 2
 Challenge
-3
+5
 </div>
 <div class='code-preview-view'>
 <strong>
 Stage
 2
 Challenge
-3
+5
 </strong>
 <div class='code-preview-code'></div>
 </div>
@@ -1755,7 +2216,7 @@ Files
 Editor
 <small class='instructions'>(write code below)</small>
 </h5>
-<div class='editor' id='flappy_square_stage2_challenge4_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var gravity = ;&#x000A;&#x000A;// HASH VARIABLE HERE&#x000A;// Remember to store yVelocity in&#x000A;// your square hash variable&#x000A;&#x000A;function drawSquare() {&#x000A;}&#x000A;&#x000A;function drawBoundary() {&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  // Instead of simply adding&#x000A;  // 25 to the "square.y" variable you'll&#x000A;  // need to both adjust the "square.yVelocity"&#x000A;  // and then use it to adjust "square.y"&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval =&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();&#x000A;&#x000A;&#x000A;</div>
+<div class='editor' id='flappy_square_stage2_challenge6_editor'>var canvas = document.getElementById('flappy_square_stage2_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var gravity = ;&#x000A;&#x000A;// HASH VARIABLES HERE&#x000A;// Remember to store yVelocity in&#x000A;// your square hash variable&#x000A;&#x000A;function drawBoundary() {&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  // Instead of simply adding&#x000A;  // 25 to the "square.y" variable you'll&#x000A;  // need to both adjust the "square.yVelocity"&#x000A;  // and then use it to adjust "square.y"&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval =&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();&#x000A;&#x000A;&#x000A;</div>
 <div class='log bg-faded text-muted small'>
 <button aria-label='Close' class='close' type='button'>
 <span aria-hidden='true'>×</span>
@@ -1787,7 +2248,7 @@ Canvas
 <small>(your drawing will display here)</small>
 </h5>
 <div class='canvas'>
-<canvas id='flappy_square_stage2_challenge4'></canvas>
+<canvas id='flappy_square_stage2_challenge6'></canvas>
 </div>
 <div class='alert'></div>
 </div>
@@ -1802,7 +2263,7 @@ View One Possible Solution
 </span>
 </p>
 <div class='code-i-wrote-view'>
-<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage2_challenge4');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var gravity = 0.5;&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  maxX: 450,&#x000A;  maxY: 300&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 50,&#x000A;  y: 100,&#x000A;  size: 20,&#x000A;  yVelocity: 0&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;  var width = boundary.maxX - boundary.minX;&#x000A;  var height = boundary.maxY - boundary.minY;&#x000A;  context.strokeRect(boundary.minX, boundary.minY, width, height);&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;  context.fillRect(x, boundary.minY, wall.width, wall.height);&#x000A;  context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;  drawWall(boundary.minX + 125);&#x000A;  drawWall(boundary.minX + (125 * 2));&#x000A;  drawWall(boundary.minX + (125 * 3));&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  square.yVelocity += gravity;&#x000A;  square.y += square.yVelocity;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustPosition();&#x000A;  drawBoundary();&#x000A;  drawSquare();&#x000A;  drawWalls();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 25);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();</div>
+<div class='code-i-wrote-code'>var canvas = document.getElementById('flappy_square_stage2_challenge6');&#x000A;var context = canvas.getContext('2d');&#x000A;&#x000A;var interval;&#x000A;var gravity = 0.5;&#x000A;&#x000A;var boundary = {&#x000A;  minX: 25,&#x000A;  minY: 25,&#x000A;  width: 425,&#x000A;  height: 275&#x000A;};&#x000A;&#x000A;var square = {&#x000A;  x: 25,&#x000A;  y: 75,&#x000A;  size: 20,&#x000A;  yVelocity: 0&#x000A;};&#x000A;&#x000A;var wall = {&#x000A;  width: 50,&#x000A;  height: 100&#x000A;};&#x000A;&#x000A;function drawBoundary() {&#x000A;  context.strokeRect(0, 0, boundary.width, boundary.height);&#x000A;}&#x000A;&#x000A;function drawSquare() {&#x000A;  context.fillRect(square.x, square.y, square.size, square.size);&#x000A;}&#x000A;&#x000A;function drawWall(x) {&#x000A;  context.fillRect(x, 0, wall.width, wall.height);&#x000A;  context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);&#x000A;}&#x000A;&#x000A;function drawWalls() {&#x000A;  drawWall(125);&#x000A;  drawWall(125 * 2);&#x000A;  drawWall(125 * 3);&#x000A;}&#x000A;&#x000A;function adjustPosition() {&#x000A;  square.yVelocity += gravity;&#x000A;  square.y += square.yVelocity;&#x000A;}&#x000A;&#x000A;function programSteps() {&#x000A;  context.clearRect(0, 0, canvas.width, canvas.height);&#x000A;  adjustPosition();&#x000A;&#x000A;  context.save();&#x000A;  context.translate(boundary.minX, boundary.minY);&#x000A;  drawBoundary();&#x000A;  drawSquare();&#x000A;  drawWalls();&#x000A;  context.restore();&#x000A;}&#x000A;&#x000A;function runProgram() {&#x000A;  interval = setInterval(programSteps, 25);&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;// The following code is provided for you.&#x000A;// It creates an eventListener that listens&#x000A;// for the canvas to come into "focus", which&#x000A;// happens when you click on it.&#x000A;// This allows us to stop and start each individual&#x000A;// animation on this whole page separately.&#x000A;function startAnimation() {&#x000A;  runProgram();&#x000A;}&#x000A;&#x000A;function pauseAnimation() {&#x000A;  clearInterval(interval);&#x000A;}&#x000A;&#x000A;canvas.addEventListener('focus', startAnimation);&#x000A;canvas.addEventListener('blur', pauseAnimation);&#x000A;canvas.focus();</div>
 </div>
 </div>
 </div>

@@ -102,14 +102,8 @@
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
     solution = function(canvas, context) {
+      context.strokeRect(25, 25, 425, 275);
       context.fillRect(50, 100, 20, 20);
-      context.beginPath();
-      context.moveTo(25, 25);
-      context.lineTo(450, 25);
-      context.lineTo(450, 300);
-      context.lineTo(25, 300);
-      context.closePath();
-      context.stroke();
       context.fillRect(150, 25, 50, 100);
       return context.fillRect(150, 200, 50, 100);
     };
@@ -138,14 +132,8 @@
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
     solution = function(canvas, context) {
+      context.strokeRect(25, 25, 425, 275);
       context.fillRect(50, 100, 20, 20);
-      context.beginPath();
-      context.moveTo(25, 25);
-      context.lineTo(450, 25);
-      context.lineTo(450, 300);
-      context.lineTo(25, 300);
-      context.closePath();
-      context.stroke();
       context.fillRect(125, 25, 50, 100);
       return context.fillRect(125, 200, 50, 100);
     };
@@ -174,14 +162,8 @@
     canvas = new App.Canvas(challenge.find('canvas'));
     editor = new App.Editor(challenge.find('.editor'), canvas);
     solution = function(canvas, context) {
+      context.strokeRect(25, 25, 425, 275);
       context.fillRect(50, 100, 20, 20);
-      context.beginPath();
-      context.moveTo(25, 25);
-      context.lineTo(450, 25);
-      context.lineTo(450, 300);
-      context.lineTo(25, 300);
-      context.closePath();
-      context.stroke();
       context.fillRect(150, 25, 50, 100);
       return context.fillRect(150, 200, 50, 100);
     };
