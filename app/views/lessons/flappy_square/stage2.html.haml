@@ -271,14 +271,14 @@
             %code
               :preserve
                 function drawBoundary() {
-                  context.strokeRect(boundary.minX, boundary.minY, boundary.maxX - boundary.minX, boundary.maxY - boundary.minY);
+                  context.strokeRect(boundary.minX, boundary.minY, boundary.width, boundary.height);
                 }
           %p
             In drawWall(x) we are have:
           %pre
             %code
               :preserve
-                context.fillRect(x, boundary.maxY + boundary.height - wall.height, wall.width, wall.height);
+                context.fillRect(x, boundary.minY + boundary.height - wall.height, wall.width, wall.height);
           %p
             And in drawWalls() we are have:
           %pre
