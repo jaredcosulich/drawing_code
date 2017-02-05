@@ -169,13 +169,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -189,9 +189,7 @@
             };
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -202,13 +200,13 @@
               var x = wallInfo.x - distance;
               context.fillRect(
                 x,
-                boundary.minY,
+                0,
                 wall.width,
                 wallInfo.topHeight
               );
               context.fillRect(
                 x,
-                boundary.maxY - wallInfo.bottomHeight,
+                boundary.height - wallInfo.bottomHeight,
                 wall.width,
                 wallInfo.bottomHeight
               );
@@ -224,19 +222,17 @@
                 wallX = wall.positions[wall.positions.length - 1].x;
               }
 
-              var end = boundary.maxX + distance + wall.width;
-              var boundaryHeight = boundary.maxY - boundary.minY;
-
+              var end = boundary.width + distance + wall.width;
               while (wallX < end) {
                 wallX += random(100, 200);
 
                 var topHeight = random(25, 150);
                 var bottomHeight = random(25, 150);
-                if (boundaryHeight - topHeight - bottomHeight < wall.minHole) {
-                  bottomHeight = boundaryHeight - topHeight - wall.minHole;
+                if (boundary.height - topHeight - bottomHeight < wall.minHole) {
+                  bottomHeight = boundary.height - topHeight - wall.minHole;
                 }
-                if (boundaryHeight - topHeight - bottomHeight > wall.maxHole) {
-                  bottomHeight = boundaryHeight - topHeight - wall.maxHole;
+                if (boundary.height - topHeight - bottomHeight > wall.maxHole) {
+                  bottomHeight = boundary.height - topHeight - wall.maxHole;
                 }
 
                 wall.positions.push({
@@ -262,14 +258,16 @@
             }
 
             function clearBoundary() {
+              var maxX = boundary.minX + boundary.width;
+              var maxY = boundary.minY + boundary.height;
               context.clearRect(0, 0, canvas.width, boundary.minY);
-              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
-              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(maxX, 0, canvas.width - maxX, canvas.height);
+              context.clearRect(0, maxY, canvas.width, canvas.height - maxY);
               context.clearRect(0, 0, boundary.minX, canvas.height);
             }
 
             function checkBoundary() {
-              if (square.y >= boundary.maxY) {
+              if (square.y >= boundary.height) {
                 endGame();
               }
             }
@@ -288,8 +286,8 @@
                 if (wallLeft > right) continue;
                 if (wallRight < left) continue;
 
-                var topWallBottom = boundary.minY + wallInfo.topHeight;
-                var bottomWallTop = boundary.maxY - wallInfo.bottomHeight;
+                var topWallBottom = wallInfo.topHeight;
+                var bottomWallTop = boundary.height - wallInfo.bottomHeight;
                 if (top < topWallBottom || bottom > bottomWallTop) {
                   endGame();
                 }
@@ -312,8 +310,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -322,12 +320,17 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.save();
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
-              clearBoundary();
               checkWalls();
               checkBoundary();
+              context.restore();
+
+              clearBoundary();
               drawTitle();
             }
 
@@ -421,13 +424,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -441,9 +444,7 @@
             };
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -454,13 +455,13 @@
               var x = wallInfo.x - distance;
               context.fillRect(
                 x,
-                boundary.minY,
+                0,
                 wall.width,
                 wallInfo.topHeight
               );
               context.fillRect(
                 x,
-                boundary.maxY - wallInfo.bottomHeight,
+                boundary.height - wallInfo.bottomHeight,
                 wall.width,
                 wallInfo.bottomHeight
               );
@@ -476,19 +477,17 @@
                 wallX = wall.positions[wall.positions.length - 1].x;
               }
 
-              var end = boundary.maxX + distance + wall.width;
-              var boundaryHeight = boundary.maxY - boundary.minY;
-
+              var end = boundary.width + distance + wall.width;
               while (wallX < end) {
                 wallX += random(100, 200);
 
                 var topHeight = random(25, 150);
                 var bottomHeight = random(25, 150);
-                if (boundaryHeight - topHeight - bottomHeight < wall.minHole) {
-                  bottomHeight = boundaryHeight - topHeight - wall.minHole;
+                if (boundary.height - topHeight - bottomHeight < wall.minHole) {
+                  bottomHeight = boundary.height - topHeight - wall.minHole;
                 }
-                if (boundaryHeight - topHeight - bottomHeight > wall.maxHole) {
-                  bottomHeight = boundaryHeight - topHeight - wall.maxHole;
+                if (boundary.height - topHeight - bottomHeight > wall.maxHole) {
+                  bottomHeight = boundary.height - topHeight - wall.maxHole;
                 }
 
                 wall.positions.push({
@@ -514,14 +513,16 @@
             }
 
             function clearBoundary() {
+              var maxX = boundary.minX + boundary.width;
+              var maxY = boundary.minY + boundary.height;
               context.clearRect(0, 0, canvas.width, boundary.minY);
-              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
-              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(maxX, 0, canvas.width - maxX, canvas.height);
+              context.clearRect(0, maxY, canvas.width, canvas.height - maxY);
               context.clearRect(0, 0, boundary.minX, canvas.height);
             }
 
             function checkBoundary() {
-              if (square.y >= boundary.maxY) {
+              if (square.y >= boundary.height) {
                 endGame();
               }
             }
@@ -540,8 +541,8 @@
                 if (wallLeft > right) continue;
                 if (wallRight < left) continue;
 
-                var topWallBottom = boundary.minY + wallInfo.topHeight;
-                var bottomWallTop = boundary.maxY - wallInfo.bottomHeight;
+                var topWallBottom = wallInfo.topHeight;
+                var bottomWallTop = boundary.height - wallInfo.bottomHeight;
                 if (top < topWallBottom || bottom > bottomWallTop) {
                   endGame();
                 }
@@ -566,7 +567,7 @@
               context.textAlign = 'right';
               context.textBaseline = 'bottom';
 
-              var x = boundary.maxX;
+              var x = boundary.minX + boundary.width;
               var y = boundary.minY;
               context.fillText('Score: ' + Math.floor(distance / 20), x, y);
               context.restore();
@@ -576,8 +577,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -586,12 +587,17 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.save();
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
-              clearBoundary();
               checkWalls();
               checkBoundary();
+              context.restore();
+
+              clearBoundary();
               drawTitle();
               drawScore();
             }
@@ -693,13 +699,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 15,
               yVelocity: 0,
               jump: -10
@@ -713,9 +719,7 @@
             };
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -726,13 +730,13 @@
               var x = wallInfo.x - distance;
               context.fillRect(
                 x,
-                boundary.minY,
+                0,
                 wall.width,
                 wallInfo.topHeight
               );
               context.fillRect(
                 x,
-                boundary.maxY - wallInfo.bottomHeight,
+                boundary.height - wallInfo.bottomHeight,
                 wall.width,
                 wallInfo.bottomHeight
               );
@@ -748,19 +752,17 @@
                 wallX = wall.positions[wall.positions.length - 1].x;
               }
 
-              var end = boundary.maxX + distance + wall.width;
-              var boundaryHeight = boundary.maxY - boundary.minY;
-
+              var end = boundary.width + distance + wall.width;
               while (wallX < end) {
                 wallX += random(100, 200);
 
                 var topHeight = random(25, 150);
                 var bottomHeight = random(25, 150);
-                if (boundaryHeight - topHeight - bottomHeight < wall.minHole) {
-                  bottomHeight = boundaryHeight - topHeight - wall.minHole;
+                if (boundary.height - topHeight - bottomHeight < wall.minHole) {
+                  bottomHeight = boundary.height - topHeight - wall.minHole;
                 }
-                if (boundaryHeight - topHeight - bottomHeight > wall.maxHole) {
-                  bottomHeight = boundaryHeight - topHeight - wall.maxHole;
+                if (boundary.height - topHeight - bottomHeight > wall.maxHole) {
+                  bottomHeight = boundary.height - topHeight - wall.maxHole;
                 }
 
                 wall.positions.push({
@@ -786,14 +788,16 @@
             }
 
             function clearBoundary() {
+              var maxX = boundary.minX + boundary.width;
+              var maxY = boundary.minY + boundary.height;
               context.clearRect(0, 0, canvas.width, boundary.minY);
-              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
-              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(maxX, 0, canvas.width - maxX, canvas.height);
+              context.clearRect(0, maxY, canvas.width, canvas.height - maxY);
               context.clearRect(0, 0, boundary.minX, canvas.height);
             }
 
             function checkBoundary() {
-              if (square.y >= boundary.maxY) {
+              if (square.y >= boundary.height) {
                 endGame();
               }
             }
@@ -812,8 +816,8 @@
                 if (wallLeft > right) continue;
                 if (wallRight < left) continue;
 
-                var topWallBottom = boundary.minY + wallInfo.topHeight;
-                var bottomWallTop = boundary.maxY - wallInfo.bottomHeight;
+                var topWallBottom = wallInfo.topHeight;
+                var bottomWallTop = boundary.height - wallInfo.bottomHeight;
                 if (top < topWallBottom || bottom > bottomWallTop) {
                   endGame();
                 }
@@ -838,7 +842,7 @@
               context.textAlign = 'right';
               context.textBaseline = 'bottom';
 
-              var x = boundary.maxX;
+              var x = boundary.minX + boundary.width;
               var y = boundary.minY;
               context.fillText('Score: ' + Math.floor(distance / 20), x, y);
               context.restore();
@@ -848,8 +852,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -858,12 +862,17 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.save();
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
-              clearBoundary();
               checkWalls();
               checkBoundary();
+              context.restore();
+
+              clearBoundary();
               drawTitle();
               drawScore();
             }
@@ -1024,13 +1033,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 15,
               yVelocity: 0,
               jump: -10
@@ -1044,9 +1053,7 @@
             };
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -1062,13 +1069,13 @@
               context.translate(wallInfo.x - distance, 0);
               context.fillRect(
                 0,
-                boundary.minY,
+                0,
                 wall.width,
                 wallInfo.topHeight
               );
               context.fillRect(
                 0,
-                boundary.maxY - wallInfo.bottomHeight,
+                boundary.height - wallInfo.bottomHeight,
                 wall.width,
                 wallInfo.bottomHeight
               );
@@ -1085,19 +1092,17 @@
                 wallX = wall.positions[wall.positions.length - 1].x;
               }
 
-              var end = boundary.maxX + distance + wall.width;
-              var boundaryHeight = boundary.maxY - boundary.minY;
-
+              var end = boundary.width + distance + wall.width;
               while (wallX < end) {
                 wallX += random(100, 200);
 
                 var topHeight = random(25, 150);
                 var bottomHeight = random(25, 150);
-                if (boundaryHeight - topHeight - bottomHeight < wall.minHole) {
-                  bottomHeight = boundaryHeight - topHeight - wall.minHole;
+                if (boundary.height - topHeight - bottomHeight < wall.minHole) {
+                  bottomHeight = boundary.height - topHeight - wall.minHole;
                 }
-                if (boundaryHeight - topHeight - bottomHeight > wall.maxHole) {
-                  bottomHeight = boundaryHeight - topHeight - wall.maxHole;
+                if (boundary.height - topHeight - bottomHeight > wall.maxHole) {
+                  bottomHeight = boundary.height - topHeight - wall.maxHole;
                 }
 
                 wall.positions.push({
@@ -1123,14 +1128,16 @@
             }
 
             function clearBoundary() {
+              var maxX = boundary.minX + boundary.width;
+              var maxY = boundary.minY + boundary.height;
               context.clearRect(0, 0, canvas.width, boundary.minY);
-              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
-              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(maxX, 0, canvas.width - maxX, canvas.height);
+              context.clearRect(0, maxY, canvas.width, canvas.height - maxY);
               context.clearRect(0, 0, boundary.minX, canvas.height);
             }
 
             function checkBoundary() {
-              if (square.y >= boundary.maxY) {
+              if (square.y >= boundary.height) {
                 endGame();
               }
             }
@@ -1149,8 +1156,8 @@
                 if (wallLeft > right) continue;
                 if (wallRight < left) continue;
 
-                var topWallBottom = boundary.minY + wallInfo.topHeight;
-                var bottomWallTop = boundary.maxY - wallInfo.bottomHeight;
+                var topWallBottom = wallInfo.topHeight;
+                var bottomWallTop = boundary.height - wallInfo.bottomHeight;
                 if (top < topWallBottom || bottom > bottomWallTop) {
                   endGame();
                 }
@@ -1175,7 +1182,7 @@
               context.textAlign = 'right';
               context.textBaseline = 'bottom';
 
-              var x = boundary.maxX;
+              var x = boundary.minX + boundary.width;
               var y = boundary.minY;
               context.fillText('Score: ' + Math.floor(distance / 20), x, y);
               context.restore();
@@ -1185,8 +1192,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -1195,12 +1202,17 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.save();
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
-              clearBoundary();
               checkWalls();
               checkBoundary();
+              context.restore();
+
+              clearBoundary();
               drawTitle();
               drawScore();
             }

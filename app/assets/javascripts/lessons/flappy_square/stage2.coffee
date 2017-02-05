@@ -4,8 +4,8 @@ initFlappySquareStage2Challenges = ->
     initFlappySquareStage2Challenge2(page)
     initFlappySquareStage2Challenge3(page)
     initFlappySquareStage2Challenge4(page)
-    # initFlappySquareStage2Challenge5(page)
-    # initFlappySquareStage2Challenge6(page)
+    initFlappySquareStage2Challenge5(page)
+    initFlappySquareStage2Challenge6(page)
 
 
 initFlappySquareStage2Challenge1 = (page) ->
@@ -19,15 +19,8 @@ initFlappySquareStage2Challenge1 = (page) ->
       context.fillRect(x, 25, 50, 100);
       context.fillRect(x, 200, 50, 100);
 
+    context.strokeRect(25, 25, 425, 275);
     context.fillRect(50, 100, 20, 20);
-
-    context.beginPath();
-    context.moveTo(25, 25);
-    context.lineTo(450, 25);
-    context.lineTo(450, 300);
-    context.lineTo(25, 300);
-    context.closePath();
-    context.stroke();
 
     drawWall(150);
     drawWall(275);
@@ -46,8 +39,72 @@ initFlappySquareStage2Challenge1 = (page) ->
 
       canvas.alert(message, success)
 
+
 initFlappySquareStage2Challenge2 = (page) ->
-  challengeIndex = 2
+  index = 2
+  challenge = page.find("#challenge#{index}")
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  solution = (canvas, context) ->
+    drawWall = (x) ->
+      context.fillRect(x, 25, 50, 100);
+      context.fillRect(x, 200, 50, 100);
+
+    context.strokeRect(25, 25, 425, 275);
+    context.fillRect(50, 100, 20, 20);
+
+    drawWall(150);
+    drawWall(275);
+    drawWall(400);
+
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You\'ve drawn the flappy square game using functions and there are three walls properly placed!'
+        App.currentProgress.challengeComplete('flappy_square_stage2', "challenge#{index}")
+      else
+        message = 'Nice try, but your game should be using functions and produce three walls that are spaced every 125 pixels.'
+
+      canvas.alert(message, success)
+
+initFlappySquareStage2Challenge3 = (page) ->
+  index = 3
+  challenge = page.find("#challenge#{index}")
+  canvas = new App.Canvas(challenge.find('canvas'))
+  editor = new App.Editor(challenge.find('.editor'), canvas)
+
+  solution = (canvas, context) ->
+    drawWall = (x) ->
+      context.fillRect(x, 25, 50, 100);
+      context.fillRect(x, 200, 50, 100);
+
+    context.strokeRect(25, 25, 425, 275);
+    context.fillRect(50, 100, 20, 20);
+
+    drawWall(150);
+    drawWall(275);
+    drawWall(400);
+
+
+  testCode = new Test.Code(code: solution, canvas: canvas)
+
+  challenge.find('.run').click ->
+    testCode.test (success) ->
+      if success
+        message = '<strong>Success!</strong> You\'ve drawn the flappy square game using functions and there are three walls properly placed!'
+        App.currentProgress.challengeComplete('flappy_square_stage2', "challenge#{index}")
+      else
+        message = 'Nice try, but your game should be using functions and produce three walls that are spaced every 125 pixels.'
+
+      canvas.alert(message, success)
+
+
+initFlappySquareStage2Challenge4 = (page) ->
+  challengeIndex = 4
   challenge = page.find("#challenge#{challengeIndex}")
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -97,8 +154,8 @@ initFlappySquareStage2Challenge2 = (page) ->
     ), 2000)
 
 
-initFlappySquareStage2Challenge3 = (page) ->
-  challengeIndex = 3
+initFlappySquareStage2Challenge5 = (page) ->
+  challengeIndex = 5
   challenge = page.find("#challenge#{challengeIndex}")
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -109,9 +166,8 @@ initFlappySquareStage2Challenge3 = (page) ->
         App.currentProgress.challengeComplete('flappy_square_stage2', "challenge#{challengeIndex}")
     ), 2000)
 
-
-initFlappySquareStage2Challenge4 = (page) ->
-  challengeIndex = 4
+initFlappySquareStage2Challenge6 = (page) ->
+  challengeIndex = 6
   challenge = page.find("#challenge#{challengeIndex}")
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
@@ -121,5 +177,6 @@ initFlappySquareStage2Challenge4 = (page) ->
       canvas.selfAssess ->
         App.currentProgress.challengeComplete('flappy_square_stage2', "challenge#{challengeIndex}")
     ), 1000)
+
 
 $(document).on('initialization:complete', initFlappySquareStage2Challenges)

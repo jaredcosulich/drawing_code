@@ -333,9 +333,9 @@
             var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
-            // YOUR PREVIOUS FLAPPY SQUARE CODE
-
             // YOUR NEW CODE FOR A GAME BOUNDARY
+
+            // YOUR PREVIOUS FLAPPY SQUARE CODE
 
 
 
@@ -417,9 +417,9 @@
             var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
             var context = canvas.getContext('2d');
 
-            // CODE FOR YOUR FLAPPY SQUARE
-
             // CODE FOR YOUR GAME BOUNDARY
+
+            // CODE FOR YOUR FLAPPY SQUARE
 
             // CODE FOR YOUR WALL
 
@@ -535,10 +535,9 @@
                 var wallX = 25;
 
           %p
-            We've provided the variables for the boundary. We've set the minimum values
-            and maximum values for the boundary so that it will be easier to make boundary
-            calculations in the future. We've also provided placeholder variable declarations
-            for the flappy squre. You'll need to write the variables for the wall.
+            We've provided the variables for the boundaryand a placeholder
+            variable declarations for the flappy squre. You'll need to
+            write the variables for the wall.
           %p
             As a reminder the flappy square should be positioned at
             %span.highlight (50, 100)
@@ -553,7 +552,7 @@
             %span.highlight 100 pixels
             from the left boundary instead of 125 pixels.
           %p
-            Variable are an importent concept in coding. If you feel uncertain about them
+            Variable are an important concept in coding. If you feel uncertain about them
             you can find more information and exercise around functions by clicking on the "variables"
             quick reference button below and then clicking on the "Full Lesson" button in the pop-up.
           %p
@@ -570,8 +569,8 @@
 
             var boundaryMinX = 25;
             var boundaryMinY = 25;
-            var boundaryMaxX = 450;
-            var boundaryMaxY = 300;
+            var boundaryWidth = 425;
+            var boundaryHeight = 275;
 
             var squareX = ;
             var squareY = ;
@@ -579,9 +578,9 @@
 
             // WALL VARIABLES HERE
 
-            // CODE FOR YOUR FLAPPY SQUARE
-
             // CODE FOR YOUR GAME BOUNDARY
+
+            // CODE FOR YOUR FLAPPY SQUARE
 
             // CODE FOR YOUR WALL
 
@@ -603,8 +602,8 @@
 
             var boundaryMinX = 25;
             var boundaryMinY = 25;
-            var boundaryMaxX = 450;
-            var boundaryMaxY = 300;
+            var boundaryWidth = 425;
+            var boundaryHeight = 275;
 
             var squareX = 50;
             var squareY = 100;
@@ -614,13 +613,12 @@
             var wallWidth = 50;
             var wallHeight = 100;
 
-            context.strokeRect(boundaryMinX, boundaryMinY, boundaryMaxX - boundaryMinX, boundaryMaxY - boundaryMinY);
+            context.strokeRect(boundaryMinX, boundaryMinY, boundaryWidth, boundaryHeight);
 
             context.fillRect(squareX, squareY, squareSize, squareSize);
 
             context.fillRect(wallX, boundaryMinY, wallWidth, wallHeight);
-            context.fillRect(wallX, boundaryMaxY - wallHeight, wallWidth, wallHeight);
-
+            context.fillRect(wallX, boundaryMinY + boundaryHeight - wallHeight, wallWidth, wallHeight);
 
 
 
@@ -652,8 +650,8 @@
               :preserve
                 var boundaryMinX = 25;
                 var boundaryMinY = 25;
-                var boundaryMaxX = 450;
-                var boundaryMaxY = 300;
+                var boundaryWidth = 425;
+                var boundaryHeight = 275;
           %p
             Those four variable declations all repeat the word "boundary".
           %p
@@ -667,8 +665,8 @@
                 var boundary = {
                   minX: 25,
                   minY: 25,
-                  maxX: 450,
-                  maxY: 300
+                  width: 425,
+                  height: 275
                 }
           %p
             This makes it a bit easier to read our code and reduces a lot of
@@ -698,9 +696,9 @@
 
             // WALL HASH HERE
 
-            // CODE FOR YOUR FLAPPY SQUARE
-
             // CODE FOR YOUR GAME BOUNDARY
+
+            // CODE FOR YOUR FLAPPY SQUARE
 
             // CODE FOR YOUR WALL
 
@@ -723,8 +721,8 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
@@ -739,9 +737,9 @@
               height: 100
             };
 
-            context.strokeRect(boundary.minX, boundary.minY, boundary.maxX - boundary.minX, boundary.maxY - boundary.minY);
+            context.strokeRect(boundary.minX, boundary.minY, boundary.width, boundary.height);
 
             context.fillRect(square.x, square.y, square.size, square.size);
 
             context.fillRect(wall.x, boundary.minY, wall.width, wall.height);
-            context.fillRect(wall.x, boundary.maxY - wall.height, wall.width, wall.height);
+            context.fillRect(wall.x, boundary.minY + boundary.height - wall.height, wall.width, wall.height);
