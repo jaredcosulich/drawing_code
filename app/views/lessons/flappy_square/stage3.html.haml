@@ -471,8 +471,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -585,8 +585,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -878,8 +878,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -994,8 +994,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -1321,8 +1321,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -1446,8 +1446,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -1702,7 +1702,15 @@
             boundary. We'll use the
             = link_to_lesson('context.clearRect(x, y, width, height)', :clear_rect, nil, class: 'reference-link', data: {slug: :clear_rect})
             to erase everything outside of the boundary we've drawn.
-
+          %p
+            Remember that we're currently translating the origin down to the top left corner
+            of our game's boundary. Since we want to clear the borders outside of the boundary
+            you may want to call
+            %code context.restore()
+            to reset the origin.
+            Otherwise you'll need to do calculations to determine where to start your
+            %code context.clearRect(x, y, width, height)
+            call.
           %p In the end your flappy square should behave like the example provided to the right.
 
           = render 'lessons/relevant', relevant: [:coordinates, :clear_rect]
@@ -1749,8 +1757,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -1811,13 +1819,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -1831,9 +1839,7 @@
 
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -1841,8 +1847,8 @@
             }
 
             function drawWall(x) {
-              context.fillRect(x, boundary.minY, wall.width, wall.height);
-              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+              context.fillRect(x, 0, wall.width, wall.height);
+              context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);
             }
 
             function drawWalls() {
@@ -1871,14 +1877,16 @@
             }
 
             function clearBoundary() {
+              var maxX = boundary.minX + boundary.width;
+              var maxY = boundary.minY + boundary.height;
               context.clearRect(0, 0, canvas.width, boundary.minY);
-              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
-              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(maxX, 0, canvas.width - maxX, canvas.height);
+              context.clearRect(0, maxY, canvas.width, canvas.height - maxY);
               context.clearRect(0, 0, boundary.minX, canvas.height);
             }
 
             function checkBoundary() {
-              if (square.y >= boundary.maxY) {
+              if (square.y >= boundary.height) {
                 endGame();
               }
             }
@@ -1887,8 +1895,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -1897,11 +1905,16 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.save();
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
-              clearBoundary();
               checkBoundary();
+              context.restore();
+
+              clearBoundary();
             }
 
             function runProgram() {

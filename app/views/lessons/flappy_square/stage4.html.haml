@@ -159,255 +159,256 @@
               .canvas
                 %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
 
-  - lesson_index += 1
-  .lesson.row.py-3
-    .col-xs-12
-      .row
-        .col-xs-12
-          %h2.py-2
-            Lesson: Collision Detection (More Complex)
-          %p
-            Collision detection is often far more complex than in the lesson above.
-            Luckily our flappy square game doesn't require overly complex collision
-            detection because our flappy square is always moving right and is always
-            in the same "x" position.
+  -#
+    - lesson_index += 1
+    .lesson.row.py-3
+      .col-xs-12
+        .row
+          .col-xs-12
+            %h2.py-2
+              Lesson: Collision Detection (More Complex)
+            %p
+              Collision detection is often far more complex than in the lesson above.
+              Luckily our flappy square game doesn't require overly complex collision
+              detection because our flappy square is always moving right and is always
+              in the same "x" position.
 
-          %p
-            In this example we'll demonstrate a much more complex situation.
-            Instead of one box running into a wall, we'll have many boxes moving
-            in random directions and at random speeds bouncing off of each other.
-            In order to do this we have to compare every box to every other
-            box (as well as the borders of the game) to ensure nothing overlaps and
-            then run calculations to determine which direction the collision came from.
+            %p
+              In this example we'll demonstrate a much more complex situation.
+              Instead of one box running into a wall, we'll have many boxes moving
+              in random directions and at random speeds bouncing off of each other.
+              In order to do this we have to compare every box to every other
+              box (as well as the borders of the game) to ensure nothing overlaps and
+              then run calculations to determine which direction the collision came from.
 
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+            = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
 
-        .col-xs-12
-          .interactive.focus-on-run.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor"} do
-              :preserve
-                var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
-                var context = canvas.getContext('2d');
+          .col-xs-12
+            .interactive.focus-on-run.row.py-1
+              = render :layout => '/lessons/editor', :locals => {:editor_id => "flappy_square_stage#{stage_index}_lesson#{lesson_index}_editor"} do
+                :preserve
+                  var canvas = document.getElementById('flappy_square_stage#{stage_index}_lesson#{lesson_index}');
+                  var context = canvas.getContext('2d');
 
-                var interval;
-                var count = 15;
-                var size = 20;
-                var boxes = [];
-                var boundary = {
-                  minX: 25,
-                  minY: 25,
-                  maxX: 450,
-                  maxY: 300
-                };
+                  var interval;
+                  var count = 15;
+                  var size = 20;
+                  var boxes = [];
+                  var boundary = {
+                    minX: 25,
+                    minY: 25,
+                    maxX: 450,
+                    maxY: 300
+                  };
 
-                function overlaps(x, y, size, buffer) {
-                  if (!buffer) buffer = 0;
-                  var minX = x - buffer;
-                  var minY = y - buffer;
-                  var maxX = x + size + buffer;
-                  var maxY = y + size + buffer;
+                  function overlaps(x, y, size, buffer) {
+                    if (!buffer) buffer = 0;
+                    var minX = x - buffer;
+                    var minY = y - buffer;
+                    var maxX = x + size + buffer;
+                    var maxY = y + size + buffer;
 
-                  for (var i=0; i< boxes.length; ++i) {
-                    var box = boxes[i];
-                    if (box.x == x && box.y == y) continue;
+                    for (var i=0; i< boxes.length; ++i) {
+                      var box = boxes[i];
+                      if (box.x == x && box.y == y) continue;
 
-                    var minBoxX = box.x - buffer;
-                    var minBoxY = box.y - buffer;
-                    var maxBoxX = box.x + size + buffer;
-                    var maxBoxY = box.y + size + buffer;
+                      var minBoxX = box.x - buffer;
+                      var minBoxY = box.y - buffer;
+                      var maxBoxX = box.x + size + buffer;
+                      var maxBoxY = box.y + size + buffer;
 
-                    var left = (minX <= maxBoxX && minX >= minBoxX);
-                    var right = (maxX >= minBoxX && maxX <= maxBoxX);
-                    var top = (minY <= maxBoxY && minY >= minBoxY);
-                    var bottom = (maxY >= minBoxY && maxY <= maxBoxY);
+                      var left = (minX <= maxBoxX && minX >= minBoxX);
+                      var right = (maxX >= minBoxX && maxX <= maxBoxX);
+                      var top = (minY <= maxBoxY && minY >= minBoxY);
+                      var bottom = (maxY >= minBoxY && maxY <= maxBoxY);
 
-                    if ((left || right) && (top || bottom)) {
-                      var leftOverlap = maxBoxX - minX;
-                      var rightOverlap = maxX - minBoxX;
-                      var topOverlap = maxBoxY - minY;
-                      var bottomOverlap = maxY - minBoxY;
+                      if ((left || right) && (top || bottom)) {
+                        var leftOverlap = maxBoxX - minX;
+                        var rightOverlap = maxX - minBoxX;
+                        var topOverlap = maxBoxY - minY;
+                        var bottomOverlap = maxY - minBoxY;
 
-                      var overlaps = [
-                        (left ? leftOverlap : 9999),
-                        (right ? rightOverlap : 9999),
-                        (top ? topOverlap : 9999),
-                        (bottom ? bottomOverlap : 9999)
-                      ];
+                        var overlaps = [
+                          (left ? leftOverlap : 9999),
+                          (right ? rightOverlap : 9999),
+                          (top ? topOverlap : 9999),
+                          (bottom ? bottomOverlap : 9999)
+                        ];
 
-                      var info = {box: box};
-                      switch(Math.min.apply(null, overlaps)) {
-                        case leftOverlap:
-                          info.direction = 'left';
-                          break;
-                        case rightOverlap:
-                          info.direction = 'right';
-                          break;
-                        case topOverlap:
-                          info.direction = 'top';
-                          break;
-                        case bottomOverlap:
-                          info.direction = 'bottom';
-                          break;
-                      }
-                      return info;
-                    }
-                  }
-                  return false;
-                }
-
-                function checkBoundary(x, y, size, buffer) {
-                  if (!buffer) buffer = 0;
-                  outOfBounds = {};
-                  if (x + size + buffer > canvas.width) {
-                    outOfBounds.right = true;
-                  } else if (x < 0) {
-                    outOfBounds.left = true;
-                  }
-
-                  if (y + size + buffer > canvas.height) {
-                    outOfBounds.bottom = true;
-                  } else if (y < 0) {
-                    outOfBounds.top = true;
-                  }
-                  return outOfBounds;
-                }
-
-                function random(floor, ceil) {
-                  return floor + Math.floor(Math.random() * ((ceil + 1) - floor));
-                }
-
-                function generateRandomPosition() {
-                  var x;
-                  var y;
-                  do {
-                    x = random(boundary.minX, boundary.maxX);
-                    y = random(boundary.minY, boundary.maxY);
-                  } while (overlaps(x, y, size, size));
-                  return {x: x, y: y};
-                }
-
-                function generateBoxes() {
-                  for (var i=0; i< count; ++i) {
-                    var position = generateRandomPosition();
-
-                    boxes.push({
-                      x: position.x,
-                      y: position.y,
-                      xVelocity: [random(2, 6), random(-2, -6)][random(0, 1)],
-                      yVelocity: [random(2, 6), random(-2, -6)][random(0, 1)],
-                      collidedWith: {}
-                    });
-                  }
-                }
-
-                function adjustPositions() {
-                  for (var i=0; i< count; ++i) {
-                    boxes[i].x += boxes[i].xVelocity;
-                    boxes[i].y += boxes[i].yVelocity;
-
-                    var collision = overlaps(boxes[i].x, boxes[i].y, size);
-                    if (collision) {
-                      if (collision.box.collidedWith[i] > 0) {
-                        collision.box.collidedWith[i] -= 1;
-                      } else {
-                        collision.box.collidedWith[i] = 5;
-
-                        var newVelocity;
-                        switch(collision.direction) {
-                          case 'left':
-                          case 'right':
-                            newVelocity = collision.box.xVelocity;
-                            collision.box.xVelocity = boxes[i].xVelocity;
-                            boxes[i].xVelocity = newVelocity;
+                        var info = {box: box};
+                        switch(Math.min.apply(null, overlaps)) {
+                          case leftOverlap:
+                            info.direction = 'left';
                             break;
-                          case 'top':
-                          case 'bottom':
-                            newVelocity = collision.box.yVelocity;
-                            collision.box.yVelocity = boxes[i].yVelocity;
-                            boxes[i].yVelocity = newVelocity;
+                          case rightOverlap:
+                            info.direction = 'right';
+                            break;
+                          case topOverlap:
+                            info.direction = 'top';
+                            break;
+                          case bottomOverlap:
+                            info.direction = 'bottom';
                             break;
                         }
+                        return info;
                       }
-                    } else {
-                      boxes[i].collidedWith = {};
+                    }
+                    return false;
+                  }
+
+                  function checkBoundary(x, y, size, buffer) {
+                    if (!buffer) buffer = 0;
+                    outOfBounds = {};
+                    if (x + size + buffer > canvas.width) {
+                      outOfBounds.right = true;
+                    } else if (x < 0) {
+                      outOfBounds.left = true;
                     }
 
-                    var boundary = checkBoundary(boxes[i].x, boxes[i].y, size);
-                    if (Object.keys(boundary).length > 0) {
-                      if (boundary.left || boundary.right) {
-                        if (boundary.left) boxes[i].x = 1;
-                        if (boundary.right) boxes[i].x = canvas.width - size - 1;
-                        boxes[i].xVelocity = boxes[i].xVelocity * -1;
+                    if (y + size + buffer > canvas.height) {
+                      outOfBounds.bottom = true;
+                    } else if (y < 0) {
+                      outOfBounds.top = true;
+                    }
+                    return outOfBounds;
+                  }
+
+                  function random(floor, ceil) {
+                    return floor + Math.floor(Math.random() * ((ceil + 1) - floor));
+                  }
+
+                  function generateRandomPosition() {
+                    var x;
+                    var y;
+                    do {
+                      x = random(boundary.minX, boundary.maxX);
+                      y = random(boundary.minY, boundary.maxY);
+                    } while (overlaps(x, y, size, size));
+                    return {x: x, y: y};
+                  }
+
+                  function generateBoxes() {
+                    for (var i=0; i< count; ++i) {
+                      var position = generateRandomPosition();
+
+                      boxes.push({
+                        x: position.x,
+                        y: position.y,
+                        xVelocity: [random(2, 6), random(-2, -6)][random(0, 1)],
+                        yVelocity: [random(2, 6), random(-2, -6)][random(0, 1)],
+                        collidedWith: {}
+                      });
+                    }
+                  }
+
+                  function adjustPositions() {
+                    for (var i=0; i< count; ++i) {
+                      boxes[i].x += boxes[i].xVelocity;
+                      boxes[i].y += boxes[i].yVelocity;
+
+                      var collision = overlaps(boxes[i].x, boxes[i].y, size);
+                      if (collision) {
+                        if (collision.box.collidedWith[i] > 0) {
+                          collision.box.collidedWith[i] -= 1;
+                        } else {
+                          collision.box.collidedWith[i] = 5;
+
+                          var newVelocity;
+                          switch(collision.direction) {
+                            case 'left':
+                            case 'right':
+                              newVelocity = collision.box.xVelocity;
+                              collision.box.xVelocity = boxes[i].xVelocity;
+                              boxes[i].xVelocity = newVelocity;
+                              break;
+                            case 'top':
+                            case 'bottom':
+                              newVelocity = collision.box.yVelocity;
+                              collision.box.yVelocity = boxes[i].yVelocity;
+                              boxes[i].yVelocity = newVelocity;
+                              break;
+                          }
+                        }
+                      } else {
+                        boxes[i].collidedWith = {};
                       }
 
-                      if (boundary.top || boundary.bottom) {
-                        if (boundary.top) boxes[i].y = 1;
-                        if (boundary.bottom) boxes[i].y = canvas.height - size - 1;
-                        boxes[i].yVelocity = boxes[i].yVelocity * -1;
+                      var boundary = checkBoundary(boxes[i].x, boxes[i].y, size);
+                      if (Object.keys(boundary).length > 0) {
+                        if (boundary.left || boundary.right) {
+                          if (boundary.left) boxes[i].x = 1;
+                          if (boundary.right) boxes[i].x = canvas.width - size - 1;
+                          boxes[i].xVelocity = boxes[i].xVelocity * -1;
+                        }
+
+                        if (boundary.top || boundary.bottom) {
+                          if (boundary.top) boxes[i].y = 1;
+                          if (boundary.bottom) boxes[i].y = canvas.height - size - 1;
+                          boxes[i].yVelocity = boxes[i].yVelocity * -1;
+                        }
                       }
                     }
                   }
-                }
 
-                function drawBoxes() {
-                  for (var i=0; i< count; ++i) {
-                    var box = boxes[i];
-                    context.save();
-                    context.translate(box.x, box.y);
-                    context.fillRect(0, 0, size, size);
-                    context.fillStyle = 'white';
-                    context.font = "10px serif";
+                  function drawBoxes() {
+                    for (var i=0; i< count; ++i) {
+                      var box = boxes[i];
+                      context.save();
+                      context.translate(box.x, box.y);
+                      context.fillRect(0, 0, size, size);
+                      context.fillStyle = 'white';
+                      context.font = "10px serif";
+                      context.textAlign = 'center';
+                      context.textBaseline="middle";
+                      context.fillText(i + 1, size/2, size/2);
+                      context.restore();
+                    }
+                  }
+
+                  function programSteps() {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+
+                    adjustPositions();
+                    drawBoxes();
+                  }
+
+                  function runProgram() {
+                    generateBoxes();
+                    interval = setInterval(programSteps, 50);
+                  }
+
+
+                  // The following code is provided for you.
+                  // It creates an eventListener that listens
+                  // for the canvas to come into "focus", which
+                  // happens when you click on it.
+                  // This allows us to stop and start each individual
+                  // animation on this whole page separately.
+                  function startAnimation() {
+                    runProgram();
+                  }
+
+                  function pauseAnimation() {
+                    clearInterval(interval);
+
+                    context.font = "20px serif";
                     context.textAlign = 'center';
-                    context.textBaseline="middle";
-                    context.fillText(i + 1, size/2, size/2);
-                    context.restore();
+                    context.fillText('Click anywhere on the canvas to start the animation.', canvas.width / 2, 50);
                   }
-                }
 
-                function programSteps() {
-                  context.clearRect(0, 0, canvas.width, canvas.height);
-
-                  adjustPositions();
-                  drawBoxes();
-                }
-
-                function runProgram() {
-                  generateBoxes();
-                  interval = setInterval(programSteps, 50);
-                }
-
-
-                // The following code is provided for you.
-                // It creates an eventListener that listens
-                // for the canvas to come into "focus", which
-                // happens when you click on it.
-                // This allows us to stop and start each individual
-                // animation on this whole page separately.
-                function startAnimation() {
-                  runProgram();
-                }
-
-                function pauseAnimation() {
-                  clearInterval(interval);
-
-                  context.font = "20px serif";
-                  context.textAlign = 'center';
-                  context.fillText('Click anywhere on the canvas to start the animation.', canvas.width / 2, 50);
-                }
-
-                canvas.addEventListener('focus', startAnimation);
-                canvas.addEventListener('blur', pauseAnimation);
-                pauseAnimation();
+                  canvas.addEventListener('focus', startAnimation);
+                  canvas.addEventListener('blur', pauseAnimation);
+                  pauseAnimation();
 
 
 
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
+              .visual.col-xs-6
+                %h5
+                  Canvas
+                  %small (your drawing will display here)
+                .canvas
+                  %canvas{id: "flappy_square_stage#{stage_index}_lesson#{lesson_index}"}
 
 
   - challenge_index += 1
@@ -436,7 +437,7 @@
             Luckily because our flappy square is flying constantly to the right
             we don't need to worry about collisions to the left. This simplifies
             things a bit. When the flappy square is in the same "x" coordinates
-            as a wiall we need to check to see if the flappy square is passing
+            as a wall we need to check to see if the flappy square is passing
             through the hole in the wall.
           %p
             In each frame we'll find the wall that the flappy square is flying
@@ -511,7 +512,7 @@
                   if (wallLeft > right) continue;
                   if (wallRight < left) continue;
 
-                  var topWallBottom = boundary.minY + wall.height;
+                  var topWallBottom = wall.height;
                   if (top < topWallBottom) {
                     endGame();
                   }
@@ -553,13 +554,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -572,10 +573,10 @@
               positions: []
             };
 
-            function drawSquare() {
+            function drawBoundary() {
             }
 
-            function drawBoundary() {
+            function drawSquare() {
             }
 
             function drawWall(x) {
@@ -610,8 +611,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -672,13 +673,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -692,9 +693,7 @@
             };
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -702,8 +701,8 @@
             }
 
             function drawWall(x) {
-              context.fillRect(x, boundary.minY, wall.width, wall.height);
-              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+              context.fillRect(x, 0, wall.width, wall.height);
+              context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);
             }
 
             function drawWalls() {
@@ -739,9 +738,11 @@
             }
 
             function clearBoundary() {
+              var maxX = boundary.minX + boundary.width;
+              var maxY = boundary.minY + boundary.height;
               context.clearRect(0, 0, canvas.width, boundary.minY);
-              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
-              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(maxX, 0, canvas.width - maxX, canvas.height);
+              context.clearRect(0, maxY, canvas.width, canvas.height - maxY);
               context.clearRect(0, 0, boundary.minX, canvas.height);
             }
 
@@ -776,8 +777,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -786,12 +787,17 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.save();
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
-              clearBoundary();
               checkWalls();
               checkBoundary();
+              context.restore();
+
+              clearBoundary();
             }
 
             function runProgram() {
@@ -980,13 +986,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -998,10 +1004,10 @@
               positions: []
             };
 
-            function drawSquare() {
+            function drawBoundary() {
             }
 
-            function drawBoundary() {
+            function drawSquare() {
             }
 
             function drawWall(x) {
@@ -1034,8 +1040,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -1091,13 +1097,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -1110,9 +1116,7 @@
             };
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -1120,8 +1124,8 @@
             }
 
             function drawWall(x) {
-              context.fillRect(x, boundary.minY, wall.width, wall.height);
-              context.fillRect(x, boundary.maxY - wall.height, wall.width, wall.height);
+              context.fillRect(x, 0, wall.width, wall.height);
+              context.fillRect(x, boundary.height - wall.height, wall.width, wall.height);
             }
 
             function drawWalls() {
@@ -1155,14 +1159,16 @@
             }
 
             function clearBoundary() {
+              var maxX = boundary.minX + boundary.width;
+              var maxY = boundary.minY + boundary.height;
               context.clearRect(0, 0, canvas.width, boundary.minY);
-              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
-              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(maxX, 0, canvas.width - maxX, canvas.height);
+              context.clearRect(0, maxY, canvas.width, canvas.height - maxY);
               context.clearRect(0, 0, boundary.minX, canvas.height);
             }
 
             function checkBoundary() {
-              if (square.y >= boundary.maxY) {
+              if (square.y >= boundary.height) {
                 endGame();
               }
             }
@@ -1180,8 +1186,8 @@
                 if (wallLeft > right) continue;
                 if (wallRight < left) continue;
 
-                var topWallBottom = boundary.minY + wall.height;
-                var bottomWallTop = boundary.maxY - wall.height;
+                var topWallBottom = wall.height;
+                var bottomWallTop = boundary.height - wall.height;
                 if (top < topWallBottom || bottom > bottomWallTop) {
                   endGame();
                 }
@@ -1192,8 +1198,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -1202,12 +1208,17 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.save();
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
-              clearBoundary();
               checkWalls();
               checkBoundary();
+              context.restore();
+
+              clearBoundary();
             }
 
             function runProgram() {
@@ -1302,13 +1313,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -1320,10 +1331,10 @@
               positions: []
             };
 
-            function drawSquare() {
+            function drawBoundary() {
             }
 
-            function drawBoundary() {
+            function drawSquare() {
             }
 
             function drawWall(wallInfo) {
@@ -1370,8 +1381,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -1428,13 +1439,13 @@
             var boundary = {
               minX: 25,
               minY: 25,
-              maxX: 450,
-              maxY: 300
+              width: 425,
+              height: 275
             };
 
             var square = {
-              x: 50,
-              y: 100,
+              x: 25,
+              y: 75,
               size: 20,
               yVelocity: 0,
               jump: -8
@@ -1448,9 +1459,7 @@
             };
 
             function drawBoundary() {
-              var width = boundary.maxX - boundary.minX;
-              var height = boundary.maxY - boundary.minY;
-              context.strokeRect(boundary.minX, boundary.minY, width, height);
+              context.strokeRect(0, 0, boundary.width, boundary.height);
             }
 
             function drawSquare() {
@@ -1461,13 +1470,13 @@
               var x = wallInfo.x - distance;
               context.fillRect(
                 x,
-                boundary.minY,
+                0,
                 wall.width,
                 wallInfo.topHeight
               );
               context.fillRect(
                 x,
-                boundary.maxY - wallInfo.bottomHeight,
+                boundary.height - wallInfo.bottomHeight,
                 wall.width,
                 wallInfo.bottomHeight
               );
@@ -1483,19 +1492,17 @@
                 wallX = wall.positions[wall.positions.length - 1].x;
               }
 
-              var end = boundary.maxX + distance + wall.width;
-              var boundaryHeight = boundary.maxY - boundary.minY;
-
+              var end = boundary.width + distance + wall.width;
               while (wallX < end) {
                 wallX += random(100, 200);
 
                 var topHeight = random(25, 150);
                 var bottomHeight = random(25, 150);
-                if (boundaryHeight - topHeight - bottomHeight < wall.minHole) {
-                  bottomHeight = boundaryHeight - topHeight - wall.minHole;
+                if (boundary.height - topHeight - bottomHeight < wall.minHole) {
+                  bottomHeight = boundary.height - topHeight - wall.minHole;
                 }
-                if (boundaryHeight - topHeight - bottomHeight > wall.maxHole) {
-                  bottomHeight = boundaryHeight - topHeight - wall.maxHole;
+                if (boundary.height - topHeight - bottomHeight > wall.maxHole) {
+                  bottomHeight = boundary.height - topHeight - wall.maxHole;
                 }
 
                 wall.positions.push({
@@ -1521,14 +1528,16 @@
             }
 
             function clearBoundary() {
+              var maxX = boundary.minX + boundary.width;
+              var maxY = boundary.minY + boundary.height;
               context.clearRect(0, 0, canvas.width, boundary.minY);
-              context.clearRect(boundary.maxX, 0, canvas.width - boundary.maxX, canvas.height);
-              context.clearRect(0, boundary.maxY, canvas.width, canvas.height - boundary.maxY);
+              context.clearRect(maxX, 0, canvas.width - maxX, canvas.height);
+              context.clearRect(0, maxY, canvas.width, canvas.height - maxY);
               context.clearRect(0, 0, boundary.minX, canvas.height);
             }
 
             function checkBoundary() {
-              if (square.y >= boundary.maxY) {
+              if (square.y >= boundary.height) {
                 endGame();
               }
             }
@@ -1547,8 +1556,8 @@
                 if (wallLeft > right) continue;
                 if (wallRight < left) continue;
 
-                var topWallBottom = boundary.minY + wallInfo.topHeight;
-                var bottomWallTop = boundary.maxY - wallInfo.bottomHeight;
+                var topWallBottom = wallInfo.topHeight;
+                var bottomWallTop = boundary.height - wallInfo.bottomHeight;
                 if (top < topWallBottom || bottom > bottomWallTop) {
                   endGame();
                 }
@@ -1559,8 +1568,8 @@
               context.font = "20px serif";
               context.textAlign = 'center';
 
-              var xCenter = ((boundary.maxX - boundary.minX) / 2) + boundary.minX;
-              var yCenter = ((boundary.maxY - boundary.minY) / 2) + boundary.minY;
+              var xCenter = boundary.width / 2;
+              var yCenter = boundary.height / 2;
               context.fillText('Game Over', xCenter, yCenter);
 
               pauseAnimation();
@@ -1569,12 +1578,17 @@
             function programSteps() {
               context.clearRect(0, 0, canvas.width, canvas.height);
               adjustPosition();
+
+              context.save();
+              context.translate(boundary.minX, boundary.minY);
               drawBoundary();
               drawSquare();
               drawWalls();
-              clearBoundary();
               checkWalls();
               checkBoundary();
+              context.restore();
+
+              clearBoundary();
             }
 
             function runProgram() {

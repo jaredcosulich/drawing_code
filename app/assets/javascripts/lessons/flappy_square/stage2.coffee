@@ -164,7 +164,7 @@ initFlappySquareStage2Challenge5 = (page) ->
     setTimeout(( ->
       canvas.selfAssess ->
         App.currentProgress.challengeComplete('flappy_square_stage2', "challenge#{challengeIndex}")
-    ), 1000)
+    ), 2000)
 
 initFlappySquareStage2Challenge6 = (page) ->
   challengeIndex = 6
@@ -176,7 +176,7 @@ initFlappySquareStage2Challenge6 = (page) ->
     setTimeout(( ->
       canvas.selfAssess ->
         App.currentProgress.challengeComplete('flappy_square_stage2', "challenge#{challengeIndex}")
-    ), 2000)
+    ), 1000)
 
 
 $(document).on('initialization:complete', initFlappySquareStage2Challenges)
