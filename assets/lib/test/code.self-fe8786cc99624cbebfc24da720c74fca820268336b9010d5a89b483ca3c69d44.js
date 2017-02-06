@@ -42,7 +42,7 @@
             _this.drawCode();
           }
           success = _this.compareImageData();
-          if (success || count >= 0) {
+          if (success || count >= 30) {
             clearInterval(testInterval);
             callback(success);
           }
@@ -52,7 +52,7 @@
     };
 
     Code.prototype.compareImageData = function() {
-      var context, diffCount, height, i, imageData, index, len, pixel, testImageData, width;
+      var context, diffCount, h, height, i, imageData, index, len, pixel, testImageData, w, width;
       context = this.canvas.context;
       width = this.canvas.canvasElement.width;
       height = this.canvas.canvasElement.height;
@@ -63,7 +63,20 @@
         pixel = imageData[index];
         if (Math.abs(testImageData[index] - pixel) !== 0) {
           return false;
+          w = Math.ceil(index / 4) % width;
+          h = Math.floor(Math.ceil(index / 4) / width);
+          console.log(w, h, testImageData[index], pixel, testImageData[index] - pixel);
+          context.save();
+          context.translate(w, h);
+          context.fillStyle = '#ff0000';
+          context.fillRect(-1, -1, 1, 1);
+          context.restore();
+          diffCount += 1;
+          return false;
         }
+      }
+      if (diffCount > 0) {
+        return false;
       }
       return true;
     };
