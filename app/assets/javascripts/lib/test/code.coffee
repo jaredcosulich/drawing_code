@@ -27,7 +27,7 @@ class Test.Code
     testInterval = setInterval(( =>
       @drawCode() if count == 0
       success = @compareImageData()
-      if success || count >= 0 #30
+      if success || count >= 30
         clearInterval(testInterval)
         callback(success)
       count += 1
@@ -43,14 +43,15 @@ class Test.Code
     for pixel, index in imageData
       if Math.abs(testImageData[index] - pixel) != 0
         return false
-    #     context.save()
-    #     w = Math.ceil(index/4) % width
-    #     h = Math.floor(Math.ceil(index/4) / width)
-    #     # console.log(w, h, testImageData[index], pixel, testImageData[index] - pixel)
-    #     context.translate(w, h)
-    #     context.fillStyle = '#ff0000'
-    #     context.fillRect(-2,-2,5,5)
-    #     context.restore()
-    #     diffCount += 1
-    # return false if diffCount > 0
+        w = Math.ceil(index/4) % width
+        h = Math.floor(Math.ceil(index/4) / width)
+        console.log(w, h, testImageData[index], pixel, testImageData[index] - pixel)
+        context.save()
+        context.translate(w, h)
+        context.fillStyle = '#ff0000'
+        context.fillRect(-1,-1,1,1)
+        context.restore()
+        diffCount += 1
+        return false
+    return false if diffCount > 0
     return true

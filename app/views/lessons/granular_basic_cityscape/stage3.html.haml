@@ -1,3 +1,6 @@
+- stage_index = 3
+- challenge_index = 0
+
 #granular_basic_cityscape_stage3.page
   %h1 Stage 3
 
@@ -36,9 +39,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage3_example1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage3_lesson1_editor'} do
               :preserve
-                var canvas = document.getElementById('granular_basic_cityscape_stage3_example1');
+                var canvas = document.getElementById('granular_basic_cityscape_stage3_lesson1');
                 var context = canvas.getContext('2d');
 
                 function drawFlag(country) {
@@ -92,9 +95,9 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#granular_basic_cityscape_stage3_example1
+                %canvas#granular_basic_cityscape_stage3_lesson1
 
-
+  - challenge_index += 1
   #challenge1.challenge.row.py-4
     .col-xs-12
       .row
@@ -178,6 +181,69 @@
             %canvas#granular_basic_cityscape_stage3_challenge1
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors, windowType) {
+              context.save();
+
+              var width = (units * 16) + (4 * 2);
+              var height = (floors * 16) + (4 * 2);
+
+              context.translate(leftX, groundY - height);
+              context.fillStyle = '#999999';
+              context.fillRect(0, 0, width, height);
+
+              context.save();
+              context.translate(4, 4);
+              context.fillStyle = '#666666';
+
+              for (var j=0; j < floors; ++j) {
+                context.save();
+
+                for (var i=0; i < units; ++i) {
+                  drawWindow(windowType);
+                  context.translate(16, 0);
+                }
+                context.restore();
+
+                context.translate(0, 16);
+              }
+
+              context.restore();
+
+              context.restore();
+            }
+
+            function drawWindow(windowType) {
+              switch(windowType) {
+                case 0:
+                  context.fillRect(4, 2, 8, 10);
+                  break;
+                case 1:
+                  context.fillRect(2, 3, 5, 8);
+                  context.fillRect(9, 3, 5, 8);
+                  break;
+                case 2:
+                  context.fillRect(0, 3, 16, 8);
+                  break;
+                case 3:
+                  context.fillRect(5, 1, 6, 14);
+                  break;
+              }
+            }
+
+            drawBuilding(20, 320, 6, 10, 1);
+            drawBuilding(136, 320, 10, 6, 2);
+            drawBuilding(316, 320, 5, 14, 3);
+
+
+
+
+
   #section2.section.py-2 &nbsp;
 
   .lesson.row.pt-2
@@ -211,9 +277,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage3_example2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage3_lesson2_editor'} do
               :preserve
-                var canvas = document.getElementById('granular_basic_cityscape_stage3_example2');
+                var canvas = document.getElementById('granular_basic_cityscape_stage3_lesson2');
                 var context = canvas.getContext('2d');
 
                 function drawBuilding(leftX, groundY, units, floors) {
@@ -253,9 +319,9 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#granular_basic_cityscape_stage3_example2
+                %canvas#granular_basic_cityscape_stage3_lesson2
 
-
+  - challenge_index += 1
   #challenge2.challenge.row.py-4
     .col-xs-12
       .row
@@ -342,6 +408,99 @@
             %canvas#granular_basic_cityscape_stage3_challenge2
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
+              context.save();
+
+              var width = (units * 16) + (4 * 2);
+              var height = (floors * 16) + (4 * 2);
+
+              context.translate(leftX, groundY - height);
+              context.fillStyle = '#999999';
+              context.fillRect(0, 0, width, height);
+
+              context.save();
+              context.translate(4, 4);
+              context.fillStyle = '#666666';
+
+              for (var j=0; j < floors; ++j) {
+                context.save();
+
+                for (var i=0; i < units; ++i) {
+                  drawWindow(windowType);
+                  context.translate(16, 0);
+                }
+                context.restore();
+
+                context.translate(0, 16);
+              }
+
+              context.restore();
+
+              drawRoof(width, roofType);
+
+              context.restore();
+            }
+
+            function drawWindow(windowType) {
+              switch(windowType) {
+                case 0:
+                  context.fillRect(4, 2, 8, 10);
+                  break;
+                case 1:
+                  context.fillRect(2, 3, 5, 8);
+                  context.fillRect(9, 3, 5, 8);
+                  break;
+                case 2:
+                  context.fillRect(0, 3, 16, 8);
+                  break;
+                case 3:
+                  context.fillRect(5, 1, 6, 14);
+                  break;
+              }
+            }
+
+            function drawRoof(w, roofType) {
+              context.save();
+              switch(roofType) {
+                case 1:
+                  context.translate((16 / 2), -16);
+                  context.fillRect(0, 0, w - 16, 16);
+                  break;
+                case 2:
+                  context.translate((16 / 2), -24);
+                  context.fillRect(0, 0, w - 16, 24);
+                  context.translate(((w - 16) / 2) - (32 / 2), -24);
+                  context.fillRect(0, 0, 32, 24);
+                  context.translate((32 / 2) - (8 / 2), -32);
+                  context.fillRect(0, 0, 8, 32);
+                  break;
+                case 3:
+                  context.translate((w - 64) / 2, -16);
+                  context.fillRect(0, 0, 64, 16);
+                  context.translate((64 - 32) / 2, 0);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(16, -64);
+                  context.lineTo(32, 0);
+                  context.closePath();
+                  context.fill();
+                  break;
+              }
+              context.restore();
+            }
+
+            drawBuilding(20, 320, 6, 10, 1, 2);
+            drawBuilding(136, 320, 10, 6, 2, 1);
+            drawBuilding(316, 320, 5, 14, 3, 3);
+
+
+
   #section3.section.py-2 &nbsp;
 
   .lesson.row.pt-2
@@ -384,9 +543,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage3_example3_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage3_lesson3_editor'} do
               :preserve
-                var canvas = document.getElementById('granular_basic_cityscape_stage3_example3');
+                var canvas = document.getElementById('granular_basic_cityscape_stage3_lesson3');
                 var context = canvas.getContext('2d');
 
                 function drawFlag(country) {
@@ -447,9 +606,9 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#granular_basic_cityscape_stage3_example3
+                %canvas#granular_basic_cityscape_stage3_lesson3
 
-
+  - challenge_index += 1
   #challenge3.challenge.row.py-4
     .col-xs-12
       .row
@@ -457,16 +616,17 @@
           %h2.challenge-title.py-2
             Challenge 3
           %p
+            Instead of passing a number into your drawBuilding() function for the
+            number of office units on a floor,
             %span.highlight
-              Instead of passing a number into your drawBuilding() function for the
-              number of office units on a floor, pass a variable with a random integer
-              between 6 and 20 (including 6 and 20).
+              pass a variable with a random integer
+              between 5 and 18 excluding 18 (5, 6, ... 16, 17).
           %p
-            Press "Run" multiple times to make sure the drawBuilding() function is drawing
-            a building with a random number of floors.
             %span.highlight
-              Then, once you feel satisfied with your drawings, mark the challenge as complete by
-              selecting "Yes, it looks good".
+              Press "Run" multiple times
+            to make sure the drawBuilding() function is drawing
+            a building with a random number of floors.
+
           = render 'lessons/relevant', relevant: [:functions, :variables, :random, :round]
           = render 'lessons/code_preview', stage: 3, challenge: 2, editor_id: 'granular_basic_cityscape_stage3_challenge2_editor'
 
@@ -494,7 +654,7 @@
 
             }
 
-            // GENERATE A RANDOM NUMBER BETWEEN 6 AND 20 (INCLUDING 6 AND 20) AND STORE IT IN A VARIABLE HERE
+            // GENERATE A RANDOM NUMBER BETWEEN 5 AND 18 (5, 6, ... 16, 17) AND STORE IT IN A VARIABLE HERE
 
             // USE THE VARIABLE TO DRAW A BUILDING WITH A RANDOM NUMBER OF FLOORS HERE
 
@@ -505,6 +665,100 @@
           .canvas
             %canvas#granular_basic_cityscape_stage3_challenge3
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
+              context.save();
+
+              var width = (units * 16) + (4 * 2);
+              var height = (floors * 16) + (4 * 2);
+
+              context.translate(leftX, groundY - height);
+              context.fillStyle = '#999999';
+              context.fillRect(0, 0, width, height);
+
+              context.save();
+              context.translate(4, 4);
+              context.fillStyle = '#666666';
+
+              for (var j=0; j < floors; ++j) {
+                context.save();
+
+                for (var i=0; i < units; ++i) {
+                  drawWindow(windowType);
+                  context.translate(16, 0);
+                }
+                context.restore();
+
+                context.translate(0, 16);
+              }
+
+              context.restore();
+
+              drawRoof(width, roofType);
+
+              context.restore();
+            }
+
+            function drawWindow(windowType) {
+              switch(windowType) {
+                case 0:
+                  context.fillRect(4, 2, 8, 10);
+                  break;
+                case 1:
+                  context.fillRect(2, 3, 5, 8);
+                  context.fillRect(9, 3, 5, 8);
+                  break;
+                case 2:
+                  context.fillRect(0, 3, 16, 8);
+                  break;
+                case 3:
+                  context.fillRect(5, 1, 6, 14);
+                  break;
+              }
+            }
+
+            function drawRoof(w, roofType) {
+              context.save();
+              switch(roofType) {
+                case 1:
+                  context.translate((16 / 2), -16);
+                  context.fillRect(0, 0, w - 16, 16);
+                  break;
+                case 2:
+                  context.translate((16 / 2), -24);
+                  context.fillRect(0, 0, w - 16, 24);
+                  context.translate(((w - 16) / 2) - (32 / 2), -24);
+                  context.fillRect(0, 0, 32, 24);
+                  context.translate((32 / 2) - (8 / 2), -32);
+                  context.fillRect(0, 0, 8, 32);
+                  break;
+                case 3:
+                  context.translate((w - 64) / 2, -16);
+                  context.fillRect(0, 0, 64, 16);
+                  context.translate((64 - 32) / 2, 0);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(16, -64);
+                  context.lineTo(32, 0);
+                  context.closePath();
+                  context.fill();
+                  break;
+              }
+              context.restore();
+            }
+
+            var floors = 5 + Math.floor(Math.random() * 13);
+
+            drawBuilding(20, 320, 6, floors, 1, 2);
+
+
+
 
   #section4.section.py-2 &nbsp;
 
@@ -537,9 +791,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage3_example4_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage3_lesson4_editor'} do
               :preserve
-                var canvas = document.getElementById('granular_basic_cityscape_stage3_example4');
+                var canvas = document.getElementById('granular_basic_cityscape_stage3_lesson4');
                 var context = canvas.getContext('2d');
 
                 function randomInteger(max) {
@@ -563,7 +817,7 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#granular_basic_cityscape_stage3_example4
+                %canvas#granular_basic_cityscape_stage3_lesson4
 
 
   #challenge4.challenge.row.py-4
@@ -585,7 +839,7 @@
               min value and a max value, including those two values.
           %p
             %span.highlight
-              Then use the randomInteger() function to draw a random building with 6-20
+              Then use the randomInteger() function to draw a random building with 5-12
               floors, 4-10 office units on a floor, and random window and roof types.
           %p
             Note: If you want to restrict the type of roof depending on the width of the
@@ -642,3 +896,101 @@
           .canvas
             %canvas#granular_basic_cityscape_stage3_challenge4
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
+              context.save();
+
+              var width = (units * 16) + (4 * 2);
+              var height = (floors * 16) + (4 * 2);
+
+              context.translate(leftX, groundY - height);
+              context.fillStyle = '#999999';
+              context.fillRect(0, 0, width, height);
+
+              context.save();
+              context.translate(4, 4);
+              context.fillStyle = '#666666';
+
+              for (var j=0; j < floors; ++j) {
+                context.save();
+
+                for (var i=0; i < units; ++i) {
+                  drawWindow(windowType);
+                  context.translate(16, 0);
+                }
+                context.restore();
+
+                context.translate(0, 16);
+              }
+
+              context.restore();
+
+              drawRoof(width, roofType);
+
+              context.restore();
+            }
+
+            function drawWindow(windowType) {
+              switch(windowType) {
+                case 0:
+                  context.fillRect(4, 2, 8, 10);
+                  break;
+                case 1:
+                  context.fillRect(2, 3, 5, 8);
+                  context.fillRect(9, 3, 5, 8);
+                  break;
+                case 2:
+                  context.fillRect(0, 3, 16, 8);
+                  break;
+                case 3:
+                  context.fillRect(5, 1, 6, 14);
+                  break;
+              }
+            }
+
+            function drawRoof(w, roofType) {
+              context.save();
+              switch(roofType) {
+                case 1:
+                  context.translate((16 / 2), -16);
+                  context.fillRect(0, 0, w - 16, 16);
+                  break;
+                case 2:
+                  context.translate((16 / 2), -24);
+                  context.fillRect(0, 0, w - 16, 24);
+                  context.translate(((w - 16) / 2) - (32 / 2), -24);
+                  context.fillRect(0, 0, 32, 24);
+                  context.translate((32 / 2) - (8 / 2), -32);
+                  context.fillRect(0, 0, 8, 32);
+                  break;
+                case 3:
+                  context.translate((w - 64) / 2, -16);
+                  context.fillRect(0, 0, 64, 16);
+                  context.translate((64 - 32) / 2, 0);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(16, -64);
+                  context.lineTo(32, 0);
+                  context.closePath();
+                  context.fill();
+                  break;
+              }
+              context.restore();
+            }
+
+            function randomInteger(min, max) {
+              return min + Math.floor(Math.random() * (max - min));
+            }
+
+            var units = randomInteger(4, 10);
+            var floors = randomInteger(5, 18);
+            var windowType = randomInteger(0, 4);
+            var roofType = randomInteger(0, 4);
+
+            drawBuilding(20, 320, units, floors, windowType, roofType);

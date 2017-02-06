@@ -1,3 +1,6 @@
+- stage_index = 4
+- challenge_index = 0
+
 #granular_basic_cityscape_stage4.page
   %h1 Stage 4
 
@@ -54,9 +57,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage4_example1_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage4_lesson1_editor'} do
               :preserve
-                var canvas = document.getElementById('granular_basic_cityscape_stage4_example1');
+                var canvas = document.getElementById('granular_basic_cityscape_stage4_lesson1');
                 var context = canvas.getContext('2d');
 
                 function randomInteger(min, max) {
@@ -96,9 +99,9 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#granular_basic_cityscape_stage4_example1
+                %canvas#granular_basic_cityscape_stage4_lesson1
 
-
+  - challenge_index += 1
   #challenge1.challenge.row.py-4
     .col-xs-12
       .row
@@ -196,6 +199,112 @@
             %canvas#granular_basic_cityscape_stage4_challenge1
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
+              context.save();
+
+              var width = (units * 16) + (4 * 2);
+              var height = (floors * 16) + (4 * 2);
+
+              context.translate(leftX, groundY - height);
+              context.fillStyle = '#999999';
+              context.fillRect(0, 0, width, height);
+
+              context.save();
+              context.translate(4, 4);
+              context.fillStyle = '#666666';
+
+              for (var j=0; j < floors; ++j) {
+                context.save();
+
+                for (var i=0; i < units; ++i) {
+                  drawWindow(windowType);
+                  context.translate(16, 0);
+                }
+                context.restore();
+
+                context.translate(0, 16);
+              }
+
+              context.restore();
+
+              drawRoof(width, roofType);
+
+              context.restore();
+            }
+
+            function drawWindow(windowType) {
+              switch(windowType) {
+                case 0:
+                  context.fillRect(4, 2, 8, 10);
+                  break;
+                case 1:
+                  context.fillRect(2, 3, 5, 8);
+                  context.fillRect(9, 3, 5, 8);
+                  break;
+                case 2:
+                  context.fillRect(0, 3, 16, 8);
+                  break;
+                case 3:
+                  context.fillRect(5, 1, 6, 14);
+                  break;
+              }
+            }
+
+            function drawRoof(w, roofType) {
+              context.save();
+              switch(roofType) {
+                case 1:
+                  context.translate((16 / 2), -16);
+                  context.fillRect(0, 0, w - 16, 16);
+                  break;
+                case 2:
+                  context.translate((16 / 2), -24);
+                  context.fillRect(0, 0, w - 16, 24);
+                  context.translate(((w - 16) / 2) - (32 / 2), -24);
+                  context.fillRect(0, 0, 32, 24);
+                  context.translate((32 / 2) - (8 / 2), -32);
+                  context.fillRect(0, 0, 8, 32);
+                  break;
+                case 3:
+                  context.translate((w - 64) / 2, -16);
+                  context.fillRect(0, 0, 64, 16);
+                  context.translate((64 - 32) / 2, 0);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(16, -64);
+                  context.lineTo(32, 0);
+                  context.closePath();
+                  context.fill();
+                  break;
+              }
+              context.restore();
+            }
+
+            function randomInteger(min, max) {
+              return min + Math.floor(Math.random() * (max - min));
+            }
+
+            var x = 0;
+            while (x < 800) {
+              var units = randomInteger(4, 10);
+              var floors = randomInteger(5, 18);
+              var windowType = randomInteger(0, 4);
+              var roofType = randomInteger(0, 4);
+
+              drawBuilding(x, 320, units, floors, windowType, roofType);
+
+              x += (units * 16) + (4 * 2) + 12;
+            }
+
+
+
+
   #section2.section.py-2 &nbsp;
 
   .lesson.row.pt-2
@@ -225,9 +334,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage4_example2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage4_lesson2_editor'} do
               :preserve
-                var canvas = document.getElementById('granular_basic_cityscape_stage4_example2');
+                var canvas = document.getElementById('granular_basic_cityscape_stage4_lesson2');
                 var context = canvas.getContext('2d');
 
                 function randomInteger(min, max) {
@@ -294,9 +403,9 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#granular_basic_cityscape_stage4_example2
+                %canvas#granular_basic_cityscape_stage4_lesson2
 
-
+  - challenge_index += 1
   #challenge2.challenge.row.py-4
     .col-xs-12
       .row
@@ -391,6 +500,120 @@
             %canvas#granular_basic_cityscape_stage4_challenge2
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
+              context.save();
+
+              var width = (units * 16) + (4 * 2);
+              var height = (floors * 16) + (4 * 2);
+
+              context.translate(leftX, groundY - height);
+              context.fillStyle = '#999999';
+              context.fillRect(0, 0, width, height);
+
+              context.save();
+              context.translate(4, 4);
+              context.fillStyle = '#666666';
+
+              for (var j=0; j < floors; ++j) {
+                context.save();
+
+                for (var i=0; i < units; ++i) {
+                  drawWindow(windowType);
+                  context.translate(16, 0);
+                }
+                context.restore();
+
+                context.translate(0, 16);
+              }
+
+              context.restore();
+
+              drawRoof(width, roofType);
+
+              context.restore();
+            }
+
+            function drawWindow(windowType) {
+              switch(windowType) {
+                case 0:
+                  context.fillRect(4, 2, 8, 10);
+                  break;
+                case 1:
+                  context.fillRect(2, 3, 5, 8);
+                  context.fillRect(9, 3, 5, 8);
+                  break;
+                case 2:
+                  context.fillRect(0, 3, 16, 8);
+                  break;
+                case 3:
+                  context.fillRect(5, 1, 6, 14);
+                  break;
+              }
+            }
+
+            function drawRoof(w, roofType) {
+              context.save();
+              switch(roofType) {
+                case 1:
+                  context.translate((16 / 2), -16);
+                  context.fillRect(0, 0, w - 16, 16);
+                  break;
+                case 2:
+                  context.translate((16 / 2), -24);
+                  context.fillRect(0, 0, w - 16, 24);
+                  context.translate(((w - 16) / 2) - (32 / 2), -24);
+                  context.fillRect(0, 0, 32, 24);
+                  context.translate((32 / 2) - (8 / 2), -32);
+                  context.fillRect(0, 0, 8, 32);
+                  break;
+                case 3:
+                  context.translate((w - 64) / 2, -16);
+                  context.fillRect(0, 0, 64, 16);
+                  context.translate((64 - 32) / 2, 0);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(16, -64);
+                  context.lineTo(32, 0);
+                  context.closePath();
+                  context.fill();
+                  break;
+              }
+              context.restore();
+            }
+
+            function randomInteger(min, max) {
+              return min + Math.floor(Math.random() * (max - min));
+            }
+
+            function drawBuildingRow(scale) {
+              context.save();
+              context.scale(scale, scale);
+
+              var x = 0;
+              var end = (800 / scale);
+              while (x < end) {
+                var units = randomInteger(4, 10);
+                var floors = randomInteger(5, 18);
+                var windowType = randomInteger(0, 4);
+                var roofType = randomInteger(0, 4);
+
+                drawBuilding(x, (280 / scale), units, floors, windowType, roofType);
+
+                x += (units * 16) + (4 * 2) + 12;
+              }
+              context.restore();
+            }
+
+            drawBuildingRow(0.6);
+
+
+
   #section3.section.py-2 &nbsp;
 
   .lesson.row.pt-2
@@ -425,9 +648,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage4_example3_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage4_lesson3_editor'} do
               :preserve
-                var canvas = document.getElementById('granular_basic_cityscape_stage4_example3');
+                var canvas = document.getElementById('granular_basic_cityscape_stage4_lesson3');
                 var context = canvas.getContext('2d');
 
                 function drawText(text, x, y) {
@@ -463,9 +686,9 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#granular_basic_cityscape_stage4_example3
+                %canvas#granular_basic_cityscape_stage4_lesson3
 
-
+  - challenge_index += 1
   #challenge3.challenge.row.py-4
     .col-xs-12
       .row
@@ -565,6 +788,126 @@
             %canvas#granular_basic_cityscape_stage4_challenge3
           .alert
 
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
+              var windowColor = 'rgb(102, 102, 102)';
+              context.save();
+
+              var width = (units * 16) + (4 * 2);
+              var height = (floors * 16) + (4 * 2);
+
+              context.translate(leftX, groundY - height);
+              context.fillRect(0, 0, width, height);
+
+              context.save();
+              context.translate(4, 4);
+              context.fillStyle = windowColor;
+
+              for (var j=0; j < floors; ++j) {
+                context.save();
+
+                for (var i=0; i < units; ++i) {
+                  drawWindow(windowType);
+                  context.translate(16, 0);
+                }
+                context.restore();
+
+                context.translate(0, 16);
+              }
+
+              context.restore();
+
+              drawRoof(width, roofType);
+
+              context.restore();
+            }
+
+            function drawWindow(windowType) {
+              switch(windowType) {
+                case 0:
+                  context.fillRect(4, 2, 8, 10);
+                  break;
+                case 1:
+                  context.fillRect(2, 3, 5, 8);
+                  context.fillRect(9, 3, 5, 8);
+                  break;
+                case 2:
+                  context.fillRect(0, 3, 16, 8);
+                  break;
+                case 3:
+                  context.fillRect(5, 1, 6, 14);
+                  break;
+              }
+            }
+
+            function drawRoof(w, roofType) {
+              context.save();
+              switch(roofType) {
+                case 1:
+                  context.translate((16 / 2), -16);
+                  context.fillRect(0, 0, w - 16, 16);
+                  break;
+                case 2:
+                  context.translate((16 / 2), -24);
+                  context.fillRect(0, 0, w - 16, 24);
+                  context.translate(((w - 16) / 2) - (32 / 2), -24);
+                  context.fillRect(0, 0, 32, 24);
+                  context.translate((32 / 2) - (8 / 2), -32);
+                  context.fillRect(0, 0, 8, 32);
+                  break;
+                case 3:
+                  context.translate((w - 64) / 2, -16);
+                  context.fillRect(0, 0, 64, 16);
+                  context.translate((64 - 32) / 2, 0);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(16, -64);
+                  context.lineTo(32, 0);
+                  context.closePath();
+                  context.fill();
+                  break;
+              }
+              context.restore();
+            }
+
+            function randomInteger(min, max) {
+              return min + Math.floor(Math.random() * (max - min));
+            }
+
+            function drawBuildingRow(scale) {
+              context.save();
+              context.scale(scale, scale);
+
+              var color = Math.round(153 * scale);
+              var buildingColor = 'rgb(' + color + ',' + color + ',' + color + ')';
+              context.fillStyle = buildingColor;
+
+              var x = 0;
+              var end = (800 / scale);
+              while (x < end) {
+                var units = randomInteger(4, 10);
+                var floors = randomInteger(5, 18);
+                var windowType = randomInteger(0, 4);
+                var roofType = randomInteger(0, 4);
+
+                drawBuilding(x, (280 / scale), units, floors, windowType, roofType);
+
+                x += (units * 16) + (4 * 2) + 12;
+              }
+              context.restore();
+            }
+
+            drawBuildingRow(0.6);
+
+
+
+
+
   #section4.section.py-2 &nbsp;
 
   .lesson.row.pt-2
@@ -582,9 +925,9 @@
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage4_example4_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'granular_basic_cityscape_stage4_lesson4_editor'} do
               :preserve
-                var canvas = document.getElementById('granular_basic_cityscape_stage4_example4');
+                var canvas = document.getElementById('granular_basic_cityscape_stage4_lesson4');
                 var context = canvas.getContext('2d');
 
                 function randomInteger(min, max) {
@@ -714,9 +1057,9 @@
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#granular_basic_cityscape_stage4_example4
+                %canvas#granular_basic_cityscape_stage4_lesson4
 
-
+  - challenge_index += 1
   #challenge4.challenge.row.py-4
     .col-xs-12
       .row
@@ -810,3 +1153,126 @@
           .canvas
             %canvas#granular_basic_cityscape_stage4_challenge4
           .alert
+
+      .row.pt-2
+        = render :layout => '/lessons/code_i_wrote' do
+          :preserve
+            var canvas = document.getElementById('flappy_square_stage#{stage_index}_challenge#{challenge_index}');
+            var context = canvas.getContext('2d');
+
+            function drawBuilding(leftX, groundY, units, floors, windowType, roofType) {
+              var windowColor = 'rgb(102, 102, 102)';
+              context.save();
+
+              var width = (units * 16) + (4 * 2);
+              var height = (floors * 16) + (4 * 2);
+
+              context.translate(leftX, groundY - height);
+              context.fillRect(0, 0, width, height);
+
+              context.save();
+              context.translate(4, 4);
+              context.fillStyle = windowColor;
+
+              for (var j=0; j < floors; ++j) {
+                context.save();
+
+                for (var i=0; i < units; ++i) {
+                  drawWindow(windowType);
+                  context.translate(16, 0);
+                }
+                context.restore();
+
+                context.translate(0, 16);
+              }
+
+              context.restore();
+
+              drawRoof(width, roofType);
+
+              context.restore();
+            }
+
+            function drawWindow(windowType) {
+              switch(windowType) {
+                case 0:
+                  context.fillRect(4, 2, 8, 10);
+                  break;
+                case 1:
+                  context.fillRect(2, 3, 5, 8);
+                  context.fillRect(9, 3, 5, 8);
+                  break;
+                case 2:
+                  context.fillRect(0, 3, 16, 8);
+                  break;
+                case 3:
+                  context.fillRect(5, 1, 6, 14);
+                  break;
+              }
+            }
+
+            function drawRoof(w, roofType) {
+              context.save();
+              switch(roofType) {
+                case 1:
+                  context.translate((16 / 2), -16);
+                  context.fillRect(0, 0, w - 16, 16);
+                  break;
+                case 2:
+                  context.translate((16 / 2), -24);
+                  context.fillRect(0, 0, w - 16, 24);
+                  context.translate(((w - 16) / 2) - (32 / 2), -24);
+                  context.fillRect(0, 0, 32, 24);
+                  context.translate((32 / 2) - (8 / 2), -32);
+                  context.fillRect(0, 0, 8, 32);
+                  break;
+                case 3:
+                  context.translate((w - 64) / 2, -16);
+                  context.fillRect(0, 0, 64, 16);
+                  context.translate((64 - 32) / 2, 0);
+                  context.beginPath();
+                  context.moveTo(0, 0);
+                  context.lineTo(16, -64);
+                  context.lineTo(32, 0);
+                  context.closePath();
+                  context.fill();
+                  break;
+              }
+              context.restore();
+            }
+
+            function randomInteger(min, max) {
+              return min + Math.floor(Math.random() * (max - min));
+            }
+
+            function drawBuildingRow(scale, ground) {
+              context.save();
+              context.scale(scale, scale);
+
+              var color = Math.round(153 * scale);
+              var buildingColor = 'rgb(' + color + ',' + color + ',' + color + ')';
+              context.fillStyle = buildingColor;
+
+              var x = 0;
+              var end = (canvas.width / scale);
+              while (x < end) {
+                var units = randomInteger(4, 10);
+                var floors = randomInteger(5, 18);
+                var windowType = randomInteger(0, 4);
+                var roofType = randomInteger(0, 4);
+
+                drawBuilding(x, (ground / scale), units, floors, windowType, roofType);
+
+                x += (units * 16) + (4 * 2) + 12;
+              }
+              context.restore();
+            }
+
+            context.save();
+            context.fillStyle = '#CCCCCC';
+            context.fillRect(0, canvas.height - 100, canvas.width, 100);
+            context.restore();
+
+            drawBuildingRow(0.6, 280);
+            drawBuildingRow(0.8, 300);
+            drawBuildingRow(1, 320);

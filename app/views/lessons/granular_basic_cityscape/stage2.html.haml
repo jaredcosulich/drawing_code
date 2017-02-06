@@ -1,4 +1,4 @@
-- stage_index = 1
+- stage_index = 2
 - challenge_index = 0
 
 #granular_basic_cityscape_stage2.page
@@ -330,7 +330,7 @@
               context.translate(4, 4); // Wall padding
               context.translate(4, 4); // Window offset within office.
 
-              for (var i=0; i<units; ++i) {
+              for (var i=0; i < units; ++i) {
                 context.fillRect(0, 0, 8, 10);
                 context.translate(16, 0);
               }
@@ -501,11 +501,11 @@
               context.translate(4, 4);
               context.fillStyle = '#666666';
 
-              for (var j=0; j<floors; ++j) {
+              for (var j=0; j < floors; ++j) {
                 context.save();
 
                 context.translate(4, 4);
-                for (var i=0; i<units; ++i) {
+                for (var i=0; i < units; ++i) {
                   context.fillRect(0, 0, 8, 10);
                   context.translate(16, 0);
                 }
