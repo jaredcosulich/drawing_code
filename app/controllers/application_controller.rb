@@ -75,15 +75,18 @@ class ApplicationController < ActionController::Base
           :clear_rect,
           :fill_rect,
           :fill_style,
-          :line_to,
+          :save,
+          :translate,
           :random,
+          :round,
+          :set_interval,
         ],
         concepts: [
           :coordinates,
           :event_listeners,
           :functions,
-          :set_interval,
           :variables,
+          :while_loops,
         ]
       },
       {

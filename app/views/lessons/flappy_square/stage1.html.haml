@@ -324,7 +324,7 @@
             %code context.strokeRect(x, y, width, height)
 
           %p In the end our game should look like the example provided to the right.
-          = render 'lessons/relevant', relevant: [:line_to, :fill_rect, :coordinates]
+          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates]
           = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
 
       .row
@@ -408,7 +408,7 @@
 
           %p In the end your flappy square should behave like the example provided to the right.
 
-          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates, :line_to]
+          = render 'lessons/relevant', relevant: [:fill_rect, :coordinates]
           = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
 
       .row
@@ -478,7 +478,7 @@
             %span.highlight 150 pixels
             from a left hand border.
 
-          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_rect, :line_to]
+          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_rect]
 
         .col-xs-12
           .interactive.row.py-1
@@ -558,7 +558,7 @@
           %p
             In the end your game should look like the image provided above.
 
-          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_rect, :line_to]
+          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_rect]
           = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
 
       .row
@@ -679,7 +679,7 @@
           %p
             In the end your game should look like the image provided above.
 
-          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_rect, :line_to]
+          = render 'lessons/relevant', relevant: [:variables, :coordinates, :fill_rect]
           = render 'lessons/code_preview', stage: stage_index, challenge: challenge_index - 1, editor_id: "flappy_square_stage#{stage_index}_challenge#{challenge_index - 1}_editor"
 
       .row
