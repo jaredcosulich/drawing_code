@@ -70,23 +70,20 @@ class ApplicationController < ActionController::Base
         experimental: true,
         name: 'Flappy Square',
         slug: 'flappy_square',
-        stages: [6, 6, 5, 3, 4],
+        stages: [7, 6, 3, 4],
         reference: [
           :clear_rect,
           :fill_rect,
           :fill_style,
-          :save,
-          :translate,
+          :line_to,
           :random,
-          :round,
-          :set_interval,
         ],
         concepts: [
           :coordinates,
           :event_listeners,
           :functions,
+          :set_interval,
           :variables,
-          :while_loops,
         ]
       },
       {
@@ -174,6 +171,19 @@ class ApplicationController < ActionController::Base
           :event_listeners,
           :objects,
           :arrays
+        ]
+      },
+      {
+        experimental: true,
+        name: 'Owl and Mr. Rectangle Man',
+        slug: 'owl_rectangle_man',
+        stages: [6, 3, 4, 4],
+        reference: [
+          :fill_rect,
+          :fill_style
+        ],
+        concepts: [
+          :coordinates
         ]
       }
     ]
