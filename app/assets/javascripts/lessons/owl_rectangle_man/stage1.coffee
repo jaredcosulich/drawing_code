@@ -14,26 +14,17 @@ initOwlRectangleManStage1Challenge1 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    drawGround = (y) ->
-      context.save()
-      context.fillStyle = 'Black'
-      context.fillRect(0, y, canvas.width, 2)
-      context.restore()
-      return
-    
-    context.fillStyle = 'Black'
-    context.fillRect(40, 80, 320, 160)
-    drawGround(240)
+    context.fillRect(80, 40, 240, 160)
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You drew the building and positioned the ground correctly!'
+        message = '<strong>Success!</strong> You drew the rectangle at the correct position and with the correct size!'
         App.currentProgress.challengeComplete('owl_rectangle_man_stage1', 'challenge1')
       else
-        message = 'Nice try, but you need to draw the building and then figure out where to draw the ground correctly.'
+        message = 'Nice try, but you need to draw the rectangle at the correct position and with the correct size.'
 
       canvas.alert(message, success)
 
@@ -44,31 +35,21 @@ initOwlRectangleManStage1Challenge2 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    drawGround = (y) ->
-      context.save()
-      context.fillStyle = 'Black'
-      context.fillRect(0, y, canvas.width, 2)
-      context.restore()
-      return
     
-    x = 100
-    y = 40
-    w = 150
-    h = 240
-    
-    context.fillStyle = '#999999'
-    context.fillRect(x, y, w, h)
-    drawGround(y + h)
+    context.fillStyle = '#660099'
+    context.fillRect(60, 40, 100, 80)
+    context.fillStyle = 'rgb(255, 153, 51)'
+    context.fillRect(20, 160, 300, 120)
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You drew the gray building with the correct size and position, and positioned the ground beneath it!'
+        message = '<strong>Success!</strong> You drew two rectangles filled with the correct colors!'
         App.currentProgress.challengeComplete('owl_rectangle_man_stage1', 'challenge2')
       else
-        message = 'Nice try, but you need to draw the gray building with the correct size and position, and position the ground beneath it.'
+        message = 'Nice try, but you need to draw two rectangles filled with the correct colors.'
 
       canvas.alert(message, success)
 
@@ -78,51 +59,9 @@ initOwlRectangleManStage1Challenge3 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  solution = (canvas, context) ->
-    drawOffices = (x, y, units, floors) ->
-      context.save()
-      context.translate(x, y)
-      context.strokeStyle = 'Black'
-      i = 0
-      while i < floors
-        j = 0
-        while j < units
-          context.strokeRect(4 + 16 * j, 4 + 16 * i, 16, 16)
-          j += 1
-        i += 1
-      context.restore()
-      return
-    
-    drawGround = (y) ->
-      context.save()
-      context.fillStyle = 'Black'
-      context.fillRect(0, y, canvas.width, 2)
-      context.restore()
-      return
-    
-    x = 120
-    y = 80
-    units = 8
-    floors = 10
-    w = 8 + 16 * units
-    h = 8 + 16 * floors
-    
-    context.fillStyle = '#999999'
-    context.fillRect(x, y, w, h)
-    drawOffices(x, y, units, floors)
-    drawGround(y + h)
-
-  testCode = new Test.Code(code: solution, canvas: canvas)
-
   challenge.find('.run').click ->
-    testCode.test (success) ->
-      if success
-        message = '<strong>Success!</strong> You drew the gray building with the correct size and position, and positioned the ground beneath it!'
-        App.currentProgress.challengeComplete('owl_rectangle_man_stage1', 'challenge3')
-      else
-        message = 'Nice try, but you need to draw the gray building with the correct size and position, and position the ground beneath it.'
-
-      canvas.alert(message, success)
+    canvas.selfAssess ->
+      App.currentProgress.challengeComplete('owl_rectangle_man_stage1', 'challenge3')
 
 
 initOwlRectangleManStage1Challenge4 = (page) ->

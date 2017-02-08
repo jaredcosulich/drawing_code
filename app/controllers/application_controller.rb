@@ -175,7 +175,7 @@ class ApplicationController < ActionController::Base
       },
       {
         experimental: true,
-        name: 'Owl and Mr. Rectangle Man',
+        name: 'Owl and Rectangle Man',
         slug: 'owl_rectangle_man',
         stages: [6, 3, 4, 4],
         reference: [

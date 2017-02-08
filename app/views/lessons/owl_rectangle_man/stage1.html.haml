@@ -10,9 +10,10 @@
           %figure.float-xs-right.px-2
             = image_tag('lessons/owl_rectangle_man/stage1/overviewVisual1.png', class: 'img-fluid')
           %p
-            In the first stage of the Cityscape Challenge, we draw the shapes of
-            buildings with different sizes. Because we will be drawing lots of buildings,
-            we will automate the process using functions and variables.
+            These lessons show you how to create your own storybook.
+          %p
+            In the first stage, we draw a scene featuring our main characters, Owl and
+            Rectangle Man, sitting and talking at home in their kitchen.
 
   #section1.section.py-2 &nbsp;
 
@@ -21,73 +22,26 @@
       .row
         .col-xs-12
           %h2.py-2
-            Draw a Building
+            The Coordinate System
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/exampleVisual1.png', class: 'img-fluid')
           %p
-            A building is a filled in rectangle. We use the
-            %code
-              context.fillStyle
-            property to set the color of the rectangle and the
-            %code
-              context.fillRect()
-            method to draw the rectangle.
+            When drawing on a canvas, the canvas's context uses a coordinate system to
+            position lines, rectangles, and other shapes on the canvas.
           %p
-            We start by setting the
-            %code
-              context.fillStyle
-            property to the color
-            %span
-              %code>
-                '#1E90FF'
-              \:
-          %pre
-            %code
-              :preserve
-                context.fillStyle = '#1E90FF';
+            By default, the origin (0, 0) of the context's coordinate system is the top
+            left corner of the canvas. The x-coordinate is the distance of a point from the
+            origin moving to the right and the y-coordinate is the distance from the origin
+            moving down.
           %p
-            Then, we use the
-            %code
-              context.fillRect()
-            method to draw the rectangle with the fill color:
-          %pre
-            %code
-              :preserve
-                context.fillRect(100, 50, 160, 240);
+            For example, the point (80, 50) is 80 pixels to the right of the origin and 50
+            pixels down.
           %p
-            To draw a rectangle, we pass the
-            %code
-              context.fillRect()
-            method four values. The first two values are the x- and y-coordinates of the top
-            left corner of the rectangle. We are drawing this rectangle at the coordinates (100, 50).
-          %p
-            The context's coordinate system is slightly different than the coordinate system
-            we use in math. The origin (0, 0) is in the top left corner of the canvas, not the
-            bottom left corner. The x-coordinate still measures distance to the right of the
-            origin, but the y-coordinate measures distance down, not up. Therefore, the top left
-            corner of our rectangle is 100 pixels to the right and 50 pixels down from the origin.
-          %p
-            The second two values are the width and height of the rectangle. This rectangle is
-            160 pixels wide and 240 pixels tall.
-          %p
-            Try changing the first two values passed into the
-            %code
-              context.fillRect()
-            method to move the rectangle around the canvas. Change the second two values to
-            resize the rectangle.
-          %p
-            To learn more about the coordinate system, drawing rectangles, and defining fill
-            colors, visit the
-            %span
-              %span><
-                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
-              ,
-            %span
-              %span><
-                = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
-              ,
-            and
-            = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
-            lessons.
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
+            To see the coordinates of a point on the canvas, mouse over the gray area in
+            the canvas to the right. To learn more about the coordinate system, visit the
+            = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates]
 
 
         .col-xs-12
@@ -97,8 +51,23 @@
                 var canvas = document.getElementById('owl_rectangle_man_stage1_example1');
                 var context = canvas.getContext('2d');
 
-                context.fillStyle = '#1E90FF';
-                context.fillRect(100, 50, 160, 240);
+                context.font= '16px Arial';
+                context.textBaseline = 'middle';
+                context.fillStyle = '#000000';
+
+                canvas.addEventListener('mouseout', function(e) {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                });
+
+                canvas.addEventListener('mousemove', function(e) {
+                  context.clearRect(0, 0, canvas.width, canvas.height);
+                  context.beginPath();
+                  context.arc(e.layerX, e.layerY, 3, 0, 2 * Math.PI, false);
+                  context.closePath();
+                  context.fill();
+                  var text = '(' + e.layerX + ', ' + e.layerY + ')';
+                  context.fillText(text, e.layerX + 5, e.layerY);
+                });
 
             .visual.col-xs-6
               %h5
@@ -106,6 +75,54 @@
                 %small (your drawing will display here)
               .canvas
                 %canvas#owl_rectangle_man_stage1_example1
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw a Black Rectangle
+          %p
+            The <code>context.fillRect()</code> method draws a filled rectangle on
+            the canvas by passing it four values:
+          %pre
+            %code
+              :preserve
+                context.fillRect(x, y, width, height);
+          %p
+            This programs the context to draw a rectangle at the coordinates (<code>x</code>,
+            <code>y</code>) with the given <code>width</code> and <code>height</code> values.
+          %p
+            In this example, we draw a black rectangle at (50, 100) with a width of
+            200 and a height of 80.
+          %pre
+            %code
+              :preserve
+                context.fillRect(50, 100, 200, 80);
+          %p
+            Change the x- and y-coordinates to move the rectangle on the canvas. Change
+            the width and height to change the size of the rectangle. To learn more about
+            drawing rectangles, visit the
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage1_example2');
+                var context = canvas.getContext('2d');
+                
+                context.fillRect(50, 100, 200, 80);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                .background.hidden-xl-down= image_tag('lessons/owl_rectangle_man/stage1/example2.png')
+                %canvas#owl_rectangle_man_stage1_example2
 
   #challenge1.challenge.row.py-4
     .col-xs-12
@@ -117,29 +134,9 @@
             = image_tag('lessons/owl_rectangle_man/stage1/challenge1Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Use the
-            %code
-              context.fillRect()
-            method to draw a building (rectangle) that is 320 pixels wide and 160
-            pixels tall so the top left corner of the building is positioned at (40, 80).
-          %p
-            Figure out the y-coordinate of the bottom of the building. Then, use the
-            %code
-              drawGround()
-            function to draw a line representing the ground beneath the building. For
-            example, if the y-coordinate of the bottom of the building is 120, use:
-          %pre
-            %code
-              :preserve
-                drawGround(120);
-          %p
-            Make sure to draw the ground after drawing the building.
-          %p
-            If you need help drawing the building or positioning the ground, visit the
-            = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
-            and
-            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
-            lessons.
+            Use the <code>context.fillRect()</code> method to draw a rectangle at the
+            coordinates (80, 40) with a width of 240 and a height of 160. It should cover
+            the gray rectangle pre-drawn on the canvas.
           = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
 
       .row.py-1
@@ -147,19 +144,8 @@
           :preserve
             var canvas = document.getElementById('owl_rectangle_man_stage1_challenge1');
             var context = canvas.getContext('2d');
-
-            context.fillStyle = 'Black';
-
-            // DRAW THE BUILDING HERE
-
-            // DRAW THE LINE FOR THE GROUND HERE
-
-            function drawGround(y) {
-              context.save();
-              context.fillStyle = 'Black';
-              context.fillRect(0, y, canvas.width, 2);
-              context.restore();
-            }
+            
+            // Draw a rectangle at (80, 40) with a width of 240 and a height of 160
 
         .visual.col-xs-6
           %h5
@@ -177,68 +163,62 @@
       .row
         .col-xs-12
           %h2.py-2
-            Use Variables to Size and Position a Building
+            Fill a Rectangle with a Color
           %p
-            We can use variables to automatically size and position a building.
+            While the default fill color is black, we can set the <code>context.fillStyle</code>
+            property to fill our rectangles with other colors.
           %p
-            In this example, we draw a green building (color
-            %span
-              %code>
-                '#228B22'
-              )
-            that is twice as tall as it is wide, and positioned at (60, 40).
-          %p
-            To change the size of the building, all we do is assign a different value to the variable
-            %span
-              %code>
-                w
-              \.
-            The program automatically calculates the height of the building and assigns it to the variable
-            %span
-              %code>
-                h
-              \.
+            In this example, we set the <code>context.fillStyle</code> property to the color
+            <code>'DodgerBlue'</code> before filling a rectangle at (100, 60) with a width of 120
+            and a height of 200.
           %pre
             %code
               :preserve
-                var w = 80; // Change this value to resize the building
-                var h = 2 * w; // The height is automatically two times the width
+                context.fillStyle = 'DodgerBlue';
+                context.fillRect(100, 60, 120, 200);
           %p
-            We use the values stored in the variables to draw the building:
-          %pre
-            %code
-              :preserve
-                context.fillStyle = '#228B22';
-                context.fillRect(60, 40, w, h);
+            There are several different ways to define a color. The easiest is using a color
+            name, such as <code>'DodgerBlue'</code>. But only 141 colors have official names.
+            By using hex triplets or RGB values, we can define over 16 million colors
+            (<code>'DodgerBlue'</code> is <code>'#1E90FF'</code> or <code>'rgb(30, 144, 255)'</code>),
+            and we can even make colors partially transparent (<code>'rgba(30, 144, 255, 0.5)'</code>).
           %p
-            Change the value stored in the variable
-            %code
-              w
-            to see what happens. To learn more about variables, visit the
-            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+            Here is a full list of
+            %span
+              %span><
+                = link_to('HTML5 color names', 'http://www.rapidtables.com/web/color/html-color-codes.htm', target: '_blank')
+              ,
+            a list of
+            %span
+              %span><
+                = link_to('common hex triplets', 'http://www.rapidtables.com/web/color/Web_Safe.htm', target: '_blank')
+              ,
+            and a tool for finding
+            %span
+              %span><
+                = link_to('RGB values', 'http://www.rapidtables.com/web/color/RGB_Color.htm', target: '_blank')
+              \.
+            To learn more about defining fill colors, visit the
+            = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
             lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
 
         .col-xs-12
           .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_example2_editor'} do
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_example3_editor'} do
               :preserve
-                var canvas = document.getElementById('owl_rectangle_man_stage1_example2');
+                var canvas = document.getElementById('owl_rectangle_man_stage1_example3');
                 var context = canvas.getContext('2d');
 
-                var w = 80; // Change this value to resize the building
-                var h = 2 * w; // The height is automatically two times the width
-
-                context.fillStyle = '#228B22';
-                context.fillRect(60, 40, w, h);
+                context.fillStyle = 'DodgerBlue';
+                context.fillRect(100, 60, 120, 200);
 
             .visual.col-xs-6
               %h5
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                %canvas#owl_rectangle_man_stage1_example2
-
+                %canvas#owl_rectangle_man_stage1_example3
 
   #challenge2.challenge.row.py-4
     .col-xs-12
@@ -249,42 +229,11 @@
           %figure.float-xs-right.px-2
             = image_tag('lessons/owl_rectangle_man/stage1/challenge2Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
-
           %p
-            Assign values to the variables
-            %span
-              %code>
-                x
-              ,
-            %span
-              %code>
-                y
-              ,
-            %span
-              %code>
-                w
-              ,
-            and
-            %code
-              h
-            in the program below to draw a gray (color
-            %span
-              %code>
-                '#999999'
-              )
-            building with its top left corner positioned at (100, 40) and a width of 150 and height of 240.
-          %p
-            Then, figure out the y-coordinate of the bottom of the building. Use the
-            %code
-              drawGround()
-            function to draw a line representing the ground. Draw the ground after drawing the building.
-            Can you calculate the ground's y-coordinate using the variables in the program?
-          %p
-            If you need help using variables, visit the
-            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
-            lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
-          = render 'lessons/code_preview', stage: 1, challenge: 1, editor_id: 'owl_rectangle_man_stage1_challenge1_editor'
+            Fill one rectangle with the color <code>'#660099'</code> at (60, 40) with a
+            width of 100 and height of 80. Fill a second rectangle with the color
+            <code>'rgb(255, 153, 51)'</code> at (20, 160) with a width of 300 and height of 120.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_challenge2_editor'} do
@@ -292,23 +241,11 @@
             var canvas = document.getElementById('owl_rectangle_man_stage1_challenge2');
             var context = canvas.getContext('2d');
 
-            var x = 0;
-            var y = 0; // The building's top left corner is at (100, 40)
-            var w = 100;
-            var h = 100; // The building is 150 pixels wide and 240 pixels tall
-
-            // SET THE COLOR OF THE BUILDING TO #999999 HERE
-
-            // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
-
-            drawGround(100); // Position and draw the ground here
-
-            function drawGround(y) {
-              context.save();
-              context.fillStyle = 'Black';
-              context.fillRect(0, y, canvas.width, 2);
-              context.restore();
-            }
+            // Set the fill color to '#660099'
+            // Fill a rectangle at (60, 40) with a width of 100 and height of 80
+            
+            // Set the fill color to 'rgb(255, 153, 51)'
+            // Fill a rectangle at (20, 160) with a width of 300 and height of 120
 
         .visual.col-xs-6
           %h5
@@ -321,6 +258,73 @@
 
   #section3.section.py-2 &nbsp;
 
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use Draw Order to Layer Rectangles
+          %p
+            If we draw two rectangles which overlap, the second rectangle is drawn on top of
+            the first rectangle. We can use this effect to create fun drawings just using rectangles.
+          %p
+            In this example, we start drawing Rectangle Man's head by layering five rectangles
+            filled with two different colors.
+          %p
+            There are a couple of things to notice. First, since the neck and face are both the
+            same color, we only need to set the <code>context.fillStyle</code> property once before
+            filling both rectangles. Second, we are drawing both ears with one rectangle.
+          %p
+            To see an individual rectangle, hide the other four rectangles by using double
+            slashes (<code>&frasl;&frasl;</code>) to comment out those lines of code. For example, to
+            see only the ears, comment out the neck, face, nose, and nostrils:
+          %pre
+            %code
+              :preserve
+                context.fillStyle = '#CCAA77';
+                context.fillRect(72, 130, 136, 40); // Ears
+                
+                context.fillStyle = '#DDBB88';
+                // context.fillRect(100, 80, 80, 200); // Neck
+                // context.fillRect(80, 80, 120, 160); // Face
+                
+                context.fillStyle = '#CCAA77';
+                // context.fillRect(130, 150, 20, 40); // Nose
+                // context.fillRect(126, 174, 28, 16); // Nostrils
+          %p
+            Then, try adding the rectangles back in one at a time to see how they layer.
+            To learn more about setting fill colors and layering rectangles, visit the
+            = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
+            and
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage1_example4');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = '#CCAA77';
+                context.fillRect(72, 130, 136, 40); // Ears
+                
+                context.fillStyle = '#DDBB88';
+                context.fillRect(100, 80, 80, 200); // Neck
+                context.fillRect(80, 80, 120, 160); // Face
+                
+                context.fillStyle = '#CCAA77';
+                context.fillRect(130, 150, 20, 40); // Nose
+                context.fillRect(126, 174, 28, 16); // Nostrils
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#owl_rectangle_man_stage1_example4
+
   #challenge3.challenge.row.pt-2.pb-4
     .col-xs-12
       .row
@@ -328,70 +332,17 @@
           %h2.challenge-title.py-2
             Challenge 3
           %figure.float-xs-right.px-2
-            .pb-1
-              = image_tag('lessons/owl_rectangle_man/stage1/challenge3Visual1.png', class: 'img-fluid')
-            = image_tag('lessons/owl_rectangle_man/stage1/challenge3Visual2.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small What your drawing should look like
-
+            = image_tag('lessons/owl_rectangle_man/stage1/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Our version of Rectangle Man's face
           %p
-            For our cityscape, we don't want think about buildings in terms of pixels.
-            We want to size buildings based on the number of floors they have and the
-            number of office units on each floor, and then write the program so it
-            calculates the number of pixels for us.
+            Complete Rectangle Man's face by drawing in his eyes and mouth with rectangles.
+            We used the color <code>'White'</code> for the whites of his eyes, the color
+            <code>'#6699FF'</code> for his pupils, and the color <code>'#994444'</code> for
+            his lips. But feel free to get creative. Can you draw his eyes and mouth so he
+            looks angry, sad, or surprised?
           %p
-            Each office unit is 16 pixels wide and 16 pixels tall. The outer walls,
-            roof, and floor of the building are each 4 pixels thick.
-          %p
-            The number of office units on each floor is assigned to the variable
-            %code
-              units
-            and the number of floors in the building is assigned to the variable
-            %span
-              %code>
-                floors
-              \.
-            Use the values stored in those variables to calculate the width and height of the building.
-          %p
-            Then, draw a gray (color
-            %span
-              %code>
-                '#999999'
-              )
-            building with 10 floors and 8 office units on each floor with its top left
-            corner positioned at (120, 80).
-          %p
-            Use the function
-            %code
-              drawOffices()
-            to draw the offices in the building by passing it the values stored in the variables
-            %span
-              %code>
-                x
-              ,
-            %span
-              %code>
-                y
-              ,
-            %span
-              %code>
-                w
-              ,
-            and
-            %span
-              %code>
-                h
-              \.
-          %p
-            Finally, figure out the y-coordinate of the bottom of the building and then use the
-            %code
-              drawGround()
-            function to draw a line representing the ground. Draw the ground after drawing the building.
-          %p
-            If you need help using variables, visit the
-            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
-            lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style]
-          = render 'lessons/code_preview', stage: 1, challenge: 2, editor_id: 'owl_rectangle_man_stage1_challenge2_editor'
+            Once you are satisfied with your drawing, mark the challenge as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_challenge3_editor'} do
@@ -399,44 +350,19 @@
             var canvas = document.getElementById('owl_rectangle_man_stage1_challenge3');
             var context = canvas.getContext('2d');
 
-            var x = 120;
-            var y = 80;
-            var units = 8;
-            var floors = 10;
-
-            var w = 0; // Use the variable units to calculate the width of the building
-            var h = 0; // Use the variable floors to calculate the height of the building
-
-            // SET THE COLOR OF THE BUILDING TO #999999 HERE
-
-            // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
-
-            drawOffices(x, y, w, h); // Draw the offices
-
-            drawGround(100); // Position and draw the ground here
-
-            function drawOffices(x, y, w, h) {
-              var u = Math.floor((w - 4) / 16);
-              var f = Math.floor((h - 4) / 16);
-
-              context.save();
-              context.translate(x + 4, y + 4);
-              context.strokeWidth = 1;
-              context.strokeStyle = '#000000';
-
-              for (var i = 0; i < f; i++) {
-                for (var j = 0; j < u; j++) context.strokeRect(16 * j, 16 * i, 16, 16);
-              }
-
-              context.restore();
-            }
-
-            function drawGround(y) {
-              context.save();
-              context.fillStyle = 'Black';
-              context.fillRect(0, y, canvas.width, 2);
-              context.restore();
-            }
+            context.fillStyle = '#CCAA77';
+            context.fillRect(72, 130, 136, 40); // Ears
+            
+            context.fillStyle = '#DDBB88';
+            context.fillRect(100, 80, 80, 200); // Neck
+            context.fillRect(80, 80, 120, 160); // Face
+            
+            context.fillStyle = '#CCAA77';
+            context.fillRect(130, 150, 20, 40); // Nose
+            context.fillRect(126, 174, 28, 16); // Nostrils
+            
+            // Draw eyes
+            // Draw mouth
 
         .visual.col-xs-6
           %h5
@@ -448,74 +374,6 @@
           .alert
 
   #section4.section.py-2 &nbsp;
-
-  .lesson.row.pt-2
-    .col-xs-12
-      .row
-        .col-xs-12
-          %h2.py-2
-            Use a Function to Draw a Building
-          %p
-            Drawing a single building takes a few steps. First, we have to calculate the width
-            and height of the building. Then, we have to set the building color and draw the
-            rectangle. Once we start drawing in windows, the list of steps will get much longer.
-          %p
-            To draw our cityscape, we have to draw dozens of buildings. Typing in all
-            that code for each building is going to be a lot of work.
-          %p
-            If there is a chunk of code that you are going to use over and over again,
-            putting that code into a function can make your life much easier. Then,
-            to run the code, all you have to do is call the function by typing one line.
-          %p
-            In this example, we create a function that will draw a French flag. Because we
-            might want to draw a French flag in lots of different places, we make the x- and
-            y-coordinates of the flag parameters. When we call
-            %span
-              %code>
-                drawFrenchFlag(30, 100)
-              ,
-            the 30 is automatically assigned to the parameter
-            %code
-              x
-            and the 100 to the parameter
-            %code
-              y
-            inside the function. Now we can easily draw as many French flags as we want!
-          %p
-            To learn more about functions, visit the
-            = link_to_lesson('Functions', :functions, nil, class: 'reference-link', data: {slug: :functions})
-            lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style]
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_example3_editor'} do
-              :preserve
-                var canvas = document.getElementById('owl_rectangle_man_stage1_example3');
-                var context = canvas.getContext('2d');
-
-                function drawFrenchFlag(x, y) {
-                  context.fillStyle = '#0055A4';
-                  context.fillRect(x, y, 20, 40);
-
-                  context.fillStyle = '#FFFFFF';
-                  context.fillRect(x + 20, y, 20, 40);
-
-                  context.fillStyle = '#EF4135';
-                  context.fillRect(x + 40, y, 20, 40);
-                }
-
-                drawFrenchFlag(30, 100);
-                drawFrenchFlag(150, 50);
-                drawFrenchFlag(300, 180);
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#owl_rectangle_man_stage1_example3
-
 
   #challenge4.challenge.row.py-4
     .col-xs-12
@@ -609,127 +467,6 @@
           .alert
 
   #section5.section.py-2 &nbsp;
-
-  .lesson.row.pt-2
-    .col-xs-12
-      .row
-        .col-xs-12
-          %h2.py-2
-            Anchor the Building to the Ground
-          %p
-            You may have noticed that the two buildings in Challenge 3 are lined up along
-            their top edges, not their bottom edges. In general, buildings are lined up along
-            their bottom edges where they sit on the ground.
-          %p
-            In this example, we create the
-            %code
-              fillCenteredRectangle()
-            function, which automatically positions a rectangle by its top center point.
-            This function has four parameters:
-            %span
-              %code>
-                centerX
-              ,
-            %span
-              %code>
-                topY
-              ,
-            %span
-              %code>
-                w
-              ,
-            and
-            %span
-              %code>
-                h
-              \.
-          %pre
-            %code
-              :preserve
-                function fillCenteredRectangle(centerX, topY, w, h) {
-
-                  // code block
-
-                }
-          %p
-            Inside the function, we use the parameters to calculate the coordinates of
-            the rectangle's top left corner and draw the rectangle:
-          %pre
-            %code
-              :preserve
-                function fillCenteredRectangle(centerX, topY, w, h) {
-                  var x = centerX - w / 2;
-                  var y = topY;
-
-                  context.fillRect(x, y, w, h);
-                }
-          %p
-            Since
-            %code
-              centerX
-            is the x-coordinate of the center of the rectangle, we need to subtract half
-            the rectangle's width to get the x-coordinate of the rectangle's top left corner. Since
-            %code
-              topY
-            is the y-coordinate of the top of the rectangle, which is what we want, we assign
-            it to the variable
-            %span
-              %code>
-                y
-              \.
-          %p
-            Now we can easily draw a group of rectangles and line them up by their top center
-            points. To learn more about positioning rectangles using variables, visit the
-            %span
-              %span><
-                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
-              ,
-            %span
-              %span><
-                = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
-              ,
-            and
-            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
-            lessons.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect]
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_example4_editor'} do
-              :preserve
-                var canvas = document.getElementById('owl_rectangle_man_stage1_example4');
-                var context = canvas.getContext('2d');
-
-                var centerX = 180; // The x-coordinate of the center of the rectangles
-
-                drawCenterLine();
-
-                context.fillStyle = 'DeepPink';
-                fillCenteredRectangle(centerX, 20, 200, 80); // Centered at centerX
-                fillCenteredRectangle(centerX, 120, 320, 100); // Centered at centerX
-                fillCenteredRectangle(centerX, 240, 240, 60); // Centered at centerX
-
-                function fillCenteredRectangle(centerX, topY, w, h) {
-                  var x = centerX - w / 2;
-                  var y = topY;
-
-                  context.fillRect(x, y, w, h);
-                }
-
-                function drawCenterLine() {
-                  context.save();
-                  context.fillStyle = 'Black';
-                  context.fillRect(centerX - 1, 0, 2, canvas.height);
-                  context.restore();
-                }
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#owl_rectangle_man_stage1_example4
-
 
   #challenge5.challenge.row.py-4
     .col-xs-12
