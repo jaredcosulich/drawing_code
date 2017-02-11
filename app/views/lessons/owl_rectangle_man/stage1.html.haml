@@ -263,40 +263,27 @@
       .row
         .col-xs-12
           %h2.py-2
-            Use Draw Order to Layer Rectangles
+            Layer Rectangles to Create a Drawing
           %p
-            If we draw two rectangles which overlap, the second rectangle is drawn on top of
-            the first rectangle. We can use this effect to create fun drawings just using rectangles.
+            If we draw two rectangles which overlap, the second rectangle is drawn on top of the
+            first rectangle. We can use this effect to create fun drawings just by using rectangles.
           %p
             In this example, we start drawing Rectangle Man's head by layering five rectangles
             filled with two different colors.
+          %p
+            Right now, only one of the five rectangles is drawn on the canvas. The code to draw the other
+            four rectangles has been "commented out" using double slashes (<code>&frasl;&frasl;</code>).
+            Remove the doubles slashes at the start of those four lines of code and press "Run" to see all
+            five rectangles.
           %p
             There are a couple of things to notice. First, since the neck and face are both the
             same color, we only need to set the <code>context.fillStyle</code> property once before
             filling both rectangles. Second, we are drawing both ears with one rectangle.
           %p
-            To see an individual rectangle, hide the other four rectangles by using double
-            slashes (<code>&frasl;&frasl;</code>) to comment out those lines of code. For example, to
-            see only the ears, comment out the neck, face, nose, and nostrils:
-          %pre
-            %code
-              :preserve
-                context.fillStyle = '#CCAA77';
-                context.fillRect(72, 130, 136, 40); // Ears
-                
-                context.fillStyle = '#DDBB88';
-                // context.fillRect(100, 80, 80, 200); // Neck
-                // context.fillRect(80, 80, 120, 160); // Face
-                
-                context.fillStyle = '#CCAA77';
-                // context.fillRect(130, 150, 20, 40); // Nose
-                // context.fillRect(126, 174, 28, 16); // Nostrils
-          %p
-            Then, try adding the rectangles back in one at a time to see how they layer.
-            To learn more about setting fill colors and layering rectangles, visit the
-            = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
-            and
+            To learn more about layering rectangles and setting fill colors, visit the
             = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            and
+            = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
             lessons.
           = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
 
@@ -311,12 +298,12 @@
                 context.fillRect(72, 130, 136, 40); // Ears
                 
                 context.fillStyle = '#DDBB88';
-                context.fillRect(100, 80, 80, 200); // Neck
-                context.fillRect(80, 80, 120, 160); // Face
+                //context.fillRect(100, 80, 80, 200); // Neck
+                //context.fillRect(80, 80, 120, 160); // Face
                 
                 context.fillStyle = '#CCAA77';
-                context.fillRect(130, 150, 20, 40); // Nose
-                context.fillRect(126, 174, 28, 16); // Nostrils
+                //context.fillRect(130, 150, 20, 40); // Nose
+                //context.fillRect(126, 174, 28, 16); // Nostrils
 
             .visual.col-xs-6
               %h5
@@ -369,11 +356,81 @@
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/owl_rectangle_man/stage1/challenge3.png')
             %canvas#owl_rectangle_man_stage1_challenge3
           .alert
 
   #section4.section.py-2 &nbsp;
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use translate() to Position a Drawing
+          %p
+            In our storybook, Rectangle Man is going to move around. This means we will
+            need to draw his head at different positions on the canvas. The easiest way
+            to do this is using the <code>context.translate()</code> method to move the
+            context's coordinate system.
+          %p
+            In this example, we redraw Rectangle Man's head so it is positioned at (0, 0),
+            the origin of the coordinate system. Then, before drawing his head, we move the
+            origin of the coordinate system to the position where we actually want to draw
+            his head.
+          %pre
+            %code
+              :preserve
+                context.translate(0, 0); // Move the origin of the coordinate system
+          %p
+            Right now, we aren't moving the origin of the coordinate system at all, which
+            isn't very exciting. Change the values of the x- and y-coordinates passed into the
+            <code>context.translate()</code> method to (200, 50) and press "Run". Rectangle
+            Man's head is still drawn at the origin, but the origin is now positioned at
+            (200, 50). We can move the origin of the coordinate system to draw Rectangle Man's
+            head anywhere we want.
+          %p
+            To learn more about moving the origin of the coordinate system, visit the
+            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style, :translate]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_example5_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage1_example5');
+                var context = canvas.getContext('2d');
+                
+                context.translate(0, 0); // Move the origin of the coordinate system
+                
+                context.fillStyle = '#CCAA77';
+                context.fillRect(-8, 50, 136, 40); // Ears
+                
+                context.fillStyle = '#DDBB88';
+                context.fillRect(20, 0, 80, 200); // Neck
+                context.fillRect(0, 0, 120, 160); // Face
+                
+                context.fillStyle = '#CCAA77';
+                context.fillRect(50, 70, 20, 40); // Nose
+                context.fillRect(46, 94, 28, 16); // Nostrils
+                
+                context.fillStyle = 'White';
+                context.fillRect(20, 50, 30, 20); // Left eye
+                context.fillRect(70, 50, 30, 20); // Right eye
+                
+                context.fillStyle = '#6699FF';
+                context.fillRect(30, 56, 10, 8); // Left pupil
+                context.fillRect(80, 56, 10, 8); // Right pupil
+                
+                context.fillStyle = '#994444';
+                context.fillRect(44, 120, 32, 12); // Mouth
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#owl_rectangle_man_stage1_example5
 
   #challenge4.challenge.row.py-4
     .col-xs-12
@@ -383,61 +440,16 @@
             Challenge 4
           %figure.float-xs-right.px-2
             = image_tag('lessons/owl_rectangle_man/stage1/challenge4Visual1.png', class: 'img-fluid canvas-example')
-            %figcaption.text-xs-center.small What your drawing should look like
+            %figcaption.text-xs-center.small Our version of Owl
           %p
-            Create a
-            %code
-              drawBuilding()
-            function to draw buildings like the one from Challenge 3. The function is passed
-            four values that it will assign to the following four parameters. The first two parameters,
-            %code>
-              x
-            and
-            %span
-              %code>
-                y
-              ,
-            are the coordinates of the top left corner of the building; the third parameter,
-            %span
-              %code>
-                units
-              ,
-            is the number of office units per floor; and the fourth parameter,
-            %span
-              %code>
-                floors
-              ,
-            is the number of floors in the building.
+            Layer rectangles to draw Owl or a character of your own at the origin of
+            the coordinate system. Then, use the <code>context.translate()</code> method
+            to position the drawing at (200, 50). Owl's colors are in the editor below
+            if you choose to draw him.
           %p
-            Inside the
-            %code
-              drawBuilding()
-            function, use the parameters to calculate the width and height of the building,
-            set the
-            %code
-              context.fillStyle
-            property to the color
-            %span
-              %code>
-                '#999999'
-              ,
-            and use the
-            %code
-              context.fillRect()
-            method to draw the building.
-          %p
-            Once the
-            %code
-              drawBuilding()
-            function has been defined, use it to draw two buildings. The first building has 8
-            office units per floor and 10 floors, and it is positioned at (60, 20). The second
-            building has 6 office units per floor and 16 floors, and it is positioned at (210, 20).
-          %p
-            If you need help using functions, visit the
-            = link_to_lesson('Functions', :functions, nil, class: 'reference-link', data: {slug: :functions})
-            lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect, :fill_style]
-          = render 'lessons/code_preview', stage: 1, challenge: 3, editor_id: 'owl_rectangle_man_stage1_challenge3_editor'
+            Once you are satisfied with your drawing and can position it wherever
+            you want, mark the challenge as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style, :translate]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_challenge4_editor'} do
@@ -445,28 +457,79 @@
             var canvas = document.getElementById('owl_rectangle_man_stage1_challenge4');
             var context = canvas.getContext('2d');
 
-            function drawBuilding(x, y, units, floors) {
-              var w = 0; // Use the parameter units to calculate the width of the building
-              var h = 0; // Use the parameter floors to calculate the height of the building
-
-              // SET THE COLOR OF THE BUILDING TO #999999 HERE
-
-              // DRAW THE BUILDING HERE USING THE PARAMETERS x, y AND THE VARIABLES w, h
-            }
-
-            // DRAW ONE BUILDING WITH 8 UNITS AND 10 FLOORS AT (60, 20) HERE
-            // DRAW A SECOND BUILDING WITH 6 UNITS AND 16 FLOORS AT (210, 20) HERE
+            context.fillStyle = '#884411'; // Color of Owl's body
+            context.fillStyle = '#DDBB88'; // Color of Owl's face
+            context.fillStyle = 'Yellow'; // Color of Owl's eyes
+            context.fillStyle = 'Black'; // Color of Owl's pupils and beak
+            context.fillStyle = '#BB8833'; // Color of Owl's legs
 
         .visual.col-xs-6
           %h5
             Canvas
             %small (your drawing will display here)
           .canvas
-            .background.hidden-xl-down= image_tag('lessons/owl_rectangle_man/stage1/challenge4.png')
             %canvas#owl_rectangle_man_stage1_challenge4
           .alert
 
   #section5.section.py-2 &nbsp;
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Restore the Drawing State
+          %p
+            When moving the origin of the coordinate system to position a drawing, we
+            usually want to move the origin back when we are done.
+          %p
+            In this example, we move the origin to (200, 60) and draw an orange square at the
+            origin. Then, we move the origin again to (80, 120) and draw a green square at the
+            origin. Because the origin was already at (200, 60) when we moved it the second
+            time, we end up drawing the green square at (280, 180) instead of (80, 120).
+          %p
+            To draw the green square at (80, 120), we need to move the origin back to (0, 0)
+            after drawing the orange square. We can do that by saving the drawing state before
+            moving the origin and then restoring the drawing state once our drawing is done.
+          %p
+            Remove the double slashes in front of the four lines of code calling <code>context.save()</code>
+            and <code>context.restore()</code>. The green square is now drawn at (80, 120) because the origin
+            was restored back to (0, 0) immediately after drawing the orange square.
+          %p
+            When saving and restoring the drawing state, we don't just save and restore the
+            position of the origin; we also save and restore a number of properties, including
+            the <code>context.fillStyle</code> property. To learn more about the drawing state,
+            visit the
+            = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style, :translate, :save]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_example6_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage1_example6');
+                var context = canvas.getContext('2d');
+                
+                //context.save(); // Save the origin at its original position
+                context.translate(200, 60); // Move the origin of the coordinate system to (200, 60)
+                context.fillStyle = 'OrangeRed';
+                context.fillRect(0, 0, 50, 50);
+                //context.restore(); // Restore the origin back to its original position
+                
+                //context.save(); // Save the origin at its original position
+                context.translate(80, 120); // Move the origin of the coordinate system to (80, 120)
+                context.fillStyle = 'ForestGreen';
+                context.fillRect(0, 0, 50, 50);
+                //context.restore(); // Restore the origin back to its original position
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                .background.hidden-xl-down= image_tag('lessons/owl_rectangle_man/stage1/example6.png')
+                %canvas#owl_rectangle_man_stage1_example6
 
   #challenge5.challenge.row.py-4
     .col-xs-12
@@ -478,97 +541,63 @@
             = image_tag('lessons/owl_rectangle_man/stage1/challenge5Visual1.png', class: 'img-fluid canvas-example')
             %figcaption.text-xs-center.small What your drawing should look like
           %p
-            Update the
-            %code
-              drawBuilding()
-            function from Challenge 4 so its parameters are now:
-            %span
-              %code>
-                leftX
-              ,
-            %span
-              %code>
-                groundY
-              ,
-            %span
-              %code>
-                w
-              ,
-            and
-            %span
-              %code>
-                h
-              \.
+            Draw Rectangle Man at (240, 80) and Owl at (60, 180).
           %p
-            Inside the function, calculate the coordinates of the top left corner of
-            the building's rectangle. Then, set the
-            %code
-              context.fillStyle
-            to the color
-            %code
-              '#999999'
-            and use the
-            %code
-              context.fillRect()
-            method to draw the rectangle.
-          %p
-            Once the
-            %code
-              drawBuilding()
-            function has been updated, use it to draw two buildings. The first building
-            has 12 office units per floor and 8 floors, and it is sitting on the ground
-            at (20, 280). The second building has 9 office units per floor and 15 floors,
-            and it sitting on the ground at (230, 280).
-          %p
-            The
-            %code
-              drawGround()
-            function is used to draw the ground at y = 280. Draw the buildings before
-            the ground is drawn.
-          %p
-            If you need help positioning rectangles using variables, visit the
-            %span
-              %span><
-                = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
-              ,
-            %span
-              %span><
-                = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
-              ,
-            and
-            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
-            lessons.
-          = render 'lessons/relevant', relevant: [:coordinates, :variables, :functions, :fill_rect]
-          = render 'lessons/code_preview', stage: 1, challenge: 4, editor_id: 'owl_rectangle_man_stage1_challenge4_editor'
+            Move the origin of the coordinate system using the <code>context.translate()</code>
+            method, and save and restore the drawing state using the <code>context.save()</code>
+            and <code>context.restore()</code> methods.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style, :translate, :save]
 
       .row.py-1
         = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_challenge5_editor'} do
           :preserve
             var canvas = document.getElementById('owl_rectangle_man_stage1_challenge5');
             var context = canvas.getContext('2d');
-
-            function drawBuilding(leftX, groundY, units, floors) {
-              var w = 0; // Calculate the width of the building
-              var h = 0; // Calculate the height of the building
-              var x = 0; // Calculate the x-coordinate of the building's top left corner
-              var y = 0; // Calculate the y-coordinate of the building's top left corner
-
-              // SET THE COLOR OF THE BUILDING TO #999999 HERE
-
-              // DRAW THE BUILDING HERE USING THE VARIABLES x, y, w, h
-            }
-
-            // DRAW ONE BUILDING WITH 12 UNITS AND 8 FLOORS SITTING AT (20, 280) HERE
-            // DRAW A SECOND BUILDING WITH 9 UNITS AND 15 FLOORS SITTING AT (230, 280) HERE
-
-            drawGround(280); // Draws the ground at y = 280
-
-            function drawGround(y) {
-              context.save();
-              context.fillStyle = 'Black';
-              context.fillRect(0, y, canvas.width, 2);
-              context.restore();
-            }
+            
+            // Draw Rectangle Man at (240, 80)
+            context.fillStyle = '#CCAA77';
+            context.fillRect(-4, 25, 68, 20); // Ears
+            context.fillStyle = '#DDBB88';
+            context.fillRect(10, 0, 40, 100); // Neck
+            context.fillRect(0, 0, 60, 80); // Face
+            context.fillStyle = '#CCAA77';
+            context.fillRect(25, 35, 10, 20); // Nose
+            context.fillRect(23, 47, 14, 8); // Nostrils
+            context.fillStyle = 'White';
+            context.fillRect(10, 25, 15, 10); // Left eye
+            context.fillRect(35, 25, 15, 10); // Right eye
+            context.fillStyle = '#6699FF';
+            context.fillRect(15, 28, 5, 4); // Left pupil
+            context.fillRect(40, 28, 5, 4); // Right pupil
+            context.fillStyle = '#994444';
+            context.fillRect(22, 60, 16, 6); // Mouth
+            
+            // Draw Owl at (60, 180)
+            context.fillStyle = '#884411';
+            context.fillRect(0, 0, 10, 90); // Left ear
+            context.fillRect(50, 0, 10, 90); // Right ear
+            context.fillRect(0, 10, 60, 80); // Body
+            context.fillRect(10, 10, 40, 95); // Tail
+            context.fillStyle = '#DDBB88';
+            context.fillRect(5, 15, 50, 40); // Face
+            context.fillStyle = 'Yellow';
+            context.fillRect(10, 25, 15, 10); // Left eye
+            context.fillRect(35, 25, 15, 10); // Right eye
+            context.fillStyle = 'Black';
+            context.fillRect(15, 28, 5, 4); // Left pupil
+            context.fillRect(40, 28, 5, 4); // Right pupil
+            context.fillRect(28, 36, 4, 10); // Beak
+            context.fillStyle = '#BB8833';
+            context.fillRect(5, 85, 10, 22); // Left leg
+            context.fillRect(2, 100, 16, 7); // Left foot
+            context.fillRect(2, 104, 4, 6); // Left outer toe
+            context.fillRect(8, 104, 4, 6); // Left middle toe
+            context.fillRect(14, 104, 4, 6); // Left inner toe
+            context.fillRect(45, 85, 10, 22); // Right leg
+            context.fillRect(42, 100, 16, 7); // Right foot
+            context.fillRect(42, 104, 4, 6); // Right inner toe
+            context.fillRect(48, 104, 4, 6); // Right middle toe
+            context.fillRect(54, 104, 4, 6); // Right outer toe
 
         .visual.col-xs-6
           %h5
@@ -580,119 +609,6 @@
           .alert
 
   #section6.section.py-2 &nbsp;
-
-  .lesson.row.pt-2
-    .col-xs-12
-      .row
-        .col-xs-12
-          %h2.py-2
-            Use translate() to Position the Building
-          %p
-            Now we are going to clean up the
-            %code
-              drawBuilding()
-            function a little bit.
-          %p
-            A well-written function is like a polite robot who comes over to your house
-            to do a job, and then leaves everything exactly as it found it. But if you
-            look at the function used to draw a French flag in the previous example, it
-            wasn't so tidy. It changed the
-            %code
-              context.fillStyle
-            property to the color
-            %code
-              '#EF4135'
-            and never changed it back.
-          %p
-            To make our function more tidy, we call
-            %code
-              context.save()
-            at the start of the function and
-            %code
-              context.restore()
-            at the end. Calling
-            %code
-              context.save()
-            saves the drawing state of the context (including the current
-            %code
-              context.fillStyle
-            property) and
-            %code
-              context.restore()
-            restores the drawing state to the last time we saved it.
-          %p
-            The other change is to use the
-            %code
-              context.translate()
-            method. Notice how we had to do calculations with x and y to figure out the positions
-            of the white and red rectangles in the French flag? Imagine we had to do the same for
-            dozens of windows in a building. We can eliminate a lot of that math by using the
-            %code
-              context.translate()
-            method.
-          %p
-            The
-            %code
-              context.translate()
-            method moves the origin of the coordinate system. If we move the origin to the
-            top left corner of the flag, then we can draw the rectangles in the flag as though
-            the flag is positioned at (0, 0). The math is much easier. However, when using the
-            %code
-              context.translate()
-            method, it is even more important to save and then restore the drawing state. If
-            changing the
-            %code
-              context.fillStyle
-            property is rude, moving the origin of the coordinate system and not moving it back is much ruder!
-          %p
-            Try to predict what would happen if we left out the
-            %code
-              context.save()
-            and
-            %code
-              context.restore()
-            method calls in the function. To learn more about saving and restoring the
-            drawing state and translating the origin of the coordinate system, visit the
-            = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
-            and
-            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
-            lessons.
-          = render 'lessons/relevant', relevant: [:coordinates, :functions, :fill_rect, :save, :translate]
-
-        .col-xs-12
-          .interactive.row.py-1
-            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage1_example5_editor'} do
-              :preserve
-                var canvas = document.getElementById('owl_rectangle_man_stage1_example5');
-                var context = canvas.getContext('2d');
-
-                function drawFrenchFlag(x, y) {
-                  context.save(); // Save the drawing state before making any changes
-                  context.translate(x, y); // Move the origin of the coordinate system to the top left corner of the flag
-
-                  context.fillStyle = '#0055A4';
-                  context.fillRect(0, 0, 20, 40); // The blue rectangle is drawn at (0, 0)
-
-                  context.fillStyle = '#FFFFFF';
-                  context.fillRect(20, 0, 20, 40); // The white rectangle is drawn at (20, 0)
-
-                  context.fillStyle = '#EF4135';
-                  context.fillRect(40, 0, 20, 40); // The red rectangle is drawn at (40, 0)
-
-                  context.restore(); // Restore the drawing state to the way it was when we saved it
-                }
-
-                drawFrenchFlag(30, 100);
-                drawFrenchFlag(150, 50);
-                drawFrenchFlag(300, 180);
-
-            .visual.col-xs-6
-              %h5
-                Canvas
-                %small (your drawing will display here)
-              .canvas
-                %canvas#owl_rectangle_man_stage1_example5
-
 
   #challenge6.challenge.row.py-4
     .col-xs-12

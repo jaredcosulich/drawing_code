@@ -69,28 +69,9 @@ initOwlRectangleManStage1Challenge4 = (page) ->
   canvas = new App.Canvas(challenge.find('canvas'))
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
-  solution = (canvas, context) ->
-    drawBuilding = (x, y, units, floors) ->
-      w = 8 + 16 * units
-      h = 8 + 16 * floors
-      context.fillStyle = '#999999'
-      context.fillRect(x, y, w, h)
-      return
-    
-    drawBuilding(60, 20, 8, 10)
-    drawBuilding(210, 20, 6, 16)
-
-  testCode = new Test.Code(code: solution, canvas: canvas)
-
   challenge.find('.run').click ->
-    testCode.test (success) ->
-      if success
-        message = '<strong>Success!</strong> You defined and used a function to draw both buildings with the correct size and position!'
-        App.currentProgress.challengeComplete('owl_rectangle_man_stage1', 'challenge4')
-      else
-        message = 'Nice try, but you need to define and then use a function to draw two buildings with the correct size and position.'
-
-      canvas.alert(message, success)
+    canvas.selfAssess ->
+      App.currentProgress.challengeComplete('owl_rectangle_man_stage1', 'challenge4')
 
 
 initOwlRectangleManStage1Challenge5 = (page) ->
@@ -99,35 +80,64 @@ initOwlRectangleManStage1Challenge5 = (page) ->
   editor = new App.Editor(challenge.find('.editor'), canvas)
 
   solution = (canvas, context) ->
-    drawBuilding = (leftX, groundY, units, floors) ->
-      w = 8 + 16 * units
-      h = 8 + 16 * floors
-      x = leftX
-      y = groundY - h
-      context.fillStyle = '#999999'
-      context.fillRect(x, y, w, h)
-      return
+    context.save()
+    context.translate(240, 80)
+    context.fillStyle = '#CCAA77'
+    context.fillRect(-4, 25, 68, 20)
+    context.fillStyle = '#DDBB88'
+    context.fillRect(10, 0, 40, 100)
+    context.fillRect(0, 0, 60, 80)
+    context.fillStyle = '#CCAA77'
+    context.fillRect(25, 35, 10, 20)
+    context.fillRect(23, 47, 14, 8)
+    context.fillStyle = 'White'
+    context.fillRect(10, 25, 15, 10)
+    context.fillRect(35, 25, 15, 10)
+    context.fillStyle = '#6699FF'
+    context.fillRect(15, 28, 5, 4)
+    context.fillRect(40, 28, 5, 4)
+    context.fillStyle = '#994444'
+    context.fillRect(22, 60, 16, 6)
+    context.restore()
     
-    drawGround = (y) ->
-      context.save()
-      context.fillStyle = 'Black'
-      context.fillRect(0, y, canvas.width, 2)
-      context.restore()
-      return
-    
-    drawBuilding(20, 280, 12, 8)
-    drawBuilding(230, 280, 9, 15)
-    drawGround(280)
+    context.save()
+    context.translate(60, 180)
+    context.fillStyle = '#884411'
+    context.fillRect(0, 0, 10, 90)
+    context.fillRect(50, 0, 10, 90)
+    context.fillRect(0, 10, 60, 80)
+    context.fillRect(10, 10, 40, 95)
+    context.fillStyle = '#DDBB88'
+    context.fillRect(5, 15, 50, 40)
+    context.fillStyle = 'Yellow'
+    context.fillRect(10, 25, 15, 10)
+    context.fillRect(35, 25, 15, 10)
+    context.fillStyle = 'Black'
+    context.fillRect(15, 28, 5, 4)
+    context.fillRect(40, 28, 5, 4)
+    context.fillRect(28, 36, 4, 10)
+    context.fillStyle = '#BB8833'
+    context.fillRect(5, 85, 10, 22)
+    context.fillRect(2, 100, 16, 7)
+    context.fillRect(2, 104, 4, 6)
+    context.fillRect(8, 104, 4, 6)
+    context.fillRect(14, 104, 4, 6)
+    context.fillRect(45, 85, 10, 22)
+    context.fillRect(42, 100, 16, 7)
+    context.fillRect(42, 104, 4, 6)
+    context.fillRect(48, 104, 4, 6)
+    context.fillRect(54, 104, 4, 6)
+    context.restore()
 
   testCode = new Test.Code(code: solution, canvas: canvas)
 
   challenge.find('.run').click ->
     testCode.test (success) ->
       if success
-        message = '<strong>Success!</strong> You defined and used a function to draw both buildings anchored to the ground at the correct position!'
+        message = '<strong>Success!</strong> You positioned Rectangle Man and Owl correctly!'
         App.currentProgress.challengeComplete('owl_rectangle_man_stage1', 'challenge5')
       else
-        message = 'Nice try, but you need to define and then use a function to draw two buildings anchored to the ground at the correct position.'
+        message = 'Nice try, but you need to position Rectangle Man and Owl correctly.'
 
       canvas.alert(message, success)
 
