@@ -177,7 +177,7 @@ class ApplicationController < ActionController::Base
         experimental: true,
         name: 'Owl and Rectangle Man',
         slug: 'owl_rectangle_man',
-        stages: [9, 3, 4, 4],
+        stages: [8, 3, 4, 4],
         reference: [
           :fill_rect,
           :fill_style,
@@ -187,7 +187,8 @@ class ApplicationController < ActionController::Base
         concepts: [
           :coordinates,
           :variables,
-          :functions
+          :functions,
+          :if_statements
         ]
       }
     ]
