@@ -1,0 +1,1482 @@
+#owl_rectangle_man_stage2.page
+  %h1
+    Stage 2
+  .description.row.py-3
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Overview
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/overviewVisual1.png', class: 'img-fluid canvas-example')
+          %p
+            These lessons show you how to create your own storybook.
+          %p
+            In the first stage, we draw a scene featuring our main characters, Owl and
+            Rectangle Man, sitting and talking at home in their kitchen.
+
+  #section1.section.py-2 &nbsp;
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            The Coordinate System
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/exampleVisual1.png', class: 'img-fluid')
+          %p
+            When drawing on a canvas, the canvas's context uses a coordinate system to
+            position lines, rectangles, and other shapes on the canvas.
+          %p
+            By default, the origin (0, 0) of the context's coordinate system is the top
+            left corner of the canvas. The x-coordinate is the distance of a point from the
+            origin moving to the right and the y-coordinate is the distance from the origin
+            moving down.
+          %p
+            For example, the point (80, 50) is 80 pixels to the right of the origin and 50
+            pixels down.
+          %p
+            To see the coordinates of a point on the canvas, mouse over the gray area in
+            the canvas to the right. To learn more about the coordinate system, visit the
+            = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates]
+
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_example1_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage2_example1');
+                var context = canvas.getContext('2d');
+                
+                var scene = 1;
+                
+                if (scene == 1) {
+                  // Draw cake
+                  context.save();
+                  context.translate(40, 100);
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 180, 180);
+                  context.fillStyle = '#CD853F';
+                  context.fillRect(0, 0, 8, 180);
+                  context.fillRect(0, 0, 180, 8);
+                  context.fillRect(0, 43, 180, 8);
+                  context.fillRect(0, 86, 180, 8);
+                  context.fillRect(0, 129, 180, 8);
+                  context.fillRect(0, 172, 180, 8);
+                  context.restore();
+                  
+                  // Draw creature
+                  context.save();
+                  context.translate(240, 200);
+                  context.fillStyle = '#006400';
+                  context.fillRect(0, 0, 60, 80);
+                  context.fillStyle = 'White';
+                  context.fillRect(5, 10, 15, 20);
+                  context.fillRect(25, 10, 15, 20);
+                  context.fillStyle = 'Black';
+                  context.fillRect(8, 18, 5, 5);
+                  context.fillRect(28, 18, 5, 5);
+                  context.fillRect(8, 50, 30, 5);
+                  context.restore();
+                  
+                  // Draw text
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.font = '18px Arial';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'top';
+                  context.fillText('Yum, cake!', 170, 40);
+                } else if (scene == 2) {
+                  // Draw cake
+                  context.save();
+                  context.translate(40, 100);
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 180, 180);
+                  context.fillStyle = '#CD853F';
+                  context.fillRect(0, 0, 8, 180);
+                  context.fillRect(0, 0, 180, 8);
+                  context.fillRect(0, 43, 180, 8);
+                  context.fillRect(0, 86, 180, 8);
+                  context.fillRect(0, 129, 180, 8);
+                  context.fillRect(0, 172, 180, 8);
+                  context.restore();
+                  
+                  // Draw creature
+                  context.save();
+                  context.translate(240, 50);
+                  context.fillStyle = '#006400';
+                  context.fillRect(0, 0, 60, 230);
+                  context.fillStyle = 'White';
+                  context.fillRect(5, 10, 15, 20);
+                  context.fillRect(25, 10, 15, 20);
+                  context.fillStyle = 'Black';
+                  context.fillRect(8, 18, 5, 5);
+                  context.fillRect(28, 18, 5, 5);
+                  context.fillRect(5, 45, 30, 180);
+                  context.restore();
+                } else if (scene == 3) {
+                  // Draw creature
+                  context.save();
+                  context.translate(240, 200);
+                  context.fillStyle = '#006400';
+                  context.fillRect(0, 0, 60, 80);
+                  context.fillStyle = 'White';
+                  context.fillRect(5, 10, 15, 20);
+                  context.fillRect(25, 10, 15, 20);
+                  context.fillStyle = 'Black';
+                  context.fillRect(8, 18, 5, 5);
+                  context.fillRect(28, 18, 5, 5);
+                  context.fillRect(8, 50, 30, 5);
+                  context.restore();
+                  
+                  // Draw text
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.font = '18px Arial';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'top';
+                  context.fillText('*Burp*', 170, 40);
+                }
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#owl_rectangle_man_stage2_example1
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw a Black Rectangle
+          %p
+            The <code>context.fillRect()</code> method draws a filled rectangle on
+            the canvas by passing it four values:
+          %pre
+            %code
+              :preserve
+                context.fillRect(x, y, width, height);
+          %p
+            This programs the context to draw a rectangle at the coordinates (<code>x</code>,
+            <code>y</code>) with the given <code>width</code> and <code>height</code> values.
+          %p
+            In this example, we draw a black rectangle at (50, 100) with a width of
+            200 and a height of 80.
+          %pre
+            %code
+              :preserve
+                context.fillRect(50, 100, 200, 80);
+          %p
+            Change the x- and y-coordinates to move the rectangle on the canvas. Change
+            the width and height to change the size of the rectangle. To learn more about
+            drawing rectangles, visit the
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_example2_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage2_example2');
+                var context = canvas.getContext('2d');
+                
+                context.fillRect(50, 100, 200, 80);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                .background.hidden-xl-down= image_tag('lessons/owl_rectangle_man/stage1/example2.png')
+                %canvas#owl_rectangle_man_stage2_example2
+
+  #challenge1.challenge.row.py-4
+    .col-xs-12
+      .row.pb-2
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 1
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/challenge1Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Use the <code>context.fillRect()</code> method to draw a rectangle at the
+            coordinates (80, 40) with a width of 240 and a height of 160. It should cover
+            the gray rectangle pre-drawn on the canvas.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_challenge1_editor'} do
+          :preserve
+            var canvas = document.getElementById('owl_rectangle_man_stage2_challenge1');
+            var context = canvas.getContext('2d');
+            
+            // Draw a rectangle at (80, 40) with a width of 240 and a height of 160
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/owl_rectangle_man/stage1/challenge1.png')
+            %canvas#owl_rectangle_man_stage2_challenge1
+          .alert
+
+  #section2.section.py-2 &nbsp;
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Fill a Rectangle with a Color
+          %p
+            While the default fill color is black, we can set the <code>context.fillStyle</code>
+            property to fill our rectangles with other colors.
+          %p
+            In this example, we set the <code>context.fillStyle</code> property to the color
+            <code>'DodgerBlue'</code> before filling a rectangle at (100, 60) with a width of 120
+            and a height of 200.
+          %pre
+            %code
+              :preserve
+                context.fillStyle = 'DodgerBlue';
+                context.fillRect(100, 60, 120, 200);
+          %p
+            There are several different ways to define a color. The easiest is using a color
+            name, such as <code>'DodgerBlue'</code>. But only 141 colors have official names.
+            By using hex triplets or RGB values, we can define over 16 million colors
+            (<code>'DodgerBlue'</code> is <code>'#1E90FF'</code> or <code>'rgb(30, 144, 255)'</code>),
+            and we can even make colors partially transparent (<code>'rgba(30, 144, 255, 0.5)'</code>).
+          %p
+            Here is a full list of
+            %span
+              %span><
+                = link_to('HTML5 color names', 'http://www.rapidtables.com/web/color/html-color-codes.htm', target: '_blank')
+              ,
+            a list of
+            %span
+              %span><
+                = link_to('common hex triplets', 'http://www.rapidtables.com/web/color/Web_Safe.htm', target: '_blank')
+              ,
+            and a tool for finding
+            %span
+              %span><
+                = link_to('RGB values', 'http://www.rapidtables.com/web/color/RGB_Color.htm', target: '_blank')
+              \.
+            To learn more about defining fill colors, visit the
+            = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_example3_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage2_example3');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = 'DodgerBlue';
+                context.fillRect(100, 60, 120, 200);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#owl_rectangle_man_stage2_example3
+
+  #challenge2.challenge.row.py-4
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 2
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/challenge2Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Fill one rectangle with the color <code>'#660099'</code> at (60, 40) with a
+            width of 100 and height of 80. Fill a second rectangle with the color
+            <code>'rgb(255, 153, 51)'</code> at (20, 160) with a width of 300 and height of 120.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_challenge2_editor'} do
+          :preserve
+            var canvas = document.getElementById('owl_rectangle_man_stage2_challenge2');
+            var context = canvas.getContext('2d');
+
+            // Set the fill color to '#660099'
+            // Fill a rectangle at (60, 40) with a width of 100 and height of 80
+            
+            // Set the fill color to 'rgb(255, 153, 51)'
+            // Fill a rectangle at (20, 160) with a width of 300 and height of 120
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/owl_rectangle_man/stage1/challenge2.png')
+            %canvas#owl_rectangle_man_stage2_challenge2
+          .alert
+
+  #section3.section.py-2 &nbsp;
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Layer Rectangles to Create a Drawing
+          %p
+            If we draw two rectangles which overlap, the second rectangle is drawn on top of the
+            first rectangle. We can use this effect to create fun drawings just by using rectangles.
+          %p
+            In this example, we start drawing Rectangle Man's head by layering five rectangles
+            filled with two different colors.
+          %p
+            Right now, only one of the five rectangles is drawn on the canvas. The code to draw the other
+            four rectangles has been "commented out" using double slashes (<code>&frasl;&frasl;</code>).
+            Remove the doubles slashes at the start of those four lines of code and press "Run" to see all
+            five rectangles.
+          %p
+            There are a couple of things to notice. First, since the neck and face are both the
+            same color, we only need to set the <code>context.fillStyle</code> property once before
+            filling both rectangles. Second, we are drawing both ears with one rectangle.
+          %p
+            To learn more about layering rectangles and setting fill colors, visit the
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            and
+            = link_to_lesson('fillStyle', :fill_style, nil, class: 'reference-link', data: {slug: :fill_style})
+            lessons.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_example4_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage2_example4');
+                var context = canvas.getContext('2d');
+
+                context.fillStyle = '#CCAA77';
+                context.fillRect(72, 130, 136, 40); // Ears
+                
+                context.fillStyle = '#DDBB88';
+                //context.fillRect(100, 80, 80, 200); // Neck
+                //context.fillRect(80, 80, 120, 160); // Face
+                
+                context.fillStyle = '#CCAA77';
+                //context.fillRect(130, 150, 20, 40); // Nose
+                //context.fillRect(126, 174, 28, 16); // Nostrils
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#owl_rectangle_man_stage2_example4
+
+  #challenge3.challenge.row.pt-2.pb-4
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 3
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/challenge3Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Our version of Rectangle Man's face
+          %p
+            Complete Rectangle Man's face by drawing in his eyes and mouth with rectangles.
+            We used the color <code>'White'</code> for the whites of his eyes, the color
+            <code>'#6699FF'</code> for his pupils, and the color <code>'#994444'</code> for
+            his lips. But feel free to get creative. Can you draw his eyes and mouth so he
+            looks angry, sad, or surprised?
+          %p
+            Once you are satisfied with your drawing, mark the challenge as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_challenge3_editor'} do
+          :preserve
+            var canvas = document.getElementById('owl_rectangle_man_stage2_challenge3');
+            var context = canvas.getContext('2d');
+
+            context.fillStyle = '#CCAA77';
+            context.fillRect(72, 130, 136, 40); // Ears
+            
+            context.fillStyle = '#DDBB88';
+            context.fillRect(100, 80, 80, 200); // Neck
+            context.fillRect(80, 80, 120, 160); // Face
+            
+            context.fillStyle = '#CCAA77';
+            context.fillRect(130, 150, 20, 40); // Nose
+            context.fillRect(126, 174, 28, 16); // Nostrils
+            
+            // Draw eyes
+            // Draw mouth
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#owl_rectangle_man_stage2_challenge3
+          .alert
+
+  #section4.section.py-2 &nbsp;
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use translate() to Position a Drawing
+          %p
+            In our storybook, Rectangle Man is going to move around. This means we will
+            need to draw his head at different positions on the canvas. The easiest way
+            to do this is using the <code>context.translate()</code> method to move the
+            context's coordinate system.
+          %p
+            In this example, we redraw Rectangle Man's head so it is positioned at (0, 0),
+            the origin of the coordinate system. Then, before drawing his head, we move the
+            origin of the coordinate system to the position where we actually want to draw
+            his head.
+          %pre
+            %code
+              :preserve
+                context.translate(0, 0); // Move the origin of the coordinate system
+          %p
+            Right now, we aren't moving the origin of the coordinate system at all, which
+            isn't very exciting. Change the values of the x- and y-coordinates passed into the
+            <code>context.translate()</code> method to (200, 50) and press "Run". Rectangle
+            Man's head is still drawn at the origin, but the origin is now positioned at
+            (200, 50). We can move the origin of the coordinate system to draw Rectangle Man's
+            head anywhere we want.
+          %p
+            To learn more about moving the origin of the coordinate system, visit the
+            = link_to_lesson('translate()', :translate, nil, class: 'reference-link', data: {slug: :translate})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style, :translate]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_example5_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage2_example5');
+                var context = canvas.getContext('2d');
+                
+                context.translate(0, 0); // Move the origin of the coordinate system
+                
+                context.fillStyle = '#CCAA77';
+                context.fillRect(-8, 50, 136, 40); // Ears
+                
+                context.fillStyle = '#DDBB88';
+                context.fillRect(20, 0, 80, 200); // Neck
+                context.fillRect(0, 0, 120, 160); // Face
+                
+                context.fillStyle = '#CCAA77';
+                context.fillRect(50, 70, 20, 40); // Nose
+                context.fillRect(46, 94, 28, 16); // Nostrils
+                
+                context.fillStyle = 'White';
+                context.fillRect(20, 50, 30, 20); // Left eye
+                context.fillRect(70, 50, 30, 20); // Right eye
+                
+                context.fillStyle = '#6699FF';
+                context.fillRect(30, 56, 10, 8); // Left pupil
+                context.fillRect(80, 56, 10, 8); // Right pupil
+                
+                context.fillStyle = '#994444';
+                context.fillRect(44, 120, 32, 12); // Mouth
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#owl_rectangle_man_stage2_example5
+
+  #challenge4.challenge.row.py-4
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 4
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/challenge4Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Our version of Owl
+          %p
+            Layer rectangles to draw Owl or a character of your own at the origin of
+            the coordinate system. Then, use the <code>context.translate()</code> method
+            to position the drawing at (200, 50). Owl's colors are in the editor below
+            if you choose to draw him.
+          %p
+            Once you are satisfied with your drawing and can position it wherever
+            you want, mark the challenge as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style, :translate]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_challenge4_editor'} do
+          :preserve
+            var canvas = document.getElementById('owl_rectangle_man_stage2_challenge4');
+            var context = canvas.getContext('2d');
+
+            context.fillStyle = '#884411'; // Color of Owl's body
+            context.fillStyle = '#DDBB88'; // Color of Owl's face
+            context.fillStyle = 'Yellow'; // Color of Owl's eyes
+            context.fillStyle = 'Black'; // Color of Owl's pupils and beak
+            context.fillStyle = '#BB8833'; // Color of Owl's legs
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#owl_rectangle_man_stage2_challenge4
+          .alert
+
+  #section5.section.py-2 &nbsp;
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Restore the Drawing State
+          %p
+            When moving the origin of the coordinate system to position a drawing, we
+            usually want to move the origin back when we are done.
+          %p
+            In this example, we move the origin to (200, 60) and draw an orange square at the
+            origin. Then, we move the origin again to (80, 120) and draw a green square at the
+            origin. Because the origin was already at (200, 60) when we moved it the second
+            time, we end up drawing the green square at (280, 180) instead of (80, 120).
+          %p
+            To draw the green square at (80, 120), we need to move the origin back to (0, 0)
+            after drawing the orange square. We can do that by saving the drawing state before
+            moving the origin and then restoring the drawing state once our drawing is done.
+          %p
+            Remove the double slashes in front of the four lines of code calling <code>context.save()</code>
+            and <code>context.restore()</code>. The green square is now drawn at (80, 120) because the origin
+            was restored back to (0, 0) immediately after drawing the orange square.
+          %p
+            When saving and restoring the drawing state, we don't just save and restore the
+            position of the origin; we also save and restore a number of properties, including
+            the <code>context.fillStyle</code> property. To learn more about the drawing state,
+            visit the
+            = link_to_lesson('save() / restore()', :save, nil, class: 'reference-link', data: {slug: :save})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style, :translate, :save]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_example6_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage2_example6');
+                var context = canvas.getContext('2d');
+                
+                //context.save(); // Save the origin at its original position
+                context.translate(200, 60); // Move the origin of the coordinate system to (200, 60)
+                context.fillStyle = 'OrangeRed';
+                context.fillRect(0, 0, 50, 50);
+                //context.restore(); // Restore the origin back to its original position
+                
+                //context.save(); // Save the origin at its original position
+                context.translate(80, 120); // Move the origin of the coordinate system to (80, 120)
+                context.fillStyle = 'ForestGreen';
+                context.fillRect(0, 0, 50, 50);
+                //context.restore(); // Restore the origin back to its original position
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                .background.hidden-xl-down= image_tag('lessons/owl_rectangle_man/stage1/example6.png')
+                %canvas#owl_rectangle_man_stage2_example6
+
+  #challenge5.challenge.row.py-4
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 5
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/challenge5Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small What your drawing should look like
+          %p
+            Draw Rectangle Man at (240, 80) and Owl at (60, 180).
+          %p
+            Move the origin of the coordinate system using the <code>context.translate()</code>
+            method, and save and restore the drawing state using the <code>context.save()</code>
+            and <code>context.restore()</code> methods.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style, :translate, :save]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_challenge5_editor'} do
+          :preserve
+            var canvas = document.getElementById('owl_rectangle_man_stage2_challenge5');
+            var context = canvas.getContext('2d');
+            
+            // Draw Rectangle Man at (240, 80)
+            context.fillStyle = '#CCAA77';
+            context.fillRect(-4, 25, 68, 20); // Ears
+            context.fillStyle = '#DDBB88';
+            context.fillRect(10, 0, 40, 100); // Neck
+            context.fillRect(0, 0, 60, 80); // Face
+            context.fillStyle = '#CCAA77';
+            context.fillRect(25, 35, 10, 20); // Nose
+            context.fillRect(23, 47, 14, 8); // Nostrils
+            context.fillStyle = 'White';
+            context.fillRect(10, 25, 15, 10); // Left eye
+            context.fillRect(35, 25, 15, 10); // Right eye
+            context.fillStyle = '#6699FF';
+            context.fillRect(15, 28, 5, 4); // Left pupil
+            context.fillRect(40, 28, 5, 4); // Right pupil
+            context.fillStyle = '#994444';
+            context.fillRect(22, 60, 16, 6); // Mouth
+            
+            // Draw Owl at (60, 180)
+            context.fillStyle = '#884411';
+            context.fillRect(0, 0, 10, 90); // Left ear
+            context.fillRect(50, 0, 10, 90); // Right ear
+            context.fillRect(0, 10, 60, 80); // Body
+            context.fillRect(10, 10, 40, 95); // Tail
+            context.fillStyle = '#DDBB88';
+            context.fillRect(5, 15, 50, 40); // Face
+            context.fillStyle = 'Yellow';
+            context.fillRect(10, 25, 15, 10); // Left eye
+            context.fillRect(35, 25, 15, 10); // Right eye
+            context.fillStyle = 'Black';
+            context.fillRect(15, 28, 5, 4); // Left pupil
+            context.fillRect(40, 28, 5, 4); // Right pupil
+            context.fillRect(28, 36, 4, 10); // Beak
+            context.fillStyle = '#BB8833';
+            context.fillRect(5, 85, 10, 22); // Left leg
+            context.fillRect(2, 100, 16, 7); // Left foot
+            context.fillRect(2, 104, 4, 6); // Left outer toe
+            context.fillRect(8, 104, 4, 6); // Left middle toe
+            context.fillRect(14, 104, 4, 6); // Left inner toe
+            context.fillRect(45, 85, 10, 22); // Right leg
+            context.fillRect(42, 100, 16, 7); // Right foot
+            context.fillRect(42, 104, 4, 6); // Right inner toe
+            context.fillRect(48, 104, 4, 6); // Right middle toe
+            context.fillRect(54, 104, 4, 6); // Right outer toe
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            .background.hidden-xl-down= image_tag('lessons/owl_rectangle_man/stage1/challenge5.png')
+            %canvas#owl_rectangle_man_stage2_challenge5
+          .alert
+
+  #section6.section.py-2 &nbsp;
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use a Variable to Set a Color
+          %p
+            In this example, we draw Rectangle Man wearing a suit. It takes eight rectangles
+            to draw the suit and we set the fill color for the suit three times.
+          %p
+            To make changing the color of the suit easier, we store the color in a variable
+            named <code>suitColor</code>. We declare the variable at the start of the program
+            and assign it the color <code>'#666666'</code>:
+          %pre
+            %code
+              :preserve
+                var suitColor = '#666666'; // Set the color of the suit
+          %p
+            Then, when we want to fill a rectangle with the suit color, all we have to do is
+            assign the color stored in <code>suitColor</code> to the <code>context.fillStyle</code>
+            property:
+          %pre
+            %code
+              :preserve
+                context.fillStyle = suitColor;
+          %p
+            Now we can change the color of Rectangle Man's suit simply by changing the color
+            stored in the variable <code>suitColor</code>. Try changing the color of his suit
+            to <code>'Maroon'</code> and the color of his shirt to <code>'LightPink'</code>.
+            Press "Run" to see your changes.
+          %p
+            To learn more about using variables, visit the
+            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+            lesson.
+          = render 'lessons/relevant', relevant: [:variables, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_example7_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage2_example7');
+                var context = canvas.getContext('2d');
+                
+                var suitColor = '#666666'; // Set the color of the suit
+                var shirtColor = 'White'; // Set the color of the shirt
+                
+                context.save();
+                context.translate(100, 0);
+                
+                context.fillStyle = suitColor;
+                context.fillRect(0, 90, 60, 130); // Suit jacket back
+                context.fillRect(-10, 195, 80, 50); // Suit pants top
+                context.fillRect(-10, 195, 38, 150); // Suit pants left leg
+                context.fillRect(32, 195, 38, 150); // Suit pants right leg
+                
+                context.fillStyle = '#333333';
+                context.fillRect(-8, 340, 34, 20); // Left shoe
+                context.fillRect(34, 340, 34, 20); // Right shoe
+                
+                context.fillStyle = shirtColor;
+                context.fillRect(5, 95, 50, 100); // Shirt neck
+                context.fillRect(-10, 100, 80, 95); // Shirt back
+                context.fillRect(-39, 105, 138, 40); // Shirt shoulders
+                
+                context.fillStyle = '#333333';
+                context.fillRect(-10, 195, 80, 12); // Belt
+                context.fillStyle = '#FFDD00';
+                context.fillRect(24, 195, 12, 12); // Belt buckle
+                
+                context.fillStyle = '#CC0000';
+                context.fillRect(24, 100, 12, 16); // Tie knot
+                context.fillRect(26, 100, 8, 100); // Tie
+                
+                context.fillStyle = suitColor;
+                context.fillRect(-20, 95, 25, 130); // Suit jacket left side
+                context.fillRect(55, 95, 25, 130); // Suit jacket right side
+                
+                context.fillStyle = shirtColor;
+                context.fillRect(-39, 105, 28, 115); // Shirt left arm
+                context.fillRect(71, 105, 28, 115); // Shirt right arm
+                
+                context.fillStyle = suitColor;
+                context.fillRect(-40, 100, 30, 100); // Suit jacket left arm
+                context.fillRect(70, 100, 30, 100); // Suit jacket right arm
+                
+                context.fillStyle = '#DDBB88';
+                context.fillRect(-40, 210, 30, 25); // Left hand
+                context.fillRect(70, 210, 30, 25); // Right hand
+                
+                context.fillStyle = '#CCAA77';
+                context.fillRect(-4, 25, 68, 20); // Ears
+                
+                context.fillStyle = '#DDBB88';
+                context.fillRect(10, 0, 40, 100); // Neck
+                context.fillRect(0, 0, 60, 80); // Face
+                
+                context.fillStyle = '#CCAA77';
+                context.fillRect(25, 35, 10, 20); // Nose
+                context.fillRect(23, 47, 14, 8); // Nostrils
+                
+                context.fillStyle = 'White';
+                context.fillRect(10, 25, 15, 10); // Left eye
+                context.fillRect(35, 25, 15, 10); // Right eye
+                
+                context.fillStyle = '#6699FF';
+                context.fillRect(15, 28, 5, 4); // Left pupil
+                context.fillRect(40, 28, 5, 4); // Right pupil
+                
+                context.fillStyle = '#994444';
+                context.fillRect(22, 60, 16, 6); // Mouth
+                
+                context.restore();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#owl_rectangle_man_stage2_example7
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use Variables to Size and Position Rectangles
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/example8Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Our version of Rectangle Man sitting in a chair
+          %p
+            In this example, we use variables to adjust the size of a chair so it fits
+            beneath Rectangle Man.
+          %p
+            Right now, the legs of the chair are too tall and the seat of the chair is
+            too wide. Change the values stored in the variables below until the size is right.
+            Then, position the chair so Rectangle Man is sitting on it.
+          %pre
+            %code
+              :preserve
+                var chairLegWidth = 10;
+                var chairLegHeight = 80;
+                var chairBackHeight = 60;
+                var chairSeatWidth = 100;
+                var chairSeatHeight = 20;
+          %p
+            We use the values stored in the five variables to draw the three rectangles
+            in the chair. For example, the rectangle for the seat of the chair has a width of
+            <code>chairSeatWidth</code> and a height of <code>chairSeatHeight</code>, and it
+            is positioned at (<code>0</code>, <code>chairBackHeight</code>):
+          %pre
+            %code
+              :preserve
+                context.fillRect(0, chairBackHeight, chairSeatWidth, chairSeatHeight); // Chair seat
+          %p
+            By using variables, we make it easy to tweak a drawing until it is just right.
+            To learn more about using variables, visit the
+            = link_to_lesson('Variables', :variables, nil, class: 'reference-link', data: {slug: :variables})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :translate]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_example8_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage2_example8');
+                var context = canvas.getContext('2d');
+                
+                var chairLegWidth = 10;
+                var chairLegHeight = 80;
+                var chairBackHeight = 60;
+                var chairSeatWidth = 100;
+                var chairSeatHeight = 20;
+                
+                context.save();
+                context.translate(0, 0);
+                
+                context.fillStyle = '#996633';
+                context.fillRect(0, 0, chairLegWidth, chairBackHeight + chairLegHeight); // Chair back and back leg
+                context.fillRect(0, chairBackHeight, chairSeatWidth, chairSeatHeight); // Chair seat
+                context.fillRect(chairSeatWidth - chairLegWidth, chairBackHeight, chairLegWidth, chairLegHeight); // Chair front leg
+                
+                context.restore();
+                
+                var suitColor = '#666666'; // Set the color of the suit
+                var shirtColor = 'White'; // Set the color of the shirt
+                
+                context.save();
+                context.translate(200, 10);
+                
+                context.fillStyle = shirtColor;
+                context.fillRect(0, 95, 50, 100); // Shirt body
+                
+                context.fillStyle = suitColor;
+                context.fillRect(0, 195, 48, 60); // Suit pants top
+                context.fillRect(0, 207, 100, 48); // Suit pants top leg
+                context.fillRect(52, 207, 48, 88); // Suit pants bottom leg
+                
+                context.fillStyle = '#333333';
+                context.fillRect(54, 290, 60, 20); // Shoe
+                
+                context.fillStyle = '#333333';
+                context.fillRect(0, 195, 50, 12); // Belt
+                context.fillStyle = '#FFDD00';
+                context.fillRect(44, 195, 6, 12); // Belt buckle
+                
+                context.fillStyle = '#CC0000';
+                context.fillRect(48, 100, 8, 16); // Tie knot
+                context.fillRect(50, 100, 6, 100); // Tie
+                
+                context.fillStyle = '#DDBB88';
+                context.fillRect(5, 0, 40, 100); // Neck
+                context.fillRect(0, 0, 60, 80); // Face
+                context.fillRect(60, 35, 4, 20); // Nose
+                context.fillRect(60, 47, 6, 8); // Nostrils
+                
+                context.fillStyle = '#CCAA77';
+                context.fillRect(15, 25, 12, 20); // Outer ear
+                context.fillStyle = '#DDBB88';
+                context.fillRect(20, 28, 8, 10); // Inner ear
+                
+                context.fillStyle = '#FFFFFF';
+                context.fillRect(44, 25, 8, 10); // Eye
+                
+                context.fillStyle = '#6699FF';
+                context.fillRect(46, 28, 4, 4); // Pupil
+                
+                context.fillStyle = '#994444';
+                context.fillRect(52, 60, 8, 6); // Mouth
+                
+                context.fillStyle = shirtColor;
+                context.fillRect(-9, 105, 28, 115); // Shirt sleeve
+                
+                context.fillStyle = '#DDBB88';
+                context.fillRect(-10, 210, 30, 25); // Hand
+                
+                context.restore();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#owl_rectangle_man_stage2_example8
+
+  #challenge6.challenge.row.py-4
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 6
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/challenge6Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Our version of Rectangle Man sitting at a table
+          %p
+            Declare and use the variables below to draw a table in front of Rectangle
+            Man.
+          %pre
+            %code
+              :preserve
+                var tableLegWidth;
+                var tableLegHeight;
+                var tableTopWidth;
+                var tableTopHeight;
+          %p
+            See if you can draw the table so the two legs are inset from the outer edges
+            of the table top. We used the color <code>'#664422'</code> for our table, but feel
+            free to be creative.
+          %p
+            Once you are satisfied with the table's size and position, mark the challenge
+            as complete by selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :fill_rect, :fill_style, :translate]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_challenge6_editor'} do
+          :preserve
+            var canvas = document.getElementById('owl_rectangle_man_stage2_challenge6');
+            var context = canvas.getContext('2d');
+            
+            var chairLegWidth = 15;
+            var chairLegHeight = 55;
+            var chairBackHeight = 95;
+            var chairSeatWidth = 65;
+            var chairSeatHeight = 12;
+            
+            context.save();
+            context.translate(25, 170);
+            
+            context.fillStyle = '#996633';
+            context.fillRect(0, 0, chairLegWidth, chairBackHeight + chairLegHeight); // Chair back and back leg
+            context.fillRect(0, chairBackHeight, chairSeatWidth, chairSeatHeight); // Chair seat
+            context.fillRect(chairSeatWidth - chairLegWidth, chairBackHeight, chairLegWidth, chairLegHeight); // Chair front leg
+            
+            context.restore();
+            
+            var suitColor = '#666666'; // Set the color of the suit
+            var shirtColor = 'White'; // Set the color of the shirt
+            
+            context.save();
+            context.translate(40, 10);
+            
+            context.fillStyle = shirtColor;
+            context.fillRect(0, 95, 50, 100); // Shirt body
+            
+            context.fillStyle = suitColor;
+            context.fillRect(0, 195, 48, 60); // Suit pants top
+            context.fillRect(0, 207, 100, 48); // Suit pants top leg
+            context.fillRect(52, 207, 48, 88); // Suit pants bottom leg
+            
+            context.fillStyle = '#333333';
+            context.fillRect(54, 290, 60, 20); // Shoe
+            
+            context.fillStyle = '#333333';
+            context.fillRect(0, 195, 50, 12); // Belt
+            context.fillStyle = '#FFDD00';
+            context.fillRect(44, 195, 6, 12); // Belt buckle
+            
+            context.fillStyle = '#CC0000';
+            context.fillRect(48, 100, 8, 16); // Tie knot
+            context.fillRect(50, 100, 6, 100); // Tie
+            
+            context.fillStyle = '#DDBB88';
+            context.fillRect(5, 0, 40, 100); // Neck
+            context.fillRect(0, 0, 60, 80); // Face
+            context.fillRect(60, 35, 4, 20); // Nose
+            context.fillRect(60, 47, 6, 8); // Nostrils
+            
+            context.fillStyle = '#CCAA77';
+            context.fillRect(15, 25, 12, 20); // Outer ear
+            context.fillStyle = '#DDBB88';
+            context.fillRect(20, 28, 8, 10); // Inner ear
+            
+            context.fillStyle = '#FFFFFF';
+            context.fillRect(44, 25, 8, 10); // Eye
+            
+            context.fillStyle = '#6699FF';
+            context.fillRect(46, 28, 4, 4); // Pupil
+            
+            context.fillStyle = '#994444';
+            context.fillRect(52, 60, 8, 6); // Mouth
+            
+            context.fillStyle = shirtColor;
+            context.fillRect(-9, 105, 28, 115); // Shirt sleeve
+            
+            context.fillStyle = '#DDBB88';
+            context.fillRect(-10, 210, 30, 25); // Hand
+            
+            context.restore();
+            
+            // Use variables to draw a table here
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#owl_rectangle_man_stage2_challenge6
+          .alert
+  
+  #section7.section.py-2 &nbsp;
+  
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Use a Variable to Control What is Drawn
+          %p
+            In this example, we declare the variable <code>sunglasses</code> and assign
+            it the value <code>true</code>:
+          %pre
+            %code
+              :preserve
+                var sunglasses = true; // Set if wearing sunglasses
+          %p
+            Then, if <code>sunglasses</code> is <code>true</code>, we draw a pair of
+            sunglasses on Rectangle Man's face:
+          %pre
+            %code
+              :preserve
+                if (sunglasses === true) {
+                  context.fillStyle = '#333333';
+                  context.fillRect(-2, 22, 64, 4); // Frame
+                  context.fillStyle = 'rgba(0, 51, 0, 0.8)';
+                  context.fillRect(3, 22, 25, 15); // Left lens
+                  context.fillRect(32, 22, 25, 15); // Right lens
+                }
+          %p
+            Assign <code>sunglasses</code> the value <code>false</code> and press "Run"
+            to redraw Rectangle Man. The code block inside the if statement won't run and
+            Rectangle Man won't have sunglasses on his face. To learn more about using if
+            statements, visit the
+            = link_to_lesson('If Statements', :if_statements, nil, class: 'reference-link', data: {slug: :if_statements})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :if_statements, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_example9_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage2_example9');
+                var context = canvas.getContext('2d');
+                
+                var sunglasses = true; // Set if wearing sunglasses
+                var suitColor = '#666666'; // Set the color of the suit
+                var shirtColor = 'White'; // Set the color of the shirt
+                
+                context.save();
+                context.translate(100, 0);
+                
+                context.fillStyle = suitColor;
+                context.fillRect(0, 90, 60, 130); // Suit jacket back
+                context.fillRect(-10, 195, 80, 50); // Suit pants top
+                context.fillRect(-10, 195, 38, 150); // Suit pants left leg
+                context.fillRect(32, 195, 38, 150); // Suit pants right leg
+                
+                context.fillStyle = '#333333';
+                context.fillRect(-8, 340, 34, 20); // Left shoe
+                context.fillRect(34, 340, 34, 20); // Right shoe
+                
+                context.fillStyle = shirtColor;
+                context.fillRect(5, 95, 50, 100); // Shirt neck
+                context.fillRect(-10, 100, 80, 95); // Shirt back
+                context.fillRect(-39, 105, 138, 40); // Shirt shoulders
+                
+                context.fillStyle = '#333333';
+                context.fillRect(-10, 195, 80, 12); // Belt
+                context.fillStyle = '#FFDD00';
+                context.fillRect(24, 195, 12, 12); // Belt buckle
+                
+                context.fillStyle = '#CC0000';
+                context.fillRect(24, 100, 12, 16); // Tie knot
+                context.fillRect(26, 100, 8, 100); // Tie
+                
+                context.fillStyle = suitColor;
+                context.fillRect(-20, 95, 25, 130); // Suit jacket left side
+                context.fillRect(55, 95, 25, 130); // Suit jacket right side
+                
+                context.fillStyle = shirtColor;
+                context.fillRect(-39, 105, 28, 115); // Shirt left arm
+                context.fillRect(71, 105, 28, 115); // Shirt right arm
+                
+                context.fillStyle = suitColor;
+                context.fillRect(-40, 100, 30, 100); // Suit jacket left arm
+                context.fillRect(70, 100, 30, 100); // Suit jacket right arm
+                
+                context.fillStyle = '#DDBB88';
+                context.fillRect(-40, 210, 30, 25); // Left hand
+                context.fillRect(70, 210, 30, 25); // Right hand
+                
+                context.fillStyle = '#CCAA77';
+                context.fillRect(-4, 25, 68, 20); // Ears
+                
+                context.fillStyle = '#DDBB88';
+                context.fillRect(10, 0, 40, 100); // Neck
+                context.fillRect(0, 0, 60, 80); // Face
+                
+                context.fillStyle = '#CCAA77';
+                context.fillRect(25, 35, 10, 20); // Nose
+                context.fillRect(23, 47, 14, 8); // Nostrils
+                
+                context.fillStyle = 'White';
+                context.fillRect(10, 25, 15, 10); // Left eye
+                context.fillRect(35, 25, 15, 10); // Right eye
+                
+                context.fillStyle = '#6699FF';
+                context.fillRect(15, 28, 5, 4); // Left pupil
+                context.fillRect(40, 28, 5, 4); // Right pupil
+                
+                context.fillStyle = '#994444';
+                context.fillRect(22, 60, 16, 6); // Mouth
+                
+                if (sunglasses === true) {
+                  context.fillStyle = '#333333';
+                  context.fillRect(-2, 22, 64, 4); // Frame
+                  context.fillStyle = 'rgba(0, 51, 0, 0.8)';
+                  context.fillRect(3, 22, 25, 15); // Left lens
+                  context.fillRect(32, 22, 25, 15); // Right lens
+                }
+                
+                context.restore();
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#owl_rectangle_man_stage2_example9
+
+  #challenge7.challenge.row.py-4
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 7
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/challenge7Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small Our version of Rectangle Man wearing sunglasses and a hat
+          %p
+            Declare a variable to control if Rectangle Man is wearing a hat. Then,
+            use an if statement to draw a hat on Rectangle Man's head if the variable
+            is <code>true</code>.
+          %p
+            Test your program by assigning the variable either <code>true</code> or
+            <code>false</code> and pressing "Run" to redraw Rectangle Man. Once you are
+            satisfied with the drawing of your hat, mark the challenge as complete by
+            selecting "Yes, it looks good".
+          %p
+            For fun, you could draw Rectangle Man with hair, a goatee, or a briefcase
+            in his hand. It's also possible to use a variable and if statements to draw
+            Rectangle Man with and without his suit jacket. Can you figure out how?
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :if_statements, :fill_rect, :fill_style]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_challenge7_editor'} do
+          :preserve
+            var canvas = document.getElementById('owl_rectangle_man_stage2_challenge7');
+            var context = canvas.getContext('2d');
+            
+            // Declare a variable to control if Rectangle Man is wearing a hat
+            var sunglasses = true; // Set if wearing sunglasses
+            var suitColor = '#666666'; // Set the color of the suit
+            var shirtColor = 'White'; // Set the color of the shirt
+            
+            context.save();
+            context.translate(100, 40);
+            
+            context.fillStyle = suitColor;
+            context.fillRect(0, 90, 60, 130); // Suit jacket back
+            context.fillRect(-10, 195, 80, 50); // Suit pants top
+            context.fillRect(-10, 195, 38, 150); // Suit pants left leg
+            context.fillRect(32, 195, 38, 150); // Suit pants right leg
+            
+            context.fillStyle = '#333333';
+            context.fillRect(-8, 340, 34, 20); // Left shoe
+            context.fillRect(34, 340, 34, 20); // Right shoe
+            
+            context.fillStyle = shirtColor;
+            context.fillRect(5, 95, 50, 100); // Shirt neck
+            context.fillRect(-10, 100, 80, 95); // Shirt back
+            context.fillRect(-39, 105, 138, 40); // Shirt shoulders
+            
+            context.fillStyle = '#333333';
+            context.fillRect(-10, 195, 80, 12); // Belt
+            context.fillStyle = '#FFDD00';
+            context.fillRect(24, 195, 12, 12); // Belt buckle
+            
+            context.fillStyle = '#CC0000';
+            context.fillRect(24, 100, 12, 16); // Tie knot
+            context.fillRect(26, 100, 8, 100); // Tie
+            
+            context.fillStyle = suitColor;
+            context.fillRect(-20, 95, 25, 130); // Suit jacket left side
+            context.fillRect(55, 95, 25, 130); // Suit jacket right side
+            
+            context.fillStyle = shirtColor;
+            context.fillRect(-39, 105, 28, 115); // Shirt left arm
+            context.fillRect(71, 105, 28, 115); // Shirt right arm
+            
+            context.fillStyle = suitColor;
+            context.fillRect(-40, 100, 30, 100); // Suit jacket left arm
+            context.fillRect(70, 100, 30, 100); // Suit jacket right arm
+            
+            context.fillStyle = '#DDBB88';
+            context.fillRect(-40, 210, 30, 25); // Left hand
+            context.fillRect(70, 210, 30, 25); // Right hand
+            
+            context.fillStyle = '#CCAA77';
+            context.fillRect(-4, 25, 68, 20); // Ears
+            
+            context.fillStyle = '#DDBB88';
+            context.fillRect(10, 0, 40, 100); // Neck
+            context.fillRect(0, 0, 60, 80); // Face
+            
+            context.fillStyle = '#CCAA77';
+            context.fillRect(25, 35, 10, 20); // Nose
+            context.fillRect(23, 47, 14, 8); // Nostrils
+            
+            context.fillStyle = 'White';
+            context.fillRect(10, 25, 15, 10); // Left eye
+            context.fillRect(35, 25, 15, 10); // Right eye
+            
+            context.fillStyle = '#6699FF';
+            context.fillRect(15, 28, 5, 4); // Left pupil
+            context.fillRect(40, 28, 5, 4); // Right pupil
+            
+            context.fillStyle = '#994444';
+            context.fillRect(22, 60, 16, 6); // Mouth
+            
+            if (sunglasses === true) {
+              context.fillStyle = '#333333';
+              context.fillRect(-2, 22, 64, 4); // Frame
+              context.fillStyle = 'rgba(0, 51, 0, 0.8)';
+              context.fillRect(3, 22, 25, 15); // Left lens
+              context.fillRect(32, 22, 25, 15); // Right lens
+            }
+            
+            // Draw a hat if Rectangle Man is wearing a hat
+            
+            context.restore();
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#owl_rectangle_man_stage2_challenge7
+          .alert
+
+  #section8.section.py-2 &nbsp;
+  
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw an Outline Around a Shape
+          %p
+            Stylistically, we have decided not to draw outlines around our shapes, but
+            you may want to. Where we use the <code>context.fillRect()</code> method to
+            draw a filled rectangle, we use the <code>context.strokeRect()</code> method
+            to draw a rectangle's outline.
+          %p
+            In this example, we start by setting the <code>context.fillStyle</code>,
+            <code>context.strokeStyle</code>, and <code>context.lineWidth</code> properties:
+          %pre
+            %code
+              :preserve
+                context.fillStyle = 'SkyBlue';
+                context.strokeStyle = 'DarkMagenta';
+                context.lineWidth = 2;
+          %p
+            The <code>context.strokeStyle</code> property stores the color used to stroke
+            a line and the <code>context.lineWidth</code> property stores the thickness of the
+            line. Assign new values to both properties and press "Run" to see what happens.
+          %p
+            For the first shape, we draw the outline of a rectangle by itself:
+          %pre
+            %code
+              :preserve
+                context.strokeRect(20, 20, 120, 80); // Rectangle 1
+          %p
+            For the second shape, we fill a rectangle and then draw its outline:
+          %pre
+            %code
+              :preserve
+                context.fillRect(20, 120, 120, 80); // Rectangle 2
+                context.strokeRect(20, 120, 120, 80);
+          %p
+            For the third shape, we draw the outline of a rectangle and then fill it. The
+            outline appears thinner because it is partially covered by the fill color.
+          %pre
+            %code
+              :preserve
+                context.strokeRect(20, 220, 120, 80); // Rectangle 3
+                context.fillRect(20, 220, 120, 80);
+          %p
+            For the fourth shape, we draw the outlines of three overlapping rectangles and
+            then fill those rectangles. Because the rectangles overlap, the interior lines
+            are covered by the fill color and only the exterior lines are seen.
+          %pre
+            %code
+              :preserve
+                context.strokeRect(180, 20, 240, 80); // C-Shape
+                context.strokeRect(180, 220, 240, 80);
+                context.strokeRect(180, 20, 100, 280);
+                context.fillRect(180, 20, 240, 80);
+                context.fillRect(180, 220, 240, 80);
+                context.fillRect(180, 20, 100, 280);
+          %p
+            Right now, the code drawing the filled rectangles has been commented out. Remove
+            the double slashes at the start of those three lines to see how those three filled
+            rectangles cover the outlines.
+          %p
+            To learn more about drawing outlines around rectangles, visit the
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_example10_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage2_example10');
+                var context = canvas.getContext('2d');
+                
+                context.fillStyle = 'SkyBlue';
+                context.strokeStyle = 'DarkMagenta';
+                context.lineWidth = 2;
+                
+                context.strokeRect(20, 20, 120, 80); // Rectangle 1
+                
+                context.fillRect(20, 120, 120, 80); // Rectangle 2
+                context.strokeRect(20, 120, 120, 80);
+                
+                context.strokeRect(20, 220, 120, 80); // Rectangle 3
+                context.fillRect(20, 220, 120, 80);
+                
+                context.strokeRect(180, 20, 240, 80); // C-Shape
+                context.strokeRect(180, 220, 240, 80);
+                context.strokeRect(180, 20, 100, 280);
+                //context.fillRect(180, 20, 240, 80);
+                //context.fillRect(180, 220, 240, 80);
+                //context.fillRect(180, 20, 100, 280);
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                %canvas#owl_rectangle_man_stage2_example10
+
+  .lesson.row.pt-2
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.py-2
+            Draw a Line of Text
+          %p
+            In this example, we draw the line of text, "Testing... testing...", at the
+            coordinates (150, 100) using the <code>context.fillText()</code> method. But
+            before drawing the text, we assign values to four properties:
+          %pre
+            %code
+              :preserve
+                context.fillStyle = 'FireBrick';
+                context.font = '24px Arial';
+                context.textAlign = 'left';
+                context.textBaseline = 'alphabetic';
+          %p
+            The <code>context.fillStyle</code> property stores the text's fill color
+            and the <code>context.font</code> property stores the text's size and font. The
+            <code>context.textAlign</code> and <code>context.textBaseline</code> properties
+            determine how the text is aligned horizontally and vertically.
+          %p
+            Try changing the values assigned to the <code>context.textAlign</code> and
+            <code>context.textBaseline</code> properties or the text string and coordinates
+            passed into the <code>context.fillText()</code> method to see what happens. To
+            learn more about drawing lines of text, visit the
+            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            lesson.
+          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect, :fill_style]
+
+        .col-xs-12
+          .interactive.row.py-1
+            = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_example11_editor'} do
+              :preserve
+                var canvas = document.getElementById('owl_rectangle_man_stage2_example11');
+                var context = canvas.getContext('2d');
+                
+                context.fillStyle = 'FireBrick';
+                context.font = '24px Arial'; // Set the size and font
+                context.textAlign = 'left'; // Set to left, right, center
+                context.textBaseline = 'alphabetic'; // Set to alphabetic, top, bottom, middle
+                
+                context.fillText('Testing... testing...', 150, 100); // Pass in the text string and coordinates
+
+            .visual.col-xs-6
+              %h5
+                Canvas
+                %small (your drawing will display here)
+              .canvas
+                .background.hidden-xl-down= image_tag('lessons/owl_rectangle_man/stage1/example11.png')
+                %canvas#owl_rectangle_man_stage2_example11
+
+  #challenge8.challenge.row.py-4
+    .col-xs-12
+      .row
+        .col-xs-12
+          %h2.challenge-title.py-2
+            Challenge 8
+          %figure.float-xs-right.px-2
+            = image_tag('lessons/owl_rectangle_man/stage1/challenge8Visual1.png', class: 'img-fluid canvas-example')
+            %figcaption.text-xs-center.small A scene of Owl and Rectangle Man in their kitchen
+          %p
+            Use what you've learned in the lessons in stage 1 to put together your
+            own scene with drawings and text. Feel free to use Owl and Rectangle Man or
+            draw your own characters and scenery. Don't forget to include at least one
+            line of text!
+          %p
+            Once you are satisfied with your drawing, mark the challenge as complete by
+            selecting "Yes, it looks good".
+          = render 'lessons/relevant', relevant: [:coordinates, :variables, :if_statements, :fill_rect, :fill_style]
+
+      .row.py-1
+        = render :layout => '/lessons/editor', :locals => {:editor_id => 'owl_rectangle_man_stage2_challenge8_editor'} do
+          :preserve
+            var canvas = document.getElementById('owl_rectangle_man_stage2_challenge8');
+            var context = canvas.getContext('2d');
+            
+            // Put together drawings and text to create your own scene
+
+        .visual.col-xs-6
+          %h5
+            Canvas
+            %small (your drawing will display here)
+          .canvas
+            %canvas#owl_rectangle_man_stage2_challenge8
+          .alert
