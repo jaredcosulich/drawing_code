@@ -10,10 +10,9 @@
           %figure.float-xs-right.px-2
             = image_tag('lessons/owl_rectangle_man/stage1/overviewVisual1.png', class: 'img-fluid canvas-example')
           %p
-            These lessons show you how to create your own storybook.
-          %p
-            In the first stage, we draw a scene featuring our main characters, Owl and
-            Rectangle Man, sitting and talking at home in their kitchen.
+            In the second stage, we draw a series of scenes featuring Owl and
+            Rectangle Man sitting and talking at home in their kitchen that we can
+            click through to advance our story.
 
   #section1.section.py-2 &nbsp;
 
@@ -22,26 +21,38 @@
       .row
         .col-xs-12
           %h2.py-2
-            The Coordinate System
-          %figure.float-xs-right.px-2
-            = image_tag('lessons/owl_rectangle_man/stage1/exampleVisual1.png', class: 'img-fluid')
+            Use an If Statement to Choose which Scene to Draw
           %p
-            When drawing on a canvas, the canvas's context uses a coordinate system to
-            position lines, rectangles, and other shapes on the canvas.
+            A storybook is a series of scenes that combine to tell a story. Once our
+            storybook is finished, the reader will advance to the next scene by clicking on
+            the current scene. But for now, we will change the scene by changing the value
+            stored in a variable in our code.
           %p
-            By default, the origin (0, 0) of the context's coordinate system is the top
-            left corner of the canvas. The x-coordinate is the distance of a point from the
-            origin moving to the right and the y-coordinate is the distance from the origin
-            moving down.
+            To control which scene is drawn when our code is run, we use an if statement:
+          %pre
+            %code
+              :preserve
+                var scene = 1;
+                
+                if (scene == 1) {
+                  // Draw scene 1
+                } else if (scene == 2) {
+                  // Draw scene 2
+                } else if (scene == 3) {
+                  // Draw scene 3
+                }
           %p
-            For example, the point (80, 50) is 80 pixels to the right of the origin and 50
-            pixels down.
+            If we assign the value <code>1</code> to the variable <code>scene</code>, then
+            only the block of code after the condition <code>(scene == 1)</code> is run. On
+            the other hand, if we assign the value <code>2</code>, only the block of code
+            after the condition <code>(scene == 2)</code> is run.
           %p
-            To see the coordinates of a point on the canvas, mouse over the gray area in
-            the canvas to the right. To learn more about the coordinate system, visit the
-            = link_to_lesson('Coordinates', :coordinates, nil, class: 'reference-link', data: {slug: :coordinates})
+            The storybook in this example contains three scenes. Change the value stored in
+            the variable <code>scene</code> to draw the two other scenes. To learn more about
+            using if statements, visit the
+            = link_to_lesson('If Statements', :if_statements, nil, class: 'reference-link', data: {slug: :if_statements})
             lesson.
-          = render 'lessons/relevant', relevant: [:coordinates]
+          = render 'lessons/relevant', relevant: [:variables, :if_statements]
 
 
         .col-xs-12
@@ -106,16 +117,16 @@
                   
                   // Draw creature
                   context.save();
-                  context.translate(240, 50);
+                  context.translate(240, 40);
                   context.fillStyle = '#006400';
-                  context.fillRect(0, 0, 60, 230);
+                  context.fillRect(0, 0, 60, 240);
                   context.fillStyle = 'White';
                   context.fillRect(5, 10, 15, 20);
                   context.fillRect(25, 10, 15, 20);
                   context.fillStyle = 'Black';
                   context.fillRect(8, 18, 5, 5);
                   context.fillRect(28, 18, 5, 5);
-                  context.fillRect(5, 45, 30, 180);
+                  context.fillRect(8, 50, 30, 180);
                   context.restore();
                 } else if (scene == 3) {
                   // Draw creature
@@ -153,31 +164,53 @@
       .row
         .col-xs-12
           %h2.py-2
-            Draw a Black Rectangle
+            Use a Function to Re-use a Drawing
           %p
-            The <code>context.fillRect()</code> method draws a filled rectangle on
-            the canvas by passing it four values:
+            In the previous example, we created a storybook with three scenes. Because
+            the same slice of cake appears in the first two scenes, we draw the slice of
+            cake twice in our code.
+          %p
+            An easier way to re-use a drawing is to put the code for that drawing inside
+            a function. Then, whenever we want to use the drawing, we can simply call the
+            function instead of typing the same code all over again.
+          %p
+            Here is how we define a function:
           %pre
             %code
               :preserve
-                context.fillRect(x, y, width, height);
+                function drawCakeSlice() {
+                  
+                  // code block
+                  
+                }
           %p
-            This programs the context to draw a rectangle at the coordinates (<code>x</code>,
-            <code>y</code>) with the given <code>width</code> and <code>height</code> values.
+            The name of this particular function is <code>drawCakeSlice()</code>, and
+            whenever the function is called, the block of code placed between the curly
+            braces {&hellip;} is run automatically.
           %p
-            In this example, we draw a black rectangle at (50, 100) with a width of
-            200 and a height of 80.
+            In this example, we place the code to draw the slice of cake inside the
+            <code>drawCakeSlice()</code> function and then call the function in the code
+            to draw scene 1:
           %pre
             %code
               :preserve
-                context.fillRect(50, 100, 200, 80);
+                if (scene == 1) {
+                  // Draw cake
+                  drawCakeSlice();
+                }
           %p
-            Change the x- and y-coordinates to move the rectangle on the canvas. Change
-            the width and height to change the size of the rectangle. To learn more about
-            drawing rectangles, visit the
-            = link_to_lesson('fillRect()', :fill_rect, nil, class: 'reference-link', data: {slug: :fill_rect})
+            Right now, the slice of cake isn't drawn in scene 2. To draw the same slice
+            of cake in scene 2, find the code to draw scene 2 and add the following function
+            call:
+          %pre
+            %code
+              :preserve
+                drawCakeSlice();
+          %p
+            To learn more about functions, visit the
+            = link_to_lesson('Functions', :functions, nil, class: 'reference-link', data: {slug: :functions})
             lesson.
-          = render 'lessons/relevant', relevant: [:coordinates, :fill_rect]
+          = render 'lessons/relevant', relevant: [:variables, :if_statements, :functions]
 
         .col-xs-12
           .interactive.row.py-1
@@ -186,14 +219,94 @@
                 var canvas = document.getElementById('owl_rectangle_man_stage2_example2');
                 var context = canvas.getContext('2d');
                 
-                context.fillRect(50, 100, 200, 80);
+                var scene = 1;
+                
+                if (scene == 1) {
+                  // Draw cake
+                  drawCakeSlice();
+                  
+                  // Draw creature
+                  context.save();
+                  context.translate(240, 200);
+                  context.fillStyle = '#006400';
+                  context.fillRect(0, 0, 60, 80);
+                  context.fillStyle = 'White';
+                  context.fillRect(5, 10, 15, 20);
+                  context.fillRect(25, 10, 15, 20);
+                  context.fillStyle = 'Black';
+                  context.fillRect(8, 18, 5, 5);
+                  context.fillRect(28, 18, 5, 5);
+                  context.fillRect(8, 50, 30, 5);
+                  context.restore();
+                  
+                  // Draw text
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.font = '18px Arial';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'top';
+                  context.fillText('Yum, cake!', 170, 40);
+                } else if (scene == 2) {
+                  // Draw cake
+                  
+                  
+                  // Draw creature
+                  context.save();
+                  context.translate(240, 40);
+                  context.fillStyle = '#006400';
+                  context.fillRect(0, 0, 60, 240);
+                  context.fillStyle = 'White';
+                  context.fillRect(5, 10, 15, 20);
+                  context.fillRect(25, 10, 15, 20);
+                  context.fillStyle = 'Black';
+                  context.fillRect(8, 18, 5, 5);
+                  context.fillRect(28, 18, 5, 5);
+                  context.fillRect(8, 50, 30, 180);
+                  context.restore();
+                } else if (scene == 3) {
+                  // Draw creature
+                  context.save();
+                  context.translate(240, 200);
+                  context.fillStyle = '#006400';
+                  context.fillRect(0, 0, 60, 80);
+                  context.fillStyle = 'White';
+                  context.fillRect(5, 10, 15, 20);
+                  context.fillRect(25, 10, 15, 20);
+                  context.fillStyle = 'Black';
+                  context.fillRect(8, 18, 5, 5);
+                  context.fillRect(28, 18, 5, 5);
+                  context.fillRect(8, 50, 30, 5);
+                  context.restore();
+                  
+                  // Draw text
+                  context.save();
+                  context.fillStyle = 'Black';
+                  context.font = '18px Arial';
+                  context.textAlign = 'center';
+                  context.textBaseline = 'top';
+                  context.fillText('*Burp*', 170, 40);
+                }
+                
+                function drawCakeSlice() {
+                  context.save();
+                  context.translate(40, 100);
+                  context.fillStyle = '#FFFF00';
+                  context.fillRect(0, 0, 180, 180);
+                  context.fillStyle = '#CD853F';
+                  context.fillRect(0, 0, 8, 180);
+                  context.fillRect(0, 0, 180, 8);
+                  context.fillRect(0, 43, 180, 8);
+                  context.fillRect(0, 86, 180, 8);
+                  context.fillRect(0, 129, 180, 8);
+                  context.fillRect(0, 172, 180, 8);
+                  context.restore();
+                }
 
             .visual.col-xs-6
               %h5
                 Canvas
                 %small (your drawing will display here)
               .canvas
-                .background.hidden-xl-down= image_tag('lessons/owl_rectangle_man/stage1/example2.png')
                 %canvas#owl_rectangle_man_stage2_example2
 
   #challenge1.challenge.row.py-4
@@ -235,10 +348,16 @@
       .row
         .col-xs-12
           %h2.py-2
-            Fill a Rectangle with a Color
+            Position a Drawing Using Parameters
           %p
-            While the default fill color is black, we can set the <code>context.fillStyle</code>
-            property to fill our rectangles with other colors.
+            Drawing the same slice of cake in two different scenes with a function is
+            helpful, but it would be more helpful if we could also draw the slice of cake
+            in different positions. That way, we could still use the function even if the
+            slice of cake moves between scene 1 and scene 2.
+          %p
+            One way to draw the slice of cake in different positions is to pass the
+            coordinates of the slice of cake into the function as parameters. A parameter
+            is a variable
           %p
             In this example, we set the <code>context.fillStyle</code> property to the color
             <code>'DodgerBlue'</code> before filling a rectangle at (100, 60) with a width of 120
